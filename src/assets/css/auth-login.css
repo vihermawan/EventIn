@@ -1,0 +1,72 @@
+.image-main-login{
+    width: 600px;
+    margin-top: 100px;
+    margin-left: 150px;
+    margin-top:12%;
+}
+
+.container-login {
+    max-width:100%;
+    margin-top: 20px;
+    margin-left: 10%;
+    margin-bottom: 10px;
+}
+
+.title-login {
+    text-align: center;
+    font-size: 50px;
+    font-weight: 500;
+    /* margin: 10px auto; */
+    max-width: 100%;
+}
+.description-login {
+    text-align: center;
+    font-size: 25px;
+    margin-left: 19%;
+    font-weight: 100;
+    max-width: 620px;
+    margin-top: 10%;
+}
+
+.container-form{
+    margin-top: 15%;
+    text-align: center;
+}
+
+.form-title{
+    font-size: 36px;
+    font-weight: 500;
+}
+
+.form-description{
+    margin-top: 1%;
+    font-size: 25px;
+    margin-bottom: 10%;
+}
+
+.inputUser{
+    color:red;      
+    max-width: 70%;
+    height: 50px;
+}
+.inputPassword{
+    background-color: red;
+    margin-top: 10%;
+    max-width: 70%;
+    height: 50px;
+}
+
+.button-section-1-login {
+    margin-top: 10%;
+    max-width: 400px;
+    margin-left: 13%;
+}
+
+
+.button-login {
+    font-size: 22px;
+    font-weight: 500;
+    min-height: 60px;
+    padding-left: 180px;
+    padding-right: 180px;
+}

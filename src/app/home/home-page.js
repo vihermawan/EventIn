@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-
 import { navigate } from '../../common/store/action'
 import HomeComponent from '../../modules/home/component/home-component';
 
