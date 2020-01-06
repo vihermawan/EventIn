@@ -1,22 +1,231 @@
 import React, { Component } from 'react';
-import { Layout, BackTop } from 'antd';
-
+import { Layout, BackTop, Row, Col, Button, Input, Dropdown, Menu, Icon, Tabs } from 'antd';
+import '../../../assets/css/home.css'
+// component
 import Navbar from '../../../common/layout/navbar-landing'
+import Footer from '../../../common/layout/footer-landing'
+import ButtonRounded from '../../../common/component/button/button-rounded'
+
 
 const { Content } = Layout;
+const { Search } = Input;
+const { TabPane } = Tabs;
+
+const cardData = [
+    {
+        image: require(`../../../assets/images/eventin.png`),
+        title: 'Organizer',
+        description: 'Organizer make an event with funtastic, so wanna be organizer ?'
+    },
+    {
+        image: require(`../../../assets/images/eventin.png`),
+        title: 'Participant',
+        description: 'How many time you join event, at one or more ? Join now!'
+    },
+    {
+        image: require(`../../../assets/images/eventin.png`),
+        title: 'Event',
+        description: 'Find Event anything event what you want to join'
+    },
+    {
+        image: require(`../../../assets/images/eventin.png`),
+        title: 'Organizer',
+        description: 'Organizer make an event with funtastic, so wanna be organizer ?'
+    },
+    {
+        image: require(`../../../assets/images/eventin.png`),
+        title: 'Participant',
+        description: 'How many time you join event, at one or more ? Join now!'
+    },
+    {
+        image: require(`../../../assets/images/eventin.png`),
+        title: 'Event',
+        description: 'Find Event anything event what you want to join'
+    },
+    {
+        image: require(`../../../assets/images/eventin.png`),
+        title: 'Organizer',
+        description: 'Organizer make an event with funtastic, so wanna be organizer ?'
+    },
+    {
+        image: require(`../../../assets/images/eventin.png`),
+        title: 'Participant',
+        description: 'How many time you join event, at one or more ? Join now!'
+    }
+]
+
+const benefitData = [
+    {
+        image: require(`../../../assets/images/benefit-1.png`),
+        title: 'Tracking',
+        description: 'Organizer can tracks how much participant join their events'
+    },
+    {
+        image: require(`../../../assets/images/benefit-2.png`),
+        title: 'E-Certificate',
+        description: 'Participant can get e-certificate when he done join event'
+    },
+    {
+        image: require(`../../../assets/images/benefit-3.png`),
+        title: 'Paperless',
+        description: 'Organizer can take signatured with signer just by system'
+    },
+    {
+        image: require(`../../../assets/images/benefit-4.png`),
+        title: 'Simplifying',
+        description: 'Organize your event, and make your events more good'
+    },
+    {
+        image: require(`../../../assets/images/benefit-5.png`),
+        title: 'Newst Event',
+        description: 'Participant can seacrh event nearby his location anything event what he wants'
+    },
+    {
+        image: require(`../../../assets/images/benefit-6.png`),
+        title: 'Both Time',
+        description: 'Everypeople can join to be a participant or organizer'
+    },
+    
+]
+
+const menu = (
+    <Menu>
+      <Menu.Item>
+        <a target="_blank" rel="noopener noreferrer" href="http://www.alipay.com/">
+          1st menu item
+        </a>
+      </Menu.Item>
+      <Menu.Item>
+        <a target="_blank" rel="noopener noreferrer" href="http://www.taobao.com/">
+          2nd menu item
+        </a>
+      </Menu.Item>
+      <Menu.Item>
+        <a target="_blank" rel="noopener noreferrer" href="http://www.tmall.com/">
+          3rd menu item
+        </a>
+      </Menu.Item>
+    </Menu>
+  );
 
 class EventComponent extends Component {
-    render() {
+    render() { 
+        const image1 = require(`../../../assets/images/event-image1.png`);
+        const image2 = require(`../../../assets/images/event-image1.png`);
+        const image3 = require(`../../../assets/images/event-image1.png`);
+        
         return ( 
-            <Layout className="landing-container">
-                <Navbar />
+            <Layout className="landing-container-event">
+                <Navbar
+                    navigate={this.props.navigate}
+                />
                 <Content style={{ overflow: "hidden" }}>
-                    
+                    <Row style={{minHeight: '100%',marginBottom: '9%',marginTop:'1%'}}>
+                        <Col lg={12} md={12} sm={12}>
+                            <Row>
+                                <Col span={24}>
+                                    <div className="title-container">
+                                        <span className="text-soft-blue title-big">Search </span>
+                                        <br/>
+                                        <span className="text-soft-blue title-small">place what do you want to go event....</span>
+                                    </div>
+                                </Col>
+                                <Col span={24}>
+                                    <div className="image-hidden">
+                                        <img
+                                            src={image1}
+                                            alt="Home 1"
+                                            style={{maxWidth: '100%'}}
+                                        />
+                                    </div>
+                                    <div className="description-container">
+                                        You can find an event what do you want, and you can make event here
+                                    </div>
+                                </Col>
+                                <Col span={24}>
+                                    <div className="button-section-1-container">
+                                        <Search
+                                            onSearch={value => console.log(value)}
+                                            placeholder="Enter the location..."
+                                            style={{ width: 200 }}
+                                        />
+                                        <Dropdown 
+                                            marginLeft={16}
+                                            overlay={menu}>
+                                            <Button>
+                                                Category Event <Icon type="down" />
+                                            </Button>
+                                        </Dropdown>
+                                    </div>
+                                </Col>
+                            </Row>
+                        </Col>
+                        <Col lg={12} md={12} sm={12}>
+                            <div className="image-big-container">
+                                <img
+                                    src={image1}
+                                    alt="Home 1"
+                                    style={{maxWidth: '100%'}}
+                                />
+                            </div>
+                        </Col>
+                    </Row>
+                    <Row style={{minHeight: '100%',marginBottom: '9%'}}>
+                        <Col lg={24}>
+                            <div className="text-soft-blue title-discover bold">
+                                Event For You
+                            </div>
+                        </Col>
+                        <Col lg={24} className="card-container">
+                        <Tabs style={{marginLeft:'5%', marginRight:'5%'}} defaultActiveKey="1">
+                            <TabPane 
+                                tab="All" key="1">
+                            <Col lg={24} className="card-container">
+                            <Row gutter={24} type="flex" justify="center">
+                                {
+                                    cardData.map( data =>
+                                        <Col lg={6} className="text-align-center">
+                                            <div className="card-content">
+                                                <img src={data.image} alt="organizer" className="card-image"/>
+                                                <div className="text-black semi-bold card-title">
+                                                    {data.title}
+                                                </div>
+                                                <div className="card-description">
+                                                    {data.description}
+                                                </div>
+                                            </div>
+                                        </Col>
+                                    )
+                                }
+                            </Row>
+                        </Col>
+                            </TabPane>
+                            <TabPane tab="This Weekend" key="2">
+                            This Weekend
+                            </TabPane>
+                            <TabPane tab="Music" key="3">
+                            Music
+                            </TabPane>
+                            <TabPane tab="Talkshow" key="4">
+                            This Weekend
+                            </TabPane>
+                            <TabPane tab="Game" key="5">
+                            This Weekend
+                            </TabPane>
+                            <TabPane tab="Food & Drink" key="6">
+                            This Weekend
+                            </TabPane>
+                            <TabPane tab="Ospek" key="7">
+                            This Weekend
+                            </TabPane>
+                        </Tabs>       
+                        </Col>
+                    </Row>
                     <BackTop />
                 </Content>
+                <Footer/>
             </Layout>
         );
     }
 }
- 
 export default EventComponent;
