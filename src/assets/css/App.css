@@ -73,6 +73,9 @@
     /* min-height: 500vh; */
     background-color: #ffffff;
 }
+.login-container{
+    background-color: #ffffff;
+}
 
 /* Color helper */
 .text-black {
