@@ -1,16 +1,16 @@
 import React, { Component } from 'react';
 import { Layout, Row, Col, Button, Form,Icon, Input, } from 'antd';
 import '../../../assets/css/auth-login.css'
-import { Link } from 'react-router-dom';
 // component
 import InputAuth from '../../../common/component/input/input-auth'
 import ButtonAuth from '../../../common/component/button/button-auth'
+import { Link } from 'react-router-dom';
 
 const { Content } = Layout;
 const logo = require(`../../../assets/images/logo.png`);
-const login = require(`../../../assets/images/login-image.png`);
+const login = require(`../../../assets/images/register-image.png`);
 
-class LoginComponent extends Component{
+class RegisterComponent extends Component{
     render(){
         const { initialData, handleChange, handleSubmit } = this.props;
         return (
@@ -21,7 +21,7 @@ class LoginComponent extends Component{
                             <Row>
                                 <div className="login-section-container">
                                     <img src={logo} alt="EventIn logo" width="100"/>
-                                    <div className="auth-image-container">
+                                    <div className="auth-image-container mt-50">
 					                <img
                                         src={login}
                                         alt="EventIn login"
@@ -41,9 +41,9 @@ class LoginComponent extends Component{
                             <Row > 
                                 <Form onSubmit={handleSubmit}>
                                     <div className="auth-form-container">
-                                        <div className="text-white text-align-center title-more-small mb-50 mt-60">
+                                        <div className="text-white text-align-center title-more-small mb-50 mt-10">
                                             <p className="semi-bold m-0">Welcome!</p>
-                                            <p className="form-description">Sign in to your account</p>
+                                            <p className="form-description">Resiter in to your account</p>
                                         </div>
                                         <span className="auth-input-label text-white">Username</span>
                                         <InputAuth
@@ -52,6 +52,15 @@ class LoginComponent extends Component{
                                             onChange={handleChange}
                                             value={initialData.username}
                                             className="input-auth mt-5 mb-20"
+                                        />
+                                        <span className="auth-input-label text-white">Email</span>
+                                        <InputAuth
+                                            name='email'
+                                            placeholder="email"
+                                            onChange={handleChange}
+                                            value={initialData.username}
+                                            className="input-auth mt-5 mb-20"
+                                            iconType="mail"
                                         />
                                         <span className="auth-input-label text-white">Password</span>
                                         <InputAuth
@@ -63,15 +72,14 @@ class LoginComponent extends Component{
                                             iconType="lock"
                                             type="password"
                                         />
-                                         <p className="auth-reminder-label mt-10 text-white">Forgot Password?</p>
                                         <div>
                                             <ButtonAuth
-                                                text="Login"
-                                                className="auth-button-red mt-70 auth-button-login"
+                                                text="Register"
+                                                className="auth-button-red mt-40 auth-button-login"
                                                 style={{borderRadius: '26px',backgroundColor:'#FA607E',border:'none',color:'#ffff'}}
                                                 block={true}
                                             />
-                                             <p className="auth-login-label mt-10 text-align-center text-white">Don't have account? <Link to='/register' className="text-white"> Register Now </Link></p>
+                                             <p className="auth-login-label mt-10 text-align-center text-white">Already have account? <Link to='/login' className="text-white"> Login Now </Link></p>
                                         </div>
                                     </div>
                                 </Form>
@@ -85,4 +93,4 @@ class LoginComponent extends Component{
 }
 
 
-export default LoginComponent;
+export default RegisterComponent;
