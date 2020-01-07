@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Layout, BackTop, Row, Col, Button, Input, Dropdown, Menu, Icon, Tabs } from 'antd';
-import '../../../assets/css/home.css'
+import '../../../assets/css/event.css'
 // component
 import Navbar from '../../../common/layout/navbar-landing'
 import Footer from '../../../common/layout/footer-landing'
@@ -87,7 +87,7 @@ class EventComponent extends Component {
                     navigate={this.props.navigate}
                 />
                 <Content style={{ overflow: "hidden" }}>
-                    <Row style={{minHeight: '100%',marginBottom: '9%',marginTop:'1%'}}>
+                    {/* <Row style={{minHeight: '100%',marginBottom: '9%',marginTop:'1%'}}>
                         <Col lg={12} md={12} sm={12}>
                             <Row>
                                 <Col span={24}>
@@ -107,6 +107,42 @@ class EventComponent extends Component {
                                     </div>
                                     <div className="description-container">
                                         You can find an event what do you want, and you can make event here
+                                    </div>
+                                </Col>
+                               
+                            </Row>
+                        </Col>
+                        <Col lg={12} md={12} sm={12}>
+                            <div className="image-big-container">
+                                <img
+                                    src={image1}
+                                    alt="Home 1"
+                                    style={{maxWidth: '100%'}}
+                                />
+                            </div>
+                        </Col>
+                    </Row> */}
+                    {/* Section 1 */}
+                    <Row className="section-container">
+                        <Col lg={12} md={12} sm={12}>
+                            <Row>
+                                <Col span={24}>
+                                    <div className="title-container">
+                                        <span className="text-soft-blue title-biggest bold">Search</span>
+                                        <br/>
+                                        <span className="text-soft-blue title-big bold">place what do you want to go event.</span>
+                                    </div>
+                                </Col>
+                                <Col span={24}>
+                                    <div className="image-hidden">
+                                        <img
+                                            src={image1}
+                                            alt="Event 1"
+                                            style={{maxWidth: '100%'}}
+                                        />
+                                    </div>
+                                    <div className="description-container desc-big">
+                                        Find anything event and place what you want in here...
                                     </div>
                                 </Col>
                                 <Col span={24}>
@@ -131,12 +167,14 @@ class EventComponent extends Component {
                             <div className="image-big-container">
                                 <img
                                     src={image1}
-                                    alt="Home 1"
+                                    alt="Event 1"
                                     style={{maxWidth: '100%'}}
                                 />
                             </div>
                         </Col>
                     </Row>
+
+
                     <Row style={{minHeight: '100%',marginBottom: '9%'}}>
                         <Col lg={24}>
                             <div className="text-soft-blue title-discover bold">
