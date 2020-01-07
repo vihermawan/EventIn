@@ -1,11 +1,10 @@
 @import '~antd/dist/antd.css';
 
-
 .container-full {
     min-height: 100vh;
 }
 
-.m-0 { margin: 0px }
+.m-0 { margin: 0px !important}
 
 .mt-3 { margin-top: 3px }
 .mt-5 { margin-top: 5px }
@@ -40,9 +39,17 @@
 .mb-90 { margin-bottom: 90px }
 .mb-100 { margin-bottom: 100px }
 
+.ml-10 { margin-left: 10px }
+.ml-20 { margin-left: 20px }
 .ml-30 { margin-left: 30px }
 .ml-40 { margin-left: 40px }
 .ml-50 { margin-left: 50px }
+
+.mr-10 { margin-right: 10px }
+.mr-20 { margin-right: 20px }
+.mr-30 { margin-right: 30px }
+.mr-40 { margin-right: 40px }
+.mr-50 { margin-right: 50px }
 
 .p-5 { padding: 5px }
 .p-10 { padding: 10px }
@@ -67,6 +74,16 @@
 .pt-45 { padding-top: 40px }
 .pt-50 { padding-top: 50px }
 
+.pl-10 {padding-left: 10px;}
+.pl-20 {padding-left: 20px;}
+.pl-30 {padding-left: 30px;}
+.pl-40 {padding-left: 40px;}
+
+.pr-10 {padding-right: 10px;}
+.pr-20 {padding-right: 20px;}
+.pr-30 {padding-right: 30px;}
+.pr-40 {padding-right: 40px;}
+
 .pb-20 { padding-bottom: 20px }
 .pb-25 { padding-bottom: 25px }
 .pb-30 { padding-bottom: 30px }
@@ -77,9 +94,6 @@
 
 .landing-container {
     /* min-height: 500vh; */
-    background-color: #ffffff;
-}
-.login-container{
     background-color: #ffffff;
 }
 
@@ -118,17 +132,12 @@
 }
 
 /* Text helper */
-.thin{
-    font-weight: 100;
-}
 .semi-bold {
     font-weight: 600;
 }
-
 .bold {
     font-weight: 700;
 }
-
 .bolder {
     font-weight: bold;
 }
@@ -145,9 +154,6 @@
 .title-small {
     font-size: 32px;
 }
-.title-more-small {
-    font-size: 25px;
-}
 
 .desc-big {
     font-size: 24px;
@@ -155,6 +161,10 @@
 .desc-medium {
     font-size: 18px;
 }
+
+
+
+
 
 
 /* Media Queries */

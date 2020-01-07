@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Layout, BackTop, Row, Col, Button } from 'antd';
+import { Layout, BackTop, Row, Col } from 'antd';
 import '../../../assets/css/home.css'
 // component
 import Navbar from '../../../common/layout/navbar-landing'
@@ -24,38 +24,37 @@ const cardData = [
         description: 'Find Event anything event what you want to join'
     }
 ]
-
-const benefitData = [
+const whyData = [
     {
-        image: require(`../../../assets/images/benefit-1.png`),
+        image: require(`../../../assets/images/tracking.png`),
         title: 'Tracking',
         description: 'Organizer can tracks how much participant join their events'
     },
     {
-        image: require(`../../../assets/images/benefit-2.png`),
+        image: require(`../../../assets/images/certificate.png`),
         title: 'E-Certificate',
         description: 'Participant can get e-certificate when he done join event'
     },
     {
-        image: require(`../../../assets/images/benefit-3.png`),
+        image: require(`../../../assets/images/paperless.png`),
         title: 'Paperless',
         description: 'Organizer can take signatured with signer just by system'
     },
     {
-        image: require(`../../../assets/images/benefit-4.png`),
+        image: require(`../../../assets/images/simplifying.png`),
         title: 'Simplifying',
         description: 'Organize your event, and make your events more good'
     },
     {
-        image: require(`../../../assets/images/benefit-5.png`),
+        image: require(`../../../assets/images/news.png`),
         title: 'Newst Event',
         description: 'Participant can seacrh event nearby his location anything event what he wants'
     },
     {
-        image: require(`../../../assets/images/benefit-6.png`),
+        image: require(`../../../assets/images/both-time.png`),
         title: 'Both Time',
         description: 'Everypeople can join to be a participant or organizer'
-    },
+    }
 ]
 
 
@@ -64,21 +63,22 @@ class HomeComponent extends Component {
         const image1 = require(`../../../assets/images/home-image1.png`);
         const image2 = require(`../../../assets/images/home-image2.png`);
         const image3 = require(`../../../assets/images/home-image3.png`);
-        
+        const bigLogo = require(`../../../assets/images/big-logo.png`);
         return ( 
             <Layout className="landing-container">
                 <Navbar
                     navigate={this.props.navigate}
                 />
                 <Content style={{ overflow: "hidden" }}>
-                    <Row style={{minHeight: '100%',marginBottom: '9%',marginTop:'5%'}}>
+                    {/* Section 1 */}
+                    <Row className="section-container">
                         <Col lg={12} md={12} sm={12}>
                             <Row>
                                 <Col span={24}>
                                     <div className="title-container">
-                                        <span className="text-soft-blue title-big">Finally, </span>
+                                        <span className="text-soft-blue title-biggest bold">Finally, </span>
                                         <br/>
-                                        <span className="text-soft-blue title-small">a way to find best event nearby</span>
+                                        <span className="text-soft-blue title-big bold">a way to find best event nearby</span>
                                     </div>
                                 </Col>
                                 <Col span={24}>
@@ -89,7 +89,7 @@ class HomeComponent extends Component {
                                             style={{maxWidth: '100%'}}
                                         />
                                     </div>
-                                    <div className="description-container">
+                                    <div className="description-container desc-big">
                                         You can find an event what do you want, and you can make event here
                                     </div>
                                 </Col>
@@ -121,9 +121,10 @@ class HomeComponent extends Component {
                             </div>
                         </Col>
                     </Row>
-                    <Row style={{minHeight: '100%',marginBottom: '9%'}}>
+                    {/* Section 2 */}
+                    <Row className="section-container">
                         <Col lg={24}>
-                            <div className="text-soft-blue title-discover bold">
+                            <div className="text-soft-blue title-big bold discover-container">
                                 Discovering event with a purpose
                             </div>
                         </Col>
@@ -136,7 +137,7 @@ class HomeComponent extends Component {
                             <Row gutter={24} type="flex" justify="center">
                                 {
                                     cardData.map( data =>
-                                        <Col lg={6} className="text-align-center">
+                                        <Col lg={7} className="text-align-center">
                                             <div className="card-content">
                                                 <img src={data.image} alt="organizer" className="card-image"/>
                                                 <div className="text-black semi-bold card-title">
@@ -152,93 +153,127 @@ class HomeComponent extends Component {
                             </Row>
                         </Col>
                     </Row>
-                    <Row style = {{minHeight: '100%',marginBottom: '9%'}}>
+                    {/* Section 3 */}
+                    <Row className="section-container">
                         <Col lg={12} md={12} sm={12}>
-                            <div className="image-big-container-2">
+                            <div className="image-section">
                                 <img
                                     src={image2}
-                                    alt="Home 2"
-                                    style={{maxWidth: '80%',minHeight:'80%'}}
+                                    alt="event in"
+                                    style={{maxWidth: '100%'}}
                                 />
                             </div>
                         </Col>
                         <Col lg={12} md={12} sm={12}>
-                            <Col span={24}>
-                                <div className="title-container-2">
-                                    <span className="text-soft-blue title-medium">Event<span className="text-black">In</span> </span>
-                                    <br/>
-                                    <span className="text-soft-blue title-description">We serve - connection Organizer to his event</span>
-                                    <br/>
-                                    <p className="text-soft-grey title-quote">Make your event was easier, with EventIn your event just service with one click and service what you want.</p>
-                                </div>
-                            </Col>
-                            <Col span={24}>
-                                <div className="button-section-1-quote">
+                            <Row className="ml-20 ml-40">
+                                <Col span={24}>
+                                    <div className="title-container-3 mt-20">
+                                        <span className="text-soft-blue title-big bold">Event<span className="text-black">In</span></span>
+                                        <br/>
+                                        <span className="text-soft-blue title-medium semi-bold">We serve - connection Organizer to his event</span>
+                                    </div>
+                                </Col>
+                                <Col span={24}>
+                                    <div className="image-hidden-3">
+                                        <img
+                                            src={image2}
+                                            alt="eventin"
+                                            style={{maxWidth: '100%'}}
+                                        />
+                                    </div>
+                                    <div className="desc-medium description-section-3 mt-10">
+                                        Make your event was easier, with EventIn your event just service with one click and service what you want.
+                                    </div>
+                                </Col>
+                                <Col span={24}>
                                     <ButtonRounded
                                         text="Start to Organize"
-                                        className='button-serve'
+                                        className='button-organize mt-20 semi-bold'
                                     />
-                                </div>
-                            </Col>
-                        </Col>
+                                </Col>
+                            </Row>
+                        </Col>                        
                     </Row>
-                    <Row style = {{minHeight: '100%',marginBottom: '9%'}}>
+
+                    {/* Section 4 */}
+                    <Row className="section-container">                        
                         <Col lg={12} md={12} sm={12}>
-                            <Col span={24}>
-                                <div className="title-container-3">
-                                    <span className="text-soft-blue title-medium">Event<span className="text-black">In</span> </span>
-                                    <br/>
-                                    <span className="text-soft-blue title-description-2">Simplifying Participant</span>
-                                    <br/>
-                                    <span className="text-soft-blue title-description-2"> to Join Event</span>
-                                    <br/>
-                                    <p className="text-soft-grey title-quote-2">Participant just search event what he wants to join, with one click participant can register and join event with easyly.</p>
-                                </div>
-                            </Col>
-                            <Col span={24}>
-                                <div className="button-section-2-quote">
+                            <Row className="mr-50 ml-40">
+                                <Col span={24}>
+                                    <div className="title-container-3 mt-20">
+                                        <span className="text-soft-blue title-big bold">Event<span className="text-black">In</span></span>
+                                        <br/>
+                                        <span className="text-soft-blue title-medium semi-bold">Simplifying Participant to Join Event</span>
+                                    </div>
+                                </Col>
+                                <Col span={24}>
+                                    <div className="image-hidden-3">
+                                        <img
+                                            src={image3}
+                                            alt="simply participant"
+                                            style={{maxWidth: '100%'}}
+                                        />
+                                    </div>
+                                    <div className="desc-medium description-section-3 mt-10">
+                                        Participant just search event what he wants to join, with one click participant can register and join event with easyly.
+                                    </div>
+                                </Col>
+                                <Col span={24}>
                                     <ButtonRounded
-                                        text="Start to Search Event ?"
-                                        className='button-serve'
+                                        text="Start to search Event ?"
                                         background="white"
                                         textColor="#4D5AF2"
                                         border="1px solid #4D5AF2"
+                                        className='button-participate mt-20 semi-bold'
                                     />
-                                </div>
-                            </Col>
+                                </Col>
+                            </Row>
                         </Col>
                         <Col lg={12} md={12} sm={12}>
-                            <div className="image-big-container-1">
+                            <div className="image-section-4 ml-40">
                                 <img
                                     src={image3}
-                                    alt="Home 3"
-                                    style={{maxWidth: '80%',minHeight:'80%'}}
+                                    alt="simply participant"
+                                    style={{maxWidth: '100%'}}
                                 />
                             </div>
                         </Col>
                     </Row>
-                    <Row style = {{minHeight: '100%',marginBottom: '9%'}}>
+                    {/* Section 5 */}
+                    <Row className="section-container">
                         <Col lg={24}>
-                            <div className="text-soft-blue title-benefit bold">
+                            <div className="text-soft-blue title-big bold discover-container">
                                 Why Event<span className="text-black">In</span>
                             </div>
                         </Col>
                         <Col lg={24}>
-                            <div className="text-black description-benefit">
-                            Our Missions is to make connection Participant with event and event with Organizer to make great transaction event with both
+                            <div className="text-black description-discover">
+                                Our Missions is to make connection Participant with event and event with Organizer to make great transaction event with both
                             </div>
                         </Col>
-                        <Col lg={24} className="card-container">
-                            <Row gutter={24} type="flex" justify="center">
+                        <Col lg={24}>
+                            <hr style={{
+                                minHeight: 8,
+                                backgroundColor: '#4D5AF2',
+                                border: 'none',
+                                maxWidth: 150,
+                                borderRadius: 26,
+                            }}/>
+                        </Col>                        
+                        <Col lg={24} className="mt-20">
+                            <Row
+                                type="flex" justify="center"
+                                className="card-why-container"
+                            >
                                 {
-                                    benefitData.map( data =>
-                                        <Col lg={8} className="text-align">
-                                            <div className="benefit-content">
-                                                <img src={data.image} alt="organizer" className="benefit-image"/>
-                                                <div className="text-soft-blue bold benefit-title">
+                                    whyData.map( data =>
+                                        <Col lg={8} md={12} sm={12} className="">
+                                            <div className="card-why-content">
+                                                <img src={data.image} alt={data.title} className="card-why-image"/>
+                                                <div className="text-soft-blue semi-bold mt-10">
                                                     {data.title}
                                                 </div>
-                                                <div className="benefit-description">
+                                                <div className="mt-10" style={{maxWidth:'260px'}}>
                                                     {data.description}
                                                 </div>
                                             </div>
@@ -248,6 +283,7 @@ class HomeComponent extends Component {
                             </Row>
                         </Col>
                     </Row>
+
                     <BackTop />
                 </Content>
                 <Footer/>
