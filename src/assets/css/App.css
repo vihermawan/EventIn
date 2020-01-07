@@ -1,4 +1,10 @@
 @import '~antd/dist/antd.css';
+
+
+.container-full {
+    min-height: 100vh;
+}
+
 .m-0 { margin: 0px }
 
 .mt-3 { margin-top: 3px }
@@ -112,10 +118,118 @@
 }
 
 /* Text helper */
+.thin{
+    font-weight: 100;
+}
 .semi-bold {
     font-weight: 600;
 }
 
 .bold {
     font-weight: 700;
+}
+
+.bolder {
+    font-weight: bold;
+}
+
+.title-biggest {
+    font-size: 90px;
+}
+.title-big {
+    font-size: 50px;
+}
+.title-medium {
+    font-size: 44px;
+}
+.title-small {
+    font-size: 32px;
+}
+.title-more-small {
+    font-size: 25px;
+}
+
+.desc-big {
+    font-size: 24px;
+}
+.desc-medium {
+    font-size: 18px;
+}
+
+
+/* Media Queries */
+@media screen and (max-width: 1200px){
+    .title-biggest {
+        font-size: 68px;
+    }
+    .title-big {
+        font-size: 40px;
+    }
+    .title-medium {
+        font-size: 36px;
+    }
+    .title-small {
+        font-size: 30px;
+    }
+}
+
+@media screen and (max-width: 900px){
+    .title-biggest {
+        font-size: 62px;
+    }
+    .title-big {
+        font-size: 38px;
+    }
+    .title-medium {
+        font-size: 30px;
+    }
+    .title-small {
+        font-size: 28px;
+    }
+    .desc-big {
+        font-size: 16px;
+    }
+    .desc-medium {
+        font-size: 14px;
+    }
+}
+
+@media screen and (max-width: 767px) {
+    .title-biggest {
+        font-size: 58px;
+    }
+    .title-big {
+        font-size: 32px;
+    }
+    .title-medium {
+        font-size: 26px;
+    }
+    .title-small {
+        font-size: 20px;
+    }
+    .desc-big {
+        font-size: 14px;
+    }
+    .desc-medium {
+        font-size: 12px;
+    }
+}
+
+@media screen and (max-width: 576px){
+    
+}
+
+@media screen and (max-width: 480px){
+    .title-biggest {
+        font-size: 50px;
+    }
+    .title-big {
+        font-size: 30px;
+    }
+    .title-medium {
+        font-size: 26px;
+    }
+    .title-small {
+        font-size: 20px;
+    }
 }
