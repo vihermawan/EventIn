@@ -54,39 +54,6 @@ const cardData = [
     }
 ]
 
-const benefitData = [
-    {
-        image: require(`../../../assets/images/benefit-1.png`),
-        title: 'Tracking',
-        description: 'Organizer can tracks how much participant join their events'
-    },
-    {
-        image: require(`../../../assets/images/benefit-2.png`),
-        title: 'E-Certificate',
-        description: 'Participant can get e-certificate when he done join event'
-    },
-    {
-        image: require(`../../../assets/images/benefit-3.png`),
-        title: 'Paperless',
-        description: 'Organizer can take signatured with signer just by system'
-    },
-    {
-        image: require(`../../../assets/images/benefit-4.png`),
-        title: 'Simplifying',
-        description: 'Organize your event, and make your events more good'
-    },
-    {
-        image: require(`../../../assets/images/benefit-5.png`),
-        title: 'Newst Event',
-        description: 'Participant can seacrh event nearby his location anything event what he wants'
-    },
-    {
-        image: require(`../../../assets/images/benefit-6.png`),
-        title: 'Both Time',
-        description: 'Everypeople can join to be a participant or organizer'
-    },
-    
-]
 
 const menu = (
     <Menu>
