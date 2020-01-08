@@ -82,7 +82,7 @@ class EventComponent extends Component {
         const image3 = require(`../../../assets/images/event-image1.png`);
         
         return ( 
-            <Layout className="landing-container-event">
+            <Layout className="landing-container">
                 <Navbar
                     navigate={this.props.navigate}
                 />
