@@ -4,8 +4,10 @@ import Auth from '../layout/auth'
 
 import HomePage from '../../app/home/home-page'
 import EventPage from '../../app/event/event-page'
+
 import LoginComponent from '../../app/auth/authlogin-page'
 import RegisterComponent from '../../app/auth/authregister-page'
+
 
 const baseUrl = process.env.PUBLIC_URL;
 
