@@ -1,0 +1,35 @@
+.login-section-container{
+    padding: 40px;
+    padding-bottom: 0px;
+}
+.login-image-container {
+    padding: 60px;
+    padding-bottom: 0px;;
+}
+.auth-form-container {
+    padding: 80px;
+}
+
+.auth-input-label {
+    font-size: 20px;
+}
+.auth-reminder-label{
+    font-size: 15px;
+    text-align: right;
+}
+.auth-button-login{
+    font-size: 22px;
+    font-weight: 500;
+    min-height: 60px;
+    padding-left: 10px;
+    padding-right: 10px;
+}
+
+
+
+.button-section-1-login {
+    margin-top: 10%;
+    max-width: 400px;
+    margin-left: 13%;
+}
+

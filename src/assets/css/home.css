@@ -1,28 +1,25 @@
+/* ALL Section */
+
+.section-container {
+    margin: 0 80px;
+    margin-bottom: 100px;
+}
+.full-container {
+    min-height: 100vh;
+}
 /* Section 1 style */
 .title-container {
     max-width: 480px;
     margin-top: 50px;
-    margin-left: 80px;
     margin-bottom: 10px;
-}
-.title-big {
-    font-size: 90px;
-    font-weight: 700;
-}
-.title-small {
-    font-size: 50px;
-    font-weight: 700;
 }
 
 .description-container {
     max-width: 400px;
-    margin-left: 80px;
-    font-size: 24px;
     margin-bottom: 20px;
 }
 .button-section-1-container {
     max-width: 400px;
-    margin-left: 80px;
 }
 .image-big-container {
     width: 600px;
@@ -39,17 +36,12 @@
     display: none;
 }
 
-.image-hidden-2 {
-    display: none;
-}
-
 /* Section 2 style */
-.title-discover {
+.discover-container {
     text-align: center;
-    font-size: 36px;
-    font-weight: 700;
-    margin: 10px auto;
-    max-width: 380px;
+    margin: 0 auto;
+    margin-top: 70px;
+    max-width: 560px;
 }
 .description-discover {
     text-align: center;
@@ -83,135 +75,90 @@
     margin-top: 10px;
     font-size: 12px;
 }
+
 /* Section 3 style */
-.image-big-container-2 {
-    width: 600px;
-    /* margin-top: 100px; */
-    margin-left: 80px;
+.image-section {
+    max-width: 500px;
 }
-
-.title-medium {
-    font-size: 55px;
-    font-weight: 700;
-}
-
-.title-description{
-    font-size : 40px;
-    max-width: 100%;
-    font-weight : 610;
-}
-.title-quote{
-    /* max-width: 80%; */
-    font-size :20px;
-    margin-top: 10px;
-}
-
-.title-container-2 {
-    max-width:80%;
-    /* margin-top: 50px; */
-    margin-left: 0px;
-    margin-bottom: 10px;
-}
-.button-serve {
-    font-size: 14px;
-    min-height: 48px;
-    padding-left: 50px;
-    padding-right: 50px;
-}
-.button-section-1-quote {
+.description-section-3 {
     max-width: 600px;
 }
-
-/*Section 4 Style*/
-.title-container-3 {
-    max-width: 100%;
-    /* margin-top: 50px; */
-    margin-left: 80px;
-    margin-bottom: 10px;
+.image-hidden-3 {
+    display: none;
 }
 
-.button-section-2-quote {
-    margin-left: 80px;
-    max-width: 600px;
-}
-
-.title-description-2{
-    font-size : 40px;
-    max-width: 50%;
-    font-weight : 610;
-}
-
-.title-quote-2{
-    max-width: 85%;
-    font-size :20px;
-    margin-top: 10px;
-}
-
-/*Section 5 Style*/
-.title-benefit {
-    text-align: center;
-    font-size: 36px;
-    font-weight: 700;
-    margin:  auto;
-    max-width: 380px;
-}
-.description-benefit {
-    text-align: center;
-    font-size: 14px;
-    margin:  auto;
-    max-width: 620px;
-}
-
-.benefit-content {
-    margin: auto;
-    max-width: 300px;
-    padding: 28px;
-    border-radius: 10px;
-}
-.benefit-image {
-    max-width: 20%;
-    max-height: 160px;
-}
-.benefit-title {
-    margin-top: 18px;
-    font-size: 20px;
-    font-weight: 600;
-}
-.benefit-description {
-    margin-top: 10px;
+.button-organize {
     font-size: 15px;
+    min-height: 40px;
+    padding-left: 30px;
+    padding-right: 30px;
 }
+
+/* Section 4 style */
+.image-section-4 {
+    max-width: 500px;
+    margin-top: 50px;
+}
+
+/* Section 5 style */
+.card-why-container {
+    margin: 10px 0px;
+}
+.card-why-content {
+    max-width: 300px;
+    margin-left: 46px;
+    margin-top: 20px;
+}
+.card-why-image {
+    max-width: 52px;
+    max-height: 60px;
+}
+
+
+
 
 /* Media Queries */
 @media screen and (max-width: 1200px){
+
+    /* ALL Section */
+
     /* Section 1 style */
     .image-big-container {
         width: 460px;
-        margin-top: 150px;
-        margin-left: 80px;
     }
 
     /* Section 2 style */
+
+    /* Section 3 style */
+    .image-section {
+        max-width: 400px;
+    }
+    /* Section 4 style */
+    .image-section-4 {
+        max-width: 400px;
+    }
+
+    .card-why-container {
+        margin: 10px 40px;
+    }
 }
 
 @media screen and (max-width: 900px){
+    /* ALL Section */
+    .section-container {
+        margin: 0 40px;
+        margin-bottom: 40px;
+    }
+
     /* Section 1 style */
     .image-big-container {
         width: 400px;
         margin-top: 100px;
     }    
-    .title-big {
-        font-size: 50px;
-    }
-    .title-small {
-        font-size: 30px;
-    }
     .description-container {
         max-width: 300px;
-        margin-left: 80px;
-        font-size: 16px;
     }
-    .button-participate {
+    .button-participate .button-organize {
         font-size: 12px;
         min-height: 40px;
         padding-left: 10px;
@@ -219,37 +166,46 @@
     }
 
     /* Section 2 style */
+
+    /* Section 3 style */
+    .image-section {
+        max-width: 360px;
+    }
+    /* Section 4 style */
+    .image-section-4 {
+        max-width: 360px;
+    }
 }
 
 @media screen and (max-width: 767px) {
+    /* ALL Section */
+    
+
     /* Section 1 style */
     .image-big-container {
         width: 280px;
-        margin: 100px auto;
+        margin: 80px auto;
     }
     .title-container {
         max-width: 300px;
-        margin-left: 40px;
+        margin-top:30px;
     }
-    .title-big {
-        font-size: 40px;
-    }
-    .title-small {
-        font-size: 26px;
-    }
-    .description-container {
-        margin-left: 40px;
-        font-size: 14px;
-    }
-    .button-section-1-container {
-        margin-left: 40px;
-    }
-    .button-participate {
+    .button-participate .button-organize {
         font-size: 10px;
         min-height: 20px;
     }
 
     /* Section 2 style */
+
+    /* Section 3 style */
+    .image-section {
+        max-width: 300px;
+    }
+
+    /* Section 4 style */
+    .image-section-4 {
+        max-width: 300px;
+    }
 }
 
 @media screen and (max-width: 576px){
@@ -259,7 +215,11 @@
     }
     .image-hidden {
         width: 300px;
-        margin-left: 40px;
+        margin-bottom: 20px;
+        display: block;
+    } 
+    .image-hidden-3 {
+        width: 260px;
         margin-bottom: 20px;
         display: block;
     } 
@@ -267,12 +227,14 @@
     /* Section 2 style */
 
     /* Section 3 style */
-    .image-hidden-2 {
-        width: 300px;
-        margin-left: 40px;
-        margin-bottom: 20px;
-        display: block;
-    } 
+    .image-section {
+        display: none;
+    }
+
+    /* Section 4 style */
+    .image-section-4 {
+        display: none;
+    }
 }
 
 @media screen and (max-width: 480px){
@@ -282,15 +244,6 @@
     }    
     .title-container {
         max-width: 360px;
-    }
-    .title-big {
-        font-size: 50px;
-    }
-    .title-small {
-        font-size: 30px;
-    }
-    .button-section-1-container {
-        margin-left: 40px;
     }
 
     /* Section 2 style */

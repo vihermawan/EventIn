@@ -7,8 +7,8 @@ import './style/auth-style.css'
 class Auth extends Component {
     render() {
         return (
-            <Layout style={{backgroundColor: 'red', minHeight: '100vh'}}>
-                hehey
+            <Layout style={{backgroundColor: 'white', minHeight: '100vh'}}>
+               
             </Layout>
         );
     }

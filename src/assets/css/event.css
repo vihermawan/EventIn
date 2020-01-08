@@ -34,11 +34,11 @@
 }
 
 /* Section 2 style */
+
 .event-menu .ant-menu-item {
     font-size: 16px;
     padding: 0px 18px;
     /* font-weight: bold; */
-}
 
 .event-menu .ant-menu-submenu-title {
     padding: 10px 20px;
@@ -49,6 +49,7 @@
     padding: 0px 15px;
     color: #cdcccc !important;
 }
+
 .event-menu .ant-menu-item button:hover,
 .event-menu .ant-menu-submenu-title button:hover {
     color: black !important;
@@ -115,7 +116,6 @@
 }
 
 
-/* Media Queries */
 /* Media Queries */
 @media screen and (max-width: 1200px){
     /* Section 1 style */
