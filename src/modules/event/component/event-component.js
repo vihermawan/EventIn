@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
-import { Layout, BackTop, Row, Col, Button, Input, Dropdown, Menu, Icon, Tabs } from 'antd';
-import '../../../assets/css/home.css'
+import { Layout, BackTop, Row, Col, Button, Input, Dropdown, Menu, Icon, Tabs, Card } from 'antd';
+import '../../../assets/css/event.css'
 // component
 import Navbar from '../../../common/layout/navbar-landing'
 import Footer from '../../../common/layout/footer-landing'
@@ -13,45 +13,55 @@ const { TabPane } = Tabs;
 
 const cardData = [
     {
-        image: require(`../../../assets/images/eventin.png`),
-        title: 'Organizer',
-        description: 'Organizer make an event with funtastic, so wanna be organizer ?'
+        image: require(`../../../assets/images/card-event.png`),
+        date: 'Sun, Jan 5, 8:00 Am',
+        price: 'free',
+        title: 'Try Out Ganesha Mulih Jogja 2020',
+        lokasi: 'SMA Negeri 1 Teladan Yogyakarta'
+    },{
+        image: require(`../../../assets/images/card-event.png`),
+        date: 'Sun, Jan 5, 8:00 Am',
+        price: 'free',
+        title: 'Try Out Ganesha Mulih Jogja 2020',
+        lokasi: 'SMA Negeri 1 Teladan Yogyakarta'
+    },{
+        image: require(`../../../assets/images/card-event.png`),
+        date: 'Sun, Jan 5, 8:00 Am',
+        price: 'free',
+        title: 'Try Out Ganesha Mulih Jogja 2020',
+        lokasi: 'SMA Negeri 1 Teladan Yogyakarta'
+    },{
+        image: require(`../../../assets/images/card-event.png`),
+        date: 'Sun, Jan 5, 8:00 Am',
+        price: 'free',
+        title: 'Try Out Ganesha Mulih Jogja 2020',
+        lokasi: 'SMA Negeri 1 Teladan Yogyakarta'
+    },{
+        image: require(`../../../assets/images/card-event.png`),
+        date: 'Sun, Jan 5, 8:00 Am',
+        price: 'free',
+        title: 'Try Out Ganesha Mulih Jogja 2020',
+        lokasi: 'SMA Negeri 1 Teladan Yogyakarta'
+    },{
+        image: require(`../../../assets/images/card-event.png`),
+        date: 'Sun, Jan 5, 8:00 Am',
+        price: 'free',
+        title: 'Try Out Ganesha Mulih Jogja 2020',
+        lokasi: 'SMA Negeri 1 Teladan Yogyakarta'
+    },{
+        image: require(`../../../assets/images/card-event.png`),
+        date: 'Sun, Jan 5, 8:00 Am',
+        price: 'free',
+        title: 'Try Out Ganesha Mulih Jogja 2020',
+        lokasi: 'SMA Negeri 1 Teladan Yogyakarta'
+    },{
+        image: require(`../../../assets/images/card-event.png`),
+        date: 'Sun, Jan 5, 8:00 Am',
+        price: 'free',
+        title: 'Try Out Ganesha Mulih Jogja 2020',
+        lokasi: 'SMA Negeri 1 Teladan Yogyakarta'
     },
-    {
-        image: require(`../../../assets/images/eventin.png`),
-        title: 'Participant',
-        description: 'How many time you join event, at one or more ? Join now!'
-    },
-    {
-        image: require(`../../../assets/images/eventin.png`),
-        title: 'Event',
-        description: 'Find Event anything event what you want to join'
-    },
-    {
-        image: require(`../../../assets/images/eventin.png`),
-        title: 'Organizer',
-        description: 'Organizer make an event with funtastic, so wanna be organizer ?'
-    },
-    {
-        image: require(`../../../assets/images/eventin.png`),
-        title: 'Participant',
-        description: 'How many time you join event, at one or more ? Join now!'
-    },
-    {
-        image: require(`../../../assets/images/eventin.png`),
-        title: 'Event',
-        description: 'Find Event anything event what you want to join'
-    },
-    {
-        image: require(`../../../assets/images/eventin.png`),
-        title: 'Organizer',
-        description: 'Organizer make an event with funtastic, so wanna be organizer ?'
-    },
-    {
-        image: require(`../../../assets/images/eventin.png`),
-        title: 'Participant',
-        description: 'How many time you join event, at one or more ? Join now!'
-    }
+
 ]
 
 const benefitData = [
@@ -170,41 +180,130 @@ class EventComponent extends Component {
                             </div>
                         </Col>
                     </Row>
-                    <Row style={{minHeight: '100%',marginBottom: '9%'}}>
+                    <Row className="section-container" style={{marginBottom: 50}}>
                         <Col lg={24}>
-                            <div className="text-soft-blue title-discover bold">
-                                Event For You
-                            </div>
+                            <span className="text-soft-blue title-big-event bold">Event For You</span>
                         </Col>
+
                         <Col lg={24} className="card-container">
                         <Tabs style={{marginLeft:'5%', marginRight:'5%'}} defaultActiveKey="1">
                             <TabPane 
                                 tab="All" key="1">
-                            <Col lg={24} className="card-container">
-                            <Row gutter={24} type="flex" justify="center">
-                                {
-                                    cardData.map( data =>
-                                        <Col lg={6} className="text-align-center">
-                                            <div className="card-content">
-                                                <img src={data.image} alt="organizer" className="card-image"/>
-                                                <div className="text-black semi-bold card-title">
-                                                    {data.title}
-                                                </div>
-                                                <div className="card-description">
-                                                    {data.description}
-                                                </div>
-                                            </div>
-                                        </Col>
-                                    )
-                                }
-                            </Row>
-                        </Col>
+                                <Col lg={24}>
+                                    <Row gutter={16}>
+                                        {
+                                            cardData.map( data =>
+                                                <Col lg={6} md={12} sm={12} xs={24} className="mt-30">
+                                                    <Card
+                                                        hoverable
+                                                        className="event-card-container"
+                                                        cover={<img
+                                                            alt="background event card"
+                                                            src={data.image}
+                                                            style={{borderTopLeftRadius: 16, borderTopRightRadius: 16}}
+                                                        />}
+                                                    >
+                                                        <Row>
+                                                            <Col lg={12} md={12} sm={24} xs={12}>
+                                                                <div className="text-black semi-bold">{data.date}</div>
+                                                            </Col>
+                                                            <Col lg={12} md={12} sm={24} xs={12}>
+                                                                <span className="text-white background-soft-blue semi-bold event-card-badge">
+                                                                    {data.price}
+                                                                </span>
+                                                            </Col>
+                                                            <Col lg={24} className="mt-10">
+                                                                <h2 className="text-soft-blue semi-bold">{data.title}</h2>
+                                                            </Col>
+                                                            <Col lg={24}>
+                                                                {data.lokasi}
+                                                            </Col>
+                                                        </Row>
+                                                    </Card>
+                                                </Col>
+                                            )
+                                        }
+                                    </Row>
+
+                                </Col>
                             </TabPane>
                             <TabPane tab="This Weekend" key="2">
-                            This Weekend
+                            <Col lg={24} className="card-container">
+                                    <Row gutter={16}>
+                                        {
+                                            cardData.map( data =>
+                                                <Col lg={6} md={12} sm={12} xs={24} className="mt-30">
+                                                    <Card
+                                                        hoverable
+                                                        className="event-card-container"
+                                                        cover={<img
+                                                            alt="background event card"
+                                                            src={data.image}
+                                                            style={{borderTopLeftRadius: 16, borderTopRightRadius: 16}}
+                                                        />}
+                                                    >
+                                                        <Row>
+                                                            <Col lg={12} md={12} sm={24} xs={12}>
+                                                                <div className="text-black semi-bold">{data.date}</div>
+                                                            </Col>
+                                                            <Col lg={12} md={12} sm={24} xs={12}>
+                                                                <span className="text-white background-soft-blue semi-bold event-card-badge">
+                                                                    {data.price}
+                                                                </span>
+                                                            </Col>
+                                                            <Col lg={24} className="mt-10">
+                                                                <h2 className="text-soft-blue semi-bold">{data.title}</h2>
+                                                            </Col>
+                                                            <Col lg={24}>
+                                                                {data.lokasi}
+                                                            </Col>
+                                                        </Row>
+                                                    </Card>
+                                                </Col>
+                                            )
+                                        }
+                                    </Row>
+
+                                </Col>
                             </TabPane>
                             <TabPane tab="Music" key="3">
-                            Music
+                            <Col lg={24} className="card-container">
+                                    <Row gutter={16}>
+                                        {
+                                            cardData.map( data =>
+                                                <Col lg={6} md={12} sm={12} xs={24} className="mt-30">
+                                                    <Card
+                                                        hoverable
+                                                        className="event-card-container"
+                                                        cover={<img
+                                                            alt="background event card"
+                                                            src={data.image}
+                                                            style={{borderTopLeftRadius: 16, borderTopRightRadius: 16}}
+                                                        />}
+                                                    >
+                                                        <Row>
+                                                            <Col lg={12} md={12} sm={24} xs={12}>
+                                                                <div className="text-black semi-bold">{data.date}</div>
+                                                            </Col>
+                                                            <Col lg={12} md={12} sm={24} xs={12}>
+                                                                <span className="text-white background-soft-blue semi-bold event-card-badge">
+                                                                    {data.price}
+                                                                </span>
+                                                            </Col>
+                                                            <Col lg={24} className="mt-10">
+                                                                <h2 className="text-soft-blue semi-bold">{data.title}</h2>
+                                                            </Col>
+                                                            <Col lg={24}>
+                                                                {data.lokasi}
+                                                            </Col>
+                                                        </Row>
+                                                    </Card>
+                                                </Col>
+                                            )
+                                        }
+                                    </Row>
+
+                                </Col>
                             </TabPane>
                             <TabPane tab="Talkshow" key="4">
                             This Weekend
