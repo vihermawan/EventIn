@@ -1,0 +1,218 @@
+/* ALL Section */
+
+.section-container {
+    margin: 0 80px;
+    margin-bottom: 100px;
+}
+.full-container {
+    min-height: 100vh;
+}
+/* Section 1 style */
+.container-profile {
+    max-width: 300px;
+    min-height: 300px;
+    margin-top: 50px;
+    margin-bottom: 10px;
+    border-radius: 10px;
+
+    -webkit-box-shadow: 0px 1px 1px -4px rgba(0,0,0,0.75);
+    -moz-box-shadow: 0px 1px 1px -4px rgba(0,0,0,0.75);
+    box-shadow: 0px 1px 13px -10px rgba(0,0,0,0.75);
+}
+.profile-description {
+    max-width: 100%;
+    min-height: 300px;
+    margin-top: 50px;
+    margin-bottom: 10px;
+    padding: 28px;
+    border-radius: 10px;
+
+    -webkit-box-shadow: 0px 1px 1px -4px rgba(0,0,0,0.75);
+    -moz-box-shadow: 0px 1px 1px -4px rgba(0,0,0,0.75);
+    box-shadow: 0px 1px 13px -10px rgba(0,0,0,0.75);
+}
+.email-user{
+    font-size: 15px;
+    margin-top: 10px;
+}
+.container-picture{
+    background-color: red;
+    max-width: 40px;
+    margin-top:40px;
+    margin-right: 0px;
+}
+.container-desc{
+    margin-top: 40px;
+    margin-right: 0px;
+    
+}
+.desc-title{
+    font-size: 20px;
+    font-weight: 600;
+    margin-bottom: 10px;
+}
+.desc-profile{
+    font-size: 15px;
+    margin-top: 0px;
+}
+/*Section 2*/
+.profile{
+    margin-top: 0px;
+}
+.desc-table-event{
+    margin-bottom: 20px;
+}
+
+.desc-total-event{
+    max-width: 60%;
+}
+.ant-table table{
+    width: 1050px !important;
+    border: 1px solid #4D5AF2;
+    border-radius: 10px;
+}
+.ant-table-thead > tr > th{
+    color: white;
+    background-color: #4D5AF2;
+}
+.ant-table-thead > tr:first-child > th:first-child{
+    border-top-left-radius: 10px;
+}
+.ant-table-thead > tr:first-child > th:last-child{
+    border-top-right-radius: 10px;
+}
+
+.ant-table-tbody > tr > td{
+    border-radius: 10px;
+}
+/* Media Queries */
+@media screen and (max-width: 1200px){
+
+    /* ALL Section */
+
+    /* Section 1 style */
+    .image-big-container {
+        width: 460px;
+    }
+
+    /* Section 2 style */
+
+    /* Section 3 style */
+    .image-section {
+        max-width: 400px;
+    }
+    /* Section 4 style */
+    .image-section-4 {
+        max-width: 400px;
+    }
+
+    .card-why-container {
+        margin: 10px 40px;
+    }
+}
+
+@media screen and (max-width: 900px){
+    /* ALL Section */
+    .section-container {
+        margin: 0 40px;
+        margin-bottom: 40px;
+    }
+
+    /* Section 1 style */
+    .image-big-container {
+        width: 400px;
+        margin-top: 100px;
+    }    
+    .description-container {
+        max-width: 300px;
+    }
+    .button-participate .button-organize {
+        font-size: 12px;
+        min-height: 40px;
+        padding-left: 10px;
+        padding-right: 10px;
+    }
+
+    /* Section 2 style */
+
+    /* Section 3 style */
+    .image-section {
+        max-width: 360px;
+    }
+    /* Section 4 style */
+    .image-section-4 {
+        max-width: 360px;
+    }
+}
+
+@media screen and (max-width: 767px) {
+    /* ALL Section */
+    
+
+    /* Section 1 style */
+    .image-big-container {
+        width: 280px;
+        margin: 80px auto;
+    }
+    .title-container {
+        max-width: 300px;
+        margin-top:30px;
+    }
+    .button-participate .button-organize {
+        font-size: 10px;
+        min-height: 20px;
+    }
+
+    /* Section 2 style */
+
+    /* Section 3 style */
+    .image-section {
+        max-width: 300px;
+    }
+
+    /* Section 4 style */
+    .image-section-4 {
+        max-width: 300px;
+    }
+}
+
+@media screen and (max-width: 576px){
+    /* Section 1 style */
+    .image-big-container {
+        display: none;
+    }
+    .image-hidden {
+        width: 300px;
+        margin-bottom: 20px;
+        display: block;
+    } 
+    .image-hidden-3 {
+        width: 260px;
+        margin-bottom: 20px;
+        display: block;
+    } 
+
+    /* Section 2 style */
+
+    /* Section 3 style */
+    .image-section {
+        display: none;
+    }
+
+    /* Section 4 style */
+    .image-section-4 {
+        display: none;
+    }
+}
+
+@media screen and (max-width: 480px){
+    /* Section 1 style */
+    .image-big-container {
+        display: none;
+    }    
+    .title-container {
+        max-width: 360px;
+    }
+
+    /* Section 2 style */
+}
