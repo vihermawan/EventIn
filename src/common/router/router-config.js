@@ -4,7 +4,7 @@ import Auth from '../layout/auth'
 
 import HomePage from '../../app/home/home-page'
 import EventPage from '../../app/event/event-page'
-
+import ProfilePage from '../../app/profile/profile-page'
 import LoginComponent from '../../app/auth/authlogin-page'
 import RegisterComponent from '../../app/auth/authregister-page'
 
@@ -16,6 +16,7 @@ const routeSources = [
     { component: EventPage, path: `${baseUrl}/event`, exact: true },
     { component: LoginComponent, path: `${baseUrl}/login`, exact: true },
     { component: RegisterComponent, path: `${baseUrl}/register`, exact: true },
+    { component: ProfilePage, path: `${baseUrl}/profile`, exact: true },
     // { component: ExamplePage, path: `${baseUrl}/example`, exact: true},
 ];
 

@@ -42,7 +42,7 @@ class LoginComponent extends Component{
                                 <Form onSubmit={handleSubmit}>
                                     <div className="auth-form-container">
                                         <div className="text-white text-align-center title-more-small mb-50 mt-60">
-                                            <p className="semi-bold m-0">Welcome!</p>
+                                            <p className="title-medium semi-bold m-0">Welcome!</p>
                                             <p className="form-description">Sign in to your account</p>
                                         </div>
                                         <span className="auth-input-label text-white">Username</span>
