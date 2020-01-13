@@ -1,18 +1,22 @@
 import React from 'react';
-import { Input } from 'antd';
+import { Input,  Icon } from 'antd';
 import './style.css';
 
 function InputSearch({
-    type, text, disabled, borderRadius = 25,
-    background = '#4D5AF2', textColor = "white", border = 'none',
-    margin = '0px', marginLeft, marginRight, marginTop, marginBottom,
-    className,
+    value, onChange, placeholder, className, style, name, type,onSearch,
+    iconType = 'user', withIcon = true, iconColor = 'white',
 }) {
     return (
-    <search
-      placeholder="input search text"
-      onSearch={value => console.log(value)}
-      style={{ width: 200 }}
+      <Input
+        name={name}
+        placeholder={placeholder}
+        onChange={onChange}
+        value={value}
+        onSearch={onSearch}
+        className={className}
+        prefix={withIcon ? <Icon type={iconType} style={{ color: iconColor, fontSize: '16px' }} /> : false}
+        style={style}
+        type={type}
     />
     );
 }
