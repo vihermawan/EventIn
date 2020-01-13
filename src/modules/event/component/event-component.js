@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { Link } from 'react-router-dom';
 import { Layout, BackTop, Row, Col, Button, Input, Dropdown, Menu, Icon, Tabs, Card } from 'antd';
 
 import '../../../assets/css/event.css'
@@ -183,7 +184,7 @@ class EventComponent extends Component {
                                                                 </span>
                                                             </Col>
                                                             <Col lg={24} className="mt-10">
-                                                                <h2 className="text-soft-blue semi-bold">{data.title}</h2>
+                                                                <Link to='/detail'><h2 className="text-soft-blue semi-bold">{data.title}</h2></Link>
                                                             </Col>
                                                             <Col lg={24}>
                                                                 {data.lokasi}
