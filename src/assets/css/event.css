@@ -33,13 +33,24 @@
     display: none;
 }
 
+.button-search .ant-input{
+    background-color:white;
+    border-color: #4D5AF2;
+    width: 200px !important;
+    margin-right: 30px !important;
+    border-radius: 20px;
+    min-height: 30px;
+    color: #9A9FDE !important;
+    padding:15px;
+}
+
 /* Section 2 style */
 
 .event-menu .ant-menu-item {
     font-size: 16px;
     padding: 0px 18px;
     /* font-weight: bold; */
-
+}
 .event-menu .ant-menu-submenu-title {
     padding: 10px 20px;
 }

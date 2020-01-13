@@ -94,46 +94,11 @@ class EventComponent extends Component {
         const image3 = require(`../../../assets/images/event-image1.png`);
         
         return ( 
-            <Layout className="landing-container-event">
+            <Layout className="landing-container">
                 <Navbar
                     navigate={this.props.navigate}
                 />
                 <Content style={{ overflow: "hidden" }}>
-                    {/* <Row style={{minHeight: '100%',marginBottom: '9%',marginTop:'1%'}}>
-                        <Col lg={12} md={12} sm={12}>
-                            <Row>
-                                <Col span={24}>
-                                    <div className="title-container">
-                                        <span className="text-soft-blue title-big">Search </span>
-                                        <br/>
-                                        <span className="text-soft-blue title-small">place what do you want to go event....</span>
-                                    </div>
-                                </Col>
-                                <Col span={24}>
-                                    <div className="image-hidden">
-                                        <img
-                                            src={image1}
-                                            alt="Home 1"
-                                            style={{maxWidth: '100%'}}
-                                        />
-                                    </div>
-                                    <div className="description-container">
-                                        You can find an event what do you want, and you can make event here
-                                    </div>
-                                </Col>
-                               
-                            </Row>
-                        </Col>
-                        <Col lg={12} md={12} sm={12}>
-                            <div className="image-big-container">
-                                <img
-                                    src={image1}
-                                    alt="Home 1"
-                                    style={{maxWidth: '100%'}}
-                                />
-                            </div>
-                        </Col>
-                    </Row> */}
                     {/* Section 1 */}
                     <Row className="section-container">
                         <Col lg={12} md={12} sm={12}>
@@ -162,6 +127,7 @@ class EventComponent extends Component {
                                         <Search
                                             onSearch={value => console.log(value)}
                                             placeholder="Enter the location..."
+                                            className ="button-search"
                                             style={{ width: 200 }}
                                         />
                                         <Dropdown 
