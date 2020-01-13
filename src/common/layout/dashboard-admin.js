@@ -6,6 +6,10 @@ import { Layout, Menu, Icon } from 'antd';
 
 import DashboardPanitiaPage from '../../app/admin-panitia/dashboard/panitia-page'
 import CreateEventPage from '../../app/admin-panitia/dashboard/create-event-page'
+import ECertificatePage from '../../app/admin-panitia/dashboard/e-certificate-page'
+import HistoryEventPage from '../../app/admin-panitia/dashboard/history-event-page'
+import ListParticipantPage from '../../app/admin-panitia/dashboard/list-participant-page'
+import ProfilePage from '../../app/admin-panitia/dashboard/profile-page'
 
 const { Header, Sider, Content } = Layout;
 
@@ -45,6 +49,30 @@ class dashboard extends Component {
                     <span>Active Event</span>
                   </Link>
                 </Menu.Item>
+                <Menu.Item key="history-event">
+                  <Link to="/dashboard/history-event">
+                    <Icon type="upload" />
+                    <span>History Event</span>
+                  </Link>
+                </Menu.Item>
+                <Menu.Item key="e-certificate">
+                  <Link to="/dashboard/e-certificate">
+                    <Icon type="upload" />
+                    <span>E-certificate</span>
+                  </Link>
+                </Menu.Item>
+                <Menu.Item key="list-participant">
+                  <Link to="/dashboard/list-participant">
+                    <Icon type="upload" />
+                    <span>List Participant</span>
+                  </Link>
+                </Menu.Item>
+                <Menu.Item key="profile">
+                  <Link to="/dashboard/profile">
+                    <Icon type="upload" />
+                    <span>Profile</span>
+                  </Link>
+                </Menu.Item>
             </Menu>
             </div>
         </Sider>
@@ -65,6 +93,26 @@ class dashboard extends Component {
               path='/dashboard/create-event'
               exact
               render={ (props) => <CreateEventPage {...props}/> }
+          />
+           <Route
+              path='/dashboard/history-event'
+              exact
+              render={ (props) => <HistoryEventPage {...props}/> }
+          />
+           <Route
+              path='/dashboard/e-certificate'
+              exact
+              render={ (props) => <ECertificatePage {...props}/> }
+          />
+           <Route
+              path='/dashboard/list-participant'
+              exact
+              render={ (props) => <ListParticipantPage {...props}/> }
+          />
+           <Route
+              path='/dashboard/profile'
+              exact
+              render={ (props) => <ProfilePage {...props}/> }
           />
         </Layout>
       </Layout>
