@@ -6,7 +6,7 @@ import EventPage from '../../app/event/event-page'
 import DetailPage from '../../app/detail/detail-page'
 
 import ProfilePage from '../../app/profile/profile-page'
-
+import DashboardPage from '../../common/layout/dashboard-admin'
 import LoginComponent from '../../app/auth/authlogin-page'
 import RegisterComponent from '../../app/auth/authregister-page'
 
@@ -21,6 +21,7 @@ const routeSources = [
     { component: LoginComponent, path: `${baseUrl}/login`, exact: true },
     { component: RegisterComponent, path: `${baseUrl}/register`, exact: true },
     { component: ProfilePage, path: `${baseUrl}/profile`, exact: true },
+    { component: DashboardPage, path: `${baseUrl}/dashboard`, exact: false },
     // { component: ExamplePage, path: `${baseUrl}/example`, exact: true},
 ];
 
