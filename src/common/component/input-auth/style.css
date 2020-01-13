@@ -1,0 +1,13 @@
+.input-auth input {
+    min-height: 40px !important;
+    background-color: #2C37BA;
+    border-radius: 8px;
+    border: none;
+    font-size: 18px;
+    padding-left: 38px !important;
+    color: white;
+}
+
+.input-auth input::placeholder {
+    color: #D7D7D7 !important;
+}

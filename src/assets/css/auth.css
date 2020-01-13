@@ -1,0 +1,15 @@
+.auth-image-section-container {
+    padding: 40px;
+    padding-bottom: 0px;;
+}
+.auth-image-container {
+    padding: 60px;
+    padding-bottom: 0px;;
+}
+.auth-form-container {
+    padding: 80px;
+}
+
+.auth-input-label {
+    font-size: 20px;
+}
