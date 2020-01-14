@@ -1,0 +1,19 @@
+.container-active-event{
+    margin: 0px auto;
+    max-width: 100%;
+    padding: 28px;
+    border-radius: 10px;
+    background-color: white;
+
+}
+
+.table-active-event{
+    width: 100%;
+    margin-top: 30px;
+}
+
+.container-title-event{
+    font-size: 30px;
+    color: black;
+    font-weight: 800;
+}

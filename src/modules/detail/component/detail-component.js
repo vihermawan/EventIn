@@ -8,8 +8,6 @@ import ButtonRounded from '../../../common/component/button/button-rounded'
 
 
 const { Content } = Layout;
-const { Search } = Input;
-const { TabPane } = Tabs;
 const { Countdown } = Statistic;
 const deadline = Date.now() + 5000 * 60 * 60 * 24 * 2 + 1000 * 30; // Moment is also OK
 
@@ -44,9 +42,6 @@ const benefitData = [
 
 class DetailComponent extends Component {
     render() { 
-        const image1 = require(`../../../assets/images/home-image1.png`);
-        const image2 = require(`../../../assets/images/home-image2.png`);
-        const image3 = require(`../../../assets/images/home-image3.png`);
         const image4 = require(`../../../assets/images/event1.jpg`);
         
         return ( 

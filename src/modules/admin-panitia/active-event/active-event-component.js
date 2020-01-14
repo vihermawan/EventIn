@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
-import { Layout, Breadcrumb, Row, Table, Tag, Col } from 'antd';
+import { Layout, Breadcrumb, Row, Table, Input, Col,Tag } from 'antd';
+import '../../../assets/css/active-event.css'
 import { faUser } from '@fortawesome/free-solid-svg-icons'
 import ButtonIcon from '../../../common/component/button/button-icon'
 import TableProfile from '../../../common/component/table/table'
@@ -74,7 +75,9 @@ const data = [
       tags: ['Done'],
     },
   ];
-class HistoryEventComponent extends Component {
+
+
+class ActiveEventComponent extends Component {
     render() { 
         return ( 
             <Content
@@ -86,8 +89,9 @@ class HistoryEventComponent extends Component {
                 }}
             >
                 <Breadcrumb separator=">">
-                    <Breadcrumb.Item>Dashboard CreateEvent</Breadcrumb.Item>
+                    <Breadcrumb.Item>Dashboard Active Event</Breadcrumb.Item>
                 </Breadcrumb>
+
                 <Row style={{minHeight: '100%',marginBottom: '2%',marginTop:'2%',}} className="background">
                     <Col lg={24} md={24} sm={24}> 
                         
@@ -112,4 +116,4 @@ class HistoryEventComponent extends Component {
     }
 }
  
-export default HistoryEventComponent;
+export default ActiveEventComponent;

@@ -6,6 +6,7 @@ import { Layout, Menu, Icon } from 'antd';
 
 import DashboardPanitiaPage from '../../app/admin-panitia/dashboard/panitia-page'
 import CreateEventPage from '../../app/admin-panitia/dashboard/create-event-page'
+import ActiveEventPage from '../../app/admin-panitia/dashboard/active-event-page'
 import ECertificatePage from '../../app/admin-panitia/dashboard/e-certificate-page'
 import HistoryEventPage from '../../app/admin-panitia/dashboard/history-event-page'
 import ListParticipantPage from '../../app/admin-panitia/dashboard/list-participant-page'
@@ -25,21 +26,40 @@ class dashboard extends Component {
   };
 
   render() {
+    const logo = require(`../../assets/images/logo.png`);
+    const logoadmin = require(`../../assets/images/logo.png`);
     return (
       <Layout style={{minHeight: '100vh'}}>
         <Sider theme="light" trigger={null} collapsible collapsed={this.state.collapsed}>
-          <div className="logo" />
+          <div className="logo">
+            <img src={logo} className="logo-admin" alt="EventIn logo" width="100"/>
+          </div>
           <div className="menu-dashboard">
             <Menu mode="inline" defaultSelectedKeys={['dashboard']}>
+                <div className="title-dashboard">
+                    <span className="title-desc-dashboard">REPORT</span>
+                </div>              
                 <Menu.Item key="dashboard">
                   <Link to="/dashboard/dashboard-panitia">
-                    <Icon type="user" />
+                    <Icon type="dashboard" theme="filled" />
                     <span>Dashboard</span>
                   </Link>
                 </Menu.Item>
+                <div className="title-dashboard">
+                    <hr style={{
+                        minHeight: 1,
+                        backgroundColor: '#D7D7D7',
+                        border: 'none',
+                        maxWidth: 200,
+                        marginBottom:'10px',
+                    }}/>
+                </div>
+                <div className="title-dashboard">
+                    <span className="title-desc-dashboard">EVENT</span>
+                </div>  
                 <Menu.Item key="create-event">
                   <Link to="/dashboard/create-event">
-                    <Icon type="video-camera" />
+                    <Icon type="plus-square" theme="filled" />
                     <span>Create Event</span>
                   </Link>
                 </Menu.Item>
@@ -61,12 +81,34 @@ class dashboard extends Component {
                     <span>E-certificate</span>
                   </Link>
                 </Menu.Item>
+                <div className="title-dashboard">
+                    <hr style={{
+                        minHeight: 1,
+                        backgroundColor: '#D7D7D7',
+                        border: 'none',
+                        maxWidth: 200,
+                    }}/>
+                </div>
+                <div className="title-dashboard">
+                    <span className="title-desc-dashboard">PARTICIPANT</span>
+                </div>  
                 <Menu.Item key="list-participant">
                   <Link to="/dashboard/list-participant">
                     <Icon type="upload" />
                     <span>List Participant</span>
                   </Link>
                 </Menu.Item>
+                <div className="title-dashboard">
+                    <hr style={{
+                        minHeight: 1,
+                        backgroundColor: '#D7D7D7',
+                        border: 'none',
+                        maxWidth: 200,
+                    }}/>
+                </div>
+                <div className="title-dashboard">
+                    <span className="title-desc-dashboard">PROFILE</span>
+                </div> 
                 <Menu.Item key="profile">
                   <Link to="/dashboard/profile">
                     <Icon type="upload" />
@@ -76,6 +118,7 @@ class dashboard extends Component {
             </Menu>
             </div>
         </Sider>
+
         <Layout>
           <Header style={{ background: '#fff', padding: 0 }}>
             <Icon
@@ -93,6 +136,11 @@ class dashboard extends Component {
               path='/dashboard/create-event'
               exact
               render={ (props) => <CreateEventPage {...props}/> }
+          />
+          <Route
+              path='/dashboard/active-event'
+              exact
+              render={ (props) => <ActiveEventPage {...props}/> }
           />
            <Route
               path='/dashboard/history-event'
