@@ -153,9 +153,8 @@ class EventComponent extends Component {
                     </Row>
                     <Row className="section-container" style={{marginBottom: 50}}>
                         <Col lg={24}>
-                            <span className="text-soft-blue title-big-event bold">Event For You</span>
+                            <span style={{marginLeft:'5%'}} className="text-soft-blue title-big-event bold">Event For You</span>
                         </Col>
-
                         <Col lg={24} className="card-container">
                         <Tabs style={{marginLeft:'5%', marginRight:'5%'}} defaultActiveKey="1">
                             <TabPane 
@@ -172,8 +171,7 @@ class EventComponent extends Component {
                                                             alt="background event card"
                                                             src={data.image}
                                                             style={{borderTopLeftRadius: 16, borderTopRightRadius: 16}}
-                                                        />}
-                                                    >
+                                                        />}>
                                                         <Row>
                                                             <Col lg={12} md={12} sm={24} xs={12}>
                                                                 <div className="text-black semi-bold">{data.date}</div>
@@ -289,6 +287,50 @@ class EventComponent extends Component {
                             This Weekend
                             </TabPane>
                         </Tabs>       
+                        </Col>
+                    </Row>
+                    <Row className="section-container" style={{marginBottom: 50}}>
+                        <Col lg={24}>
+                            <span style={{marginLeft:'5%'}} className="text-soft-blue title-big-event bold">This Week</span>
+                        </Col>
+                        <Col lg={24} className="card-container" >
+                            <Col lg={24} >
+                                    <Row gutter={16} style={{marginLeft:'5%', marginRight:'5%'}}>
+                                        {
+                                            cardData.map( data =>
+                                                <Col lg={6} md={12} sm={12} xs={24} className="mt-30">
+                                                    <Card
+                                                        hoverable
+                                                        className="event-card-container"
+                                                        cover={<img
+                                                            alt="background event card"
+                                                            src={data.image}
+                                                            style={{borderTopLeftRadius: 16, borderTopRightRadius: 16}}
+                                                        />}
+                                                    >
+                                                        <Row>
+                                                            <Col lg={12} md={12} sm={24} xs={12}>
+                                                                <div className="text-black semi-bold">{data.date}</div>
+                                                            </Col>
+                                                            <Col lg={12} md={12} sm={24} xs={12}>
+                                                                <span className="text-white background-soft-blue semi-bold event-card-badge">
+                                                                    {data.price}
+                                                                </span>
+                                                            </Col>
+                                                            <Col lg={24} className="mt-10">
+                                                                <Link to='/detail'><h2 className="text-soft-blue semi-bold">{data.title}</h2></Link>
+                                                            </Col>
+                                                            <Col lg={24}>
+                                                                {data.lokasi}
+                                                            </Col>
+                                                        </Row>
+                                                    </Card>
+                                                </Col>
+                                            )
+                                        }
+                                    </Row>
+
+                                </Col>
                         </Col>
                     </Row>
                     <BackTop />

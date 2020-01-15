@@ -49,6 +49,7 @@
 .card-content-detail {
     margin: 16px auto;
     max-width: 1300px;
+    height: 250px;
     padding: 28px;
     border-radius: 10px;
 

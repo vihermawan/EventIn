@@ -25,17 +25,17 @@ const benefitData = [
         description: '31 Januari- 2 Februari 2020'
     },
     {
-        image: require(`../../../assets/images/location.png`),
+        image: require(`../../../assets/images/Location.png`),
         title: 'Venue',
         description: 'ICE BSD City Tangerang'
     },
     {
-        image: require(`../../../assets/images/regis.png`),
+        image: require(`../../../assets/images/Regis.png`),
         title: 'Registrasi',
         description: '1-20 Januari 2020'
     },
     {
-        image: require(`../../../assets/images/quota.png`),
+        image: require(`../../../assets/images/Quota.png`),
         title: 'Quota',
         description: '100 Orang'
     },
@@ -98,6 +98,7 @@ class DetailComponent extends Component {
                                                     <div className="detail-content" style={{marginLeft:'5%'}}>
                                                         <img src={data.image} alt="organizer" className="detail-image"/>
                                                         <div className="text-soft-blue bold detail-title">
+
                                                             {data.title}
                                                         </div>
                                                         <div className="detail-description">
