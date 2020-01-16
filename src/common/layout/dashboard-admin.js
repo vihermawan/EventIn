@@ -1,9 +1,12 @@
 import React, { Component } from 'react';
 import { Route, Link } from 'react-router-dom'
 import './style/dashboard-style.css';
-
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { Layout, Menu, Icon } from 'antd';
+/*Import Icon */
+import { faDesktop,faPen, faCalendarCheck, faHistory, faFile,faUserFriends,faUserCircle } from '@fortawesome/free-solid-svg-icons'
 
+/*Import Page */
 import DashboardPanitiaPage from '../../app/admin-panitia/dashboard/panitia-page'
 import CreateEventPage from '../../app/admin-panitia/dashboard/create-event-page'
 import ActiveEventPage from '../../app/admin-panitia/dashboard/active-event-page'
@@ -27,22 +30,32 @@ class dashboard extends Component {
 
   render() {
     const logo = require(`../../assets/images/logo.png`);
-    const logoadmin = require(`../../assets/images/logo.png`);
+    const logoadmin = require(`../../assets/images/logo-admin-hidden.png`);
+
+    let hidden = this.state.collapsed ? 'hidden-objek' : 'block-objek'
+
+
     return (
       <Layout style={{minHeight: '100vh'}}>
         <Sider theme="light" trigger={null} collapsible collapsed={this.state.collapsed}>
           <div className="logo">
-            <img src={logo} className="logo-admin" alt="EventIn logo" width="100"/>
+            <img src={this.state.collapsed? logoadmin : logo} className={this.state.collapsed ? 'hidden-admin-logo' : 'logo-admin'} alt="EventIn logo" width="100"/>
           </div>
           <div className="menu-dashboard">
             <Menu mode="inline" defaultSelectedKeys={['dashboard']}>
                 <div className="title-dashboard">
                     <span className="title-desc-dashboard">REPORT</span>
                 </div>              
-                <Menu.Item key="dashboard">
+              
+                <Menu.Item key="dashboard"  >
                   <Link to="/dashboard/dashboard-panitia">
-                    <Icon type="dashboard" theme="filled" />
-                    <span>Dashboard</span>
+                 
+                    <FontAwesomeIcon
+                        icon={faDesktop}
+                        style={{marginRight: 10}}
+                        className={this.state.collapsed ? 'hidden-logo' : 'block-logo'}
+                    />
+                    <span className={hidden} >Dashboard</span>
                   </Link>
                 </Menu.Item>
                 <div className="title-dashboard">
@@ -54,31 +67,46 @@ class dashboard extends Component {
                         marginBottom:'10px',
                     }}/>
                 </div>
+
                 <div className="title-dashboard">
                     <span className="title-desc-dashboard">EVENT</span>
                 </div>  
+                
                 <Menu.Item key="create-event">
                   <Link to="/dashboard/create-event">
-                    <Icon type="plus-square" theme="filled" />
-                    <span>Create Event</span>
+                    {/* <Icon type="plus-square" theme="filled" /> */}
+                    <FontAwesomeIcon
+                        icon={faPen}
+                        style={{marginRight: 10}}
+                    /> 
+                    <span className={hidden}>Create Event</span>
                   </Link>
                 </Menu.Item>
                 <Menu.Item key="active-event">
                   <Link to="/dashboard/active-event">
-                    <Icon type="upload" />
-                    <span>Active Event</span>
+                    <FontAwesomeIcon
+                        icon={faCalendarCheck}
+                        style={{marginRight: 10}}
+                    /> 
+                    <span className={hidden}>Active Event</span>
                   </Link>
                 </Menu.Item>
                 <Menu.Item key="history-event">
                   <Link to="/dashboard/history-event">
-                    <Icon type="upload" />
-                    <span>History Event</span>
+                    <FontAwesomeIcon
+                        icon={faHistory}
+                        style={{marginRight: 10}}
+                    /> 
+                    <span className={hidden}>History Event</span>
                   </Link>
                 </Menu.Item>
                 <Menu.Item key="e-certificate">
                   <Link to="/dashboard/e-certificate">
-                    <Icon type="upload" />
-                    <span>E-certificate</span>
+                    <FontAwesomeIcon
+                        icon={faFile}
+                        style={{marginRight: 10}}
+                    /> 
+                    <span className={hidden}>E-certificate</span>
                   </Link>
                 </Menu.Item>
                 <div className="title-dashboard">
@@ -94,8 +122,11 @@ class dashboard extends Component {
                 </div>  
                 <Menu.Item key="list-participant">
                   <Link to="/dashboard/list-participant">
-                    <Icon type="upload" />
-                    <span>List Participant</span>
+                    <FontAwesomeIcon
+                        icon={faUserFriends}
+                        style={{marginRight: 10}}
+                    /> 
+                    <span className={hidden}>List Participant</span>
                   </Link>
                 </Menu.Item>
                 <div className="title-dashboard">
@@ -111,8 +142,11 @@ class dashboard extends Component {
                 </div> 
                 <Menu.Item key="profile">
                   <Link to="/dashboard/profile">
-                    <Icon type="upload" />
-                    <span>Profile</span>
+                    <FontAwesomeIcon
+                        icon={faUserCircle}
+                        style={{marginRight: 10}}
+                    /> 
+                    <span className={hidden}>Profile</span>
                   </Link>
                 </Menu.Item>
             </Menu>

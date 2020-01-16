@@ -18,6 +18,13 @@
   .logo-admin{
     margin: 10px 15px;
   }
+
+  .hidden-admin-logo{
+    width: 30%;
+    margin: 10px 15px;
+   
+  }
+
   .menu-dashboard  .ant-menu{
       margin-top: 30px !important;
   }
@@ -32,9 +39,20 @@
     font-weight: 600;
   }
 
-  .ant-menu:not(.ant-menu-horizontal) .ant-menu-item-selected{
+  .hidden-objek {
+    display: none;
+  }
+  .block-objek {
+    display: inline;
+  }
+
+  .hidden-logo.ant-menu:not(.ant-menu-horizontal) .ant-menu-item-selected {
+    margin-left: 0px;
+  }
+
+  .menu-dashboard .ant-menu:not(.ant-menu-horizontal) .ant-menu-item-selected{
     background-color: #4D5AF2;
-    width: 170px;
+    width: 80%;
     margin-left: 10px;
     border-right: none;
     border-radius: 10px;

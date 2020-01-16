@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Layout, Breadcrumb, Row, Table, Tag, Col } from 'antd';
-import { faUser } from '@fortawesome/free-solid-svg-icons'
+import {  faUsers, faTrash, faInfoCircle } from '@fortawesome/free-solid-svg-icons'
 import ButtonIcon from '../../../common/component/button/button-icon'
 import TableProfile from '../../../common/component/table/table'
 // constant content
@@ -19,10 +19,20 @@ const columns = [
       render: text => <a>{text}</a>,
     },
     {
-        title: 'Tanggal',
+      title: 'Kategori',
+      dataIndex: 'tanggal_event',
+      key: 'tanggal_event',
+    },
+    {
+        title: 'Tempat',
         dataIndex: 'tanggal_event',
         key: 'tanggal_event',
-      },
+    },
+    {
+      title: 'Peserta',
+      dataIndex: 'tanggal_event',
+      key: 'tanggal_event',
+    },
     {
       title: 'Status',
       key: 'tags',
@@ -50,7 +60,7 @@ const columns = [
         [<ButtonIcon
             text="Download"
             height={20}
-            icon={faUser}
+            icon={faUsers}
             borderRadius="5px"
             background="#070E57"
             marginRight= "20px"
@@ -58,9 +68,17 @@ const columns = [
         <ButtonIcon
             text="Delete"
             height={20}
-            icon={faUser}
+            icon={faTrash}
             borderRadius="5px"
             background="#FF0303"
+            marginRight= "20px"
+        />,
+        <ButtonIcon
+            text="Detail"
+            height={20}
+            icon={faInfoCircle}
+            borderRadius="5px"
+            background="#FFA903"
         />]
       ),
     },
@@ -94,7 +112,7 @@ class HistoryEventComponent extends Component {
                         <div className="container-active-event">
                             <Row>
                             <div className="container-title-event">
-                                <span>Active Event</span>
+                                <span>History Event</span>
                             </div>
                             </Row>
                             <Row gutter={24} type="flex">
