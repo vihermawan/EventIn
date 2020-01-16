@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 import { Layout, Breadcrumb, Row, Table, Input, Col,Tag } from 'antd';
 import '../../../assets/css/active-event.css'
-import { faUser } from '@fortawesome/free-solid-svg-icons'
+import { faUsers } from '@fortawesome/free-solid-svg-icons'
+import { faInfoCircle } from '@fortawesome/free-solid-svg-icons'
 import ButtonIcon from '../../../common/component/button/button-icon'
 import TableProfile from '../../../common/component/table/table'
 // constant content
@@ -20,7 +21,22 @@ const columns = [
       render: text => <a>{text}</a>,
     },
     {
-        title: 'Tanggal',
+      title: 'Tempat',
+      dataIndex: 'tanggal_event',
+      key: 'tanggal_event',
+    },
+    {
+      title: 'Kategori',
+      dataIndex: 'tanggal_event',
+      key: 'tanggal_event',
+    },
+    {
+      title: 'Tanggal Mulai',
+      dataIndex: 'tanggal_event',
+      key: 'tanggal_event',
+    },
+    {
+        title: 'Tanggal Selesai',
         dataIndex: 'tanggal_event',
         key: 'tanggal_event',
       },
@@ -49,19 +65,19 @@ const columns = [
       key: 'action',
       render: () => (
         [<ButtonIcon
-            text="Download"
+            text="Participant"
             height={20}
-            icon={faUser}
+            icon={faUsers}
             borderRadius="5px"
-            background="#070E57"
+            background="#4D5AF2"
             marginRight= "20px"
         />,
         <ButtonIcon
-            text="Delete"
+            text="Detail"
             height={20}
-            icon={faUser}
+            icon={faInfoCircle}
             borderRadius="5px"
-            background="#FF0303"
+            background="#FFA903"
         />]
       ),
     },
