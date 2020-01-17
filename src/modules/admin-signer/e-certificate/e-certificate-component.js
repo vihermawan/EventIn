@@ -105,7 +105,7 @@ class ActiveEventComponent extends Component {
                 }}
             >
                 <Breadcrumb separator=">">
-                    <Breadcrumb.Item>Dashboard Active Event</Breadcrumb.Item>
+                    <Breadcrumb.Item>Dashboard E-Certificate</Breadcrumb.Item>
                 </Breadcrumb>
 
                 <Row style={{minHeight: '100%',marginBottom: '2%',marginTop:'2%',}} className="background">
@@ -114,7 +114,7 @@ class ActiveEventComponent extends Component {
                         <div className="container-active-event">
                             <Row>
                             <div className="container-title-event">
-                                <span>Active Event</span>
+                                <span>E-Certificate</span>
                             </div>
                             </Row>
                             <Row gutter={24} type="flex">
