@@ -1,9 +1,10 @@
 import React, { Component } from 'react';
 import { Layout, Breadcrumb, Row, Table, Input, Col,Tag } from 'antd';
-import { faUser, faDownload, faInfoCircle } from '@fortawesome/free-solid-svg-icons'
-import ButtonIcon from '../../../common/component/button/button-icon'
-import TableProfile from '../../../common/component/table/table'
-
+import '../../../../assets/css/admin-panitia/active-event.css'
+import { faUsers, faTrash } from '@fortawesome/free-solid-svg-icons'
+import { faInfoCircle } from '@fortawesome/free-solid-svg-icons'
+import ButtonIcon from '../../../../common/component/button/button-icon'
+import TableProfile from '../../../../common/component/table/table'
 // constant content
 const { Content } = Layout;
 const columns = [
@@ -14,65 +15,44 @@ const columns = [
         render: text => <a>{text}</a>,
     },
     {
-      title: 'Nama Event',
+      title: 'Nama Penandatangan',
       dataIndex: 'Nama_Event',
       key: 'Nama_Event',
       render: text => <a>{text}</a>,
     },
     {
-      title: 'Penandatangan',
+      title: 'Instansi',
       dataIndex: 'tanggal_event',
       key: 'tanggal_event',
     },
     {
-        title: 'File',
-        dataIndex: 'tanggal_event',
-        key: 'tanggal_event',
-    },
-    {
-      title: 'Tenggang Waktu',
+      title: 'Jabatan',
       dataIndex: 'tanggal_event',
       key: 'tanggal_event',
     },
     {
-      title: 'Status',
-      key: 'tags',
-      dataIndex: 'tags',
-      render: tags => (
-        <span>
-          {tags.map(tag => {
-            let color = tag.length > 5 ? 'geekblue' : '#87d068';
-            if (tag === 'reject') {
-              color = 'volcano';
-            }
-            return (
-              <Tag color={color} key={tag}>
-                {tag.toUpperCase()}
-              </Tag>
-            );
-          })}
-        </span>
-      ),
+    title: 'Jenis Kelamin',
+    dataIndex: 'tanggal_event',
+    key: 'tanggal_event',
     },
     {
       title: 'Action',
       key: 'action',
       render: () => (
         [<ButtonIcon
-            text="Download"
-            height={20}
-            icon={faDownload}
-            borderRadius="5px"
-            background="#070E57"
-            marginRight= "20px"
-        />,
-        <ButtonIcon
             text="Detail"
             height={20}
             icon={faInfoCircle}
             borderRadius="5px"
             background="#FFA903"
             marginRight= "20px"
+        />,
+        <ButtonIcon
+            text="Delete"
+            height={20}
+            icon={faTrash}
+            borderRadius="5px"
+            background="#E11212"
         />]
       ),
     },
@@ -83,10 +63,11 @@ const data = [
       Nomor : '1',
       Nama_Event: 'UGMTalks',
       tanggal_event :'2020-10-11',
-      tags: ['Done'],
     },
   ];
-class ECertificateComponent extends Component {
+
+
+class PenandatanganAdminComponent extends Component {
     render() { 
         return ( 
             <Content
@@ -98,15 +79,16 @@ class ECertificateComponent extends Component {
                 }}
             >
                 <Breadcrumb separator=">">
-                    <Breadcrumb.Item>Dashboard E-Certificate</Breadcrumb.Item>
+                    <Breadcrumb.Item>Dashboard List Penandatangan</Breadcrumb.Item>
                 </Breadcrumb>
+
                 <Row style={{minHeight: '100%',marginBottom: '2%',marginTop:'2%',}} className="background">
                     <Col lg={24} md={24} sm={24}> 
                         
                         <div className="container-active-event">
                             <Row>
                             <div className="container-title-event">
-                                <span>E Certificate</span>
+                                <span>List Penandatangan</span>
                             </div>
                             </Row>
                             <Row gutter={24} type="flex">
@@ -124,4 +106,4 @@ class ECertificateComponent extends Component {
     }
 }
  
-export default ECertificateComponent;
+export default PenandatanganAdminComponent;

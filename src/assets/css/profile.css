@@ -66,25 +66,7 @@
 .desc-total-event{
     max-width: 60%;
 }
-.ant-table table{
-    width: 1050px !important;
-    border: 1px solid #4D5AF2;
-    border-radius: 10px;
-}
-.ant-table-thead > tr > th{
-    color: white;
-    background-color: #4D5AF2;
-}
-.ant-table-thead > tr:first-child > th:first-child{
-    border-top-left-radius: 10px;
-}
-.ant-table-thead > tr:first-child > th:last-child{
-    border-top-right-radius: 10px;
-}
 
-.ant-table-tbody > tr > td{
-    border-radius: 10px;
-}
 /* Media Queries */
 @media screen and (max-width: 1200px){
 

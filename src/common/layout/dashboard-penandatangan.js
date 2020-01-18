@@ -4,18 +4,16 @@ import './style/dashboard-style.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { Layout, Menu, Icon } from 'antd';
 /*Import Icon */
-import { faDesktop,faUserCircle, faEnvelope, faClipboardCheck, faUserTag, faUserTie, faUserFriends, faEnvelopeOpen } from '@fortawesome/free-solid-svg-icons'
+import { faDesktop,faUserCircle, faEnvelope, faClipboardCheck } from '@fortawesome/free-solid-svg-icons'
 
 /*Import Page */
-import DashboardAdminPage from '../../app/admin-superadmin/dashboard/admin-page'
-import PanitiaAdminPage from '../../app/admin-superadmin/dashboard/panitia-page'
-import PesertaAdminPage from '../../app/admin-superadmin/dashboard/peserta-page'
-import PenandatanganAdminPage from '../../app/admin-superadmin/dashboard/penandatangan-page'
-import WaitingListPage from '../../app/admin-superadmin/dashboard/waiting-page'
-import ReceivedPage from '../../app/admin-superadmin/dashboard/received-page'
+import DashboardSignerPage from '../../app/admin-signer/dashboard/signer-page'
+import WaitingListPage from '../../app/admin-signer/dashboard/waiting-page'
+import EcertificatePage from '../../app/admin-signer/dashboard/ecertificate-page'
+import ProfileSignerPage from '../../app/admin-signer/dashboard/profile-page'
 
 const { Header, Sider, Content } = Layout;
-const { SubMenu } = Menu;
+
 class signer extends Component {
   state = {
     collapsed: false,
@@ -47,7 +45,7 @@ class signer extends Component {
                 </div>              
               
                 <Menu.Item key="dashboard"  >
-                  <Link to="/admin/dashboard-admin">
+                  <Link to="/signer/dashboard-signer">
                  
                     <FontAwesomeIcon
                         icon={faDesktop}
@@ -67,52 +65,28 @@ class signer extends Component {
                     }}/>
                 </div>
                 <div className="title-dashboard">
-                    <span className="title-desc-dashboard">User</span>
+                    <span className="title-desc-dashboard">SIGNATURED</span>
                 </div>  
-                <Menu.Item key="peserta"  >
-                  <Link to="/admin/admin-peserta">
+                <Menu.Item key="waiting-list"  >
+                  <Link to="/signer/waiting-list">
                  
                     <FontAwesomeIcon
-                        icon={faUserTag}
+                        icon={faEnvelope}
                         style={{marginRight: 10}}
                         className={this.state.collapsed ? 'hidden-logo' : 'block-logo'}
                     />
-                    <span className={hidden} >Peserta</span>
+                    <span className={hidden} >Waiting List</span>
                   </Link>
                 </Menu.Item>
-                <SubMenu
-                    key="sub1"
-                    title={
-                    <span className={hidden}>
-                        <FontAwesomeIcon
-                            icon={faUserFriends}
-                            style={{marginRight: 10}}
-                            className={this.state.collapsed ? 'hidden-logo' : 'block-logo'}
-                        />
-                        Panitia
-                    </span>
-                    }
-                >
-                    <Menu.Item key="1">
-                        <Link to="/admin/admin-panitia">
-                            <span>Panitia</span>
-                        </Link>
-                    </Menu.Item>
-                    <Menu.Item key="2">
-                        <Link to="/admin/admin-panitia">
-                            <span>Panitia</span>
-                        </Link>
-                    </Menu.Item>
-                </SubMenu>
-                <Menu.Item key="penandatangan"  >
-                  <Link to="/admin/admin-penandatangan">
-                 
+                <Menu.Item key="e-certificate"  >
+                  <Link to="/signer/e-certificate">
+    
                     <FontAwesomeIcon
-                        icon={faUserTie}
+                        icon={faClipboardCheck}
                         style={{marginRight: 10}}
                         className={this.state.collapsed ? 'hidden-logo' : 'block-logo'}
                     />
-                    <span className={hidden} >Penandatangan</span>
+                   <span className={hidden} >E-Certificate</span>
                   </Link>
                 </Menu.Item>
                 <div className="title-dashboard">
@@ -125,28 +99,17 @@ class signer extends Component {
                     }}/>
                 </div>
                 <div className="title-dashboard">
-                    <span className="title-desc-dashboard">Certificate</span>
+                    <span className="title-desc-dashboard">SETTINGS</span>
                 </div>  
-                <Menu.Item key="waiting-list"  >
-                  <Link to="/admin/waiting-list">
+                <Menu.Item key="profile"  >
+                  <Link to="/signer/profile">
                  
                     <FontAwesomeIcon
-                        icon={faEnvelope}
+                        icon={faUserCircle}
                         style={{marginRight: 10}}
                         className={this.state.collapsed ? 'hidden-logo' : 'block-logo'}
                     />
-                    <span className={hidden} >Waiting List</span>
-                  </Link>
-                </Menu.Item>
-                <Menu.Item key="received"  >
-                  <Link to="/admin/received">
-                 
-                    <FontAwesomeIcon
-                        icon={faEnvelopeOpen}
-                        style={{marginRight: 10}}
-                        className={this.state.collapsed ? 'hidden-logo' : 'block-logo'}
-                    />
-                    <span className={hidden} >Received</span>
+                    <span className={hidden} >Profile</span>
                   </Link>
                 </Menu.Item>
               </Menu>
@@ -162,34 +125,24 @@ class signer extends Component {
             />
           </Header>
           <Route
-              path='/admin/dashboard-admin'
+              path='/signer/dashboard-signer'
               exact
-              render={ (props) => <DashboardAdminPage {...props}/> }
+              render={ (props) => <DashboardSignerPage {...props}/> }
           />
-          <Route
-              path='/admin/admin-peserta'
-              exact
-              render={ (props) => <PesertaAdminPage {...props}/> }
-          />
-          <Route
-              path='/admin/admin-panitia'
-              exact
-              render={ (props) => <PanitiaAdminPage {...props}/> }
-          />
-          <Route
-              path='/admin/admin-penandatangan'
-              exact
-              render={ (props) => <PenandatanganAdminPage {...props}/> }
-          />
-          <Route
-              path='/admin/waiting-list'
+           <Route
+              path='/signer/waiting-list'
               exact
               render={ (props) => <WaitingListPage {...props}/> }
           />
-          <Route
-              path='/admin/received'
+           <Route
+              path='/signer/e-certificate'
               exact
-              render={ (props) => <ReceivedPage {...props}/> }
+              render={ (props) => <EcertificatePage {...props}/> }
+          />
+           <Route
+              path='/signer/profile'
+              exact
+              render={ (props) => <ProfileSignerPage {...props}/> }
           />
         </Layout>
       </Layout>

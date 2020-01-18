@@ -15,7 +15,70 @@
     background: rgba(255, 255, 255, 0.2);
     margin: 16px;
   }
+  .logo-admin{
+    margin: 10px 15px;
+  }
 
-  .menu-dashboard {
-      
+  .hidden-admin-logo{
+    width: 60%;
+    margin: 10px 15px;
+   
+  }
+
+  .menu-dashboard  .ant-menu{
+      margin-top: 30px !important;
+  }
+  .title-dashboard{
+    margin-bottom: 15px;
+  }
+  .title-desc-dashboard{
+    margin-left: 10px;
+    font-size: 10px;
+    margin-bottom: 40px;
+    color: #CDCCCC;
+    font-weight: 600;
+  }
+
+  .hidden-objek {
+    display: none;
+  }
+  .block-objek {
+    display: inline;
+  }
+
+  .hidden-logo.ant-menu:not(.ant-menu-horizontal) .ant-menu-item-selected {
+    margin-left: 0px;
+  }
+
+  .menu-dashboard .ant-menu:not(.ant-menu-horizontal) .ant-menu-item-selected{
+    background-color: #4D5AF2;
+    width: 80%;
+    margin-left: 10px;
+    border-right: none;
+    border-radius: 10px;
+  }
+
+  .ant-menu-item > a{
+    color: black;
+    font-weight: 600;
+  }
+
+  .ant-menu-inline .ant-menu-selected::after, .ant-menu-inline .ant-menu-item-selected::after{
+    transition: none;
+  }
+
+  .ant-menu-vertical 
+  .ant-menu-item::after, 
+  .ant-menu-vertical-left .ant-menu-item::after, 
+  .ant-menu-vertical-right .ant-menu-item::after, 
+  .ant-menu-inline .ant-menu-item::after {
+    border: none;
+  }
+  
+  .ant-menu-item, .ant-menu-submenu-title {
+    transition: none;
+  }
+
+  .ant-menu-item-selected > a, .ant-menu-item-selected > a:hover{
+    color: white;
   }

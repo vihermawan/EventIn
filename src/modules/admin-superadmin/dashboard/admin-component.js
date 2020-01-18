@@ -4,7 +4,7 @@ import '../../../assets/css/admin-panitia/dashboardpanitia.css'
 // constant content
 const { Content } = Layout;
 
-class PanitiaComponent extends Component {
+class AdminComponent extends Component {
     render() { 
         const image1 = require(`../../../assets/images/participant-dashboard.png`);
         const image2 = require(`../../../assets/images/event-dashboard.png`);
@@ -123,4 +123,4 @@ class PanitiaComponent extends Component {
     }
 }
  
-export default PanitiaComponent;
+export default AdminComponent;

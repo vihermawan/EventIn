@@ -1,9 +1,10 @@
 import React, { Component } from 'react';
 import { Layout, Breadcrumb, Row, Table, Input, Col,Tag } from 'antd';
-import { faUser, faDownload, faInfoCircle } from '@fortawesome/free-solid-svg-icons'
+import '../../../assets/css/admin-panitia/active-event.css'
+import { faUsers } from '@fortawesome/free-solid-svg-icons'
+import { faInfoCircle } from '@fortawesome/free-solid-svg-icons'
 import ButtonIcon from '../../../common/component/button/button-icon'
 import TableProfile from '../../../common/component/table/table'
-
 // constant content
 const { Content } = Layout;
 const columns = [
@@ -20,20 +21,25 @@ const columns = [
       render: text => <a>{text}</a>,
     },
     {
-      title: 'Penandatangan',
+      title: 'Tempat',
       dataIndex: 'tanggal_event',
       key: 'tanggal_event',
     },
     {
-        title: 'File',
+      title: 'Kategori',
+      dataIndex: 'tanggal_event',
+      key: 'tanggal_event',
+    },
+    {
+      title: 'Tanggal Mulai',
+      dataIndex: 'tanggal_event',
+      key: 'tanggal_event',
+    },
+    {
+        title: 'Tanggal Selesai',
         dataIndex: 'tanggal_event',
         key: 'tanggal_event',
-    },
-    {
-      title: 'Tenggang Waktu',
-      dataIndex: 'tanggal_event',
-      key: 'tanggal_event',
-    },
+      },
     {
       title: 'Status',
       key: 'tags',
@@ -59,11 +65,11 @@ const columns = [
       key: 'action',
       render: () => (
         [<ButtonIcon
-            text="Download"
+            text="Participant"
             height={20}
-            icon={faDownload}
+            icon={faUsers}
             borderRadius="5px"
-            background="#070E57"
+            background="#4D5AF2"
             marginRight= "20px"
         />,
         <ButtonIcon
@@ -72,7 +78,6 @@ const columns = [
             icon={faInfoCircle}
             borderRadius="5px"
             background="#FFA903"
-            marginRight= "20px"
         />]
       ),
     },
@@ -86,7 +91,9 @@ const data = [
       tags: ['Done'],
     },
   ];
-class ECertificateComponent extends Component {
+
+
+class ActiveEventComponent extends Component {
     render() { 
         return ( 
             <Content
@@ -100,13 +107,14 @@ class ECertificateComponent extends Component {
                 <Breadcrumb separator=">">
                     <Breadcrumb.Item>Dashboard E-Certificate</Breadcrumb.Item>
                 </Breadcrumb>
+
                 <Row style={{minHeight: '100%',marginBottom: '2%',marginTop:'2%',}} className="background">
                     <Col lg={24} md={24} sm={24}> 
                         
                         <div className="container-active-event">
                             <Row>
                             <div className="container-title-event">
-                                <span>E Certificate</span>
+                                <span>E-Certificate</span>
                             </div>
                             </Row>
                             <Row gutter={24} type="flex">
@@ -124,4 +132,4 @@ class ECertificateComponent extends Component {
     }
 }
  
-export default ECertificateComponent;
+export default ActiveEventComponent;
