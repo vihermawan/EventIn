@@ -133,7 +133,7 @@ class EventComponent extends Component {
                                         <Dropdown 
                                             marginLeft={16}
                                             overlay={menu}>
-                                            <Button>
+                                            <Button className="button-input">
                                                 Category Event <Icon type="down" />
                                             </Button>
                                         </Dropdown>

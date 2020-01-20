@@ -44,6 +44,12 @@
     padding:15px;
 }
 
+.button-input{
+    background-color: white !important;
+    color:#4D5AF2;
+    margin-left: 30px;
+    border-color: #4D5AF2;
+    }
 /* Section 2 style */
 
 .event-menu .ant-menu-item {

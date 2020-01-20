@@ -1,243 +1,95 @@
-/* ALL Section */
-
-.section-container {
-    margin: 0 80px;
-    margin-bottom: 100px;
-}
-/* Section 1 style */
-.title-container {
+.title-container-detail {
     max-width: 480px;
-    margin-top: 50px;
+    margin-top: 5px;
+    margin-left: 80px;
+    margin-bottom: 10px;
+}
+.title-container-nama {
+    max-width: 480px;
+    margin-top: 2px;
+    margin-left: 0px;
+    margin-bottom: 10px;
+}
+.title-big-detail {
+    font-size: 72px;
+    font-weight: 700;
+}
+.title-small-detail {
+    font-size: 44px;
+    font-weight: 700;
+}
+
+.button-detail-1-container {
+    max-width: 400px;
+    margin-left: 80px;
+}
+.image-big-container-detail {
+    width: 600px;
+    margin-top: 30px;
+}
+
+
+.title-container-detail-2 {
+    max-width:80%;
+    /* margin-top: 50px; */
+    margin-left: 0px;
     margin-bottom: 10px;
 }
 
-.description-container {
-    max-width: 400px;
-    margin-bottom: 20px;
+.title-quote-about{
+    /* max-width: 80%; */
+    font-size :20px;
+    margin-top: 40px;
+    margin-left: 150px;
+    margin-right: 150px;
 }
-.button-section-1-container {
-    max-width: 400px;
-}
-.image-big-container {
-    width: 600px;
-    margin-top: 100px;
-}
-
-.button-participate {
-    font-size: 14px;
-    min-height: 48px;
-    padding-left: 20px;
-    padding-right: 20px;
-}
-.image-hidden {
-    display: none;
+.title-quote-judul{
+    /* max-width: 80%; */
+    font-size :20px;
+    margin-top: 40px;
+    margin-left: 150px;
+    margin-right: 150px;
 }
 
-.button-search .ant-input{
-    background-color:white;
-    border-color: #4D5AF2;
-    width: 200px !important;
-    margin-right: 30px !important;
-    border-radius: 20px;
-    min-height: 30px;
-    color: #9A9FDE !important;
-    padding:15px;
-}
-
-/* Section 2 style */
-
-.event-menu .ant-menu-item {
-    font-size: 16px;
-    padding: 0px 18px;
-    /* font-weight: bold; */
-}
-.event-menu .ant-menu-submenu-title {
-    padding: 10px 20px;
-}
-
-.event-menu .ant-menu-item button,
-.event-menu .ant-menu-submenu-title button {
-    padding: 0px 15px;
-    color: #cdcccc !important;
-}
-
-.event-menu .ant-menu-item button:hover,
-.event-menu .ant-menu-submenu-title button:hover {
-    color: black !important;
-}
-
-.event-menu .ant-menu-horizontal {
-    border-bottom: none;
-    color: black;
-}
-
-.event-menu
-.ant-menu-item:hover, 
-.ant-menu-active,
-.ant-menu-submenu-active,
-.ant-menu-submenu-title:hover
-{
-    border-bottom: 2px solid transparent !important;
-}
-.event-menu .ant-menu-submenu-title::after{
-    color: black;
-    border-bottom: 2px solid transparent !important;
-}
-
-.event-menu
-.ant-menu-item:hover, 
-.ant-menu-submenu-title:hover
-{
-    border-bottom: 2px solid transparent !important;
-}
-
-.event-menu .ant-menu-item-selected {
-    border-bottom: 2px solid transparent !important;
-}
-.event-menu .ant-menu-item-selected button {
-    color: black !important;
-}
-
-.ant-menu-horizontal .ant-menu-item,
-.ant-menu-horizontal .ant-menu-submenu {
-    margin-top: 0px;
-}
-
-.event-card-container {
-    max-width: 360px;
-    border-radius: 16px;
-}
-.event-card-container .ant-card-body {
-    padding: 16px;
-    border: 1px solid #4D5AF2;
-    border-top: none;
-    border-bottom-right-radius: 16px;
-    border-bottom-left-radius: 16px;
-}
-
-.event-card-badge {
-    padding: 2px;
-    padding-left: 15px;
-    padding-right: 15px;
-    border-radius: 8px;
+.teks-about {
+    font-size: 17px;
     text-align: center;
 }
-.title-big-event {
-    font-size: 48px;
+.teks-judul {
+    font-size: 40px;
+    text-align: center;
 }
 
+.card-content-detail {
+    margin: 16px auto;
+    max-width: 1300px;
+    height: 250px;
+    padding: 28px;
+    border-radius: 10px;
 
-/* Media Queries */
-@media screen and (max-width: 1200px){
-    /* Section 1 style */
-    .image-big-container {
-        width: 460px;
-        margin-top: 150px;
-        margin-left: 80px;
-    }
-    
-
-    /* Section 2 style */
+    -webkit-box-shadow: 0px 7px 17px -4px rgba(0,0,0,0.75);
+    -moz-box-shadow: 0px 7px 17px -4px rgba(0,0,0,0.75);
+    box-shadow: 0px 7px 17px -4px rgba(0,0,0,0.75);
 }
 
-@media screen and (max-width: 900px){
-    /* Section 1 style */
-    .image-big-container {
-        width: 400px;
-        margin-top: 100px;
-    }    
-    .title-big {
-        font-size: 50px;
-    }
-    .title-small {
-        font-size: 30px;
-    }
-    .description-container {
-        max-width: 300px;
-        margin-left: 80px;
-        font-size: 16px;
-    }
-    .button-participate {
-        font-size: 12px;
-        min-height: 40px;
-        padding-left: 10px;
-        padding-right: 10px;
-    }
-
-    /* Section 2 style */
+.detail-content {
+    margin: auto;
+    max-width: 300px;
+    padding: 28px;
+    border-radius: 10px;
 }
 
-@media screen and (max-width: 767px) {
-    /* Section 1 style */
-    .image-big-container {
-        width: 280px;
-        margin: 100px auto;
-    }
-    .title-container {
-        max-width: 300px;
-        margin-left: 40px;
-    }
-    .title-big {
-        font-size: 40px;
-    }
-    .title-small {
-        font-size: 26px;
-    }
-    .description-container {
-        margin-left: 40px;
-        font-size: 14px;
-    }
-    .button-section-1-container {
-        margin-left: 40px;
-    }
-    .button-participate {
-        font-size: 10px;
-        min-height: 20px;
-    }
-
-    /* Section 2 style */
+.detail-image {
+    max-width: 30%;
+    max-height: 100px;
 }
 
-@media screen and (max-width: 576px){
-    /* Section 1 style */
-    .image-big-container {
-        display: none;
-    }
-    .image-hidden {
-        width: 300px;
-        margin-left: 40px;
-        margin-bottom: 20px;
-        display: block;
-    } 
-
-    /* Section 2 style */
-
-    /* Section 3 style */
-    .image-hidden-2 {
-        width: 300px;
-        margin-left: 40px;
-        margin-bottom: 20px;
-        display: block;
-    } 
+.detail-title {
+    margin-top: 18px;
+    font-size: 20px;
+    font-weight: 600;
 }
-
-@media screen and (max-width: 480px){
-    /* Section 1 style */
-    .image-big-container {
-        display: none;
-    }    
-    .title-container {
-        max-width: 360px;
-    }
-    .title-big {
-        font-size: 50px;
-    }
-    .title-small {
-        font-size: 30px;
-    }
-    .button-section-1-container {
-        margin-left: 40px;
-    }
-
-    /* Section 2 style */
+.detail-description {
+    margin-top: 10px;
+    font-size: 15px;
 }

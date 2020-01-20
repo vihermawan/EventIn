@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { Layout, BackTop, Row, Col } from 'antd';
+import { Route, Link } from 'react-router-dom'
 import '../../../assets/css/home.css'
 // component
 import Navbar from '../../../common/layout/navbar-landing'
@@ -95,10 +96,13 @@ class HomeComponent extends Component {
                                 </Col>
                                 <Col span={24}>
                                     <div className="button-section-1-container">
+                                    <Link to="/login">
                                         <ButtonRounded
                                             text="I want to participate"
                                             className='button-participate'
                                         />
+                                    </Link>
+                                    <Link to="/login">
                                         <ButtonRounded
                                             text="I want to organize"
                                             background="white"
@@ -107,6 +111,7 @@ class HomeComponent extends Component {
                                             marginLeft={16}
                                             className='button-participate'
                                         />
+                                    </Link>
                                     </div>
                                 </Col>
                             </Row>
