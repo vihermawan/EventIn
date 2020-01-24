@@ -7,6 +7,7 @@ import { navigate } from '../../common/store/action'
 import LoginComponent from '../../modules/auth/component/authlogin-component';
 
 import '../../assets/css/auth-login.css'
+import axios from 'axios';
 
 class AuthLogin extends Component {
     state = {
@@ -14,13 +15,14 @@ class AuthLogin extends Component {
         password: '',
     }
     componentDidMount(){
-        API.get(`/annual`)
-        .then((response) => {
-            console.log(response)
-        },(error) => {
-                console.log(error)
-            },
-        );
+        axios.get(`http://localhost:8000/api/status`)
+        .then(response => {
+            console.log('response',response)
+        })
+        .catch( err => {
+            console.log('error', err)
+        });
+
     }
 
     handleChange = (e) => {

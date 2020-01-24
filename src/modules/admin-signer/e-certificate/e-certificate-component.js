@@ -1,10 +1,12 @@
 import React, { Component } from 'react';
 import { Layout, Breadcrumb, Row, Table, Input, Col,Tag } from 'antd';
-import '../../../assets/css/admin-panitia/active-event.css'
+import '../../../assets/css/dashboard-all/dashboard.css'
+import '../../../assets/css/dashboard-all/table-style.css'
 import { faUsers } from '@fortawesome/free-solid-svg-icons'
 import { faInfoCircle } from '@fortawesome/free-solid-svg-icons'
 import ButtonIcon from '../../../common/component/button/button-icon'
 import TableProfile from '../../../common/component/table/table'
+
 // constant content
 const { Content } = Layout;
 const columns = [
