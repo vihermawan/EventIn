@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { Layout, Breadcrumb, Row, Table, Input, Col } from 'antd';
-import '../../../assets/css/admin-panitia/dashboardpanitia.css'
+import '../../../assets/css/dashboard-all/dashboard.css'
+import '../../../assets/css/dashboard-all/table-style.css'
 // constant content
 const { Content } = Layout;
 
