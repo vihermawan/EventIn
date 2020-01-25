@@ -2,14 +2,14 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
 import { navigate } from '../../../common/store/action'
-import PanitiaAdminComponent from '../../../modules/admin-superadmin/user/panitia/panitia-component';
+import ListPanitiaAdminComponent from '../../../modules/admin-superadmin/user/panitia/listpanitia-component';
 
-class PanitiaAdminPage extends Component {
+class ListPanitiaAdminPage extends Component {
     state = {  }
 
     render() { 
         return ( 
-            <PanitiaAdminComponent
+            <ListPanitiaAdminComponent
                 navigate={this.props.navigate}
             />
         );
@@ -24,5 +24,5 @@ const mapDispatchToProps = (dispatch => ({
     navigate,
 }))();
 
-const page = connect(mapStateToProps, mapDispatchToProps)(PanitiaAdminPage);
+const page = connect(mapStateToProps, mapDispatchToProps)(ListPanitiaAdminPage);
 export default page

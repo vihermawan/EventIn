@@ -8,7 +8,8 @@ import { faDesktop,faUserCircle, faEnvelope, faClipboardCheck, faUserTag, faUser
 
 /*Import Page */
 import DashboardAdminPage from '../../app/admin-superadmin/dashboard/admin-page'
-import PanitiaAdminPage from '../../app/admin-superadmin/dashboard/panitia-page'
+import ListPanitiaAdminPage from '../../app/admin-superadmin/dashboard/listpanitia-page'
+import ApprovalEventPage from '../../app/admin-superadmin/dashboard/approvalevent-page'
 import PesertaAdminPage from '../../app/admin-superadmin/dashboard/peserta-page'
 import PenandatanganAdminPage from '../../app/admin-superadmin/dashboard/penandatangan-page'
 import WaitingListPage from '../../app/admin-superadmin/dashboard/waiting-page'
@@ -92,21 +93,20 @@ class signer extends Component {
                         Panitia
                     </span>
                     }
-                >
-                    <Menu.Item key="1">
-                        <Link to="/admin/admin-panitia">
-                            <span>Panitia</span>
+                  >
+                    <Menu.Item key="list-panitia">
+                        <Link to="/admin/list-panitia">
+                            <span>List Panitia</span>
                         </Link>
                     </Menu.Item>
-                    <Menu.Item key="2">
-                        <Link to="/admin/admin-panitia">
-                            <span>Panitia</span>
+                    <Menu.Item key="approval-event">
+                        <Link to="/admin/approval-event">
+                            <span>Approval Event</span>
                         </Link>
                     </Menu.Item>
                 </SubMenu>
                 <Menu.Item key="penandatangan"  >
                   <Link to="/admin/admin-penandatangan">
-                 
                     <FontAwesomeIcon
                         icon={faUserTie}
                         style={{marginRight: 10}}
@@ -172,9 +172,14 @@ class signer extends Component {
               render={ (props) => <PesertaAdminPage {...props}/> }
           />
           <Route
-              path='/admin/admin-panitia'
+              path='/admin/list-panitia'
               exact
-              render={ (props) => <PanitiaAdminPage {...props}/> }
+              render={ (props) => <ListPanitiaAdminPage {...props}/> }
+          />
+           <Route
+              path='/admin/approval-event'
+              exact
+              render={ (props) => <ApprovalEventPage {...props}/> }
           />
           <Route
               path='/admin/admin-penandatangan'
