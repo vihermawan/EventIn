@@ -77,8 +77,14 @@
   
   .ant-menu-item, .ant-menu-submenu-title {
     transition: none;
+    color: black;
+    font-weight: 600;
   }
 
   .ant-menu-item-selected > a, .ant-menu-item-selected > a:hover{
     color: white;
+  }
+
+  .menu-dashboard .ant-menu{
+    margin-top: 0px !important;
   }
