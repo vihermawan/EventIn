@@ -4,6 +4,7 @@ import { Route } from 'react-router-dom';
 import { API } from '../../common/api'
 import { connect } from 'react-redux';
 import { navigate } from '../../common/store/action'
+import CONSTANS from '../../common/utils/Constants'
 import LoginComponent from '../../modules/auth/component/authlogin-component';
 
 import '../../assets/css/auth-login.css'
@@ -15,14 +16,7 @@ class AuthLogin extends Component {
         password: '',
     }
     componentDidMount(){
-        axios.get(`http://localhost:8000/api/status`)
-        .then(response => {
-            console.log('response',response)
-        })
-        .catch( err => {
-            console.log('error', err)
-        });
-
+        
     }
 
     handleChange = (e) => {
@@ -35,8 +29,22 @@ class AuthLogin extends Component {
 
     handleSubmit = e => {
         e.preventDefault();
-        console.log('username : ', this.state.username)
-        console.log('password : ', this.state.password)
+        const params = {
+            email: this.state.username,
+            password: this.state.password   
+        }
+        console.log('params',params)
+        API.post(`/login`, params)
+        .then(res => {
+            console.log('res',res)
+            if(res.statusText == 'OK'){
+                this.props.navigate(CONSTANS.DASHBOARD_MENU_KEY)
+                localStorage.setItem('token', res)
+            } else {
+                alert('salah lu loginnya tong')
+            }
+            // localStorage.setItem('token', res)
+        });
     }
 
     render() {

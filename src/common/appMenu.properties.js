@@ -5,6 +5,9 @@ const menu = {
     LOGIN: {
         link: '/login',
     },
+    DASHBOARD: {
+        link: '/dashboard',
+    },
 };
 
 export default menu;
