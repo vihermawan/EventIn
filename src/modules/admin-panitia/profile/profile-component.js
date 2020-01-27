@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import { Layout, Breadcrumb, Row, Table, Input, Col,Icon } from 'antd';
 import ButtonIcon from '../../../common/component/button/button-icon'
 import { faUser } from '@fortawesome/free-solid-svg-icons'
+import '../../../assets/css/dashboard-all/dashboard.css'
+import '../../../assets/css/dashboard-all/table-style.css'
 // constant content
 const { Content } = Layout;
 

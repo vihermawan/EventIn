@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { Layout, Breadcrumb, Row, Table, Input, Col,Tag } from 'antd';
 import '../../../../assets/css/dashboard-all/dashboard.css'
 import '../../../../assets/css/dashboard-all/table-style.css'
-import { faUsers, faPaperPlane } from '@fortawesome/free-solid-svg-icons'
+import { faUsers, faTrash } from '@fortawesome/free-solid-svg-icons'
 import { faInfoCircle } from '@fortawesome/free-solid-svg-icons'
 import ButtonIcon from '../../../../common/component/button/button-icon'
 import TableProfile from '../../../../common/component/table/table'
@@ -16,39 +16,44 @@ const columns = [
         render: text => <a>{text}</a>,
     },
     {
-      title: 'Nama Event',
-      dataIndex: 'Nama_Event',
-      key: 'Nama_Event',
-      render: text => <a>{text}</a>,
+        title: 'Nama Event',
+        dataIndex: 'Nama_Event',
+        key: 'Nama_Event',
+        render: text => <a>{text}</a>,
     },
     {
-      title: 'Dari',
-      dataIndex: 'tanggal_event',
-      key: 'tanggal_event',
+        title: 'Tempat',
+        dataIndex: 'tanggal_event',
+        key: 'tanggal_event',
     },
     {
-      title: 'Untuk',
-      dataIndex: 'tanggal_event',
-      key: 'tanggal_event',
+        title: 'Jabatan',
+        dataIndex: 'tanggal_event',
+        key: 'tanggal_event',
+    },
+    {
+        title: 'Jenis Kelamin',
+        dataIndex: 'tanggal_event',
+        key: 'tanggal_event',
     },
     {
       title: 'Action',
       key: 'action',
       render: () => (
         [<ButtonIcon
-            text="Send"
-            height={20}
-            icon={faPaperPlane}
-            borderRadius="5px"
-            background="#36FF03"
-            marginRight= "20px"
-        />,
-        <ButtonIcon
             text="Detail"
             height={20}
             icon={faInfoCircle}
             borderRadius="5px"
             background="#FFA903"
+            marginRight= "20px"
+        />,
+        <ButtonIcon
+            text="Delete"
+            height={20}
+            icon={faTrash}
+            borderRadius="5px"
+            background="#E11212"
         />]
       ),
     },
@@ -63,7 +68,7 @@ const data = [
   ];
 
 
-class ReceivedAdminComponent extends Component {
+class ApprovalEventComponent extends Component {
     render() { 
         return ( 
             <Content
@@ -75,7 +80,7 @@ class ReceivedAdminComponent extends Component {
                 }}
             >
                 <Breadcrumb separator=">">
-                    <Breadcrumb.Item>Dashboard Received</Breadcrumb.Item>
+                    <Breadcrumb.Item>Dashboard List Penandatangan</Breadcrumb.Item>
                 </Breadcrumb>
 
                 <Row style={{minHeight: '100%',marginBottom: '2%',marginTop:'2%',}} className="background">
@@ -84,7 +89,7 @@ class ReceivedAdminComponent extends Component {
                         <div className="container-active-event">
                             <Row>
                             <div className="container-title-event">
-                                <span>Received</span>
+                                <span>List Approval Event</span>
                             </div>
                             </Row>
                             <Row gutter={24} type="flex">
@@ -102,4 +107,4 @@ class ReceivedAdminComponent extends Component {
     }
 }
  
-export default ReceivedAdminComponent;
+export default ApprovalEventComponent;
