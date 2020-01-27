@@ -52,9 +52,6 @@ class Navbar extends Component {
                             <Menu.Item key="event" className="ml-30">
                                 <Link to='/event'> Event </Link>
                             </Menu.Item>
-                            <Menu.Item key="category" className="ml-30">
-                                <Link to='/category'> Category </Link>
-                            </Menu.Item>
                             <Menu.Item key="about" className="ml-30">
                                 <Link to='/about'> About Us </Link>
                             </Menu.Item>
