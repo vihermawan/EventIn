@@ -39,13 +39,13 @@ class AuthLogin extends Component {
             console.log('res',res)
             if(res.statusText == 'OK'){
                 this.props.navigate(CONSTANS.DASHBOARD_MENU_KEY)
-                localStorage.setItem('token', res)
+                // localStorage.setItem('token', res.data)
             } else {
                 alert('salah lu loginnya tong')
             }
-            // localStorage.setItem('token', res)
+            localStorage.setItem('token', res)
         });
-    }
+    }git
 
     render() {
         return (

@@ -56,3 +56,16 @@
     color: #4D5AF2;
 }
 
+.form-section-5{
+    width: 95%;
+}
+
+.input-location-event .ant-input{
+    width: 97.5%;
+    border-color: #4D5AF2;
+    height: 60px;
+}
+
+.form-section-6{
+    width: 90%;
+}
