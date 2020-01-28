@@ -15,13 +15,13 @@ class AuthRegister extends Component {
         password: '',
     }
     componentDidMount(){
-        API.get(`/annual`)
-        .then((response) => {
-            console.log(response)
-        },(error) => {
-                console.log(error)
-            },
-        );
+        // API.get(`/annual`)
+        // .then((response) => {
+        //     console.log(response)
+        // },(error) => {
+        //         console.log(error)
+        //     },
+        // );
     }
 
     handleChange = (e) => {

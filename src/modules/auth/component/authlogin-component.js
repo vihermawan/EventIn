@@ -84,7 +84,7 @@ class LoginComponent extends Component{
                                                 style={{borderRadius: '26px',backgroundColor:'#FA607E',border:'none',color:'#ffff'}}
                                                 block={true}
                                             />
-                                            <p className="auth-login-label mt-10 text-align-center text-white">Don't have account?<Button className="text-pink" type="link" onClick={info}>Register Now?</Button></p>
+                                            <p className="auth-login-label mt-10 text-align-center text-white">Don't have account?<Button className="text-pink" type="link" ><Link to='/register' className="text-white">Register Now</Link></Button></p>
                                             
                                         </div>
                                     </div>

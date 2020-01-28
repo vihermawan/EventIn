@@ -34,19 +34,19 @@ class AuthLogin extends Component {
         API.post(`/login`, params)
         .then(res => {
             console.log('res',res.data)
-            if(res.data.data.id_role == 2){
+            if(res.data.id_role == 2){
                 this.props.navigate(CONSTANS.DASHBOARD_MENU_KEY)
                 localStorage.setItem('token', res.data.api_token)
             }
-            else if(res.data.data.id_role == 1) {
+            else if(res.data.id_role == 1) {
                 this.props.navigate(CONSTANS.ADMIN_MENU_KEY)
                 localStorage.setItem('token', res.data.api_token)
             }
-            else if(res.data.data.id_role == 3) {
+            else if(res.data.id_role == 3) {
                 this.props.navigate(CONSTANS.HOME_MENU_KEY)
                 localStorage.setItem('token', res.data.api_token)
             }
-            else if(res.data.data.id_role == 4) {
+            else if(res.data.id_role == 4) {
                 this.props.navigate(CONSTANS.SIGNER_MENU_KEY)
                 localStorage.setItem('token', res.data.api_token)
             }

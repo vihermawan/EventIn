@@ -36,21 +36,22 @@
 .button-search .ant-input{
     background-color:white;
     border-color: #4D5AF2;
-    width: 200px !important;
-    margin-right: 30px !important;
+    width: 100%;
+    /* margin-right: 30px !important; */
     border-radius: 20px;
-    min-height: 30px;
+    margin-top: 8px;
+    height: 40px;
     color: #9A9FDE !important;
     padding:15px;
 }
 
-.button-input{
-    background-color: white !important;
-    color:#4D5AF2;
-    margin-left: 30px;
+.dropdown-category-event .ant-btn {
+    width: 100%;
+    text-align: left;
+    border-radius: 20px;
+    height: 40px;
     border-color: #4D5AF2;
-    width: 42%;
-    }
+}
 /* Section 2 style */
 
 .event-menu .ant-menu-item {
