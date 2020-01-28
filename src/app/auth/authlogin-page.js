@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import { Layout, BackTop } from 'antd';
 import { Route } from 'react-router-dom';
 import { API } from '../../common/api'
 import { connect } from 'react-redux';
@@ -7,7 +6,6 @@ import { navigate } from '../../common/store/action'
 import CONSTANS from '../../common/utils/Constants'
 import LoginComponent from '../../modules/auth/component/authlogin-component';
 import '../../assets/css/auth-login.css'
-import axios from 'axios';
 
 class AuthLogin extends Component {
     state = {
@@ -35,16 +33,29 @@ class AuthLogin extends Component {
         console.log('params',params)
         API.post(`/login`, params)
         .then(res => {
-            console.log('res',res)
-            if(res.statusText == 'OK'){
+            console.log('res',res.data)
+            if(res.data.data.id_role == 2){
                 this.props.navigate(CONSTANS.DASHBOARD_MENU_KEY)
-                // localStorage.setItem('token', res.data)
-            } else {
-                alert('salah lu loginnya tong')
+                localStorage.setItem('token', res.data.api_token)
             }
-            localStorage.setItem('token', res)
+            else if(res.data.data.id_role == 1) {
+                this.props.navigate(CONSTANS.ADMIN_MENU_KEY)
+                localStorage.setItem('token', res.data.api_token)
+            }
+            else if(res.data.data.id_role == 3) {
+                this.props.navigate(CONSTANS.HOME_MENU_KEY)
+                localStorage.setItem('token', res.data.api_token)
+            }
+            else if(res.data.data.id_role == 4) {
+                this.props.navigate(CONSTANS.SIGNER_MENU_KEY)
+                localStorage.setItem('token', res.data.api_token)
+            }
+            else{
+                alert('Login salah')
+            }
+            // localStorage.setItem('token', res)
         });
-    }git
+    }
 
     render() {
         return (
