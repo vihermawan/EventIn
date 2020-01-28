@@ -131,7 +131,7 @@ class EventComponent extends Component {
                                             style={{ width: 200 }}
                                         />
                                         <Dropdown 
-                                            marginLeft={16}
+                                            marginLeft={1}
                                             overlay={menu}>
                                             <Button className="button-input">
                                                 Category Event <Icon type="down" />

@@ -79,3 +79,20 @@
     margin-top: 10px;
     font-size: 15px;
 }
+
+/*untuk regis*/
+.button-regis{
+    border-radius: 25px;
+    border: none;
+    background: #4d5af2;
+    margin: 0px;
+    width: 160px;
+}
+.back-regis{
+    background: #4d5af2;
+
+}
+.text-merah{
+    color: red;
+}
+

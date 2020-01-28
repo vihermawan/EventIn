@@ -1,15 +1,15 @@
 import React, { Component } from 'react';
-import { Layout, BackTop, Row, Col, Button, Card, Tag, Input, Dropdown, Menu, Icon, Tabs, Statistic } from 'antd';
+import { Layout, BackTop, Row, Col, Button, Card, Tag, Modal, Input, Form, Dropdown, Menu, Icon, Tabs, Statistic } from 'antd';
 import '../../../assets/css/detail.css'
-// component
 import Navbar from '../../../common/layout/navbar-landing'
 import Footer from '../../../common/layout/footer-landing'
-import ButtonRounded from '../../../common/component/button/button-rounded'
+import InputAuth from '../../../common/component/input/input-auth'
 
 
 const { Content } = Layout;
 const { Countdown } = Statistic;
 const deadline = Date.now() + 5000 * 60 * 60 * 24 * 2 + 1000 * 30; // Moment is also OK
+
 
 function onFinish() {
   console.log('finished!');
@@ -41,8 +41,40 @@ const benefitData = [
 ]
 
 class DetailComponent extends Component {
+    state = {
+        visible: false,
+        confirmLoading: false,
+      };
+    
+      showModal = () => {
+        this.setState({
+          visible: true,
+        });
+      };
+    
+      handleOk = () => {
+        this.setState({
+          ModalText: 'The modal will be closed after two seconds',
+          confirmLoading: true,
+        });
+        setTimeout(() => {
+          this.setState({
+            visible: false,
+            confirmLoading: false,
+          });
+        }, 2000);
+      };
+    
+      handleCancel = () => {
+        console.log('Clicked cancel button');
+        this.setState({
+          visible: false,
+        });
+      };
+
     render() { 
         const image4 = require(`../../../assets/images/event1.jpg`);
+        const { visible, confirmLoading, ModalText } = this.state;
         
         return ( 
             <Layout className="landing-container">
@@ -64,11 +96,27 @@ class DetailComponent extends Component {
                                     <Countdown className="text-soft-blue title-small title-container-detail" title="Will be held on" value={deadline} format="D day,  H-m-s hour" />
                                 </Col>
                                 <Col span={24}>
-                                    <div className="button-detail-1-container">
+                                    {/* <div className="button-detail-1-container">
                                         <ButtonRounded
                                             text="Register Now!"
                                             className='button-participate'
                                         />
+                                    </div> */}
+                                    <div className="button-detail-1-container">
+                                        <Button className="button-participate button-regis" style={{marginTop:'2%'}} type="primary" onClick={this.showModal}>
+                                            Register Now!
+                                        </Button>
+                                        <Modal
+                                            title="HAGE 2020 (hobbies, adventure, and gears exhibition)"
+                                            visible={visible}
+                                            onOk={this.handleOk}
+                                            confirmLoading={confirmLoading}
+                                            onCancel={this.handleCancel}
+                                        >
+                                        <p className="bold">Apakah anda yakin akan mendaftar pada acara HAGE 2020 (hobbies, adventure, and gears exhibition) yang akan dilaksanakan pada 31 Januair-2 Februari 2020 ?</p>
+                                        <p className="text-soft-blue mb-50">Total yang harus dibayar: Rp. 0,-</p>
+                                        <p className="text-merah">*Setelah melakukan registrasi, jangan lupa untuk melakukan pembayaaran sesuai nominal yang tertera diatas.</p>
+                                        </Modal>
                                     </div>
                                 </Col>
                             </Row>
