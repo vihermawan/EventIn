@@ -4,7 +4,7 @@ import './style/dashboard-style.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { Layout, Menu, Icon } from 'antd';
 /*Import Icon */
-import { faDesktop,faUserCircle, faEnvelope, faClipboardCheck, faUserTag, faUserTie, faUserFriends, faEnvelopeOpen } from '@fortawesome/free-solid-svg-icons'
+import { faDesktop, faEnvelope, faUserTag, faUserTie, faUserFriends, faEnvelopeOpen, faBookOpen, faEyeDropper } from '@fortawesome/free-solid-svg-icons'
 
 /*Import Page */
 import DashboardAdminPage from '../../app/admin-superadmin/dashboard/admin-page'
@@ -14,6 +14,8 @@ import PesertaAdminPage from '../../app/admin-superadmin/dashboard/peserta-page'
 import PenandatanganAdminPage from '../../app/admin-superadmin/dashboard/penandatangan-page'
 import WaitingListPage from '../../app/admin-superadmin/dashboard/waiting-page'
 import ReceivedPage from '../../app/admin-superadmin/dashboard/received-page'
+import StatusMasterPage from '../../app/admin-superadmin/dashboard/status-master-page'
+import KategoriMasterPage from '../../app/admin-superadmin/dashboard/kategori-master-page'
 
 const { Header, Sider, Content } = Layout;
 const { SubMenu } = Menu;
@@ -149,6 +151,40 @@ class signer extends Component {
                     <span className={hidden} >Received</span>
                   </Link>
                 </Menu.Item>
+                <div className="title-dashboard">
+                    <hr style={{
+                        minHeight: 1,
+                        backgroundColor: '#D7D7D7',
+                        border: 'none',
+                        maxWidth: 200,
+                        marginBottom:'10px',
+                    }}/>
+                </div>
+                <div className="title-dashboard">
+                    <span className="title-desc-dashboard">Data Master</span>
+                </div>
+                <Menu.Item key="status"  >
+                  <Link to="/admin/waiting-list">
+                 
+                    <FontAwesomeIcon
+                        icon={faEyeDropper}
+                        style={{marginRight: 10}}
+                        className={this.state.collapsed ? 'hidden-logo' : 'block-logo'}
+                    />
+                    <span className={hidden} >Status</span>
+                  </Link>
+                </Menu.Item>
+                <Menu.Item key="kategori"  >
+                  <Link to="/admin/received">
+                 
+                    <FontAwesomeIcon
+                        icon={faBookOpen}
+                        style={{marginRight: 10}}
+                        className={this.state.collapsed ? 'hidden-logo' : 'block-logo'}
+                    />
+                    <span className={hidden} >Kategori</span>
+                  </Link>
+                </Menu.Item> 
               </Menu>
             </div>
         </Sider>
@@ -195,6 +231,16 @@ class signer extends Component {
               path='/admin/received'
               exact
               render={ (props) => <ReceivedPage {...props}/> }
+          />
+          <Route
+              path='/admin/status-master'
+              exact
+              render={ (props) => <StatusMasterPage {...props}/> }
+          />
+          <Route
+              path='/admin/kategori-master'
+              exact
+              render={ (props) => <KategoriMasterPage {...props}/> }
           />
         </Layout>
       </Layout>
