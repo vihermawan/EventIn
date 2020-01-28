@@ -6,7 +6,6 @@ import { connect } from 'react-redux';
 import { navigate } from '../../common/store/action'
 import CONSTANS from '../../common/utils/Constants'
 import LoginComponent from '../../modules/auth/component/authlogin-component';
-
 import '../../assets/css/auth-login.css'
 import axios from 'axios';
 

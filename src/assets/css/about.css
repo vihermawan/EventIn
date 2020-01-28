@@ -28,6 +28,7 @@
     margin-top: 30px;
 }
 
+
 .title-container-detail-2 {
     max-width:80%;
     /* margin-top: 50px; */
@@ -35,15 +36,28 @@
     margin-bottom: 10px;
 }
 
-.title-quote-detail{
+.title-quote-about{
     /* max-width: 80%; */
     font-size :20px;
-    margin-top: 10px;
+    margin-top: 40px;
+    margin-left: 150px;
+    margin-right: 150px;
+}
+.title-quote-judul{
+    /* max-width: 80%; */
+    font-size :20px;
+    margin-top: 40px;
+    margin-left: 150px;
+    margin-right: 150px;
 }
 
-.teks-detail {
+.teks-about {
     font-size: 17px;
-    text-align: justify;
+    text-align: center;
+}
+.teks-judul {
+    font-size: 40px;
+    text-align: center;
 }
 
 .card-content-detail {
@@ -79,20 +93,3 @@
     margin-top: 10px;
     font-size: 15px;
 }
-
-/*untuk regis*/
-.button-regis{
-    border-radius: 25px;
-    border: none;
-    background: #4d5af2;
-    margin: 0px;
-    width: 160px;
-}
-.back-regis{
-    background: #4d5af2;
-
-}
-.text-merah{
-    color: red;
-}
-

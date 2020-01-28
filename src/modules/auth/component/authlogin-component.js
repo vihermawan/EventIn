@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Layout, Row, Col, Button, Form,Icon, Input, } from 'antd';
+import { Layout, Row, Col, Button, Form,Icon, Modal, Input, } from 'antd';
 import '../../../assets/css/auth-login.css'
 import { Link } from 'react-router-dom';
 // component
@@ -9,6 +9,19 @@ import ButtonAuth from '../../../common/component/button/button-auth'
 const { Content } = Layout;
 const logo = require(`../../../assets/images/logo.png`);
 const login = require(`../../../assets/images/login-image.png`);
+
+function info() {
+    Modal.info({
+      title: 'What kind of role do you want?',
+      content: (
+        <div>
+            <Button className="button-pop" type="primary">I want to participate</Button>
+            <Button className="button-pop" type="primary">I want to organize</Button>
+        </div>
+      ),
+      onCancel() {},
+    });
+  }
 
 class LoginComponent extends Component{
     render(){
@@ -67,11 +80,12 @@ class LoginComponent extends Component{
                                         <div>
                                             <ButtonAuth
                                                 text="Login"
-                                                className="auth-button-red mt-70 auth-button-login"
+                                                className="auth-button-red mt-35 auth-button-login"
                                                 style={{borderRadius: '26px',backgroundColor:'#FA607E',border:'none',color:'#ffff'}}
                                                 block={true}
                                             />
-                                             <p className="auth-login-label mt-10 text-align-center text-white">Don't have account? <Link to='/register' className="text-white"> Register Now </Link></p>
+                                            <p className="auth-login-label mt-10 text-align-center text-white">Don't have account?<Button className="text-pink" type="link" onClick={info}>Register Now?</Button></p>
+                                            
                                         </div>
                                     </div>
                                 </Form>

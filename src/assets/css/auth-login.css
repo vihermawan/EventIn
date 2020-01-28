@@ -32,4 +32,11 @@
     max-width: 400px;
     margin-left: 13%;
 }
-
+.text-pink{
+    color: rgb(243, 109, 109);
+}
+.button-pop{
+    background:  rgb(243, 109, 109) ;
+    border-color:  rgb(243, 109, 109);
+    margin-right: 10px;
+}
