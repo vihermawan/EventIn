@@ -5,9 +5,15 @@ const menu = {
     LOGIN: {
         link: '/login',
     },
-    DASHBOARD: {
-        link: '/dashboard',
+    PANITIA: {
+        link: '/dashboard/dashboard-panitia',
     },
+    ADMIN :{
+        link : '/admin',
+    },
+    SIGNER: {
+        link :'/signer',
+    }
 };
 
 export default menu;
