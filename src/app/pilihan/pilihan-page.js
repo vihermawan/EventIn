@@ -7,15 +7,15 @@ import PilihanComponent from '../../modules/pilihan/component/pilihan-component'
 class PilihanPage extends Component {
     state = {  }
 
-    componentDidMount(){
-        API.get(`/annual`)
-        .then((response) => {
-            console.log(response)
-        },(error) => {
-                console.log(error)
-            },
-        );
-    }
+    // componentDidMount(){
+    //     API.get(`/annual`)
+    //     .then((response) => {
+    //         console.log(response)
+    //     },(error) => {
+    //             console.log(error)
+    //         },
+    //     );
+    // }
 
     render() { 
         return ( 

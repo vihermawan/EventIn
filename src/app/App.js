@@ -6,7 +6,7 @@ import { PersistGate } from 'redux-persist/integration/react';
 //component list
 import { store, persistor, browserHistory } from './../common/store';
 import Router from '../common/router/router';
-import { Lines } from 'react-preloaders';
+// import { Lines } from 'react-preloaders';
 
 class App extends Component {
   state = {}

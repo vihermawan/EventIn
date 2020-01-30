@@ -18,22 +18,22 @@ function onFinish() {
 
 const benefitData = [
     {
-        image: require(`../../../assets/images/Day.png`),
+        image: require(`../../../assets/images/day.png`),
         title: 'The Day',
         description: '31 Januari- 2 Februari 2020'
     },
     {
-        image: require(`../../../assets/images/Location.png`),
+        image: require(`../../../assets/images/location.png`),
         title: 'Venue',
         description: 'ICE BSD City Tangerang'
     },
     {
-        image: require(`../../../assets/images/Regis.png`),
+        image: require(`../../../assets/images/regis.png`),
         title: 'Registrasi',
         description: '1-20 Januari 2020'
     },
     {
-        image: require(`../../../assets/images/Quota.png`),
+        image: require(`../../../assets/images/quota.png`),
         title: 'Quota',
         description: '100 Orang'
     },
@@ -96,12 +96,6 @@ class DetailComponent extends Component {
                                     <Countdown className="text-soft-blue title-small title-container-detail" title="Will be held on" value={deadline} format="D day,  H-m-s hour" />
                                 </Col>
                                 <Col span={24}>
-                                    {/* <div className="button-detail-1-container">
-                                        <ButtonRounded
-                                            text="Register Now!"
-                                            className='button-participate'
-                                        />
-                                    </div> */}
                                     <div className="button-detail-1-container">
                                         <Button className="button-participate button-regis" style={{marginTop:'2%'}} type="primary" onClick={this.showModal}>
                                             Register Now!
