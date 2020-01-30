@@ -18,7 +18,7 @@ function onFinish() {
 
 const benefitData = [
     {
-        image: require(`../../../assets/images/day.png`),
+        image: require(`../../../assets/images/Day.png`),
         title: 'The Day',
         description: '31 Januari- 2 Februari 2020'
     },

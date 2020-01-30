@@ -44,7 +44,7 @@ class AuthLogin extends Component {
             }
             localStorage.setItem('token', res)
         });
-    }git
+    }
 
     render() {
         return (
