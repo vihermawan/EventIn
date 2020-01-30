@@ -89,10 +89,7 @@ const menu = (
 
 class EventComponent extends Component {
     render() { 
-        const image1 = require(`../../../assets/images/event-image1.png`);
-        const image2 = require(`../../../assets/images/event-image1.png`);
-        const image3 = require(`../../../assets/images/event-image1.png`);
-        
+        const image1 = require(`../../../assets/images/event-image1.png`);  
         return ( 
             <Layout className="landing-container">
                 <Navbar
@@ -124,19 +121,33 @@ class EventComponent extends Component {
                                 </Col>
                                 <Col span={24}>
                                     <div className="button-section-1-container">
-                                        <Search
-                                            onSearch={value => console.log(value)}
-                                            placeholder="Enter the location..."
-                                            className ="button-search"
-                                            style={{ width: 200 }}
-                                        />
-                                        <Dropdown 
-                                            marginLeft={1}
-                                            overlay={menu}>
-                                            <Button className="button-input">
-                                                Category Event <Icon type="down" />
-                                            </Button>
-                                        </Dropdown>
+                                        <Row>
+                                            <Col lg={12} md={12} sm={12}>
+                                                <div className="button-search">
+                                                    <Search
+                                                        onSearch={value => console.log(value)}
+                                                        placeholder="Enter the location..."
+                                                        // style={{ width: 200 }}
+                                                    />
+                                                </div>
+                                            </Col>
+                                            <Col lg={{span: 11, offset:1}} md={12} sm={12}>
+                                                <Dropdown overlay={menu}>
+                                                    <div className="dropdown-category-event">
+                                                        <Button>
+                                                            <Row>
+                                                                <Col lg={23} md={24} sm={24}>
+                                                                    <span className="auth-dropdown-label text-black">Kategori Event</span>
+                                                                </Col>
+                                                                <Col lg={1} md={24} sm={24}>
+                                                                    <Icon type="down" style={{color:"#4D5AF2"}}/>
+                                                                </Col>
+                                                            </Row>
+                                                        </Button>
+                                                    </div>
+                                                </Dropdown>
+                                            </Col>
+                                        </Row>
                                     </div>
                                 </Col>
                             </Row>
