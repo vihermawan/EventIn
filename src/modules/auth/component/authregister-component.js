@@ -41,16 +41,16 @@ class RegisterComponent extends Component{
                             <Row > 
                                 <Form onSubmit={handleSubmit}>
                                     <div className="auth-form-container">
-                                        <div className="text-white text-align-center title-more-small mb-50 mt-10">
+                                        <div className="text-white text-align-center title-more-small mb-20 mt-10">
                                             <p className="title-medium semi-bold m-0">Welcome!</p>
                                             <p className="form-description">Resiter in to your account</p>
                                         </div>
-                                        <span className="auth-input-label text-white">Username</span>
+                                        <span className="auth-input-label text-white">Nama Peserta</span>
                                         <InputAuth
-                                            name='username'
-                                            placeholder="username"
+                                            name='nama_peserta'
+                                            placeholder="nama_peserta"
                                             onChange={handleChange}
-                                            value={initialData.username}
+                                            value={initialData.nama_peserta}
                                             className="input-auth mt-5 mb-20"
                                         />
                                         <span className="auth-input-label text-white">Email</span>
@@ -58,7 +58,7 @@ class RegisterComponent extends Component{
                                             name='email'
                                             placeholder="email"
                                             onChange={handleChange}
-                                            value={initialData.username}
+                                            value={initialData.email}
                                             className="input-auth mt-5 mb-20"
                                             iconType="mail"
                                         />
@@ -68,6 +68,16 @@ class RegisterComponent extends Component{
                                             placeholder="Password"
                                             onChange={handleChange}
                                             value={initialData.password}
+                                            className="input-auth mt-5 mb-20"
+                                            iconType="lock"
+                                            type="password"
+                                        />
+                                        <span className="auth-input-label text-white">Confirm Password</span>
+                                          <InputAuth
+                                            name='confirm_password'
+                                            placeholder="Confirm Password"
+                                            onChange={handleChange}
+                                            value={initialData.confirm_password}
                                             className="input-auth mt-5"
                                             iconType="lock"
                                             type="password"

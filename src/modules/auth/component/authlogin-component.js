@@ -60,10 +60,10 @@ class LoginComponent extends Component{
                                         </div>
                                         <span className="auth-input-label text-white">Username</span>
                                         <InputAuth
-                                            name='username'
+                                            name='email'
                                             placeholder="username"
                                             onChange={handleChange}
-                                            value={initialData.username}
+                                            value={initialData.email}
                                             className="input-auth mt-5 mb-20"
                                         />
                                         <span className="auth-input-label text-white">Password</span>

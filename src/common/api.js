@@ -54,7 +54,7 @@ export const API = {
 
         return  axios.post(BASE_URL+endPoint, input, {headers : headers})
             .then( ( response ) => {
-                return response.data;
+                return response;
             })
             .catch( ( error ) => {
                 return error.response;

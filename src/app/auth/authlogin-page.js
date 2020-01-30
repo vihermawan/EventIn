@@ -9,7 +9,7 @@ import '../../assets/css/auth-login.css'
 
 class AuthLogin extends Component {
     state = {
-        username: '',
+        email: '',
         password: '',
     }
     componentDidMount(){
@@ -27,28 +27,28 @@ class AuthLogin extends Component {
     handleSubmit = e => {
         e.preventDefault();
         const params = {
-            email: this.state.username,
+            email: this.state.email,
             password: this.state.password   
         }
         console.log('params',params)
         API.post(`/login`, params)
         .then(res => {
-            console.log('res',res.data)
-            if(res.data.id_role == 2){
+            console.log('res',res.data.data.id_role )
+            if(res.data.data.id_role == 2){
                 this.props.navigate(CONSTANS.PANITIA_MENU_KEY)
-                localStorage.setItem('token', res.data.api_token)
+                localStorage.setItem('token', res.data.data.api_token)
             }
-            else if(res.data.id_role == 1) {
+            else if(res.data.data.id_role == 1) {
                 this.props.navigate(CONSTANS.ADMIN_MENU_KEY)
-                localStorage.setItem('token', res.data.api_token)
+                localStorage.setItem('token', res.data.data.api_token)
             }
-            else if(res.data.id_role == 3) {
+            else if(res.data.data.id_role == 3) {
                 this.props.navigate(CONSTANS.HOME_MENU_KEY)
-                localStorage.setItem('token', res.data.api_token)
+                localStorage.setItem('token', res.data.data.api_token)
             }
-            else if(res.data.id_role == 4) {
+            else if(res.data.data.id_role == 4) {
                 this.props.navigate(CONSTANS.SIGNER_MENU_KEY)
-                localStorage.setItem('token', res.data.api_token)
+                localStorage.setItem('token', res.data.data.api_token)
             }
             else{
                 alert('Login salah')
