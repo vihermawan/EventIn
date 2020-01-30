@@ -35,7 +35,7 @@ class AuthLogin extends Component {
         .then(res => {
             console.log('res',res.data)
             if(res.data.id_role == 2){
-                this.props.navigate(CONSTANS.DASHBOARD_MENU_KEY)
+                this.props.navigate(CONSTANS.PANITIA_MENU_KEY)
                 localStorage.setItem('token', res.data.api_token)
             }
             else if(res.data.id_role == 1) {
