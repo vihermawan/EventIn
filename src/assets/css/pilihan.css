@@ -1,0 +1,255 @@
+/* ALL Section */
+.landing-pilih {
+    /* min-height: 500vh; */
+    background-color: #4D5AF2;
+}
+.section-pilihan {
+    margin: 0 80px;
+    margin-top: 150px;
+    margin-bottom: 150px;
+}
+.full-container {
+    min-height: 100vh;
+}
+/* Section 1 style */
+.title-container {
+    max-width: 480px;
+    margin-top: 50px;
+    margin-bottom: 10px;
+}
+
+.description-container {
+    max-width: 400px;
+    margin-bottom: 20px;
+}
+.button-section-1-container {
+    max-width: 400px;
+}
+.image-big-container {
+    width: 600px;
+    margin-top: 100px;
+}
+
+.button-participate {
+    font-size: 14px;
+    min-height: 48px;
+    padding-left: 20px;
+    padding-right: 20px;
+}
+.image-hidden {
+    display: none;
+}
+
+/* Section 2 style */
+.discover-container {
+    text-align: center;
+    margin: 0 auto;
+    margin-top: 70px;
+    max-width: 560px;
+}
+.description-discover {
+    text-align: center;
+    font-size: 14px;
+    margin: 16px auto;
+    max-width: 620px;
+}
+.card-container {
+    margin-top: 20px;
+}
+
+.card-content-pilihan {
+    margin: 0px auto;
+    max-width: 500px;
+    padding: 28px;
+    border-radius: 10px;
+    background: white;
+
+    -webkit-box-shadow: 0px 9px 19px -5px rgba(0,0,0,0.75);
+    -moz-box-shadow: 0px 9px 19px -5px rgba(0,0,0,0.75);
+    box-shadow: 0px 9px 19px -5px rgba(0,0,0,0.75);
+}
+.card-image-pilihan {
+    max-width: 100%;
+    max-height: 200px;
+}
+.card-title-pilihan {
+    margin-top: 18px;
+    font-size: 26px;
+}
+.card-description-pilihan {
+    margin-top: 15px;
+    font-size: 15px;
+}
+
+/* Section 3 style */
+.image-section {
+    max-width: 500px;
+}
+.description-section-3 {
+    max-width: 600px;
+}
+.image-hidden-3 {
+    display: none;
+}
+
+.button-organize {
+    font-size: 15px;
+    min-height: 40px;
+    padding-left: 30px;
+    padding-right: 30px;
+}
+
+/* Section 4 style */
+.image-section-4 {
+    max-width: 500px;
+    margin-top: 50px;
+}
+
+/* Section 5 style */
+.card-why-container {
+    margin: 10px 0px;
+}
+.card-why-content {
+    max-width: 300px;
+    margin-left: 46px;
+    margin-top: 20px;
+}
+.card-why-image {
+    max-width: 52px;
+    max-height: 60px;
+}
+
+
+
+
+/* Media Queries */
+@media screen and (max-width: 1200px){
+
+    /* ALL Section */
+
+    /* Section 1 style */
+    .image-big-container {
+        width: 460px;
+    }
+
+    /* Section 2 style */
+
+    /* Section 3 style */
+    .image-section {
+        max-width: 400px;
+    }
+    /* Section 4 style */
+    .image-section-4 {
+        max-width: 400px;
+    }
+
+    .card-why-container {
+        margin: 10px 40px;
+    }
+}
+
+@media screen and (max-width: 900px){
+    /* ALL Section */
+    .section-container {
+        margin: 0 40px;
+        margin-bottom: 40px;
+    }
+
+    /* Section 1 style */
+    .image-big-container {
+        width: 400px;
+        margin-top: 100px;
+    }    
+    .description-container {
+        max-width: 300px;
+    }
+    .button-participate .button-organize {
+        font-size: 12px;
+        min-height: 40px;
+        padding-left: 10px;
+        padding-right: 10px;
+    }
+
+    /* Section 2 style */
+
+    /* Section 3 style */
+    .image-section {
+        max-width: 360px;
+    }
+    /* Section 4 style */
+    .image-section-4 {
+        max-width: 360px;
+    }
+}
+
+@media screen and (max-width: 767px) {
+    /* ALL Section */
+    
+
+    /* Section 1 style */
+    .image-big-container {
+        width: 280px;
+        margin: 80px auto;
+    }
+    .title-container {
+        max-width: 300px;
+        margin-top:30px;
+    }
+    .button-participate .button-organize {
+        font-size: 10px;
+        min-height: 20px;
+    }
+
+    /* Section 2 style */
+
+    /* Section 3 style */
+    .image-section {
+        max-width: 300px;
+    }
+
+    /* Section 4 style */
+    .image-section-4 {
+        max-width: 300px;
+    }
+}
+
+@media screen and (max-width: 576px){
+    /* Section 1 style */
+    .image-big-container {
+        display: none;
+    }
+    .image-hidden {
+        width: 300px;
+        margin-bottom: 20px;
+        display: block;
+    } 
+    .image-hidden-3 {
+        width: 260px;
+        margin-bottom: 20px;
+        display: block;
+    } 
+
+    /* Section 2 style */
+
+    /* Section 3 style */
+    .image-section {
+        display: none;
+    }
+
+    /* Section 4 style */
+    .image-section-4 {
+        display: none;
+    }
+}
+
+@media screen and (max-width: 480px){
+    /* Section 1 style */
+    .image-big-container {
+        display: none;
+    }    
+    .title-container {
+        max-width: 360px;
+    }
+
+    /* Section 2 style */
+}

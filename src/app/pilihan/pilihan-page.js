@@ -2,11 +2,9 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { navigate } from '../../common/store/action'
 import { API } from '../../common/api'
-import HomeComponent from '../../modules/home/component/home-component';
-import { Lines } from 'react-preloaders';
- 
+import PilihanComponent from '../../modules/pilihan/component/pilihan-component';
 
-class HomePage extends Component {
+class PilihanPage extends Component {
     state = {  }
 
     componentDidMount(){
@@ -21,7 +19,7 @@ class HomePage extends Component {
 
     render() { 
         return ( 
-            <HomeComponent
+            <PilihanComponent
                 navigate={this.props.navigate}
             />
         );
@@ -36,5 +34,5 @@ const mapDispatchToProps = (dispatch => ({
     navigate,
 }))();
 
-const page = connect(mapStateToProps, mapDispatchToProps)(HomePage);
+const page = connect(mapStateToProps, mapDispatchToProps)(PilihanPage);
 export default page
