@@ -6,7 +6,8 @@ import DetailPage from '../../app/detail/detail-page'
 import ProfilePage from '../../app/profile/profile-page'
 import DashboardPanitiaPage from '../../common/layout/dashboard-panitia'
 import LoginComponent from '../../app/auth/authlogin-page'
-import RegisterComponent from '../../app/auth/authregister-page'
+import RegisterPesertaComponent from '../../app/auth/authregister-page'
+import RegisterPanitiaComponent from '../../app/auth/authregisterpanitia-page'
 import AboutPage from '../../app/about/about-page'
 import DashboardAdminPage from '../../common/layout/dashboard-admin'
 import DashboardPenandatanganPage from '../../common/layout/dashboard-penandatangan'
@@ -19,7 +20,9 @@ const routeSources = [
     { component: PilihanPage, path: `${baseUrl}/pilihan`, exact: true },
     { component: DetailPage, path: `${baseUrl}/detail`, exact: true },
     { component: LoginComponent, path: `${baseUrl}/login`, exact: true },
-    { component: RegisterComponent, path: `${baseUrl}/register`, exact: true },
+    { component: PilihanPage, path: `${baseUrl}/choose`, exact: true },
+    { component: RegisterPesertaComponent, path: `${baseUrl}/register-peserta`, exact: true },
+    { component: RegisterPanitiaComponent, path: `${baseUrl}/register-panitia`, exact: true },
     { component: ProfilePage, path: `${baseUrl}/profile`, exact: true },
     { component: AboutPage, path: `${baseUrl}/about`, exact: false },
     { component: DashboardPanitiaPage, path: `${baseUrl}/dashboard`, exact: false },

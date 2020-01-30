@@ -5,27 +5,19 @@ import { API } from '../../common/api'
 import { connect } from 'react-redux';
 import { navigate } from '../../common/store/action'
 import CONSTANS from '../../common/utils/Constants'
-import RegisterComponent from '../../modules/auth/component/authregisterpeserta-component';
+import RegisterComponent from '../../modules/auth/component/authregisterpanitia-component';
 
 import '../../assets/css/auth-login.css'
 
-class AuthRegister extends Component {
+class AuthRegisterPanitia extends Component {
     state = {
-        nama_peserta: '',
+        nama_panitia: '',
         email : '',
         password: '',
-        id_role: '2',
+        id_role: '3',
         confirm_password: '',
     }
-    componentDidMount(){
-        API.get(`/register/peserta`)
-        .then((response) => {
-            console.log(response)
-        },(error) => {
-                console.log(error)
-            },
-        );
-    }
+    
 
     handleChange = (e) => {
         let target = e.target.name;
@@ -45,14 +37,14 @@ class AuthRegister extends Component {
     handleSubmit = e => {
         e.preventDefault();
         const params = {
-            nama_peserta: this.state.nama_peserta,
+            nama_panitia: this.state.nama_panitia,
             email: this.state.email,
             password: this.state.password,
             id_role: this.state.id_role,
             confirm_password: this.state.confirm_password,   
         }
         console.log('params',params)
-        API.post(`/register/peserta`, params)
+        API.post(`/register/panitia`, params)
         .then(res => {
             console.log('res',res.status)
             if(res.status == 201){
@@ -88,5 +80,5 @@ const mapDispatchToProps = (dispatch => ({
     navigate,
 }))();
 
-const page = connect(mapStateToProps, mapDispatchToProps)(AuthRegister);
+const page = connect(mapStateToProps, mapDispatchToProps)(AuthRegisterPanitia);
 export default page
