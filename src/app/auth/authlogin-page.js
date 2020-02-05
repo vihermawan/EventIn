@@ -33,7 +33,7 @@ class AuthLogin extends Component {
         console.log('params',params)
         API.post(`/login`, params)
         .then(res => {
-            console.log('res',res.data.data.id_role )
+            console.log('res',res )
             if(res.data.data.id_role == 2){
                 this.props.navigate(CONSTANS.PANITIA_MENU_KEY)
                 localStorage.setItem('token', res.data.data.api_token)
@@ -53,7 +53,6 @@ class AuthLogin extends Component {
             else{
                 alert('Login salah')
             }
-            // localStorage.setItem('token', res)
         });
     }
 

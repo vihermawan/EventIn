@@ -16,7 +16,7 @@ export const API = {
             headers.token =  token;
         servicePoint = "/service";
             
-        return  axios.post(BASE_URL+servicePoint, data, {headers: headers})
+        return axios.post(BASE_URL+servicePoint, data, {headers: headers})
             .then( ( response ) => {
                 return response.data;
             })
@@ -29,9 +29,11 @@ export const API = {
         let headers = {};
 
         let token = localStorage.getItem("token");
+        // console.log('token', token)
         if(token != null)
-            headers.token = token;
+            headers.Authorization = `Bearer ${token}`;
         
+            // console.log(headers.Authorization)
         let config = {
             headers : headers,
             params : input
@@ -39,25 +41,26 @@ export const API = {
 
         return axios.get(BASE_URL+endPoint,config)
             .then( ( response ) => {
-                return response.data;
+                return response;
             })
             .catch( ( error ) => {
-                console.log( error );
+                return error
             });      
     },
 
     post : function (endPoint, input) {        
         let headers = {};
         let token = localStorage.getItem("token");
+        // console.log(token)
         if(token != null)
-            headers.token = token;
+            headers.Authorization = `Bearer ${token}`;
 
         return  axios.post(BASE_URL+endPoint, input, {headers : headers})
             .then( ( response ) => {
                 return response;
             })
             .catch( ( error ) => {
-                return error.response;
+                return error;
             });
     },
 
@@ -65,7 +68,7 @@ export const API = {
         let headers = {};
         let token = localStorage.getItem("token");
         if(token != null)
-            headers.token = token;
+            headers.Authorization = `Bearer ${token}`;
 
         return  axios.put(BASE_URL+endPoint, input, {headers : headers})
             .then( ( response ) => {
@@ -80,7 +83,7 @@ export const API = {
         let headers = {};
         let token = localStorage.getItem("token");
         if(token != null)
-            headers.token = token;
+            headers.Authorization = `Bearer ${token}`;
             
         return  axios.patch(BASE_URL+endPoint, input, {headers : headers})
             .then( ( response ) => {
@@ -95,7 +98,7 @@ export const API = {
         let headers = {};
         let token = localStorage.getItem("token");
         if(token != null)
-            headers.token = token;
+            headers.Authorization = `Bearer ${token}`;
             
         let config = {
             headers : headers,

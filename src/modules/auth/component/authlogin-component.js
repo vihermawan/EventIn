@@ -10,18 +10,6 @@ const { Content } = Layout;
 const logo = require(`../../../assets/images/logo.png`);
 const login = require(`../../../assets/images/login-image.png`);
 
-function info() {
-    Modal.info({
-      title: 'What kind of role do you want?',
-      content: (
-        <div>
-            <Button className="button-pop" type="primary">I want to participate</Button>
-            <Button className="button-pop" type="primary">I want to organize</Button>
-        </div>
-      ),
-      onCancel() {},
-    });
-  }
 
 class LoginComponent extends Component{
     render(){
