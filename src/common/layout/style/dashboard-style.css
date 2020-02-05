@@ -15,6 +15,31 @@
     background: rgba(255, 255, 255, 0.2);
     margin: 16px;
   }
+  
+  .avatar{
+    width: 220px;
+    height: 100%;
+    margin-right: 20px;
+    float: right;
+}
+.avatars{
+    margin-right: 20px;
+}
+.auth-button-logout{
+  font-size: 15px;
+  font-weight: 500;
+  min-height: 20px;
+  padding-left: 10px;
+  padding-right: 10px;
+  border: none;
+  background-color: none;
+}
+
+  /* .text-dashboard{
+    font-size: 12px;
+    font-weight: 900;
+    background-color: aqua;
+  } */
   .logo-admin{
     margin: 10px 15px;
   }

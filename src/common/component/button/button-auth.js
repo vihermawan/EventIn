@@ -3,7 +3,7 @@ import { Button } from 'antd';
 import './style.css';
 
 function ButtonAuth({
-    type, text, disabled, className, style, block,
+    type, text, disabled, className, style, block, onClick,
 }) {
     return (
         <Button
@@ -13,6 +13,7 @@ function ButtonAuth({
             className={className}
             disabled={disabled}
             style={style}
+            onClick={onClick}
         >
             {text}
         </Button>

@@ -10,6 +10,10 @@ class PanitiaComponent extends Component {
         const image1 = require(`../../../assets/images/participant-dashboard.png`);
         const image2 = require(`../../../assets/images/event-dashboard.png`);
         const image3 = require(`../../../assets/images/certificate-dashboard.png`);
+
+        const { initialData } = this.props
+
+        // console.log('data sertif',initialData.sertifikat)
         return ( 
             <Content
                 style={{
