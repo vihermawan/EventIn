@@ -98,10 +98,10 @@ class ECertificatePage extends Component {
     ];
     
     const data =  this.state.certificate.map( data => ({
-        key: data.id_event,
                 nomor : data.id_sertifikat,
-                // nama_event: data.event.nama_event,
-                sertifikat :data.sertifikat,
+                nama_event: data.sertifikat.event.nama_event,
+                penandatangan : data.penandatangan.nama_penandatangan,
+                sertifikat :data.sertifikat.sertifikat,
                 tags: ['Done'],
     }))
 

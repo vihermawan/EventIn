@@ -11,8 +11,6 @@ const { Content } = Layout;
 class ECertificateComponent extends Component {
     render() { 
     const { initialData, columns, data } = this.props
-    
-
         return ( 
             <Content
                 style={{
