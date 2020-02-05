@@ -7,88 +7,10 @@ import '../../../assets/css/dashboard-all/dashboard.css'
 import '../../../assets/css/dashboard-all/table-style.css'
 // constant content
 const { Content } = Layout;
-const columns = [
-    {
-        title: 'No',
-        dataIndex: 'Nomor',
-        key: 'Nomor',
-        render: text => <a>{text}</a>,
-    },
-    {
-      title: 'Nama Peserta',
-      dataIndex: 'Nama_Event',
-      key: 'Nama_Event',
-      render: text => <a>{text}</a>,
-    },
-    {
-      title: 'Oraganisasi',
-      dataIndex: 'tanggal_event',
-      key: 'tanggal_event',
-    },
-    {
-        title: 'Jenis Kelamin',
-        dataIndex: 'tanggal_event',
-        key: 'tanggal_event',
-    },
-    {
-      title: 'Umur',
-      dataIndex: 'tanggal_event',
-      key: 'tanggal_event',
-    },
-    {
-      title: 'Status',
-      key: 'tags',
-      dataIndex: 'tags',
-      render: tags => (
-        <span>
-          {tags.map(tag => {
-            let color = tag.length > 5 ? 'geekblue' : '#87d068';
-            if (tag === 'reject') {
-              color = 'volcano';
-            }
-            return (
-              <Tag color={color} key={tag}>
-                {tag.toUpperCase()}
-              </Tag>
-            );
-          })}
-        </span>
-      ),
-    },
-    {
-      title: 'Action',
-      key: 'action',
-      render: () => (
-        [<ButtonIcon
-            text="Approve"
-            height={20}
-            icon={faCheckCircle}
-            borderRadius="5px"
-            background="#00C908"
-            marginRight= "20px"
-        />,
-        <ButtonIcon
-            text="Reject"
-            height={20}
-            icon={faWindowClose}
-            borderRadius="5px"
-            background="#FF0303"
-            marginRight= "20px"
-        />]
-      ),
-    },
-  ];
-const data = [
-    {
-      key: '1',
-      Nomor : '1',
-      Nama_Event: 'UGMTalks',
-      tanggal_event :'2020-10-11',
-      tags: ['Done'],
-    },
-  ];
+
 class ListParticipantComponent extends Component {
     render() { 
+      const { initialData, columns, data } = this.props
         return ( 
             <Content
                 style={{

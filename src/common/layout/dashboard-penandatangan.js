@@ -2,10 +2,14 @@ import React, { Component } from 'react';
 import { Route, Link } from 'react-router-dom'
 import './style/dashboard-style.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { Layout, Menu, Icon } from 'antd';
+import { Layout, Menu, Icon,Avatar,Dropdown  } from 'antd';
 /*Import Icon */
 import { faDesktop,faUserCircle, faEnvelope, faClipboardCheck } from '@fortawesome/free-solid-svg-icons'
-
+import ButtonAuth from '../component/button/button-auth'
+import { connect } from 'react-redux';
+import { navigate } from '../../common/store/action'
+import { API } from '../../common/api'
+import CONSTANS from '../utils/Constants'
 /*Import Page */
 import DashboardSignerPage from '../../app/admin-signer/dashboard/signer-page'
 import WaitingListPage from '../../app/admin-signer/dashboard/waiting-page'
@@ -19,6 +23,18 @@ class signer extends Component {
     collapsed: false,
   };
 
+  handleLogout = e => {
+    API.post(`/logout`)
+    .then(res => {
+        console.log('res',res)
+        if(res.status == 200){
+            localStorage.clear();
+            this.props.navigate(CONSTANS.LOGIN_MENU_KEY)
+        }
+    });
+}
+
+
   toggle = () => {
     this.setState({
       collapsed: !this.state.collapsed,
@@ -31,6 +47,26 @@ class signer extends Component {
 
     let hidden = this.state.collapsed ? 'hidden-objek' : 'block-objek'
 
+    const menu = (
+      <Menu>
+        <Menu.Item key="0">
+          <a href="http://www.alipay.com/">1st menu item</a>
+        </Menu.Item>
+        <Menu.Item key="1">
+          <a href="http://www.taobao.com/">2nd menu item</a>
+        </Menu.Item>
+        <Menu.Divider />
+        <Menu.Item key="3">
+            <ButtonAuth
+                text="Logout"
+                className="auth-button-logout"
+                style={{borderRadius: '10px',color:'black'}}
+                block={true}
+                onClick={this.handleLogout}
+            />
+        </Menu.Item>
+      </Menu>
+    );
 
     return (
       <Layout style={{minHeight: '100vh'}}>
@@ -123,6 +159,16 @@ class signer extends Component {
               type={this.state.collapsed ? 'menu-unfold' : 'menu-fold'}
               onClick={this.toggle}
             />
+            <div className= "avatar">
+                <Avatar size={40} icon="user" className="avatars" />
+                <span className="semi-bold">PPSMB PALAPA</span>
+                  <Dropdown overlay={menu} trigger={['click']}>
+                    <a className="ant-dropdown-link" href="#">
+                      <Icon type="down" style={{marginLeft:"20px", color:"black", fontSize:"13px"}} />
+                    </a>
+                  </Dropdown>
+                {/* <p>sa</p> */}
+              </div>
           </Header>
           <Route
               path='/signer/dashboard-signer'
@@ -150,4 +196,13 @@ class signer extends Component {
   }
 }
 
-export default signer
+const mapStateToProps = state => ({
+    
+});
+
+const mapDispatchToProps = (dispatch => ({
+    navigate, 
+}))();
+
+const page = connect(mapStateToProps, mapDispatchToProps)(signer);
+export default page

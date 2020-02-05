@@ -12,7 +12,7 @@ const menu = {
         link : '/admin',
     },
     SIGNER: {
-        link :'/signer',
+        link :'/signer/dashboard-signer',
     }
 };
 
