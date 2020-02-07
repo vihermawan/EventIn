@@ -13,58 +13,7 @@ const { Content } = Layout;
 const { Search } = Input;
 const { TabPane } = Tabs;
 
-const cardData = [
-    {
-        image: require(`../../../assets/images/card-event.png`),
-        date: 'Sun, Jan 5, 8:00 Am',
-        price: 'free',
-        title: 'Try Out Ganesha Mulih Jogja 2020',
-        lokasi: 'SMA Negeri 1 Teladan Yogyakarta'
-    },{
-        image: require(`../../../assets/images/card-event.png`),
-        date: 'Sun, Jan 5, 8:00 Am',
-        price: 'free',
-        title: 'Try Out Ganesha Mulih Jogja 2020',
-        lokasi: 'SMA Negeri 1 Teladan Yogyakarta'
-    },{
-        image: require(`../../../assets/images/card-event.png`),
-        date: 'Sun, Jan 5, 8:00 Am',
-        price: 'free',
-        title: 'Try Out Ganesha Mulih Jogja 2020',
-        lokasi: 'SMA Negeri 1 Teladan Yogyakarta'
-    },{
-        image: require(`../../../assets/images/card-event.png`),
-        date: 'Sun, Jan 5, 8:00 Am',
-        price: 'free',
-        title: 'Try Out Ganesha Mulih Jogja 2020',
-        lokasi: 'SMA Negeri 1 Teladan Yogyakarta'
-    },{
-        image: require(`../../../assets/images/card-event.png`),
-        date: 'Sun, Jan 5, 8:00 Am',
-        price: 'free',
-        title: 'Try Out Ganesha Mulih Jogja 2020',
-        lokasi: 'SMA Negeri 1 Teladan Yogyakarta'
-    },{
-        image: require(`../../../assets/images/card-event.png`),
-        date: 'Sun, Jan 5, 8:00 Am',
-        price: 'free',
-        title: 'Try Out Ganesha Mulih Jogja 2020',
-        lokasi: 'SMA Negeri 1 Teladan Yogyakarta'
-    },{
-        image: require(`../../../assets/images/card-event.png`),
-        date: 'Sun, Jan 5, 8:00 Am',
-        price: 'free',
-        title: 'Try Out Ganesha Mulih Jogja 2020',
-        lokasi: 'SMA Negeri 1 Teladan Yogyakarta'
-    },{
-        image: require(`../../../assets/images/card-event.png`),
-        date: 'Sun, Jan 5, 8:00 Am',
-        price: 'free',
-        title: 'Try Out Ganesha Mulih Jogja 2020',
-        lokasi: 'SMA Negeri 1 Teladan Yogyakarta'
-    },
 
-]
 
 
 const menu = (
@@ -89,6 +38,7 @@ const menu = (
 
 class EventComponent extends Component {
     render() { 
+        const {cardData} = this.props
         const image1 = require(`../../../assets/images/event-image1.png`);  
         return ( 
             <Layout className="landing-container">
