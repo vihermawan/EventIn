@@ -94,22 +94,46 @@ export const API = {
             });
     },
 
+    // delete : function (endPoint, input) {
+    //     let headers = {};
+
+    //     let token = localStorage.getItem("token");
+    //     if(token != null)
+    //         headers.Authorization = `Bearer ${token}`;
+            
+    //     let config = {
+    //         headers : headers,
+    //         params : input
+    //     }
+    //     return axios.delete(BASE_URL+endPoint, input, config)
+    //         .then( ( response ) => {
+    //             return response
+    //         })
+    //         .catch( ( error ) => {
+    //             return error
+    //         });
+    // },
+
     delete : function (endPoint, input) {
         let headers = {};
+
         let token = localStorage.getItem("token");
+        // console.log('token', token)
         if(token != null)
             headers.Authorization = `Bearer ${token}`;
-            
+        
+            // console.log(headers.Authorization)
         let config = {
             headers : headers,
             params : input
         }
-        return  axios.delete(BASE_URL+endPoint, config)
+
+        return axios.delete(BASE_URL+endPoint,config)
             .then( ( response ) => {
-                return response.data
+                return response;
             })
             .catch( ( error ) => {
-                return error.response.data
-            });
+                return error
+            });      
     },
 }

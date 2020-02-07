@@ -9,6 +9,7 @@ import ECertificateComponent from '../../../modules/admin-panitia/e-certificate/
 class ECertificatePage extends Component {
     state = {  
         certificate: [],
+        loading: false,
     }
 
     componentDidMount(){
@@ -16,10 +17,14 @@ class ECertificatePage extends Component {
     }
 
     getCertificate=()=>{
+        this.setState({loading: true})
         API.get(`/panitia/event-sertifikat`)
         .then(res => {
           console.log('res',res.data.data.sertifikat)
-          this.setState({certificate:res.data.data.sertifikat})
+          this.setState({
+              certificate:res.data.data.sertifikat,
+              loading: false,
+            })
         });
     }
 
@@ -108,7 +113,7 @@ class ECertificatePage extends Component {
         return ( 
             <ECertificateComponent
                 navigate={this.props.navigate}
-
+                initialData={this.state}
                 columns={columns}
                 data={data}
             />

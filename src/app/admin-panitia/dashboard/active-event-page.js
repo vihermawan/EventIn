@@ -1,29 +1,65 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import { Modal, message } from 'antd'
 import { API } from '../../../common/api'
 import { navigate } from '../../../common/store/action'
 import ActiveEventComponent from '../../../modules/admin-panitia/active-event/active-event-component';
+import CONSTANS from '../../../common/utils/Constants'
 
 //import component
 import { faUsers } from '@fortawesome/free-solid-svg-icons'
-import { faInfoCircle } from '@fortawesome/free-solid-svg-icons'
-import ButtonIcon from '../../../common/component/button/button-icon'
+import { faInfoCircle } from '@fortawesome/free-solid-svg-icons' 
+import ButtonDashboard from '../../../common/component/button/button-dashboard';
+
+const { confirm } = Modal;
 
 class ActiveEventPage extends Component {
     state = {  
         activeEvent: [],
-        rows: [],
+        loading: false,
     }
-
+    
     componentDidMount(){
         this.getEvent();
     }
 
     getEvent=()=>{
+        this.setState({loading: true})
         API.get(`/panitia/event`)
         .then(res => {
-            console.log('res',res.data.data.event)
-            this.setState({activeEvent:res.data.data.event})
+            console.log('res',res)
+            this.setState({
+                activeEvent:res.data.data.event,
+                loading: false,
+            })
+        });
+    }
+
+    deleteEvent = (id) => {
+        console.log(id)
+        API.delete(`/panitia/deleteevent/${id}`)
+        .then(res => {
+            console.log('res',res)
+            if(res.status == 200){
+                message.success('This is a success message');
+                window.location.reload(); 
+            }   
+        });
+    }
+
+    //function untuk modal
+    showDeleteConfirm = (id) => {
+        confirm({
+            title: 'Yakin untuk mendelete ?',
+            okText: 'Yes',
+            okType: 'danger',
+            cancelText: 'No',
+            onOk: () => {
+                this.deleteEvent(id)
+            },
+            onCancel(){
+                console.log('Cancel')
+            }
         });
     }
 
@@ -67,8 +103,8 @@ class ActiveEventPage extends Component {
             {
               title: 'Action',
               key: 'action',
-              render: () => (
-                [<ButtonIcon
+              render: (data) => (
+                [<ButtonDashboard
                     text="Participant"
                     height={20}
                     icon={faUsers}
@@ -76,19 +112,19 @@ class ActiveEventPage extends Component {
                     background="#4D5AF2"
                     marginRight= "20px"
                 />,
-                <ButtonIcon
+                <ButtonDashboard
                     text="Detail"
                     height={20}
                     icon={faInfoCircle}
                     borderRadius="5px"
                     background="#FFA903"
+                    onClick={ () => this.showDeleteConfirm(data.nomor)}
                 />]
               ),
             },
           ];
         
         const data =  this.state.activeEvent.map( data => ({
-            key: data.id_event,
                     nomor : data.id_event,
                     nama_event: data.nama_event,
                     start_event :data.detail_event.start_event,
@@ -97,16 +133,6 @@ class ActiveEventPage extends Component {
                     end_event : data.detail_event.end_event,
                     tags: ['Done'],
         }))
-
-        // const data = [
-        //     {
-        //       key: '1',
-        //       Nomor : '1',
-        //       Nama_Event: 'UGMTalks',
-        //       tanggal_event :'2020-10-11',
-        //       tags: ['Done'],
-        //     },
-        //   ];
     
         return ( 
             <ActiveEventComponent
