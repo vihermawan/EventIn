@@ -11,6 +11,7 @@ class AuthLogin extends Component {
     state = {
         email: '',
         password: '',
+        loading: false,
     }
     componentDidMount(){
         
@@ -25,6 +26,7 @@ class AuthLogin extends Component {
     }
 
     handleSubmit = e => {
+        this.setState({loading: true})
         e.preventDefault();
         const params = {
             email: this.state.email,
@@ -34,21 +36,26 @@ class AuthLogin extends Component {
         API.post(`/login`, params)
         .then(res => {
             console.log('res',res )
+            
             if(res.data.data.id_role == 2){
                 this.props.navigate(CONSTANS.PANITIA_MENU_KEY)
                 localStorage.setItem('token', res.data.data.api_token)
+                this.setState({loading: false})
             }
             else if(res.data.data.id_role == 1) {
                 this.props.navigate(CONSTANS.ADMIN_MENU_KEY)
                 localStorage.setItem('token', res.data.data.api_token)
+                this.setState({loading: false})
             }
             else if(res.data.data.id_role == 3) {
                 this.props.navigate(CONSTANS.HOME_MENU_KEY)
                 localStorage.setItem('token', res.data.data.api_token)
+                this.setState({loading: false})
             }
             else if(res.data.data.id_role == 4) {
                 this.props.navigate(CONSTANS.SIGNER_MENU_KEY)
                 localStorage.setItem('token', res.data.data.api_token)
+                this.setState({loading: false})
             }
             else{
                 alert('Login salah')

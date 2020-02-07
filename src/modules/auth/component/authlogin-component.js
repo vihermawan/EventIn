@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom';
 // component
 import InputAuth from '../../../common/component/input/input-auth'
 import ButtonAuth from '../../../common/component/button/button-auth'
-
+import LoadingContainer from '../../../common/component/loading/loading-container'
 const { Content } = Layout;
 const logo = require(`../../../assets/images/logo.png`);
 const login = require(`../../../assets/images/login-image.png`);
@@ -15,10 +15,13 @@ class LoginComponent extends Component{
     render(){
         const { initialData, handleChange, handleSubmit } = this.props;
         return (
+            
             <Layout className="login-container">
-                 <Content style={{ overflow: "hidden" }}>
+                 <Content style={{ overflow: "hidden", minHeight:"100vh" }}>
                     <Row>
+                    <LoadingContainer loading={initialData.loading}>
                         <Col lg={15} md={12} sm={12} className="background-white container-full">
+                      
                             <Row>
                                 <div className="login-section-container">
                                     <img src={logo} alt="EventIn logo" width="100"/>
@@ -79,7 +82,9 @@ class LoginComponent extends Component{
                                 </Form>
                             </Row>
                         </Col>
+                        </LoadingContainer>
                     </Row>
+                    
                  </Content>
             </Layout>
         );

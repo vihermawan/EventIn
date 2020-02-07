@@ -2,24 +2,29 @@ import React, { Component } from 'react';
 import { Layout, BackTop, Row, Col } from 'antd';
 import { Route, Link } from 'react-router-dom'
 import '../../../assets/css/pilihan.css'
+import CONSTANTS from '../../../common/utils/Constants';
 // component
 import ButtonAuth from '../../../common/component/button/button-auth'
+import ButtonIcon from '../../../common/component/button/button-icon';
 const { Content } = Layout;
-const cardData = [
-    {
-        image: require(`../../../assets/images/organizer.png`),
-        title: 'Organizer',
-        link :<a href="/login">Register Now !</a>
-    },
-    {
-        image: require(`../../../assets/images/organizer.png`),
-        title: 'Participant',
-        link :<a href="/login">Register Now !</a>
-    }
-]
+
 
 class PilihanComponent extends Component {
     render() { 
+        const cardData = [
+            {
+                image: require(`../../../assets/images/organizer.png`),
+                title: 'Organizer',
+                link :<a href="/login">Register Now !</a>,
+                target : 'CONSTANTS.LOGIN_MENU_KEY',
+            },
+            {
+                image: require(`../../../assets/images/organizer.png`),
+                title: 'Participant',
+                link :<a href="/login">Register Now !</a>
+            }
+        ]
+
         const image2 = require(`../../../assets/images/logo-white.png`);
         return ( 
             <Layout className="landing-pilih">
@@ -47,11 +52,13 @@ class PilihanComponent extends Component {
                                                     {data.title}
                                                 </div>
                                                 <div className="card-description-pilihan">
-                                                    <ButtonAuth
+                                                    <ButtonIcon
                                                         text="Register Now"
                                                         className="auth-button-red mt-0 auth-button-login"
                                                         style={{borderRadius: '10px',backgroundColor:'#FA607E',border:'none',color:'#ffff'}}
                                                         block={true}
+                                                        navigate={this.props.navigate}
+                                                        target={this.target}
                                                     />
                                                 </div>
                                             </div>

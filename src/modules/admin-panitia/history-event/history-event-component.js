@@ -3,6 +3,7 @@ import { Layout, Breadcrumb, Row, Col } from 'antd';
 import TableProfile from '../../../common/component/table/table'
 import '../../../assets/css/dashboard-all/dashboard.css'
 import '../../../assets/css/dashboard-all/table-style.css'
+import LoadingContainer from '../../../common/component/loading/loading-container'
 // constant content
 const { Content } = Layout;
 
@@ -32,13 +33,17 @@ class HistoryEventComponent extends Component {
                                 <span>History Event</span>
                             </div>
                             </Row>
+                            <LoadingContainer loading={initialData.loading}>
                             <Row gutter={24} type="flex">
+                          
                                 <TableProfile 
                                     columns={columns} 
                                     dataSource={data} 
                                     className="table-active-event"
                                 />
+                            
                             </Row>
+                            </LoadingContainer>
                         </div>
                     </Col>
                 </Row>

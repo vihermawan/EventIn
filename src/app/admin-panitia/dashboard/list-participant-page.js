@@ -9,6 +9,7 @@ import ListParticipantComponent from '../../../modules/admin-panitia/list-partic
 class ListParticipantPage extends Component {
     state = { 
         participant: [],
+        loading : false,
     }
 
     componentDidMount(){
@@ -16,10 +17,14 @@ class ListParticipantPage extends Component {
     }
 
     getParticipant=()=>{
+        this.setState({loading: true})
         API.get(`/panitia/regist-peserta`)
         .then(res => {
           console.log('res',res.data.data)
-          this.setState({participant:res.data.data.peserta})
+          this.setState({
+              participant:res.data.data.peserta,
+              loading: false,
+            })
         });
     }
 
@@ -107,6 +112,7 @@ class ListParticipantPage extends Component {
     
         return ( 
             <ListParticipantComponent
+                initialData={this.state}
                 navigate={this.props.navigate}
                 columns={columns}
                 data={data}
