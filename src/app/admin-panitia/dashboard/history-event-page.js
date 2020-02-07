@@ -6,10 +6,12 @@ import ButtonIcon from '../../../common/component/button/button-icon'
 import { API } from '../../../common/api'
 import { navigate } from '../../../common/store/action'
 import HistoryEventComponent from '../../../modules/admin-panitia/history-event/history-event-component';
+import ButtonDashboard from '../../../common/component/button/button-dashboard';
 
 class HistoryEventPage extends Component {
     state = {
         eventPast: [],
+        loading: false,
     }
 
     componentDidMount(){
@@ -17,10 +19,14 @@ class HistoryEventPage extends Component {
     }
 
     getEventPast=()=>{
+        this.setState({loading: true})
         API.get(`/panitia/eventPast`)
         .then(res => {
           console.log('res',res.data.data.event)
-          this.setState({eventPast:res.data.data.event})
+          this.setState({
+            eventPast:res.data.data.event,
+            loading: false,
+          })
         });
     }
 
@@ -77,7 +83,7 @@ class HistoryEventPage extends Component {
               title: 'Action',
               key: 'action',
               render: () => (
-                [<ButtonIcon
+                [<ButtonDashboard
                     text="Download"
                     height={20}
                     icon={faUsers}
@@ -85,7 +91,7 @@ class HistoryEventPage extends Component {
                     background="#070E57"
                     marginRight= "20px"
                 />,
-                <ButtonIcon
+                <ButtonDashboard
                     text="Delete"
                     height={20}
                     icon={faTrash}
@@ -93,7 +99,7 @@ class HistoryEventPage extends Component {
                     background="#FF0303"
                     marginRight= "20px"
                 />,
-                <ButtonIcon
+                <ButtonDashboard
                     text="Detail"
                     height={20}
                     icon={faInfoCircle}

@@ -3,7 +3,7 @@ import { Button } from 'antd';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import './style.css';
 
-function ButtonIcon({
+function ButtonDashboard({
     type, text, disabled, height = 48, borderRadius = 25,
     background = '#4D5AF2', textColor = "white", border = 'none',
     margin , marginLeft, marginRight, marginTop, marginBottom,
@@ -28,8 +28,7 @@ function ButtonIcon({
                 marginTop: marginTop,
                 marginBottom: marginBottom,
             }}
-            onClick={() => navigate(target)}
-            // onClick={onClick}
+            onClick={onClick}
         >
             <FontAwesomeIcon
                 icon={icon}
@@ -40,4 +39,4 @@ function ButtonIcon({
     );
 }
 
-export default ButtonIcon;
+export default ButtonDashboard;

@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { API } from '../../common/api'
 import { connect } from 'react-redux';
+import { API } from '../../common/api'
 import { navigate } from '../../common/store/action'
 import EventComponent from '../../modules/event/component/event-component';
 
@@ -9,7 +10,7 @@ class EventPage extends Component {
         event:[],
      }
 
-    componentDidMount(){
+     componentDidMount(){
         this.getEvent();
     }
 
@@ -41,6 +42,7 @@ class EventPage extends Component {
             title: data.nama_event,
             place: data.detail_event.lokasi,
             
+
         }))
 
         return (

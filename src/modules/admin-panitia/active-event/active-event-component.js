@@ -2,7 +2,9 @@ import React, { Component } from 'react';
 import { Layout, Breadcrumb, Row, Table, Input, Col,Tag } from 'antd';
 import '../../../assets/css/dashboard-all/dashboard.css'
 import '../../../assets/css/dashboard-all/table-style.css'
+// component
 import TableProfile from '../../../common/component/table/table'
+import LoadingContainer from '../../../common/component/loading/loading-container'
 // constant content
 const { Content } = Layout;
 
@@ -11,7 +13,6 @@ const { Content } = Layout;
 class ActiveEventComponent extends Component {
     render() { 
       const { initialData, columns, data } = this.props
-      // console.log(initialData)
         return ( 
             <Content
                 style={{
@@ -34,14 +35,16 @@ class ActiveEventComponent extends Component {
                                 <span>Active Event</span>
                             </div>
                             </Row>
+                            <LoadingContainer loading={initialData.loading}>
                             <Row gutter={24} type="flex">
-                                <TableProfile 
-                                    columns={columns} 
-                                    // dataSource={initialData.activeEvent} 
-                                    dataSource={data} 
-                                    className="table-active-event"
-                                />
+                                    <TableProfile 
+                                        columns={columns} 
+                                        // dataSource={initialData.activeEvent} 
+                                        dataSource={data} 
+                                        className="table-active-event"
+                                    />
                             </Row>
+                            </LoadingContainer>
                         </div>
                     </Col>
                 </Row>

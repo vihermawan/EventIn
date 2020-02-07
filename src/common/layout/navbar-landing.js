@@ -23,7 +23,6 @@ class Navbar extends Component {
 	handleClick = e => {
 		this.setState({ current: e.key });
 	};
-
 	showDrawer = () => {
 		this.setState({ visible: true });
 	};
@@ -64,6 +63,7 @@ class Navbar extends Component {
 							navigate={this.props.navigate}
 							target={CONSTANTS.LOGIN_MENU_KEY}
 							icon={faUser}
+							
 						/>
 					</div>
 					<Button className="barsMenu" type="primary" onClick={this.showDrawer}>

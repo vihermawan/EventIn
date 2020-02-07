@@ -10,13 +10,7 @@ class HomePage extends Component {
     state = {  }
 
     componentDidMount(){
-        API.get(`/annual`)
-        .then((response) => {
-            console.log(response)
-        },(error) => {
-                console.log(error)
-            },
-        );
+        
     }
 
     render() { 

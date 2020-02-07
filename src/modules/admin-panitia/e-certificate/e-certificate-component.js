@@ -5,6 +5,8 @@ import ButtonIcon from '../../../common/component/button/button-icon'
 import TableProfile from '../../../common/component/table/table'
 import '../../../assets/css/dashboard-all/dashboard.css'
 import '../../../assets/css/dashboard-all/table-style.css'
+import LoadingContainer from '../../../common/component/loading/loading-container'
+
 // constant content
 const { Content } = Layout;
 
@@ -32,13 +34,15 @@ class ECertificateComponent extends Component {
                                 <span>E Certificate</span>
                             </div>
                             </Row>
-                            <Row gutter={24} type="flex">
-                                <TableProfile 
-                                    columns={columns} 
-                                    dataSource={data} 
-                                    className="table-active-event"
-                                />
-                            </Row>
+                            <LoadingContainer loading={initialData.loading}>
+                                <Row gutter={24} type="flex">
+                                    <TableProfile 
+                                        columns={columns} 
+                                        dataSource={data} 
+                                        className="table-active-event"
+                                    />
+                                </Row>
+                            </LoadingContainer>
                         </div>
                     </Col>
                 </Row>
