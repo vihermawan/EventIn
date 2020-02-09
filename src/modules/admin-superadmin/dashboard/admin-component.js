@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { Layout, Breadcrumb, Row, Table, Input, Col } from 'antd';
 import '../../../assets/css/dashboard-all/dashboard.css'
+import '../../../assets/css/admin-superadmin/superadmin.css'
 import '../../../assets/css/dashboard-all/table-style.css'
 // constant content
 const { Content } = Layout;
@@ -25,91 +26,132 @@ class AdminComponent extends Component {
                 <Row style={{minHeight: '100%',marginBottom: '2%',marginTop:'2%',}} className="background">
                     <Col lg={24}>
                             <Row>
-                                <Col lg={8} md={12} sm={12}>
-                                    <div className="card-dashboard">
-                                    <Row>
-                                        <Col lg={16} md={12} sm={12}>
-                                                <div className="desc-card-dashboard">
-                                                <div className="title-desc-card">
-                                                    <span>Total Participant</span>
+                                <Col lg={6} md={12} sm={12}>
+                                    <div className="card-dashboard-admin">
+                                        <Row>
+                                            <Col lg={24} md={24} sm={24}>
+                                                <div className="desc-card-dashboard-admin">
+                                                    <div className="title-desc-card-admin">
+                                                        <span>Semua Peserta</span>
+                                                    </div>
                                                 </div>
-                                                <div className="title-total-card">
-                                                    <span>400</span>
+                                            </Col>
+                                        </Row>
+                                        <Row>
+                                            <Col lg={16} md={12} sm={12}>
+                                                <div className="desc-card-dashboard-admin">
+                                                    <div className="title-total-card-admin">
+                                                        <span>10</span>
+                                                    </div>
                                                 </div>
-                                                <div className="title-info-card">
-                                                    <span>People comes to event</span>
-                                                </div>
-                                                </div>
-                                        </Col>
-                                        <Col lg={8} md={12} sm={12}>
-                                                <div className="img-card-dashboard">
+                                            </Col>
+                                            <Col lg={8} md={12} sm={12}>
+                                                <div className="img-card-dashboard-admin">
                                                     <img
                                                         src={image1}
                                                         alt="participant-dashboard"
                                                         style={{maxWidth: '100%'}}
                                                     />
                                                 </div>
-                                        </Col>
-                                    </Row>
+                                            </Col>
+                                        </Row>
                                     </div>
                                 </Col>
-                                <Col lg={8} md={12} sm={12}>
-                                    <div className="card-dashboard">
+                                <Col lg={6} md={12} sm={12}>
+                                    <div className="card-dashboard-admin">
                                         <Row>
-                                        <Col lg={16} md={12} sm={12}>
-                                                <div className="desc-card-dashboard">
-                                                <div className="title-desc-card">
-                                                    <span>Total Event</span>
+                                            <Col lg={24} md={24} sm={24}>
+                                                <div className="desc-card-dashboard-admin">
+                                                    <div className="title-desc-card-admin">
+                                                        <span>Semua Panitia</span>
+                                                    </div>
                                                 </div>
-                                                <div className="title-total-card">
-                                                    <span>10</span>
+                                            </Col>
+                                        </Row>
+                                        <Row>
+                                            <Col lg={16} md={12} sm={12}>
+                                                <div className="desc-card-dashboard-admin">
+                                                    <div className="title-total-card-admin">
+                                                        <span>10</span>
+                                                    </div>
                                                 </div>
-                                                <div className="title-info-card">
-                                                    <span>Event has been done</span>
-                                                </div>
-                                                </div>
-                                        </Col>
-                                        <Col lg={8} md={12} sm={12}>
-                                                <div className="img-card-dashboard">
+                                            </Col>
+                                            <Col lg={8} md={12} sm={12}>
+                                                <div className="img-card-dashboard-admin">
                                                     <img
-                                                        src={image2}
-                                                        alt="event-dashboard"
+                                                        src={image1}
+                                                        alt="participant-dashboard"
                                                         style={{maxWidth: '100%'}}
                                                     />
                                                 </div>
-                                        </Col>
-                                    </Row>
+                                            </Col>
+                                        </Row>
                                     </div>
                                 </Col>
-                                <Col lg={8} md={12} sm={12}>
-                                    <div className="card-dashboard">
+                                <Col lg={6} md={12} sm={12}>
+                                    <div className="card-dashboard-admin">
                                         <Row>
-                                        <Col lg={16} md={12} sm={12}>
-                                                <div className="desc-card-dashboard">
-                                                <div className="title-desc-card">
-                                                    <span>Total Certificate</span>
+                                            <Col lg={24} md={24} sm={24}>
+                                                <div className="desc-card-dashboard-admin">
+                                                    <div className="title-desc-card-admin">
+                                                        <span>Semua Sertifikat</span>
+                                                    </div>
                                                 </div>
-                                                <div className="title-total-card">
-                                                    <span>10</span>
+                                            </Col>
+                                        </Row>
+                                        <Row>
+                                            <Col lg={16} md={12} sm={12}>
+                                                <div className="desc-card-dashboard-admin">
+                                                    <div className="title-total-card-admin">
+                                                        <span>10</span>
+                                                    </div>
                                                 </div>
-                                                <div className="title-info-card">
-                                                    <span>Certificate has been asigned</span>
-                                                </div>
-                                                </div>
-                                        </Col>
-                                        <Col lg={8} md={12} sm={12}>
-                                                <div className="img-card-dashboard">
+                                            </Col>
+                                            <Col lg={8} md={12} sm={12}>
+                                                <div className="img-card-dashboard-admin">
                                                     <img
-                                                        src={image3}
-                                                        alt="certificate-dashboard"
+                                                        src={image1}
+                                                        alt="participant-dashboard"
                                                         style={{maxWidth: '100%'}}
                                                     />
                                                 </div>
-                                        </Col>
-                                    </Row>
+                                            </Col>
+                                        </Row>
+                                    </div>
+                                </Col>
+                                <Col lg={6} md={12} sm={12}>
+                                    <div className="card-dashboard-admin">
+                                        <Row>
+                                            <Col lg={24} md={24} sm={24}>
+                                                <div className="desc-card-dashboard-admin">
+                                                    <div className="title-desc-card-admin">
+                                                        <span>Semua Event</span>
+                                                    </div>
+                                                </div>
+                                            </Col>
+                                        </Row>
+                                        <Row>
+                                            <Col lg={16} md={12} sm={12}>
+                                                <div className="desc-card-dashboard-admin">
+                                                    <div className="title-total-card-admin">
+                                                        <span>10</span>
+                                                    </div>
+                                                </div>
+                                            </Col>
+                                            <Col lg={8} md={12} sm={12}>
+                                                <div className="img-card-dashboard-admin">
+                                                    <img
+                                                        src={image1}
+                                                        alt="participant-dashboard"
+                                                        style={{maxWidth: '100%'}}
+                                                    />
+                                                </div>
+                                            </Col>
+                                        </Row>
                                     </div>
                                 </Col>
                             </Row>
+                            
                             <Row>
                                 <Col lg={24} md={24} sm={24}>
                                     <div className="card-graphic">
