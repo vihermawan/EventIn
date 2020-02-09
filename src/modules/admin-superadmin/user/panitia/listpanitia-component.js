@@ -2,74 +2,16 @@ import React, { Component } from 'react';
 import { Layout, Breadcrumb, Row, Table, Input, Col,Tag } from 'antd';
 import '../../../../assets/css/dashboard-all/dashboard.css'
 import '../../../../assets/css/dashboard-all/table-style.css'
-import { faUsers, faTrash, faPen } from '@fortawesome/free-solid-svg-icons'
-import { faInfoCircle } from '@fortawesome/free-solid-svg-icons'
-import ButtonIcon from '../../../../common/component/button/button-icon'
 import TableProfile from '../../../../common/component/table/table'
+import LoadingContainer from '../../../../common/component/loading/loading-container'
+
 // constant content
 const { Content } = Layout;
-const columns = [
-    {
-        title: 'No',
-        dataIndex: 'Nomor',
-        key: 'Nomor',
-        render: text => <a>{text}</a>,
-    },
-    {
-        title: 'Nama Panitia',
-        dataIndex: 'Nama_Event',
-        key: 'Nama_Event',
-        render: text => <a>{text}</a>,
-    },
-    {
-        title: 'Organisasi',
-        dataIndex: 'tanggal_event',
-        key: 'tanggal_event',
-    },
-    {
-        title: 'Email',
-        dataIndex: 'tanggal_event',
-        key: 'tanggal_event',
-    },
-    {
-        title: 'No Telepon',
-        dataIndex: 'tanggal_event',
-        key: 'tanggal_event',
-    },
-    {
-        title: 'Action',
-        key: 'action',
-        render: () => (
-            [<ButtonIcon
-                text="Edit"
-                height={20}
-                icon={faPen}
-                borderRadius="5px"
-                background="#005568"
-                marginRight= "20px"
-            />,
-            <ButtonIcon
-                text="Detail"
-                height={20}
-                icon={faInfoCircle}
-                borderRadius="5px"
-                background="#FFA903"
-            />]
-      ),
-    },
-  ];
-const data = [
-    {
-      key: '1',
-      Nomor : '1',
-      Nama_Event: 'UGMTalks',
-      tanggal_event :'2020-10-11',
-    },
-  ];
 
 
 class ListPanitiaComponent extends Component {
     render() { 
+        const { initialData, columns, data } = this.props
         return ( 
             <Content
                 style={{
@@ -80,7 +22,7 @@ class ListPanitiaComponent extends Component {
                 }}
             >
                 <Breadcrumb separator=">">
-                    <Breadcrumb.Item>Dashboard List Penandatangan</Breadcrumb.Item>
+                    <Breadcrumb.Item>Dashboard List Panitia</Breadcrumb.Item>
                 </Breadcrumb>
 
                 <Row style={{minHeight: '100%',marginBottom: '2%',marginTop:'2%',}} className="background">
@@ -92,13 +34,15 @@ class ListPanitiaComponent extends Component {
                                 <span>List Panitia</span>
                             </div>
                             </Row>
-                            <Row gutter={24} type="flex">
-                                <TableProfile 
-                                    columns={columns} 
-                                    dataSource={data} 
-                                    className="table-active-event"
-                                />
-                            </Row>
+                            <LoadingContainer loading={initialData.loading}>
+                                <Row gutter={24} type="flex">
+                                    <TableProfile 
+                                        columns={columns} 
+                                        dataSource={data} 
+                                        className="table-active-event"
+                                    />
+                                </Row>
+                            </LoadingContainer>
                         </div>
                     </Col>
                 </Row>

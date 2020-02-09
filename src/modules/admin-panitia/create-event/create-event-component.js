@@ -3,6 +3,10 @@ import { Layout, Breadcrumb, Row, Steps,message,Col,Button, Form, Menu, Icon,Dro
 import '../../../assets/css/dashboard-all/dashboard.css'
 import '../../../assets/css/dashboard-all/table-style.css'
 import '../../../assets/css/admin-panitia/create-event.css'
+import BasicInfoPage from '../../../app/admin-panitia/component-create-event/basic-info-page'
+import VenuePage from '../../../app/admin-panitia/component-create-event/venue-page'
+import DateTimePage from '../../../app/admin-panitia/component-create-event/date-time-page'
+import VisualPage from '../../../app/admin-panitia/component-create-event/visual-page'
 
 import InputAuth from '../../../common/component/input/input-auth'
 // constant content
@@ -40,346 +44,25 @@ const steps = [
     {
         title: 'Basic Info',
         content: 
-        <div>
-            <Form>
-                <div className="container-form">
-                    <Row>
-                        <Col lg={24} md={24} sm={24}>
-                            <div>   
-                                <span className="auth-input-label text-black">Nama Event*</span>
-                            </div>
-                            <div>
-                                <InputAuth
-                                    name='name'
-                                    placeholder="Masukan nama event...."
-                                    className="input-event mt-5 mb-20"
-                                />
-                            </div>
-                        </Col>
-                        <Col lg={24} md={24} sm={24}>
-                            <div>   
-                                <span className="auth-input-label text-black">Deskripsi Event*</span>
-                            </div>
-                            <div>
-                                <InputAuth
-                                    name='description'
-                                    placeholder="Masukan deskripsi event...."
-                                    className="input-description-event mt-5"
-                                    iconType="lock"
-                                    type="password"
-                                />
-                            </div>
-                        </Col>
-                    </Row>
-                    <Row style={{marginTop:'20px'}}>
-                        <Col lg={8} md={24} sm={24}>
-                            <div className="form-section-3">
-                                <div>   
-                                    <span className="auth-input-label text-black">Organisasi*</span>
-                                </div>
-                                <div>
-                                    <InputAuth
-                                        name='name'
-                                        placeholder="Masukkan nama organisasi...."
-                                        className="input-event mt-5 mb-20"
-                                    />
-                                </div>
-                            </div>   
-                        </Col>
-                        <Col lg={8} md={24} sm={24}>
-                            <div className="form-section-3">
-                                <div>   
-                                    <span className="auth-input-label text-black">Batas Peserta*</span>
-                                </div>
-                                <div>
-                                    <InputAuth
-                                        name='name'
-                                        placeholder="Masukkan batas peserta...."
-                                        className="input-event mt-5 mb-20"
-                                    />
-                                </div>
-                            </div>
-                        </Col>
-                        <Col lg={8} md={24} sm={24}>
-                            <div className="form-section-4">
-                                <div>   
-                                    <span className="auth-input-label text-black">Kategori*</span>
-                                </div>
-                                <div>
-                                    <Dropdown overlay={menu}>
-                                        <div className="dropdown-category">
-                                            <Button>
-                                                <Row>
-                                                    <Col lg={22} md={24} sm={24}>
-                                                        <span className="auth-dropdown-label text-black">Pilih Kategori*</span>
-                                                    </Col>
-                                                    <Col lg={2} md={24} sm={24}>
-                                                        <Icon type="down" style={{color:"#4D5AF2"}}/>
-                                                    </Col>
-                                                </Row>
-                                            </Button>
-                                        </div>
-                                    </Dropdown>
-                                </div>
-                            </div>
-                        </Col>
-                    </Row>
-                </div>
-            </Form>
-        </div>
+            <BasicInfoPage/> 
         ,
     },
     {
         title: 'Venue',
         content: 
-        <div>
-            <Form>
-                <div className="container-form">  
-                    <Row>
-                        <Col lg={12} md={24} sm={24}>
-                            <div className="form-section-5">
-                                <div>   
-                                    <span className="auth-input-label text-black">Tempat*</span>
-                                </div>
-                                <div>
-                                    <Dropdown overlay={menu}>
-                                        <div className="dropdown-category">
-                                            <Button>
-                                                <Row>
-                                                    <Col lg={23} md={24} sm={24}>
-                                                        <span className="auth-dropdown-label text-black">Pilih Tempat*</span>
-                                                    </Col>
-                                                    <Col lg={1} md={24} sm={24}>
-                                                        <Icon type="down" style={{color:"#4D5AF2"}}/>
-                                                    </Col>
-                                                </Row>
-                                            </Button>
-                                        </div>
-                                    </Dropdown>
-                                </div>
-                            </div>
-                        </Col>
-                        <Col lg={12} md={24} sm={24}>
-                            <div className="form-section-5">
-                                <div>   
-                                    <span className="auth-input-label text-black">Akses*</span>
-                                </div>
-                                <div>
-                                    <Dropdown overlay={menu}>
-                                        <div className="dropdown-category">
-                                            <Button>
-                                                <Row>
-                                                    <Col lg={23} md={24} sm={24}>
-                                                        <span className="auth-dropdown-label text-black">Pilih Akses*</span>
-                                                    </Col>
-                                                    <Col lg={1} md={24} sm={24}>
-                                                        <Icon type="down" style={{color:"#4D5AF2"}}/>
-                                                    </Col>
-                                                </Row>
-                                            </Button>
-                                        </div>
-                                    </Dropdown>
-                                </div>
-                            </div>
-                        </Col>
-                    </Row>
-                    <Row style={{marginTop:'20px', marginBottom:'30px'}}>
-                        <Col lg={24} md={24} sm={24}>
-                            <div>   
-                                <span className="auth-input-label text-black">Lokasi Event*</span>
-                            </div>
-                            <div>
-                                <InputAuth
-                                    name='description'
-                                    placeholder="Masukan lokasi event...."
-                                    className="input-location-event mt-5"
-                                    iconType="lock"
-                                    type="password"
-                                />
-                            </div>
-                        </Col>
-                    </Row>
-                </div>
-            </Form>
-        </div>
+            <VenuePage/> 
         ,
     },
     {
         title: 'Date Time',
         content:
-          <div>
-            <Form>
-                <div className="container-form">
-                    <Row>
-                        <Col lg={6} md={12} sm={24}>
-                            <div className="form-section-6">
-                                <div>   
-                                    <span className="auth-input-label text-black">Tanggal Mulai*</span>
-                                </div>
-                                <div>
-                                    <Dropdown overlay={menu}>
-                                        <div className="dropdown-category">
-                                            <Button>
-                                                <Row>
-                                                    <Col lg={22} md={24} sm={24}>
-                                                        <span className="auth-dropdown-label text-black">Pilih tanggal*</span>
-                                                    </Col>
-                                                    <Col lg={2} md={24} sm={24}>
-                                                        <Icon type="calendar" style={{color:"#4D5AF2"}}/>
-                                                    </Col>
-                                                </Row>
-                                            </Button>
-                                        </div>
-                                    </Dropdown>
-                                </div>
-                            </div>
-                        </Col>
-                        <Col lg={6} md={12} sm={24}>
-                            <div className="form-section-6">
-                                <div>   
-                                    <span className="auth-input-label text-black">Waktu Mulai*</span>
-                                </div>
-                                <div>
-                                    <Dropdown overlay={menu}>
-                                        <div className="dropdown-category">
-                                            <Button>
-                                                <Row>
-                                                    <Col lg={22} md={24} sm={24}>
-                                                        <span className="auth-dropdown-label text-black">Pilih Waktu*</span>
-                                                    </Col>
-                                                    <Col lg={2} md={24} sm={24}>
-                                                        <Icon type="hourglass" style={{color:"#4D5AF2"}}/>
-                                                    </Col>
-                                                </Row>
-                                            </Button>
-                                        </div>
-                                    </Dropdown>
-                                </div>
-                            </div>
-                        </Col>
-                        <Col lg={6} md={12} sm={24}>
-                            <div className="form-section-6">
-                                <div>   
-                                    <span className="auth-input-label text-black">Tanggal Berakhir*</span>
-                                </div>
-                                <div>
-                                    <Dropdown overlay={menu}>
-                                        <div className="dropdown-category">
-                                            <Button>
-                                                <Row>
-                                                    <Col lg={22} md={24} sm={24}>
-                                                        <span className="auth-dropdown-label text-black">Pilih Tanggal*</span>
-                                                    </Col>
-                                                    <Col lg={2} md={24} sm={24}>
-                                                        <Icon type="calendar" style={{color:"#4D5AF2"}}/>
-                                                    </Col>
-                                                </Row>
-                                            </Button>
-                                        </div>
-                                    </Dropdown>
-                                </div>
-                            </div>
-                        </Col>
-                        <Col lg={6} md={12} sm={24}>
-                            <div className="form-section-6">
-                                <div>   
-                                    <span className="auth-input-label text-black">Waktu Berakhir*</span>
-                                </div>
-                                <div>
-                                    <Dropdown overlay={menu}>
-                                        <div className="dropdown-category">
-                                            <Button>
-                                                <Row>
-                                                    <Col lg={22} md={24} sm={24}>
-                                                        <span className="auth-dropdown-label text-black">Pilih Waktu*</span>
-                                                    </Col>
-                                                    <Col lg={2} md={24} sm={24}>
-                                                        <Icon type="hourglass" style={{color:"#4D5AF2"}}/>
-                                                    </Col>
-                                                </Row>
-                                            </Button>
-                                        </div>
-                                    </Dropdown>
-                                </div>
-                            </div>  
-                        </Col>
-                    </Row>  
-                    <Row style={{marginTop:'20px', marginBottom:'30px'}}>
-                        <Col lg={12} md={24} sm={24}>
-                            <div className="form-section-5">
-                                <div>   
-                                    <span className="auth-input-label text-black">Buka Pendaftaran*</span>
-                                </div>
-                                <div>
-                                    <Dropdown overlay={menu}>
-                                        <div className="dropdown-category">
-                                            <Button>
-                                                <Row>
-                                                    <Col lg={23} md={24} sm={24}>
-                                                        <span className="auth-dropdown-label text-black">Pilih Tempat*</span>
-                                                    </Col>
-                                                    <Col lg={1} md={24} sm={24}>
-                                                        <Icon type="calendar" style={{color:"#4D5AF2"}}/>
-                                                    </Col>
-                                                </Row>
-                                            </Button>
-                                        </div>
-                                    </Dropdown>
-                                </div>
-                            </div>
-                        </Col>
-                        <Col lg={12} md={24} sm={24}>
-                            <div className="form-section-5">
-                                <div>   
-                                    <span className="auth-input-label text-black">Tutup Pendaftaran*</span>
-                                </div>
-                                <div>
-                                    <Dropdown overlay={menu}>
-                                        <div className="dropdown-category">
-                                            <Button>
-                                                <Row>
-                                                    <Col lg={23} md={24} sm={24}>
-                                                        <span className="auth-dropdown-label text-black">Pilih Akses*</span>
-                                                    </Col>
-                                                    <Col lg={1} md={24} sm={24}>
-                                                        <Icon type="calendar" style={{color:"#4D5AF2"}}/>
-                                                    </Col>
-                                                </Row>
-                                            </Button>
-                                        </div>
-                                    </Dropdown>
-                                </div>
-                            </div>
-                        </Col>
-                    </Row>
-                </div>
-            </Form>
-        </div>
+            <DateTimePage/> 
         ,
     },
     {
         title: 'Visual',
         content: 
-        <div>
-            <Form>
-                <div className="container-form">
-                    <Row>
-                        <Col lg={24} md={24} sm={24}>
-                            <div>   
-                                <span className="auth-input-label text-black">Upload Poster*</span>
-                            </div>
-                            <div>
-                                <InputAuth
-                                    name='name'
-                                    placeholder="Masukan nama event...."
-                                    className="input-event mt-5 mb-20"
-                                />
-                            </div>
-                        </Col>
-                    </Row>
-                </div>
-            </Form>
-        </div>
+            <VisualPage/>
         ,
     },
 ];
