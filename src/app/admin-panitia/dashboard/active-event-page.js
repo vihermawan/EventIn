@@ -11,6 +11,9 @@ import { faUsers } from '@fortawesome/free-solid-svg-icons'
 import { faInfoCircle } from '@fortawesome/free-solid-svg-icons' 
 import ButtonDashboard from '../../../common/component/button/button-dashboard';
 
+// import store
+import { getData, setIdEvent } from '../../../modules/admin-panitia/active-event/store/active-event-action'
+
 const { confirm } = Modal;
 
 class ActiveEventPage extends Component {
@@ -64,6 +67,11 @@ class ActiveEventPage extends Component {
         });
     }
 
+    onDetailParticipant = (id) => {
+        this.props.setIdEvent(id);
+        this.props.navigate(CONSTANS.PARTICIPANT_EVENT_MENU_KEY)
+    }
+
     render() { 
         const columns = [
             {
@@ -112,6 +120,7 @@ class ActiveEventPage extends Component {
                     borderRadius="5px"
                     background="#4D5AF2"
                     marginRight= "20px"
+                    onClick={ () => this.onDetailParticipant(data.nomor)}
                 />,
                 <ButtonDashboard
                     text="Detail"
@@ -119,7 +128,8 @@ class ActiveEventPage extends Component {
                     icon={faInfoCircle}
                     borderRadius="5px"
                     background="#FFA903"
-                    onClick={ () => this.showDeleteConfirm(data.nomor)}
+                    // onClick={ () => this.showDeleteConfirm(data.nomor)}
+
                 />]
               ),
             },
@@ -153,6 +163,10 @@ const mapStateToProps = state => ({
 
 const mapDispatchToProps = (dispatch => ({
     navigate,
+
+    getData,
+    setIdEvent,
+
 }))();
 
 const page = connect(mapStateToProps, mapDispatchToProps)(ActiveEventPage);

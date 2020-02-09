@@ -1,3 +1,8 @@
+/**
+ * @author spindyzel
+ * @since 28 Desember 2019
+*/
+
 import { createStore, combineReducers, applyMiddleware } from 'redux';
 import { persistStore, persistReducer } from 'redux-persist';
 import storage from 'redux-persist/lib/storage';
@@ -6,6 +11,9 @@ import { connectRouter, routerMiddleware } from 'connected-react-router';
 import createHistory from 'history/createHashHistory';
 import { createBrowserHistory } from 'history';
 import thunk from 'redux-thunk';
+
+// store component
+import activeEventReducer from '../../modules/admin-panitia/active-event/store/active-event-reducer'
 
 const history = createHistory();
 const browserHistory = createBrowserHistory();
@@ -19,6 +27,7 @@ const persistConfig = {
 
 const reducers = combineReducers({
     router: connectRouter(browserHistory),
+    activeEvent: activeEventReducer,
 })
 
 const persistedReducer = persistReducer(persistConfig, reducers);

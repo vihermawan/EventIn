@@ -1,3 +1,8 @@
+/**
+ * @author spindyzel
+ * @since 28 Desember 2019
+*/
+
 import Auth from '../layout/auth'
 import HomePage from '../../app/home/home-page'
 import PilihanPage from '../../app/pilihan/pilihan-page'

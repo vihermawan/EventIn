@@ -1,3 +1,8 @@
+/**
+ * @author spindyzel
+ * @since 28 Desember 2019
+*/
+
 
 import { createBrowserHistory } from 'history';
 import * as v from 'voca';

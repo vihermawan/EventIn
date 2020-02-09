@@ -1,3 +1,8 @@
+/**
+ * @author spindyzel
+ * @since 28 Desember 2019
+*/
+
 import React, { Component } from 'react'
 import { Router, Switch, Route } from "react-router-dom";
 import routeSources from './router-config';

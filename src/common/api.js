@@ -1,3 +1,8 @@
+/**
+ * @author spindyzel
+ * @since 28 Desember 2019
+*/
+
 import axios from 'axios';
 import { BASE_URL } from './initOptions.properties';
 
