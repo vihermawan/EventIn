@@ -25,9 +25,10 @@ class ActiveEventPage extends Component {
 
     getEvent=()=>{
         this.setState({loading: true})
+
         API.get(`/panitia/event`)
         .then(res => {
-            console.log('res',res)
+            console.log('res',res.data.data.event)
             this.setState({
                 activeEvent:res.data.data.event,
                 loading: false,

@@ -1,7 +1,8 @@
 .ant-table table{
     width: 100% !important;
     border: 1px solid #4D5AF2;
-    border-radius: 10px;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
 }
 .ant-table-thead > tr > th{
     color: white;
@@ -14,5 +15,5 @@
     border-top-right-radius: 10px;
 }
 .ant-table-tbody > tr > td{
-    border-radius: 10px;
+    border-radius: 0px;
 }

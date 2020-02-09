@@ -113,3 +113,14 @@
   .menu-dashboard .ant-menu{
     margin-top: 0px !important;
   }
+
+  .menuCon .ant-menu-item:hover, .ant-menu-active, .ant-menu-submenu-active, .ant-menu-submenu-title:hover{
+    border-bottom: none;
+  }
+  .ant-menu-submenu, .ant-menu-submenu-inline{
+    transition: none;
+  }
+
+  .ant-menu-inline .ant-menu-item, .ant-menu-inline .ant-menu-submenu-title{
+    width: none !important;
+  }

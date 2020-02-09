@@ -1,16 +1,14 @@
 import React, { Component } from 'react';
 import { Layout, Breadcrumb, Row, Table, Input, Col,Tag } from 'antd';
-import '../../../assets/css/dashboard-all/dashboard.css'
-import '../../../assets/css/dashboard-all/table-style.css'
-// component
-import TableProfile from '../../../common/component/table/table'
-import LoadingContainer from '../../../common/component/loading/loading-container'
+import '../../../../assets/css/dashboard-all/dashboard.css'
+import '../../../../assets/css/dashboard-all/table-style.css'
+import TableProfile from '../../../../common/component/table/table'
+import LoadingContainer from '../../../../common/component/loading/loading-container'
 // constant content
 const { Content } = Layout;
 
 
-
-class ActiveEventComponent extends Component {
+class DetailPanitiaAdminComponent extends Component {
     render() { 
       const { initialData, columns, data } = this.props
         return ( 
@@ -23,7 +21,8 @@ class ActiveEventComponent extends Component {
                 }}
             >
                 <Breadcrumb separator=">">
-                    <Breadcrumb.Item>Dashboard Active Event</Breadcrumb.Item>
+                    <Breadcrumb.Item>Dashboard List Panitia</Breadcrumb.Item>
+                    <Breadcrumb.Item>Dashboard Detail Panitia</Breadcrumb.Item>
                 </Breadcrumb>
 
                 <Row style={{minHeight: '100%',marginBottom: '2%',marginTop:'2%',}} className="background">
@@ -32,18 +31,18 @@ class ActiveEventComponent extends Component {
                         <div className="container-active-event">
                             <Row>
                             <div className="container-title-event">
-                                <span>Active Event</span>
+                                <span>Detail Panitia</span>
                             </div>
                             </Row>
                             <LoadingContainer loading={initialData.loading}>
-                                <Row gutter={24} type="flex">
-                                    <TableProfile 
-                                        columns={columns} 
-                                        // dataSource={initialData.activeEvent} 
-                                        dataSource={data} 
-                                        className="table-active-event"
-                                    />
-                                </Row>
+                            <Row gutter={24} type="flex">
+                           
+                                <TableProfile 
+                                    columns={columns} 
+                                    dataSource={data} 
+                                    className="table-active-event"
+                                />
+                            </Row>
                             </LoadingContainer>
                         </div>
                     </Col>
@@ -53,4 +52,4 @@ class ActiveEventComponent extends Component {
     }
 }
  
-export default ActiveEventComponent;
+export default DetailPanitiaAdminComponent;

@@ -75,133 +75,130 @@ class signer extends Component {
     );
 
     return (
-      <Layout style={{minHeight: '100vh'}}>
-        <LoadingContainer loading={this.state.loading}>
-          <Layout>
-              <Sider theme="light" trigger={null} collapsible collapsed={this.state.collapsed}>
-                <div className="logo">
-                  <img src={this.state.collapsed? logoadmin : logo} className={this.state.collapsed ? 'hidden-admin-logo' : 'logo-admin'} alt="EventIn logo" width="100"/>
-                </div>
-                <div className="menu-dashboard">
-                  <Menu mode="inline" defaultSelectedKeys={['dashboard']}>
-                      <div className="title-dashboard">
-                          <span className="title-desc-dashboard">REPORT</span>
-                      </div>              
-                    
-                      <Menu.Item key="dashboard"  >
-                        <Link to="/signer/dashboard-signer">
-                      
-                          <FontAwesomeIcon
-                              icon={faDesktop}
-                              style={{marginRight: 10}}
-                              className={this.state.collapsed ? 'hidden-logo' : 'block-logo'}
-                          />
-                          <span className={hidden} >Dashboard</span>
-                        </Link>
-                      </Menu.Item>
-                      <div className="title-dashboard">
-                          <hr style={{
-                              minHeight: 1,
-                              backgroundColor: '#D7D7D7',
-                              border: 'none',
-                              maxWidth: 200,
-                              marginBottom:'10px',
-                          }}/>
-                      </div>
-                      <div className="title-dashboard">
-                          <span className="title-desc-dashboard">SIGNATURED</span>
-                      </div>  
-                      <Menu.Item key="waiting-list"  >
-                        <Link to="/signer/waiting-list">
-                      
-                          <FontAwesomeIcon
-                              icon={faEnvelope}
-                              style={{marginRight: 10}}
-                              className={this.state.collapsed ? 'hidden-logo' : 'block-logo'}
-                          />
-                          <span className={hidden} >Waiting List</span>
-                        </Link>
-                      </Menu.Item>
-                      <Menu.Item key="e-certificate"  >
-                        <Link to="/signer/e-certificate">
-          
-                          <FontAwesomeIcon
-                              icon={faClipboardCheck}
-                              style={{marginRight: 10}}
-                              className={this.state.collapsed ? 'hidden-logo' : 'block-logo'}
-                          />
-                        <span className={hidden} >E-Certificate</span>
-                        </Link>
-                      </Menu.Item>
-                      <div className="title-dashboard">
-                          <hr style={{
-                              minHeight: 1,
-                              backgroundColor: '#D7D7D7',
-                              border: 'none',
-                              maxWidth: 200,
-                              marginBottom:'10px',
-                          }}/>
-                      </div>
-                      <div className="title-dashboard">
-                          <span className="title-desc-dashboard">SETTINGS</span>
-                      </div>  
-                      <Menu.Item key="profile"  >
-                        <Link to="/signer/profile">
-                      
-                          <FontAwesomeIcon
-                              icon={faUserCircle}
-                              style={{marginRight: 10}}
-                              className={this.state.collapsed ? 'hidden-logo' : 'block-logo'}
-                          />
-                          <span className={hidden} >Profile</span>
-                        </Link>
-                      </Menu.Item>
-                    </Menu>
+      <LoadingContainer loading={this.state.loading}>
+        <Layout style={{minHeight: '100vh'}}>     
+          <Sider theme="light" trigger={null} collapsible collapsed={this.state.collapsed}>
+            <div className="logo">
+              <img src={this.state.collapsed? logoadmin : logo} className={this.state.collapsed ? 'hidden-admin-logo' : 'logo-admin'} alt="EventIn logo" width="100"/>
+            </div>
+            <div className="menu-dashboard">
+              <Menu mode="inline" defaultSelectedKeys={['dashboard']}>
+                  <div className="title-dashboard">
+                      <span className="title-desc-dashboard">REPORT</span>
+                  </div>              
+                
+                  <Menu.Item key="dashboard"  >
+                    <Link to="/signer/dashboard-signer">
+                  
+                      <FontAwesomeIcon
+                          icon={faDesktop}
+                          style={{marginRight: 10}}
+                          className={this.state.collapsed ? 'hidden-logo' : 'block-logo'}
+                      />
+                      <span className={hidden} >Dashboard</span>
+                    </Link>
+                  </Menu.Item>
+                  <div className="title-dashboard">
+                      <hr style={{
+                          minHeight: 1,
+                          backgroundColor: '#D7D7D7',
+                          border: 'none',
+                          maxWidth: 200,
+                          marginBottom:'10px',
+                      }}/>
                   </div>
-              </Sider>
-
-              <Layout>
-                <Header style={{ background: '#fff', padding: 0 }}>
-                  <Icon
-                    className="trigger"
-                    type={this.state.collapsed ? 'menu-unfold' : 'menu-fold'}
-                    onClick={this.toggle}
+                  <div className="title-dashboard">
+                      <span className="title-desc-dashboard">SIGNATURED</span>
+                  </div>  
+                  <Menu.Item key="waiting-list"  >
+                    <Link to="/signer/waiting-list">
+                  
+                      <FontAwesomeIcon
+                          icon={faEnvelope}
+                          style={{marginRight: 10}}
+                          className={this.state.collapsed ? 'hidden-logo' : 'block-logo'}
+                      />
+                      <span className={hidden} >Waiting List</span>
+                    </Link>
+                  </Menu.Item>
+                  <Menu.Item key="e-certificate"  >
+                    <Link to="/signer/e-certificate">
+      
+                      <FontAwesomeIcon
+                          icon={faClipboardCheck}
+                          style={{marginRight: 10}}
+                          className={this.state.collapsed ? 'hidden-logo' : 'block-logo'}
+                      />
+                    <span className={hidden} >E-Certificate</span>
+                    </Link>
+                  </Menu.Item>
+                  <div className="title-dashboard">
+                      <hr style={{
+                          minHeight: 1,
+                          backgroundColor: '#D7D7D7',
+                          border: 'none',
+                          maxWidth: 200,
+                          marginBottom:'10px',
+                      }}/>
+                  </div>
+                  <div className="title-dashboard">
+                      <span className="title-desc-dashboard">SETTINGS</span>
+                  </div>  
+                  <Menu.Item key="profile"  >
+                    <Link to="/signer/profile">
+                  
+                      <FontAwesomeIcon
+                          icon={faUserCircle}
+                          style={{marginRight: 10}}
+                          className={this.state.collapsed ? 'hidden-logo' : 'block-logo'}
+                      />
+                      <span className={hidden} >Profile</span>
+                    </Link>
+                  </Menu.Item>
+                </Menu>
+              </div>
+          </Sider>
+          <Layout>
+                  <Header style={{ background: '#fff', padding: 0 }}>
+                    <Icon
+                      className="trigger"
+                      type={this.state.collapsed ? 'menu-unfold' : 'menu-fold'}
+                      onClick={this.toggle}
+                    />
+                    <div className= "avatar">
+                        <Avatar size={40} icon="user" className="avatars" />
+                        <span className="semi-bold">PPSMB PALAPA</span>
+                          <Dropdown overlay={menu} trigger={['click']}>
+                            <a className="ant-dropdown-link" href="#">
+                              <Icon type="down" style={{marginLeft:"20px", color:"black", fontSize:"13px"}} />
+                            </a>
+                          </Dropdown>
+                        {/* <p>sa</p> */}
+                      </div>
+                  </Header>
+                  <Route
+                      path='/signer/dashboard-signer'
+                      exact
+                      render={ (props) => <DashboardSignerPage {...props}/> }
                   />
-                  <div className= "avatar">
-                      <Avatar size={40} icon="user" className="avatars" />
-                      <span className="semi-bold">PPSMB PALAPA</span>
-                        <Dropdown overlay={menu} trigger={['click']}>
-                          <a className="ant-dropdown-link" href="#">
-                            <Icon type="down" style={{marginLeft:"20px", color:"black", fontSize:"13px"}} />
-                          </a>
-                        </Dropdown>
-                      {/* <p>sa</p> */}
-                    </div>
-                </Header>
-                <Route
-                    path='/signer/dashboard-signer'
-                    exact
-                    render={ (props) => <DashboardSignerPage {...props}/> }
-                />
-                <Route
-                    path='/signer/waiting-list'
-                    exact
-                    render={ (props) => <WaitingListPage {...props}/> }
-                />
-                <Route
-                    path='/signer/e-certificate'
-                    exact
-                    render={ (props) => <EcertificatePage {...props}/> }
-                />
-                <Route
-                    path='/signer/profile'
-                    exact
-                    render={ (props) => <ProfileSignerPage {...props}/> }
-                />
-              </Layout>
-          </Layout>
-        </LoadingContainer>
-      </Layout>
+                  <Route
+                      path='/signer/waiting-list'
+                      exact
+                      render={ (props) => <WaitingListPage {...props}/> }
+                  />
+                  <Route
+                      path='/signer/e-certificate'
+                      exact
+                      render={ (props) => <EcertificatePage {...props}/> }
+                  />
+                  <Route
+                      path='/signer/profile'
+                      exact
+                      render={ (props) => <ProfileSignerPage {...props}/> }
+                  />
+                </Layout>
+        </Layout>
+      </LoadingContainer>
     );
   }
 }

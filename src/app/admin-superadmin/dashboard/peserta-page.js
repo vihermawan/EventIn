@@ -1,16 +1,106 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-
+import { API } from '../../../common/api'
 import { navigate } from '../../../common/store/action'
 import PesertaAdminComponent from '../../../modules/admin-superadmin/user/peserta/peserta-component';
+import { faUsers } from '@fortawesome/free-solid-svg-icons'
+import { faInfoCircle } from '@fortawesome/free-solid-svg-icons'
+import ButtonDashboard from '../../../common/component/button/button-dashboard';
+
 
 class PesertaAdminPage extends Component {
-    state = {  }
+    state = { 
+        peserta : [],
+        loading: false,
+    }
+
+    componentDidMount(){
+        this.getPeserta();
+    }
+
+    getPeserta=()=>{
+        this.setState({loading: true})
+        API.get(`/admin/showpeserta`)
+        .then(res => {
+          console.log('res',res.data.data.user)
+          this.setState({
+            peserta:res.data.data.user,
+            loading: false,
+          })
+        });
+    }
 
     render() { 
+
+        const columns = [
+            {
+                title: 'No',
+                dataIndex: 'nomor',
+                key: 'nomor',
+                render: text => <a>{text}</a>,
+            },
+            {
+                title: 'Nama Peserta',
+                dataIndex: 'peserta',
+                key: 'peserta',
+                render: text => <a>{text}</a>,
+            },
+            {
+                title: 'Email',
+                key: 'email',
+                dataIndex: 'email',
+            },
+            {
+                title: 'Jenis Kelamin',
+                dataIndex: 'jenis_kelamin',
+                key: 'jenis_kelamin',
+            },
+            {
+                title: 'Organisasi',
+                dataIndex: 'organisasi',
+                key: 'organisasi',
+            },
+            {
+                title: 'Umur',
+                dataIndex: 'umur',
+                key: 'umur',
+            },
+            {
+                title: 'Action',
+                key: 'action',
+                render: () => (
+                    [<ButtonDashboard
+                        text="Edit"
+                        height={20}
+                        icon={faUsers}
+                        borderRadius="5px"
+                        background="#4D5AF2"
+                        marginRight= "20px"
+                    />,
+                    <ButtonDashboard
+                        text="Detail"
+                        height={20}
+                        icon={faInfoCircle}
+                        borderRadius="5px"
+                        background="#FFA903"
+                    />]
+              ),
+            },
+          ];
+        const data =  this.state.peserta.map( data => ({
+            nomor : data.id_users,
+            peserta : data.peserta.nama_peserta,
+            email : data.email,
+            organisasi : data.peserta.organisasi,
+            umur : data.peserta.umur
+        }))
+                
         return ( 
             <PesertaAdminComponent
+                initialData={this.state}
                 navigate={this.props.navigate}
+                columns={columns}
+                data={data}
             />
         );
     }

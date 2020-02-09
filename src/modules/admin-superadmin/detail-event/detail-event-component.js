@@ -4,13 +4,14 @@ import '../../../assets/css/dashboard-all/dashboard.css'
 import '../../../assets/css/dashboard-all/table-style.css'
 // component
 import TableProfile from '../../../common/component/table/table'
+import DetailEvent from '../../../common/component/detail/detail-component'
 import LoadingContainer from '../../../common/component/loading/loading-container'
 // constant content
 const { Content } = Layout;
 
 
 
-class ActiveEventComponent extends Component {
+class DetailEventComponent extends Component {
     render() { 
       const { initialData, columns, data } = this.props
         return ( 
@@ -24,6 +25,7 @@ class ActiveEventComponent extends Component {
             >
                 <Breadcrumb separator=">">
                     <Breadcrumb.Item>Dashboard Active Event</Breadcrumb.Item>
+                    <Breadcrumb.Item>Dashboard Detail Event</Breadcrumb.Item>
                 </Breadcrumb>
 
                 <Row style={{minHeight: '100%',marginBottom: '2%',marginTop:'2%',}} className="background">
@@ -32,17 +34,18 @@ class ActiveEventComponent extends Component {
                         <div className="container-active-event">
                             <Row>
                             <div className="container-title-event">
-                                <span>Active Event</span>
+                                <span>Detail Event</span>
                             </div>
                             </Row>
                             <LoadingContainer loading={initialData.loading}>
                                 <Row gutter={24} type="flex">
-                                    <TableProfile 
+                                    {/* <TableProfile 
                                         columns={columns} 
                                         // dataSource={initialData.activeEvent} 
                                         dataSource={data} 
                                         className="table-active-event"
-                                    />
+                                    /> */}
+                                    <DetailEvent/>
                                 </Row>
                             </LoadingContainer>
                         </div>
@@ -53,4 +56,4 @@ class ActiveEventComponent extends Component {
     }
 }
  
-export default ActiveEventComponent;
+export default DetailEventComponent;

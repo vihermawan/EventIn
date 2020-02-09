@@ -1,0 +1,52 @@
+.date-picker .ant-input{
+    width: 240px;
+    text-align: left;
+    height: 40px;
+    margin-top: 5px;
+    border-color: #4D5AF2;
+    color : #4D5AF2;
+}
+
+.date-picker-panjang .ant-input{
+    width: 520px;
+    text-align: left;
+    height: 40px;
+    margin-top: 5px;
+    border-color: #4D5AF2;
+    color : #4D5AF2;
+}
+
+.date-picker .ant-calendar-picker-icon{
+    color: #4D5AF2;
+    font-size: 15px;
+    font-weight: 600;
+}
+
+.time-picker .ant-time-picker-input{
+    width: 240px;
+    text-align: left;
+    height: 40px;
+    margin-top: 5px;
+    border-color: #4D5AF2;
+    color : #4D5AF2;
+}
+
+.time-picker .ant-time-picker-icon, .ant-time-picker-clear{
+    color: #4D5AF2;
+    font-size: 15px;
+    font-weight: 600;
+    margin-right: 0%;
+}
+
+.time-picker .ant-time-picker-icon .ant-time-picker-clock-icon, .ant-time-picker-clear .ant-time-picker-clock-icon{
+    color: #4D5AF2;
+    text-align: right;
+    margin-left: 110px !important;
+}
+.time-picker .ant-time-picker-panel .ant-time-picker-panel-narrow .ant-time-picker-panel-input-wrap{
+    width: 240px !important;
+}
+
+.ant-time-picker-panel-select ul {
+    width: 120px;
+}

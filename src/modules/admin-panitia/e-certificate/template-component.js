@@ -10,7 +10,7 @@ const { Content } = Layout;
 
 
 
-class ActiveEventComponent extends Component {
+class TemplateCertificateComponent extends Component {
     render() { 
       const { initialData, columns, data } = this.props
         return ( 
@@ -23,7 +23,7 @@ class ActiveEventComponent extends Component {
                 }}
             >
                 <Breadcrumb separator=">">
-                    <Breadcrumb.Item>Dashboard Active Event</Breadcrumb.Item>
+                    <Breadcrumb.Item>Template E-Certificate</Breadcrumb.Item>
                 </Breadcrumb>
 
                 <Row style={{minHeight: '100%',marginBottom: '2%',marginTop:'2%',}} className="background">
@@ -32,7 +32,7 @@ class ActiveEventComponent extends Component {
                         <div className="container-active-event">
                             <Row>
                             <div className="container-title-event">
-                                <span>Active Event</span>
+                                <span>Template Certificate</span>
                             </div>
                             </Row>
                             <LoadingContainer loading={initialData.loading}>
@@ -53,4 +53,4 @@ class ActiveEventComponent extends Component {
     }
 }
  
-export default ActiveEventComponent;
+export default TemplateCertificateComponent;

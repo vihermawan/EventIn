@@ -2,95 +2,15 @@ import React, { Component } from 'react';
 import { Layout, Breadcrumb, Row, Table, Input, Col,Tag } from 'antd';
 import '../../../../assets/css/dashboard-all/dashboard.css'
 import '../../../../assets/css/dashboard-all/table-style.css'
-import { faUsers } from '@fortawesome/free-solid-svg-icons'
-import { faInfoCircle } from '@fortawesome/free-solid-svg-icons'
-import ButtonIcon from '../../../../common/component/button/button-icon'
 import TableProfile from '../../../../common/component/table/table'
+import LoadingContainer from '../../../../common/component/loading/loading-container'
 // constant content
 const { Content } = Layout;
-const columns = [
-    {
-        title: 'No',
-        dataIndex: 'Nomor',
-        key: 'Nomor',
-        render: text => <a>{text}</a>,
-    },
-    {
-      title: 'Nama Event',
-      dataIndex: 'Nama_Event',
-      key: 'Nama_Event',
-      render: text => <a>{text}</a>,
-    },
-    {
-      title: 'Organisasi',
-      dataIndex: 'tanggal_event',
-      key: 'tanggal_event',
-    },
-    {
-      title: 'Umur',
-      dataIndex: 'tanggal_event',
-      key: 'tanggal_event',
-    },
-    {
-        title: 'Jenis Kelamin',
-        dataIndex: 'tanggal_event',
-        key: 'tanggal_event',
-      },
-    {
-      title: 'Status',
-      key: 'tags',
-      dataIndex: 'tags',
-      render: tags => (
-        <span>
-          {tags.map(tag => {
-            let color = tag.length > 5 ? 'geekblue' : '#87d068';
-            if (tag === 'reject') {
-              color = 'volcano';
-            }
-            return (
-              <Tag color={color} key={tag}>
-                {tag.toUpperCase()}
-              </Tag>
-            );
-          })}
-        </span>
-      ),
-    },
-    {
-      title: 'Action',
-      key: 'action',
-      render: () => (
-        [<ButtonIcon
-            text="Edit"
-            height={20}
-            icon={faUsers}
-            borderRadius="5px"
-            background="#4D5AF2"
-            marginRight= "20px"
-        />,
-        <ButtonIcon
-            text="Detail"
-            height={20}
-            icon={faInfoCircle}
-            borderRadius="5px"
-            background="#FFA903"
-        />]
-      ),
-    },
-  ];
-const data = [
-    {
-      key: '1',
-      Nomor : '1',
-      Nama_Event: 'UGMTalks',
-      tanggal_event :'2020-10-11',
-      tags: ['Done'],
-    },
-  ];
 
 
 class PesertaAdminComponent extends Component {
     render() { 
+      const { initialData, columns, data } = this.props
         return ( 
             <Content
                 style={{
@@ -113,13 +33,16 @@ class PesertaAdminComponent extends Component {
                                 <span>List Peserta</span>
                             </div>
                             </Row>
+                            <LoadingContainer loading={initialData.loading}>
                             <Row gutter={24} type="flex">
+                           
                                 <TableProfile 
                                     columns={columns} 
                                     dataSource={data} 
                                     className="table-active-event"
                                 />
                             </Row>
+                            </LoadingContainer>
                         </div>
                     </Col>
                 </Row>
