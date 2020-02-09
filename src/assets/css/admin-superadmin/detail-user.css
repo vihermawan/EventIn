@@ -1,0 +1,22 @@
+.container-desc-panitia{
+    margin-top: 20px;
+    min-height: 50px;
+}
+.avatar-panitia{
+    min-width: 150px;
+    margin-left: 50px;
+}
+.desc-panitia{
+    margin-top: 5px;
+    padding: 2px;
+}
+
+.nama-panitia{
+    font-size: 15px;
+    font-weight: 800;
+}
+
+.desc-nama{
+    font-size: 20px;
+    font-weight: 600;
+}

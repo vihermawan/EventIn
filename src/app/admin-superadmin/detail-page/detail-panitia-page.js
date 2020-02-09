@@ -30,7 +30,7 @@ class DetailPanitiaPage extends Component {
     // }
 
     render() { 
-          const columns = [
+        const columns = [
             {
                 title: 'No',
                 dataIndex: 'nomor',
@@ -38,15 +38,47 @@ class DetailPanitiaPage extends Component {
                 render: text => <a>{text}</a>,
             },
             {
-              title: 'Nama Sertifikat',
-              dataIndex: 'nama_sertifikat',
-              key: 'nama_sertifikat',
-              render: text => <a>{text}</a>,
+                title: 'Nama Event',
+                dataIndex: 'nama_event',
+                key: 'nama_event',
+                render: text => <a>{text}</a>,
             },
             {
-              title: 'Gambar Sertifikat',
-              dataIndex: 'gambar',
-              key: 'gambar',
+                title: 'Tempat',
+                dataIndex: 'lokasi',
+                key: 'lokasi',
+            },
+            {
+                title: 'Kategori',
+                dataIndex: 'kategori',
+                key: 'kategori',
+            },
+            {
+                title: 'Tanggal Mulai',
+                dataIndex: 'start_event',
+                key: 'start_event',
+            },
+            {
+                title: 'Tanggal Selesai',
+                dataIndex: 'end_event',
+                key: 'end_event',
+              },
+            {
+           
+            },
+            {
+              title: 'Action',
+              key: 'action',
+              render: (data) => (
+                [<ButtonDashboard
+                    text="Detail"
+                    height={20}
+                    icon={faInfoCircle}
+                    borderRadius="5px"
+                    background="#FFA903"
+                    onClick={ () => this.showDeleteConfirm(data.nomor)}
+                />]
+              ),
             },
           ];
         
