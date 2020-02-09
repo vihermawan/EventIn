@@ -15,20 +15,15 @@ class DetailParticipantPage extends Component {
     }
 
     componentDidMount(){
-        // this.getEventPast();
+        this.getParticipantEvent(this.props.idEvent)
     }
 
-    // getEventPast=()=>{
-    //     this.setState({loading: true})
-    //     API.get(`/panitia/eventPast`)
-    //     .then(res => {
-    //       console.log('res',res.data.data.event)
-    //       this.setState({
-    //         eventPast:res.data.data.event,
-    //         loading: false,
-    //       })
-    //     });
-    // }
+    getParticipantEvent = (id) => {
+        API.get(`/panitia/event/${id}/peserta`)
+        .then(res => {
+          console.log('res',res)
+        });
+    }
 
     render() { 
           const columns = [
@@ -119,7 +114,7 @@ class DetailParticipantPage extends Component {
 }
  
 const mapStateToProps = state => ({
-    
+    ...state.activeEvent,
 });
 
 const mapDispatchToProps = (dispatch => ({

@@ -1,0 +1,6 @@
+export const START_GET_DATA = '@active-event/start-get-data';
+export const FINISH_GET_DATA = '@active-event/start-finish-data';
+export const SET_DATA = '@active-event/set_data';
+
+export const SET_ID_EVENT = '@active-event/set_id_event';
+

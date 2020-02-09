@@ -1,3 +1,8 @@
+/**
+ * @author spindyzel
+ * @since 28 Desember 2019
+*/
+
 const menu = {
     HOME: {
         link: '/',
@@ -16,6 +21,9 @@ const menu = {
     },
     ACTIVE_EVENT: {
         link :'/dashboard/active-event/',
+    },
+    PARTICIPANT_EVENT: {
+        link :'/dashboard/participant-event/',
     }
 };
 
