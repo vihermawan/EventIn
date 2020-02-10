@@ -227,7 +227,7 @@ class signer extends Component {
                       <span className="title-desc-dashboard">Data Master</span>
                   </div>
                   <Menu.Item key="status"  >
-                    <Link to="/admin/waiting-list">
+                    <Link to="/admin/status-master">
                     
                       <FontAwesomeIcon
                           icon={faEyeDropper}
@@ -238,7 +238,7 @@ class signer extends Component {
                     </Link>
                   </Menu.Item>
                   <Menu.Item key="kategori"  >
-                    <Link to="/admin/received">
+                    <Link to="/admin/kategori-master">
                     
                       <FontAwesomeIcon
                           icon={faBookOpen}

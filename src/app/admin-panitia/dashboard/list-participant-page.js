@@ -1,10 +1,14 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import { Modal, message } from 'antd'
 import { faCheckCircle, faWindowClose} from '@fortawesome/free-solid-svg-icons'
 import ButtonIcon from '../../../common/component/button/button-icon'
 import { API } from '../../../common/api'
 import { navigate } from '../../../common/store/action'
 import ListParticipantComponent from '../../../modules/admin-panitia/list-participant/list-participant-component';
+import ButtonDashboard from '../../../common/component/button/button-dashboard';
+
+const { confirm } = Modal;
 
 class ListParticipantPage extends Component {
     state = { 
@@ -25,6 +29,42 @@ class ListParticipantPage extends Component {
               participant:res.data.data.peserta,
               loading: false,
             })
+        });
+    }
+
+    
+
+    //function untuk modal
+    showAcceptConfirm = (id) => {
+        confirm({
+            title: ' Apakah yakin untuk approve peserta ?',
+            okText: 'Yes',
+            okType: 'danger',
+            cancelText: 'No',
+            onOk: () => {
+               // this.deleteEvent(id)
+            },
+            onCancel(){
+                console.log('Cancel')
+            }
+        });
+    }
+
+
+    
+    //function untuk modal
+    showRejectConfirm = (id) => {
+        confirm({
+            title: ' Apakah yakin untuk menolak peserta ?',
+            okText: 'Yes',
+            okType: 'danger',
+            cancelText: 'No',
+            onOk: () => {
+               // this.deleteEvent(id)
+            },
+            onCancel(){
+                console.log('Cancel')
+            }
         });
     }
 
@@ -81,22 +121,24 @@ class ListParticipantPage extends Component {
         {
             title: 'Action',
             key: 'action',
-            render: () => (
-            [<ButtonIcon
+            render: (data) => (
+            [<ButtonDashboard
                 text="Approve"
                 height={20}
                 icon={faCheckCircle}
                 borderRadius="5px"
                 background="#00C908"
                 marginRight= "20px"
+                onClick={ () => this.showAcceptConfirm(data.nomor)}
             />,
-            <ButtonIcon
+            <ButtonDashboard
                 text="Reject"
                 height={20}
                 icon={faWindowClose}
                 borderRadius="5px"
                 background="#FF0303"
                 marginRight= "20px"
+                onClick={ () => this.showRejectConfirm(data.nomor)}
             />]
             ),
         },

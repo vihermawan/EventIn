@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { Modal, message } from 'antd'
+import { Modal, message, Tag } from 'antd'
 import { API } from '../../../common/api'
 import { navigate } from '../../../common/store/action'
 import ActiveEventComponent from '../../../modules/admin-panitia/active-event/active-event-component';
@@ -104,6 +104,21 @@ class ActiveEventPage extends Component {
                 title: 'Kategori',
                 dataIndex: 'kategori',
                 key: 'kategori',
+                render: kategori => (
+                    <span>
+                      {kategori.map(tag => {
+                        let color = tag.length > 5 ? 'geekblue' : 'green';
+                        if (tag === 'loser') {
+                          color = 'volcano';
+                        }
+                        return (
+                          <Tag color={color} key={tag}>
+                            {tag}
+                          </Tag>
+                        );
+                      })}
+                    </span>
+                ),
             },
             {
                 title: 'Tanggal Mulai',
@@ -115,9 +130,6 @@ class ActiveEventPage extends Component {
                 dataIndex: 'end_event',
                 key: 'end_event',
               },
-            {
-           
-            },
             {
               title: 'Action',
               key: 'action',
@@ -150,9 +162,8 @@ class ActiveEventPage extends Component {
                     nama_event: data.nama_event,
                     start_event :data.detail_event.start_event,
                     lokasi : data.detail_event.lokasi,
-                    kategori : data.detail_event.id_kategori,
+                    kategori : [data.id_kategori],
                     end_event : data.detail_event.end_event,
-                    tags: ['Done'],
         }))
     
         return ( 
