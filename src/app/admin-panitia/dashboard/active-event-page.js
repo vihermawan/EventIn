@@ -26,6 +26,7 @@ class ActiveEventPage extends Component {
         this.getEvent();
     }
 
+    //get data dari API
     getEvent=()=>{
         this.setState({loading: true})
 
@@ -39,6 +40,7 @@ class ActiveEventPage extends Component {
         });
     }
 
+    //delete event
     deleteEvent = (id) => {
         console.log(id)
         API.delete(`/panitia/deleteevent/${id}`)
@@ -67,9 +69,16 @@ class ActiveEventPage extends Component {
         });
     }
 
+    //button detail participant
     onDetailParticipant = (id) => {
         this.props.setIdEvent(id);
         this.props.navigate(CONSTANS.PARTICIPANT_EVENT_MENU_KEY)
+    }
+
+    //button detail event
+    onDetailEvent = (id) => {
+        console.log('id ini',id)
+        this.props.navigate(CONSTANS.DETAIL_EVENT_PANITIA_MENU_KEY)
     }
 
     render() { 
@@ -128,6 +137,7 @@ class ActiveEventPage extends Component {
                     icon={faInfoCircle}
                     borderRadius="5px"
                     background="#FFA903"
+                    onClick={ () => this.onDetailEvent(data.nomor)}
                     // onClick={ () => this.showDeleteConfirm(data.nomor)}
 
                 />]
@@ -163,10 +173,8 @@ const mapStateToProps = state => ({
 
 const mapDispatchToProps = (dispatch => ({
     navigate,
-
     getData,
     setIdEvent,
-
 }))();
 
 const page = connect(mapStateToProps, mapDispatchToProps)(ActiveEventPage);

@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import { API } from '../../../common/api'
 import { navigate } from '../../../common/store/action'
 import PesertaAdminComponent from '../../../modules/admin-superadmin/user/peserta/peserta-component';
-import { faUsers } from '@fortawesome/free-solid-svg-icons'
+import { faUsers, faTrash, faPen } from '@fortawesome/free-solid-svg-icons'
 import { faInfoCircle } from '@fortawesome/free-solid-svg-icons'
 import ButtonDashboard from '../../../common/component/button/button-dashboard';
 
@@ -72,15 +72,23 @@ class PesertaAdminPage extends Component {
                     [<ButtonDashboard
                         text="Edit"
                         height={20}
-                        icon={faUsers}
+                        icon={faPen}
                         borderRadius="5px"
-                        background="#4D5AF2"
+                        background="#005568"
                         marginRight= "20px"
                     />,
                     <ButtonDashboard
                         text="Detail"
                         height={20}
                         icon={faInfoCircle}
+                        borderRadius="5px"
+                        background="#FF0303"
+                        marginRight= "20px"
+                    />,
+                    <ButtonDashboard
+                        text="Delete"
+                        height={20}
+                        icon={faTrash}
                         borderRadius="5px"
                         background="#FFA903"
                     />]

@@ -4,10 +4,11 @@ import { Layout, Breadcrumb, Row, Table, Input, Col } from 'antd';
 import '../../../assets/css/dashboard-all/dashboard.css'
 import '../../../assets/css/dashboard-all/table-style.css'
 /*import component*/
-import { faUsers, faPaperPlane } from '@fortawesome/free-solid-svg-icons'
+import { faUsers, faPaperPlane, faPen, faTrash } from '@fortawesome/free-solid-svg-icons'
 import { faInfoCircle } from '@fortawesome/free-solid-svg-icons'
 import ButtonIcon from '../../../common/component/button/button-icon'
 import TableProfile from '../../../common/component/table/table'
+import ButtonDashboard from '../../../common/component/button/button-dashboard';
 // constant content
 const { Content } = Layout;
 const columns = [
@@ -37,20 +38,20 @@ const columns = [
       title: 'Action',
       key: 'action',
       render: () => (
-        [<ButtonIcon
-            text="Send"
+        [<ButtonDashboard
+            text="Edit"
             height={20}
-            icon={faPaperPlane}
+            icon={faPen}
             borderRadius="5px"
-            background="#36FF03"
+            background="#005568"
             marginRight= "20px"
         />,
-        <ButtonIcon
-            text="Detail"
+        <ButtonDashboard
+            text="Delete"
             height={20}
-            icon={faInfoCircle}
+            icon={faTrash}
             borderRadius="5px"
-            background="#FFA903"
+            background="#E11212"
         />]
       ),
     },

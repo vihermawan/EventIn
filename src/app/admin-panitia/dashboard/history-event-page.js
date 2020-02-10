@@ -2,11 +2,14 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Tag } from 'antd';
 import {  faUsers, faTrash, faInfoCircle } from '@fortawesome/free-solid-svg-icons'
-import ButtonIcon from '../../../common/component/button/button-icon'
+import { Modal, message } from 'antd'
+import CONSTANS from '../../../common/utils/Constants'
 import { API } from '../../../common/api'
 import { navigate } from '../../../common/store/action'
 import HistoryEventComponent from '../../../modules/admin-panitia/history-event/history-event-component';
 import ButtonDashboard from '../../../common/component/button/button-dashboard';
+
+const { confirm } = Modal;
 
 class HistoryEventPage extends Component {
     state = {
@@ -28,6 +31,41 @@ class HistoryEventPage extends Component {
             loading: false,
           })
         });
+    }
+
+     //function untuk modal
+     showDeleteConfirm = (id) => {
+      confirm({
+          title: 'Apakah Yakin untuk menghapus Data ?',
+          okText: 'Yes',
+          okType: 'danger',
+          cancelText: 'No',
+          onOk: () => {
+              this.deleteEvent(id)
+          },
+          onCancel(){
+              console.log('Cancel')
+          }
+      });
+    }
+
+    //delete event
+    deleteEvent = (id) => {
+      console.log(id)
+      API.delete(`/panitia/deleteevent/${id}`)
+      .then(res => {
+          console.log('res',res)
+          if(res.status == 200){
+              message.success('Data Berhasil dihapus');
+              window.location.reload(); 
+          }   
+      });
+  }
+
+    //button detail event
+     onDetailEvent = (id) => {
+      console.log('id ini',id)
+      this.props.navigate(CONSTANS.DETAIL_EVENT_PANITIA_MENU_KEY)
     }
 
     render() { 
@@ -82,7 +120,7 @@ class HistoryEventPage extends Component {
             {
               title: 'Action',
               key: 'action',
-              render: () => (
+              render: (data) => (
                 [<ButtonDashboard
                     text="Download"
                     height={20}
@@ -98,6 +136,7 @@ class HistoryEventPage extends Component {
                     borderRadius="5px"
                     background="#FF0303"
                     marginRight= "20px"
+                    onClick={ () => this.showDeleteConfirm(data.nomor)}
                 />,
                 <ButtonDashboard
                     text="Detail"
@@ -105,6 +144,7 @@ class HistoryEventPage extends Component {
                     icon={faInfoCircle}
                     borderRadius="5px"
                     background="#FFA903"
+                    onClick={ () => this.onDetailEvent(data.nomor)}
                 />]
               ),
             },

@@ -41,19 +41,12 @@ const columns = [
       key: 'action',
       render: () => (
         [<ButtonIcon
-            text="Detail"
+            text="Add"
             height={20}
             icon={faInfoCircle}
             borderRadius="5px"
             background="#FFA903"
             marginRight= "20px"
-        />,
-        <ButtonIcon
-            text="Delete"
-            height={20}
-            icon={faTrash}
-            borderRadius="5px"
-            background="#E11212"
         />]
       ),
     },

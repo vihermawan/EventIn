@@ -78,6 +78,14 @@ class ListPanitiaAdminPage extends Component {
                         icon={faInfoCircle}
                         borderRadius="5px"
                         background="#FFA903"
+                        marginRight= "20px"
+                    />,
+                    <ButtonDashboard
+                        text="Delete"
+                        height={20}
+                        icon={faTrash}
+                        borderRadius="5px"
+                        background="#FF0303"
                     />]
               ),
             },

@@ -4,7 +4,7 @@ import { API } from '../../../common/api'
 import { navigate } from '../../../common/store/action'
 //component
 import PenandatanganAdminComponent from '../../../modules/admin-superadmin/user/penandatangan/penandatangan-component';
-import { faUsers, faTrash } from '@fortawesome/free-solid-svg-icons'
+import { faUsers, faTrash, faPen } from '@fortawesome/free-solid-svg-icons'
 import { faInfoCircle } from '@fortawesome/free-solid-svg-icons'
 import ButtonDashboard from '../../../common/component/button/button-dashboard';
 
@@ -69,11 +69,11 @@ class PenandatanganAdminPage extends Component {
                 key: 'action',
                 render: () => (
                     [<ButtonDashboard
-                        text="Detail"
+                        text="Edit"
                         height={20}
-                        icon={faInfoCircle}
+                        icon={faPen}
                         borderRadius="5px"
-                        background="#FFA903"
+                        background="#005568"
                         marginRight= "20px"
                     />,
                     <ButtonDashboard
