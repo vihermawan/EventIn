@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import { API } from '../../common/api'
 import { connect } from 'react-redux';
-import { API } from '../../common/api'
 import { navigate } from '../../common/store/action'
 import EventComponent from '../../modules/event/component/event-component';
 
@@ -23,17 +22,6 @@ class EventPage extends Component {
     }
 
     render() { 
-
-        // const cardData = [
-        //     {
-        //         image: require(`../../../assets/images/card-event.png`),
-        //         date: 'Sun, Jan 5, 8:00 Am',
-        //         price: 'free',
-        //         title: 'Try Out Ganesha Mulih Jogja 2020',
-        //         lokasi: 'SMA Negeri 1 Teladan Yogyakarta'
-        //     },
-        
-        // ]
 
         const cardData =  this.state.event.map( data => ({
             //image: require(`../../../assets/images/card-event.png`),
