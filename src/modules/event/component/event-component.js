@@ -146,7 +146,7 @@ class EventComponent extends Component {
                                                                 <Link to='/detail'><h2 className="text-soft-blue semi-bold">{data.title}</h2></Link>
                                                             </Col>
                                                             <Col lg={24}>
-                                                                {data.lokasi}
+                                                                {data.place}
                                                             </Col>
                                                         </Row>
                                                     </Card>
