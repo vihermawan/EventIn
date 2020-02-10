@@ -1,12 +1,14 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import { Modal, message } from 'antd'
 import { API } from '../../../common/api'
 import { navigate } from '../../../common/store/action'
 import PesertaAdminComponent from '../../../modules/admin-superadmin/user/peserta/peserta-component';
-import { faUsers, faTrash, faPen } from '@fortawesome/free-solid-svg-icons'
+import { faTrash, faPen } from '@fortawesome/free-solid-svg-icons'
 import { faInfoCircle } from '@fortawesome/free-solid-svg-icons'
 import ButtonDashboard from '../../../common/component/button/button-dashboard';
 
+const { confirm } = Modal;
 
 class PesertaAdminPage extends Component {
     state = { 
@@ -27,6 +29,22 @@ class PesertaAdminPage extends Component {
             peserta:res.data.data.user,
             loading: false,
           })
+        });
+    }
+
+    //function untuk modal
+    showDeleteConfirm = (id) => {
+        confirm({
+            title: ' Apakah yakin untuk menghapus data ?',
+            okText: 'Yes',
+            okType: 'danger',
+            cancelText: 'No',
+            onOk: () => {
+               // this.deleteEvent(id)
+            },
+            onCancel(){
+                console.log('Cancel')
+            }
         });
     }
 
@@ -68,7 +86,7 @@ class PesertaAdminPage extends Component {
             {
                 title: 'Action',
                 key: 'action',
-                render: () => (
+                render: (data) => (
                     [<ButtonDashboard
                         text="Edit"
                         height={20}
@@ -82,7 +100,7 @@ class PesertaAdminPage extends Component {
                         height={20}
                         icon={faInfoCircle}
                         borderRadius="5px"
-                        background="#FF0303"
+                        background="#FFA903"
                         marginRight= "20px"
                     />,
                     <ButtonDashboard
@@ -90,7 +108,8 @@ class PesertaAdminPage extends Component {
                         height={20}
                         icon={faTrash}
                         borderRadius="5px"
-                        background="#FFA903"
+                        background="#FF0303"
+                        onClick = { () => this.showDeleteConfirm(data.nomor)}
                     />]
               ),
             },

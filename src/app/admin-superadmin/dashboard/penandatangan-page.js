@@ -1,12 +1,15 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import { Modal, message } from 'antd'
 import { API } from '../../../common/api'
 import { navigate } from '../../../common/store/action'
 //component
 import PenandatanganAdminComponent from '../../../modules/admin-superadmin/user/penandatangan/penandatangan-component';
 import { faUsers, faTrash, faPen } from '@fortawesome/free-solid-svg-icons'
-import { faInfoCircle } from '@fortawesome/free-solid-svg-icons'
 import ButtonDashboard from '../../../common/component/button/button-dashboard';
+
+const {confirm} = Modal;
+
 
 class PenandatanganAdminPage extends Component {
     state = { 
@@ -27,6 +30,22 @@ class PenandatanganAdminPage extends Component {
             penandatangan:res.data.data.penandatangan,
             loading: false,
           })
+        });
+    }
+    
+    //function untuk modal
+    showDeleteConfirm = (id) => {
+        confirm({
+            title: ' Apakah yakin untuk menghapus data ?',
+            okText: 'Yes',
+            okType: 'danger',
+            cancelText: 'No',
+            onOk: () => {
+               // this.deleteEvent(id)
+            },
+            onCancel(){
+                console.log('Cancel')
+            }
         });
     }
 
@@ -82,6 +101,7 @@ class PenandatanganAdminPage extends Component {
                         icon={faTrash}
                         borderRadius="5px"
                         background="#E11212"
+                        onClick = {() => this.showDeleteConfirm()}
                     />]
               ),
             },
