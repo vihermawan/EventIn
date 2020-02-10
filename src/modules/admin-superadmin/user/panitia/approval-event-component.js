@@ -2,10 +2,11 @@ import React, { Component } from 'react';
 import { Layout, Breadcrumb, Row, Table, Input, Col,Tag } from 'antd';
 import '../../../../assets/css/dashboard-all/dashboard.css'
 import '../../../../assets/css/dashboard-all/table-style.css'
-import { faUsers, faTrash } from '@fortawesome/free-solid-svg-icons'
+import { faUsers, faTrash, faCheckCircle, faWindowClose } from '@fortawesome/free-solid-svg-icons'
 import { faInfoCircle } from '@fortawesome/free-solid-svg-icons'
 import ButtonIcon from '../../../../common/component/button/button-icon'
 import TableProfile from '../../../../common/component/table/table'
+import ButtonDashboard from '../../../../common/component/button/button-dashboard';
 // constant content
 const { Content } = Layout;
 const columns = [
@@ -40,20 +41,28 @@ const columns = [
       title: 'Action',
       key: 'action',
       render: () => (
-        [<ButtonIcon
+        [<ButtonDashboard
+            text="Approve"
+            height={20}
+            icon={faCheckCircle}
+            borderRadius="5px"
+            background="#00C908"
+            marginRight= "20px"
+        />,
+        <ButtonDashboard
+            text="Reject"
+            height={20}
+            icon={faWindowClose}
+            borderRadius="5px"
+            background="#FF0303"
+            marginRight= "20px"
+        />,
+        <ButtonDashboard
             text="Detail"
             height={20}
             icon={faInfoCircle}
             borderRadius="5px"
             background="#FFA903"
-            marginRight= "20px"
-        />,
-        <ButtonIcon
-            text="Delete"
-            height={20}
-            icon={faTrash}
-            borderRadius="5px"
-            background="#E11212"
         />]
       ),
     },

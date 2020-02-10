@@ -2,9 +2,11 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { faInfoCircle ,faDownload} from '@fortawesome/free-solid-svg-icons'
 import ButtonIcon from '../../../common/component/button/button-icon'
+import CONSTANS from '../../../common/utils/Constants'
 import { API } from '../../../common/api'
 import { navigate } from '../../../common/store/action'
 import ECertificateComponent from '../../../modules/admin-panitia/e-certificate/e-certificate-component';
+import ButtonDashboard from '../../../common/component/button/button-dashboard';
 
 class ECertificatePage extends Component {
     state = {  
@@ -26,6 +28,12 @@ class ECertificatePage extends Component {
               loading: false,
             })
         });
+    }
+
+     //button detail event
+     onDetailCertificate = (id) => {
+        console.log('id ini',id)
+        this.props.navigate(CONSTANS.DETAIL_SERTIF_PANITIA_MENU_KEY)
     }
 
     render() { 
@@ -81,22 +89,24 @@ class ECertificatePage extends Component {
         {
             title: 'Action',
             key: 'action',
-            render: () => (
-            [<ButtonIcon
+            render: (data) => (
+            [<ButtonDashboard
                 text="Download"
                 height={20}
                 icon={faDownload}
                 borderRadius="5px"
                 background="#070E57"
                 marginRight= "20px"
+              
             />,
-            <ButtonIcon
+            <ButtonDashboard
                 text="Detail"
                 height={20}
                 icon={faInfoCircle}
                 borderRadius="5px"
                 background="#FFA903"
                 marginRight= "20px"
+                onClick = {() => this.onDetailCertificate(data.nomor)}
             />]
             ),
         },
