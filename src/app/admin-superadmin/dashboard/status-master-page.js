@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { faPen, faTrash } from '@fortawesome/free-solid-svg-icons'
 import { Modal, message } from 'antd'
+import { API } from '../../../common/api'
 import ButtonDashboard from '../../../common/component/button/button-dashboard';
 import { navigate } from '../../../common/store/action'
 import StatusMasterComponent from '../../../modules/admin-superadmin/data-master/status-component';
@@ -9,8 +10,30 @@ import StatusMasterComponent from '../../../modules/admin-superadmin/data-master
 const {confirm} = Modal;
 
 class StatusMasterPage extends Component {
-    state = {  }
+    state = { 
+        status:[],
+        loading:false,
+     }
 
+     componentDidMount(){
+        this.getStatus();
+    }
+
+    //get data dari API
+    getStatus=()=>{
+        this.setState({loading: true})
+
+        API.get(`/admin/status`)
+        .then(res => {
+            console.log('res',res)
+            this.setState({
+                status:res.data.data.status,
+                loading: false,
+            })
+        });
+    }
+
+    
     //function untuk modal
     showDeleteConfirm = (id) => {
         confirm({
@@ -32,8 +55,8 @@ class StatusMasterPage extends Component {
         const columns = [
             {
                 title: 'No',
-                dataIndex: 'Nomor',
-                key: 'Nomor',
+                dataIndex: 'nomor',
+                key: 'nomor',
                 render: text => <a>{text}</a>,
             },
             {
@@ -65,14 +88,12 @@ class StatusMasterPage extends Component {
               ),
             },
           ];
-        const data = [
-            {
-              key: '1',
-              Nomor : '1',
-              Nama_Event: 'UGMTalks',
-              tanggal_event :'2020-10-11',
-            },
-          ];
+        
+
+        const data =  this.state.status.map( data => ({
+            nomor : data.id_status,
+            nama_status: data.nama_status,
+        }))
 
         return ( 
             <StatusMasterComponent

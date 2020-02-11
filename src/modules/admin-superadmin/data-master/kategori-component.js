@@ -5,9 +5,8 @@ import { Layout, Breadcrumb, Row, Table, Input, Col } from 'antd';
 import '../../../assets/css/dashboard-all/dashboard.css'
 import '../../../assets/css/dashboard-all/table-style.css'
 /*import component*/
-import { faPen, faTrash } from '@fortawesome/free-solid-svg-icons'
 import TableProfile from '../../../common/component/table/table'
-import ButtonDashboard from '../../../common/component/button/button-dashboard';
+import LoadingContainer from '../../../common/component/loading/loading-container'
 
 // constant content
 const { Content } = Layout;
@@ -25,23 +24,25 @@ class KategoriComponent extends Component {
                 }}
             >
                 <Breadcrumb separator=">">
-                    <Breadcrumb.Item>Dashboard Panitia</Breadcrumb.Item>
+                    <Breadcrumb.Item>Dashboard Data Master</Breadcrumb.Item>
                 </Breadcrumb>
                 <Row style={{minHeight: '100%',marginBottom: '2%',marginTop:'2%',}} className="background">
                     <Col lg={24} md={24} sm={24}> 
                         <div className="container-active-event">
                             <Row>
                             <div className="container-title-event">
-                                <span>Received</span>
+                                <span>Kategori Master</span>
                             </div>
                             </Row>
-                            <Row gutter={24} type="flex">
-                                <TableProfile 
-                                    columns={columns} 
-                                    dataSource={data} 
-                                    className="table-active-event"
-                                />
-                            </Row>
+                            <LoadingContainer loading={initialData.loading}>
+                                <Row gutter={24} type="flex">
+                                    <TableProfile 
+                                        columns={columns} 
+                                        dataSource={data} 
+                                        className="table-active-event"
+                                    />
+                                </Row>
+                            </LoadingContainer>
                         </div>
                     </Col>
                 </Row>

@@ -149,6 +149,7 @@ class ListParticipantPage extends Component {
         nama_peserta : data.peserta.nama_peserta,
         organisasi : data.peserta.organisasi,
         umur : data.peserta.umur,
+        jenis_kelamin : data.peserta.jenis_kelamin,
                 tags: ['Done'],
     }))
     
