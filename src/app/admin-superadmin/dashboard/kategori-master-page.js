@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { faPen, faTrash } from '@fortawesome/free-solid-svg-icons'
 import { Modal, message } from 'antd'
+import { API } from '../../../common/api'
 import ButtonDashboard from '../../../common/component/button/button-dashboard';
 import { navigate } from '../../../common/store/action'
 import KategoriMasterComponent from '../../../modules/admin-superadmin/data-master/kategori-component';
@@ -9,7 +10,28 @@ import KategoriMasterComponent from '../../../modules/admin-superadmin/data-mast
 const {confirm} = Modal;
 
 class KategoriMasterPage extends Component {
-    state = {  }
+    state = {  
+        kategori: [],
+        loading : false,
+    }
+
+    componentDidMount(){
+        this.getKategori();
+    }
+
+    //get data dari API
+    getKategori=()=>{
+      this.setState({loading: true})
+
+      API.get(`/admin/kategori`)
+      .then(res => {
+          console.log('res',res)
+          this.setState({
+              kategori:res.data.data.kategori,
+              loading: false,
+          })
+      });
+    }
 
      //function untuk modal
      showDeleteConfirm = (id) => {
@@ -32,8 +54,8 @@ class KategoriMasterPage extends Component {
         const columns = [
             {
                 title: 'No',
-                dataIndex: 'Nomor',
-                key: 'Nomor',
+                dataIndex: 'nomor',
+                key: 'nomor',
                 render: text => <a>{text}</a>,
             },
             {
@@ -45,7 +67,7 @@ class KategoriMasterPage extends Component {
             {
               title: 'Action',
               key: 'action',
-              render: () => (
+              render: (data) => (
                 [<ButtonDashboard
                     text="Edit"
                     height={20}
@@ -65,19 +87,16 @@ class KategoriMasterPage extends Component {
               ),
             },
           ];
-        const data = [
-            {
-              key: '1',
-              Nomor : '1',
-              Nama_Event: 'UGMTalks',
-              tanggal_event :'2020-10-11',
-            },
-          ];
-          
+
+        const data =  this.state.kategori.map( data => ({
+            nomor : data.id_kategori,
+            nama_kategori: data.nama_kategori,
+        }))
 
         return ( 
             <KategoriMasterComponent
                 navigate={this.props.navigate}
+                initialData={this.state}
                 columns={columns}
                 data ={data}
             />

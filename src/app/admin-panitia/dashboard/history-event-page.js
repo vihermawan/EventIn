@@ -86,6 +86,21 @@ class HistoryEventPage extends Component {
               title: 'Kategori',
               dataIndex: 'kategori',
               key: 'kategori',
+              render: kategori => (
+                <span>
+                  {kategori.map(tag => {
+                    let color = tag.length > 5 ? 'geekblue' : 'green';
+                    if (tag === 'loser') {
+                      color = 'volcano';
+                    }
+                    return (
+                      <Tag color={color} key={tag}>
+                        {tag}
+                      </Tag>
+                    );
+                  })}
+                </span>
+            ),
             },
             {
                 title: 'Tempat',
@@ -96,26 +111,6 @@ class HistoryEventPage extends Component {
               title: 'Peserta',
               dataIndex: 'peserta',
               key: 'peserta',
-            },
-            {
-              title: 'Status',
-              key: 'tags',
-              dataIndex: 'tags',
-              render: tags => (
-                <span>
-                  {/* {tags.map(tag => {
-                    let color = tag.length > 5 ? 'geekblue' : '#87d068';
-                    if (tag === 'reject') {
-                      color = 'volcano';
-                    }
-                    return (
-                      <Tag color={color} key={tag}>
-                        {tag.toUpperCase()}
-                      </Tag>
-                    );
-                  })} */}
-                </span>
-              ),
             },
             {
               title: 'Action',
@@ -149,16 +144,6 @@ class HistoryEventPage extends Component {
               ),
             },
           ];
-        
-          // const data = [
-          //   {
-          //     key: '1',
-          //     Nomor : '1',
-          //     Nama_Event: 'UGMTalks',
-          //     tanggal_event :'2020-10-11',
-          //     tags: ['Done'],
-          //   },
-          // ];
 
           const data =  this.state.eventPast.map( data => ({
             key: data.id_event,
@@ -166,9 +151,8 @@ class HistoryEventPage extends Component {
                     nama_event: data.nama_event,
                     start_event :data.detail_event.start_event,
                     lokasi : data.detail_event.lokasi,
-                    kategori : data.detail_event.id_kategori,
+                    kategori : [data.kategori.nama_kategori],
                     peserta : data.detail_event.limit_participant,
-                    tags: ['Done'],
         }))
 
         return ( 

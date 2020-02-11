@@ -162,7 +162,7 @@ class ActiveEventPage extends Component {
                     nama_event: data.nama_event,
                     start_event :data.detail_event.start_event,
                     lokasi : data.detail_event.lokasi,
-                    kategori : [data.id_kategori],
+                    kategori : [data.kategori.nama_kategori],
                     end_event : data.detail_event.end_event,
         }))
     

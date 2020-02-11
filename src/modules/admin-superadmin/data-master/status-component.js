@@ -6,6 +6,7 @@ import '../../../assets/css/dashboard-all/dashboard.css'
 import '../../../assets/css/dashboard-all/table-style.css'
 /*import component*/
 import TableProfile from '../../../common/component/table/table'
+import LoadingContainer from '../../../common/component/loading/loading-container'
 // constant content
 const { Content } = Layout;
 
@@ -22,7 +23,7 @@ class StatusComponent extends Component {
                 }}
             >
                 <Breadcrumb separator=">">
-                    <Breadcrumb.Item>Dashboard Status Master</Breadcrumb.Item>
+                    <Breadcrumb.Item>Dashboard Data Master</Breadcrumb.Item>
                 </Breadcrumb>
                 <Row style={{minHeight: '100%',marginBottom: '2%',marginTop:'2%',}} className="background">
                     <Col lg={24} md={24} sm={24}> 
@@ -32,13 +33,15 @@ class StatusComponent extends Component {
                                 <span>Status Master</span>
                             </div>
                             </Row>
-                            <Row gutter={24} type="flex">
-                                <TableProfile 
-                                    columns={columns} 
-                                    dataSource={data} 
-                                    className="table-active-event"
-                                />
-                            </Row>
+                            <LoadingContainer loading={initialData.loading}>
+                                <Row gutter={24} type="flex">
+                                    <TableProfile 
+                                        columns={columns} 
+                                        dataSource={data} 
+                                        className="table-active-event"
+                                    />
+                                </Row>
+                            </LoadingContainer>
                         </div>
                     </Col>
                 </Row>
