@@ -10,24 +10,25 @@ import ButtonDashboard from '../../../common/component/button/button-dashboard';
 
 class DetailSertifPage extends Component {
     state = {
-        
+        detailsertifikat : [],
+        loading : false,
     }
 
     componentDidMount(){
-        // this.getEventPast();
+        this.getDetailSertifikat(this.props.idSertifikat);
     }
 
-    // getEventPast=()=>{
-    //     this.setState({loading: true})
-    //     API.get(`/panitia/eventPast`)
-    //     .then(res => {
-    //       console.log('res',res.data.data.event)
-    //       this.setState({
-    //         eventPast:res.data.data.event,
-    //         loading: false,
-    //       })
-    //     });
-    // }
+    getDetailSertifikat=(id)=>{
+        // this.setState({loading: true})
+        API.get(`/panitia/event-sertifikat/${id}`)
+        .then(res => {
+          console.log('res',res)
+          // this.setState({
+          //   detailsertifikat:res.data.data,
+          //   loading: false,
+          // })
+        });
+    }
 
     render() { 
           const columns = [
@@ -84,7 +85,7 @@ class DetailSertifPage extends Component {
 }
  
 const mapStateToProps = state => ({
-    
+  ...state.certificate,
 });
 
 const mapDispatchToProps = (dispatch => ({

@@ -8,6 +8,9 @@ import { navigate } from '../../../common/store/action'
 import ECertificateComponent from '../../../modules/admin-panitia/e-certificate/e-certificate-component';
 import ButtonDashboard from '../../../common/component/button/button-dashboard';
 
+// import store
+import { setIdSertifikat } from '../../../modules/admin-panitia/e-certificate/store/e-certificate-action'
+
 class ECertificatePage extends Component {
     state = {  
         certificate: [],
@@ -33,6 +36,7 @@ class ECertificatePage extends Component {
      //button detail event
      onDetailCertificate = (id) => {
         console.log('id ini',id)
+        this.props.setIdSertifikat(id);
         this.props.navigate(CONSTANS.DETAIL_SERTIF_PANITIA_MENU_KEY)
     }
 
@@ -137,6 +141,7 @@ const mapStateToProps = state => ({
 
 const mapDispatchToProps = (dispatch => ({
     navigate,
+    setIdSertifikat,
 }))();
 
 const page = connect(mapStateToProps, mapDispatchToProps)(ECertificatePage);
