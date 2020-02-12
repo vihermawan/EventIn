@@ -14,6 +14,7 @@ import thunk from 'redux-thunk';
 
 // store component
 import activeEventReducer from '../../modules/admin-panitia/active-event/store/active-event-reducer'
+import certificateEventReducer from '../../modules/admin-panitia/e-certificate/store/e-certificate-reducer'
 
 const history = createHistory();
 const browserHistory = createBrowserHistory();
@@ -28,6 +29,7 @@ const persistConfig = {
 const reducers = combineReducers({
     router: connectRouter(browserHistory),
     activeEvent: activeEventReducer,
+    certificate : certificateEventReducer,
 })
 
 const persistedReducer = persistReducer(persistConfig, reducers);

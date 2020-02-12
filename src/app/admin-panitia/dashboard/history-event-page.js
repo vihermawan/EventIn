@@ -9,6 +9,9 @@ import { navigate } from '../../../common/store/action'
 import HistoryEventComponent from '../../../modules/admin-panitia/history-event/history-event-component';
 import ButtonDashboard from '../../../common/component/button/button-dashboard';
 
+// import store
+import { setIdEvent } from '../../../modules/admin-panitia/active-event/store/active-event-action'
+
 const { confirm } = Modal;
 
 class HistoryEventPage extends Component {
@@ -65,6 +68,7 @@ class HistoryEventPage extends Component {
     //button detail event
      onDetailEvent = (id) => {
       console.log('id ini',id)
+      this.props.setIdEvent(id);
       this.props.navigate(CONSTANS.DETAIL_EVENT_PANITIA_MENU_KEY)
     }
 
@@ -173,6 +177,7 @@ const mapStateToProps = state => ({
 
 const mapDispatchToProps = (dispatch => ({
     navigate,
+    setIdEvent,
 }))();
 
 const page = connect(mapStateToProps, mapDispatchToProps)(HistoryEventPage);

@@ -78,6 +78,7 @@ class ActiveEventPage extends Component {
     //button detail event
     onDetailEvent = (id) => {
         console.log('id ini',id)
+        this.props.setIdEvent(id);
         this.props.navigate(CONSTANS.DETAIL_EVENT_PANITIA_MENU_KEY)
     }
 
@@ -184,7 +185,7 @@ const mapStateToProps = state => ({
 
 const mapDispatchToProps = (dispatch => ({
     navigate,
-    getData,
+    // getData,
     setIdEvent,
 }))();
 

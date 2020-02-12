@@ -1,5 +1,5 @@
 import { API } from '../../../../common/api'
-import * as actionType from './active-event-action-type';
+import * as actionType from './e-certificate-action-type';
 
 const startGetDataParticipant = () => ({
     type: actionType.START_GET_DATA,
@@ -12,9 +12,9 @@ const setDataParticipant = payload => ({
     payload,
 });
 
-//halaman active event
-const setIdDataEvent = payload => ({
-    type: actionType.SET_ID_EVENT,
+//halaman sertifikat
+const setIdDataSertifikat = payload => ({
+    type: actionType.SET_ID_SERTIFIKAT,
     payload,
 })
 
@@ -28,6 +28,10 @@ export const getData = (service, params) => (dispatch) => {
     })
 };
 
-export const setIdEvent = (data) => (dispatch) => {
-    dispatch(setIdDataEvent(data));
+// export const setIdEvent = (data) => (dispatch) => {
+//     dispatch(setIdDataEvent(data));
+// }
+
+export const setIdSertifikat = (data) => (dispatch) => {
+    dispatch(setIdDataSertifikat(data));
 }
