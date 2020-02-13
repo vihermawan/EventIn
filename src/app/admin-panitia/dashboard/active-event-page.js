@@ -29,7 +29,6 @@ class ActiveEventPage extends Component {
     //get data dari API
     getEvent=()=>{
         this.setState({loading: true})
-
         API.get(`/panitia/event`)
         .then(res => {
             console.log('res',res.data.data.event)
@@ -151,8 +150,6 @@ class ActiveEventPage extends Component {
                     borderRadius="5px"
                     background="#FFA903"
                     onClick={ () => this.onDetailEvent(data.nomor)}
-                    // onClick={ () => this.showDeleteConfirm(data.nomor)}
-
                 />]
               ),
             },
@@ -185,7 +182,6 @@ const mapStateToProps = state => ({
 
 const mapDispatchToProps = (dispatch => ({
     navigate,
-    // getData,
     setIdEvent,
 }))();
 

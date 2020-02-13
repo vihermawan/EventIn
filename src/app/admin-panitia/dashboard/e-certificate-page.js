@@ -121,7 +121,7 @@ class ECertificatePage extends Component {
                 nama_event: data.sertifikat.event.nama_event,
                 penandatangan : data.penandatangan.nama_penandatangan,
                 sertifikat :data.sertifikat.sertifikat,
-                tags: ['Done'],
+               
     }))
 
         return ( 

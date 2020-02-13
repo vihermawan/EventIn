@@ -6,7 +6,6 @@ import '../../../assets/css/event.css'
 // component
 import Navbar from '../../../common/layout/navbar-landing'
 import Footer from '../../../common/layout/footer-landing'
-import ButtonRounded from '../../../common/component/button/button-rounded'
 
 
 const { Content } = Layout;

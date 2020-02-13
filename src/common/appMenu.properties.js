@@ -25,12 +25,23 @@ const menu = {
     PARTICIPANT_EVENT: {
         link :'/dashboard/participant-event/',
     },
-
     DETAIL_EVENT_PANITIA: {
         link : '/dashboard/detail-event',
     },
     DETAIL_SERTIF_PANITIA : {
         link : '/dashboard/detail-e-certificate',
+    },
+
+    DETAIL_EVENT_ADMIN: {
+        link:'/admin/detail-event'
+    },
+
+    DETAIL_PESERTA_ADMIN :{
+        link: '/admin/admin-detail-peserta'
+    },
+
+    DETAIL_PANITIA_ADMIN : {
+        link :'/admin/detail-panitia'
     }
 };
 

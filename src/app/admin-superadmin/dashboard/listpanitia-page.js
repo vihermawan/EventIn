@@ -1,13 +1,17 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { API } from '../../../common/api'
-import { Modal, message } from 'antd'
+import { Modal } from 'antd'
 import { navigate } from '../../../common/store/action'
+import CONSTANS from '../../../common/utils/Constants'
 import ListPanitiaAdminComponent from '../../../modules/admin-superadmin/user/panitia/listpanitia-component';
 //component
-import { faUsers, faTrash, faPen } from '@fortawesome/free-solid-svg-icons'
+import { faTrash, faPen } from '@fortawesome/free-solid-svg-icons'
 import { faInfoCircle } from '@fortawesome/free-solid-svg-icons'
 import ButtonDashboard from '../../../common/component/button/button-dashboard';
+
+// import store
+import { setIdPanitia } from '../../../modules/admin-superadmin/user/panitia/store/panitia-action'
 
 const { confirm } = Modal;
 
@@ -49,6 +53,15 @@ class ListPanitiaAdminPage extends Component {
         });
     }
 
+    //button detail event
+    onDetailPanitia = (id) => {
+        console.log('id ini',id)
+        this.props.setIdPanitia(id);
+        this.props.navigate(CONSTANS.DETAIL_PANITIA_ADMIN_MENU_KEY)
+    }
+
+    
+
     render() { 
 
         const columns = [
@@ -68,6 +81,8 @@ class ListPanitiaAdminPage extends Component {
                 title: 'Organisasi',
                 dataIndex: 'organisasi',
                 key: 'organisasi',
+                sorter: (a, b) => a.organisasi.length - b.organisasi.length,
+                sortDirections: ['descend', 'ascend'],
             },
             {
                 title: 'Email',
@@ -98,6 +113,7 @@ class ListPanitiaAdminPage extends Component {
                         borderRadius="5px"
                         background="#FFA903"
                         marginRight= "20px"
+                        onClick = { () => this.onDetailPanitia(data.nomor)}
                     />,
                     <ButtonDashboard
                         text="Delete"
@@ -116,14 +132,20 @@ class ListPanitiaAdminPage extends Component {
             panitia : data.panitia.nama_panitia,
             email : data.email,
             organisasi : data.panitia.organisasi,
+            no_telepon : data.panitia.no_telepon,
         }))
         
+        function onChange(pagination, filters, sorter, extra) {
+            console.log('params', pagination, filters, sorter, extra);
+        }
+
         return ( 
             <ListPanitiaAdminComponent
                 initialData={this.state}
                 navigate={this.props.navigate}
                 columns={columns}
                 data={data}
+                onChange={onChange}
             />
         );
     }
@@ -135,6 +157,7 @@ const mapStateToProps = state => ({
 
 const mapDispatchToProps = (dispatch => ({
     navigate,
+    setIdPanitia,
 }))();
 
 const page = connect(mapStateToProps, mapDispatchToProps)(ListPanitiaAdminPage);
