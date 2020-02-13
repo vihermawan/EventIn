@@ -1,10 +1,9 @@
-// import * as actionType from './e-certificate-action-type';
-import * as actionType from './e-certificate-action-type';
+import * as actionType from './panitia-action-type';
 
 const initialState = {
     loading: false,
     data: [],
-    idSertifikat:null,
+    idPanitia : null,
 };
 
 const handler = (currentState) => {
@@ -23,17 +22,15 @@ const handler = (currentState) => {
         }),
     };
 
-
-    const setIdSertifikat = {
-        setIdDataSertifikat: data => ({
+    const setIdPanitia = {
+        setIdDataPanitia : data => ({
             ...currentState,
-            idSertifikat: data
+            idPanitia : data
         })
     }
 
     return {
-        // ...setIdEvent,
-        ...setIdSertifikat,
+        ...setIdPanitia,
     };
 };
 
@@ -46,10 +43,12 @@ export default (state = initialState, action) => {
             return handler(state).finishGetDataParticipant();
         case actionType.SET_DATA:
             return handler(state).setDataParticipant(payload);
-        case actionType.SET_ID_SERTIFIKAT:
-            return handler(state).setIdDataSertifikat(payload);
+
     
-        
+      
+        case actionType.SET_ID_PANITIA:
+            return handler(state).setIdDataPanitia(payload);
+
         default:
             return state;
     }

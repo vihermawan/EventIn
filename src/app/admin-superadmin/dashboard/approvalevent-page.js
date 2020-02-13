@@ -1,16 +1,40 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { Modal, message } from 'antd'
-import { faUsers, faTrash, faCheckCircle, faWindowClose } from '@fortawesome/free-solid-svg-icons'
+import { API } from '../../../common/api'
+import { Modal, Tag} from 'antd'
+import CONSTANS from '../../../common/utils/Constants'
+import { faCheckCircle, faWindowClose } from '@fortawesome/free-solid-svg-icons'
 import { faInfoCircle } from '@fortawesome/free-solid-svg-icons'
 import ButtonDashboard from '../../../common/component/button/button-dashboard';
 import { navigate } from '../../../common/store/action'
 import ApprovalEventComponent from '../../../modules/admin-superadmin/user/panitia/approval-event-component';
 
+// import store
+import {  setIdEvent } from '../../../modules/admin-panitia/active-event/store/active-event-action'
+
 const { confirm } = Modal;
 
 class ApprovalEventPage extends Component {
-    state = {  }
+    state = {
+        approvalevent : [],
+        loading : false,
+    }
+
+    componentDidMount(){
+        this.getApprovalEvent();
+    }
+
+    getApprovalEvent = () => {
+         this.setState({loading: true})
+         API.get(`/admin/approve/event`)
+         .then(res => {
+           console.log('res',res)
+           this.setState({
+             approvalevent:res.data.data.event,
+             loading: false,
+           })
+         });
+    }
 
     //function untuk modal
     showDeleteConfirm = (id) => {
@@ -28,6 +52,12 @@ class ApprovalEventPage extends Component {
         });
     }
 
+     //button detail event
+     onDetailEvent = (id) => {
+        console.log('id ini',id)
+        this.props.setIdEvent(id);
+        this.props.navigate(CONSTANS.DETAIL_EVENT_ADMIN_MENU_KEY)
+    }
     
     //function untuk modal
     showAcceptConfirm = (id) => {
@@ -70,35 +100,55 @@ class ApprovalEventPage extends Component {
         const columns = [
             {
                 title: 'No',
-                dataIndex: 'Nomor',
-                key: 'Nomor',
+                dataIndex: 'nomor',
+                key: 'nomor',
                 render: text => <a>{text}</a>,
             },
             {
                 title: 'Nama Event',
-                dataIndex: 'Nama_Event',
-                key: 'Nama_Event',
+                dataIndex: 'nama_event',
+                key: 'nama_event',
                 render: text => <a>{text}</a>,
             },
             {
                 title: 'Tempat',
-                dataIndex: 'tanggal_event',
-                key: 'tanggal_event',
+                dataIndex: 'lokasi',
+                key: 'lokasi',
             },
             {
-                title: 'Jabatan',
-                dataIndex: 'tanggal_event',
-                key: 'tanggal_event',
+                title: 'Kategori',
+                dataIndex: 'kategori',
+                key: 'kategori',
+                render: kategori => (
+                    <span>
+                      {kategori.map(tag => {
+                        let color = tag.length > 5 ? 'geekblue' : 'green';
+                        if (tag === 'loser') {
+                          color = 'volcano';
+                        }
+                        return (
+                          <Tag color={color} key={tag}>
+                            {tag}
+                          </Tag>
+                        );
+                      })}
+                    </span>
+                ),
             },
             {
-                title: 'Jenis Kelamin',
-                dataIndex: 'tanggal_event',
-                key: 'tanggal_event',
+                title: 'Tanggal Mulai',
+                dataIndex: 'start_event',
+                key: 'start_event',
+            },
+            {
+                title: 'Tanggal Selesai',
+                dataIndex: 'end_event',
+                key: 'end_event',
             },
             {
               title: 'Action',
               key: 'action',
-              render: () => (
+              render: (data) => (
                 [<ButtonDashboard
                     text="Approve"
                     height={20}
@@ -123,19 +173,22 @@ class ApprovalEventPage extends Component {
                     icon={faInfoCircle}
                     borderRadius="5px"
                     background="#FFA903"
+                    onClick = { () => this.onDetailEvent(data.nomor)}
                 
                 />]
               ),
             },
           ];
-        const data = [
-            {
-              key: '1',
-              Nomor : '1',
-              Nama_Event: 'UGMTalks',
-              tanggal_event :'2020-10-11',
-            },
-          ];
+       
+           
+        const data =  this.state.approvalevent.map( data => ({
+            nomor : data.id_event,
+            nama_event: data.nama_event,
+            start_event :data.detail_event.start_event,
+            lokasi : data.detail_event.lokasi,
+            kategori : [data.kategori.nama_kategori],
+            end_event : data.detail_event.end_event,
+        }))
 
         return ( 
             <ApprovalEventComponent
@@ -154,6 +207,7 @@ const mapStateToProps = state => ({
 
 const mapDispatchToProps = (dispatch => ({
     navigate,
+    setIdEvent,
 }))();
 
 const page = connect(mapStateToProps, mapDispatchToProps)(ApprovalEventPage);

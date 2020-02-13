@@ -150,7 +150,6 @@ class HistoryEventPage extends Component {
           ];
 
           const data =  this.state.eventPast.map( data => ({
-            key: data.id_event,
                     nomor : data.id_event,
                     nama_event: data.nama_event,
                     start_event :data.detail_event.start_event,

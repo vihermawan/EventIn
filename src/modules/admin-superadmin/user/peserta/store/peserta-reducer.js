@@ -1,10 +1,9 @@
-// import * as actionType from './e-certificate-action-type';
-import * as actionType from './e-certificate-action-type';
+import * as actionType from './peserta-action-type';
 
 const initialState = {
     loading: false,
     data: [],
-    idSertifikat:null,
+    idPeserta :null,
 };
 
 const handler = (currentState) => {
@@ -23,17 +22,17 @@ const handler = (currentState) => {
         }),
     };
 
+  
 
-    const setIdSertifikat = {
-        setIdDataSertifikat: data => ({
+    const setIdPeserta = {
+        setIdDataPeserta: data => ({
             ...currentState,
-            idSertifikat: data
+            idPeserta: data
         })
     }
 
     return {
-        // ...setIdEvent,
-        ...setIdSertifikat,
+        ...setIdPeserta,
     };
 };
 
@@ -46,10 +45,11 @@ export default (state = initialState, action) => {
             return handler(state).finishGetDataParticipant();
         case actionType.SET_DATA:
             return handler(state).setDataParticipant(payload);
-        case actionType.SET_ID_SERTIFIKAT:
-            return handler(state).setIdDataSertifikat(payload);
+
     
-        
+        case actionType.SET_ID_PESERTA:
+            return handler(state).setIdDataPeserta(payload);
+
         default:
             return state;
     }

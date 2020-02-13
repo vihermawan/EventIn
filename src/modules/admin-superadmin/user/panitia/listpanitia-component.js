@@ -11,7 +11,7 @@ const { Content } = Layout;
 
 class ListPanitiaComponent extends Component {
     render() { 
-        const { initialData, columns, data } = this.props
+        const { initialData, columns, data,onChange } = this.props
         return ( 
             <Content
                 style={{
@@ -40,6 +40,7 @@ class ListPanitiaComponent extends Component {
                                         columns={columns} 
                                         dataSource={data} 
                                         className="table-active-event"
+                                        onChange={onChange}
                                     />
                                 </Row>
                             </LoadingContainer>

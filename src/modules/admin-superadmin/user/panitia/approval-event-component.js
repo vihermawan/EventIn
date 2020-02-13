@@ -3,6 +3,7 @@ import { Layout, Breadcrumb, Row, Table, Input, Col,Tag } from 'antd';
 import '../../../../assets/css/dashboard-all/dashboard.css'
 import '../../../../assets/css/dashboard-all/table-style.css'
 import TableProfile from '../../../../common/component/table/table'
+import LoadingContainer from '../../../../common/component/loading/loading-container'
 // constant content
 const { Content } = Layout;
 
@@ -33,13 +34,15 @@ class ApprovalEventComponent extends Component {
                                 <span>List Approval Event</span>
                             </div>
                             </Row>
-                            <Row gutter={24} type="flex">
-                                <TableProfile 
-                                    columns={columns} 
-                                    dataSource={data} 
-                                    className="table-active-event"
-                                />
-                            </Row>
+                            <LoadingContainer loading={initialData.loading}>
+                                <Row gutter={24} type="flex">
+                                    <TableProfile 
+                                        columns={columns} 
+                                        dataSource={data} 
+                                        className="table-active-event"
+                                    />
+                                </Row>
+                            </LoadingContainer>
                         </div>
                     </Col>
                 </Row>

@@ -1,11 +1,8 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { message, Menu, Icon } from 'antd';
-import CONSTANS from '../../../common/utils/Constants'
-import { API } from '../../../common/api'
 import { navigate } from '../../../common/store/action'
 import VenueComponent from '../../../modules/admin-panitia/create-event/venue/venue-component';
-import Axios from 'axios';
 
 class VenuePage extends Component {
     state = {

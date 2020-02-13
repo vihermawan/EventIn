@@ -2,11 +2,16 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Modal, message } from 'antd'
 import { API } from '../../../common/api'
+import CONSTANS from '../../../common/utils/Constants'
 import { navigate } from '../../../common/store/action'
 import PesertaAdminComponent from '../../../modules/admin-superadmin/user/peserta/peserta-component';
 import { faTrash, faPen } from '@fortawesome/free-solid-svg-icons'
 import { faInfoCircle } from '@fortawesome/free-solid-svg-icons'
 import ButtonDashboard from '../../../common/component/button/button-dashboard';
+
+// import store
+import { setIdPeserta } from '../../../modules/admin-superadmin/user/peserta/store/peserta-action'
+
 
 const { confirm } = Modal;
 
@@ -30,6 +35,13 @@ class PesertaAdminPage extends Component {
             loading: false,
           })
         });
+    }
+
+    //button detail event
+    onDetailPeserta = (id) => {
+        console.log('id ini',id)
+        this.props.setIdPeserta(id);
+        this.props.navigate(CONSTANS.DETAIL_PESERTA_ADMIN_MENU_KEY)
     }
 
     //function untuk modal
@@ -102,6 +114,7 @@ class PesertaAdminPage extends Component {
                         borderRadius="5px"
                         background="#FFA903"
                         marginRight= "20px"
+                        onClick = { () => this.onDetailPeserta(data.nomor)}
                     />,
                     <ButtonDashboard
                         text="Delete"
@@ -140,6 +153,7 @@ const mapStateToProps = state => ({
 
 const mapDispatchToProps = (dispatch => ({
     navigate,
+    setIdPeserta,
 }))();
 
 const page = connect(mapStateToProps, mapDispatchToProps)(PesertaAdminPage);

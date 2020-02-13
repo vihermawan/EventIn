@@ -1,8 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { Tag } from 'antd';
-import {  faUsers, faTrash, faInfoCircle } from '@fortawesome/free-solid-svg-icons'
-import ButtonIcon from '../../../common/component/button/button-icon'
+import { faInfoCircle } from '@fortawesome/free-solid-svg-icons'
 import { API } from '../../../common/api'
 import { navigate } from '../../../common/store/action'
 import DetailPanitiaComponent from '../../../modules/admin-superadmin/user/panitia/detail-panitia-component';
@@ -14,20 +12,20 @@ class DetailPanitiaPage extends Component {
     }
 
     componentDidMount(){
-        // this.getEventPast();
+        this.getDetailPanitia(this.props.idPanitia);
     }
 
-    // getEventPast=()=>{
-    //     this.setState({loading: true})
-    //     API.get(`/panitia/eventPast`)
-    //     .then(res => {
-    //       console.log('res',res.data.data.event)
-    //       this.setState({
-    //         eventPast:res.data.data.event,
-    //         loading: false,
-    //       })
-    //     });
-    // }
+    getDetailPanitia=(id)=>{
+        //this.setState({loading: true})
+        API.get(`/admin/detail-panitia/admin/${id}`)
+        .then(res => {
+          console.log('res',res)
+        //   this.setState({
+        //     eventPast:res.data.data.event,
+        //     loading: false,
+        //   })
+        });
+    }
 
     render() { 
         const columns = [
@@ -82,15 +80,6 @@ class DetailPanitiaPage extends Component {
             },
           ];
         
-          // const data = [
-          //   {
-          //     key: '1',
-          //     Nomor : '1',
-          //     Nama_Event: 'UGMTalks',
-          //     tanggal_event :'2020-10-11',
-          //     tags: ['Done'],
-          //   },
-          // ];
 
         //   const data =  this.state.eventPast.map( data => ({
         //     key: data.id_event,
@@ -116,7 +105,7 @@ class DetailPanitiaPage extends Component {
 }
  
 const mapStateToProps = state => ({
-    
+    ...state.panitia,
 });
 
 const mapDispatchToProps = (dispatch => ({
