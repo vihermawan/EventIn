@@ -1,12 +1,12 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { Modal, message } from 'antd'
+import { Modal, Tag,Divider } from 'antd'
 import { faCheckCircle, faWindowClose} from '@fortawesome/free-solid-svg-icons'
-import ButtonIcon from '../../../common/component/button/button-icon'
 import { API } from '../../../common/api'
 import { navigate } from '../../../common/store/action'
 import ListParticipantComponent from '../../../modules/admin-panitia/list-participant/list-participant-component';
 import ButtonDashboard from '../../../common/component/button/button-dashboard';
+
 
 const { confirm } = Modal;
 
@@ -73,8 +73,8 @@ class ListParticipantPage extends Component {
     const columns = [
         {
             title: 'No',
-            dataIndex: 'nomor',
-            key: 'nomor',
+            dataIndex: 'no',
+            key: 'no',
             render: text => <a>{text}</a>,
         },
         {
@@ -89,6 +89,11 @@ class ListParticipantPage extends Component {
             key: 'organisasi',
         },
         {
+            title: 'Email',
+            dataIndex: 'email',
+            key: 'email',
+        },
+        {
             title: 'Jenis Kelamin',
             dataIndex: 'jenis_kelamin',
             key: 'jenis_kelamin',
@@ -99,22 +104,24 @@ class ListParticipantPage extends Component {
             key: 'umur',
         },
         {
-            title: 'Status',
-            key: 'tags',
-            dataIndex: 'tags',
-            render: tags => (
+            title: 'Status Peserta',
+            key: 'status',
+            dataIndex: 'status',
+            render: status => (
             <span>
-                {/* {tags.map(tag => {
+                {status.map(tag => {
                 let color = tag.length > 5 ? 'geekblue' : '#87d068';
-                if (tag === 'reject') {
-                    color = 'volcano';
-                }
-                return (
-                    <Tag color={color} key={tag}>
-                    {tag.toUpperCase()}
-                    </Tag>
-                );
-                })} */}
+                    if (tag === 'Register') {
+                        color = '#f50';
+                    }else if (tag === 'Registered'){
+                        color = '#87d068';
+                    }
+                    return (
+                        <Tag color={color} key={tag}>
+                            {tag}
+                        </Tag>
+                    );
+                })}
             </span>
             ),
         },
@@ -123,34 +130,36 @@ class ListParticipantPage extends Component {
             key: 'action',
             render: (data) => (
             [<ButtonDashboard
-                text="Approve"
+                // text="Accept"
                 height={20}
                 icon={faCheckCircle}
                 borderRadius="5px"
                 background="#00C908"
-                marginRight= "20px"
                 onClick={ () => this.showAcceptConfirm(data.nomor)}
             />,
+            <Divider type="vertical" />,
             <ButtonDashboard
-                text="Reject"
+                // text="Reject"
                 height={20}
                 icon={faWindowClose}
                 borderRadius="5px"
                 background="#FF0303"
-                marginRight= "20px"
+             
                 onClick={ () => this.showRejectConfirm(data.nomor)}
             />]
             ),
         },
     ];
 
-    const data =  this.state.participant.map( data => ({
-        nomor : data.id_peserta_event,
-        nama_peserta : data.peserta.nama_peserta,
-        organisasi : data.peserta.organisasi,
-        umur : data.peserta.umur,
-        jenis_kelamin : data.peserta.jenis_kelamin,
-                tags: ['Done'],
+    const data =  this.state.participant.map( ({id_peserta_event, peserta, status}, index) => ({
+        no : index+1,
+        nomor : id_peserta_event,
+        nama_peserta : peserta.nama_peserta,
+        organisasi : peserta.organisasi,
+        umur : peserta.umur,
+        jenis_kelamin : peserta.jenis_kelamin,
+        email : peserta.users.email,
+        status : [status.nama_status],
     }))
     
         return ( 

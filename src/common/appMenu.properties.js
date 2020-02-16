@@ -10,6 +10,12 @@ const menu = {
     LOGIN: {
         link: '/login',
     },
+    REGISTER_PESERTA : {
+        link : '/register-peserta'
+    },
+    REGISTER_PANITIA : {
+        link : '/register-panitia'
+    },
     PANITIA: {
         link: '/dashboard/dashboard-panitia',
     },
@@ -28,6 +34,11 @@ const menu = {
     DETAIL_EVENT_PANITIA: {
         link : '/dashboard/detail-event',
     },
+
+    DETAIL_EVENT_PARTICIPANT_PANITIA : {
+        link : '/dashboard/participant/detail-event'
+    },
+    
     DETAIL_SERTIF_PANITIA : {
         link : '/dashboard/detail-e-certificate',
     },
@@ -42,7 +53,8 @@ const menu = {
 
     DETAIL_PANITIA_ADMIN : {
         link :'/admin/detail-panitia'
-    }
+    },
+   
 };
 
 export default menu;

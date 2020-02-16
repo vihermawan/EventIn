@@ -25,7 +25,7 @@ const persistConfig = {
     key: 'your-apps',
     storage,
     stateReconciler: autoMergeLevel1,
-    whitelist: ['login',],
+    whitelist: ['login','activeEvent','certificate','peserta','panitia'],
 };
 
 const reducers = combineReducers({

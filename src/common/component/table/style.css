@@ -17,3 +17,14 @@
 .ant-table-tbody > tr > td{
     border-radius: 0px;
 }
+.ant-table-thead > tr > th.ant-table-column-has-actions.ant-table-column-has-sorters:hover {
+    background-color: #4D5AF2;
+}
+
+.ant-table-thead > tr > th .ant-table-column-sorter .ant-table-column-sorter-inner{
+    color : white;
+}
+
+.ant-table-thead > tr > th.ant-table-column-sort{
+    background-color: #4D5AF2;
+}

@@ -1,16 +1,21 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { Tag } from 'antd';
-import {  faUsers, faTrash, faInfoCircle } from '@fortawesome/free-solid-svg-icons'
-import ButtonIcon from '../../../common/component/button/button-icon'
+import { Tag,Modal } from 'antd';
+import CONSTANS from '../../../common/utils/Constants'
+import {  faUsers, faInfoCircle } from '@fortawesome/free-solid-svg-icons'
 import { API } from '../../../common/api'
 import { navigate } from '../../../common/store/action'
 import DetailParticipantComponent from '../../../modules/admin-panitia/active-event/participant-active-event-component';
 import ButtonDashboard from '../../../common/component/button/button-dashboard';
 
+// import store
+import { setIdPeserta } from '../../../modules/admin-superadmin/user/peserta/store/peserta-action'
+
+const {confirm} = Modal;
+
 class DetailParticipantPage extends Component {
     state = {
-        eventPast: [],
+        listParticipant: [],
         loading: false,
     }
 
@@ -18,10 +23,40 @@ class DetailParticipantPage extends Component {
         this.getParticipantEvent(this.props.idEvent)
     }
 
-    getParticipantEvent = (id) => {
+    getParticipantEvent=(id) => {
+        this.setState({loading: true})
         API.get(`/panitia/event/${id}/peserta`)
         .then(res => {
-          console.log('res',res)
+            console.log('res',res)
+            if(res.status === 200){
+                this.setState({
+                    listParticipant:res.data.data.peserta,
+                })
+            }
+            this.setState({loading:false})
+        });
+    }
+
+    //button detail peserta
+    onDetailPeserta = (id) => {
+        console.log('id ini',id)
+        this.props.setIdPeserta(id);
+        this.props.navigate(CONSTANS.DETAIL_EVENT_PESERTA_MENU_KEY)
+    }
+
+    //function untuk modal
+    showAbsenConfirm = (id) => {
+        confirm({
+            title: 'Apakah peserta ini sudah datang ?',
+            okText: 'Yes',
+            okType: 'danger',
+            cancelText: 'No',
+            onOk: () => {
+                //this.AbsenPeserta(id)
+            },
+            onCancel(){
+                console.log('Cancel')
+            }
         });
     }
 
@@ -51,7 +86,7 @@ class DetailParticipantPage extends Component {
             },
             {
                 title: 'Jenis Kelamin',
-                dataIndex: 'jenis_Kelamin',
+                dataIndex: 'jenis_kelamin',
                 key: 'jenis_kelamin',
             },
             {
@@ -60,54 +95,58 @@ class DetailParticipantPage extends Component {
                 key: 'umur',
             },
             {
+                title: 'Status Absensi',
+                dataIndex: 'status',
+                key: 'status',
+                render: status => (
+                    <span>
+                      {status.map(tag => {
+                        let color = tag.length > 5 ? 'geekblue' : 'green';
+                        if (tag === 'loser') {
+                          color = 'volcano';
+                        }
+                        return (
+                          <Tag color={color} key={tag}>
+                            {tag}
+                          </Tag>
+                        );
+                      })}
+                    </span>
+                ),
+            },
+            {
               title: 'Action',
               key: 'action',
-              render: () => (
+              render: (data) => (
                 [<ButtonDashboard
-                    text="Download"
+                    text="Absen"
                     height={20}
                     icon={faUsers}
                     borderRadius="5px"
                     background="#070E57"
                     marginRight= "20px"
-                />,
-                <ButtonDashboard
-                    text="Delete"
-                    height={20}
-                    icon={faTrash}
-                    borderRadius="5px"
-                    background="#FF0303"
-                    marginRight= "20px"
-                />,
-                <ButtonDashboard
-                    text="Detail"
-                    height={20}
-                    icon={faInfoCircle}
-                    borderRadius="5px"
-                    background="#FFA903"
+                    onClick = {() => this.showAbsenConfirm()}
                 />]
               ),
             },
           ];
 
-        //   const data =  this.state.eventPast.map( data => ({
-        //     key: data.id_event,
-        //             nomor : data.id_event,
-        //             nama_event: data.nama_event,
-        //             start_event :data.detail_event.start_event,
-        //             lokasi : data.detail_event.lokasi,
-        //             kategori : data.detail_event.id_kategori,
-        //             peserta : data.detail_event.limit_participant,
-        //             tags: ['Done'],
-        // }))
+        const data =  this.state.listParticipant.map( data => ({
+            nomor : data.id_event,
+            nama_peserta: data.peserta.nama_peserta,
+            organisasi : data.peserta.organisasi,
+            email : data.peserta.users.email,
+            jenis_kelamin : data.peserta.jenis_kelamin,
+            umur : data.peserta.umur,
+            status : [data.status.nama_status],
+        }))
 
         return ( 
             <DetailParticipantComponent
                 initialData={this.state}
                 navigate={this.props.navigate}
-
                 columns={columns}
-                // data={data}
+                data={data}
             />
         );
     }
@@ -119,6 +158,7 @@ const mapStateToProps = state => ({
 
 const mapDispatchToProps = (dispatch => ({
     navigate,
+    setIdPeserta,
 }))();
 
 const page = connect(mapStateToProps, mapDispatchToProps)(DetailParticipantPage);

@@ -6,7 +6,7 @@ function ButtonRounded({
     type, text, disabled, borderRadius = 25,
     background = '#4D5AF2', textColor = "white", border = 'none',
     margin = '0px', marginLeft, marginRight, marginTop, marginBottom,
-    className,
+    className,navigate, target,
 }) {
     return (
         <Button
@@ -24,6 +24,7 @@ function ButtonRounded({
                 marginTop: marginTop,
                 marginBottom: marginBottom,
             }}
+            onClick={() => navigate(target)}
         >
             {text}
         </Button>

@@ -16,12 +16,13 @@ class PilihanComponent extends Component {
                 image: require(`../../../assets/images/organizer.png`),
                 title: 'Organizer',
                 link :<a href="/login">Register Now !</a>,
-                target : 'CONSTANTS.LOGIN_MENU_KEY',
+                target : CONSTANTS.REGISTER_PANITIA_KEY,
             },
             {
                 image: require(`../../../assets/images/organizer.png`),
                 title: 'Participant',
-                link :<a href="/login">Register Now !</a>
+                link :<a href="/login">Register Now !</a>,
+                target : CONSTANTS.REGISTER_PESERTA_KEY,
             }
         ]
 
@@ -58,7 +59,7 @@ class PilihanComponent extends Component {
                                                         style={{borderRadius: '10px',backgroundColor:'#FA607E',border:'none',color:'#ffff'}}
                                                         block={true}
                                                         navigate={this.props.navigate}
-                                                        target={this.target}
+                                                        target={data.target}
                                                     />
                                                 </div>
                                             </div>

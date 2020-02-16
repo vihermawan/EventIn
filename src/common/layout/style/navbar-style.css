@@ -84,6 +84,10 @@
     float: right;
 }
 
+.menuCon .rightMenu-hidden{
+    display: none;
+}
+
 .barsMenu {
     border: none;
     float: right;

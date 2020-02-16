@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { Modal, message, Tag } from 'antd'
+import { Modal, message, Tag, Divider } from 'antd'
 import { API } from '../../../common/api'
 import { navigate } from '../../../common/store/action'
 import ActiveEventComponent from '../../../modules/admin-panitia/active-event/active-event-component';
@@ -12,7 +12,7 @@ import { faInfoCircle } from '@fortawesome/free-solid-svg-icons'
 import ButtonDashboard from '../../../common/component/button/button-dashboard';
 
 // import store
-import { getData, setIdEvent } from '../../../modules/admin-panitia/active-event/store/active-event-action'
+import { setIdEvent } from '../../../modules/admin-panitia/active-event/store/active-event-action'
 
 const { confirm } = Modal;
 
@@ -70,6 +70,7 @@ class ActiveEventPage extends Component {
 
     //button detail participant
     onDetailParticipant = (id) => {
+        console.log('id ini',id)
         this.props.setIdEvent(id);
         this.props.navigate(CONSTANS.PARTICIPANT_EVENT_MENU_KEY)
     }
@@ -85,8 +86,8 @@ class ActiveEventPage extends Component {
         const columns = [
             {
                 title: 'No',
-                dataIndex: 'nomor',
-                key: 'nomor',
+                dataIndex: 'no',
+                key: 'no',
                 render: text => <a>{text}</a>,
             },
             {
@@ -94,6 +95,9 @@ class ActiveEventPage extends Component {
                 dataIndex: 'nama_event',
                 key: 'nama_event',
                 render: text => <a>{text}</a>,
+                onFilter: (value, record) => record.nama_event.indexOf(value) === 0,
+                sorter: (a, b) => a.nama_event.length - b.nama_event.length,
+                sortDirections: ['descend'],
             },
             {
                 title: 'Tempat',
@@ -119,6 +123,9 @@ class ActiveEventPage extends Component {
                       })}
                     </span>
                 ),
+                onFilter: (value, record) => record.nama_event.indexOf(value) === 0,
+                sorter: (a, b) => a.kategori.length - b.kategori.length,
+                sortDirections: ['descend'],
             },
             {
                 title: 'Tanggal Mulai',
@@ -140,9 +147,10 @@ class ActiveEventPage extends Component {
                     icon={faUsers}
                     borderRadius="5px"
                     background="#4D5AF2"
-                    marginRight= "20px"
+                    // marginRight= "20px"
                     onClick={ () => this.onDetailParticipant(data.nomor)}
                 />,
+                <Divider type="vertical" />,
                 <ButtonDashboard
                     text="Detail"
                     height={20}
@@ -155,13 +163,14 @@ class ActiveEventPage extends Component {
             },
           ];
         
-        const data =  this.state.activeEvent.map( data => ({
-                    nomor : data.id_event,
-                    nama_event: data.nama_event,
-                    start_event :data.detail_event.start_event,
-                    lokasi : data.detail_event.lokasi,
-                    kategori : [data.kategori.nama_kategori],
-                    end_event : data.detail_event.end_event,
+        const data =  this.state.activeEvent.map( ({id_event, nama_event, detail_event, kategori}, index) => ({
+            no: index+1,
+            nomor : id_event,
+            nama_event: nama_event,
+            start_event : detail_event.start_event,
+            lokasi : detail_event.lokasi,
+            kategori : [kategori.nama_kategori],
+            end_event : detail_event.end_event,
         }))
     
         return ( 

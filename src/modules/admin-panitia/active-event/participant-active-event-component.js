@@ -40,7 +40,6 @@ class ParticipantEventComponent extends Component {
                                 <Row gutter={24} type="flex">
                                     <TableProfile 
                                         columns={columns} 
-                                        // dataSource={initialData.activeEvent} 
                                         dataSource={data} 
                                         className="table-active-event"
                                     />

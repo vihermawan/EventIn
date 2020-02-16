@@ -133,7 +133,7 @@ class PesertaAdminPage extends Component {
             email : data.email,
             organisasi : data.peserta.organisasi,
             umur : data.peserta.umur,
-            jenis_kelamin : data.peserta.jenis_kelamin
+            jenis_kelamin : data.peserta.jenis_kelamin,
         }))
                 
         return ( 
