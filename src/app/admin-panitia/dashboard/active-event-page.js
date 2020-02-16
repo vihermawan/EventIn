@@ -125,7 +125,7 @@ class ActiveEventPage extends Component {
                 ),
                 onFilter: (value, record) => record.nama_event.indexOf(value) === 0,
                 sorter: (a, b) => a.kategori.length - b.kategori.length,
-                sortDirections: ['descend'],
+                sortDirections: ['descend', 'ascend'],
             },
             {
                 title: 'Tanggal Mulai',

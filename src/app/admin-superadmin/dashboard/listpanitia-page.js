@@ -69,8 +69,8 @@ class ListPanitiaAdminPage extends Component {
         const columns = [
             {
                 title: 'No',
-                dataIndex: 'nomor',
-                key: 'nomor',
+                dataIndex: 'no',
+                key: 'no',
                 render: text => <a>{text}</a>,
             },
             {
@@ -78,6 +78,9 @@ class ListPanitiaAdminPage extends Component {
                 dataIndex: 'panitia',
                 key: 'panitia',
                 render: text => <a>{text}</a>,
+                onFilter: (value, record) => record.panitia.indexOf(value) === 0,
+                sorter: (a, b) => a.panitia.length - b.panitia.length,
+                sortDirections: ['descend', 'ascend'],
             },
             {
                 title: 'Organisasi',
@@ -129,12 +132,13 @@ class ListPanitiaAdminPage extends Component {
             },
           ];
 
-        const data =  this.state.panitia.map( data => ({
-            nomor : data.id_users,
-            panitia : data.panitia.nama_panitia,
-            email : data.email,
-            organisasi : data.panitia.organisasi,
-            no_telepon : data.panitia.no_telepon,
+        const data =  this.state.panitia.map( ({id_users, panitia,email}, index) => ({
+            no : index+1,
+            nomor : id_users,
+            panitia : panitia.nama_panitia,
+            email : email,
+            organisasi : panitia.organisasi,
+            no_telepon : panitia.no_telepon,
         }))
         
         

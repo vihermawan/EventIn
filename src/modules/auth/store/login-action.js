@@ -1,4 +1,4 @@
-import { API } from '../../../../common/api'
+import { API } from '../../../common/api'
 import * as actionType from './login-action-type';
 
 const startGetDataParticipant = () => ({
@@ -12,13 +12,7 @@ const setDataParticipant = payload => ({
     payload,
 });
 
-//halaman active event
-// const setIdDataEvent = payload => ({
-//     type: actionType.SET_ID_EVENT,
-//     payload,
-// })
-
-const setNamaUser = payload => ({
+const setNamaDataUser = payload => ({
     type : actionType.SET_NAMA_USER,
     payload,
 })
@@ -32,10 +26,6 @@ export const getData = (service, params) => (dispatch) => {
         dispatch(finishGetDataParticipant());
     })
 };
-
-export const setIdEvent = (data) => (dispatch) => {
-    dispatch(setIdDataEvent(data));
-}
 
 export const setNamaUser = (data) => (dispatch) => {
     dispatch(setNamaDataUser(data));

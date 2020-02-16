@@ -3,12 +3,13 @@ import { Layout, Breadcrumb, Row, Steps,message,Col,Button, Form, Menu, Icon,Dro
 import '../../../assets/css/dashboard-all/dashboard.css'
 import '../../../assets/css/dashboard-all/table-style.css'
 import '../../../assets/css/admin-panitia/create-event.css'
+
+//import component
 import BasicInfoPage from '../../../app/admin-panitia/component-create-event/basic-info-page'
 import VenuePage from '../../../app/admin-panitia/component-create-event/venue-page'
 import DateTimePage from '../../../app/admin-panitia/component-create-event/date-time-page'
 import VisualPage from '../../../app/admin-panitia/component-create-event/visual-page'
 
-import InputAuth from '../../../common/component/input/input-auth'
 // constant content
 const { Content } = Layout;
 const { Step } = Steps;
@@ -61,6 +62,18 @@ const steps = [
     },
     {
         title: 'Visual',
+        content: 
+            <VisualPage/>
+        ,
+    },
+    {
+        title: 'Certificate',
+        content: 
+            <VisualPage/>
+        ,
+    },
+    {
+        title: 'Biodata Penandatangan',
         content: 
             <VisualPage/>
         ,

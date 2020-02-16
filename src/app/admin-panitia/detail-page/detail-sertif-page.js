@@ -1,12 +1,9 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Tag } from 'antd';
-import {  faUsers, faTrash, faInfoCircle } from '@fortawesome/free-solid-svg-icons'
-import ButtonIcon from '../../../common/component/button/button-icon'
 import { API } from '../../../common/api'
 import { navigate } from '../../../common/store/action'
 import DetailSertifComponent from '../../../modules/admin-panitia/e-certificate/detail-certificate-component';
-import ButtonDashboard from '../../../common/component/button/button-dashboard';
 
 class DetailSertifPage extends Component {
     state = {

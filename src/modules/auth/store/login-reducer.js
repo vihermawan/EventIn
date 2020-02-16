@@ -23,12 +23,7 @@ const handler = (currentState) => {
         }),
     };
 
-    // const setIdEvent = {
-    //     setIdDataEvent: data => ({
-    //         ...currentState,
-    //         idEvent: data
-    //     })
-    // }
+
 
     const setNamaUser = {
         setNamaDataUser : data => ({
@@ -39,7 +34,6 @@ const handler = (currentState) => {
 
     return {
         ...setNamaUser,
-        ...setIdEvent,
     };
 };
 

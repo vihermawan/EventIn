@@ -1,15 +1,28 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { faUsers } from '@fortawesome/free-solid-svg-icons'
+import { Modal, Tag } from 'antd'
+import CONSTANS from '../../../common/utils/Constants'
 import { faInfoCircle } from '@fortawesome/free-solid-svg-icons'
-import ButtonIcon from '../../../common/component/button/button-icon'
 import { API } from '../../../common/api'
 import { navigate } from '../../../common/store/action'
 import ECertificateComponent from '../../../modules/admin-signer/e-certificate/e-certificate-component';
+import ButtonDashboard from '../../../common/component/button/button-dashboard';
+
+// import store
+import { setIdSertifikat } from '../../../modules/admin-panitia/e-certificate/store/e-certificate-action'
+
 
 class ECertificatePage extends Component {
     state = {  
-        e_certificate: [],
+        signed_e_certificate: [],
+        loading : false,
+    }
+
+    //button detail certificate
+    onDetailCertificate = (id) => {
+      console.log('id ini',id)
+      this.props.setIdSertifikat(id);
+      this.props.navigate(CONSTANS.DETAIL_SERTIF_SIGNER_MENU_KEY)
     }
 
     componentDidMount(){
@@ -17,104 +30,105 @@ class ECertificatePage extends Component {
     }
 
     getCertificateAdmin=()=>{
-        API.get(`/penandatangan/sertifikat/waiting`)
+        this.setState({loading: true})
+        API.get(`/penandatangan/sertifikat/signed`)
         .then(res => {
-          console.log('res',res)
-        //   this.setState({certificate:res.data.data.sertifikat})
+          this.setState({loading: false})
+          console.log('res',res.data.data.sertifikat)
+          this.setState({signed_e_certificate:res.data.data.sertifikat})
         });
     }
 
     render() { 
 
         const columns = [
-            {
+              {
                 title: 'No',
-                dataIndex: 'Nomor',
-                key: 'Nomor',
+                dataIndex: 'no',
+                key: 'no',
                 render: text => <a>{text}</a>,
             },
             {
-              title: 'Nama Event',
-              dataIndex: 'Nama_Event',
-              key: 'Nama_Event',
-              render: text => <a>{text}</a>,
+                title: 'Nama Event',
+                dataIndex: 'nama_event',
+                key: 'nama_event',
+                render: text => <a>{text}</a>,
+                onFilter: (value, record) => record.nama_event.indexOf(value) === 0,
+                sorter: (a, b) => a.nama_event.length - b.nama_event.length,
+                sortDirections: ['descend', 'ascend'],
             },
             {
-              title: 'Tempat',
-              dataIndex: 'tanggal_event',
-              key: 'tanggal_event',
+                title: 'Nama Panitia',
+                dataIndex: 'nama_panitia',
+                key: 'nama_panitia',
             },
             {
-              title: 'Kategori',
-              dataIndex: 'tanggal_event',
-              key: 'tanggal_event',
+                title: 'Organisasi',
+                dataIndex: 'organisasi',
+                key: 'organisasi',
             },
             {
-              title: 'Tanggal Mulai',
-              dataIndex: 'tanggal_event',
-              key: 'tanggal_event',
+                title: 'File',
+                dataIndex: 'sertifikat',
+                key: 'sertifikat',
             },
             {
-                title: 'Tanggal Selesai',
-                dataIndex: 'tanggal_event',
-                key: 'tanggal_event',
-              },
+                title: 'Tenggang Waktu',
+                dataIndex: 'tenggang_waktu',
+                key: 'tenggang_waktu',
+            },
             {
               title: 'Status',
-              key: 'tags',
-              dataIndex: 'tags',
-              render: tags => (
+              key: 'status',
+              dataIndex: 'status',
+              render: status => (
                 <span>
-                  {/* {tags.map(tag => {
+                  {status.map(tag => {
                     let color = tag.length > 5 ? 'geekblue' : '#87d068';
                     if (tag === 'reject') {
                       color = 'volcano';
                     }
                     return (
                       <Tag color={color} key={tag}>
-                        {tag.toUpperCase()}
+                        {tag}
                       </Tag>
                     );
-                  })} */}
+                  })}
                 </span>
               ),
             },
             {
               title: 'Action',
               key: 'action',
-              render: () => (
-                [<ButtonIcon
-                    text="Participant"
-                    height={20}
-                    icon={faUsers}
-                    borderRadius="5px"
-                    background="#4D5AF2"
-                    marginRight= "20px"
-                />,
-                <ButtonIcon
+              render: (data) => (
+                [<ButtonDashboard
                     text="Detail"
                     height={20}
                     icon={faInfoCircle}
                     borderRadius="5px"
                     background="#FFA903"
+                    onClick = {() => this.onDetailCertificate(data.id_sertif)}
                 />]
               ),
             },
           ];
-        const data = [
-            {
-              key: '1',
-              Nomor : '1',
-              Nama_Event: 'UGMTalks',
-              tanggal_event :'2020-10-11',
-              tags: ['Done'],
-            },
-          ];
+        
+        const data =  this.state.signed_e_certificate.map( ({id_penandatangan_sertifikat, id_sertifikat,sertifikat,tenggang_waktu,status}, index) => ({
+            no : index+1,
+            nomor : id_penandatangan_sertifikat,
+            id_sertif : id_sertifikat,
+            nama_event : sertifikat.event.nama_event,
+            nama_panitia : sertifikat.event.panitia.nama_panitia,
+            organisasi : sertifikat.event.organisasi,
+            sertifikat : sertifikat.sertifikat,
+            status : [status.nama_status],
+            tenggang_waktu : tenggang_waktu,
+        }))
 
         return ( 
             <ECertificateComponent
                 navigate={this.props.navigate}
-
+                initialData = {this.state}
                 columns={columns}
                 data={data}
             />
@@ -128,6 +142,7 @@ const mapStateToProps = state => ({
 
 const mapDispatchToProps = (dispatch => ({
     navigate,
+    setIdSertifikat,
 }))();
 
 const page = connect(mapStateToProps, mapDispatchToProps)(ECertificatePage);
