@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { Layout, BackTop, Row, Col } from 'antd';
 import { Route, Link } from 'react-router-dom'
 import '../../../assets/css/home.css'
+import CONSTANTS from '../../../common/utils/Constants';
 // component
 import Navbar from '../../../common/layout/navbar-landing'
 import Footer from '../../../common/layout/footer-landing'
@@ -100,6 +101,7 @@ class HomeComponent extends Component {
                                         <ButtonRounded
                                             text="I want to participate"
                                             className='button-participate'
+                        
                                         />
                                     </Link>
                                     <Link to="/login">

@@ -60,7 +60,9 @@ class ListPanitiaAdminPage extends Component {
         this.props.navigate(CONSTANS.DETAIL_PANITIA_ADMIN_MENU_KEY)
     }
 
-    
+    onChange(pagination, filters, sorter, extra) {
+        console.log('params', pagination, filters, sorter, extra);
+    }
 
     render() { 
 
@@ -135,9 +137,7 @@ class ListPanitiaAdminPage extends Component {
             no_telepon : data.panitia.no_telepon,
         }))
         
-        function onChange(pagination, filters, sorter, extra) {
-            console.log('params', pagination, filters, sorter, extra);
-        }
+        
 
         return ( 
             <ListPanitiaAdminComponent
@@ -145,7 +145,7 @@ class ListPanitiaAdminPage extends Component {
                 navigate={this.props.navigate}
                 columns={columns}
                 data={data}
-                onChange={onChange}
+                onChange={this.onChange()}
             />
         );
     }

@@ -1,9 +1,10 @@
-import * as actionType from './peserta-action-type';
+import * as actionType from './login-action-type';
 
 const initialState = {
     loading: false,
     data: [],
-    idPeserta:null,
+    idEvent: null,
+    namaUser : null,
 };
 
 const handler = (currentState) => {
@@ -22,17 +23,23 @@ const handler = (currentState) => {
         }),
     };
 
-  
+    // const setIdEvent = {
+    //     setIdDataEvent: data => ({
+    //         ...currentState,
+    //         idEvent: data
+    //     })
+    // }
 
-    const setIdPeserta = {
-        setIdDataPeserta: data => ({
+    const setNamaUser = {
+        setNamaDataUser : data => ({
             ...currentState,
-            idPeserta: data
+            namaUser: data
         })
     }
 
     return {
-        ...setIdPeserta,
+        ...setNamaUser,
+        ...setIdEvent,
     };
 };
 
@@ -46,9 +53,11 @@ export default (state = initialState, action) => {
         case actionType.SET_DATA:
             return handler(state).setDataParticipant(payload);
 
-    
-        case actionType.SET_ID_PESERTA:
-            return handler(state).setIdDataPeserta(payload);
+        case actionType.SET_ID_EVENT:
+            return handler(state).setIdDataEvent(payload);
+
+        case actionType.SET_NAMA_USER:
+            return handler(state).setNamaDataUser(payload);
 
         default:
             return state;

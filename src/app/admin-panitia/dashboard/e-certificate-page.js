@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import { Tag } from 'antd';
 import { faInfoCircle ,faDownload} from '@fortawesome/free-solid-svg-icons'
-import ButtonIcon from '../../../common/component/button/button-icon'
 import CONSTANS from '../../../common/utils/Constants'
 import { API } from '../../../common/api'
 import { navigate } from '../../../common/store/action'
@@ -45,8 +45,8 @@ class ECertificatePage extends Component {
     const columns = [
         {
             title: 'No',
-            dataIndex: 'nomor',
-            key: 'nomor',
+            dataIndex: 'no',
+            key: 'no',
             render: text => <a>{text}</a>,
         },
         {
@@ -54,6 +54,9 @@ class ECertificatePage extends Component {
             dataIndex: 'nama_event',
             key: 'nama_event',
             render: text => <a>{text}</a>,
+            onFilter: (value, record) => record.nama_event.indexOf(value) === 0,
+            sorter: (a, b) => a.nama_event.length - b.nama_event.length,
+            sortDirections: ['descend'],
         },
         {
             title: 'Penandatangan',
@@ -67,16 +70,16 @@ class ECertificatePage extends Component {
         },
         {
             title: 'Tenggang Waktu',
-            dataIndex: 'tanggal_event',
-            key: 'tanggal_event',
+            dataIndex: 'tenggang_waktu',
+            key: 'tenggang_waktu',
         },
         {
-            title: 'Status',
-            key: 'tags',
-            dataIndex: 'tags',
-            render: tags => (
+            title: 'Status Sertifikat',
+            key: 'status',
+            dataIndex: 'status',
+            render: sertifikat => (
             <span>
-                {/* {tags.map(tag => {
+                {sertifikat.map(tag => {
                 let color = tag.length > 5 ? 'geekblue' : '#87d068';
                 if (tag === 'reject') {
                     color = 'volcano';
@@ -86,9 +89,12 @@ class ECertificatePage extends Component {
                     {tag.toUpperCase()}
                     </Tag>
                 );
-                })} */}
+                })}
             </span>
             ),
+            onFilter: (value, record) => record.status.indexOf(value) === 0,
+            sorter: (a, b) => a.status.length - b.status.length,
+            sortDirections: ['descend'],
         },
         {
             title: 'Action',
@@ -116,11 +122,14 @@ class ECertificatePage extends Component {
         },
     ];
     
-    const data =  this.state.certificate.map( data => ({
-                nomor : data.id_sertifikat,
-                nama_event: data.sertifikat.event.nama_event,
-                penandatangan : data.penandatangan.nama_penandatangan,
-                sertifikat :data.sertifikat.sertifikat,
+    const data =  this.state.certificate.map( ({id_sertifikat, sertifikat, penandatangan, tenggang_waktu, status}, index) => ({
+        no : index+1,
+        nomor : id_sertifikat,
+        nama_event: sertifikat.event.nama_event,
+        penandatangan : penandatangan.nama_penandatangan,
+        sertifikat :sertifikat.sertifikat,
+        tenggang_waktu :tenggang_waktu,
+        status : [status.nama_status],
                
     }))
 

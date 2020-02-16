@@ -8,9 +8,6 @@ import { navigate } from '../../../common/store/action'
 import DetailPesertaComponent from '../../../modules/admin-superadmin/user/peserta/detail-peserta-component';
 import ButtonDashboard from '../../../common/component/button/button-dashboard';
 
-
-
-
 class DetailPesertaPage extends Component {
     state = {
         detailPeserta : [],

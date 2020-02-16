@@ -34,14 +34,7 @@ class AuthRegister extends Component {
             [target]: value
         })
     }
-
-    // handleSubmit = e => {
-    //     e.preventDefault();
-    //     console.log('username : ', this.state.username)
-    //     console.log('email : ', this.state.email)
-    //     console.log('password : ', this.state.password)
-    // }
-
+    
     handleSubmit = e => {
         e.preventDefault();
         const params = {
