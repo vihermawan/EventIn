@@ -36,22 +36,6 @@ class ApprovalEventPage extends Component {
          });
     }
 
-    //function untuk modal
-    showDeleteConfirm = (id) => {
-        confirm({
-            title: ' Apakah yakin untuk menghapus data ?',
-            okText: 'Yes',
-            okType: 'danger',
-            cancelText: 'No',
-            onOk: () => {
-               // this.deleteEvent(id)
-            },
-            onCancel(){
-                console.log('Cancel')
-            }
-        });
-    }
-
      //button detail event
      onDetailEvent = (id) => {
         console.log('id ini',id)
@@ -100,8 +84,8 @@ class ApprovalEventPage extends Component {
         const columns = [
             {
                 title: 'No',
-                dataIndex: 'nomor',
-                key: 'nomor',
+                dataIndex: 'no',
+                key: 'no',
                 render: text => <a>{text}</a>,
             },
             {
@@ -109,6 +93,9 @@ class ApprovalEventPage extends Component {
                 dataIndex: 'nama_event',
                 key: 'nama_event',
                 render: text => <a>{text}</a>,
+                onFilter: (value, record) => record.nama_event.indexOf(value) === 0,
+                sorter: (a, b) => a.nama_event.length - b.nama_event.length,
+                sortDirections: ['descend', 'ascend'],
             },
             {
                 title: 'Tempat',
@@ -181,13 +168,14 @@ class ApprovalEventPage extends Component {
           ];
        
            
-        const data =  this.state.approvalevent.map( data => ({
-            nomor : data.id_event,
-            nama_event: data.nama_event,
-            start_event :data.detail_event.start_event,
-            lokasi : data.detail_event.lokasi,
-            kategori : [data.kategori.nama_kategori],
-            end_event : data.detail_event.end_event,
+        const data =  this.state.approvalevent.map( ({id_event, nama_event,detail_event,kategori}, index) => ({
+            no : index+1,
+            nomor : id_event,
+            nama_event: nama_event,
+            start_event :detail_event.start_event,
+            lokasi : detail_event.lokasi,
+            kategori : [kategori.nama_kategori],
+            end_event : detail_event.end_event,
         }))
 
         return ( 

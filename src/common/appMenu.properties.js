@@ -25,6 +25,9 @@ const menu = {
     SIGNER: {
         link :'/signer/dashboard-signer',
     },
+    DETAIL_SERTIF_SIGNER: {
+        link : '/signer/detail/e-certificate'
+    },
     ACTIVE_EVENT: {
         link :'/dashboard/active-event/',
     },

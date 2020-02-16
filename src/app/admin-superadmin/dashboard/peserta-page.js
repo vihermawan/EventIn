@@ -65,8 +65,8 @@ class PesertaAdminPage extends Component {
         const columns = [
             {
                 title: 'No',
-                dataIndex: 'nomor',
-                key: 'nomor',
+                dataIndex: 'no',
+                key: 'no',
                 render: text => <a>{text}</a>,
             },
             {
@@ -74,6 +74,9 @@ class PesertaAdminPage extends Component {
                 dataIndex: 'peserta',
                 key: 'peserta',
                 render: text => <a>{text}</a>,
+                onFilter: (value, record) => record.peserta.indexOf(value) === 0,
+                sorter: (a, b) => a.peserta.length - b.peserta.length,
+                sortDirections: ['descend', 'ascend'],
             },
             {
                 title: 'Email',
@@ -127,13 +130,14 @@ class PesertaAdminPage extends Component {
               ),
             },
           ];
-        const data =  this.state.peserta.map( data => ({
-            nomor : data.id_users,
-            peserta : data.peserta.nama_peserta,
-            email : data.email,
-            organisasi : data.peserta.organisasi,
-            umur : data.peserta.umur,
-            jenis_kelamin : data.peserta.jenis_kelamin,
+        const data =  this.state.peserta.map( ({id_users, peserta,email}, index) => ({
+            no : index+1,
+            nomor : id_users,
+            peserta : peserta.nama_peserta,
+            email : email,
+            organisasi : peserta.organisasi,
+            umur : peserta.umur,
+            jenis_kelamin : peserta.jenis_kelamin,
         }))
                 
         return ( 

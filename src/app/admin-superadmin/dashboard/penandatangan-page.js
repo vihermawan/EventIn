@@ -53,8 +53,8 @@ class PenandatanganAdminPage extends Component {
         const columns = [
             {
                 title: 'No',
-                dataIndex: 'nomor',
-                key: 'nomor',
+                dataIndex: 'no',
+                key: 'no',
                 render: text => <a>{text}</a>,
             },
             {
@@ -77,11 +77,6 @@ class PenandatanganAdminPage extends Component {
                 title: 'Jabatan',
                 dataIndex: 'jabatan',
                 key: 'jabatan',
-            },
-            {
-                title: 'Jenis Kelamin',
-                dataIndex: 'jenis_kelamin',
-                key: 'jenis_kelamin',
             },
             {
                 title: 'Action',
@@ -107,12 +102,13 @@ class PenandatanganAdminPage extends Component {
             },
           ];
 
-        const data =  this.state.penandatangan.map( data => ({
-            nomor : data.id_users,
-            penandatangan : data.penandatangan.nama_penandatangan,
-            instansi : data.penandatangan.instansi,
-            jabatan : data.penandatangan.jabatan,
-            nik : data.penandatangan.nik,
+        const data =  this.state.penandatangan.map(  ({id_users, penandatangan}, index) => ({
+            no : index+1,
+            nomor : id_users,
+            penandatangan : penandatangan.nama_penandatangan,
+            instansi : penandatangan.instansi,
+            jabatan : penandatangan.jabatan,
+            nik : penandatangan.nik,
         }))
 
         return ( 

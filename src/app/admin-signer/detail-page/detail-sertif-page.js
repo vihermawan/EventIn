@@ -1,8 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Tag } from 'antd';
-import {  faUsers, faTrash, faInfoCircle } from '@fortawesome/free-solid-svg-icons'
-import ButtonIcon from '../../../common/component/button/button-icon'
 import { API } from '../../../common/api'
 import { navigate } from '../../../common/store/action'
 import DetailSertifComponent from '../../../modules/admin-signer/e-certificate/detail-certificate-component';
@@ -10,24 +8,25 @@ import ButtonDashboard from '../../../common/component/button/button-dashboard';
 
 class DetailSertifPage extends Component {
     state = {
-        
+        detail_certificate: [],
+        loading : false,
     }
 
     componentDidMount(){
-        // this.getEventPast();
+      this.getDetailSertifikat(this.props.idSertifikat);
     }
 
-    // getEventPast=()=>{
-    //     this.setState({loading: true})
-    //     API.get(`/panitia/eventPast`)
-    //     .then(res => {
-    //       console.log('res',res.data.data.event)
-    //       this.setState({
-    //         eventPast:res.data.data.event,
-    //         loading: false,
-    //       })
-    //     });
-    // }
+    getDetailSertifikat=(id)=>{
+        this.setState({loading: true})
+        API.get(`/penandatangan/sertifikat-detail/${id}`)
+        .then(res => {
+          console.log('res',res)
+          // this.setState({
+          //   detail_certificate:res.data.data.sertifikat,
+          //   loading: false,
+          // })
+        });
+    }
 
     render() { 
           const columns = [
@@ -50,26 +49,7 @@ class DetailSertifPage extends Component {
             },
           ];
         
-          // const data = [
-          //   {
-          //     key: '1',
-          //     Nomor : '1',
-          //     Nama_Event: 'UGMTalks',
-          //     tanggal_event :'2020-10-11',
-          //     tags: ['Done'],
-          //   },
-          // ];
-
-        //   const data =  this.state.eventPast.map( data => ({
-        //     key: data.id_event,
-        //             nomor : data.id_event,
-        //             nama_event: data.nama_event,
-        //             start_event :data.detail_event.start_event,
-        //             lokasi : data.detail_event.lokasi,
-        //             kategori : data.detail_event.id_kategori,
-        //             peserta : data.detail_event.limit_participant,
-        //             tags: ['Done'],
-        // }))
+         
 
         return ( 
             <DetailSertifComponent
@@ -84,7 +64,8 @@ class DetailSertifPage extends Component {
 }
  
 const mapStateToProps = state => ({
-    
+    ...state.signed_e_certificate,
+    ...state.e_certificate,
 });
 
 const mapDispatchToProps = (dispatch => ({
