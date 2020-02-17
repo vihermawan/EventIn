@@ -45,10 +45,7 @@ export default (state = initialState, action) => {
         case actionType.FINISH_GET_DATA:
             return handler(state).finishGetDataParticipant();
         case actionType.SET_DATA:
-            return handler(state).setDataParticipant(payload);
-
-        case actionType.SET_ID_EVENT:
-            return handler(state).setIdDataEvent(payload);
+            return handler(state).setDataParticipant(payload);  
 
         case actionType.SET_NAMA_USER:
             return handler(state).setNamaDataUser(payload);
