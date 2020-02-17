@@ -104,6 +104,12 @@ class ActiveEventPage extends Component {
                 dataIndex: 'lokasi',
                 key: 'lokasi',
             },
+            // {
+            //     title: 'Foto',
+            //     dataIndex: 'foto',
+            //     key: 'foto',
+            //     render: foto => < img src = {foto}/>
+            // },
             {
                 title: 'Kategori',
                 dataIndex: 'kategori',
@@ -171,6 +177,7 @@ class ActiveEventPage extends Component {
             lokasi : detail_event.lokasi,
             kategori : [kategori.nama_kategori],
             end_event : detail_event.end_event,
+            foto : detail_event.image_URL,
         }))
     
         return ( 

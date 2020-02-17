@@ -37,6 +37,19 @@ class PesertaAdminPage extends Component {
         });
     }
 
+    //delete peserta
+    deletePeserta = (id_peserta) => {   
+        console.log(id_peserta)
+        API.delete(`/admin/deletepeserta/${id_peserta}`)
+        .then(res => {
+            console.log('res',res)
+            if(res.status == 200){
+                message.success('This is a success message');
+                window.location.reload(); 
+            }   
+        });
+    }
+
     //button detail event
     onDetailPeserta = (id) => {
         console.log('id ini',id)
@@ -52,7 +65,7 @@ class PesertaAdminPage extends Component {
             okType: 'danger',
             cancelText: 'No',
             onOk: () => {
-               // this.deleteEvent(id)
+               this.deletePeserta(id)
             },
             onCancel(){
                 console.log('Cancel')
@@ -125,7 +138,7 @@ class PesertaAdminPage extends Component {
                         icon={faTrash}
                         borderRadius="5px"
                         background="#FF0303"
-                        onClick = { () => this.showDeleteConfirm(data.nomor)}
+                        onClick = { () => this.showDeleteConfirm(data.id_peserta)}
                     />]
               ),
             },
@@ -133,6 +146,7 @@ class PesertaAdminPage extends Component {
         const data =  this.state.peserta.map( ({id_users, peserta,email}, index) => ({
             no : index+1,
             nomor : id_users,
+            id_peserta : peserta.id_peserta,
             peserta : peserta.nama_peserta,
             email : email,
             organisasi : peserta.organisasi,

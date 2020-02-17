@@ -32,6 +32,19 @@ class PenandatanganAdminPage extends Component {
           })
         });
     }
+
+     //delete penandatangan
+     deletePenandatangan = (id_penandatangan) => {   
+        console.log(id_penandatangan)
+        API.delete(`/admin/deletepenandatangan/${id_penandatangan}`)
+        .then(res => {
+            console.log('res',res)
+            if(res.status == 200){
+                message.success('This is a success message');
+                window.location.reload(); 
+            }   
+        });
+    }
     
     //function untuk modal
     showDeleteConfirm = (id) => {
@@ -41,7 +54,8 @@ class PenandatanganAdminPage extends Component {
             okType: 'danger',
             cancelText: 'No',
             onOk: () => {
-               // this.deleteEvent(id)
+                console.log('id ini', id)
+                this.deletePenandatangan(id)
             },
             onCancel(){
                 console.log('Cancel')
@@ -81,7 +95,7 @@ class PenandatanganAdminPage extends Component {
             {
                 title: 'Action',
                 key: 'action',
-                render: () => (
+                render: (data) => (
                     [<ButtonDashboard
                         text="Edit"
                         height={20}
@@ -96,7 +110,7 @@ class PenandatanganAdminPage extends Component {
                         icon={faTrash}
                         borderRadius="5px"
                         background="#E11212"
-                        onClick = {() => this.showDeleteConfirm()}
+                        onClick = {() => this.showDeleteConfirm(data.id_penandatangan)}
                     />]
               ),
             },
@@ -105,6 +119,7 @@ class PenandatanganAdminPage extends Component {
         const data =  this.state.penandatangan.map(  ({id_users, penandatangan}, index) => ({
             no : index+1,
             nomor : id_users,
+            id_penandatangan : penandatangan.id_penandatangan,
             penandatangan : penandatangan.nama_penandatangan,
             instansi : penandatangan.instansi,
             jabatan : penandatangan.jabatan,
