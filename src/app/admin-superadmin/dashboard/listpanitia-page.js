@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { API } from '../../../common/api'
-import { Modal } from 'antd'
+import { Modal, message } from 'antd'
 import { navigate } from '../../../common/store/action'
 import CONSTANS from '../../../common/utils/Constants'
 import ListPanitiaAdminComponent from '../../../modules/admin-superadmin/user/panitia/listpanitia-component';
@@ -37,6 +37,20 @@ class ListPanitiaAdminPage extends Component {
         });
     }
 
+    //delete panitia
+    deletePanitia = (id_panitia) => {   
+        console.log(id_panitia)
+        API.delete(`/admin/deletepanitia/${id_panitia}`)
+        .then(res => {
+            console.log('res',res)
+            if(res.status == 200){
+                message.success('This is a success message');
+                window.location.reload(); 
+            }   
+        });
+    }
+
+
     //function untuk modal
     showDeleteConfirm = (id) => {
         confirm({
@@ -45,7 +59,8 @@ class ListPanitiaAdminPage extends Component {
             okType: 'danger',
             cancelText: 'No',
             onOk: () => {
-               // this.deleteEvent(id)
+                console.log('id ini',id)
+                this.deletePanitia(id)
             },
             onCancel(){
                 console.log('Cancel')
@@ -126,7 +141,7 @@ class ListPanitiaAdminPage extends Component {
                         icon={faTrash}
                         borderRadius="5px"
                         background="#FF0303"
-                        onClick = { () => this.showDeleteConfirm(data.nomor)}
+                        onClick = { () => this.showDeleteConfirm(data.id_panitia)}
                     />]
               ),
             },
@@ -134,6 +149,7 @@ class ListPanitiaAdminPage extends Component {
 
         const data =  this.state.panitia.map( ({id_users, panitia,email}, index) => ({
             no : index+1,
+            id_panitia : panitia.id_panitia,
             nomor : id_users,
             panitia : panitia.nama_panitia,
             email : email,
