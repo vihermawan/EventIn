@@ -109,14 +109,6 @@ class WaitingListPage extends Component {
                     marginRight= "20px"
                     onClick = {() => this.showSignedConfirm(data.nomor)}
                 />,
-                // <ButtonIcon
-                //     text="Reject"
-                //     height={20}
-                //     icon={faWindowClose}
-                //     borderRadius="5px"
-                //     background="#FF0303"
-                //     marginRight= "20px"
-                // />,
                 <ButtonDashboard
                     text="Detail"
                     height={20}

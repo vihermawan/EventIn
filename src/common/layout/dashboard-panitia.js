@@ -29,30 +29,14 @@ const { Header, Sider, Content } = Layout;
 
 class dashboard extends Component {
   state = {
-    profile: null,
     collapsed: false,
     loading : false,
-   
   };
   
   componentDidMount(){
-    this.getProfile();
-    console.log('state', this.state.profile)
+    
   }
 
-  //get data dari API
-  getProfile=()=>{
-    // this.setState({loading: true})
-    API.get(`/panitia/profile`)
-    .then(res => {
-        console.log('res',res.data.data.user)
-        this.setState({
-            profile: res.data.data.user,
-        })
-    });
-  }
-
-  
   handleLogout = e => {
      this.setState({loading: true})
       API.post(`/logout`)
@@ -98,10 +82,7 @@ class dashboard extends Component {
         </Menu.Item>
       </Menu>
     );
-    
-    const data =  this.state.profile.map( data => ({
-        nama : data.email,
-    }));
+   
 
 
     return ( 
@@ -252,7 +233,7 @@ class dashboard extends Component {
                   />
                   <div className= "avatar">
                     <Avatar size={40} icon="user" className="avatars" />
-                        <span className="semi-bold">{data.nama}</span>
+                        <span className="semi-bold"></span>
                       <Dropdown overlay={menu} trigger={['click']}>
                         <a className="ant-dropdown-link" href="#">
                           <Icon type="down" style={{marginLeft:"20px", color:"black", fontSize:"13px"}} />
@@ -326,7 +307,7 @@ class dashboard extends Component {
 }
 
 const mapStateToProps = state => ({
-    
+    ...state,
 });
 
 const mapDispatchToProps = (dispatch => ({
