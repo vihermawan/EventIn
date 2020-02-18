@@ -1,13 +1,14 @@
 import React, { Component } from 'react';
-import { Layout, Row, Col, Button, Form,Icon, Dropdown, Menu } from 'antd';
+import { Layout, Row, Col, Upload, Form,Icon, Dropdown, Menu } from 'antd';
 import { Link } from 'react-router-dom';
 // component
 import InputForm from '../../../../common/component/input/input-form';
 const { Content } = Layout;
+const { Dragger } = Upload;
 
 class BasicInfoComponent extends Component{
     render(){
-        const { menu,initialData, handleChange, handleSubmit } = this.props;
+        const { menu,initialData, handleChange, handleSubmit,handleUpload } = this.props;
         return (
             
             <Layout className="login-container">
@@ -21,11 +22,13 @@ class BasicInfoComponent extends Component{
                                             <span className="auth-input-label text-black">Upload Poster*</span>
                                         </div>
                                         <div>
-                                            <InputForm
-                                                name='name'
-                                                placeholder="Masukan nama event...."
-                                                className="input-event mt-5 mb-20"
-                                            />
+                                            <Dragger {...handleUpload}>
+                                                <p className="ant-upload-drag-icon">
+                                                    <Icon type="inbox" />
+                                                </p>
+                                                <p className="ant-upload-text">Upload Poster Eventmu !</p>
+                                                <p className="ant-upload-hint">Tambahkan file untuk acaramu agar terlihat menarik :)</p>
+                                            </Dragger>,
                                         </div>
                                     </Col>
                                 </Row>
