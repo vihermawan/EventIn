@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import { API } from '../../common/api'
 import { connect } from 'react-redux';
-import { API } from '../../common/api'
 import { navigate } from '../../common/store/action'
 import EventComponent from '../../modules/event/component/event-component';
 
