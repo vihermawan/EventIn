@@ -31,10 +31,12 @@ class dashboard extends Component {
   state = {
     collapsed: false,
     loading : false,
+    username: 'username',
   };
   
   componentDidMount(){
-    
+    const username = localStorage.getItem("username")
+    this.setState({ username })
   }
 
   handleLogout = e => {
@@ -233,7 +235,7 @@ class dashboard extends Component {
                   />
                   <div className= "avatar">
                     <Avatar size={40} icon="user" className="avatars" />
-                        <span className="semi-bold"></span>
+                        <span className="semi-bold">{this.state.username}</span>
                       <Dropdown overlay={menu} trigger={['click']}>
                         <a className="ant-dropdown-link" href="#">
                           <Icon type="down" style={{marginLeft:"20px", color:"black", fontSize:"13px"}} />

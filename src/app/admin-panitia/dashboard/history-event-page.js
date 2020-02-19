@@ -80,12 +80,6 @@ class HistoryEventPage extends Component {
                 key: 'no',
                 render: text => <a>{text}</a>,
             },
-          //   {
-          //     title: 'No',
-          //     dataIndex: 'nomor',
-          //     key: 'nomor',
-          //     render: text => <a>{text}</a>,
-          // },
             {
               title: 'Nama Event',
               dataIndex: 'nama_event',

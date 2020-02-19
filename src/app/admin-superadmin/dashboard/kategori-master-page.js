@@ -33,6 +33,20 @@ class KategoriMasterPage extends Component {
       });
     }
 
+    
+    //delete kategori
+    deleteKategori = (id) => {   
+        console.log(id)
+        API.delete(`/admin/deletekategori/${id}`)
+        .then(res => {
+            console.log('res',res)
+            if(res.status == 200){
+                message.success('This is a success message');
+                window.location.reload(); 
+            }   
+        });
+    }
+
      //function untuk modal
      showDeleteConfirm = (id) => {
         confirm({
@@ -41,7 +55,7 @@ class KategoriMasterPage extends Component {
             okType: 'danger',
             cancelText: 'No',
             onOk: () => {
-               // this.deleteEvent(id)
+               this.deleteKategori(id)
             },
             onCancel(){
                 console.log('Cancel')
@@ -54,8 +68,8 @@ class KategoriMasterPage extends Component {
         const columns = [
             {
                 title: 'No',
-                dataIndex: 'nomor',
-                key: 'nomor',
+                dataIndex: 'no',
+                key: 'no',
                 render: text => <a>{text}</a>,
             },
             {
@@ -82,15 +96,16 @@ class KategoriMasterPage extends Component {
                     icon={faTrash}
                     borderRadius="5px"
                     background="#E11212"
-                    onClick = { () => this.showDeleteConfirm()}
+                    onClick = { () => this.showDeleteConfirm(data.nomor)}
                 />]
               ),
             },
           ];
 
-        const data =  this.state.kategori.map( data => ({
-            nomor : data.id_kategori,
-            nama_kategori: data.nama_kategori,
+        const data =  this.state.kategori.map( ({id_kategori, nama_kategori}, index) => ({
+            no : index+1,
+            nomor : id_kategori,
+            nama_kategori: nama_kategori,
         }))
 
         return ( 

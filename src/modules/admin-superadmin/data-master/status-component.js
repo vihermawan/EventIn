@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Layout, Breadcrumb, Row, Table, Input, Col } from 'antd';
+import { Layout, Breadcrumb, Row, Button, Input, Col } from 'antd';
 import { Modal, message } from 'antd'
 /*import css*/
 import '../../../assets/css/dashboard-all/dashboard.css'
@@ -12,7 +12,7 @@ const { Content } = Layout;
 
 class StatusComponent extends Component {
     render() { 
-        const {initialData, columns, data } = this.props
+        const {initialData, columns, data, handleCancel,handleOk,showModal } = this.props
         return ( 
             <Content
                 style={{
@@ -31,6 +31,20 @@ class StatusComponent extends Component {
                             <Row>
                             <div className="container-title-event">
                                 <span>Status Master</span>
+                                <br/>
+                                <Button type="primary" onClick={showModal}>
+                                    Tambah
+                                </Button>
+                                <Modal
+                                    title="Basic Modal"
+                                    visible={initialData.visible}
+                                    onOk={handleOk}
+                                    onCancel={handleCancel}
+                                    >
+                                    <p>Some contents...</p>
+                                    <p>Some contents...</p>
+                                    <p>Some contents...</p>
+                                </Modal>
                             </div>
                             </Row>
                             <LoadingContainer loading={initialData.loading}>
