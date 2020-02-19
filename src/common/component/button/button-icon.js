@@ -7,12 +7,12 @@ function ButtonIcon({
     type, text, disabled, height = 48, borderRadius = 25,
     background = '#4D5AF2', textColor = "white", border = 'none',
     margin , marginLeft, marginRight, marginTop, marginBottom,
-    navigate, target, icon, onClick
+    navigate, target, icon, onClick,className, display
 }) {
     return (
         <Button
             type={type}
-            className="button-rounded"
+            className={className}
             disabled={disabled}
             style={{
                 backgroundColor: background,
@@ -27,6 +27,7 @@ function ButtonIcon({
                 marginRight: marginRight,
                 marginTop: marginTop,
                 marginBottom: marginBottom,
+                display: display,
             }}
             onClick={() => navigate(target)}
             // onClick={onClick}

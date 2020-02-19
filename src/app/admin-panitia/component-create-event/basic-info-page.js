@@ -1,11 +1,8 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Icon,Menu,message } from 'antd';
-import CONSTANS from '../../../common/utils/Constants'
-import { API } from '../../../common/api'
 import { navigate } from '../../../common/store/action'
 import BasicInfoComponent from '../../../modules/admin-panitia/create-event/basic-info/basic-info-component';
-import Axios from 'axios';
 
 class BasicInfoPage extends Component {
     state = {

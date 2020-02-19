@@ -34,9 +34,9 @@ class dashboard extends Component {
   };
   
   componentDidMount(){
-
+    
   }
-  
+
   handleLogout = e => {
      this.setState({loading: true})
       API.post(`/logout`)
@@ -82,6 +82,8 @@ class dashboard extends Component {
         </Menu.Item>
       </Menu>
     );
+   
+
 
     return ( 
      <LoadingContainer loading={this.state.loading}>
@@ -231,7 +233,7 @@ class dashboard extends Component {
                   />
                   <div className= "avatar">
                     <Avatar size={40} icon="user" className="avatars" />
-                    <span className="semi-bold">PPSMB PALAPA</span>
+                        <span className="semi-bold"></span>
                       <Dropdown overlay={menu} trigger={['click']}>
                         <a className="ant-dropdown-link" href="#">
                           <Icon type="down" style={{marginLeft:"20px", color:"black", fontSize:"13px"}} />
@@ -305,7 +307,7 @@ class dashboard extends Component {
 }
 
 const mapStateToProps = state => ({
-    
+    ...state,
 });
 
 const mapDispatchToProps = (dispatch => ({

@@ -10,24 +10,25 @@ import ButtonDashboard from '../../../common/component/button/button-dashboard';
 
 class DetailPesertaPage extends Component {
     state = {
-        
+        detailPeserta : [],
+        loading :false,
     }
 
     componentDidMount(){
-        // this.getEventPast();
+        this.getDetailPeserta(this.props.idPeserta);
     }
 
-    // getEventPast=()=>{
-    //     this.setState({loading: true})
-    //     API.get(`/panitia/eventPast`)
-    //     .then(res => {
-    //       console.log('res',res.data.data.event)
-    //       this.setState({
-    //         eventPast:res.data.data.event,
-    //         loading: false,
-    //       })
-    //     });
-    // }
+    getDetailPeserta=(id)=>{
+        // this.setState({loading: true})
+        API.get(`/admin/showpeserta/${id}`)
+        .then(res => {
+          console.log('res',res)
+        //   this.setState({
+        //     eventPast:res.data.data.event,
+        //     loading: false,
+        //   })
+        });
+    }
 
     render() { 
       const columns = [
@@ -136,7 +137,7 @@ class DetailPesertaPage extends Component {
 }
  
 const mapStateToProps = state => ({
-    
+    ...state.peserta,
 });
 
 const mapDispatchToProps = (dispatch => ({

@@ -6,7 +6,6 @@ import '../../../assets/css/event.css'
 // component
 import Navbar from '../../../common/layout/navbar-landing'
 import Footer from '../../../common/layout/footer-landing'
-import ButtonRounded from '../../../common/component/button/button-rounded'
 
 
 const { Content } = Layout;
@@ -146,7 +145,7 @@ class EventComponent extends Component {
                                                                 <Link to='/detail'><h2 className="text-soft-blue semi-bold">{data.title}</h2></Link>
                                                             </Col>
                                                             <Col lg={24}>
-                                                                {data.lokasi}
+                                                                {data.place}
                                                             </Col>
                                                         </Row>
                                                     </Card>

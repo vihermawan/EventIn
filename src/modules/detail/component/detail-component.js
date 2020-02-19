@@ -18,22 +18,22 @@ function onFinish() {
 
 const benefitData = [
     {
-        image: require(`../../../assets/images/Day.png`),
+        image: require(`../../../assets/images/day.png`),
         title: 'The Day',
         description: '31 Januari- 2 Februari 2020'
     },
     {
-        image: require(`../../../assets/images/Location.png`),
+        image: require(`../../../assets/images/location.png`),
         title: 'Venue',
         description: 'ICE BSD City Tangerang'
     },
     {
-        image: require(`../../../assets/images/Regis.png`),
+        image: require(`../../../assets/images/regis.png`),
         title: 'Registrasi',
         description: '1-20 Januari 2020'
     },
     {
-        image: require(`../../../assets/images/Quota.png`),
+        image: require(`../../../assets/images/quota.png`),
         title: 'Quota',
         description: '100 Orang'
     },
@@ -73,6 +73,7 @@ class DetailComponent extends Component {
       };
 
     render() { 
+        const {detailData} = this.props
         const image4 = require(`../../../assets/images/event1.jpg`);
         const { visible, confirmLoading, ModalText } = this.state;
         
@@ -85,13 +86,17 @@ class DetailComponent extends Component {
                     <Row style={{minHeight: '100%',marginBottom: '2%',marginTop:'2%'}}>
                         <Col lg={12} md={12} sm={12}>
                             <Row>
-                                <Col span={24} >
-                                    <div className="title-container-detail">
-                                        <span className="text-soft-blue title-big-detail">HAGE 2020 </span>
-                                        <br/>
-                                        <span className="text-soft-blue title-small-detail">hobbies, adventure, and gears exhibition</span>
-                                    </div>
-                                </Col>
+                                {detailData.map( data =>
+                                    <Col span={24} >
+                                        <div className="title-container-detail">
+                                            {/* <span className="text-soft-blue title-big-detail">HAGE 2020 </span> */}
+                                            <br/>
+                                            <span className="text-soft-blue title-small-detail">{data.title}</span>
+                                        </div>
+                                    </Col>
+
+                                    )
+                                }
                                 <Col span={24} style={{ marginTop: 2 }}>
                                     <Countdown className="text-soft-blue title-small title-container-detail" title="Will be held on" value={deadline} format="D day,  H-m-s hour" />
                                 </Col>

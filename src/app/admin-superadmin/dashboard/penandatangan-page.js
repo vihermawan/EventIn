@@ -1,12 +1,15 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import { Modal, message } from 'antd'
 import { API } from '../../../common/api'
 import { navigate } from '../../../common/store/action'
 //component
 import PenandatanganAdminComponent from '../../../modules/admin-superadmin/user/penandatangan/penandatangan-component';
-import { faUsers, faTrash } from '@fortawesome/free-solid-svg-icons'
-import { faInfoCircle } from '@fortawesome/free-solid-svg-icons'
+import { faUsers, faTrash, faPen } from '@fortawesome/free-solid-svg-icons'
 import ButtonDashboard from '../../../common/component/button/button-dashboard';
+
+const {confirm} = Modal;
+
 
 class PenandatanganAdminPage extends Component {
     state = { 
@@ -30,12 +33,42 @@ class PenandatanganAdminPage extends Component {
         });
     }
 
+     //delete penandatangan
+     deletePenandatangan = (id_penandatangan) => {   
+        console.log(id_penandatangan)
+        API.delete(`/admin/deletepenandatangan/${id_penandatangan}`)
+        .then(res => {
+            console.log('res',res)
+            if(res.status == 200){
+                message.success('This is a success message');
+                window.location.reload(); 
+            }   
+        });
+    }
+    
+    //function untuk modal
+    showDeleteConfirm = (id) => {
+        confirm({
+            title: ' Apakah yakin untuk menghapus data ?',
+            okText: 'Yes',
+            okType: 'danger',
+            cancelText: 'No',
+            onOk: () => {
+                console.log('id ini', id)
+                this.deletePenandatangan(id)
+            },
+            onCancel(){
+                console.log('Cancel')
+            }
+        });
+    }
+
     render() { 
         const columns = [
             {
                 title: 'No',
-                dataIndex: 'nomor',
-                key: 'nomor',
+                dataIndex: 'no',
+                key: 'no',
                 render: text => <a>{text}</a>,
             },
             {
@@ -60,20 +93,15 @@ class PenandatanganAdminPage extends Component {
                 key: 'jabatan',
             },
             {
-                title: 'Jenis Kelamin',
-                dataIndex: 'jenis_kelamin',
-                key: 'jenis_kelamin',
-            },
-            {
                 title: 'Action',
                 key: 'action',
-                render: () => (
+                render: (data) => (
                     [<ButtonDashboard
-                        text="Detail"
+                        text="Edit"
                         height={20}
-                        icon={faInfoCircle}
+                        icon={faPen}
                         borderRadius="5px"
-                        background="#FFA903"
+                        background="#005568"
                         marginRight= "20px"
                     />,
                     <ButtonDashboard
@@ -82,17 +110,20 @@ class PenandatanganAdminPage extends Component {
                         icon={faTrash}
                         borderRadius="5px"
                         background="#E11212"
+                        onClick = {() => this.showDeleteConfirm(data.id_penandatangan)}
                     />]
               ),
             },
           ];
 
-        const data =  this.state.penandatangan.map( data => ({
-            nomor : data.id_users,
-            penandatangan : data.penandatangan.nama_penandatangan,
-            instansi : data.penandatangan.instansi,
-            jabatan : data.penandatangan.jabatan,
-            nik : data.penandatangan.nik,
+        const data =  this.state.penandatangan.map(  ({id_users, penandatangan}, index) => ({
+            no : index+1,
+            nomor : id_users,
+            id_penandatangan : penandatangan.id_penandatangan,
+            penandatangan : penandatangan.nama_penandatangan,
+            instansi : penandatangan.instansi,
+            jabatan : penandatangan.jabatan,
+            nik : penandatangan.nik,
         }))
 
         return ( 

@@ -2,11 +2,17 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Tag } from 'antd';
 import {  faUsers, faTrash, faInfoCircle } from '@fortawesome/free-solid-svg-icons'
-import ButtonIcon from '../../../common/component/button/button-icon'
+import { Modal, message, Divider } from 'antd'
+import CONSTANS from '../../../common/utils/Constants'
 import { API } from '../../../common/api'
 import { navigate } from '../../../common/store/action'
 import HistoryEventComponent from '../../../modules/admin-panitia/history-event/history-event-component';
 import ButtonDashboard from '../../../common/component/button/button-dashboard';
+
+// import store
+import { setIdEvent } from '../../../modules/admin-panitia/active-event/store/active-event-action'
+
+const { confirm } = Modal;
 
 class HistoryEventPage extends Component {
     state = {
@@ -30,24 +36,87 @@ class HistoryEventPage extends Component {
         });
     }
 
+     //function untuk modal
+     showDeleteConfirm = (id) => {
+      confirm({
+          title: 'Apakah Yakin untuk menghapus Data ?',
+          okText: 'Yes',
+          okType: 'danger',
+          cancelText: 'No',
+          onOk: () => {
+              this.deleteEvent(id)
+          },
+          onCancel(){
+              console.log('Cancel')
+          }
+      });
+    }
+
+    //delete event
+    deleteEvent = (id) => {
+      console.log(id)
+      API.delete(`/panitia/deleteevent/${id}`)
+      .then(res => {
+          console.log('res',res)
+          if(res.status == 200){
+              message.success('Data Berhasil dihapus');
+              window.location.reload(); 
+          }   
+      });
+  }
+
+    //button detail event
+     onDetailEvent = (id) => {
+      console.log('id ini',id)
+      this.props.setIdEvent(id);
+      this.props.navigate(CONSTANS.DETAIL_EVENT_PANITIA_MENU_KEY)
+    }
+
     render() { 
           const columns = [
             {
                 title: 'No',
-                dataIndex: 'nomor',
-                key: 'nomor',
+                dataIndex: 'no',
+                key: 'no',
                 render: text => <a>{text}</a>,
             },
+          //   {
+          //     title: 'No',
+          //     dataIndex: 'nomor',
+          //     key: 'nomor',
+          //     render: text => <a>{text}</a>,
+          // },
             {
               title: 'Nama Event',
               dataIndex: 'nama_event',
               key: 'nama_event',
               render: text => <a>{text}</a>,
+              onFilter: (value, record) => record.nama_event.indexOf(value) === 0,
+              sorter: (a, b) => a.nama_event.length - b.nama_event.length,
+              sortDirections: ['descend'],
             },
             {
               title: 'Kategori',
               dataIndex: 'kategori',
               key: 'kategori',
+              render: kategori => (
+                <span>
+                  {kategori.map(tag => {
+                    let color = tag.length > 5 ? 'geekblue' : 'green';
+                    if (tag === 'loser') {
+                      color = 'volcano';
+                    }
+                    return (
+                      <Tag color={color} key={tag}>
+                        {tag}
+                      </Tag>
+                    );
+                  })}
+                </span>
+            ),
+            onFilter: (value, record) => record.kategori.indexOf(value) === 0,
+            sorter: (a, b) => a.kategori.length - b.kategori.length,
+            sortDirections: ['descend'],
             },
             {
                 title: 'Tempat',
@@ -60,75 +129,48 @@ class HistoryEventPage extends Component {
               key: 'peserta',
             },
             {
-              title: 'Status',
-              key: 'tags',
-              dataIndex: 'tags',
-              render: tags => (
-                <span>
-                  {/* {tags.map(tag => {
-                    let color = tag.length > 5 ? 'geekblue' : '#87d068';
-                    if (tag === 'reject') {
-                      color = 'volcano';
-                    }
-                    return (
-                      <Tag color={color} key={tag}>
-                        {tag.toUpperCase()}
-                      </Tag>
-                    );
-                  })} */}
-                </span>
-              ),
-            },
-            {
               title: 'Action',
               key: 'action',
-              render: () => (
+              render: (data) => (
                 [<ButtonDashboard
                     text="Download"
                     height={20}
                     icon={faUsers}
                     borderRadius="5px"
                     background="#070E57"
-                    marginRight= "20px"
+                    // marginRight= "20px"
                 />,
+                <Divider type="vertical" />,
                 <ButtonDashboard
                     text="Delete"
                     height={20}
                     icon={faTrash}
                     borderRadius="5px"
                     background="#FF0303"
-                    marginRight= "20px"
+                    // marginRight= "20px"
+                    onClick={ () => this.showDeleteConfirm(data.nomor)}
                 />,
+                <Divider type="vertical" />,
                 <ButtonDashboard
                     text="Detail"
                     height={20}
                     icon={faInfoCircle}
                     borderRadius="5px"
                     background="#FFA903"
+                    onClick={ () => this.onDetailEvent(data.nomor)}
                 />]
               ),
             },
           ];
-        
-          // const data = [
-          //   {
-          //     key: '1',
-          //     Nomor : '1',
-          //     Nama_Event: 'UGMTalks',
-          //     tanggal_event :'2020-10-11',
-          //     tags: ['Done'],
-          //   },
-          // ];
 
-          const data =  this.state.eventPast.map( data => ({
-            key: data.id_event,
-                    nomor : data.id_event,
-                    nama_event: data.nama_event,
-                    start_event :data.detail_event.start_event,
-                    lokasi : data.detail_event.lokasi,
-                    kategori : data.detail_event.id_kategori,
-                    peserta : data.detail_event.limit_participant,
-                    tags: ['Done'],
+          const data =  this.state.eventPast.map( ({id_event, nama_event, detail_event, kategori}, index) => ({
+                    no : index+1,
+                    nomor : id_event,
+                    nama_event: nama_event,
+                    start_event :detail_event.start_event,
+                    lokasi : detail_event.lokasi,
+                    kategori : [kategori.nama_kategori],
+                    peserta : detail_event.limit_participant,
         }))
 
         return ( 
@@ -149,6 +191,7 @@ const mapStateToProps = state => ({
 
 const mapDispatchToProps = (dispatch => ({
     navigate,
+    setIdEvent,
 }))();
 
 const page = connect(mapStateToProps, mapDispatchToProps)(HistoryEventPage);

@@ -12,6 +12,7 @@ const setDataParticipant = payload => ({
     payload,
 });
 
+//halaman active event
 const setIdDataEvent = payload => ({
     type: actionType.SET_ID_EVENT,
     payload,

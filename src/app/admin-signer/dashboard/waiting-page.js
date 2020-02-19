@@ -1,14 +1,22 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { faInfoCircle ,faDownload,faUsers, faCheckCircle, faWindowClose} from '@fortawesome/free-solid-svg-icons'
-import ButtonIcon from '../../../common/component/button/button-icon'
+import { Modal, message } from 'antd'
+import CONSTANS from '../../../common/utils/Constants'
+import { faInfoCircle , faCheckCircle} from '@fortawesome/free-solid-svg-icons'
 import { API } from '../../../common/api'
 import { navigate } from '../../../common/store/action'
 import WaitingListComponent from '../../../modules/admin-signer/waiting-list/waiting-list-component';
+import ButtonDashboard from '../../../common/component/button/button-dashboard';
+
+// import store
+import { setIdSertifikat } from '../../../modules/admin-panitia/e-certificate/store/e-certificate-action'
+
+const {confirm} = Modal;
 
 class WaitingListPage extends Component {
     state = {  
         e_certificate: [],
+        loading:false
     }
 
     componentDidMount(){
@@ -16,11 +24,38 @@ class WaitingListPage extends Component {
     }
 
     getCertificateAdmin=()=>{
+        this.setState({loading: true})
         API.get(`/penandatangan/sertifikat/waiting`)
         .then(res => {
-          console.log('res',res.data.data.sertifikat)
-          this.setState({e_certificate:res.data.data.sertifikat})
+          console.log('res',res)
+            this.setState({
+                e_certificate:res.data.data.sertifikat,
+                loading: false,
+            })
         });
+    }
+
+    //function untuk modal
+    showSignedConfirm = (id) => {
+        confirm({
+            title: ' Apakah anda yakin untuk menandatangani dokumen ini ?',
+            okText: 'Yes',
+            okType: 'danger',
+            cancelText: 'No',
+            onOk: () => {
+               // this.deleteEvent(id)
+            },
+            onCancel(){
+                console.log('Cancel')
+            }
+        });
+    }
+
+    //button detail certificate
+    onDetailCertificate = (id) => {
+        console.log('id ini',id)
+        this.props.setIdSertifikat(id);
+        this.props.navigate(CONSTANS.DETAIL_SERTIF_SIGNER_MENU_KEY)
     }
 
     render() { 
@@ -28,8 +63,8 @@ class WaitingListPage extends Component {
         const columns = [
             {
                 title: 'No',
-                dataIndex: 'nomor',
-                key: 'nomor',
+                dataIndex: 'no',
+                key: 'no',
                 render: text => <a>{text}</a>,
             },
             {
@@ -37,6 +72,9 @@ class WaitingListPage extends Component {
                 dataIndex: 'nama_event',
                 key: 'nama_event',
                 render: text => <a>{text}</a>,
+                onFilter: (value, record) => record.nama_event.indexOf(value) === 0,
+                sorter: (a, b) => a.nama_event.length - b.nama_event.length,
+                sortDirections: ['descend', 'ascend'],
             },
             {
                 title: 'Nama Panitia',
@@ -55,47 +93,48 @@ class WaitingListPage extends Component {
             },
             {
                 title: 'Tenggang Waktu',
-                dataIndex: 'tanggal_event',
-                key: 'tanggal_event',
+                dataIndex: 'tenggang_waktu',
+                key: 'tenggang_waktu',
             },
             {
               title: 'Action',
               key: 'action',
-              render: () => (
-                [<ButtonIcon
+              render: (data) => (
+                [<ButtonDashboard
                     text="Signed"
                     height={20}
                     icon={faCheckCircle}
                     borderRadius="5px"
                     background="#004A03"
                     marginRight= "20px"
+                    onClick = {() => this.showSignedConfirm(data.nomor)}
                 />,
-                // <ButtonIcon
-                //     text="Reject"
-                //     height={20}
-                //     icon={faWindowClose}
-                //     borderRadius="5px"
-                //     background="#FF0303"
-                //     marginRight= "20px"
-                // />,
-                <ButtonIcon
+                <ButtonDashboard
                     text="Detail"
                     height={20}
                     icon={faInfoCircle}
                     borderRadius="5px"
                     background="#FFA903"
+                    onClick={() => this.onDetailCertificate(data.id_sertif)}
                 />]
               ),
             },
           ];
-        const data =  this.state.e_certificate.map( data => ({
-            nomor : data.id_penandatangan_sertifikat,
-            tags: ['Done'],
+        const data =  this.state.e_certificate.map( ({id_penandatangan_sertifikat, id_sertifikat, sertifikat,tenggang_waktu}, index) => ({
+            no : index+1,
+            nomor : id_penandatangan_sertifikat,
+            id_sertif : id_sertifikat,
+            nama_event : sertifikat.event.nama_event,
+            nama_panitia : sertifikat.event.panitia.nama_panitia,
+            organisasi : sertifikat.event.organisasi,
+            sertifikat : sertifikat.sertifikat,
+            tenggang_waktu : tenggang_waktu,
         }))
 
         return ( 
             <WaitingListComponent
                 navigate={this.props.navigate}
+                initialData = {this.state}
                 columns={columns}
                 data={data}
             />
@@ -109,6 +148,7 @@ const mapStateToProps = state => ({
 
 const mapDispatchToProps = (dispatch => ({
     navigate,
+    setIdSertifikat,
 }))();
 
 const page = connect(mapStateToProps, mapDispatchToProps)(WaitingListPage);

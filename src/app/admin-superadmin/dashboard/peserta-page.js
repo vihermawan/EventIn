@@ -1,12 +1,19 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import { Modal, message } from 'antd'
 import { API } from '../../../common/api'
+import CONSTANS from '../../../common/utils/Constants'
 import { navigate } from '../../../common/store/action'
 import PesertaAdminComponent from '../../../modules/admin-superadmin/user/peserta/peserta-component';
-import { faUsers } from '@fortawesome/free-solid-svg-icons'
+import { faTrash, faPen } from '@fortawesome/free-solid-svg-icons'
 import { faInfoCircle } from '@fortawesome/free-solid-svg-icons'
 import ButtonDashboard from '../../../common/component/button/button-dashboard';
 
+// import store
+import { setIdPeserta } from '../../../modules/admin-superadmin/user/peserta/store/peserta-action'
+
+
+const { confirm } = Modal;
 
 class PesertaAdminPage extends Component {
     state = { 
@@ -30,13 +37,49 @@ class PesertaAdminPage extends Component {
         });
     }
 
+    //delete peserta
+    deletePeserta = (id_peserta) => {   
+        console.log(id_peserta)
+        API.delete(`/admin/deletepeserta/${id_peserta}`)
+        .then(res => {
+            console.log('res',res)
+            if(res.status == 200){
+                message.success('This is a success message');
+                window.location.reload(); 
+            }   
+        });
+    }
+
+    //button detail event
+    onDetailPeserta = (id) => {
+        console.log('id ini',id)
+        this.props.setIdPeserta(id);
+        this.props.navigate(CONSTANS.DETAIL_PESERTA_ADMIN_MENU_KEY)
+    }
+
+    //function untuk modal
+    showDeleteConfirm = (id) => {
+        confirm({
+            title: ' Apakah yakin untuk menghapus data ?',
+            okText: 'Yes',
+            okType: 'danger',
+            cancelText: 'No',
+            onOk: () => {
+               this.deletePeserta(id)
+            },
+            onCancel(){
+                console.log('Cancel')
+            }
+        });
+    }
+
     render() { 
 
         const columns = [
             {
                 title: 'No',
-                dataIndex: 'nomor',
-                key: 'nomor',
+                dataIndex: 'no',
+                key: 'no',
                 render: text => <a>{text}</a>,
             },
             {
@@ -44,6 +87,9 @@ class PesertaAdminPage extends Component {
                 dataIndex: 'peserta',
                 key: 'peserta',
                 render: text => <a>{text}</a>,
+                onFilter: (value, record) => record.peserta.indexOf(value) === 0,
+                sorter: (a, b) => a.peserta.length - b.peserta.length,
+                sortDirections: ['descend', 'ascend'],
             },
             {
                 title: 'Email',
@@ -68,13 +114,13 @@ class PesertaAdminPage extends Component {
             {
                 title: 'Action',
                 key: 'action',
-                render: () => (
+                render: (data) => (
                     [<ButtonDashboard
                         text="Edit"
                         height={20}
-                        icon={faUsers}
+                        icon={faPen}
                         borderRadius="5px"
-                        background="#4D5AF2"
+                        background="#005568"
                         marginRight= "20px"
                     />,
                     <ButtonDashboard
@@ -83,16 +129,29 @@ class PesertaAdminPage extends Component {
                         icon={faInfoCircle}
                         borderRadius="5px"
                         background="#FFA903"
+                        marginRight= "20px"
+                        onClick = { () => this.onDetailPeserta(data.nomor)}
+                    />,
+                    <ButtonDashboard
+                        text="Delete"
+                        height={20}
+                        icon={faTrash}
+                        borderRadius="5px"
+                        background="#FF0303"
+                        onClick = { () => this.showDeleteConfirm(data.id_peserta)}
                     />]
               ),
             },
           ];
-        const data =  this.state.peserta.map( data => ({
-            nomor : data.id_users,
-            peserta : data.peserta.nama_peserta,
-            email : data.email,
-            organisasi : data.peserta.organisasi,
-            umur : data.peserta.umur
+        const data =  this.state.peserta.map( ({id_users, peserta,email}, index) => ({
+            no : index+1,
+            nomor : id_users,
+            id_peserta : peserta.id_peserta,
+            peserta : peserta.nama_peserta,
+            email : email,
+            organisasi : peserta.organisasi,
+            umur : peserta.umur,
+            jenis_kelamin : peserta.jenis_kelamin,
         }))
                 
         return ( 
@@ -112,6 +171,7 @@ const mapStateToProps = state => ({
 
 const mapDispatchToProps = (dispatch => ({
     navigate,
+    setIdPeserta,
 }))();
 
 const page = connect(mapStateToProps, mapDispatchToProps)(PesertaAdminPage);

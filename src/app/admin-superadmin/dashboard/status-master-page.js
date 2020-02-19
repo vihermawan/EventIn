@@ -1,16 +1,106 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-
+import { faPen, faTrash } from '@fortawesome/free-solid-svg-icons'
+import { Modal, message } from 'antd'
+import { API } from '../../../common/api'
+import ButtonDashboard from '../../../common/component/button/button-dashboard';
 import { navigate } from '../../../common/store/action'
 import StatusMasterComponent from '../../../modules/admin-superadmin/data-master/status-component';
 
+const {confirm} = Modal;
+
 class StatusMasterPage extends Component {
-    state = {  }
+    state = { 
+        status:[],
+        loading:false,
+     }
+
+     componentDidMount(){
+        this.getStatus();
+    }
+
+    //get data dari API
+    getStatus=()=>{
+        this.setState({loading: true})
+
+        API.get(`/admin/status`)
+        .then(res => {
+            console.log('res',res)
+            this.setState({
+                status:res.data.data.status,
+                loading: false,
+            })
+        });
+    }
+
+    
+    //function untuk modal
+    showDeleteConfirm = (id) => {
+        confirm({
+            title: ' Apakah yakin untuk menghapus data ?',
+            okText: 'Yes',
+            okType: 'danger',
+            cancelText: 'No',
+            onOk: () => {
+               // this.deleteEvent(id)
+            },
+            onCancel(){
+                console.log('Cancel')
+            }
+        });
+    }
 
     render() { 
+
+        const columns = [
+            {
+                title: 'No',
+                dataIndex: 'nomor',
+                key: 'nomor',
+                render: text => <a>{text}</a>,
+            },
+            {
+                title: 'Nama Status',
+                dataIndex: 'nama_status',
+                key: 'nama_status',
+                render: text => <a>{text}</a>,
+            },
+            {
+              title: 'Action',
+              key: 'action',
+              render: (data) => (
+                [<ButtonDashboard
+                    text="Edit"
+                    height={20}
+                    icon={faPen}
+                    borderRadius="5px"
+                    background="#005568"
+                    marginRight= "20px"
+                />,
+                <ButtonDashboard
+                    text="Delete"
+                    height={20}
+                    icon={faTrash}
+                    borderRadius="5px"
+                    background="#E11212"
+                    onClick = {() => this.showDeleteConfirm()}
+                />]
+              ),
+            },
+          ];
+        
+
+        const data =  this.state.status.map( data => ({
+            nomor : data.id_status,
+            nama_status: data.nama_status,
+        }))
+
         return ( 
             <StatusMasterComponent
                 navigate={this.props.navigate}
+                initialData = {this.state}
+                columns = {columns}
+                data = {data}
             />
         );
     }

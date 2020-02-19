@@ -3,7 +3,6 @@ import { Layout, Breadcrumb, Row, Table, Input, Col,Tag } from 'antd';
 import '../../../assets/css/dashboard-all/dashboard.css'
 import '../../../assets/css/dashboard-all/table-style.css'
 // component
-import TableProfile from '../../../common/component/table/table'
 import DetailEvent from '../../../common/component/detail/detail-component'
 import LoadingContainer from '../../../common/component/loading/loading-container'
 // constant content

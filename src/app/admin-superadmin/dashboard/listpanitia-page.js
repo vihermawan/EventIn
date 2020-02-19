@@ -1,12 +1,19 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { API } from '../../../common/api'
+import { Modal, message } from 'antd'
 import { navigate } from '../../../common/store/action'
+import CONSTANS from '../../../common/utils/Constants'
 import ListPanitiaAdminComponent from '../../../modules/admin-superadmin/user/panitia/listpanitia-component';
 //component
-import { faUsers, faTrash, faPen } from '@fortawesome/free-solid-svg-icons'
+import { faTrash, faPen } from '@fortawesome/free-solid-svg-icons'
 import { faInfoCircle } from '@fortawesome/free-solid-svg-icons'
 import ButtonDashboard from '../../../common/component/button/button-dashboard';
+
+// import store
+import { setIdPanitia } from '../../../modules/admin-superadmin/user/panitia/store/panitia-action'
+
+const { confirm } = Modal;
 
 class ListPanitiaAdminPage extends Component {
     state = { 
@@ -30,13 +37,55 @@ class ListPanitiaAdminPage extends Component {
         });
     }
 
+    //delete panitia
+    deletePanitia = (id_panitia) => {   
+        console.log(id_panitia)
+        API.delete(`/admin/deletepanitia/${id_panitia}`)
+        .then(res => {
+            console.log('res',res)
+            if(res.status == 200){
+                message.success('This is a success message');
+                window.location.reload(); 
+            }   
+        });
+    }
+
+
+    //function untuk modal
+    showDeleteConfirm = (id) => {
+        confirm({
+            title: ' Apakah yakin untuk menghapus data ?',
+            okText: 'Yes',
+            okType: 'danger',
+            cancelText: 'No',
+            onOk: () => {
+                console.log('id ini',id)
+                this.deletePanitia(id)
+            },
+            onCancel(){
+                console.log('Cancel')
+            }
+        });
+    }
+
+    //button detail event
+    onDetailPanitia = (id) => {
+        console.log('id ini',id)
+        this.props.setIdPanitia(id);
+        this.props.navigate(CONSTANS.DETAIL_PANITIA_ADMIN_MENU_KEY)
+    }
+
+    onChange(pagination, filters, sorter, extra) {
+        console.log('params', pagination, filters, sorter, extra);
+    }
+
     render() { 
 
         const columns = [
             {
                 title: 'No',
-                dataIndex: 'nomor',
-                key: 'nomor',
+                dataIndex: 'no',
+                key: 'no',
                 render: text => <a>{text}</a>,
             },
             {
@@ -44,11 +93,16 @@ class ListPanitiaAdminPage extends Component {
                 dataIndex: 'panitia',
                 key: 'panitia',
                 render: text => <a>{text}</a>,
+                onFilter: (value, record) => record.panitia.indexOf(value) === 0,
+                sorter: (a, b) => a.panitia.length - b.panitia.length,
+                sortDirections: ['descend', 'ascend'],
             },
             {
                 title: 'Organisasi',
                 dataIndex: 'organisasi',
                 key: 'organisasi',
+                sorter: (a, b) => a.organisasi.length - b.organisasi.length,
+                sortDirections: ['descend', 'ascend'],
             },
             {
                 title: 'Email',
@@ -63,7 +117,7 @@ class ListPanitiaAdminPage extends Component {
             {
                 title: 'Action',
                 key: 'action',
-                render: () => (
+                render: (data) => (
                     [<ButtonDashboard
                         text="Edit"
                         height={20}
@@ -78,24 +132,40 @@ class ListPanitiaAdminPage extends Component {
                         icon={faInfoCircle}
                         borderRadius="5px"
                         background="#FFA903"
+                        marginRight= "20px"
+                        onClick = { () => this.onDetailPanitia(data.nomor)}
+                    />,
+                    <ButtonDashboard
+                        text="Delete"
+                        height={20}
+                        icon={faTrash}
+                        borderRadius="5px"
+                        background="#FF0303"
+                        onClick = { () => this.showDeleteConfirm(data.id_panitia)}
                     />]
               ),
             },
           ];
 
-        const data =  this.state.panitia.map( data => ({
-            nomor : data.id_users,
-            panitia : data.panitia.nama_panitia,
-            email : data.email,
-            organisasi : data.panitia.organisasi,
+        const data =  this.state.panitia.map( ({id_users, panitia,email}, index) => ({
+            no : index+1,
+            id_panitia : panitia.id_panitia,
+            nomor : id_users,
+            panitia : panitia.nama_panitia,
+            email : email,
+            organisasi : panitia.organisasi,
+            no_telepon : panitia.no_telepon,
         }))
         
+        
+
         return ( 
             <ListPanitiaAdminComponent
                 initialData={this.state}
                 navigate={this.props.navigate}
                 columns={columns}
                 data={data}
+                onChange={this.onChange()}
             />
         );
     }
@@ -107,6 +177,7 @@ const mapStateToProps = state => ({
 
 const mapDispatchToProps = (dispatch => ({
     navigate,
+    setIdPanitia,
 }))();
 
 const page = connect(mapStateToProps, mapDispatchToProps)(ListPanitiaAdminPage);

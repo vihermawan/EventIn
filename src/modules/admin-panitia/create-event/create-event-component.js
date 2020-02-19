@@ -3,42 +3,17 @@ import { Layout, Breadcrumb, Row, Steps,message,Col,Button, Form, Menu, Icon,Dro
 import '../../../assets/css/dashboard-all/dashboard.css'
 import '../../../assets/css/dashboard-all/table-style.css'
 import '../../../assets/css/admin-panitia/create-event.css'
+
+//import component
 import BasicInfoPage from '../../../app/admin-panitia/component-create-event/basic-info-page'
 import VenuePage from '../../../app/admin-panitia/component-create-event/venue-page'
 import DateTimePage from '../../../app/admin-panitia/component-create-event/date-time-page'
 import VisualPage from '../../../app/admin-panitia/component-create-event/visual-page'
-
-import InputAuth from '../../../common/component/input/input-auth'
+import CertificatePage from '../../../app/admin-panitia/component-create-event/certificate-page'
+import BiodataPenandatanganPage from '../../../app/admin-panitia/component-create-event/biodata-penandatangan-page'
 // constant content
 const { Content } = Layout;
 const { Step } = Steps;
-
-function handleButtonClick(e) {
-  message.info('Click on left button.');
-  console.log('click left button', e);
-}
-
-function handleMenuClick(e) {
-  message.info('Click on menu item.');
-  console.log('click', e);
-}
-
-const menu = (
-    <Menu onClick={handleMenuClick}>
-      <Menu.Item key="1">
-        <Icon type="user" />
-        1st menu item
-      </Menu.Item>
-      <Menu.Item key="2">
-        <Icon type="user" />
-        2nd menu item
-      </Menu.Item>
-      <Menu.Item key="3">
-        <Icon type="user" />
-        3rd item
-      </Menu.Item>
-    </Menu>
-  );
 
 const steps = [
     {
@@ -63,6 +38,18 @@ const steps = [
         title: 'Visual',
         content: 
             <VisualPage/>
+        ,
+    },
+    {
+        title: 'Certificate',
+        content: 
+            <CertificatePage/>
+        ,
+    },
+    {
+        title: 'Biodata Penandatangan',
+        content: 
+            <BiodataPenandatanganPage/>
         ,
     },
 ];

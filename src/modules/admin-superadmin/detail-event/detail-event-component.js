@@ -13,7 +13,7 @@ const { Content } = Layout;
 
 class DetailEventComponent extends Component {
     render() { 
-      const { initialData, columns, data } = this.props
+      const { initialData } = this.props
         return ( 
             <Content
                 style={{

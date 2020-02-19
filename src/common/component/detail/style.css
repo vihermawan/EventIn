@@ -1,7 +1,7 @@
 .title-container-detail-event {
     max-width: 480px;
     margin-top: 5px;
-    margin-left: 80px;
+    margin-left: 40px;
     margin-bottom: 10px;
 }
 .title-container-nama-event {
@@ -19,19 +19,19 @@
     font-weight: 700;
 }
 
-.button-detail-1-container {
+.category-event {
     max-width: 400px;
-    margin-left: 80px;
+    margin-left: 40px;
 }
 .image-big-container-detail {
     width: 600px;
     margin-top: 30px;
 }
 
-.title-container-detail-2 {
+.desc-event {
     max-width:80%;
-    /* margin-top: 50px; */
-    margin-left: 0px;
+    margin-top: 50px;
+    margin-left: 40px;
     margin-bottom: 10px;
 }
 
@@ -46,16 +46,19 @@
     text-align: justify;
 }
 
-.card-content-detail {
-    margin: 16px auto;
+.card-content-detail-event {
+    margin-top: 0px;
+    /* background-color: red; */
+    /* margin: 16px auto; */
     max-width: 1300px;
-    height: 250px;
-    padding: 28px;
+    min-height: 250px;
+    /* padding: 28px; */
+    border: none;
     border-radius: 10px;
 
-    -webkit-box-shadow: 0px 7px 17px -4px rgba(0,0,0,0.75);
+    /* -webkit-box-shadow: 0px 7px 17px -4px rgba(0,0,0,0.75);
     -moz-box-shadow: 0px 7px 17px -4px rgba(0,0,0,0.75);
-    box-shadow: 0px 7px 17px -4px rgba(0,0,0,0.75);
+    box-shadow: 0px 7px 17px -4px rgba(0,0,0,0.75); */
 }
 
 .detail-content {

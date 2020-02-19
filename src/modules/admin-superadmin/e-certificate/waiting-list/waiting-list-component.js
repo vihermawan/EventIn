@@ -2,74 +2,16 @@ import React, { Component } from 'react';
 import { Layout, Breadcrumb, Row, Table, Input, Col,Tag } from 'antd';
 import '../../../../assets/css/dashboard-all/dashboard.css'
 import '../../../../assets/css/dashboard-all/table-style.css'
-import { faUsers, faPaperPlane } from '@fortawesome/free-solid-svg-icons'
-import { faInfoCircle } from '@fortawesome/free-solid-svg-icons'
-import ButtonIcon from '../../../../common/component/button/button-icon'
+
 import TableProfile from '../../../../common/component/table/table'
+import LoadingContainer from '../../../../common/component/loading/loading-container'
 // constant content
 const { Content } = Layout;
-const columns = [
-    {
-        title: 'No',
-        dataIndex: 'Nomor',
-        key: 'Nomor',
-        render: text => <a>{text}</a>,
-    },
-    {
-      title: 'Nama Event',
-      dataIndex: 'Nama_Event',
-      key: 'Nama_Event',
-      render: text => <a>{text}</a>,
-    },
-    {
-      title: 'Organisasi',
-      dataIndex: 'tanggal_event',
-      key: 'tanggal_event',
-    },
-    {
-      title: 'Penandatangan',
-      dataIndex: 'tanggal_event',
-      key: 'tanggal_event',
-    },
-    {
-        title: 'Due Date',
-        dataIndex: 'tanggal_event',
-        key: 'tanggal_event',
-      },
-    {
-      title: 'Action',
-      key: 'action',
-      render: () => (
-        [<ButtonIcon
-            text="Send"
-            height={20}
-            icon={faPaperPlane}
-            borderRadius="5px"
-            background="#36FF03"
-            marginRight= "20px"
-        />,
-        <ButtonIcon
-            text="Detail"
-            height={20}
-            icon={faInfoCircle}
-            borderRadius="5px"
-            background="#FFA903"
-        />]
-      ),
-    },
-  ];
-const data = [
-    {
-      key: '1',
-      Nomor : '1',
-      Nama_Event: 'UGMTalks',
-      tanggal_event :'2020-10-11',
-    },
-  ];
 
 
 class PesertaAdminComponent extends Component {
     render() { 
+      const {initialData, data, columns} = this.props;
         return ( 
             <Content
                 style={{
@@ -92,13 +34,15 @@ class PesertaAdminComponent extends Component {
                                 <span>Waiting List</span>
                             </div>
                             </Row>
-                            <Row gutter={24} type="flex">
-                                <TableProfile 
-                                    columns={columns} 
-                                    dataSource={data} 
-                                    className="table-active-event"
-                                />
-                            </Row>
+                            <LoadingContainer loading={initialData.loading}>
+                              <Row gutter={24} type="flex">
+                                  <TableProfile 
+                                      columns={columns} 
+                                      dataSource={data} 
+                                      className="table-active-event"
+                                  />
+                              </Row>
+                            </LoadingContainer>
                         </div>
                     </Col>
                 </Row>

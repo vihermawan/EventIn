@@ -23,17 +23,6 @@ class EventPage extends Component {
 
     render() { 
 
-        // const cardData = [
-        //     {
-        //         image: require(`../../../assets/images/card-event.png`),
-        //         date: 'Sun, Jan 5, 8:00 Am',
-        //         price: 'free',
-        //         title: 'Try Out Ganesha Mulih Jogja 2020',
-        //         lokasi: 'SMA Negeri 1 Teladan Yogyakarta'
-        //     },
-        
-        // ]
-
         const cardData =  this.state.event.map( data => ({
             //image: require(`../../../assets/images/card-event.png`),
             date: data.detail_event.start_event,
