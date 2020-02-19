@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { Modal, Tag,Divider } from 'antd'
+import { Modal, Tag,Divider, message } from 'antd'
 import { faCheckCircle, faWindowClose} from '@fortawesome/free-solid-svg-icons'
 import { API } from '../../../common/api'
 import { navigate } from '../../../common/store/action'
@@ -32,6 +32,19 @@ class ListParticipantPage extends Component {
         });
     }
 
+    //approve peserta
+    ApprovePeserta = (id_pesertaevent) => {
+        this.setState({loading: true})
+        console.log(id_pesertaevent)
+        API.put(`/panitia/approvepeserta/${id_pesertaevent}`)
+        .then(res => {
+            console.log('res',res)
+            if(res.status == 200){
+                message.success('This is a success message');
+                this.componentDidMount();
+            }   
+        });
+    }
     
 
     //function untuk modal
@@ -42,7 +55,7 @@ class ListParticipantPage extends Component {
             okType: 'danger',
             cancelText: 'No',
             onOk: () => {
-               // this.deleteEvent(id)
+               this.ApprovePeserta(id)
             },
             onCancel(){
                 console.log('Cancel')
@@ -82,6 +95,9 @@ class ListParticipantPage extends Component {
             dataIndex: 'nama_peserta',
             key: 'nama_peserta',
             render: text => <a>{text}</a>,
+            onFilter: (value, record) => record.nama_peserta.indexOf(value) === 0,
+            sorter: (a, b) => a.nama_peserta.length - b.nama_peserta.length,
+            sortDirections: ['descend'],
         },
         {
             title: 'Organisasi',

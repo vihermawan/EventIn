@@ -69,55 +69,38 @@ export const API = {
             });
     },
 
-    put : function (endPoint, input) {        
+    put : function (endPoint, input) {
         let headers = {};
+
         let token = localStorage.getItem("token");
+        // console.log('token', token)
         if(token != null)
             headers.Authorization = `Bearer ${token}`;
+        
+            // console.log(headers.Authorization)
+        let config = {
+            headers : headers,
+            params : input
+        }
 
-        return  axios.put(BASE_URL+endPoint, input, {headers : headers})
+        return axios.put(BASE_URL+endPoint,input,config)
             .then( ( response ) => {
-                return response.data;
+                return response;
             })
             .catch( ( error ) => {
-                console.log( error );
-            });
-    },
+                return error
+            });      
+    }, 
 
-    patch : function (endPoint, input) {        
-        let headers = {};
-        let token = localStorage.getItem("token");
-        if(token != null)
-            headers.Authorization = `Bearer ${token}`;
-            
-        return  axios.patch(BASE_URL+endPoint, input, {headers : headers})
-            .then( ( response ) => {
-                return response.data;
-            })
-            .catch( ( error ) => {
-                console.log( error );
-            });
-    },
-
-    // delete : function (endPoint, input) {
-    //     let headers = {};
-
-    //     let token = localStorage.getItem("token");
-    //     if(token != null)
-    //         headers.Authorization = `Bearer ${token}`;
-            
-    //     let config = {
-    //         headers : headers,
-    //         params : input
-    //     }
-    //     return axios.delete(BASE_URL+endPoint, input, config)
-    //         .then( ( response ) => {
-    //             return response
-    //         })
-    //         .catch( ( error ) => {
-    //             return error
-    //         });
-    // },
+    patch : function (endPoint, input) {
+        return axios.patch(BASE_URL+endPoint)
+        .then( (res) => {
+            return res
+        })
+        .catch( (err) => {
+            return err
+        })
+    }, 
 
     delete : function (endPoint, input) {
         let headers = {};
