@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { Tag,Modal } from 'antd';
+import { Tag,Modal,message } from 'antd';
 import CONSTANS from '../../../common/utils/Constants'
 import {  faUsers, faInfoCircle } from '@fortawesome/free-solid-svg-icons'
 import { API } from '../../../common/api'
@@ -44,6 +44,19 @@ class DetailParticipantPage extends Component {
         this.props.navigate(CONSTANS.DETAIL_EVENT_PESERTA_MENU_KEY)
     }
 
+    //approve peserta
+    AbsentPeserta = (id_pesertaevent) => {
+        console.log(id_pesertaevent)
+        API.put(`/panitia/ubahAbsensi/${id_pesertaevent}`)
+        .then(res => {
+            console.log('res',res)
+            if(res.status == 200){
+                message.success('This is a success message');
+                this.componentDidMount();
+            }   
+        });
+    }
+
     //function untuk modal
     showAbsenConfirm = (id) => {
         confirm({
@@ -52,7 +65,7 @@ class DetailParticipantPage extends Component {
             okType: 'danger',
             cancelText: 'No',
             onOk: () => {
-                //this.AbsenPeserta(id)
+                this.AbsentPeserta(id);
             },
             onCancel(){
                 console.log('Cancel')
@@ -64,8 +77,8 @@ class DetailParticipantPage extends Component {
           const columns = [
             {
                 title: 'No',
-                dataIndex: 'nomor',
-                key: 'nomor',
+                dataIndex: 'no',
+                key: 'no',
                 render: text => <a>{text}</a>,
             },
             {
@@ -114,6 +127,7 @@ class DetailParticipantPage extends Component {
                     </span>
                 ),
             },
+            
             {
               title: 'Action',
               key: 'action',
@@ -125,20 +139,22 @@ class DetailParticipantPage extends Component {
                     borderRadius="5px"
                     background="#070E57"
                     marginRight= "20px"
-                    onClick = {() => this.showAbsenConfirm()}
+                    onClick = {() => this.showAbsenConfirm(data.id_peserta_event)}
                 />]
               ),
             },
           ];
 
-        const data =  this.state.listParticipant.map( data => ({
-            nomor : data.id_event,
-            nama_peserta: data.peserta.nama_peserta,
-            organisasi : data.peserta.organisasi,
-            email : data.peserta.users.email,
-            jenis_kelamin : data.peserta.jenis_kelamin,
-            umur : data.peserta.umur,
-            status : [data.status.nama_status],
+        const data =  this.state.listParticipant.map( ({id_event, peserta, status, id_peserta_event}, index) => ({
+            no : index+1,
+            id_peserta_event : id_peserta_event,
+            nomor : id_event,
+            nama_peserta: peserta.nama_peserta,
+            organisasi : peserta.organisasi,
+            email : peserta.users.email,
+            jenis_kelamin : peserta.jenis_kelamin,
+            umur : peserta.umur,
+            status : [status.nama_status],
         }))
 
         return ( 

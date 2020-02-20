@@ -13,11 +13,32 @@ class StatusMasterPage extends Component {
     state = { 
         status:[],
         loading:false,
+        visible: false,
      }
 
-     componentDidMount(){
+    componentDidMount(){
         this.getStatus();
     }
+
+    showModal = () => {
+        this.setState({
+          visible: true,
+        });
+    };
+    
+    handleOk = e => {
+    console.log(e);
+    this.setState({
+        visible: false,
+    });
+    };
+
+    handleCancel = e => {
+    console.log(e);
+    this.setState({
+        visible: false,
+    });
+    };
 
     //get data dari API
     getStatus=()=>{
@@ -33,6 +54,19 @@ class StatusMasterPage extends Component {
         });
     }
 
+    //delete status
+    deleteStatus = (id) => {   
+        console.log(id)
+        API.delete(`/admin/deletestatus/${id}`)
+        .then(res => {
+            console.log('res',res)
+            if(res.status == 200){
+                message.success('This is a success message');
+                window.location.reload(); 
+            }   
+        });
+    }
+
     
     //function untuk modal
     showDeleteConfirm = (id) => {
@@ -42,7 +76,7 @@ class StatusMasterPage extends Component {
             okType: 'danger',
             cancelText: 'No',
             onOk: () => {
-               // this.deleteEvent(id)
+               this.deleteStatus(id)
             },
             onCancel(){
                 console.log('Cancel')
@@ -55,8 +89,8 @@ class StatusMasterPage extends Component {
         const columns = [
             {
                 title: 'No',
-                dataIndex: 'nomor',
-                key: 'nomor',
+                dataIndex: 'no',
+                key: 'no',
                 render: text => <a>{text}</a>,
             },
             {
@@ -83,16 +117,17 @@ class StatusMasterPage extends Component {
                     icon={faTrash}
                     borderRadius="5px"
                     background="#E11212"
-                    onClick = {() => this.showDeleteConfirm()}
+                    onClick = {() => this.showDeleteConfirm(data.nomor)}
                 />]
               ),
             },
           ];
         
 
-        const data =  this.state.status.map( data => ({
-            nomor : data.id_status,
-            nama_status: data.nama_status,
+        const data =  this.state.status.map( ({id_status, nama_status}, index) => ({
+            no : index+1,
+            nomor : id_status,
+            nama_status: nama_status,
         }))
 
         return ( 
@@ -101,6 +136,9 @@ class StatusMasterPage extends Component {
                 initialData = {this.state}
                 columns = {columns}
                 data = {data}
+                handleCancel = {this.handleCancel}
+                handleOk = {this.handleOk}
+                showModal = {this.showModal}
             />
         );
     }

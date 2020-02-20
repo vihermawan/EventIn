@@ -35,8 +35,8 @@ class AuthLogin extends Component {
         console.log('params',params)
         API.post(`/login`, params)
         .then(res => {
-            console.log('res',res )
-            
+            console.log('res',res.data )
+            localStorage.setItem('username', res.data.nama)
             if(res.data.data.id_role == 2){
                 this.props.navigate(CONSTANS.PANITIA_MENU_KEY)
                 localStorage.setItem('token', res.data.data.api_token)
