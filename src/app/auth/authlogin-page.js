@@ -76,7 +76,8 @@ class AuthLogin extends Component {
                     }
                 }
                 else{
-                    alert('Login salah')
+                    // alert('Login salah')
+                    this.openNotification('Login Salah', 'Silahkan isi email dan password dengan benarnpm start')
                 }
                 this.setState({loading: false})
             });

@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import { Drawer, Button, Menu,Avatar,Dropdown, Icon } from 'antd';
 import { Link } from 'react-router-dom';
 import { faUser } from '@fortawesome/free-solid-svg-icons'
+import { API } from '../../common/api'
+import CONSTANS from '../utils/Constants'
 // style
 import './style/navbar-style.css';
 // component
@@ -36,6 +38,21 @@ class Navbar extends Component {
 	onClose = () => {
 		this.setState({ visible: false });
 	};
+
+	handleLogout = e => {
+		this.setState({loading: true})
+		 API.post(`/logout`)
+		 .then(res => {
+			 console.log('res',res)
+			 if(res.status == 200){
+				 localStorage.clear();
+				 this.setState({
+				   loading: false,
+				 })
+				 this.props.navigate(CONSTANS.LOGIN_MENU_KEY)
+			 }
+		 });
+	 }
 
 	render() {
 		const logo = require(`../../assets/images/logo.png`);
