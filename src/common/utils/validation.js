@@ -40,9 +40,19 @@ export const emailRequired = (value) => {
     const emailPattern = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
     if (value) {
         if (!emailPattern.test(value)) {
-            return 'format email';
+            return 'Format Harus Email';
         }
         return null;
     }
     return 'harus diisi';
 };
+
+export const minPassword = (value) => {
+    if (value) {
+        if(value.length < 8){
+            return "password kurang panjang"
+        }
+        return null;
+    }
+    return 'harus diisi';
+}
