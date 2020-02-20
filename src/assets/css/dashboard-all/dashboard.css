@@ -49,3 +49,12 @@
     -moz-box-shadow: 0px 7px 17px -4px rgba(0,0,0,0.75);
     box-shadow: 0px 1px 17px -10px rgba(0,0,0,0.75);
 }
+
+.container-active-event-absent{
+    margin: 0px auto;
+    max-width: 100%;
+    min-height: 500px;
+    padding: 28px;
+    border-radius: 10px;
+    background-color: white;
+}

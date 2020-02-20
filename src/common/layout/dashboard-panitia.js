@@ -20,10 +20,11 @@ import HistoryEventPage from '../../app/admin-panitia/dashboard/history-event-pa
 import ListParticipantPage from '../../app/admin-panitia/dashboard/list-participant-page'
 import ProfilePage from '../../app/admin-panitia/dashboard/profile-page'
 import LoadingContainer from '../../common/component/loading/loading-container'
-import DetailParticipantEvent from '../../app/admin-panitia/detail-page/partcipant-active-event-page'
 import DetailEvent from '../../app/admin-panitia/detail-page/detail-event-page'
 import DetailSertifPage from '../../app/admin-panitia/detail-page/detail-sertif-page'
 import TemplateSertifPage from '../../app/admin-panitia/dashboard/template-page'
+import TabAbsentPage from '../../app/admin-panitia/dashboard/tab-absent-page'
+
 
 const { Header, Sider, Content } = Layout;
 
@@ -259,10 +260,10 @@ class dashboard extends Component {
                     exact
                     render={ (props) => <ActiveEventPage {...props}/> }
                 />
-                <Route
+                 <Route
                     path='/dashboard/participant-event'
                     exact
-                    render={ (props) => <DetailParticipantEvent {...props}/> }
+                    render={ (props) => <TabAbsentPage {...props}/> }
                 />
                 <Route
                     path='/dashboard/detail-event'

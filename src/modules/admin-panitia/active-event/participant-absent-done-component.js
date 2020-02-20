@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Layout, Breadcrumb, Row, Table, Input, Col,Tag } from 'antd';
+import { Layout, Row, Col,} from 'antd';
 import '../../../assets/css/dashboard-all/dashboard.css'
 import '../../../assets/css/dashboard-all/table-style.css'
 // component
@@ -10,31 +10,14 @@ const { Content } = Layout;
 
 
 
-class ActiveEventComponent extends Component {
+class ParticipantEventComponent extends Component {
     render() { 
       const { initialData, columns, data } = this.props
         return ( 
-            <Content
-                style={{
-                    margin : "5px 10px 0px 10px",
-                    padding: 15,
-                    minHeight: 280,
-                    borderRadius: "8px",
-                }}
-            >
-                <Breadcrumb separator=">">
-                    <Breadcrumb.Item>Dashboard Active Event</Breadcrumb.Item>
-                </Breadcrumb>
-
-                <Row style={{minHeight: '100%',marginBottom: '2%',marginTop:'2%',}} className="background">
+            <Content>
+                <Row style={{minHeight: '100%'}} className="background">
                     <Col lg={24} md={24} sm={24}> 
-                        
-                        <div className="container-active-event">
-                            <Row>
-                            <div className="container-title-event">
-                                <span>Active Event</span>
-                            </div>
-                            </Row>
+                        <div className="container-absent">
                             <LoadingContainer loading={initialData.loading}>
                                 <Row gutter={24} type="flex">
                                     <TableProfile 
@@ -52,4 +35,4 @@ class ActiveEventComponent extends Component {
     }
 }
  
-export default ActiveEventComponent;
+export default ParticipantEventComponent;

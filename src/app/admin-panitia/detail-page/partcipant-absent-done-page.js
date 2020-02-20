@@ -5,7 +5,7 @@ import CONSTANS from '../../../common/utils/Constants'
 import {  faUsers, faInfoCircle } from '@fortawesome/free-solid-svg-icons'
 import { API } from '../../../common/api'
 import { navigate } from '../../../common/store/action'
-import DetailParticipantComponent from '../../../modules/admin-panitia/active-event/participant-active-event-component';
+import DetailParticipantComponent from '../../../modules/admin-panitia/active-event/participant-absent-done-component';
 import ButtonDashboard from '../../../common/component/button/button-dashboard';
 
 // import store
