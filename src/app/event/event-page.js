@@ -7,6 +7,7 @@ import EventComponent from '../../modules/event/component/event-component';
 class EventPage extends Component {
     state = { 
         event:[],
+        loading : false,
      }
 
      componentDidMount(){
@@ -16,27 +17,32 @@ class EventPage extends Component {
     getEvent=()=>{
         API.get(`/peserta/event`)
         .then(res => {
-            console.log('res',res.data.data.event.detail_event)
-            this.setState({event:res.data.data.event})
+            this.setState({loading: true})
+            console.log(res.data.data.event)
+            if(res.status == 200){
+                this.setState({
+                    event:res.data.data.event,
+                    loading: false,
+                })
+            }
         });
     }
 
     render() { 
 
         const cardData =  this.state.event.map( data => ({
-            //image: require(`../../../assets/images/card-event.png`),
             date: data.detail_event.start_event,
-            price: data.detail_event.audien,
+            price: data.status_biaya.nama_status,
             title: data.nama_event,
             place: data.detail_event.lokasi,
-            
-
+            foto : data.detail_event.image_URL,
         }))
 
         return (
             <EventComponent
                 navigate={this.props.navigate}
                 cardData = {cardData}
+                initialData = {this.state}
             />
         );
     }

@@ -25,7 +25,7 @@ class DetailParticipantPage extends Component {
 
     getParticipantEvent=(id) => {
         this.setState({loading: true})
-        API.get(`/panitia/event/${id}/peserta-absent`)
+        API.get(`/panitia/event/${id}/peserta`)
         .then(res => {
             console.log('res',res)
             if(res.status === 200){

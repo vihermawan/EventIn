@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import { Layout, BackTop, Row, Col, Button, Input, Dropdown, Menu, Icon, Tabs, Card } from 'antd';
-
+import LoadingContainer from '../../../common/component/loading/loading-container'
 import '../../../assets/css/event.css'
 // component
 import Navbar from '../../../common/layout/navbar-landing'
@@ -37,7 +37,7 @@ const menu = (
 
 class EventComponent extends Component {
     render() { 
-        const {cardData} = this.props
+        const {cardData,initialData} = this.props
         const image1 = require(`../../../assets/images/event-image1.png`);  
         return ( 
             <Layout className="landing-container">
@@ -119,6 +119,7 @@ class EventComponent extends Component {
                         <Tabs style={{marginLeft:'5%', marginRight:'5%'}} defaultActiveKey="1">
                             <TabPane 
                                 tab="All" key="1">
+                                <LoadingContainer loading={initialData.loading}>
                                 <Col lg={24}>
                                     <Row gutter={16}>
                                         {
@@ -129,9 +130,10 @@ class EventComponent extends Component {
                                                         className="event-card-container"
                                                         cover={<img
                                                             alt="background event card"
-                                                            src={data.image}
+                                                            src={data.foto}
                                                             style={{borderTopLeftRadius: 16, borderTopRightRadius: 16}}
-                                                        />}>
+                                                        />}
+                                                        >
                                                         <Row>
                                                             <Col lg={12} md={12} sm={24} xs={12}>
                                                                 <div className="text-black semi-bold">{data.date}</div>
@@ -155,8 +157,10 @@ class EventComponent extends Component {
                                     </Row>
 
                                 </Col>
+                                </LoadingContainer>
                             </TabPane>
                             <TabPane tab="This Weekend" key="2">
+                            <LoadingContainer loading={initialData.loading}>
                             <Col lg={24} className="card-container">
                                     <Row gutter={16}>
                                         {
@@ -167,7 +171,7 @@ class EventComponent extends Component {
                                                         className="event-card-container"
                                                         cover={<img
                                                             alt="background event card"
-                                                            src={data.image}
+                                                            src={data.foto}
                                                             style={{borderTopLeftRadius: 16, borderTopRightRadius: 16}}
                                                         />}
                                                     >
@@ -194,7 +198,9 @@ class EventComponent extends Component {
                                     </Row>
 
                                 </Col>
+                                </LoadingContainer>
                             </TabPane>
+                           
                             <TabPane tab="Music" key="3">
                             <Col lg={24} className="card-container">
                                     <Row gutter={16}>
@@ -264,7 +270,7 @@ class EventComponent extends Component {
                                                         className="event-card-container"
                                                         cover={<img
                                                             alt="background event card"
-                                                            src={data.image}
+                                                            src={data.foto}
                                                             style={{borderTopLeftRadius: 16, borderTopRightRadius: 16}}
                                                         />}
                                                     >
@@ -281,7 +287,7 @@ class EventComponent extends Component {
                                                                 <Link to='/detail'><h2 className="text-soft-blue semi-bold">{data.title}</h2></Link>
                                                             </Col>
                                                             <Col lg={24}>
-                                                                {data.lokasi}
+                                                                {data.place}
                                                             </Col>
                                                         </Row>
                                                     </Card>
