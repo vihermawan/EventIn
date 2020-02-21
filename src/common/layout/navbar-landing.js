@@ -14,6 +14,7 @@ import ButtonAuth from '../component/button/button-auth';
 class Navbar extends Component {
 	state = {
 		current: '',
+		username :'username',
 		visible: false,
 		isLogin: false,
 	}
@@ -24,6 +25,8 @@ class Navbar extends Component {
 		let pathName = pathArray[1];
 		pathName === '' ? this.setState({current : 'home'}) : this.setState({current : pathName});
 		let token = localStorage.getItem("token");
+		const username = localStorage.getItem("username")
+		this.setState({ username })
 		if (token != null){
 			this.setState({isLogin: true})
 		}
@@ -115,7 +118,7 @@ class Navbar extends Component {
 							 }}
 						 >
 							<Avatar size={40} icon="user" className="avatars" />
-								<span className="semi-bold">PPSMB PALAPA</span>
+								<span className="semi-bold">{this.state.username}</span>
 								<Dropdown overlay={menu} trigger={['click']}>
 									<a className="ant-dropdown-link" href="#">
 									<Icon type="down" style={{marginLeft:"20px", color:"black", fontSize:"13px"}} />
