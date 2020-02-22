@@ -16,29 +16,7 @@ function onFinish() {
 }
 
 
-const benefitData = [
-    {
-        image: require(`../../../assets/images/day.png`),
-        title: 'The Day',
-        description: '31 Januari- 2 Februari 2020'
-    },
-    {
-        image: require(`../../../assets/images/location.png`),
-        title: 'Venue',
-        description: 'ICE BSD City Tangerang'
-    },
-    {
-        image: require(`../../../assets/images/regis.png`),
-        title: 'Registrasi',
-        description: '1-20 Januari 2020'
-    },
-    {
-        image: require(`../../../assets/images/quota.png`),
-        title: 'Quota',
-        description: '100 Orang'
-    },
-    
-]
+
 
 class DetailComponent extends Component {
     state = {
@@ -73,10 +51,31 @@ class DetailComponent extends Component {
       };
 
     render() { 
-        const {detailData} = this.props
-        const image4 = require(`../../../assets/images/event1.jpg`);
+        const {initialData} = this.props
         const { visible, confirmLoading, ModalText } = this.state;
-        
+        const benefitData = [
+            {
+                image: require(`../../../assets/images/day.png`),
+                title: 'The Day',
+                description: initialData.detailEvent.start_event + ' - ' + initialData.detailEvent.end_event,
+            },
+            {
+                image: require(`../../../assets/images/location.png`),
+                title: 'Venue',
+                description: initialData.detailEvent.lokasi ,
+            },
+            {
+                image: require(`../../../assets/images/regis.png`),
+                title: 'Registrasi',
+                description: initialData.detailEvent.open_registration + ' - ' + initialData.detailEvent.end_registration,
+            },
+            {
+                image: require(`../../../assets/images/quota.png`),
+                title: 'Quota',
+                description: initialData.detailEvent.limit_participant + ' orang'
+            },
+            
+        ]
         return ( 
             <Layout className="landing-container">
                 <Navbar
@@ -86,17 +85,13 @@ class DetailComponent extends Component {
                     <Row style={{minHeight: '100%',marginBottom: '2%',marginTop:'2%'}}>
                         <Col lg={12} md={12} sm={12}>
                             <Row>
-                                {detailData.map( data =>
-                                    <Col span={24} >
-                                        <div className="title-container-detail">
-                                            {/* <span className="text-soft-blue title-big-detail">HAGE 2020 </span> */}
-                                            <br/>
-                                            <span className="text-soft-blue title-small-detail">{data.title}</span>
-                                        </div>
-                                    </Col>
-
-                                    )
-                                }
+                                <Col span={24} >
+                                    <div className="title-container-detail">
+                                        <span className="text-soft-blue title-big-detail">{initialData.Event.nama_event}</span>
+                                        <br/>
+                                        <span className="text-soft-blue title-small-detail">{initialData.Event.organisasi}</span>
+                                    </div>
+                                </Col>
                                 <Col span={24} style={{ marginTop: 2 }}>
                                     <Countdown className="text-soft-blue title-small title-container-detail" title="Will be held on" value={deadline} format="D day,  H-m-s hour" />
                                 </Col>
@@ -123,7 +118,7 @@ class DetailComponent extends Component {
                         <Col lg={12} md={12} sm={12}>
                             <div className="image-big-container-detail">
                                 <img
-                                    src={image4}
+                                    src={initialData.detailEvent.image_URL}
                                     alt="Home 1"
                                     style={{maxWidth: '100%'}}
                                 />
@@ -158,9 +153,7 @@ class DetailComponent extends Component {
                         <Col lg={12} md={12} sm={12}>
                             <Row style={{marginLeft:'12%', marginTop:'4%'}}>
                                 <div className="title-container-detail-2">
-                                    <p className="text-soft-grey title-quote-detail teks-detail">Lagi seneng banget traveling sambil nyari spot ootd di kota-kota tertentu, atau eksperimen masak terus di bungkus kreatif eh dijual dan laku!</p>
-                                    <p className="text-soft-grey title-quote-detail teks-detail">Iya emang hobby orang kadang ngga cukup satu. Nah! HAGE mengerti itu, makanya hadir untuk mengerti kamu yang punya banyak hobby dan mau mengekspresikan semuanya. Bukan cuma sekedar pameran, tapi kamu bisa dapet ilmu baru tentang hobby-hobby yang kamu geluti ditambah pengalaman baru dari beragam hobby lainnya.</p>
-                                    <p className="text-soft-grey title-quote-detail teks-detail">Udah kebayang serunya kaya apa? Jangan cuma dibayangin, dateng dan rasain sendiri 31 Januari – 2 Februari 2020 di ICE BSD yaaa.</p>
+                                    <p className="text-soft-grey title-quote-detail teks-detail">{initialData.detailEvent.deskripsi_event}</p>
                                 </div>
                             </Row>
                         </Col>

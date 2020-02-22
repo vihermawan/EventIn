@@ -37,7 +37,7 @@ const menu = (
 
 class EventComponent extends Component {
     render() { 
-        const {cardData,initialData} = this.props
+        const {cardData,initialData,onDetailEvent} = this.props
         const image1 = require(`../../../assets/images/event-image1.png`);  
         return ( 
             <Layout className="landing-container">
@@ -144,7 +144,7 @@ class EventComponent extends Component {
                                                                 </span>
                                                             </Col>
                                                             <Col lg={24} className="mt-10">
-                                                                <Link to='/detail'><h2 className="text-soft-blue semi-bold">{data.title}</h2></Link>
+                                                                <Link onClick={() => onDetailEvent(data.id)}><h2 className="text-soft-blue semi-bold">{data.title}</h2></Link>
                                                             </Col>
                                                             <Col lg={24}>
                                                                 {data.place}
