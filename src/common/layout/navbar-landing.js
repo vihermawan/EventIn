@@ -25,10 +25,10 @@ class Navbar extends Component {
 		let pathName = pathArray[1];
 		pathName === '' ? this.setState({current : 'home'}) : this.setState({current : pathName});
 		let token = localStorage.getItem("token");
-		const username = localStorage.getItem("username")
-		this.setState({ username })
 		if (token != null){
 			this.setState({isLogin: true})
+			const username = localStorage.getItem("username")
+			this.setState({ username })
 		}
 	}
 
