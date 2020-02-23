@@ -6,7 +6,6 @@ import { Layout, Menu, Icon,Avatar,Dropdown } from 'antd';
 /*Import Icon */
 import { faDesktop,faPen, faCalendarCheck, faHistory, faFile,faUserFriends,faUserCircle, faClipboard } from '@fortawesome/free-solid-svg-icons'
 import ButtonAuth from '../component/button/button-auth'
-
 import { connect } from 'react-redux';
 import { navigate } from '../../common/store/action'
 import { API } from '../../common/api'
@@ -20,12 +19,13 @@ import HistoryEventPage from '../../app/admin-panitia/dashboard/history-event-pa
 import ListParticipantPage from '../../app/admin-panitia/dashboard/list-participant-page'
 import ProfilePage from '../../app/admin-panitia/dashboard/profile-page'
 import LoadingContainer from '../../common/component/loading/loading-container'
-import DetailParticipantEvent from '../../app/admin-panitia/detail-page/partcipant-active-event-page'
 import DetailEvent from '../../app/admin-panitia/detail-page/detail-event-page'
 import DetailSertifPage from '../../app/admin-panitia/detail-page/detail-sertif-page'
 import TemplateSertifPage from '../../app/admin-panitia/dashboard/template-page'
+import TabAbsentPage from '../../app/admin-panitia/dashboard/tab-absent-page'
 
-const { Header, Sider, Content } = Layout;
+
+const { Header, Sider } = Layout;
 
 class dashboard extends Component {
   state = {
@@ -259,10 +259,10 @@ class dashboard extends Component {
                     exact
                     render={ (props) => <ActiveEventPage {...props}/> }
                 />
-                <Route
+                 <Route
                     path='/dashboard/participant-event'
                     exact
-                    render={ (props) => <DetailParticipantEvent {...props}/> }
+                    render={ (props) => <TabAbsentPage {...props}/> }
                 />
                 <Route
                     path='/dashboard/detail-event'

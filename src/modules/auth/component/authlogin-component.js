@@ -17,11 +17,10 @@ class LoginComponent extends Component{
         return (
             
             <Layout className="login-container">
-                 <Content style={{ overflow: "hidden", minHeight:"100vh" }}>
+                <LoadingContainer loading={initialData.loading}>
+                    <Content style={{ overflow: "hidden", minHeight:"100vh" }}>
                     <Row>
-                    <LoadingContainer loading={initialData.loading}>
                         <Col lg={15} md={12} sm={12} className="background-white container-full">
-                      
                             <Row>
                                 <div className="login-section-container">
                                     <img src={logo} alt="EventIn logo" width="100"/>
@@ -82,10 +81,10 @@ class LoginComponent extends Component{
                                 </Form>
                             </Row>
                         </Col>
-                        </LoadingContainer>
                     </Row>
                     
                  </Content>
+                </LoadingContainer>
             </Layout>
         );
     }

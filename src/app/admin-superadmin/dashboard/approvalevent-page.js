@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { API } from '../../../common/api'
-import { Modal, Tag} from 'antd'
+import { Modal, Tag, Divider,message} from 'antd'
 import CONSTANS from '../../../common/utils/Constants'
 import { faCheckCircle, faWindowClose } from '@fortawesome/free-solid-svg-icons'
 import { faInfoCircle } from '@fortawesome/free-solid-svg-icons'
@@ -36,30 +36,41 @@ class ApprovalEventPage extends Component {
          });
     }
 
-     //button detail event
-     onDetailEvent = (id) => {
+    //button detail event
+    onDetailEvent = (id) => {
         console.log('id ini',id)
         this.props.setIdEvent(id);
         this.props.navigate(CONSTANS.DETAIL_EVENT_ADMIN_MENU_KEY)
+    }
+
+    //delete event
+    approveEvent = (id_event) => {
+        console.log(id_event)
+        API.put(`/admin/approvalevent/${id_event}/acc`)
+        .then(res => {
+            console.log('res',res)
+            if(res.status == 200){
+                message.success('This is a success message');
+                this.componentDidMount(); 
+            }   
+        });
     }
     
     //function untuk modal
     showAcceptConfirm = (id) => {
         confirm({
-            title: ' Apakah yakin untuk approve peserta ?',
+            title: ' Apakah yakin untuk approve event ?',
             okText: 'Yes',
             okType: 'danger',
             cancelText: 'No',
             onOk: () => {
-               // this.deleteEvent(id)
+               this.approveEvent(id)
             },
             onCancel(){
                 console.log('Cancel')
             }
         });
     }
-
-
     
     //function untuk modal
     showRejectConfirm = (id) => {
@@ -76,7 +87,6 @@ class ApprovalEventPage extends Component {
             }
         });
     }
-
     
 
     render() { 
@@ -96,6 +106,11 @@ class ApprovalEventPage extends Component {
                 onFilter: (value, record) => record.nama_event.indexOf(value) === 0,
                 sorter: (a, b) => a.nama_event.length - b.nama_event.length,
                 sortDirections: ['descend', 'ascend'],
+            },
+            {
+                title: 'Panitia',
+                dataIndex: 'panitia',
+                key: 'panitia',
             },
             {
                 title: 'Tempat',
@@ -137,25 +152,24 @@ class ApprovalEventPage extends Component {
               key: 'action',
               render: (data) => (
                 [<ButtonDashboard
-                    text="Approve"
+                    // text="Approve"
                     height={20}
                     icon={faCheckCircle}
                     borderRadius="5px"
                     background="#00C908"
-                    marginRight= "20px"
-                    onClick = { () => this.showAcceptConfirm()}
+                    onClick = { () => this.showAcceptConfirm(data.nomor)}
                 />,
+                <Divider type="vertical" />,
                 <ButtonDashboard
-                    text="Reject"
+                    // text="Reject"
                     height={20}
                     icon={faWindowClose}
                     borderRadius="5px"
                     background="#FF0303"
-                    marginRight= "20px"
-                    onClick = { () => this.showRejectConfirm()}
-                />,
+                    onClick = { () => this.showRejectConfirm(data.nomor)}
+                />, <Divider type="vertical" />,
                 <ButtonDashboard
-                    text="Detail"
+                    // text="Detail"
                     height={20}
                     icon={faInfoCircle}
                     borderRadius="5px"
@@ -168,10 +182,11 @@ class ApprovalEventPage extends Component {
           ];
        
            
-        const data =  this.state.approvalevent.map( ({id_event, nama_event,detail_event,kategori}, index) => ({
+        const data =  this.state.approvalevent.map( ({id_event, nama_event,detail_event,kategori,panitia}, index) => ({
             no : index+1,
             nomor : id_event,
             nama_event: nama_event,
+            panitia : panitia.nama_panitia,
             start_event :detail_event.start_event,
             lokasi : detail_event.lokasi,
             kategori : [kategori.nama_kategori],

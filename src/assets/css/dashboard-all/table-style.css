@@ -5,16 +5,24 @@
     padding: 28px;
     border-radius: 10px;
     background-color: white;
+}
 
+.container-absent{
+    margin-top: 0px;
+    max-width: 100%;
+    min-height: 500px;
+    padding: 0px 15px 15px 15px ;
+    border-radius: 10px;
+    background-color: white;
 }
 
 .table-active-event{
     width: 100%;
-    margin-top: 30px;
 }
 
 .container-title-event{
     font-size: 30px;
     color: black;
     font-weight: 800;
+    margin-bottom: 20px;
 }

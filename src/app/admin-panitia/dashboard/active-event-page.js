@@ -31,7 +31,7 @@ class ActiveEventPage extends Component {
         this.setState({loading: true})
         API.get(`/panitia/event`)
         .then(res => {
-            console.log('res',res.data.data.event)
+            console.log('res',res)
             this.setState({
                 activeEvent:res.data.data.event,
                 loading: false,
@@ -47,7 +47,7 @@ class ActiveEventPage extends Component {
             console.log('res',res)
             if(res.status == 200){
                 message.success('This is a success message');
-                window.location.reload(); 
+                this.componentDidMount(); 
             }   
         });
     }
@@ -153,7 +153,6 @@ class ActiveEventPage extends Component {
                     icon={faUsers}
                     borderRadius="5px"
                     background="#4D5AF2"
-                    // marginRight= "20px"
                     onClick={ () => this.onDetailParticipant(data.nomor)}
                 />,
                 <Divider type="vertical" />,

@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { Spin } from 'antd';
+import './style.css'
 
 class LoadingContainer extends Component {
     static propTypes = {

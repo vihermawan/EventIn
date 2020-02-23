@@ -7,7 +7,10 @@ import DetailEventComponent from '../../../modules/admin-panitia/detail-event/de
 
 class DetailEventPage extends Component {
     state = {
-        detailEvent: [],
+        Event: [],
+        kategori : [],
+        detailEvent : [],
+        status : [],
         loading: false,
     }
 
@@ -16,35 +19,28 @@ class DetailEventPage extends Component {
     }
 
     getDetailEvent=(id)=>{
-        // this.setState({loading: true})
+        this.setState({loading: true})
         API.get(`/panitia/event/${id}`)
         .then(res => {
-          console.log('res',res)
-        //   this.setState({
-        //     detailEvent:res.data.data.event,
-        //     loading: false,
-        //   })
+          console.log('res',res.data.data.event)
+          this.setState({
+            Event:res.data.data.event,
+            kategori : res.data.data.event.kategori,
+            detailEvent : res.data.data.event.detail_event,
+            status : res.data.data.event.status_biaya,
+            loading: false,
+          })
+         
         });
     }
 
-    render() { 
-         
-        //   const data =  this.state.eventPast.map( data => ({
-        //     key: data.id_event,
-        //             nomor : data.id_event,
-        //             nama_event: data.nama_event,
-        //             start_event :data.detail_event.start_event,
-        //             lokasi : data.detail_event.lokasi,
-        //             kategori : data.detail_event.id_kategori,
-        //             peserta : data.detail_event.limit_participant,
-        //             tags: ['Done'],
-        // }))
+    
 
+    render() { 
         return ( 
             <DetailEventComponent
                 initialData={this.state}
                 navigate={this.props.navigate}
-                // data={data}
             />
         );
     }

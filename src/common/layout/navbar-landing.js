@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import { Drawer, Button, Menu,Avatar,Dropdown, Icon } from 'antd';
 import { Link } from 'react-router-dom';
 import { faUser } from '@fortawesome/free-solid-svg-icons'
+import { API } from '../../common/api'
+import CONSTANS from '../utils/Constants'
 // style
 import './style/navbar-style.css';
 // component
@@ -12,6 +14,7 @@ import ButtonAuth from '../component/button/button-auth';
 class Navbar extends Component {
 	state = {
 		current: '',
+		username :'username',
 		visible: false,
 		isLogin: false,
 	}
@@ -24,6 +27,8 @@ class Navbar extends Component {
 		let token = localStorage.getItem("token");
 		if (token != null){
 			this.setState({isLogin: true})
+			const username = localStorage.getItem("username")
+			this.setState({ username })
 		}
 	}
 
@@ -36,6 +41,21 @@ class Navbar extends Component {
 	onClose = () => {
 		this.setState({ visible: false });
 	};
+
+	handleLogout = e => {
+		this.setState({loading: true})
+		 API.post(`/logout`)
+		 .then(res => {
+			 console.log('res',res)
+			 if(res.status == 200){
+				 localStorage.clear();
+				 this.setState({
+				   loading: false,
+				 })
+				 this.props.navigate(CONSTANS.LOGIN_MENU_KEY)
+			 }
+		 });
+	 }
 
 	render() {
 		const logo = require(`../../assets/images/logo.png`);
@@ -98,7 +118,7 @@ class Navbar extends Component {
 							 }}
 						 >
 							<Avatar size={40} icon="user" className="avatars" />
-								<span className="semi-bold">PPSMB PALAPA</span>
+								<span className="semi-bold">{this.state.username}</span>
 								<Dropdown overlay={menu} trigger={['click']}>
 									<a className="ant-dropdown-link" href="#">
 									<Icon type="down" style={{marginLeft:"20px", color:"black", fontSize:"13px"}} />
