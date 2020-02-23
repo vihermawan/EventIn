@@ -13,6 +13,7 @@ class KategoriMasterPage extends Component {
     state = {  
         kategori: [],
         loading : false,
+        visible: false,
     }
 
     componentDidMount(){
@@ -33,6 +34,33 @@ class KategoriMasterPage extends Component {
       });
     }
 
+    showModal = () => {
+        this.setState({
+          visible: true,
+        });
+    };
+
+    handleChange = (e) => {
+        let target = e.target.name;
+        let value = e.target.value;
+        this.setState({
+            [target]: value
+        })
+    }
+    
+    handleOk = e => {
+        console.log(e);
+        this.setState({
+            visible: false,
+        });
+    };
+
+    handleCancel = e => {
+        console.log(e);
+        this.setState({
+            visible: false,
+        });
+    };
     
     //delete kategori
     deleteKategori = (id) => {   
@@ -114,6 +142,10 @@ class KategoriMasterPage extends Component {
                 initialData={this.state}
                 columns={columns}
                 data ={data}
+                handleCancel = {this.handleCancel}
+                handleOk = {this.handleOk}
+                showModal = {this.showModal}
+                handleChange={this.handleChange}
             />
         );
     }

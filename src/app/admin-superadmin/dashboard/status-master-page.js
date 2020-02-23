@@ -20,11 +20,33 @@ class StatusMasterPage extends Component {
         this.getStatus();
     }
 
+    //get data dari API
+    getStatus=()=>{
+        this.setState({loading: true})
+
+        API.get(`/admin/status`)
+        .then(res => {
+            console.log('res',res)
+            this.setState({
+                status:res.data.data.status,
+                loading: false,
+            })
+        });
+    }
+
     showModal = () => {
         this.setState({
           visible: true,
         });
     };
+
+    handleChange = (e) => {
+        let target = e.target.name;
+        let value = e.target.value;
+        this.setState({
+            [target]: value
+        })
+    }
     
     handleOk = e => {
     console.log(e);
@@ -40,20 +62,6 @@ class StatusMasterPage extends Component {
     });
     };
 
-    //get data dari API
-    getStatus=()=>{
-        this.setState({loading: true})
-
-        API.get(`/admin/status`)
-        .then(res => {
-            console.log('res',res)
-            this.setState({
-                status:res.data.data.status,
-                loading: false,
-            })
-        });
-    }
-
     //delete status
     deleteStatus = (id) => {   
         console.log(id)
@@ -67,7 +75,9 @@ class StatusMasterPage extends Component {
         });
     }
 
+    //create status
     
+
     //function untuk modal
     showDeleteConfirm = (id) => {
         confirm({
@@ -123,7 +133,6 @@ class StatusMasterPage extends Component {
             },
           ];
         
-
         const data =  this.state.status.map( ({id_status, nama_status}, index) => ({
             no : index+1,
             nomor : id_status,
@@ -139,6 +148,7 @@ class StatusMasterPage extends Component {
                 handleCancel = {this.handleCancel}
                 handleOk = {this.handleOk}
                 showModal = {this.showModal}
+                handleChange={this.handleChange}
             />
         );
     }

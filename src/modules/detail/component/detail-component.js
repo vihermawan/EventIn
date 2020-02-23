@@ -7,6 +7,7 @@ import LoadingContainer from '../../../common/component/loading/loading-containe
 import Moment from 'react-moment';
 import 'moment-timezone';
 import 'moment/locale/id';
+import moment from 'moment-timezone';
 const { Content } = Layout;
 const { Countdown } = Statistic;
 const deadline = Date.now() + 5000 * 60 * 60 * 24 * 2 + 1000 * 30; // Moment is also OK
@@ -52,12 +53,18 @@ class DetailComponent extends Component {
     render() { 
         const {initialData} = this.props
         const { visible, confirmLoading, ModalText } = this.state;
-        const datebeginevent = initialData.detailEvent.start_event
+
+        const datebeginevent = moment(initialData.detailEvent.start_event).format("DD MMMM")
+        const datebegineventcountdown = moment(initialData.detailEvent.start_event).format("DD MMMM YYYY") 
+        const dateEndEvent = moment(initialData.detailEvent.end_event).format("DD MMMM YYYY")
+        const regisbeginevent = moment(initialData.detailEvent.open_registration).format("DD MMMM")
+        const regisendevent = moment(initialData.detailEvent.end_registration).format("DD MMMM YYYY")
+        console.log('res',initialData.detailEvent.start_event)
         const benefitData = [
             {
                 image: require(`../../../assets/images/day.png`),
                 title: 'The Day',
-                description: initialData.detailEvent.start_event + ' - ' + initialData.detailEvent.end_event,
+                description: datebeginevent  + ' - ' + dateEndEvent,
             },
             {
                 image: require(`../../../assets/images/location.png`),
@@ -67,7 +74,7 @@ class DetailComponent extends Component {
             {
                 image: require(`../../../assets/images/regis.png`),
                 title: 'Registrasi',
-                description: initialData.detailEvent.open_registration + ' - ' + initialData.detailEvent.end_registration,
+                description: regisbeginevent+ ' - ' + regisendevent,
             },
             {
                 image: require(`../../../assets/images/quota.png`),
@@ -96,7 +103,7 @@ class DetailComponent extends Component {
                                     </div>
                                 </Col>
                                 <Col span={24} style={{ marginTop: 2 }}>
-                                    <Countdown className="text-soft-blue title-small title-container-detail" title="Will be held on" value={deadline} format="D day,  H-m-s hour" />
+                                    <Countdown className="text-soft-blue title-small title-container-detail" title="Will be held on" value={datebegineventcountdown} format="M bulan D hari,  H-m-s hour" />
                                 </Col>
                                 <Col span={24}>
                                     <div className="button-detail-1-container">
@@ -110,7 +117,7 @@ class DetailComponent extends Component {
                                             confirmLoading={confirmLoading}
                                             onCancel={this.handleCancel}
                                         >
-                                        <p className="bold">Apakah anda yakin akan mendaftar pada acara {initialData.Event.nama_event} yang akan dilaksanakan pada {initialData.detailEvent.start_event + ' - ' + initialData.detailEvent.end_event} ?</p>
+                                        <p className="bold">Apakah anda yakin akan mendaftar pada acara {initialData.Event.nama_event} yang akan dilaksanakan pada {datebeginevent + ' - ' + dateEndEvent} ?</p>
                                         <p className="text-soft-blue">Total yang harus dibayar: Rp. {initialData.detailEvent.biaya},-</p>
                     
                                         <p className="text-soft-blue mb-50">Anda harus melakukan transfer ke rekening : {initialData.detailEvent.nomor_rekening} dari bank {initialData.detailEvent.bank}</p>

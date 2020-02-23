@@ -6,10 +6,10 @@ import DetailComponent from '../../modules/detail/component/detail-component';
 
 class DetailPage extends Component {
     state = { 
-        Event: [],
-        kategori : [],
-        detailEvent : [],
-        status : [],
+        Event: {},
+        kategori : {},
+        detailEvent : {},
+        status : {},
         loading: false,
      }
 
