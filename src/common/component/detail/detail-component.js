@@ -32,8 +32,6 @@ class DetailComponent extends Component {
         
     ]
     const image4 = require(`../../../assets/images/event1.jpg`);
-
-    
         return (
             <Layout className="landing-container">
                 <Content style={{ overflow: "hidden" }}>

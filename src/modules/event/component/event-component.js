@@ -1,11 +1,15 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import { Layout, BackTop, Row, Col, Button, Input, Dropdown, Menu, Icon, Tabs, Card } from 'antd';
+import Moment from 'react-moment';
+import 'moment-timezone';
+import 'moment/locale/id';
 import LoadingContainer from '../../../common/component/loading/loading-container'
 import '../../../assets/css/event.css'
 // component
 import Navbar from '../../../common/layout/navbar-landing'
 import Footer from '../../../common/layout/footer-landing'
+
 
 
 const { Content } = Layout;
@@ -37,7 +41,7 @@ const menu = (
 
 class EventComponent extends Component {
     render() { 
-        const {cardData,initialData} = this.props
+        const {cardData,initialData,onDetailEvent} = this.props
         const image1 = require(`../../../assets/images/event-image1.png`);  
         return ( 
             <Layout className="landing-container">
@@ -119,8 +123,9 @@ class EventComponent extends Component {
                         <Tabs style={{marginLeft:'5%', marginRight:'5%'}} defaultActiveKey="1">
                             <TabPane 
                                 tab="All" key="1">
-                                <LoadingContainer loading={initialData.loading}>
-                                <Col lg={24}>
+                               
+                                 <LoadingContainer loading={initialData.loading}>
+                                <Col lg={24} style={{minHeight: "300px"}}>
                                     <Row gutter={16}>
                                         {
                                             cardData.map( data =>
@@ -136,7 +141,7 @@ class EventComponent extends Component {
                                                         >
                                                         <Row>
                                                             <Col lg={12} md={12} sm={24} xs={12}>
-                                                                <div className="text-black semi-bold">{data.date}</div>
+                                                                <div className="text-black semi-bold"><Moment format="DD MMMM YYYY">{data.date}</Moment></div>
                                                             </Col>
                                                             <Col lg={12} md={12} sm={24} xs={12}>
                                                                 <span className="text-white background-soft-blue semi-bold event-card-badge">
@@ -144,7 +149,7 @@ class EventComponent extends Component {
                                                                 </span>
                                                             </Col>
                                                             <Col lg={24} className="mt-10">
-                                                                <Link to='/detail'><h2 className="text-soft-blue semi-bold">{data.title}</h2></Link>
+                                                                <Link onClick={() => onDetailEvent(data.id)}><h2 className="text-soft-blue semi-bold">{data.title}</h2></Link>
                                                             </Col>
                                                             <Col lg={24}>
                                                                 {data.place}
@@ -155,9 +160,9 @@ class EventComponent extends Component {
                                             )
                                         }
                                     </Row>
-
                                 </Col>
                                 </LoadingContainer>
+
                             </TabPane>
                             <TabPane tab="This Weekend" key="2">
                             <LoadingContainer loading={initialData.loading}>

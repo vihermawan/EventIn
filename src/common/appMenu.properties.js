@@ -10,6 +10,9 @@ const menu = {
     LOGIN: {
         link: '/login',
     },
+    DETAIL_EVENT: {
+        link : '/detail'
+    },
     REGISTER_PESERTA : {
         link : '/register-peserta'
     },

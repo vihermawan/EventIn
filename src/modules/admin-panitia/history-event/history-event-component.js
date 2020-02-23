@@ -10,7 +10,7 @@ const { Content } = Layout;
 class HistoryEventComponent extends Component {
     render() { 
       const { initialData, columns, data } = this.props
-      console.log(initialData.sertifikat)
+     
       
         return ( 
             <Content

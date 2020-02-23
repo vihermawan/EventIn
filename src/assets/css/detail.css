@@ -96,3 +96,10 @@
     color: red;
 }
 
+.hidden-objek {
+    display: none;
+  }
+  .block-objek {
+    display: inline;
+  }
+
