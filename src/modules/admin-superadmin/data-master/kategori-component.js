@@ -1,11 +1,12 @@
 import React, { Component } from 'react';
-import { Layout, Breadcrumb, Row, Table, Input, Col } from 'antd';
+import { Layout, Breadcrumb, Row, Button,Modal,Form, Col } from 'antd';
 
 /*import css*/
 import '../../../assets/css/dashboard-all/dashboard.css'
 import '../../../assets/css/dashboard-all/table-style.css'
 /*import component*/
 import TableProfile from '../../../common/component/table/table'
+import InputForm from '../../../common/component/input/input-form';
 import LoadingContainer from '../../../common/component/loading/loading-container'
 
 // constant content
@@ -13,7 +14,7 @@ const { Content } = Layout;
 
 class KategoriComponent extends Component {
     render() { 
-        const {initialData, columns, data} = this.props;
+        const {initialData, columns, data, handleCancel,handleOk,showModal,handleChange } = this.props
         return ( 
             <Content
                 style={{
@@ -32,8 +33,39 @@ class KategoriComponent extends Component {
                             <Row>
                             <div className="container-title-event">
                                 <span>Kategori Master</span>
+                                <br/>
+                                <Button type="primary" onClick={showModal}>
+                                    Tambah
+                                </Button>
+                                <Modal
+                                    title="Tambah Status"
+                                    visible={initialData.visible}
+                                    onOk={handleOk}
+                                    onCancel={handleCancel}
+                                    >
+                                    <Form>
+                                        <Row>
+                                            <Col lg={24} md={24} sm={24}>
+                                                <div>   
+                                                    <span className="auth-input-label text-black">Nama Kategori*</span>
+                                                </div>
+                                                <div>
+                                                    <InputForm
+                                                        name='kategori_event'
+                                                        placeholder="Masukan nama status...."
+                                                        className="input-event mt-5 mb-20"
+                                                        onChange={handleChange}
+                                                        value={initialData.kategori_event}
+                                                    />
+                                                </div>
+                                            </Col>
+                                        </Row>  
+                                    </Form>
+                                </Modal>
                             </div>
+
                             </Row>
+
                             <LoadingContainer loading={initialData.loading}>
                                 <Row gutter={24} type="flex">
                                     <TableProfile 

@@ -340,9 +340,9 @@ class signer extends Component {
                     exact
                     render={ (props) => <KategoriMasterPage {...props}/> }
                 />
-                <Route
+                {/* <Route
                     render={ (props) => <ErrorPage/> }
-                />
+                /> */}
               </Layout>
         </Layout>
       </LoadingContainer>

@@ -52,10 +52,14 @@
     height: 250px;
     padding: 28px;
     border-radius: 10px;
-
+    
     -webkit-box-shadow: 0px 7px 17px -4px rgba(0,0,0,0.75);
     -moz-box-shadow: 0px 7px 17px -4px rgba(0,0,0,0.75);
     box-shadow: 0px 7px 17px -4px rgba(0,0,0,0.75);
+}
+
+.card-content-detail .ant-card-body{
+    padding: 10px;
 }
 
 .detail-content {
