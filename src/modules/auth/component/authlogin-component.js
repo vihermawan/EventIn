@@ -17,9 +17,9 @@ class LoginComponent extends Component{
         return (
             
             <Layout className="login-container">
+                        <LoadingContainer loading={initialData.loading}>
                  <Content style={{ overflow: "hidden", minHeight:"100vh" }}>
                     <Row>
-                    <LoadingContainer loading={initialData.loading}>
                         <Col lg={15} md={12} sm={12} className="background-white container-full">
                       
                             <Row>
@@ -82,10 +82,10 @@ class LoginComponent extends Component{
                                 </Form>
                             </Row>
                         </Col>
-                        </LoadingContainer>
                     </Row>
                     
                  </Content>
+                        </LoadingContainer>
             </Layout>
         );
     }

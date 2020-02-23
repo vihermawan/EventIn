@@ -19,16 +19,16 @@ class EventPage extends Component {
     }
 
     getEvent=()=>{
+        this.setState({loading: true})
         API.get(`/peserta/event`)
         .then(res => {
-            this.setState({loading: true})
             console.log(res.data.data.event)
             if(res.status == 200){
                 this.setState({
                     event:res.data.data.event,
-                    loading: false,
                 })
             }
+            this.setState({loading: false})
         });
     }
 

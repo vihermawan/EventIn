@@ -27,6 +27,7 @@ import DetailPanitiaAdminPage from '../../app/admin-superadmin/detail-page/detai
 import DetailPenandatanganAdminPage from '../../app/admin-superadmin/detail-page/detail-penandatangan-page'
 import DetailSertifikatAdminPage from '../../app/admin-superadmin/detail-page/detail-sertif-page'
 import DetailEventPage from '../../app/admin-superadmin/detail-page/detail-event-page'
+import ErrorPage from '../../app/error/error-page';
 
 const { Header, Sider, Content } = Layout;
 const { SubMenu } = Menu;
@@ -338,6 +339,9 @@ class signer extends Component {
                     path='/admin/kategori-master'
                     exact
                     render={ (props) => <KategoriMasterPage {...props}/> }
+                />
+                <Route
+                    render={ (props) => <ErrorPage/> }
                 />
               </Layout>
         </Layout>
