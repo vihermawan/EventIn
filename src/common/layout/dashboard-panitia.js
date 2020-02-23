@@ -6,7 +6,6 @@ import { Layout, Menu, Icon,Avatar,Dropdown } from 'antd';
 /*Import Icon */
 import { faDesktop,faPen, faCalendarCheck, faHistory, faFile,faUserFriends,faUserCircle, faClipboard } from '@fortawesome/free-solid-svg-icons'
 import ButtonAuth from '../component/button/button-auth'
-
 import { connect } from 'react-redux';
 import { navigate } from '../../common/store/action'
 import { API } from '../../common/api'
@@ -26,7 +25,7 @@ import TemplateSertifPage from '../../app/admin-panitia/dashboard/template-page'
 import TabAbsentPage from '../../app/admin-panitia/dashboard/tab-absent-page'
 
 
-const { Header, Sider, Content } = Layout;
+const { Header, Sider } = Layout;
 
 class dashboard extends Component {
   state = {

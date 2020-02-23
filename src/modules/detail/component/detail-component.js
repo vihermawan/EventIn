@@ -1,11 +1,12 @@
 import React, { Component } from 'react';
-import { Layout, BackTop, Row, Col, Button, Card, Tag, Modal, Input, Form, Dropdown, Menu, Icon, Tabs, Statistic } from 'antd';
+import { Layout, BackTop, Row, Col, Button, Card, Tag, Modal, Icon,  Statistic } from 'antd';
 import '../../../assets/css/detail.css'
 import Navbar from '../../../common/layout/navbar-landing'
 import Footer from '../../../common/layout/footer-landing'
-import InputAuth from '../../../common/component/input/input-auth'
-
-
+import LoadingContainer from '../../../common/component/loading/loading-container'
+import Moment from 'react-moment';
+import 'moment-timezone';
+import 'moment/locale/id';
 const { Content } = Layout;
 const { Countdown } = Statistic;
 const deadline = Date.now() + 5000 * 60 * 60 * 24 * 2 + 1000 * 30; // Moment is also OK
@@ -15,13 +16,11 @@ function onFinish() {
   console.log('finished!');
 }
 
-
-
-
 class DetailComponent extends Component {
     state = {
         visible: false,
         confirmLoading: false,
+        isPaid : false,
       };
     
       showModal = () => {
@@ -53,6 +52,7 @@ class DetailComponent extends Component {
     render() { 
         const {initialData} = this.props
         const { visible, confirmLoading, ModalText } = this.state;
+        const datebeginevent = initialData.detailEvent.start_event
         const benefitData = [
             {
                 image: require(`../../../assets/images/day.png`),
@@ -76,11 +76,14 @@ class DetailComponent extends Component {
             },
             
         ]
+        let hidden = this.state.isPaid ? 'hidden-objek' : 'block-objek'
+
         return ( 
             <Layout className="landing-container">
                 <Navbar
                     navigate={this.props.navigate}
                 />
+                 <LoadingContainer loading={initialData.loading}>
                 <Content style={{ overflow: "hidden" }}>
                     <Row style={{minHeight: '100%',marginBottom: '2%',marginTop:'2%'}}>
                         <Col lg={12} md={12} sm={12}>
@@ -101,14 +104,17 @@ class DetailComponent extends Component {
                                             Register Now!
                                         </Button>
                                         <Modal
-                                            title="HAGE 2020 (hobbies, adventure, and gears exhibition)"
+                                            title={"Kamu akan mendaftar di "+initialData.Event.nama_event}
                                             visible={visible}
                                             onOk={this.handleOk}
                                             confirmLoading={confirmLoading}
                                             onCancel={this.handleCancel}
                                         >
-                                        <p className="bold">Apakah anda yakin akan mendaftar pada acara HAGE 2020 (hobbies, adventure, and gears exhibition) yang akan dilaksanakan pada 31 Januair-2 Februari 2020 ?</p>
-                                        <p className="text-soft-blue mb-50">Total yang harus dibayar: Rp. 0,-</p>
+                                        <p className="bold">Apakah anda yakin akan mendaftar pada acara {initialData.Event.nama_event} yang akan dilaksanakan pada {initialData.detailEvent.start_event + ' - ' + initialData.detailEvent.end_event} ?</p>
+                                        <p className="text-soft-blue">Total yang harus dibayar: Rp. {initialData.detailEvent.biaya},-</p>
+                    
+                                        <p className="text-soft-blue mb-50">Anda harus melakukan transfer ke rekening : {initialData.detailEvent.nomor_rekening} dari bank {initialData.detailEvent.bank}</p>
+                                        
                                         <p className="text-merah">*Setelah melakukan registrasi, jangan lupa untuk melakukan pembayaaran sesuai nominal yang tertera diatas.</p>
                                         </Modal>
                                     </div>
@@ -190,6 +196,7 @@ class DetailComponent extends Component {
                     </Row>
                     <BackTop />
                 </Content>
+                </LoadingContainer>
                 <Footer/>
             </Layout>
         );
