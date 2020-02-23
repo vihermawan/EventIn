@@ -4,6 +4,7 @@
 */
 
 import Auth from '../layout/auth'
+import ErrorPage from '../../app/error/error-page'
 import HomePage from '../../app/home/home-page'
 import PilihanPage from '../../app/pilihan/pilihan-page'
 import EventPage from '../../app/event/event-page'
@@ -33,6 +34,7 @@ const routeSources = [
     { component: DashboardPanitiaPage, path: `${baseUrl}/dashboard`, exact: false },
     { component: DashboardPenandatanganPage, path: `${baseUrl}/signer`, exact: false },
     { component: DashboardAdminPage, path:`${baseUrl}/admin`, exact:false},
+    { component: ErrorPage },
     // { component: ExamplePage, path: `${baseUrl}/example`, exact: true},
 ];
 

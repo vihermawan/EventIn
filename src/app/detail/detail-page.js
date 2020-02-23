@@ -6,44 +6,45 @@ import DetailComponent from '../../modules/detail/component/detail-component';
 
 class DetailPage extends Component {
     state = { 
-        detail:[],
+        Event: [],
+        kategori : [],
+        detailEvent : [],
+        status : [],
+        loading: false,
      }
 
      componentDidMount(){
-        this.getDetail();
+        this.getDetail(this.props.idEvent);
     }
 
-    getDetail=()=>{
-        API.get(`/peserta/event`)
+    getDetail=(id)=>{
+        this.setState({loading: true})
+        API.get(`/peserta/event/${id}`)
         .then(res => {
-            console.log('res',res)
-            // this.setState({detail:res.data.data.event})
+            console.log('res',res.data.data.event)
+            this.setState({
+                Event:res.data.data.event,
+                kategori : res.data.data.event.kategori,
+                detailEvent : res.data.data.event.detail_event,
+                status : res.data.data.event.status_biaya,
+                loading: false,
+            })
         });
     }
 
     render() { 
 
-        const detailData =  this.state.detail.map( data => ({
-            //image: require(`../../../assets/images/card-event.png`),
-            date: data.detail_event.start_event,
-            price: data.detail_event.audien,
-            title: data.nama_event,
-            place: data.detail_event.lokasi,
-            
-
-        }))
-
         return (
             <DetailComponent
                 navigate={this.props.navigate}
-                detailData = {detailData}
+                initialData = {this.state}
             />
         );
     }
 }
  
 const mapStateToProps = state => ({
-    
+     ...state.activeEvent,
 });
 
 const mapDispatchToProps = (dispatch => ({
