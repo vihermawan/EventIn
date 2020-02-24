@@ -21,22 +21,22 @@ class DetailEventComponent extends Component {
       const regisendevent = moment(initialData.detailEvent.end_registration).format("DD MMMM YYYY")
       const benefitData = [
         {
-            image: require(`../../../assets/images/day.png`),
+            image: require(`../../../assets/images/Day.png`),
             title: 'The Day',
             description: datebeginevent + ' - ' + dateEndEvent,
         },
         {
-            image: require(`../../../assets/images/location.png`),
+            image: require(`../../../assets/images/Location.png`),
             title: 'Venue',
             description: initialData.detailEvent.lokasi ,
         },
         {
-            image: require(`../../../assets/images/regis.png`),
+            image: require(`../../../assets/images/Regis.png`),
             title: 'Registrasi',
             description: regisbeginevent + ' - ' + regisendevent,
         },
         {
-            image: require(`../../../assets/images/quota.png`),
+            image: require(`../../../assets/images/Quota.png`),
             title: 'Quota',
             description: initialData.detailEvent.limit_participant + ' orang'
         },

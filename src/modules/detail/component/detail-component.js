@@ -62,22 +62,22 @@ class DetailComponent extends Component {
         console.log('res',initialData.detailEvent.start_event)
         const benefitData = [
             {
-                image: require(`../../../assets/images/day.png`),
+                image: require(`../../../assets/images/Day.png`),
                 title: 'The Day',
                 description: datebeginevent  + ' - ' + dateEndEvent,
             },
             {
-                image: require(`../../../assets/images/location.png`),
+                image: require(`../../../assets/images/Location.png`),
                 title: 'Venue',
                 description: initialData.detailEvent.lokasi ,
             },
             {
-                image: require(`../../../assets/images/regis.png`),
+                image: require(`../../../assets/images/Regis.png`),
                 title: 'Registrasi',
                 description: regisbeginevent+ ' - ' + regisendevent,
             },
             {
-                image: require(`../../../assets/images/quota.png`),
+                image: require(`../../../assets/images/Quota.png`),
                 title: 'Quota',
                 description: initialData.detailEvent.limit_participant + ' orang'
             },
