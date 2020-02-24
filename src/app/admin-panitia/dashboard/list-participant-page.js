@@ -160,7 +160,6 @@ class ListParticipantPage extends Component {
                 icon={faWindowClose}
                 borderRadius="5px"
                 background="#FF0303"
-             
                 onClick={ () => this.showRejectConfirm(data.nomor)}
             />]
             ),

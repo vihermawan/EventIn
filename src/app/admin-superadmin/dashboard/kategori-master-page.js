@@ -48,6 +48,7 @@ class KategoriMasterPage extends Component {
         })
     }
     
+
     handleOk = e => {
         console.log(e);
         this.setState({
