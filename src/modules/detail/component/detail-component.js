@@ -17,34 +17,12 @@ function onFinish() {
   console.log('finished!');
 }
 
-const benefitData = [
-    {
-        image: require(`../../../assets/images/Day.png`),
-        title: 'The Day',
-        description: '31 Januari- 2 Februari 2020'
-    },
-    {
-        image: require(`../../../assets/images/Location.png`),
-        title: 'Venue',
-        description: 'ICE BSD City Tangerang'
-    },
-    {
-        image: require(`../../../assets/images/Regis.png`),
-        title: 'Registrasi',
-        description: '1-20 Januari 2020'
-    },
-    {
-        image: require(`../../../assets/images/Quota.png`),
-        title: 'Quota',
-        description: '100 Orang'
-    },
-    
-]
-
 class DetailComponent extends Component {
+    state = {
+        visible: false,
         confirmLoading: false,
         isPaid : false,
-      }
+      };
     
       showModal = () => {
         this.setState({
@@ -84,22 +62,22 @@ class DetailComponent extends Component {
         console.log('res',initialData.detailEvent.start_event)
         const benefitData = [
             {
-                image: require(`../../../assets/images/day.png`),
+                image: require(`../../../assets/images/Day.png`),
                 title: 'The Day',
                 description: datebeginevent  + ' - ' + dateEndEvent,
             },
             {
-                image: require(`../../../assets/images/location.png`),
+                image: require(`../../../assets/images/Location.png`),
                 title: 'Venue',
                 description: initialData.detailEvent.lokasi ,
             },
             {
-                image: require(`../../../assets/images/regis.png`),
+                image: require(`../../../assets/images/Regis.png`),
                 title: 'Registrasi',
                 description: regisbeginevent+ ' - ' + regisendevent,
             },
             {
-                image: require(`../../../assets/images/quota.png`),
+                image: require(`../../../assets/images/Quota.png`),
                 title: 'Quota',
                 description: initialData.detailEvent.limit_participant + ' orang'
             },
