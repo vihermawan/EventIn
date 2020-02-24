@@ -174,7 +174,7 @@ class ActiveEventPage extends Component {
             nama_event: nama_event,
             start_event : detail_event.start_event,
             lokasi : detail_event.lokasi,
-            kategori : [kategori.nama_kategori],
+            kategori : [kategori.nama_kategori], //kenapa di kasih kurung ?
             end_event : detail_event.end_event,
             foto : detail_event.image_URL,
         }))

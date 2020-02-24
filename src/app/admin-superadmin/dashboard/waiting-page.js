@@ -51,19 +51,14 @@ class WaitingPage extends Component {
                 key: 'nama_panitia',
             },
             {
-                title: 'Organisasi',
-                dataIndex: 'organisasi',
-                key: 'organisasi',
+                title: 'Description',
+                dataIndex: 'description',
+                key: 'description',
             },
             {
                 title: 'File',
                 dataIndex: 'sertifikat',
                 key: 'sertifikat',
-            },
-            {
-                title: 'Tenggang Waktu',
-                dataIndex: 'tenggang_waktu',
-                key: 'tenggang_waktu',
             },
             {
               title: 'Action',
@@ -87,15 +82,14 @@ class WaitingPage extends Component {
               ),
             },
           ];
-        const data =  this.state.waitingSertifikat.map( ({id_penandatangan_sertifikat, id_sertifikat, sertifikat,tenggang_waktu}, index) => ({
+        const data =  this.state.waitingSertifikat.map( ({id_sertifikat, event,description, sertifikat}, index) => ({
             no : index+1,
-            nomor : id_penandatangan_sertifikat,
-            id_sertif : id_sertifikat,
-            nama_event : sertifikat.event.nama_event,
-            nama_panitia : sertifikat.event.panitia.nama_panitia,
-            organisasi : sertifikat.event.organisasi,
-            sertifikat : sertifikat.sertifikat,
-            tenggang_waktu : tenggang_waktu,
+            nomor : id_sertifikat,
+            nama_event : event.nama_event,
+            nama_panitia : event.panitia.nama_panitia,
+            organisasi : event.organisasi,
+            description : description,
+            sertifikat : sertifikat,
         }))
         
 
