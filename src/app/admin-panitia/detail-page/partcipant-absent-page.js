@@ -51,7 +51,7 @@ class DetailParticipantPage extends Component {
         .then(res => {
             console.log('res',res)
             if(res.status == 200){
-                message.success('This is a success message');
+                message.success('Peserta berhasil absent');
                 this.componentDidMount();
             }   
         });
@@ -163,6 +163,7 @@ class DetailParticipantPage extends Component {
                 navigate={this.props.navigate}
                 columns={columns}
                 data={data}
+                componentDidMount={this.componentDidMount}
             />
         );
     }

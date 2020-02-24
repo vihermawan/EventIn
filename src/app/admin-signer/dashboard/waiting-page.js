@@ -7,6 +7,9 @@ import { API } from '../../../common/api'
 import { navigate } from '../../../common/store/action'
 import WaitingListComponent from '../../../modules/admin-signer/waiting-list/waiting-list-component';
 import ButtonDashboard from '../../../common/component/button/button-dashboard';
+import 'moment-timezone';
+import 'moment/locale/id';
+import moment from 'moment-timezone';
 
 // import store
 import { setIdSertifikat } from '../../../modules/admin-panitia/e-certificate/store/e-certificate-action'
@@ -128,7 +131,7 @@ class WaitingListPage extends Component {
             nama_panitia : sertifikat.event.panitia.nama_panitia,
             organisasi : sertifikat.event.organisasi,
             sertifikat : sertifikat.sertifikat,
-            tenggang_waktu : tenggang_waktu,
+            tenggang_waktu : moment(tenggang_waktu).format("DD MMMM YYYY"),
         }))
 
         return ( 

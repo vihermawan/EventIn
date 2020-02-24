@@ -7,7 +7,9 @@ import { API } from '../../../common/api'
 import { navigate } from '../../../common/store/action'
 import ECertificateComponent from '../../../modules/admin-panitia/e-certificate/e-certificate-component';
 import ButtonDashboard from '../../../common/component/button/button-dashboard';
-
+import 'moment-timezone';
+import 'moment/locale/id';
+import moment from 'moment-timezone';
 // import store
 import { setIdSertifikat } from '../../../modules/admin-panitia/e-certificate/store/e-certificate-action'
 
@@ -128,7 +130,7 @@ class ECertificatePage extends Component {
         nama_event: sertifikat.event.nama_event,
         penandatangan : penandatangan.nama_penandatangan,
         sertifikat :sertifikat.sertifikat,
-        tenggang_waktu :tenggang_waktu,
+        tenggang_waktu :moment(tenggang_waktu).format("DD MMMM YYYY"),
         status : [status.nama_status],
                
     }))

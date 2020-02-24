@@ -6,7 +6,7 @@ import { connect } from 'react-redux';
 import { navigate } from '../../common/store/action'
 import CONSTANS from '../../common/utils/Constants'
 import RegisterComponent from '../../modules/auth/component/authregisterpeserta-component';
-
+import * as validation from '../../common/utils/validation'
 import '../../assets/css/auth-login.css'
 
 class AuthRegister extends Component {

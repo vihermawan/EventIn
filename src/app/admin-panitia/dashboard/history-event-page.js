@@ -36,8 +36,8 @@ class HistoryEventPage extends Component {
         });
     }
 
-     //function untuk modal
-     showDeleteConfirm = (id) => {
+    //function untuk modal
+    showDeleteConfirm = (id) => {
       confirm({
           title: 'Apakah Yakin untuk menghapus Data ?',
           okText: 'Yes',
@@ -52,6 +52,13 @@ class HistoryEventPage extends Component {
       });
     }
 
+    //button detail participant
+    onDetailParticipant = (id) => {
+      console.log('id ini',id)
+      this.props.setIdEvent(id);
+      this.props.navigate(CONSTANS.PARTICIPANT_EVENT_MENU_KEY)
+    }
+
     //delete event
     deleteEvent = (id) => {
       console.log(id)
@@ -63,7 +70,7 @@ class HistoryEventPage extends Component {
               window.location.reload(); 
           }   
       });
-  }
+    }
 
     //button detail event
      onDetailEvent = (id) => {
@@ -81,13 +88,13 @@ class HistoryEventPage extends Component {
                 render: text => <a>{text}</a>,
             },
             {
-              title: 'Nama Event',
-              dataIndex: 'nama_event',
-              key: 'nama_event',
-              render: text => <a>{text}</a>,
-              onFilter: (value, record) => record.nama_event.indexOf(value) === 0,
-              sorter: (a, b) => a.nama_event.length - b.nama_event.length,
-              sortDirections: ['descend'],
+                title: 'Nama Event',
+                dataIndex: 'nama_event',
+                key: 'nama_event',
+                render: text => <a>{text}</a>,
+                onFilter: (value, record) => record.nama_event.indexOf(value) === 0,
+                sorter: (a, b) => a.nama_event.length - b.nama_event.length,
+                sortDirections: ['descend'],
             },
             {
               title: 'Kategori',
@@ -127,11 +134,12 @@ class HistoryEventPage extends Component {
               key: 'action',
               render: (data) => (
                 [<ButtonDashboard
-                    text="Download"
+                    text="Participant"
                     height={20}
                     icon={faUsers}
                     borderRadius="5px"
                     background="#070E57"
+                    onClick={() =>this.onDetailParticipant(data.nomor)}
                     // marginRight= "20px"
                 />,
                 <Divider type="vertical" />,

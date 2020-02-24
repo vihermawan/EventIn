@@ -46,11 +46,12 @@ class ApprovalEventPage extends Component {
     //delete event
     approveEvent = (id_event) => {
         console.log(id_event)
+        this.setState({loading: true})
         API.put(`/admin/approvalevent/${id_event}/acc`)
         .then(res => {
             console.log('res',res)
             if(res.status == 200){
-                message.success('This is a success message');
+                message.success('Event berhasil di approve');
                 this.componentDidMount(); 
             }   
         });

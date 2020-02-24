@@ -163,6 +163,7 @@ class DetailParticipantPage extends Component {
                 navigate={this.props.navigate}
                 columns={columns}
                 data={data}
+                componentDidMount={this.componentDidMount}
             />
         );
     }
