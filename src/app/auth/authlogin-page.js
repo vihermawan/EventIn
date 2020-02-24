@@ -44,12 +44,11 @@ class AuthLogin extends Component {
         if(validation.emailRequired(this.state.email) != null){
             const message = validation.emailRequired(this.state.email);
             this.openNotification(message, 'harus diisi email')
-        } else if(validation.minPassword(this.state.password)){
+        }else if(validation.minPassword(this.state.password)){
             const message = validation.minPassword(this.state.password);
             this.openNotification(message, 'harus diisi email')
-        } else {
+        }else {
             this.setState({loading: true})
-
             API.post(`/login`, params)
             .then(res => {
                 console.log('res',res )

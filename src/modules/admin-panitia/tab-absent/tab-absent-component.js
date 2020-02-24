@@ -2,7 +2,8 @@ import React, { Component } from 'react';
 import { Layout, Breadcrumb, Row, Table, Input, Col,Icon,Tabs } from 'antd';
 import '../../../assets/css/dashboard-all/dashboard.css'
 import '../../../assets/css/dashboard-all/table-style.css'
-
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faCheckCircle, faHourglass } from '@fortawesome/free-solid-svg-icons'
 //import page
 import AbsentParticipantDone from '../../../app/admin-panitia/detail-page/partcipant-absent-done-page'
 import AbsentParticipant from '../../../app/admin-panitia/detail-page/partcipant-absent-page'
@@ -13,7 +14,7 @@ const { TabPane } = Tabs;
 
 class TabAbsentComponent extends Component {
     render() { 
-        const {renderTabBar} = this.props;
+        const {renderTabBar,componentDidMount} = this.props;
         return ( 
             <Content
                 style={{
@@ -40,15 +41,31 @@ class TabAbsentComponent extends Component {
                             <Col lg={24} md={24} sm={24}> 
                                 <Tabs defaultActiveKey="1">
                                     <TabPane
-                                        tab={ <span> <Icon type="apple" />Before Absent </span>}
+                                        tab={ 
+                                        <span> 
+                                           <FontAwesomeIcon
+                                                icon={faHourglass}
+                                                style={{marginRight: 10}}
+                                            /> 
+                                            Before Absent 
+                                        </span>}
                                         key="1"
                                         style={{backgroundColor:'yellow'}}
+                                        onChange={{componentDidMount}}
                                     >
                                         <AbsentParticipant/> 
                                     </TabPane>
                                     <TabPane
-                                    tab={ <span> <Icon type="apple" />Done Absent </span>}
+                                    tab={ 
+                                    <span> 
+                                        <FontAwesomeIcon
+                                            icon={faCheckCircle}
+                                            style={{marginRight: 10}}
+                                        />     
+                                        Done Absent 
+                                    </span>}
                                     key="2"
+                                    onChange={{componentDidMount}}
                                     > 
                                         <AbsentParticipantDone/> 
                                     </TabPane>

@@ -5,7 +5,9 @@ import { API } from '../../../common/api'
 import { navigate } from '../../../common/store/action'
 import ActiveEventComponent from '../../../modules/admin-panitia/active-event/active-event-component';
 import CONSTANS from '../../../common/utils/Constants'
-
+import 'moment-timezone';
+import 'moment/locale/id';
+import moment from 'moment-timezone';
 //import component
 import { faUsers } from '@fortawesome/free-solid-svg-icons'
 import { faInfoCircle } from '@fortawesome/free-solid-svg-icons' 
@@ -104,12 +106,6 @@ class ActiveEventPage extends Component {
                 dataIndex: 'lokasi',
                 key: 'lokasi',
             },
-            // {
-            //     title: 'Foto',
-            //     dataIndex: 'foto',
-            //     key: 'foto',
-            //     render: foto => < img src = {foto}/>
-            // },
             {
                 title: 'Kategori',
                 dataIndex: 'kategori',
@@ -172,18 +168,17 @@ class ActiveEventPage extends Component {
             no: index+1,
             nomor : id_event,
             nama_event: nama_event,
-            start_event : detail_event.start_event,
+            start_event : moment(detail_event.start_event).format("DD MMMM YYYY"),
             lokasi : detail_event.lokasi,
-            kategori : [kategori.nama_kategori], //kenapa di kasih kurung ?
-            end_event : detail_event.end_event,
+            kategori : [kategori.nama_kategori],
+            end_event : moment(detail_event.end_event).format("DD MMMM YYYY"),
             foto : detail_event.image_URL,
         }))
-    
+
         return ( 
             <ActiveEventComponent
                 initialData={this.state}
                 navigate={this.props.navigate}
-
                 columns={columns}
                 data={data}
             />

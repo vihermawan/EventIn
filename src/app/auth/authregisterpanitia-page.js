@@ -36,6 +36,9 @@ class AuthRegisterPanitia extends Component {
             id_role: this.state.id_role,
             confirm_password: this.state.confirm_password,   
         }
+
+        // if(validation.)
+
         console.log('params',params)
         API.post(`/register/panitia`, params)
         .then(res => {

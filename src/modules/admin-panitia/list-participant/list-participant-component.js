@@ -11,7 +11,7 @@ const { Content } = Layout;
 
 class ListParticipantComponent extends Component {
     render() { 
-      const { initialData, columns, data } = this.props
+      const { initialData, columns, data,componentDidMount } = this.props
         return ( 
             <Content
                 style={{

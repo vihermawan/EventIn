@@ -3,8 +3,10 @@ import { Layout, Breadcrumb, Row, Icon,Card, Col,Tag } from 'antd';
 import '../../../assets/css/dashboard-all/dashboard.css'
 import '../../../assets/css/dashboard-all/table-style.css'
 // component
-import DetailEvent from '../../../common/component/detail/detail-component'
 import LoadingContainer from '../../../common/component/loading/loading-container'
+import 'moment-timezone';
+import 'moment/locale/id';
+import moment from 'moment-timezone';
 // constant content
 const { Content } = Layout;
 
@@ -13,11 +15,15 @@ const { Content } = Layout;
 class DetailEventComponent extends Component {
     render() { 
       const { initialData, columns, data } = this.props
+      const datebeginevent = moment(initialData.detailEvent.start_event).format("DD MMMM")
+      const dateEndEvent = moment(initialData.detailEvent.end_event).format("DD MMMM YYYY")
+      const regisbeginevent = moment(initialData.detailEvent.open_registration).format("DD MMMM")
+      const regisendevent = moment(initialData.detailEvent.end_registration).format("DD MMMM YYYY")
       const benefitData = [
         {
             image: require(`../../../assets/images/Day.png`),
             title: 'The Day',
-            description: initialData.detailEvent.start_event + ' - ' + initialData.detailEvent.end_event,
+            description: datebeginevent + ' - ' + dateEndEvent,
         },
         {
             image: require(`../../../assets/images/Location.png`),
@@ -27,7 +33,7 @@ class DetailEventComponent extends Component {
         {
             image: require(`../../../assets/images/Regis.png`),
             title: 'Registrasi',
-            description: initialData.detailEvent.open_registration + ' - ' + initialData.detailEvent.end_registration,
+            description: regisbeginevent + ' - ' + regisendevent,
         },
         {
             image: require(`../../../assets/images/Quota.png`),
