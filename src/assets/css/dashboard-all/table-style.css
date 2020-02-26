@@ -16,7 +16,10 @@
     background-color: white;
 }
 
-.table-active-event{
+.table-active-event {
+    width: 100%;
+}
+.table-profile{
     width: 100%;
 }
 

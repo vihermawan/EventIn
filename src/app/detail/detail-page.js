@@ -9,10 +9,10 @@ const { confirm } = Modal;
 
 class DetailPage extends Component {
     state = { 
-        Event: {},
-        kategori : {},
-        detailEvent : {},
-        status : {},
+        Event: [],
+        kategori : [],
+        detailEvent : [],
+        status : [],
         loading: false,
         visible: false,
         confirmLoading: false,
@@ -27,7 +27,7 @@ class DetailPage extends Component {
         this.setState({loading: true})
         API.get(`/peserta/event/${id}`)
         .then(res => {
-            console.log('res',res.data.data.event)
+            console.log('res',res.data.data.event.kategori)
             this.setState({
                 Event:res.data.data.event,
                 kategori : res.data.data.event.kategori,

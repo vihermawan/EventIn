@@ -22,7 +22,6 @@ class BiodataPenandatanganAdminPage extends Component {
     //get data dari API
     getBiodata=()=>{
         this.setState({loading: true})
-
         API.get(`/admin/showbiodatapenandatangan`)
         .then(res => {
             console.log('res',res)
@@ -49,6 +48,23 @@ class BiodataPenandatanganAdminPage extends Component {
         });
     }
 
+     //delete event
+     addPenandatangan = e => {
+        e.preventDefault();
+        const params = {
+            id_event: this.props.idEvent,  
+        }
+        console.log('params',params)
+        // API.post(`/admin/addpenandatangan`,params)
+        // .then(res => {
+        //     console.log('res',res)
+        //     if(res.status == 200){
+        //         message.success('This is a success message');
+        //         this.componentDidMount(); 
+        //     }   
+        // });
+    }
+
 
     render() { 
     
@@ -64,6 +80,9 @@ class BiodataPenandatanganAdminPage extends Component {
                 dataIndex: 'nama',
                 key: 'nama',
                 render: text => <a>{text}</a>,
+                onFilter: (value, record) => record.nama.indexOf(value) === 0,
+                sorter: (a, b) => a.nama.length - b.nama.length,
+                sortDirections: ['descend'],
             },
             {
                 title: 'Instansi',
@@ -71,12 +90,17 @@ class BiodataPenandatanganAdminPage extends Component {
                 key: 'instansi',
             },
             {
+                title: 'Email',
+                dataIndex: 'email',
+                key: 'email',
+            },
+            {
                 title: 'Jabatan',
                 dataIndex: 'jabatan',
                 key: 'jabatan',
             },
             {
-                title: 'NIK',
+                title: 'NIP',
                 dataIndex: 'nik',
                 key: 'nik',
             },
@@ -95,14 +119,16 @@ class BiodataPenandatanganAdminPage extends Component {
                 />]
               ),
             },
-          ];
+        ];
         
-        const data =  this.state.penandatangan.map( data => ({
-            nomor : data.id_biodata_penandatangan,
-            nama: data.nama,
-            instansi : data.instansi,
-            jabatan : data.jabatan,
-            nik : data.nik,
+        const data =  this.state.penandatangan.map( ({id_biodata_penandatangan, nama, instansi, jabatan,email,nip}, index) => ({
+            no : index+1,
+            nomor : id_biodata_penandatangan,
+            nama: nama,
+            email : email,
+            instansi : instansi,
+            jabatan : jabatan,
+            nik : nip,
         }))
     
     
