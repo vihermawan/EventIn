@@ -13,7 +13,7 @@ const login = require(`../../../assets/images/login-image.png`);
 
 class LoginComponent extends Component{
     render(){
-        const { initialData, handleChange, handleSubmit } = this.props;
+        const { initialData, handleChange, handleSubmit,handleConfirmBlur } = this.props;
         return (
             
             <Layout className="login-container">
@@ -65,6 +65,7 @@ class LoginComponent extends Component{
                                             className="input-auth mt-5"
                                             iconType="lock"
                                             type="password"
+                                            onBlur = {handleConfirmBlur}
                                         />
                                          <p className="auth-reminder-label mt-10 text-white">Forgot Password?</p>
                                         <div>

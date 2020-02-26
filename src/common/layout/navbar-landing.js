@@ -55,19 +55,26 @@ class Navbar extends Component {
 				 this.props.navigate(CONSTANS.LOGIN_MENU_KEY)
 			 }
 		 });
-	 }
+	}
+
+	handleProfile = () =>{
+		this.props.navigate(CONSTANS.PROFILE_MENU_KEY);
+	}
 
 	render() {
 		const logo = require(`../../assets/images/logo.png`);
 		const menu = (
 			<Menu>
-			  <Menu.Item key="0">
-				<a href="http://www.alipay.com/">1st menu item</a>
-			  </Menu.Item>
 			  <Menu.Item key="1">
-				<a href="http://www.taobao.com/">2nd menu item</a>
+			  	<ButtonAuth
+					  text="Profile"
+					  className="auth-button-logout"
+					  style={{borderRadius: '10px',color:'black'}}
+					  block={true}
+					  onClick={this.handleProfile}
+				  />
 			  </Menu.Item>
-			  <Menu.Divider />
+			  {/* <Menu.Divider /> */}
 			  <Menu.Item key="3">
 				  <ButtonAuth
 					  text="Logout"
