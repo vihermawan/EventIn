@@ -55,4 +55,5 @@ export const minPassword = (value) => {
         return null;
     }
     return 'harus diisi';
-}
+};
+
