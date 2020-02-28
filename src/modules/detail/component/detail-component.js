@@ -54,7 +54,7 @@ class DetailComponent extends Component {
         const {initialData} = this.props
         const { visible, confirmLoading, ModalText } = this.state;
 
-        const datebeginevent = moment(initialData.detailEvent.start_event).format("DD MMMM")
+        const datebeginevent = moment(initialData.detailEvent.start_event).format("DD MMM")
         const datebegineventcountdown = moment(initialData.detailEvent.start_event).format("DD MMMM YYYY") 
         const dateEndEvent = moment(initialData.detailEvent.end_event).format("DD MMMM YYYY")
         const regisbeginevent = moment(initialData.detailEvent.open_registration).format("DD MMMM")
