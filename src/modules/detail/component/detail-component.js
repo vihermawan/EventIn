@@ -23,6 +23,8 @@ class DetailComponent extends Component {
     };
 
     render() { 
+        const {initialData,handleCancel,handleOk,showModal} = this.props
+        const datebeginevent = moment(initialData.detailEvent.start_event).format("DD MMMM")
         const dateEndEvent = moment(initialData.detailEvent.end_event).format("DD MMMM YYYY")
         const regisbeginevent = moment(initialData.detailEvent.open_registration).format("DD MMMM")
         const regisendevent = moment(initialData.detailEvent.end_registration).format("DD MMMM YYYY")
@@ -73,6 +75,8 @@ class DetailComponent extends Component {
                                 </Col>
                                 <Col span={24}>
                                     <div className="button-detail-1-container">
+                                        <Button className="button-participate button-regis" style={{marginTop:'2%'}} type="primary" onClick={this.showModal}>
+                                            Daftar!
                                         </Button>
                                         <Modal
                                             title={"Kamu akan mendaftar di "+initialData.Event.nama_event}
