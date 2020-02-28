@@ -105,6 +105,11 @@ class ListParticipantPage extends Component {
             key: 'organisasi',
         },
         {
+            title: 'Event yang didaftar',
+            dataIndex: 'nama_event',
+            key: 'nama_event',
+        },
+        {
             title: 'Email',
             dataIndex: 'email',
             key: 'email',
@@ -160,19 +165,19 @@ class ListParticipantPage extends Component {
                 icon={faWindowClose}
                 borderRadius="5px"
                 background="#FF0303"
-             
                 onClick={ () => this.showRejectConfirm(data.nomor)}
             />]
             ),
         },
     ];
 
-    const data =  this.state.participant.map( ({id_peserta_event, peserta, status}, index) => ({
+    const data =  this.state.participant.map( ({id_peserta_event, peserta, status,event}, index) => ({
         no : index+1,
         nomor : id_peserta_event,
         nama_peserta : peserta.nama_peserta,
         organisasi : peserta.organisasi,
         umur : peserta.umur,
+        nama_event : event.nama_event,
         jenis_kelamin : peserta.jenis_kelamin,
         email : peserta.users.email,
         status : [status.nama_status],

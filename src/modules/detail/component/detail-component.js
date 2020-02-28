@@ -19,47 +19,15 @@ function onFinish() {
 
 class DetailComponent extends Component {
     state = {
-        visible: false,
-        confirmLoading: false,
         isPaid : false,
-      };
-    
-      showModal = () => {
-        this.setState({
-          visible: true,
-        });
-      };
-    
-      handleOk = () => {
-        this.setState({
-          ModalText: 'The modal will be closed after two seconds',
-          confirmLoading: true,
-        });
-        setTimeout(() => {
-          this.setState({
-            visible: false,
-            confirmLoading: false,
-          });
-        }, 2000);
-      };
-    
-      handleCancel = () => {
-        console.log('Clicked cancel button');
-        this.setState({
-          visible: false,
-        });
-      };
+    };
 
     render() { 
-        const {initialData} = this.props
-        const { visible, confirmLoading, ModalText } = this.state;
-
-        const datebeginevent = moment(initialData.detailEvent.start_event).format("DD MMM")
-        const datebegineventcountdown = moment(initialData.detailEvent.start_event).format("DD MMMM YYYY") 
+        const {initialData,handleCancel,handleOk,showModal} = this.props
+        const datebeginevent = moment(initialData.detailEvent.start_event).format("DD MMMM")
         const dateEndEvent = moment(initialData.detailEvent.end_event).format("DD MMMM YYYY")
         const regisbeginevent = moment(initialData.detailEvent.open_registration).format("DD MMMM")
         const regisendevent = moment(initialData.detailEvent.end_registration).format("DD MMMM YYYY")
-        console.log('res',initialData.detailEvent.start_event)
         const benefitData = [
             {
                 image: require(`../../../assets/images/Day.png`),
@@ -103,7 +71,7 @@ class DetailComponent extends Component {
                                     </div>
                                 </Col>
                                 <Col span={24} style={{ marginTop: 2 }}>
-                                    <Countdown className="text-soft-blue title-small title-container-detail" title="Will be held on" value={datebegineventcountdown} format="M bulan D hari,  H-m-s hour" />
+                                    <Countdown className="text-soft-blue title-small title-container-detail" title="Will be held on" value={initialData.detailEvent.start_event} format="M bulan D hari,  H-m-s hour" />
                                 </Col>
                                 <Col span={24}>
                                     <div className="button-detail-1-container">
@@ -112,17 +80,17 @@ class DetailComponent extends Component {
                                         </Button>
                                         <Modal
                                             title={"Kamu akan mendaftar di "+initialData.Event.nama_event}
-                                            visible={visible}
-                                            onOk={this.handleOk}
-                                            confirmLoading={confirmLoading}
-                                            onCancel={this.handleCancel}
+                                            visible={initialData.visible}
+                                            onOk={handleOk}
+                                            confirmLoading={initialData.confirmLoading}
+                                            onCancel={handleCancel}
                                         >
-                                        <p className="bold">Apakah anda yakin akan mendaftar pada acara {initialData.Event.nama_event} yang akan dilaksanakan pada {datebeginevent + ' - ' + dateEndEvent} ?</p>
-                                        <p className="text-soft-blue">Total yang harus dibayar: Rp. {initialData.detailEvent.biaya},-</p>
-                    
-                                        <p className="text-soft-blue mb-50">Anda harus melakukan transfer ke rekening : {initialData.detailEvent.nomor_rekening} dari bank {initialData.detailEvent.bank}</p>
-                                        
-                                        <p className="text-merah">*Setelah melakukan registrasi, jangan lupa untuk melakukan pembayaaran sesuai nominal yang tertera diatas.</p>
+                                            <p className="bold">Apakah anda yakin akan mendaftar pada acara {initialData.Event.nama_event} yang akan dilaksanakan pada {datebeginevent + ' - ' + dateEndEvent} ?</p>
+                                            <p className="text-soft-blue">Total yang harus dibayar: Rp. {initialData.detailEvent.biaya},-</p>
+                        
+                                            <p className="text-soft-blue mb-50">Anda harus melakukan transfer ke rekening : {initialData.detailEvent.nomor_rekening} dari bank {initialData.detailEvent.bank}</p>
+                                            
+                                            <p className="text-merah">*Setelah melakukan registrasi, jangan lupa untuk melakukan pembayaaran sesuai nominal yang tertera diatas.</p>
                                         </Modal>
                                     </div>
                                 </Col>
