@@ -63,12 +63,12 @@ class DetailComponent extends Component {
         const benefitData = [
             {
                 image: require(`../../../assets/images/Day.png`),
-                title: 'The Day',
+                title: 'Tanggal',
                 description: datebeginevent  + ' - ' + dateEndEvent,
             },
             {
                 image: require(`../../../assets/images/Location.png`),
-                title: 'Venue',
+                title: 'Tempat',
                 description: initialData.detailEvent.lokasi ,
             },
             {
@@ -78,7 +78,7 @@ class DetailComponent extends Component {
             },
             {
                 image: require(`../../../assets/images/Quota.png`),
-                title: 'Quota',
+                title: 'Kuota',
                 description: initialData.detailEvent.limit_participant + ' orang'
             },
             
@@ -108,7 +108,7 @@ class DetailComponent extends Component {
                                 <Col span={24}>
                                     <div className="button-detail-1-container">
                                         <Button className="button-participate button-regis" style={{marginTop:'2%'}} type="primary" onClick={this.showModal}>
-                                            Register Now!
+                                            Daftar!
                                         </Button>
                                         <Modal
                                             title={"Kamu akan mendaftar di "+initialData.Event.nama_event}
@@ -181,10 +181,9 @@ class DetailComponent extends Component {
                                 </Col>
                                 <Col span={24} style={{ marginTop:'1%' }}>
                                     <div>
-                                        <Tag color="blue">Free</Tag>
-                                        <Tag color="blue">Adventure</Tag>
-                                        <Tag color="blue">Exhibition</Tag>
-                                        <Tag color="blue">Hobby</Tag>
+                                        <Tag color="blue">Gratis</Tag>
+                                        <Tag color="blue">Olahraga</Tag>
+                                        <Tag color="blue">Hobi</Tag>
                                     </div>
                                 </Col>
                                 <Col span={24} style={{ marginTop:'4%' }}>
