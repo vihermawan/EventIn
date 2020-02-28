@@ -14,10 +14,16 @@ class AuthLogin extends Component {
         email: '',
         password: '',
         loading: false,
+        confirmDirty: false,
     }
     componentDidMount(){
         
     }
+
+    handleConfirmBlur = e => {
+        const { value } = e.target;
+        this.setState({ confirmDirty: this.state.confirmDirty || !!value });
+    };
 
     handleChange = (e) => {
         let target = e.target.name;
@@ -88,7 +94,7 @@ class AuthLogin extends Component {
         <LoginComponent
             initialData={this.state}
             navigate={this.props.navigate}
-            
+            handleConfirmBlur = {this.handleConfirmBlur}
             handleChange={this.handleChange}
             handleSubmit={this.handleSubmit}
         />

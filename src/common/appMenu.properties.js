@@ -13,6 +13,9 @@ const menu = {
     DETAIL_EVENT: {
         link : '/detail'
     },
+    PROFILE:{
+        link : '/profile'
+    },
     REGISTER_PESERTA : {
         link : '/register-peserta'
     },

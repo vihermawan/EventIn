@@ -3,7 +3,6 @@ import { connect } from 'react-redux';
 import { Modal, message, Tag, Divider } from 'antd'
 import { API } from '../../../common/api'
 import { navigate } from '../../../common/store/action'
-import ActiveEventComponent from '../../../modules/admin-panitia/active-event/active-event-component';
 import CONSTANS from '../../../common/utils/Constants'
 import 'moment-timezone';
 import 'moment/locale/id';
@@ -12,6 +11,7 @@ import moment from 'moment-timezone';
 import { faUsers } from '@fortawesome/free-solid-svg-icons'
 import { faInfoCircle } from '@fortawesome/free-solid-svg-icons' 
 import ButtonDashboard from '../../../common/component/button/button-dashboard';
+import ActiveEventComponent from '../../../modules/admin-panitia/active-event/active-event-component';
 
 // import store
 import { setIdEvent } from '../../../modules/admin-panitia/active-event/store/active-event-action'
