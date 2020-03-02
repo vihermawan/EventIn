@@ -55,9 +55,9 @@ class EventComponent extends Component {
                             <Row>
                                 <Col span={24}>
                                     <div className="title-container">
-                                        <span className="text-soft-blue title-biggest bold">Search</span>
+                                        <span className="text-soft-blue title-biggest bold">Cari</span>
                                         <br/>
-                                        <span className="text-soft-blue title-big bold">place what do you want to go event.</span>
+                                        <span className="text-soft-blue title-big bold">event sesuai wilayah</span>
                                     </div>
                                 </Col>
                                 <Col span={24}>
@@ -69,7 +69,7 @@ class EventComponent extends Component {
                                         />
                                     </div>
                                     <div className="description-container desc-big">
-                                        Find anything event and place what you want in here...
+                                        Temukan berbagai event dari berbagai daerah...
                                     </div>
                                 </Col>
                                 <Col span={24}>
@@ -117,7 +117,7 @@ class EventComponent extends Component {
                     </Row>
                     <Row className="section-container" style={{marginBottom: 50}}>
                         <Col lg={24}>
-                            <span style={{marginLeft:'5%'}} className="text-soft-blue title-big-event bold">Event For You</span>
+                            <span style={{marginLeft:'5%'}} className="text-soft-blue title-big-event bold">Populer</span>
                         </Col>
                         <Col lg={24} className="card-container">
                             <Tabs style={{marginLeft:'5%', marginRight:'5%'}} defaultActiveKey="1" onChange={onTabChange}>
@@ -210,7 +210,7 @@ class EventComponent extends Component {
                     </Row>
                     <Row className="section-container" style={{marginBottom: 50}}>
                         <Col lg={24}>
-                            <span style={{marginLeft:'5%'}} className="text-soft-blue title-big-event bold">This Week</span>
+                            <span style={{marginLeft:'5%'}} className="text-soft-blue title-big-event bold">Minggu ini</span>
                         </Col>
                         <Col lg={24} className="card-container" >
                             <Col lg={24} >

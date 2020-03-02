@@ -12,12 +12,12 @@ const { Content } = Layout;
 const cardData = [
     {
         image: require(`../../../assets/images/organizer.png`),
-        title: 'Organizer',
+        title: 'Panitia',
         description: 'Organizer make an event with funtastic, so wanna be organizer ?'
     },
     {
         image: require(`../../../assets/images/participant.png`),
-        title: 'Participant',
+        title: 'Peserta',
         description: 'How many time you join event, at one or more ? Join now!'
     },
     {
@@ -34,8 +34,8 @@ const whyData = [
     },
     {
         image: require(`../../../assets/images/certificate.png`),
-        title: 'E-Certificate',
-        description: 'Participant can get e-certificate when he done join event'
+        title: 'Sertifikat',
+        description: 'Peserta akan mendapat sertifikat settelah mengikuti event'
     },
     {
         image: require(`../../../assets/images/paperless.png`),
@@ -78,9 +78,9 @@ class HomeComponent extends Component {
                             <Row>
                                 <Col span={24}>
                                     <div className="title-container">
-                                        <span className="text-soft-blue title-biggest bold">Finally, </span>
+                                        <span className="text-soft-blue title-biggest bold">Temukan </span>
                                         <br/>
-                                        <span className="text-soft-blue title-big bold">a way to find best event nearby</span>
+                                        <span className="text-soft-blue title-big bold">event yang ada disekitarmu..</span>
                                     </div>
                                 </Col>
                                 <Col span={24}>
@@ -91,22 +91,22 @@ class HomeComponent extends Component {
                                             style={{maxWidth: '100%'}}
                                         />
                                     </div>
-                                    <div className="description-container desc-big">
-                                        You can find an event what do you want, and you can make event here
+                                    <div className="description-container desc-medium">
+                                        Temukan event yang sesuai dengan kamu atau mulailah untuk mengelolah event-mu sendiri.
                                     </div>
                                 </Col>
                                 <Col span={24}>
                                     <div className="button-section-1-container">
                                     <Link to="/login">
                                         <ButtonRounded
-                                            text="I want to participate"
+                                            text="Daftar event"
                                             className='button-participate'
                         
                                         />
                                     </Link>
                                     <Link to="/login">
                                         <ButtonRounded
-                                            text="I want to organize"
+                                            text="Kelolah event"
                                             background="white"
                                             textColor="#4D5AF2"
                                             border="1px solid #4D5AF2"
@@ -132,12 +132,12 @@ class HomeComponent extends Component {
                     <Row className="section-container">
                         <Col lg={24}>
                             <div className="text-soft-blue title-big bold discover-container">
-                                Discovering event with a purpose
+                                Temukan event-mu
                             </div>
                         </Col>
                         <Col lg={24}>
                             <div className="text-black description-discover">
-                                We connect your event with participant who wants to join in your event, you can manage your event and track how your event or you can join anything event what do you want
+                                Mempertemukan para pencari event dengan event yang keren-keren.
                             </div>
                         </Col>
                         <Col lg={24} className="card-container">
@@ -177,7 +177,7 @@ class HomeComponent extends Component {
                                     <div className="title-container-3 mt-20">
                                         <span className="text-soft-blue title-big bold">Event<span className="text-black">In</span></span>
                                         <br/>
-                                        <span className="text-soft-blue title-medium semi-bold">We serve - connection Organizer to his event</span>
+                                        <span className="text-soft-blue title-medium semi-bold">Memudahkan pengelolaan event</span>
                                     </div>
                                 </Col>
                                 <Col span={24}>
@@ -189,7 +189,7 @@ class HomeComponent extends Component {
                                         />
                                     </div>
                                     <div className="desc-medium description-section-3 mt-10">
-                                        Make your event was easier, with EventIn your event just service with one click and service what you want.
+                                        Daftarkan eventmu, dan semua akan langsung terorganisir dengan baik.
                                     </div>
                                 </Col>
                                 <Col span={24}>
@@ -210,7 +210,7 @@ class HomeComponent extends Component {
                                     <div className="title-container-3 mt-20">
                                         <span className="text-soft-blue title-big bold">Event<span className="text-black">In</span></span>
                                         <br/>
-                                        <span className="text-soft-blue title-medium semi-bold">Simplifying Participant to Join Event</span>
+                                        <span className="text-soft-blue title-medium semi-bold">Memudahkan peserta mencari event</span>
                                     </div>
                                 </Col>
                                 <Col span={24}>
@@ -222,7 +222,7 @@ class HomeComponent extends Component {
                                         />
                                     </div>
                                     <div className="desc-medium description-section-3 mt-10">
-                                        Participant just search event what he wants to join, with one click participant can register and join event with easyly.
+                                        Cari event yang diinginkan, klik tombol 'daftar', dan selesai. Sangat mudah!
                                     </div>
                                 </Col>
                                 <Col span={24}>
@@ -250,12 +250,12 @@ class HomeComponent extends Component {
                     <Row className="section-container">
                         <Col lg={24}>
                             <div className="text-soft-blue title-big bold discover-container">
-                                Why Event<span className="text-black">In</span>
+                                Kenapa Event<span className="text-black">In</span>
                             </div>
                         </Col>
                         <Col lg={24}>
                             <div className="text-black description-discover">
-                                Our Missions is to make connection Participant with event and event with Organizer to make great transaction event with both
+                                Misi kami memudahkan kegiatan peserta, dan panitia dalam mengelolah event.
                             </div>
                         </Col>
                         <Col lg={24}>
