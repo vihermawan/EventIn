@@ -78,9 +78,9 @@ class PenandatanganAdminPage extends Component {
                 render: text => <a>{text}</a>,
             },
             {
-                title: 'NIK',
-                dataIndex: 'nik',
-                key: 'nik',
+                title: 'NIP',
+                dataIndex: 'nip',
+                key: 'nip',
             },
             {
                 title: 'Instansi',
@@ -123,7 +123,7 @@ class PenandatanganAdminPage extends Component {
             penandatangan : penandatangan.nama_penandatangan,
             instansi : penandatangan.instansi,
             jabatan : penandatangan.jabatan,
-            nik : penandatangan.nik,
+            nip : penandatangan.nip,
         }))
 
         return ( 

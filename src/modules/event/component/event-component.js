@@ -55,9 +55,9 @@ class EventComponent extends Component {
                             <Row>
                                 <Col span={24}>
                                     <div className="title-container">
-                                        <span className="text-soft-blue title-biggest bold">Cari</span>
+                                        <span className="text-soft-blue title-biggest bold">Temukan</span>
                                         <br/>
-                                        <span className="text-soft-blue title-big bold">event sesuai wilayah</span>
+                                        <span className="text-soft-blue title-big bold">event sesuai wilayahmu</span>
                                     </div>
                                 </Col>
                                 <Col span={24}>

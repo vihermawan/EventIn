@@ -28,6 +28,9 @@ const menu = {
     ADMIN :{
         link : '/admin/dashboard-admin',
     },
+    BIODATA_PENANDATANGAN_ADMIN : {
+        link :'/admin/admin-penandatangan',
+    },
     SIGNER: {
         link :'/signer/dashboard-signer',
     },

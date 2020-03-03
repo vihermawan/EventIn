@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { Layout, Breadcrumb, Row, Icon,Card, Col,Tag } from 'antd';
+import { Link } from 'react-router-dom';
 import '../../../assets/css/dashboard-all/dashboard.css'
 import '../../../assets/css/dashboard-all/table-style.css'
 // component
@@ -52,7 +53,7 @@ class DetailEventComponent extends Component {
                 }}
             >
                 <Breadcrumb separator=">">
-                    <Breadcrumb.Item>Dashboard Active Event</Breadcrumb.Item>
+                    <Breadcrumb.Item><Link to='/dashboard/active-event'>Dashboard Active Event</Link></Breadcrumb.Item>
                     <Breadcrumb.Item>Dashboard Detail Event</Breadcrumb.Item>
                 </Breadcrumb>
 

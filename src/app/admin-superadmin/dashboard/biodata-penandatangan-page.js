@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { Modal, message, Tag } from 'antd'
+import { Modal, message} from 'antd'
+import CONSTANS from '../../../common/utils/Constants'
 import { API } from '../../../common/api'
 import { faInfoCircle } from '@fortawesome/free-solid-svg-icons'
 import { navigate } from '../../../common/store/action'
@@ -40,7 +41,8 @@ class BiodataPenandatanganAdminPage extends Component {
             okType: 'danger',
             cancelText: 'No',
             onOk: () => {
-                // this.deleteEvent(id)
+                console.log("ini id", id)
+                this.addPenandatangan(id)
             },
             onCancel(){
                 console.log('Cancel')
@@ -48,21 +50,26 @@ class BiodataPenandatanganAdminPage extends Component {
         });
     }
 
-     //delete event
-     addPenandatangan = e => {
-        e.preventDefault();
+     //add penandatangan
+     addPenandatangan = (id) => {
+        // e.preventDefault();
+
         const params = {
-            id_event: this.props.idEvent,  
+            id_biodata_penandatangan: id,  
         }
+
         console.log('params',params)
-        // API.post(`/admin/addpenandatangan`,params)
-        // .then(res => {
-        //     console.log('res',res)
-        //     if(res.status == 200){
-        //         message.success('This is a success message');
-        //         this.componentDidMount(); 
-        //     }   
-        // });
+        this.setState({loading: true})
+        API.post(`/admin/addpenandatangan`,params)
+        .then(res => {
+            console.log('res',res)
+            if(res.status == 200){
+                message.success('Berhasil menambahkan penandatangan');
+                // this.componentDidMount(); 
+                this.props.navigate(CONSTANS.BIODATA_PENANDATANGAN_ADMIN_KEY)
+            }  
+            this.setState({loading: false}) 
+        });
     }
 
 
@@ -101,13 +108,13 @@ class BiodataPenandatanganAdminPage extends Component {
             },
             {
                 title: 'NIP',
-                dataIndex: 'nik',
-                key: 'nik',
+                dataIndex: 'nip',
+                key: 'nip',
             },
             {
               title: 'Action',
               key: 'action',
-              render: () => (
+              render: (data) => (
                 [<ButtonDashboard
                     text="Add"
                     height={20}
@@ -115,7 +122,7 @@ class BiodataPenandatanganAdminPage extends Component {
                     borderRadius="5px"
                     background="#FFA903"
                     marginRight= "20px"
-                    onClick= {()=> this.showAddConfirm()}
+                    onClick= {()=> this.showAddConfirm(data.nomor)}
                 />]
               ),
             },
@@ -128,7 +135,7 @@ class BiodataPenandatanganAdminPage extends Component {
             email : email,
             instansi : instansi,
             jabatan : jabatan,
-            nik : nip,
+            nip : nip,
         }))
     
     
