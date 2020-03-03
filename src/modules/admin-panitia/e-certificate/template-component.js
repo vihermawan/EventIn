@@ -6,6 +6,7 @@ import '../../../assets/css/dashboard-all/table-style.css'
 import LoadingContainer from '../../../common/component/loading/loading-container'
 import ButtonDashboard from '../../../common/component/button/button-dashboard';
 import { faInfoCircle } from '@fortawesome/free-solid-svg-icons';
+import { PDFViewer,Document,Page, Text, View, } from '@react-pdf/renderer';
 // constant content
 const { Content } = Layout;
 
@@ -15,6 +16,7 @@ class TemplateCertificateComponent extends Component {
     render() { 
       const { initialData } = this.props;
       const image1 = require(`../../../assets/images/home-image1.png`);
+      const document = require(`../../../assets/images/template.pdf`);
         return ( 
             <Content
                 style={{
@@ -93,12 +95,14 @@ class TemplateCertificateComponent extends Component {
                                                     </Row>
                                                 </Col>
                                                 <Col lg={12} md={12} sm={12}>
-                                                    <div className="image-big-container-detail">
-                                                        <img
-                                                            src={image1}
-                                                            alt="Home 1"
-                                                            style={{maxWidth: '100%'}}
-                                                        />
+                                                    <div className="template">
+                                                        <PDFViewer src={document}  style={{minWidth: '100%', minHeight: '500px',border:"none"}}>
+                                                            <Document>
+                                                                <Page>
+                                                                
+                                                               </Page>
+                                                            </Document> 
+                                                        </PDFViewer>
                                                     </div>
                                                 </Col>
                                             </Row>
