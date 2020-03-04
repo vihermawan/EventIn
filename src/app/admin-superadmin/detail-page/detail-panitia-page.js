@@ -19,6 +19,7 @@ class DetailPanitiaPage extends Component {
         panitia: [],
         detail_panitia : [],
         event_panitia : [],
+        loading :false,
     }
 
     componentDidMount(){

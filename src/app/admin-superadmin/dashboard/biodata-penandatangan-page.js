@@ -71,7 +71,6 @@ class BiodataPenandatanganAdminPage extends Component {
         const params = {
             id_biodata_penandatangan: id,  
         }
-
         console.log('params',params)
         this.setState({loading: true})
         API.post(`/admin/addpenandatangan`,params)
