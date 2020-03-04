@@ -46,15 +46,12 @@ const menu = {
     DETAIL_EVENT_PANITIA: {
         link : '/dashboard/detail-event',
     },
-
     DETAIL_EVENT_PARTICIPANT_PANITIA : {
         link : '/dashboard/participant/detail-event'
-    },
-    
+    },    
     DETAIL_SERTIF_PANITIA : {
         link : '/dashboard/detail-e-certificate',
     },
-
     DETAIL_EVENT_ADMIN: {
         link:'/admin/detail-event'
     },
