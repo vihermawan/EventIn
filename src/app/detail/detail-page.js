@@ -27,7 +27,7 @@ class DetailPage extends Component {
         this.setState({loading: true})
         API.get(`/peserta/event/${id}`)
         .then(res => {
-            console.log('res',res.data.data.event.kategori)
+            console.log('res',res)
             this.setState({
                 Event:res.data.data.event,
                 kategori : res.data.data.event.kategori,

@@ -1,0 +1,101 @@
+.title-container-detail-event {
+    max-width: 480px;
+    margin-top: 5px;
+    margin-left: 40px;
+    margin-bottom: 10px;
+}
+.title-container-nama-event {
+    max-width: 480px;
+    margin-top: 2px;
+    margin-left: 0px;
+    margin-bottom: 10px;
+}
+.title-big-detail {
+    font-size: 72px;
+    font-weight: 700;
+}
+.title-small-detail {
+    font-size: 44px;
+    font-weight: 700;
+}
+
+.category-event {
+    max-width: 400px;
+    margin-left: 40px;
+}
+.image-big-container-detail {
+    width: 600px;
+    margin-top: 30px;
+}
+
+.desc-event {
+    max-width:80%;
+    margin-top: 50px;
+    margin-left: 40px;
+    margin-bottom: 10px;
+}
+
+.title-quote-detail{
+    /* max-width: 80%; */
+    font-size :20px;
+    margin-top: 10px;
+}
+
+.teks-detail {
+    font-size: 17px;
+    text-align: justify;
+}
+
+.card-content-detail-event {
+    margin-top: 0px;
+    /* background-color: red; */
+    /* margin: 16px auto; */
+    max-width: 1300px;
+    min-height: 250px;
+    /* padding: 28px; */
+    border: none;
+    border-radius: 10px;
+
+    /* -webkit-box-shadow: 0px 7px 17px -4px rgba(0,0,0,0.75);
+    -moz-box-shadow: 0px 7px 17px -4px rgba(0,0,0,0.75);
+    box-shadow: 0px 7px 17px -4px rgba(0,0,0,0.75); */
+}
+
+.detail-content {
+    margin: auto;
+    max-width: 300px;
+    padding: 28px;
+    border-radius: 10px;
+}
+
+.detail-image {
+    max-width: 30%;
+    max-height: 100px;
+}
+
+.detail-title {
+    margin-top: 18px;
+    font-size: 20px;
+    font-weight: 600;
+}
+.detail-description {
+    margin-top: 10px;
+    font-size: 15px;
+}
+
+/*untuk regis*/
+.button-regis{
+    border-radius: 25px;
+    border: none;
+    background: #4d5af2;
+    margin: 0px;
+    width: 160px;
+}
+.back-regis{
+    background: #4d5af2;
+
+}
+.text-merah{
+    color: red;
+}
+

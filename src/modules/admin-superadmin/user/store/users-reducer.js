@@ -1,11 +1,9 @@
-import * as actionType from './panitia-action-type';
+import * as actionType from './users-action-type';
 
 const initialState = {
     loading: false,
     data: [],
     idUsers : null,
-    idPanitia : null,
-   
 };
 
 const handler = (currentState) => {
@@ -23,14 +21,6 @@ const handler = (currentState) => {
             data: data
         }),
     };
-
-    const setIdPanitia = {
-        setIdDataPanitia : data => ({
-            ...currentState,
-            idPanitia : data
-        })
-    }
-
     const setIdUsers = {
         setIdDataUsers : data => ({
             ...currentState,
@@ -40,7 +30,6 @@ const handler = (currentState) => {
 
 
     return {
-        ...setIdPanitia,
         ...setIdUsers,
     };
 };
@@ -54,12 +43,6 @@ export default (state = initialState, action) => {
             return handler(state).finishGetDataParticipant();
         case actionType.SET_DATA:
             return handler(state).setDataParticipant(payload);
-
-    
-      
-        case actionType.SET_ID_PANITIA:
-            return handler(state).setIdDataPanitia(payload);
-
         case actionType.SET_ID_USERS:
             return handler(state).setIdDataUsers(payload);
 
