@@ -1,5 +1,5 @@
-import { API } from '../../../../../common/api'
-import * as actionType from './panitia-action-type';
+import { API } from '../../../../common/api'
+import * as actionType from './users-action-type';
 
 const startGetDataParticipant = () => ({
     type: actionType.START_GET_DATA,
@@ -9,11 +9,6 @@ const finishGetDataParticipant = () => ({
 });
 const setDataParticipant = payload => ({
     type: actionType.SET_DATA,
-    payload,
-});
-
-const setIdDataPanitia = payload => ({
-    type : actionType.SET_ID_PANITIA,
     payload,
 });
 
@@ -31,11 +26,6 @@ export const getData = (service, params) => (dispatch) => {
         dispatch(finishGetDataParticipant());
     })
 };
-
-
-export const setIdPanitia = (data) => (dispatch => {
-    dispatch(setIdDataPanitia(data))
-});
 
 export const setIdUsers = (data) => (dispatch => {
     dispatch(setIdDataUsers(data))

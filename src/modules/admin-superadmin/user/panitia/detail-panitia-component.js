@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Layout, Breadcrumb, Row, Table, Input, Col,Tag } from 'antd';
+import { Layout, Breadcrumb, Row, Col } from 'antd';
 import '../../../../assets/css/dashboard-all/dashboard.css'
 import '../../../../assets/css/dashboard-all/table-style.css'
 import '../../../../assets/css/admin-superadmin/detail-user.css'
@@ -12,7 +12,6 @@ const { Content } = Layout;
 class DetailPanitiaAdminComponent extends Component {
     render() { 
       const { initialData, columns, data } = this.props
-      const image1 = require(`../../../../assets/images/avatar.png`);
         return ( 
             <Content
                 style={{
@@ -39,37 +38,38 @@ class DetailPanitiaAdminComponent extends Component {
                                 <div className="container-desc-panitia">
                                     <Row>
                                         <Col lg={8} md={12} sm={12}>
-                                            <img
-                                                src={image1}
-                                                alt="avatar 1"
-                                                className = "avatar-panitia"
-                                                style={{Width: '100%'}}
-                                            />
+                                            <div className="avatar-panitia">
+                                                <img
+                                                    src={initialData.detail_panitia.image_URL}
+                                                    alt="avatar 1"
+                                                    className = "avatar-panitia"
+                                                />
+                                            </div>
                                         </Col>
                                         <Col lg={8} md={12} sm={12}>
                                             <div className="desc-panitia">
                                                 <span className="text-black nama-panitia">Nama Panitia</span>
                                                 <br/>
-                                                <span className="text-black desc-nama">PPSMB Palapa</span>
+                                                <span className="text-black desc-nama">{initialData.detail_panitia.nama_panitia}</span>
                                             </div>
                                             <br/>
                                             <div className="desc-panitia">
                                                 <span className="text-black nama-panitia">Organisasi</span>
                                                 <br/>
-                                                <span className="text-black desc-nama">Unviersitas Gadjah Mada</span>
+                                                <span className="text-black desc-nama">{initialData.detail_panitia.organisasi}</span>
                                             </div>
                                         </Col>
                                         <Col lg={8} md={12} sm={12}>
                                             <div className="desc-panitia">
                                                 <span className="text-black nama-panitia">No Telepon</span>
                                                 <br/>
-                                                <span className="text-black desc-nama">0812092092</span>
+                                                <span className="text-black desc-nama">{initialData.detail_panitia.no_telepon}</span>
                                             </div>
                                             <br/>
                                             <div className="desc-panitia">
                                                 <span className="text-black nama-panitia">Instagram</span>
                                                 <br/>
-                                                <span className="text-black desc-nama">@PPSMB_Palapa</span>
+                                                <span className="text-black desc-nama">{initialData.detail_panitia.instagram}</span>
                                             </div>
                                         </Col>
                                     </Row>
@@ -80,7 +80,7 @@ class DetailPanitiaAdminComponent extends Component {
                                     <TableProfile 
                                         columns={columns} 
                                         dataSource={data} 
-                                        className="table-active-event"
+                                        className="table-panitia"
                                     />
                                 </Row>
                             </LoadingContainer>
