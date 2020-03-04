@@ -75,7 +75,7 @@ class DetailComponent extends Component {
                                 </Col>
                                 <Col span={24}>
                                     <div className="button-detail-1-container">
-                                        <Button className="button-participate button-regis" style={{marginTop:'2%'}} type="primary" onClick={this.showModal}>
+                                        <Button className="button-participate button-regis" style={{marginTop:'2%'}} type="primary" onClick={showModal}>
                                             Daftar!
                                         </Button>
                                         <Modal

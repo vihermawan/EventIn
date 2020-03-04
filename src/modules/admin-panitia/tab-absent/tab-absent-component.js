@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
-import { Layout, Breadcrumb, Row, Table, Input, Col,Icon,Tabs } from 'antd';
+import { Layout, Breadcrumb, Row, Col,Tabs } from 'antd';
+import { Link } from 'react-router-dom';
 import '../../../assets/css/dashboard-all/dashboard.css'
 import '../../../assets/css/dashboard-all/table-style.css'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
@@ -14,7 +15,7 @@ const { TabPane } = Tabs;
 
 class TabAbsentComponent extends Component {
     render() { 
-        const {renderTabBar,componentDidMount} = this.props;
+        const {componentDidMount} = this.props;
         return ( 
             <Content
                 style={{
@@ -25,7 +26,7 @@ class TabAbsentComponent extends Component {
                 }}
             >
                  <Breadcrumb separator=">">
-                    <Breadcrumb.Item>Dashboard Active Event</Breadcrumb.Item>
+                    <Breadcrumb.Item><Link to='/dashboard/active-event'>Dashboard Active Event</Link></Breadcrumb.Item>
                     <Breadcrumb.Item>Dashboard Participant Event</Breadcrumb.Item>
                 </Breadcrumb>
 

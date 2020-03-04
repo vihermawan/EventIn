@@ -20,7 +20,7 @@ class EventPage extends Component {
      componentDidMount(){
         this.getEvent();
         this.getKategori();
-        this.getEventbyKategori(3);
+        
     }
 
     onTabChange = (id_kategori) => {
@@ -54,7 +54,7 @@ class EventPage extends Component {
     getKategori=()=>{
         API.get('/peserta/kategori')
         .then(res => {
-            // console.log('kategori',res.data.data.kategori[0])
+            console.log('kategori',res)
             if(res.status == 200){
                 this.setState({
                     kategori:res.data.data.kategori,
@@ -62,20 +62,6 @@ class EventPage extends Component {
                 })
             }
         })
-    }
-
-    getEventbyKategori=(id_kategori)=>{
-        this.setState({loading: true})
-        API.get(`/peserta/event/kategori/3`)
-        .then(res => {
-            console.log('res',res)
-            if(res.status == 200){
-                this.setState({
-                    eventbyKategori:res.data.data.event,
-                })
-            }
-            this.setState({loading: false})
-        });
     }
 
     //button detail participant

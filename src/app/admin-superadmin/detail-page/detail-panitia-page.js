@@ -16,7 +16,7 @@ class DetailPanitiaPage extends Component {
     }
 
     getDetailPanitia=(id)=>{
-        //this.setState({loading: true})
+        ///this.setState({loading: true})
         API.get(`/admin/detail-panitia/admin/${id}`)
         .then(res => {
           console.log('res',res)
