@@ -11,7 +11,7 @@ import { navigate } from '../../../common/store/action'
 import DetailPanitiaComponent from '../../../modules/admin-superadmin/user/panitia/detail-panitia-component';
 import ButtonDashboard from '../../../common/component/button/button-dashboard';
 
-// import store
+/// import store
 import { setIdEvent } from '../../../modules/admin-panitia/active-event/store/active-event-action'
 
 class DetailPanitiaPage extends Component {
