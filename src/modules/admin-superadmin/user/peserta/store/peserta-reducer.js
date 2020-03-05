@@ -4,6 +4,7 @@ const initialState = {
     loading: false,
     data: [],
     idPeserta:null,
+    idUsers : null,
 };
 
 const handler = (currentState) => {
@@ -31,8 +32,17 @@ const handler = (currentState) => {
         })
     }
 
+    const setIdUsers = {
+        setIdDataUsers : data => ({
+            ...currentState,
+            idUsers : data
+        })
+    }
+
+
     return {
         ...setIdPeserta,
+        ...setIdUsers,
     };
 };
 
@@ -49,6 +59,10 @@ export default (state = initialState, action) => {
     
         case actionType.SET_ID_PESERTA:
             return handler(state).setIdDataPeserta(payload);
+
+        
+        case actionType.SET_ID_USERS:
+                return handler(state).setIdDataUsers(payload);
 
         default:
             return state;

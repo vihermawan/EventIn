@@ -10,8 +10,8 @@ import { faInfoCircle } from '@fortawesome/free-solid-svg-icons'
 import ButtonDashboard from '../../../common/component/button/button-dashboard';
 
 // import store
+import { setIdUsers } from '../../../modules/admin-superadmin/user/store/users-action'
 import { setIdPeserta } from '../../../modules/admin-superadmin/user/peserta/store/peserta-action'
-
 
 const { confirm } = Modal;
 
@@ -51,9 +51,10 @@ class PesertaAdminPage extends Component {
     }
 
     //button detail event
-    onDetailPeserta = (id) => {
-        console.log('id ini',id)
-        this.props.setIdPeserta(id);
+    onDetailPeserta = (id_users,id_peserta) => {
+        console.log('id users ini',id_users,id_peserta)
+        this.props.setIdUsers(id_users)
+        this.props.setIdPeserta(id_peserta)
         this.props.navigate(CONSTANS.DETAIL_PESERTA_ADMIN_MENU_KEY)
     }
 
@@ -130,7 +131,7 @@ class PesertaAdminPage extends Component {
                         borderRadius="5px"
                         background="#FFA903"
                         marginRight= "20px"
-                        onClick = { () => this.onDetailPeserta(data.nomor)}
+                        onClick = { () => this.onDetailPeserta(data.id_users,data.id_peserta)}
                     />,
                     <ButtonDashboard
                         text="Delete"
@@ -145,7 +146,7 @@ class PesertaAdminPage extends Component {
           ];
         const data =  this.state.peserta.map( ({id_users, peserta,email}, index) => ({
             no : index+1,
-            nomor : id_users,
+            id_users : id_users,
             id_peserta : peserta.id_peserta,
             peserta : peserta.nama_peserta,
             email : email,
@@ -171,6 +172,7 @@ const mapStateToProps = state => ({
 
 const mapDispatchToProps = (dispatch => ({
     navigate,
+    setIdUsers,
     setIdPeserta,
 }))();
 

@@ -7,7 +7,7 @@ const { Content } = Layout;
 
 class BasicInfoComponent extends Component{
     render(){
-        const { menu,initialData, handleChange, handleSubmit } = this.props;
+        const { menu,initialData, handleChange, onNext } = this.props;
         return (
             
             <Layout className="login-container">
@@ -102,6 +102,14 @@ class BasicInfoComponent extends Component{
                                         </div>
                                     </Col>
                                 </Row>
+                            </div>
+                            <div className="steps-action">
+                                <Button
+                                    type="primary"
+                                    onClick={() => onNext()}
+                                >
+                                    Next
+                                </Button>
                             </div>
                         </Form>
                     </div>
