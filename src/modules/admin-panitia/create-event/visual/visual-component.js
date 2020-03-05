@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Layout, Row, Col, Upload, Form,Icon, Dropdown, Menu } from 'antd';
+import { Layout, Row, Col, Upload, Form,Icon, Dropdown, Menu, Button } from 'antd';
 import { Link } from 'react-router-dom';
 // component
 import InputForm from '../../../../common/component/input/input-form';
@@ -8,7 +8,7 @@ const { Dragger } = Upload;
 
 class BasicInfoComponent extends Component{
     render(){
-        const { menu,initialData, handleChange, handleSubmit,handleUpload } = this.props;
+        const { menu,initialData, handleChange, handleSubmit,handleUpload, onNext, onPrev } = this.props;
         return (
             
             <Layout className="login-container">
@@ -32,6 +32,20 @@ class BasicInfoComponent extends Component{
                                         </div>
                                     </Col>
                                 </Row>
+                            </div>
+                            <div className="steps-action">
+                                <Button
+                                    type="primary"
+                                    onClick={() => onNext()}
+                                >
+                                    Next
+                                </Button>
+                                <Button
+                                    style={{ marginLeft: 8, marginTop:0 }}
+                                    onClick={() => onPrev()}
+                                >
+                                    Previous
+                                </Button>
                             </div>
                         </Form>
                     </div>

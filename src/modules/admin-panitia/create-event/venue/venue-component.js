@@ -7,7 +7,7 @@ const { Content } = Layout;
 
 class VenueComponent extends Component{
     render(){
-        const { menu,initialData, handleChange, handleSubmit } = this.props;
+        const { menu,initialData, handleChange, handleSubmit, onNext, onPrev } = this.props;
         return (
             
             <Layout className="login-container">
@@ -80,6 +80,20 @@ class VenueComponent extends Component{
                                         </div>
                                     </Col>
                                 </Row>
+                            </div>
+                            <div className="steps-action">
+                                <Button
+                                    type="primary"
+                                    onClick={() => onNext()}
+                                >
+                                    Next
+                                </Button>
+                                <Button
+                                    style={{ marginLeft: 8, marginTop:0 }}
+                                    onClick={() => onPrev()}
+                                >
+                                    Previous
+                                </Button>
                             </div>
                         </Form>
                     </div>

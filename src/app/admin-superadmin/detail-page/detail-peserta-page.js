@@ -6,27 +6,27 @@ import ButtonIcon from '../../../common/component/button/button-icon'
 import { API } from '../../../common/api'
 import { navigate } from '../../../common/store/action'
 import DetailPesertaComponent from '../../../modules/admin-superadmin/user/peserta/detail-peserta-component';
-import ButtonDashboard from '../../../common/component/button/button-dashboard';
 
 class DetailPesertaPage extends Component {
     state = {
         detailPeserta : [],
+        eventPeserta : [],
         loading :false,
     }
 
     componentDidMount(){
-        this.getDetailPeserta(this.props.idPeserta);
+        this.getDetailPeserta(this.props.idUsers);
     }
 
-    getDetailPeserta=(id)=>{
-        // this.setState({loading: true})
-        API.get(`/admin/showpeserta/${id}`)
+    getDetailPeserta=(id_users)=>{
+        this.setState({loading: true})
+        API.get(`/admin/showpeserta/${id_users}`)
         .then(res => {
           console.log('res',res)
-        //   this.setState({
-        //     eventPast:res.data.data.event,
-        //     loading: false,
-        //   })
+          this.setState({
+            detailPeserta:res.data.data.peserta,
+            loading: false,
+          })
         });
     }
 

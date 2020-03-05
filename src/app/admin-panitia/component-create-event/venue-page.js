@@ -10,7 +10,11 @@ class VenuePage extends Component {
     }
 
     componentDidMount(){
-       
+        
+    }
+    componentWillMount(){
+        const data = JSON.parse(localStorage.getItem('step-2'));
+        console.log(data)
     }
 
     handleChange = (e) => {
@@ -29,8 +33,15 @@ class VenuePage extends Component {
     handleMenuClick(e) {
         message.info('Click on menu item.');
         console.log('click', e);
-      }
+    }
 
+    onNext = () => {
+        this.props.next();
+        localStorage.setItem('step-2', JSON.stringify(this.state));
+    }
+    onPrev = () => {
+        this.props.prev();
+    }
   
     render() {
 
@@ -57,6 +68,9 @@ class VenuePage extends Component {
                 navigate={this.props.navigate}
                 handleChange={this.handleChange}
                 menu = {menu}
+
+                onNext={this.onNext}
+                onPrev={this.onPrev}
             />
         );
     }

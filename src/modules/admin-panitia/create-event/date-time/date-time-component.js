@@ -9,7 +9,7 @@ const { Content } = Layout;
 
 class DateTimeComponent extends Component{
     render(){
-        const { menu, onChange, handleOpenChange, handleClose, initialData,handleOpen2Change } = this.props;
+        const { menu, onChange, onNext, onPrev, handleOpenChange, handleClose, initialData,handleOpen2Change } = this.props;
         const format = 'HH:mm';
         return (
             
@@ -127,6 +127,18 @@ class DateTimeComponent extends Component{
                                     </Col>
                                 </Row>
                             </div>
+                            <Button
+                                type="primary"
+                                onClick={() => onNext()}
+                            >
+                                Next
+                            </Button>
+                            <Button
+                                style={{ marginLeft: 8, marginTop:0 }}
+                                onClick={() => onPrev()}
+                            >
+                                Previous
+                            </Button>
                         </Form>
                     </div>
                  </Content>

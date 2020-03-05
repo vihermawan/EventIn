@@ -6,11 +6,23 @@ import BasicInfoComponent from '../../../modules/admin-panitia/create-event/basi
 
 class BasicInfoPage extends Component {
     state = {
-        
+        name: '',
+        description: '',
+        organisasi: '',
+        batas_peserta: '',
     }
 
     componentDidMount(){
        
+    }
+    componentWillMount(){
+        const data = JSON.parse(localStorage.getItem('step-1'));
+        this.setState({
+            name: data.name,
+            description: data.description,
+            organisasi: data.organisasi,
+            batas_peserta: data.batas_peserta,
+        })
     }
 
     handleChange = (e) => {
@@ -30,6 +42,11 @@ class BasicInfoPage extends Component {
         message.info('Click on menu item.');
         console.log('click', e);
       }
+
+    onNext = () => {
+        this.props.next()
+        localStorage.setItem('step-1', JSON.stringify(this.state));
+    }
   
     render() {
 
@@ -55,6 +72,8 @@ class BasicInfoPage extends Component {
                 navigate={this.props.navigate}
                 menu={menu}
                 handleChange={this.handleChange}
+
+                onNext={this.onNext}
             />
         );
     }
