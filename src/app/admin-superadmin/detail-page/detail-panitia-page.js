@@ -30,7 +30,7 @@ class DetailPanitiaPage extends Component {
 
     getDetailPanitia=(id_users)=>{
         this.setState({loading: true})
-        API.get(`/admin/detail-panitia/admin/${id_users}`)
+        API.get(`/admin/detail-panitia/${id_users}`)
         .then(res => {
           console.log('res',res.data.data.panitia)
           this.setState({
