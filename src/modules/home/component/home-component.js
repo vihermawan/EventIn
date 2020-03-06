@@ -29,8 +29,8 @@ const cardData = [
 const whyData = [
     {
         image: require(`../../../assets/images/tracking.png`),
-        title: 'Tracking',
-        description: 'Organizer can tracks how much participant join their events'
+        title: 'Informatif',
+        description: 'Panitia dapat dengan mudah mengetahui jumlah peserta yang mendaftar event'
     },
     {
         image: require(`../../../assets/images/certificate.png`),
@@ -44,18 +44,18 @@ const whyData = [
     },
     {
         image: require(`../../../assets/images/simplifying.png`),
-        title: 'Simplifying',
-        description: 'Organize your event, and make your events more good'
+        title: 'Mudah',
+        description: 'Kelolah event dengan lebih mudah dan tertata'
     },
     {
         image: require(`../../../assets/images/news.png`),
-        title: 'Newst Event',
-        description: 'Participant can seacrh event nearby his location anything event what he wants'
+        title: 'Terbaru',
+        description: 'Peserta mendapat info mengenai event terbaru'
     },
     {
         image: require(`../../../assets/images/both-time.png`),
-        title: 'Both Time',
-        description: 'Everypeople can join to be a participant or organizer'
+        title: 'Satu Sistem',
+        description: 'Semua orang dapat dengan mudah mendaftar sebagai peserta ataupun panitia dalam satu sistem'
     }
 ]
 

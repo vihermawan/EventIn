@@ -67,7 +67,7 @@ class Navbar extends Component {
 			<Menu>
 			  <Menu.Item key="1">
 			  	<ButtonAuth
-					  text="Profile"
+					  text="Profil"
 					  className="auth-button-logout"
 					  style={{borderRadius: '10px',color:'black'}}
 					  block={true}
@@ -77,7 +77,7 @@ class Navbar extends Component {
 			  {/* <Menu.Divider /> */}
 			  <Menu.Item key="3">
 				  <ButtonAuth
-					  text="Logout"
+					  text="Keluar"
 					  className="auth-button-logout"
 					  style={{borderRadius: '10px',color:'black'}}
 					  block={true}
@@ -100,13 +100,13 @@ class Navbar extends Component {
                             className="pt-15"
                         >
                             <Menu.Item key="home" className="ml-30">
-                                <Link to='/'> Home </Link>
+                                <Link to='/'> Beranda </Link>
                             </Menu.Item>
                             <Menu.Item key="event" className="ml-30">
                                 <Link to='/event'> Event </Link>
                             </Menu.Item>
                             <Menu.Item key="about" className="ml-30">
-                                <Link to='/about'> About Us </Link>
+                                <Link to='/about'> Tentang Kami </Link>
                             </Menu.Item>
                         </Menu>
 					</div>
@@ -143,9 +143,9 @@ class Navbar extends Component {
 						onClose={this.onClose}
 						visible={this.state.visible}
 					>
-						<p><Link to='/'> Home </Link></p>
+						<p><Link to='/'> Beranda </Link></p>
 						<p><a href="/event">Event</a></p>
-						<p><Link to='/login' className="text-black"> Login </Link></p>
+						<p><Link to='/login' className="text-black"> Masuk </Link></p>
 					</Drawer>
 				</div>
 			</nav>
