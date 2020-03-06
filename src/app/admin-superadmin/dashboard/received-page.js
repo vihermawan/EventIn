@@ -83,15 +83,6 @@ class ReceivedPage extends Component {
               key: 'action',
               render: (data) => (
                 [<ButtonDashboard
-                    text="Send"
-                    height={20}
-                    icon={faPaperPlane}
-                    borderRadius="5px"
-                    background="#36FF03"
-                    marginRight= "20px"
-                    onClick = { () => this.showSendConfirm(data.nomor)}
-                />,
-                <ButtonDashboard
                     text="Detail"
                     height={20}
                     icon={faInfoCircle}
