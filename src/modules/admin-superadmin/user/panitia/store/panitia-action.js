@@ -15,7 +15,12 @@ const setDataParticipant = payload => ({
 const setIdDataPanitia = payload => ({
     type : actionType.SET_ID_PANITIA,
     payload,
-})
+});
+
+const setIdDataUsers = payload => ({
+    type : actionType.SET_ID_USERS,
+    payload,
+});
 
 export const getData = (service, params) => (dispatch) => {
     dispatch(startGetDataParticipant());
@@ -30,4 +35,8 @@ export const getData = (service, params) => (dispatch) => {
 
 export const setIdPanitia = (data) => (dispatch => {
     dispatch(setIdDataPanitia(data))
-})
+});
+
+export const setIdUsers = (data) => (dispatch => {
+    dispatch(setIdDataUsers(data))
+});

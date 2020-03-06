@@ -12,6 +12,7 @@ const {confirm} = Modal;
 class KategoriMasterPage extends Component {
     state = {  
         kategori: [],
+        nama_kategori : ' ',
         loading : false,
         visible: false,
     }
@@ -50,7 +51,11 @@ class KategoriMasterPage extends Component {
     
 
     handleOk = e => {
-        console.log(e);
+        e.preventDefault();
+        const params = {
+              kategori : this.state.nama_kategori,
+        }
+        
         this.setState({
             visible: false,
         });

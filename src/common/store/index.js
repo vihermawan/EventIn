@@ -17,6 +17,7 @@ import activeEventReducer from '../../modules/admin-panitia/active-event/store/a
 import certificateEventReducer from '../../modules/admin-panitia/e-certificate/store/e-certificate-reducer'
 import pesertaEventReducer from '../../modules/admin-superadmin/user/peserta/store/peserta-reducer'
 import panitiaEventReducer from '../../modules/admin-superadmin/user/panitia/store/panitia-reducer'
+import usersReducer from '../../modules/admin-superadmin/user/store/users-reducer'
 import loginReducer from '../../modules/auth/store/login-reducer'
 
 const history = createHistory();
@@ -26,7 +27,7 @@ const persistConfig = {
     key: 'your-apps',
     storage,
     stateReconciler: autoMergeLevel1,
-    whitelist: ['login','activeEvent','certificate','peserta','panitia'],
+    whitelist: ['login','activeEvent','certificate','peserta','panitia','users'],
 };
 
 const reducers = combineReducers({
@@ -35,6 +36,7 @@ const reducers = combineReducers({
     certificate : certificateEventReducer,
     peserta : pesertaEventReducer,
     panitia : panitiaEventReducer,
+    users : usersReducer,
     login : loginReducer,
 })
 

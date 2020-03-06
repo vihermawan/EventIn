@@ -13,7 +13,13 @@ class VisualPage extends Component {
     componentDidMount(){
        
     }
-
+    onNext = () => {
+      this.props.next();
+      localStorage.setItem('step-4', JSON.stringify(this.state));
+    }
+    onPrev = () => {
+      this.props.prev();
+    }
   
     render() {
     
@@ -39,6 +45,9 @@ class VisualPage extends Component {
                 initialData={this.state}
                 navigate={this.props.navigate}
                 handleUpload={handleUpload}
+
+                onNext={this.onNext}
+                onPrev={this.onPrev}
             />
         );
     }

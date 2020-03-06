@@ -15,7 +15,13 @@ class DateTimePage extends Component {
     onChange =(date, dateString) => {
         console.log(date, dateString);
     }
-    
+    onNext = () => {
+        this.props.next();
+        localStorage.setItem('step-3', JSON.stringify(this.state));
+    }
+    onPrev = () => {
+        this.props.prev();
+    }
     
     render() {
         
@@ -24,6 +30,9 @@ class DateTimePage extends Component {
                 initialData={this.state}
                 navigate={this.props.navigate}
                 onChange = {this.onChange}
+
+                onNext={this.onNext}
+                onPrev={this.onPrev}
             />
         );
     }

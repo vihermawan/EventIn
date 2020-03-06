@@ -1,7 +1,9 @@
 import React, { Component } from 'react';
 import { Layout, Breadcrumb, Row, Icon,Card, Col,Tag } from 'antd';
+import { Link } from 'react-router-dom';
 import '../../../assets/css/dashboard-all/dashboard.css'
 import '../../../assets/css/dashboard-all/table-style.css'
+import '../../../assets/css/admin-superadmin/detail-event.css'
 // component
 import LoadingContainer from '../../../common/component/loading/loading-container'
 import 'moment-timezone';
@@ -10,11 +12,9 @@ import moment from 'moment-timezone';
 // constant content
 const { Content } = Layout;
 
-
-
 class DetailEventComponent extends Component {
     render() { 
-      const { initialData, columns, data } = this.props
+      const {initialData} = this.props
       const datebeginevent = moment(initialData.detailEvent.start_event).format("DD MMMM")
       const dateEndEvent = moment(initialData.detailEvent.end_event).format("DD MMMM YYYY")
       const regisbeginevent = moment(initialData.detailEvent.open_registration).format("DD MMMM")
@@ -52,7 +52,7 @@ class DetailEventComponent extends Component {
                 }}
             >
                 <Breadcrumb separator=">">
-                    <Breadcrumb.Item>Dashboard Active Event</Breadcrumb.Item>
+                    <Breadcrumb.Item><Link to='/dashboard/active-event'>Dashboard Active Event</Link></Breadcrumb.Item>
                     <Breadcrumb.Item>Dashboard Detail Event</Breadcrumb.Item>
                 </Breadcrumb>
 

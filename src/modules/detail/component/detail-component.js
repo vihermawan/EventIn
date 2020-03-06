@@ -71,11 +71,11 @@ class DetailComponent extends Component {
                                     </div>
                                 </Col>
                                 <Col span={24} style={{ marginTop: 2 }}>
-                                    <Countdown className="text-soft-blue title-small title-container-detail" title="Will be held on" value={initialData.detailEvent.start_event} format="M bulan D hari,  H-m-s hour" />
+                                    <Countdown className="text-soft-blue title-small title-container-detail" title="Will be held on" value={initialData.detailEvent.start_event} format="M bulan D hari, H-m-s hour" />
                                 </Col>
                                 <Col span={24}>
                                     <div className="button-detail-1-container">
-                                        <Button className="button-participate button-regis" style={{marginTop:'2%'}} type="primary" onClick={this.showModal}>
+                                        <Button className="button-participate button-regis" style={{marginTop:'2%'}} type="primary" onClick={showModal}>
                                             Daftar!
                                         </Button>
                                         <Modal

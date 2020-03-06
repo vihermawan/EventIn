@@ -12,6 +12,7 @@ import ButtonDashboard from '../../../common/component/button/button-dashboard';
 
 // import store
 import { setIdPanitia } from '../../../modules/admin-superadmin/user/panitia/store/panitia-action'
+import { setIdUsers } from '../../../modules/admin-superadmin/user/store/users-action'
 
 const { confirm } = Modal;
 
@@ -29,7 +30,6 @@ class ListPanitiaAdminPage extends Component {
         this.setState({loading: true})
         API.get(`/admin/showpanitia`)
         .then(res => {
-          console.log('res',res.data.data.panitia)
           this.setState({
             panitia:res.data.data.panitia,
             loading: false,
@@ -42,7 +42,7 @@ class ListPanitiaAdminPage extends Component {
         console.log(id_panitia)
         API.delete(`/admin/deletepanitia/${id_panitia}`)
         .then(res => {
-            console.log('res',res)
+            // console.log('res',res)
             if(res.status == 200){
                 message.success('This is a success message');
                 window.location.reload(); 
@@ -69,14 +69,15 @@ class ListPanitiaAdminPage extends Component {
     }
 
     //button detail event
-    onDetailPanitia = (id) => {
-        console.log('id ini',id)
-        this.props.setIdPanitia(id);
+    onDetailPanitia = (id_users,id_panitia) => {
+        console.log('id ini',id_users,id_panitia)
+        this.props.setIdUsers(id_users)
+        this.props.setIdPanitia(id_panitia)
         this.props.navigate(CONSTANS.DETAIL_PANITIA_ADMIN_MENU_KEY)
     }
 
     onChange(pagination, filters, sorter, extra) {
-        console.log('params', pagination, filters, sorter, extra);
+        // console.log('params', pagination, filters, sorter, extra);
     }
 
     render() { 
@@ -133,7 +134,7 @@ class ListPanitiaAdminPage extends Component {
                         borderRadius="5px"
                         background="#FFA903"
                         marginRight= "20px"
-                        onClick = { () => this.onDetailPanitia(data.nomor)}
+                        onClick = { () => this.onDetailPanitia(data.id_users,data.id_panitia)}
                     />,
                     <ButtonDashboard
                         text="Delete"
@@ -150,7 +151,7 @@ class ListPanitiaAdminPage extends Component {
         const data =  this.state.panitia.map( ({id_users, panitia,email}, index) => ({
             no : index+1,
             id_panitia : panitia.id_panitia,
-            nomor : id_users,
+            id_users : id_users,
             panitia : panitia.nama_panitia,
             email : email,
             organisasi : panitia.organisasi,
@@ -178,6 +179,7 @@ const mapStateToProps = state => ({
 const mapDispatchToProps = (dispatch => ({
     navigate,
     setIdPanitia,
+    setIdUsers,
 }))();
 
 const page = connect(mapStateToProps, mapDispatchToProps)(ListPanitiaAdminPage);
