@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { API } from '../../common/api'
-import { Modal, message} from 'antd'
+import { Modal, message,notification} from 'antd'
 import { connect } from 'react-redux';
 import { navigate } from '../../common/store/action'
 import DetailComponent from '../../modules/detail/component/detail-component';
@@ -17,6 +17,13 @@ class DetailPage extends Component {
         visible: false,
         confirmLoading: false,
     }
+
+    openNotification = (message, description) => {
+        notification.error({
+            message,
+            description,
+        });
+    };
 
     componentDidMount(){
         console.log('window', window.history)
@@ -58,10 +65,15 @@ class DetailPage extends Component {
             if(res.status == 201){
                 this.setState({
                     visible:false,
+                    loading : true,
                 })
                 message.success('This is a success message');
                 this.componentDidMount(); 
+            }else if(res.data.status == "Register"){
+                this.setState({visible:false,loading:true})
+                this.openNotification('Anda Telah Terdaftar', res.data.messages)
             }   
+            // this.setState({loading:false})
         });
     };
     
