@@ -19,6 +19,8 @@ class DetailPage extends Component {
     }
 
     componentDidMount(){
+        console.log('window', window.history)
+        window.scrollTo(0, 0);
         this.getDetail(this.props.idEvent);
         console.log('id event',this.props.idEvent)
     }

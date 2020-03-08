@@ -125,10 +125,10 @@ class EventComponent extends Component {
                                     tab="All" key="0">                              
                                     <LoadingContainer loading={initialData.loading}>
                                         <Col lg={24} style={{minHeight: "300px"}}>
-                                            <Row gutter={16}>
+                                            <Row gutter={[16,16]} type="flex">
                                                 {
                                                     cardData.map( data =>
-                                                        <Col lg={6} md={12} sm={12} xs={24} className="mt-30">
+                                                        <Col lg={6} md={12} sm={12} xs={24}>
                                                             <Card
                                                                 hoverable
                                                                 className="event-card-container"
