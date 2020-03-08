@@ -6,6 +6,7 @@ import '../../../assets/css/admin-panitia/create-event.css'
 
 //import component
 import BasicInfoPage from '../../../app/admin-panitia/component-create-event/basic-info-page'
+import BiayaPage from '../../../app/admin-panitia/component-create-event/biaya-page'
 import VenuePage from '../../../app/admin-panitia/component-create-event/venue-page'
 import DateTimePage from '../../../app/admin-panitia/component-create-event/date-time-page'
 import VisualPage from '../../../app/admin-panitia/component-create-event/visual-page'
@@ -42,6 +43,15 @@ class CreateEventComponent extends Component {
                 title: 'Basic Info',
                 content: 
                     <BasicInfoPage
+                        next={this.next}
+                        prev={this.prev}
+                    /> 
+                ,
+            },
+            {
+                title: 'Biaya',
+                content: 
+                    <BiayaPage
                         next={this.next}
                         prev={this.prev}
                     /> 

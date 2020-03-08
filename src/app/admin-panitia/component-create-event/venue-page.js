@@ -44,31 +44,12 @@ class VenuePage extends Component {
     }
   
     render() {
-
-    const menu = (
-        <Menu onClick={this.handleMenuClick}>
-            <Menu.Item key="1">
-            <Icon type="user" />
-            1st menu item
-            </Menu.Item>
-            <Menu.Item key="2">
-            <Icon type="user" />
-            2nd menu item
-            </Menu.Item>
-            <Menu.Item key="3">
-            <Icon type="user" />
-            3rd item
-            </Menu.Item>
-        </Menu>
-    );
         
         return ( 
             <VenueComponent
                 initialData={this.state}
                 navigate={this.props.navigate}
                 handleChange={this.handleChange}
-                menu = {menu}
-
                 onNext={this.onNext}
                 onPrev={this.onPrev}
             />

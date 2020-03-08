@@ -1,15 +1,11 @@
 import React, { Component } from 'react';
-import { Layout, Row, Col, Button, Form,Icon, Dropdown, DatePicker, TimePicker, } from 'antd';
-import moment from 'moment';
-import { Link } from 'react-router-dom';
+import { Layout, Row, Col, Button, Form, DatePicker, TimePicker, } from 'antd';
 import '../../../../assets/css/admin-panitia/component-create-event.css'
-// component
-import InputForm from '../../../../common/component/input/input-form';
 const { Content } = Layout;
 
 class DateTimeComponent extends Component{
     render(){
-        const { menu, onChange, onNext, onPrev, handleOpenChange, handleClose, initialData,handleOpen2Change } = this.props;
+        const { onChange, onNext, onPrev} = this.props;
         const format = 'HH:mm';
         return (
             
@@ -64,7 +60,7 @@ class DateTimeComponent extends Component{
                                                 <div className="date-picker">
                                                     <Row>
                                                         <Col lg={24} md={24} sm={24}>
-                                                            <DatePicker placeholder="Pilih tanggal" onChange={onChange}/>
+                                                            <DatePicker placeholder="Pilih tanggal" onChange={onChange} />
                                                         </Col>
                                                     </Row>
                                                 </div>
@@ -102,7 +98,7 @@ class DateTimeComponent extends Component{
                                                 <div className="date-picker-panjang">
                                                     <Row>
                                                         <Col lg={24} md={24} sm={24}>
-                                                            <DatePicker placeholder="Pilih tanggal" onChange={onChange}/>
+                                                            <DatePicker placeholder="Pilih tanggal" onChange={onChange} />
                                                         </Col>
                                                     </Row>
                                                 </div>

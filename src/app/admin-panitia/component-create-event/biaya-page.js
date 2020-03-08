@@ -1,34 +1,30 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { Icon,Menu,message } from 'antd';
+import { message } from 'antd';
 import { navigate } from '../../../common/store/action'
-import BasicInfoComponent from '../../../modules/admin-panitia/create-event/basic-info/basic-info-component';
+import BiayaComponent from '../../../modules/admin-panitia/create-event/biaya/biaya-component';
 
-class BasicInfoPage extends Component {
+class BiayaPage extends Component {
     state = {
         nama: '',
         description: '',
         organisasi: '',
         batas_peserta: '',
-        kategori: '',
     }
 
     componentDidMount(){
        
     }
 
-    componentWillMount(){
-        const data = JSON.parse(localStorage.getItem('step-1'));
-        console.log(data)
-        if(data !== null){
-            this.setState({
-                nama: data.nama,
-                description: data.description,
-                organisasi: data.organisasi,
-                batas_peserta: data.batas_peserta,
-            })
-        }
-    }
+    // componentWillMount(){
+    //     const data = JSON.parse(localStorage.getItem('step-1'));
+    //     this.setState({
+    //         nama: data.nama,
+    //         description: data.description,
+    //         organisasi: data.organisasi,
+    //         batas_peserta: data.batas_peserta,
+    //     })
+    // }
 
     handleChange = (e) => {
         let target = e.target.name;
@@ -36,10 +32,6 @@ class BasicInfoPage extends Component {
         this.setState({
             [target]: value
         })
-    }
-
-    handleKategori = (value) => {
-        this.setState({ kategori: value.key })
     }
 
     handleButtonClick(e) {
@@ -53,19 +45,22 @@ class BasicInfoPage extends Component {
       }
 
     onNext = () => {
-        this.props.next()
-        localStorage.setItem('step-1', JSON.stringify(this.state));
+        this.props.next();
+        localStorage.setItem('step-2', JSON.stringify(this.state));
+    }
+    onPrev = () => {
+        this.props.prev();
     }
   
     render() {
 
         return ( 
-            <BasicInfoComponent
+            <BiayaComponent
                 initialData={this.state}
                 navigate={this.props.navigate}
                 handleChange={this.handleChange}
                 onNext={this.onNext}
-                handleKategori={this.handleKategori}
+                onPrev = {this.onPrev}
             />
         );
     }
@@ -79,5 +74,5 @@ const mapDispatchToProps = (dispatch => ({
     navigate,
 }))();
 
-const page = connect(mapStateToProps, mapDispatchToProps)(BasicInfoPage);
+const page = connect(mapStateToProps, mapDispatchToProps)(BiayaPage);
 export default page
