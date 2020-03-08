@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { Icon,Menu,message } from 'antd';
+import { message } from 'antd';
 import { navigate } from '../../../common/store/action'
 import CertificateComponent from '../../../modules/admin-panitia/create-event/ceritificate/certificate-component';
 
@@ -21,34 +21,17 @@ class CertificatePage extends Component {
         })
     }
 
-    handleButtonClick(e) {
-        message.info('Click on left button.');
-        console.log('click left button', e);
-      }
-      
-    handleMenuClick(e) {
-        message.info('Click on menu item.');
-        console.log('click', e);
+    onNext = () => {
+      this.props.next();
+      localStorage.setItem('step-4', JSON.stringify(this.state));
     }
+    onPrev = () => {
+        this.props.prev();
+    }
+    
   
     render() {
 
-    const menu = (
-        <Menu onClick={this.handleMenuClick}>
-            <Menu.Item key="1">
-            <Icon type="user" />
-            1st menu item
-            </Menu.Item>
-            <Menu.Item key="2">
-            <Icon type="user" />
-            2nd menu item
-            </Menu.Item>
-            <Menu.Item key="3">
-            <Icon type="user" />
-            3rd item
-            </Menu.Item>
-        </Menu>
-    );
 
     const handleUpload = {
         name: 'file',
@@ -71,9 +54,10 @@ class CertificatePage extends Component {
             <CertificateComponent
                 initialData={this.state}
                 navigate={this.props.navigate}
-                menu={menu}
                 handleChange={this.handleChange}
                 handleUpload={handleUpload}
+                onNext={this.onNext}
+                onPrev={this.onPrev}
             />
         );
     }

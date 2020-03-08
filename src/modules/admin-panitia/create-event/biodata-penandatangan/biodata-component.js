@@ -1,14 +1,12 @@
 import React, { Component } from 'react';
-import { Layout, Row, Col, Upload, Form,Icon, Dropdown, Menu } from 'antd';
-import { Link } from 'react-router-dom';
+import { Layout, Row, Col, Form,Button } from 'antd';
 // component
 import InputForm from '../../../../common/component/input/input-form';
 const { Content } = Layout;
-const { Dragger } = Upload;
 
 class BiodataComponent extends Component{
     render(){
-        const { menu,initialData, handleChange, handleSubmit,handleUpload } = this.props;
+        const { initialData, handleChange,  onDone, onPrev} = this.props;
         return (
             
             <Layout className="login-container">
@@ -77,6 +75,18 @@ class BiodataComponent extends Component{
                             </div>
                         </Form>
                     </div>
+                    <Button
+                        type="primary"
+                        onClick={() => onDone()}
+                    >
+                        Done
+                    </Button>
+                    <Button
+                        style={{ marginLeft: 8, marginTop:0 }}
+                        onClick={() => onPrev()}
+                    >
+                        Previous
+                    </Button>
                  </Content>
             </Layout>
         );

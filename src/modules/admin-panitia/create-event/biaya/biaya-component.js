@@ -6,9 +6,9 @@ import InputForm from '../../../../common/component/input/input-form';
 const { Content } = Layout;
 const { Option } = Select;
 
-class BasicInfoComponent extends Component{
+class BiayaComponent extends Component{
     render(){
-        const { menu,initialData, handleChange, onNext, handleKategori } = this.props;
+        const { menu,initialData, handleChange, onNext,onPrev } = this.props;
         return (
             
             <Layout className="login-container">
@@ -90,7 +90,7 @@ class BasicInfoComponent extends Component{
                                                     defaultValue={{ key: 'lucy' }}
                                                     style={{ width: '100%' }}
                                                     className="select-kategori"
-                                                    onChange={handleKategori}
+                                                    onChange={handleChange}
                                                 >
                                                     <Option value="jack">Jack (100)</Option>
                                                     <Option value="lucy">Lucy (101)</Option>
@@ -107,6 +107,12 @@ class BasicInfoComponent extends Component{
                                 >
                                     Next
                                 </Button>
+                                <Button
+                                    style={{ marginLeft: 8, marginTop:0 }}
+                                    onClick={() => onPrev()}
+                                >
+                                    Previous
+                                </Button>
                             </div>
                         </Form>
                     </div>
@@ -117,4 +123,4 @@ class BasicInfoComponent extends Component{
 }
 
 
-export default BasicInfoComponent;
+export default BiayaComponent;

@@ -13,6 +13,14 @@ class BiodataPenandatanganPage extends Component {
        
     }
 
+    onDone = () => {
+        // this.props.next();
+        localStorage.setItem('step-6', JSON.stringify(this.state));
+    }
+    onPrev = () => {
+        this.props.prev();
+    }
+
     handleChange = (e) => {
         let target = e.target.name;
         let value = e.target.value;
@@ -27,6 +35,8 @@ class BiodataPenandatanganPage extends Component {
                 initialData={this.state}
                 navigate={this.props.navigate}
                 handleChange={this.handleChange}
+                onDone={this.onDone}
+                onPrev={this.onPrev}
             />
         );
     }
