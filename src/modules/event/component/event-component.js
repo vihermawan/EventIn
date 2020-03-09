@@ -9,6 +9,7 @@ import '../../../assets/css/event.css'
 // component
 import Navbar from '../../../common/layout/navbar-landing'
 import Footer from '../../../common/layout/footer-landing'
+import ButtonRounded from '../../../common/component/button/button-rounded'
 
 
 
@@ -250,6 +251,18 @@ class EventComponent extends Component {
                                     </Row>
 
                                 </Col>
+                        </Col>
+                    </Row>
+                    <Row>
+                        <Col span={24} >
+                            <div className="tombol-tengah button-section-1-container">
+                                <Link to="/allevent">
+                                    <ButtonRounded
+                                        text="Semua Event"
+                                        className='button-participate'
+                                    />
+                                </Link>
+                            </div>
                         </Col>
                     </Row>
                     <BackTop />
