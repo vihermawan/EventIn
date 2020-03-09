@@ -80,7 +80,9 @@
 }
 
 
-
+.tombol-tengah{
+    vertical-align: middle;
+}
 .event-menu
 .ant-menu-item:hover, 
 .ant-menu-active,

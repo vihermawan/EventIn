@@ -8,6 +8,7 @@ import ErrorPage from '../../app/error/error-page'
 import HomePage from '../../app/home/home-page'
 import PilihanPage from '../../app/pilihan/pilihan-page'
 import EventPage from '../../app/event/event-page'
+import AllEventPage from '../../app/event/allevent-page'
 import DetailPage from '../../app/detail/detail-page'
 import ProfilePage from '../../app/profile/profile-page'
 import DashboardPanitiaPage from '../../common/layout/dashboard-panitia'
@@ -23,6 +24,7 @@ const baseUrl = process.env.PUBLIC_URL;
 const routeSources = [
     { component: HomePage, path: `${baseUrl}/`, exact: true },
     { component: EventPage, path: `${baseUrl}/event`, exact: true },
+    { component: AllEventPage, path: `${baseUrl}/allevent`, exact: true },
     { component: PilihanPage, path: `${baseUrl}/pilihan`, exact: true },
     { component: DetailPage, path: `${baseUrl}/detail`, exact: true },
     { component: LoginComponent, path: `${baseUrl}/login`, exact: true },
