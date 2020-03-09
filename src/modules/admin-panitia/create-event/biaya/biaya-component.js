@@ -8,7 +8,7 @@ const { Option } = Select;
 
 class BiayaComponent extends Component{
     render(){
-        const { menu,initialData, handleChange, onNext,onPrev } = this.props;
+        const { initialData, handleChange, onNext,onPrev,handleStatus,handleBank } = this.props;
         return (
             
             <Layout className="login-container">
@@ -18,83 +18,58 @@ class BiayaComponent extends Component{
                             <div className="container-form">
                                 <Row>
                                     <Col lg={24} md={24} sm={24}>
-                                        <div>   
-                                            <span className="auth-input-label text-black">Nama Event*</span>
-                                        </div>
-                                        <div>
-                                            <InputForm
-                                                name='nama'
-                                                placeholder="Masukan nama event...."
-                                                className="input-event mt-5 mb-20"
-                                                onChange={handleChange}
-                                                value={initialData.nama}
-                                            />
+                                        <div className="kategori-bayar mb-20">
+                                            <div>   
+                                                <span className="auth-input-label text-black">Kategori Bayar*</span>
+                                            </div>
+                                            <div>
+                                                <Select
+                                                    labelInValue
+                                                    defaultValue={{ key: 'Pilih Kategori' }}
+                                                    style={{ width: '100%' }}
+                                                    className="select-kategori "
+                                                    onChange={handleStatus}
+                                                >
+                                                    <Option value="paid">Berbayar</Option>
+                                                    <Option value="free">Tidak Berbayar</Option>
+                                                </Select>,
+                                            </div>
                                         </div>
                                     </Col>
                                     <Col lg={24} md={24} sm={24}>
-                                        <div>   
-                                            <span className="auth-input-label text-black">Deskripsi Event*</span>
-                                        </div>
-                                        <div>
-                                            <InputForm
-                                                name='description'
-                                                placeholder="Masukan deskripsi event...."
-                                                className="input-description-event mt-5"
-                                                onChange={handleChange}
-                                                value={initialData.description}
-                                            />
-                                        </div>
-                                    </Col>
-                                </Row>
-                                <Row style={{marginTop:'20px'}}>
-                                    <Col lg={8} md={24} sm={24}>
-                                        <div className="form-section-3">
+                                        <div style={initialData.status_biaya === 'paid' || null ? {display:"block"}:{display:"none"}} className="kategori-bayar mb-20">
                                             <div>   
-                                                <span className="auth-input-label text-black">Organisasi*</span>
+                                                <span className="auth-input-label text-black">Bank*</span>
                                             </div>
                                             <div>
-                                                <InputForm
-                                                    name='organisasi'
-                                                    placeholder="Masukkan nama organisasi...."
-                                                    className="input-event mt-5 mb-20"
-                                                    onChange={handleChange}
-                                                    value={initialData.organisasi}
-                                                />
-                                            </div>
-                                        </div>   
-                                    </Col>
-                                    <Col lg={8} md={24} sm={24}>
-                                        <div className="form-section-3">
-                                            <div>   
-                                                <span className="auth-input-label text-black">Batas Peserta*</span>
-                                            </div>
-                                            <div>
-                                                <InputForm
-                                                    name='batas_peserta'
-                                                    placeholder="Masukkan batas peserta...."
-                                                    className="input-event mt-5 mb-20"
-                                                    onChange={handleChange}
-                                                    value={initialData.batas_peserta}
-                                                />
-                                            </div>
-                                        </div>
-                                    </Col>
-                                    <Col lg={8} md={24} sm={24}>
-                                        <div className="form-section-4">
-                                            <div>   
-                                                <span className="auth-input-label text-black">Kategori*</span>
-                                            </div>
-                                            <div className="select-kategori">
-                                                 <Select
+                                                <Select
                                                     labelInValue
-                                                    defaultValue={{ key: 'lucy' }}
+                                                    defaultValue={{ key: 'Pilih Bank' }}
                                                     style={{ width: '100%' }}
                                                     className="select-kategori"
-                                                    onChange={handleChange}
+                                                    onChange={handleBank}
                                                 >
-                                                    <Option value="jack">Jack (100)</Option>
-                                                    <Option value="lucy">Lucy (101)</Option>
+                                                    <Option value="Mandiri">Mandiri</Option>
+                                                    <Option value="BNI">BNI</Option>
+                                                    <Option value="BCA">BCA</Option>
+                                                    <Option value="BRI">BRI</Option>
                                                 </Select>,
+                                            </div>
+                                        </div>
+                                    </Col>
+                                    <Col lg={24} md={24} sm={24}>
+                                        <div style={initialData.status_biaya === 'paid' || null ? {display:"block"}:{display:"none"}} className="kategori-bayar mb-20">
+                                            <div>   
+                                                <span className="auth-input-label text-black">Nomor Rekening*</span>
+                                            </div>
+                                            <div>
+                                                <InputForm
+                                                    name='rekening'
+                                                    placeholder="Masukkan nama rekening...."
+                                                    className="input-event mt-5 mb-20"
+                                                    onChange={handleChange}
+                                                    value={initialData.rekening}
+                                                />
                                             </div>
                                         </div>
                                     </Col>

@@ -53,6 +53,7 @@ class DetailComponent extends Component {
         ]
         let hidden = this.state.isPaid ? 'hidden-objek' : 'block-objek'
 
+        console.log('status',initialData.status)
         return ( 
             <Layout className="landing-container">
                 <Navbar
@@ -89,7 +90,9 @@ class DetailComponent extends Component {
                                                 <p className="bold">Apakah anda yakin akan mendaftar pada acara {initialData.Event.nama_event} yang akan dilaksanakan pada {datebeginevent + ' - ' + dateEndEvent} ?</p>
                                                 <p className="text-soft-blue">Total yang harus dibayar: Rp. {initialData.detailEvent.biaya},-</p>
                             
-                                                <p className="text-soft-blue mb-50">Anda harus melakukan transfer ke rekening : {initialData.detailEvent.nomor_rekening} dari bank {initialData.detailEvent.bank}</p>
+                                                <p className="text-soft-blue mb-50" style={initialData.status.nama_status === 'Free' ? {display:"none"}:{display:"block"}}>
+                                                    Anda harus melakukan transfer ke rekening : {initialData.detailEvent.nomor_rekening} dari bank {initialData.detailEvent.bank}
+                                                </p>
                                                 
                                                 <p className="text-merah">*Setelah melakukan registrasi, jangan lupa untuk melakukan pembayaaran sesuai nominal yang tertera diatas.</p>
                                             </LoadingContainer> 

@@ -6,15 +6,22 @@ import VenueComponent from '../../../modules/admin-panitia/create-event/venue/ve
 
 class VenuePage extends Component {
     state = {
-       
+       venue:'',
+       lokasi : '',
     }
 
     componentDidMount(){
         
     }
     componentWillMount(){
-        const data = JSON.parse(localStorage.getItem('step-2'));
+        const data = JSON.parse(localStorage.getItem('step-3'));
         console.log(data)
+        if(data !== null){
+            this.setState({
+                venue: data.venue,
+                lokasi: data.lokasi,
+            })
+        }
     }
 
     handleChange = (e) => {
@@ -37,7 +44,7 @@ class VenuePage extends Component {
 
     onNext = () => {
         this.props.next();
-        localStorage.setItem('step-2', JSON.stringify(this.state));
+        localStorage.setItem('step-3', JSON.stringify(this.state));
     }
     onPrev = () => {
         this.props.prev();

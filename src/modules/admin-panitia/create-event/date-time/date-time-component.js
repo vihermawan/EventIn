@@ -5,7 +5,7 @@ const { Content } = Layout;
 
 class DateTimeComponent extends Component{
     render(){
-        const { onChange, onNext, onPrev} = this.props;
+        const {onNext, onPrev, onChangeTimeStart,onChangeTimeEnd,onChangeDateStart,onChangeDateEnd,onChangeDateRegisStart,onChangeDateRegistEnd} = this.props;
         const format = 'HH:mm';
         return (
             
@@ -24,7 +24,7 @@ class DateTimeComponent extends Component{
                                                 <div className="date-picker">
                                                     <Row>
                                                         <Col lg={24} md={24} sm={24}>
-                                                            <DatePicker placeholder="Pilih tanggal" onChange={onChange}/>
+                                                            <DatePicker placeholder="Pilih tanggal" onChange={onChangeDateStart}/>
                                                         </Col>
                                                     </Row>
                                                 </div>
@@ -44,6 +44,7 @@ class DateTimeComponent extends Component{
                                                                 format={format} 
                                                                 size="medium"
                                                                 placeholder="Pilih waktu"
+                                                                onChange={onChangeTimeStart}
                                                                 />
                                                         </Col>
                                                     </Row>
@@ -60,7 +61,7 @@ class DateTimeComponent extends Component{
                                                 <div className="date-picker">
                                                     <Row>
                                                         <Col lg={24} md={24} sm={24}>
-                                                            <DatePicker placeholder="Pilih tanggal" onChange={onChange} />
+                                                            <DatePicker placeholder="Pilih tanggal" onChange={onChangeDateEnd} />
                                                         </Col>
                                                     </Row>
                                                 </div>
@@ -80,6 +81,7 @@ class DateTimeComponent extends Component{
                                                                 format={format} 
                                                                 size="medium"
                                                                 placeholder="Pilih waktu"
+                                                                onChange={onChangeTimeEnd}
                                                                 />
                                                         </Col>
                                                     </Row>
@@ -98,7 +100,7 @@ class DateTimeComponent extends Component{
                                                 <div className="date-picker-panjang">
                                                     <Row>
                                                         <Col lg={24} md={24} sm={24}>
-                                                            <DatePicker placeholder="Pilih tanggal" onChange={onChange} />
+                                                            <DatePicker placeholder="Pilih tanggal" onChange={onChangeDateRegisStart} />
                                                         </Col>
                                                     </Row>
                                                 </div>
@@ -114,7 +116,7 @@ class DateTimeComponent extends Component{
                                                 <div className="date-picker-panjang">
                                                     <Row>
                                                         <Col lg={24} md={24} sm={24}>
-                                                            <DatePicker placeholder="Pilih tanggal" onChange={onChange}/>
+                                                            <DatePicker placeholder="Pilih tanggal" onChange={onChangeDateRegistEnd}/>
                                                         </Col>
                                                     </Row>
                                                 </div>
