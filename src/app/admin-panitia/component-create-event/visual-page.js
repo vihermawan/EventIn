@@ -7,15 +7,45 @@ import VisualComponent from '../../../modules/admin-panitia/create-event/visual/
 
 class VisualPage extends Component {
     state = {
-      
+        picture_event : '',
     }
 
     componentDidMount(){
        
     }
+
+    componentWillMount(){
+        const data = JSON.parse(localStorage.getItem('step-5'));
+        console.log(data)
+        if(data !== null){
+            this.setState({
+                venue: data.venue,
+                lokasi: data.lokasi,
+            })
+        }
+    }
+
+    
+
+
+    handelUploadPic = info => {
+        const { status } = info.file;
+        if (status !== 'uploading') {
+          console.log(info.file, info.fileList);
+        }
+        if (status === 'done') {
+          message.success(`${info.file.name} file uploaded successfully.`);
+          this.setState({
+            picture_event : info.file.name,
+          })
+        } else if (status === 'error') {
+          message.error(`${info.file.name} file upload failed.`);
+        }
+    }
+
     onNext = () => {
       this.props.next();
-      localStorage.setItem('step-4', JSON.stringify(this.state));
+      localStorage.setItem('step-5', JSON.stringify(this.state));
     }
     onPrev = () => {
       this.props.prev();
@@ -45,7 +75,6 @@ class VisualPage extends Component {
                 initialData={this.state}
                 navigate={this.props.navigate}
                 handleUpload={handleUpload}
-
                 onNext={this.onNext}
                 onPrev={this.onPrev}
             />

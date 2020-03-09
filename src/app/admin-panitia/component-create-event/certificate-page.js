@@ -6,12 +6,26 @@ import CertificateComponent from '../../../modules/admin-panitia/create-event/ce
 
 class CertificatePage extends Component {
     state = {
-        
+      nama_sertifikat : '',
+      deskripsi : '',
+      sertifikat : '',
     }
 
     componentDidMount(){
        
     }
+
+  componentWillMount(){
+        const data = JSON.parse(localStorage.getItem('step-6'));
+        console.log(data)
+        if(data !== null){
+            this.setState({
+                nama_sertifikat: data.nama_sertifikat,
+                deskripsi: data.deskripsi,
+                sertifikat: data.sertifikat,
+            })
+        }
+  }
 
     handleChange = (e) => {
         let target = e.target.name;
@@ -23,7 +37,7 @@ class CertificatePage extends Component {
 
     onNext = () => {
       this.props.next();
-      localStorage.setItem('step-4', JSON.stringify(this.state));
+      localStorage.setItem('step-6', JSON.stringify(this.state));
     }
     onPrev = () => {
         this.props.prev();

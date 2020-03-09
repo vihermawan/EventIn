@@ -1,14 +1,12 @@
 import React, { Component } from 'react';
-import { Layout, Row, Col, Upload, Form,Icon, Dropdown, Menu, Button } from 'antd';
-import { Link } from 'react-router-dom';
+import { Layout, Row, Col, Upload, Form,Icon,Button } from 'antd';
 // component
-import InputForm from '../../../../common/component/input/input-form';
 const { Content } = Layout;
 const { Dragger } = Upload;
 
 class BasicInfoComponent extends Component{
     render(){
-        const { menu,initialData, handleChange, handleSubmit,handleUpload, onNext, onPrev } = this.props;
+        const { handleUpload, onNext, onPrev } = this.props;
         return (
             
             <Layout className="login-container">

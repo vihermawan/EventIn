@@ -12,7 +12,7 @@ class DetailPage extends Component {
         Event: [],
         kategori : [],
         detailEvent : [],
-        status : [],
+        status : {},
         loading: false,
         visible: false,
         confirmLoading: false,
@@ -70,7 +70,7 @@ class DetailPage extends Component {
                 message.success('This is a success message');
                 this.componentDidMount(); 
             }else if(res.data.status == "Register"){
-                this.setState({visible:false,loading:true})
+                this.setState({visible:false})
                 this.openNotification('Anda Telah Terdaftar', res.data.messages)
             }   
             // this.setState({loading:false})

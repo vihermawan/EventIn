@@ -6,16 +6,33 @@ import BiodataPenandatanganComponent from '../../../modules/admin-panitia/create
 
 class BiodataPenandatanganPage extends Component {
     state = {
-        
-    }
+        nama_penandatangan : '',
+        instansi : '',
+        jabatan : '',
+        nip : '',
+     }
 
     componentDidMount(){
        
     }
 
+
+    componentWillMount(){
+        const data = JSON.parse(localStorage.getItem('step-7'));
+        console.log(data)
+        if(data !== null){
+            this.setState({
+                nama_penandatangan: data.nama_penandatangan,
+                instansi: data.instansi,
+                jabatan: data.jabatan,
+                nip : data.nip,
+            })
+        }
+  }
+
     onDone = () => {
         // this.props.next();
-        localStorage.setItem('step-6', JSON.stringify(this.state));
+        localStorage.setItem('step-7', JSON.stringify(this.state));
     }
     onPrev = () => {
         this.props.prev();

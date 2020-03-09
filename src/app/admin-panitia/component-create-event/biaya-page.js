@@ -6,25 +6,26 @@ import BiayaComponent from '../../../modules/admin-panitia/create-event/biaya/bi
 
 class BiayaPage extends Component {
     state = {
-        nama: '',
-        description: '',
-        organisasi: '',
-        batas_peserta: '',
+        status_biaya: '',
+        bank: '',
+        no_rekening: '',
     }
 
     componentDidMount(){
        
     }
 
-    // componentWillMount(){
-    //     const data = JSON.parse(localStorage.getItem('step-1'));
-    //     this.setState({
-    //         nama: data.nama,
-    //         description: data.description,
-    //         organisasi: data.organisasi,
-    //         batas_peserta: data.batas_peserta,
-    //     })
-    // }
+    componentWillMount(){
+        const data = JSON.parse(localStorage.getItem('step-2'));
+        console.log(data)
+        if(data !== null){
+            this.setState({
+                status_biaya: data.status_biaya,
+                bank: data.bank,
+                no_rekening: data.no_rekening,
+            })
+        }
+    }
 
     handleChange = (e) => {
         let target = e.target.name;
@@ -32,6 +33,16 @@ class BiayaPage extends Component {
         this.setState({
             [target]: value
         })
+    }
+
+    handleStatus = (value) => {
+        this.setState({ status_biaya: value.key })
+        console.log('status', value.key);
+    }
+
+
+    handleBank = (value) => {
+        this.setState({ bank: value.key })
     }
 
     handleButtonClick(e) {
@@ -59,6 +70,8 @@ class BiayaPage extends Component {
                 initialData={this.state}
                 navigate={this.props.navigate}
                 handleChange={this.handleChange}
+                handleStatus={this.handleStatus}
+                handleBank={this.handleBank}
                 onNext={this.onNext}
                 onPrev = {this.onPrev}
             />

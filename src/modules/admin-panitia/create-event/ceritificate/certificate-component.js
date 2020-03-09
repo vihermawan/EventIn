@@ -32,6 +32,20 @@ class CertificateComponent extends Component{
                                     </Col>
                                     <Col lg={24} md={24} sm={24}>
                                         <div>   
+                                            <span className="auth-input-label text-black">Deskripsi*</span>
+                                        </div>
+                                        <div>
+                                            <InputForm
+                                                name='deskripsi'
+                                                placeholder="Masukan deskripsi sertifikat...."
+                                                className="input-event mt-5 mb-20"
+                                                onChange={handleChange}
+                                                value={initialData.deskripsi}
+                                            />
+                                        </div>
+                                    </Col>
+                                    <Col lg={24} md={24} sm={24}>
+                                        <div>   
                                             <span className="auth-input-label text-black">Upload Sertifikat*</span>
                                         </div>
                                         <div>
