@@ -13,7 +13,6 @@ const { Content } = Layout;
 class DetailPesertaAdminComponent extends Component {
     render() { 
       const { initialData, columns, data } = this.props
-      const image1 = require(`../../../../assets/images/avatar.png`);
         return ( 
             <Content
                 style={{
@@ -42,7 +41,7 @@ class DetailPesertaAdminComponent extends Component {
                                     <Row>
                                         <Col lg={8} md={12} sm={12}>
                                             <img
-                                                src={image1}
+                                                src={initialData.detailPeserta.image_URL}
                                                 alt="avatar 1"
                                                 className = "avatar-panitia"
                                                 style={{Width: '100%'}}

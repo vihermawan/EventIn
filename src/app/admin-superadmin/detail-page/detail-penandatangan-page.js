@@ -10,24 +10,25 @@ import ButtonDashboard from '../../../common/component/button/button-dashboard';
 
 class DetailPenandatanganPage extends Component {
     state = {
-        
+        detail_penandatangan : [],
     }
 
     componentDidMount(){
-        // this.getEventPast();
+        this.getDetailPenandatangan(this.props.idUsers);
+        console.log('id users', this.props.idUsers)
     }
 
-    // getEventPast=()=>{
-    //     this.setState({loading: true})
-    //     API.get(`/panitia/eventPast`)
-    //     .then(res => {
-    //       console.log('res',res.data.data.event)
-    //       this.setState({
-    //         eventPast:res.data.data.event,
-    //         loading: false,
-    //       })
-    //     });
-    // }
+    getDetailPenandatangan=(id_users)=>{
+        this.setState({loading: true})
+        API.get(`/admin/showpenandatangan/${id_users}`)
+        .then(res => {
+          console.log('res',res)
+          this.setState({
+            detail_penandatangan:res.data.data.penandatangan,
+            loading: false,
+          })
+        });
+    }
 
     render() { 
           const columns = [
@@ -38,53 +39,45 @@ class DetailPenandatanganPage extends Component {
                 render: text => <a>{text}</a>,
             },
             {
-              title: 'Nama Sertifikat',
-              dataIndex: 'nama_sertifikat',
-              key: 'nama_sertifikat',
-              render: text => <a>{text}</a>,
+                title: 'Nama Sertifikat',
+                dataIndex: 'nama_sertifikat',
+                key: 'nama_sertifikat',
+                render: text => <a>{text}</a>,
             },
             {
-              title: 'Gambar Sertifikat',
-              dataIndex: 'gambar',
-              key: 'gambar',
+                title: 'Status Sertifikat',
+                dataIndex: 'status',
+                key: 'status',
+                render: text => <a>{text}</a>,
+            },
+            {
+                title: 'Gambar Sertifikat',
+                dataIndex: 'gambar',
+                key: 'gambar',
             },
           ];
-        
-          // const data = [
-          //   {
-          //     key: '1',
-          //     Nomor : '1',
-          //     Nama_Event: 'UGMTalks',
-          //     tanggal_event :'2020-10-11',
-          //     tags: ['Done'],
-          //   },
-          // ];
 
-        //   const data =  this.state.eventPast.map( data => ({
-        //     key: data.id_event,
-        //             nomor : data.id_event,
-        //             nama_event: data.nama_event,
-        //             start_event :data.detail_event.start_event,
-        //             lokasi : data.detail_event.lokasi,
-        //             kategori : data.detail_event.id_kategori,
-        //             peserta : data.detail_event.limit_participant,
-        //             tags: ['Done'],
-        // }))
+        const dataPenandatangan =  this.state.detail_penandatangan.map( ({id_users, penandatangan}, index) => ({
+           nama_penandatangan : penandatangan.nama_penandatangan,
+           instansi : penandatangan.instansi,
+           nip : penandatangan.nip,
+           jabatan : penandatangan.jabatan,
+           picture : penandatangan.image_URL,
+        }))
 
         return ( 
             <DetailPenandatanganComponent
                 initialData={this.state}
                 navigate={this.props.navigate}
-
                 columns={columns}
-                // data={data}
+                dataPenandatangan={dataPenandatangan}
             />
         );
     }
 }
  
 const mapStateToProps = state => ({
-    
+    ...state.penandatangan,
 });
 
 const mapDispatchToProps = (dispatch => ({

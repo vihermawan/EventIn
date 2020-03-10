@@ -76,6 +76,11 @@ class ListPanitiaAdminPage extends Component {
         this.props.navigate(CONSTANS.DETAIL_PANITIA_ADMIN_MENU_KEY)
     }
 
+    onEditPanitia = (id_users) => {
+        this.props.setIdUsers(id_users)
+        this.props.navigate(CONSTANS.EDIT_PANITIA_ADMIN_MENU_KEY)
+    }
+
     onChange(pagination, filters, sorter, extra) {
         // console.log('params', pagination, filters, sorter, extra);
     }
@@ -126,6 +131,7 @@ class ListPanitiaAdminPage extends Component {
                         borderRadius="5px"
                         background="#005568"
                         marginRight= "20px"
+                        onClick = { () => this.onEditPanitia(data.id_users)}
                     />,
                     <ButtonDashboard
                         text="Detail"
