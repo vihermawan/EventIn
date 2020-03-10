@@ -27,6 +27,8 @@ import DetailPanitiaAdminPage from '../../app/admin-superadmin/detail-page/detai
 import DetailPenandatanganAdminPage from '../../app/admin-superadmin/detail-page/detail-penandatangan-page'
 import DetailSertifikatAdminPage from '../../app/admin-superadmin/detail-page/detail-sertif-page'
 import DetailEventPage from '../../app/admin-superadmin/detail-page/detail-event-page'
+import EditPanitiaPage from '../../app/admin-superadmin/edit-page/edit-panitia-page'
+import EditPenandatanganPage from '../../app/admin-superadmin/edit-page/edit-penandatangan-page'
 import ErrorPage from '../../app/error/error-page';
 
 const { Header, Sider, Content } = Layout;
@@ -295,6 +297,11 @@ class signer extends Component {
                     exact
                     render={ (props) => <DetailPanitiaAdminPage {...props}/> }
                 />
+                 <Route
+                    path='/admin/edit-panitia'
+                    exact
+                    render={ (props) => <EditPanitiaPage {...props}/> }
+                />
                 <Route
                     path='/admin/approval-event'
                     exact
@@ -314,6 +321,11 @@ class signer extends Component {
                     path='/admin/detail-penandatangan'
                     exact
                     render={ (props) => <DetailPenandatanganAdminPage {...props}/> }
+                />
+                <Route
+                  path = '/admin/edit-penandatangan'
+                  exact
+                  render = { (props) => <EditPenandatanganPage {...props}/>}
                 />
                  <Route
                     path='/admin/biodata-penandatangan'

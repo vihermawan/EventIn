@@ -3,10 +3,15 @@ import { connect } from 'react-redux';
 import { Modal, message } from 'antd'
 import { API } from '../../../common/api'
 import { navigate } from '../../../common/store/action'
+import CONSTANS from '../../../common/utils/Constants'
 //component
 import PenandatanganAdminComponent from '../../../modules/admin-superadmin/user/penandatangan/penandatangan-component';
-import { faUsers, faTrash, faPen } from '@fortawesome/free-solid-svg-icons'
+import { faUsers, faTrash, faPen, faInfoCircle } from '@fortawesome/free-solid-svg-icons'
 import ButtonDashboard from '../../../common/component/button/button-dashboard';
+
+//import store
+import { setIdPenandatangan } from '../../../modules/admin-superadmin/user/penandatangan/store/penandatangan-action'
+import { setIdUsers } from '../../../modules/admin-superadmin/user/store/users-action'
 
 const {confirm} = Modal;
 
@@ -63,6 +68,19 @@ class PenandatanganAdminPage extends Component {
         });
     }
 
+    //detail Penandatangan
+    onDetailPenandatangan = (id_users) => {
+        this.props.setIdUsers(id_users)
+        console.log('id users',id_users)
+        this.props.navigate(CONSTANS.DETAIL_PENANDATANGAN_ADMIN_MENU_KEY)
+    }
+
+    //edit penandatangan
+    onEditPenandatangan = (id_users) => {
+        this.props.setIdUsers(id_users)
+        this.props.navigate(CONSTANS.EDIT_PENANDATANGAN_ADMIN_MENU_KEY)
+    }
+
     render() { 
         const columns = [
             {
@@ -103,6 +121,16 @@ class PenandatanganAdminPage extends Component {
                         borderRadius="5px"
                         background="#005568"
                         marginRight= "20px"
+                        onClick = { () => this.onEditPenandatangan(data.id_users)}
+                    />,
+                    <ButtonDashboard
+                        text="Detail"
+                        height={20}
+                        icon={faInfoCircle}
+                        borderRadius="5px"
+                        background="#FFA903"
+                        marginRight= "20px"
+                        onClick = { () => this.onDetailPenandatangan(data.id_users)}
                     />,
                     <ButtonDashboard
                         text="Delete"
@@ -118,7 +146,7 @@ class PenandatanganAdminPage extends Component {
 
         const data =  this.state.penandatangan.map(  ({id_users, penandatangan}, index) => ({
             no : index+1,
-            nomor : id_users,
+            id_users : id_users,
             id_penandatangan : penandatangan.id_penandatangan,
             penandatangan : penandatangan.nama_penandatangan,
             instansi : penandatangan.instansi,
@@ -143,6 +171,7 @@ const mapStateToProps = state => ({
 
 const mapDispatchToProps = (dispatch => ({
     navigate,
+    setIdUsers,
 }))();
 
 const page = connect(mapStateToProps, mapDispatchToProps)(PenandatanganAdminPage);
