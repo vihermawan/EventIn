@@ -42,6 +42,42 @@ class CertificatePage extends Component {
     onPrev = () => {
         this.props.prev();
     }
+
+    getBase64 = (pdf, callback)  =>{
+      const reader = new FileReader();
+      reader.addEventListener('load', () => callback(reader.result));
+      reader.readAsDataURL(pdf);
+    }
+
+    beforeUpload = (file) => {
+      const isPdf = file.type === '.pdf';
+      if (!isPdf) {
+        message.error('You can only upload PDF file!');
+      }
+      const isLt2M = file.size / 1024 / 1024 < 2;
+      if (!isLt2M) {
+        message.error('Image must smaller than 2MB!');
+      }
+      return isPdf && isLt2M;
+    }
+
+    handleChangePdf = info => {
+      if (info.file.status === 'uploading') {
+        this.setState({ 
+          loading: true 
+        });
+        return;
+      }
+      if (info.file.status === 'done') {
+        // Get this url from response in real world.
+        this.getBase64(info.file.originFileObj, sertifikat =>
+          this.setState({
+            sertifikat : info.file,
+            loading: false,
+          }),
+        );
+      }
+    };
     
   
     render() {
@@ -69,6 +105,8 @@ class CertificatePage extends Component {
                 initialData={this.state}
                 navigate={this.props.navigate}
                 handleChange={this.handleChange}
+                beforeUpload = {this.beforeUpload}
+                handleChangePdf = {this.handleChangePdf}
                 handleUpload={handleUpload}
                 onNext={this.onNext}
                 onPrev={this.onPrev}

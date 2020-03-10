@@ -21,7 +21,7 @@ class CreateEventComponent extends Component {
     constructor(props) {
         super(props);
         this.state = {
-          current: 0,
+          current: 5,
         };
       }
     
@@ -121,9 +121,9 @@ class CreateEventComponent extends Component {
                         
                         <div className="container-active-event">
                             <Row>
-                            <div className="container-title-event">
-                                <span>Create Event</span>
-                            </div>
+                                <div className="container-title-event">
+                                    <span>Create Event</span>
+                                </div>
                             </Row>
                             
                             <Row gutter={24} type="flex">
