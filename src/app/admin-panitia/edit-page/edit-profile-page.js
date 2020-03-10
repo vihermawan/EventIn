@@ -1,23 +1,27 @@
 import React, { Component } from 'react';
+
 import { connect } from 'react-redux';
 import { API } from '../../../common/api'
 import { navigate } from '../../../common/store/action'
-import CONSTANS from '../../../common/utils/Constants'
-import ProfileComponent from '../../../modules/admin-panitia/profile/profile-component';
+import EditProfileComponent from '../../../modules/admin-panitia/profile/edit-profile-component';
 
-//import store
-import { setIdUsers } from '../../../modules/admin-superadmin/user/store/users-action'
 
-class ProfilePage extends Component {
-    state = {  
+class EditProfilePage extends Component {
+    state = {
         user : [],
-        nama_panitia : '',
-        panitia:[],
-        loading : false,
+        loading: false,
     }
 
     componentDidMount(){
         this.getProfile();
+    }
+
+    handleChange = (e) => {
+        let target = e.target.name;
+        let value = e.target.value;
+        this.setState({
+            [target]: value
+        })
     }
     
     //get data profile dari API
@@ -31,11 +35,6 @@ class ProfilePage extends Component {
                 loading: false,
             })
         });
-    }
-
-    onEditPanitia = (id_users) => {
-        this.props.setIdUsers(id_users)
-        this.props.navigate(CONSTANS.EDIT_PROFILE_PANITIA_MENU_KEY)
     }
 
     render() { 
@@ -52,24 +51,23 @@ class ProfilePage extends Component {
 
 
         return ( 
-            <ProfileComponent
+            <EditProfileComponent
+                initialData={this.state}
                 navigate={this.props.navigate}
-                initialData = {this.state}
+                handleChange = {this.handleChange}
                 dataProfile = {dataProfile}
-                onEditPanitia = {this.onEditPanitia}
             />
         );
     }
 }
  
 const mapStateToProps = state => ({
-    
+    ...state.activeEvent,
 });
 
 const mapDispatchToProps = (dispatch => ({
-    setIdUsers,
     navigate,
 }))();
 
-const page = connect(mapStateToProps, mapDispatchToProps)(ProfilePage);
+const page = connect(mapStateToProps, mapDispatchToProps)(EditProfilePage);
 export default page
