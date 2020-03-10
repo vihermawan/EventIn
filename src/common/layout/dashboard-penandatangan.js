@@ -17,6 +17,7 @@ import EcertificatePage from '../../app/admin-signer/dashboard/ecertificate-page
 import ProfileSignerPage from '../../app/admin-signer/dashboard/profile-page'
 import LoadingContainer from '../../common/component/loading/loading-container'
 import DetailSertifPage from '../../app/admin-signer/detail-page/detail-sertif-page'
+import EditProfilePage from '../../app/admin-signer/edit-page/edit-profile-page'
 
 const { Header, Sider, Content } = Layout;
 
@@ -201,6 +202,11 @@ class signer extends Component {
                       path='/signer/profile'
                       exact
                       render={ (props) => <ProfileSignerPage {...props}/> }
+                  />
+                   <Route
+                      path='/signer/edit-profile'
+                      exact
+                      render={ (props) => <EditProfilePage {...props}/> }
                   />
                 </Layout>
         </Layout>

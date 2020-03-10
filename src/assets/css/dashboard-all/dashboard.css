@@ -72,3 +72,19 @@
     width: 100%;
     min-height: 200px;
 }
+
+.section-container-admin{
+    margin-top: 40px;
+}
+
+.container-profile-admin{
+    max-height: 300px;
+}
+
+.profile-description-admin{
+    background-color: white;
+    border-radius: 10px;
+    padding: 32px;
+    margin-left: 20px;
+    min-height: 300px;
+}
