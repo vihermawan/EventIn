@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { Icon,Menu,message } from 'antd';
+import { API } from '../../../common/api'
+import {message } from 'antd';
 import { navigate } from '../../../common/store/action'
 import BasicInfoComponent from '../../../modules/admin-panitia/create-event/basic-info/basic-info-component';
 
@@ -10,11 +11,25 @@ class BasicInfoPage extends Component {
         description: '',
         organisasi: '',
         batas_peserta: '',
-        kategori: '',
+        kategori_input : '',
+        kategori: [],
     }
 
     componentDidMount(){
        
+    }
+
+    getKategori=()=>{
+        API.get('/peserta/kategori')
+        .then(res => {
+            console.log('kategori',res)
+            if(res.status == 200){
+                this.setState({
+                    kategori:res.data.data.kategori,
+                    
+                })
+            }
+        })
     }
 
     componentWillMount(){
@@ -26,6 +41,7 @@ class BasicInfoPage extends Component {
                 description: data.description,
                 organisasi: data.organisasi,
                 batas_peserta: data.batas_peserta,
+                kategori_input : data.kategori_input
             })
         }
     }
@@ -39,7 +55,7 @@ class BasicInfoPage extends Component {
     }
 
     handleKategori = (value) => {
-        this.setState({ kategori: value.key })
+        this.setState({ kategori_input: value.key })
     }
 
     handleButtonClick(e) {

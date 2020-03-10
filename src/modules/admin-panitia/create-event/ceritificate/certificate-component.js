@@ -7,7 +7,16 @@ const { Dragger } = Upload;
 
 class CertificateComponent extends Component{
     render(){
-        const { initialData, handleChange, handleUpload,onNext, onPrev } = this.props;
+        const { initialData, handleChange, handleUpload,onNext, onPrev,beforeUpload,handleChangePdf } = this.props;
+        const uploadButton = (
+            <div>
+              {/* {this.state.loading ? <LoadingOutlined /> : <PlusOutlined />} */}
+                <p className="ant-upload-drag-icon">
+                    <Icon type="inbox" />
+                </p>
+                <div className="ant-upload-text">Upload Foto Eventmu</div>
+            </div>
+          );
         return (
             
             <Layout className="login-container">
@@ -49,13 +58,24 @@ class CertificateComponent extends Component{
                                             <span className="auth-input-label text-black">Upload Sertifikat*</span>
                                         </div>
                                         <div>
-                                            <Dragger {...handleUpload}>
+                                            {/* <Dragger {...handleUpload}>
                                                 <p className="ant-upload-drag-icon">
                                                     <Icon type="inbox" />
                                                 </p>
                                                 <p className="ant-upload-text">Upload Sertifikat Eventmu !</p>
                                                 <p className="ant-upload-hint">Tambahkan Sertifikat untuk acaramu   </p>
-                                            </Dragger>,
+                                            </Dragger>, */}
+                                               <Upload
+                                                name="avatar"
+                                                listType="picture-card"
+                                                className="avatar-uploader"
+                                                showUploadList={false}
+                                                action="https://www.mocky.io/v2/5cc8019d300000980a055e76"
+                                                beforeUpload={beforeUpload}
+                                                onChange={handleChangePdf}
+                                            >
+                                                {initialData.sertifikat ? <img src={initialData.sertifikat} alt="avatar" style={{ width: '100%' }} /> : uploadButton}
+                                            </Upload>
                                         </div>
                                     </Col>
                                 </Row>

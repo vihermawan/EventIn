@@ -23,6 +23,7 @@ import DetailEvent from '../../app/admin-panitia/detail-page/detail-event-page'
 import DetailSertifPage from '../../app/admin-panitia/detail-page/detail-sertif-page'
 import TemplateSertifPage from '../../app/admin-panitia/dashboard/template-page'
 import TabAbsentPage from '../../app/admin-panitia/dashboard/tab-absent-page'
+import EditEventPage from '../../app/admin-panitia/edit-page/edit-event-page'
 
 
 const { Header, Sider } = Layout;
@@ -298,6 +299,11 @@ class dashboard extends Component {
                     path='/dashboard/profile'
                     exact
                     render={ (props) => <ProfilePage {...props}/> }
+                />
+                <Route
+                    path='/dashboard/edit-event'
+                    exact
+                    render={ (props) => <EditEventPage {...props}/> }
                 />
               </Layout>
             

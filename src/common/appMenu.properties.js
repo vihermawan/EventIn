@@ -46,6 +46,9 @@ const menu = {
     DETAIL_EVENT_PANITIA: {
         link : '/dashboard/detail-event',
     },
+    EDIT_EVENT_PANITIA: {
+        link : '/dashboard/edit-event',
+    },
     DETAIL_EVENT_PARTICIPANT_PANITIA : {
         link : '/dashboard/participant/detail-event'
     },    

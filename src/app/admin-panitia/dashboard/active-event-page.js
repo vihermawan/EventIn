@@ -84,6 +84,11 @@ class ActiveEventPage extends Component {
         this.props.navigate(CONSTANS.DETAIL_EVENT_PANITIA_MENU_KEY)
     }
 
+    onEditEvent = (id) => {
+        this.props.setIdEvent(id);
+        this.props.navigate(CONSTANS.EDIT_EVENT_PANITIA_MENU_KEY)
+    }
+
     render() { 
         const columns = [
             {
@@ -159,6 +164,15 @@ class ActiveEventPage extends Component {
                     borderRadius="5px"
                     background="#FFA903"
                     onClick={ () => this.onDetailEvent(data.nomor)}
+                />,
+                <Divider type="vertical" />,
+                <ButtonDashboard
+                    text="Edit"
+                    height={20}
+                    icon={faInfoCircle}
+                    borderRadius="5px"
+                    background="#088C0D"
+                    onClick={ () => this.onEditEvent(data.nomor)}
                 />]
               ),
             },

@@ -67,3 +67,8 @@
 .avatar-panitia{
     max-width: 10px;
 }
+
+.ant-upload.ant-upload-select-picture-card{
+    width: 100%;
+    min-height: 200px;
+}
