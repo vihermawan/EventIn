@@ -9,16 +9,13 @@ import '../../../assets/css/event.css'
 // component
 import Navbar from '../../../common/layout/navbar-landing'
 import Footer from '../../../common/layout/footer-landing'
-
+import ButtonRounded from '../../../common/component/button/button-rounded'
 
 
 const { Content } = Layout;
 const { Search } = Input;
 const { TabPane } = Tabs;
-
-
-
-
+ 
 const menu = (
     <Menu>
       <Menu.Item>
@@ -125,10 +122,10 @@ class EventComponent extends Component {
                                     tab="All" key="0">                              
                                     <LoadingContainer loading={initialData.loading}>
                                         <Col lg={24} style={{minHeight: "300px"}}>
-                                            <Row gutter={16}>
+                                            <Row gutter={[16,16]} type="flex">
                                                 {
                                                     cardData.map( data =>
-                                                        <Col lg={6} md={12} sm={12} xs={24} className="mt-30">
+                                                        <Col lg={6} md={12} sm={12} xs={24}>
                                                             <Card
                                                                 hoverable
                                                                 className="event-card-container"
@@ -250,6 +247,18 @@ class EventComponent extends Component {
                                     </Row>
 
                                 </Col>
+                        </Col>
+                    </Row>
+                    <Row>
+                        <Col span={24} >
+                            <div className="tombol-tengah button-section-1-container">
+                                <Link to="/allevent">
+                                    <ButtonRounded
+                                        text="Semua Event"
+                                        className='button-participate'
+                                    />
+                                </Link>
+                            </div>
                         </Col>
                     </Row>
                     <BackTop />

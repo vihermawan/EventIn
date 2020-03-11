@@ -42,12 +42,26 @@
 .form-section-4{
     width: 100%;
 }
-.dropdown-category .ant-btn {
+/* .dropdown-category .ant-btn {
     width: 100%;
     text-align: left;
     height: 40px;
     margin-top: 4px;
     border-color: #4D5AF2;
+} */
+
+.select-kategori .ant-select-selection{
+    margin-top: 4px;
+    /* min-width: 362px; */
+    border-color: #4D5AF2;
+}
+
+.select-kategori .ant-select-selection-selected-value{
+    margin: 4px;
+}
+
+.select-kategori .ant-select-selection--single{
+    height: 40px;
 }
 
 .auth-dropdown-label{

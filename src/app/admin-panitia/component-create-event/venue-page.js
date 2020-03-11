@@ -6,11 +6,22 @@ import VenueComponent from '../../../modules/admin-panitia/create-event/venue/ve
 
 class VenuePage extends Component {
     state = {
-       
+       venue:'',
+       lokasi : '',
     }
 
     componentDidMount(){
-       
+        
+    }
+    componentWillMount(){
+        const data = JSON.parse(localStorage.getItem('step-3'));
+        console.log(data)
+        if(data !== null){
+            this.setState({
+                venue: data.venue,
+                lokasi: data.lokasi,
+            })
+        }
     }
 
     handleChange = (e) => {
@@ -29,34 +40,25 @@ class VenuePage extends Component {
     handleMenuClick(e) {
         message.info('Click on menu item.');
         console.log('click', e);
-      }
+    }
 
+    onNext = () => {
+        this.props.next();
+        localStorage.setItem('step-3', JSON.stringify(this.state));
+    }
+    onPrev = () => {
+        this.props.prev();
+    }
   
     render() {
-
-    const menu = (
-        <Menu onClick={this.handleMenuClick}>
-            <Menu.Item key="1">
-            <Icon type="user" />
-            1st menu item
-            </Menu.Item>
-            <Menu.Item key="2">
-            <Icon type="user" />
-            2nd menu item
-            </Menu.Item>
-            <Menu.Item key="3">
-            <Icon type="user" />
-            3rd item
-            </Menu.Item>
-        </Menu>
-    );
         
         return ( 
             <VenueComponent
                 initialData={this.state}
                 navigate={this.props.navigate}
                 handleChange={this.handleChange}
-                menu = {menu}
+                onNext={this.onNext}
+                onPrev={this.onPrev}
             />
         );
     }

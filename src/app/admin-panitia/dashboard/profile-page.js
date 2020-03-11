@@ -1,16 +1,62 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-
+import { API } from '../../../common/api'
 import { navigate } from '../../../common/store/action'
+import CONSTANS from '../../../common/utils/Constants'
 import ProfileComponent from '../../../modules/admin-panitia/profile/profile-component';
 
+//import store
+import { setIdUsers } from '../../../modules/admin-superadmin/user/store/users-action'
+
 class ProfilePage extends Component {
-    state = {  }
+    state = {  
+        user : [],
+        nama_panitia : '',
+        panitia:[],
+        loading : false,
+    }
+
+    componentDidMount(){
+        this.getProfile();
+    }
+    
+    //get data profile dari API
+    getProfile=()=>{
+        this.setState({loading: true})
+        API.get(`/panitia/profile`)
+        .then(res => {
+            console.log('res',res.data.data.user)
+            this.setState({
+                user:res.data.data.user,
+                loading: false,
+            })
+        });
+    }
+
+    onEditPanitia = (id_users) => {
+        this.props.setIdUsers(id_users)
+        this.props.navigate(CONSTANS.EDIT_PROFILE_PANITIA_MENU_KEY)
+    }
 
     render() { 
+
+        const dataProfile =  this.state.user.map( ({id_users, email, panitia}, index) => ({
+            id_users : id_users,
+            email : email,
+            nama_panitia : panitia.nama_panitia,
+            organisasi : panitia.organisasi,
+            instagram : panitia.instagram,
+            no_telepon : panitia.no_telepon,
+            picture : panitia.image_URL,
+        }))
+
+
         return ( 
             <ProfileComponent
                 navigate={this.props.navigate}
+                initialData = {this.state}
+                dataProfile = {dataProfile}
+                onEditPanitia = {this.onEditPanitia}
             />
         );
     }
@@ -21,6 +67,7 @@ const mapStateToProps = state => ({
 });
 
 const mapDispatchToProps = (dispatch => ({
+    setIdUsers,
     navigate,
 }))();
 

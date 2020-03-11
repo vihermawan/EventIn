@@ -13,24 +13,24 @@ const cardData = [
     {
         image: require(`../../../assets/images/organizer.png`),
         title: 'Panitia',
-        description: 'Organizer make an event with funtastic, so wanna be organizer ?'
+        description: 'Ingin mengelolah event-mu dengan cara yang lebih mudah?'
     },
     {
         image: require(`../../../assets/images/participant.png`),
         title: 'Peserta',
-        description: 'How many time you join event, at one or more ? Join now!'
+        description: 'Senang mengikuti berbagai event seru? Ayo daftar sekarang!'
     },
     {
         image: require(`../../../assets/images/event.png`),
         title: 'Event',
-        description: 'Find Event anything event what you want to join'
+        description: 'Temukan event-event yang keren disini!'
     }
 ]
 const whyData = [
     {
         image: require(`../../../assets/images/tracking.png`),
-        title: 'Tracking',
-        description: 'Organizer can tracks how much participant join their events'
+        title: 'Informatif',
+        description: 'Panitia dapat dengan mudah mengetahui jumlah peserta yang mendaftar event'
     },
     {
         image: require(`../../../assets/images/certificate.png`),
@@ -39,23 +39,23 @@ const whyData = [
     },
     {
         image: require(`../../../assets/images/paperless.png`),
-        title: 'Paperless',
-        description: 'Organizer can take signatured with signer just by system'
+        title: 'Hemat',
+        description: 'Akan sangat menghemat kertas, karena pengelolaan dilakukan pada sistem'
     },
     {
         image: require(`../../../assets/images/simplifying.png`),
-        title: 'Simplifying',
-        description: 'Organize your event, and make your events more good'
+        title: 'Mudah',
+        description: 'Kelolah event dengan lebih mudah dan tertata'
     },
     {
         image: require(`../../../assets/images/news.png`),
-        title: 'Newst Event',
-        description: 'Participant can seacrh event nearby his location anything event what he wants'
+        title: 'Terbaru',
+        description: 'Peserta mendapat info mengenai event terbaru'
     },
     {
         image: require(`../../../assets/images/both-time.png`),
-        title: 'Both Time',
-        description: 'Everypeople can join to be a participant or organizer'
+        title: 'Satu Sistem',
+        description: 'Semua orang dapat dengan mudah mendaftar sebagai peserta ataupun panitia dalam satu sistem'
     }
 ]
 
@@ -92,7 +92,7 @@ class HomeComponent extends Component {
                                         />
                                     </div>
                                     <div className="description-container desc-medium">
-                                        Temukan event yang sesuai dengan kamu atau mulailah untuk mengelolah event-mu sendiri.
+                                        Pilih event yang sesuai dengan dirimu atau mulailah untuk mengelolah event-mu sendiri.
                                     </div>
                                 </Col>
                                 <Col span={24}>
@@ -194,7 +194,7 @@ class HomeComponent extends Component {
                                 </Col>
                                 <Col span={24}>
                                     <ButtonRounded
-                                        text="Start to Organize"
+                                        text="Mulai mengelolah event"
                                         className='button-organize mt-20 semi-bold'
                                     />
                                 </Col>
@@ -227,7 +227,7 @@ class HomeComponent extends Component {
                                 </Col>
                                 <Col span={24}>
                                     <ButtonRounded
-                                        text="Start to search Event ?"
+                                        text="Mulai mencari event ?"
                                         background="white"
                                         textColor="#4D5AF2"
                                         border="1px solid #4D5AF2"

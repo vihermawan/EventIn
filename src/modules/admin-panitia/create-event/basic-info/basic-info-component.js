@@ -1,13 +1,14 @@
 import React, { Component } from 'react';
-import { Layout, Row, Col, Button, Form,Icon, Dropdown, Menu } from 'antd';
-import { Link } from 'react-router-dom';
+import { Layout, Row, Col, Button, Form, Select } from 'antd';
+import '../../../../assets/css/admin-panitia/create-event.css'
 // component
 import InputForm from '../../../../common/component/input/input-form';
 const { Content } = Layout;
+const { Option } = Select;
 
 class BasicInfoComponent extends Component{
     render(){
-        const { menu,initialData, handleChange, handleSubmit } = this.props;
+        const { menu,initialData, handleChange, onNext, handleKategori } = this.props;
         return (
             
             <Layout className="login-container">
@@ -22,11 +23,11 @@ class BasicInfoComponent extends Component{
                                         </div>
                                         <div>
                                             <InputForm
-                                                name='name'
+                                                name='nama'
                                                 placeholder="Masukan nama event...."
                                                 className="input-event mt-5 mb-20"
                                                 onChange={handleChange}
-                                                value={initialData.name}
+                                                value={initialData.nama}
                                             />
                                         </div>
                                     </Col>
@@ -83,25 +84,29 @@ class BasicInfoComponent extends Component{
                                             <div>   
                                                 <span className="auth-input-label text-black">Kategori*</span>
                                             </div>
-                                            <div>
-                                                <Dropdown overlay={menu}>
-                                                    <div className="dropdown-category">
-                                                        <Button>
-                                                            <Row>
-                                                                <Col lg={22} md={24} sm={24}>
-                                                                    <span className="auth-dropdown-label text-black">Pilih Kategori*</span>
-                                                                </Col>
-                                                                <Col lg={2} md={24} sm={24}>
-                                                                    <Icon type="down" style={{color:"#4D5AF2"}}/>
-                                                                </Col>
-                                                            </Row>
-                                                        </Button>
-                                                    </div>
-                                                </Dropdown>
+                                            <div className="select-kategori">
+                                                 <Select
+                                                    labelInValue
+                                                    defaultValue={{ key: 'lucy' }}
+                                                    style={{ width: '100%' }}
+                                                    className="select-kategori"
+                                                    onChange={handleKategori}
+                                                >
+                                                    <Option value="jack">Jack (100)</Option>
+                                                    <Option value="lucy">Lucy (101)</Option>
+                                                </Select>,
                                             </div>
                                         </div>
                                     </Col>
                                 </Row>
+                            </div>
+                            <div className="steps-action">
+                                <Button
+                                    type="primary"
+                                    onClick={() => onNext()}
+                                >
+                                    Next
+                                </Button>
                             </div>
                         </Form>
                     </div>

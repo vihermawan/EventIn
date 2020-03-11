@@ -6,6 +6,7 @@ import '../../../assets/css/admin-panitia/create-event.css'
 
 //import component
 import BasicInfoPage from '../../../app/admin-panitia/component-create-event/basic-info-page'
+import BiayaPage from '../../../app/admin-panitia/component-create-event/biaya-page'
 import VenuePage from '../../../app/admin-panitia/component-create-event/venue-page'
 import DateTimePage from '../../../app/admin-panitia/component-create-event/date-time-page'
 import VisualPage from '../../../app/admin-panitia/component-create-event/visual-page'
@@ -15,60 +16,21 @@ import BiodataPenandatanganPage from '../../../app/admin-panitia/component-creat
 const { Content } = Layout;
 const { Step } = Steps;
 
-const steps = [
-    {
-        title: 'Basic Info',
-        content: 
-            <BasicInfoPage/> 
-        ,
-    },
-    {
-        title: 'Venue',
-        content: 
-            <VenuePage/> 
-        ,
-    },
-    {
-        title: 'Date Time',
-        content:
-            <DateTimePage/> 
-        ,
-    },
-    {
-        title: 'Visual',
-        content: 
-            <VisualPage/>
-        ,
-    },
-    {
-        title: 'Certificate',
-        content: 
-            <CertificatePage/>
-        ,
-    },
-    {
-        title: 'Biodata Penandatangan',
-        content: 
-            <BiodataPenandatanganPage/>
-        ,
-    },
-];
-
 class CreateEventComponent extends Component {
     
     constructor(props) {
         super(props);
         this.state = {
-          current: 0,
+          current: 5,
         };
       }
     
-      next() {
+      next = () => {
         const current = this.state.current + 1;
         this.setState({ current });
       }
     
-      prev() {
+      prev = () => {
         const current = this.state.current - 1;
         this.setState({ current });
       }
@@ -76,6 +38,71 @@ class CreateEventComponent extends Component {
 
     render() { 
         const { current } = this.state;
+        const steps = [
+            {
+                title: 'Basic Info',
+                content: 
+                    <BasicInfoPage
+                        next={this.next}
+                        prev={this.prev}
+                    /> 
+                ,
+            },
+            {
+                title: 'Biaya',
+                content: 
+                    <BiayaPage
+                        next={this.next}
+                        prev={this.prev}
+                    /> 
+                ,
+            },
+            {
+                title: 'Venue',
+                content: 
+                    <VenuePage
+                        next={this.next}
+                        prev={this.prev}
+                    /> 
+                ,
+            },
+            {
+                title: 'Date Time',
+                content:
+                    <DateTimePage
+                        next={this.next}
+                        prev={this.prev}
+                    /> 
+                ,
+            },
+            {
+                title: 'Visual',
+                content: 
+                    <VisualPage
+                        next={this.next}
+                        prev={this.prev}
+                    />
+                ,
+            },
+            {
+                title: 'Certificate',
+                content: 
+                    <CertificatePage
+                        next={this.next}
+                        prev={this.prev}
+                    />
+                ,
+            },
+            {
+                title: 'Biodata Penandatangan',
+                content: 
+                    <BiodataPenandatanganPage
+                        next={this.next}
+                        prev={this.prev}
+                    />
+                ,
+            },
+        ];
         return ( 
             <Content
                 style={{
@@ -94,9 +121,9 @@ class CreateEventComponent extends Component {
                         
                         <div className="container-active-event">
                             <Row>
-                            <div className="container-title-event">
-                                <span>Create Event</span>
-                            </div>
+                                <div className="container-title-event">
+                                    <span>Create Event</span>
+                                </div>
                             </Row>
                             
                             <Row gutter={24} type="flex">
@@ -109,9 +136,12 @@ class CreateEventComponent extends Component {
                                     <div className="steps-content">
                                         {steps[current].content}
                                     </div>
-                                        <div className="steps-action">
+                                        {/* <div className="steps-action">
                                         {current < steps.length - 1 && (
-                                            <Button type="primary" onClick={() => this.next()}>
+                                            <Button
+                                                type="primary"
+                                                onClick={() => this.next()}
+                                            >
                                             Next
                                             </Button>
                                         )}
@@ -125,7 +155,7 @@ class CreateEventComponent extends Component {
                                             Previous
                                             </Button>
                                         )}
-                                     </div>
+                                     </div> */}
                                 </div>
                             </Row>
                         </div>

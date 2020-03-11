@@ -1,16 +1,49 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { Icon,Menu,message } from 'antd';
+import { API } from '../../../common/api'
+import {message } from 'antd';
 import { navigate } from '../../../common/store/action'
 import BasicInfoComponent from '../../../modules/admin-panitia/create-event/basic-info/basic-info-component';
 
 class BasicInfoPage extends Component {
     state = {
-        
+        nama: '',
+        description: '',
+        organisasi: '',
+        batas_peserta: '',
+        kategori_input : '',
+        kategori: [],
     }
 
     componentDidMount(){
        
+    }
+
+    getKategori=()=>{
+        API.get('/peserta/kategori')
+        .then(res => {
+            console.log('kategori',res)
+            if(res.status == 200){
+                this.setState({
+                    kategori:res.data.data.kategori,
+                    
+                })
+            }
+        })
+    }
+
+    componentWillMount(){
+        const data = JSON.parse(localStorage.getItem('step-1'));
+        console.log(data)
+        if(data !== null){
+            this.setState({
+                nama: data.nama,
+                description: data.description,
+                organisasi: data.organisasi,
+                batas_peserta: data.batas_peserta,
+                kategori_input : data.kategori_input
+            })
+        }
     }
 
     handleChange = (e) => {
@@ -19,6 +52,10 @@ class BasicInfoPage extends Component {
         this.setState({
             [target]: value
         })
+    }
+
+    handleKategori = (value) => {
+        this.setState({ kategori_input: value.key })
     }
 
     handleButtonClick(e) {
@@ -30,31 +67,21 @@ class BasicInfoPage extends Component {
         message.info('Click on menu item.');
         console.log('click', e);
       }
+
+    onNext = () => {
+        this.props.next()
+        localStorage.setItem('step-1', JSON.stringify(this.state));
+    }
   
     render() {
 
-    const menu = (
-        <Menu onClick={this.handleMenuClick}>
-            <Menu.Item key="1">
-            <Icon type="user" />
-            1st menu item
-            </Menu.Item>
-            <Menu.Item key="2">
-            <Icon type="user" />
-            2nd menu item
-            </Menu.Item>
-            <Menu.Item key="3">
-            <Icon type="user" />
-            3rd item
-            </Menu.Item>
-        </Menu>
-    );
         return ( 
             <BasicInfoComponent
                 initialData={this.state}
                 navigate={this.props.navigate}
-                menu={menu}
                 handleChange={this.handleChange}
+                onNext={this.onNext}
+                handleKategori={this.handleKategori}
             />
         );
     }

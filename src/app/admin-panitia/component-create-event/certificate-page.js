@@ -1,17 +1,31 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { Icon,Menu,message } from 'antd';
+import { message } from 'antd';
 import { navigate } from '../../../common/store/action'
 import CertificateComponent from '../../../modules/admin-panitia/create-event/ceritificate/certificate-component';
 
 class CertificatePage extends Component {
     state = {
-        
+      nama_sertifikat : '',
+      deskripsi : '',
+      sertifikat : '',
     }
 
     componentDidMount(){
        
     }
+
+  componentWillMount(){
+        const data = JSON.parse(localStorage.getItem('step-6'));
+        console.log(data)
+        if(data !== null){
+            this.setState({
+                nama_sertifikat: data.nama_sertifikat,
+                deskripsi: data.deskripsi,
+                sertifikat: data.sertifikat,
+            })
+        }
+  }
 
     handleChange = (e) => {
         let target = e.target.name;
@@ -21,34 +35,53 @@ class CertificatePage extends Component {
         })
     }
 
-    handleButtonClick(e) {
-        message.info('Click on left button.');
-        console.log('click left button', e);
-      }
-      
-    handleMenuClick(e) {
-        message.info('Click on menu item.');
-        console.log('click', e);
+    onNext = () => {
+      this.props.next();
+      localStorage.setItem('step-6', JSON.stringify(this.state));
     }
+    onPrev = () => {
+        this.props.prev();
+    }
+
+    getBase64 = (pdf, callback)  =>{
+      const reader = new FileReader();
+      reader.addEventListener('load', () => callback(reader.result));
+      reader.readAsDataURL(pdf);
+    }
+
+    beforeUpload = (file) => {
+      const isPdf = file.type === '.pdf';
+      if (!isPdf) {
+        message.error('You can only upload PDF file!');
+      }
+      const isLt2M = file.size / 1024 / 1024 < 2;
+      if (!isLt2M) {
+        message.error('Image must smaller than 2MB!');
+      }
+      return isPdf && isLt2M;
+    }
+
+    handleChangePdf = info => {
+      if (info.file.status === 'uploading') {
+        this.setState({ 
+          loading: true 
+        });
+        return;
+      }
+      if (info.file.status === 'done') {
+        // Get this url from response in real world.
+        this.getBase64(info.file.originFileObj, sertifikat =>
+          this.setState({
+            sertifikat : info.file,
+            loading: false,
+          }),
+        );
+      }
+    };
+    
   
     render() {
 
-    const menu = (
-        <Menu onClick={this.handleMenuClick}>
-            <Menu.Item key="1">
-            <Icon type="user" />
-            1st menu item
-            </Menu.Item>
-            <Menu.Item key="2">
-            <Icon type="user" />
-            2nd menu item
-            </Menu.Item>
-            <Menu.Item key="3">
-            <Icon type="user" />
-            3rd item
-            </Menu.Item>
-        </Menu>
-    );
 
     const handleUpload = {
         name: 'file',
@@ -71,9 +104,12 @@ class CertificatePage extends Component {
             <CertificateComponent
                 initialData={this.state}
                 navigate={this.props.navigate}
-                menu={menu}
                 handleChange={this.handleChange}
+                beforeUpload = {this.beforeUpload}
+                handleChangePdf = {this.handleChangePdf}
                 handleUpload={handleUpload}
+                onNext={this.onNext}
+                onPrev={this.onPrev}
             />
         );
     }

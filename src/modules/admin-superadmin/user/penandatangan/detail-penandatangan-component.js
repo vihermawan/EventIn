@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { Layout, Breadcrumb, Row, Table, Input, Col,Tag } from 'antd';
+import { Link } from 'react-router-dom';
 import '../../../../assets/css/dashboard-all/dashboard.css'
 import '../../../../assets/css/dashboard-all/table-style.css'
 import '../../../../assets/css/admin-superadmin/detail-user.css'
@@ -11,8 +12,7 @@ const { Content } = Layout;
 
 class DetailPenandatanganAdminComponent extends Component {
     render() { 
-      const { initialData, columns, data } = this.props
-      const image1 = require(`../../../../assets/images/avatar.png`);
+      const { initialData, columns, dataPenandatangan,data } = this.props
         return ( 
             <Content
                 style={{
@@ -23,70 +23,73 @@ class DetailPenandatanganAdminComponent extends Component {
                 }}
             >
                 <Breadcrumb separator=">">
-                    <Breadcrumb.Item>Dashboard List Panitia</Breadcrumb.Item>
-                    <Breadcrumb.Item>Dashboard Detail Panitia</Breadcrumb.Item>
+                    <Breadcrumb.Item><Link to='/admin/admin-penandatangan'>Dashboard List Penandatangan</Link></Breadcrumb.Item>
+                    <Breadcrumb.Item>Dashboard Detail Penandatangan</Breadcrumb.Item>
                 </Breadcrumb>
 
                 <Row style={{minHeight: '100%',marginBottom: '2%',marginTop:'2%',}} className="background">
                     <Col lg={24} md={24} sm={24}> 
-                        
-                        <div className="container-active-event">
+                        <LoadingContainer loading={initialData.loading}>
+                            <div className="container-active-event">
                             <Row>
                             <div className="container-title-event">
-                                <span>Detail Panitia</span>
+                                <span>Detail Penandatangan</span>
                             </div>
                             </Row>
                             <Row>
-                                <div className="container-desc-panitia">
-                                    <Row>
-                                        <Col lg={8} md={12} sm={12}>
-                                            <img
-                                                src={image1}
-                                                alt="avatar 1"
-                                                className = "avatar-panitia"
-                                                style={{Width: '100%'}}
-                                            />
-                                        </Col>
-                                        <Col lg={8} md={12} sm={12}>
-                                            <div className="desc-panitia">
-                                                <span className="text-black nama-panitia">Nama Panitia</span>
+                                {dataPenandatangan.map(data =>
+                                    <div className="container-desc-panitia">
+                                        <Row>
+                                            <Col lg={8} md={12} sm={12}>
+                                                <img
+                                                    src={data.picture}
+                                                    alt="avatar 1"
+                                                    className = "avatar-panitia"
+                                                    style={{Width: '10%'}}
+                                                />
+                                            </Col>
+                                            <Col lg={8} md={12} sm={12}>
+                                                <div className="desc-panitia">
+                                                    <span className="text-black nama-panitia">Nama Penandatangan</span>
+                                                    <br/>
+                                                    <span className="text-black desc-nama">{data.nama_penandatangan}</span>
+                                                </div>
                                                 <br/>
-                                                <span className="text-black desc-nama">PPSMB Palapa</span>
-                                            </div>
-                                            <br/>
-                                            <div className="desc-panitia">
-                                                <span className="text-black nama-panitia">Organisasi</span>
+                                                <div className="desc-panitia">
+                                                    <span className="text-black nama-panitia">Instansi</span>
+                                                    <br/>
+                                                    <span className="text-black desc-nama">{data.instansi}</span>
+                                                </div>
+                                            </Col>
+                                            <Col lg={8} md={12} sm={12}>
+                                                <div className="desc-panitia">
+                                                    <span className="text-black nama-panitia">Jabatan</span>
+                                                    <br/>
+                                                    <span className="text-black desc-nama">{data.jabatan}</span>
+                                                </div>
                                                 <br/>
-                                                <span className="text-black desc-nama">Unviersitas Gadjah Mada</span>
-                                            </div>
-                                        </Col>
-                                        <Col lg={8} md={12} sm={12}>
-                                            <div className="desc-panitia">
-                                                <span className="text-black nama-panitia">No Telepon</span>
-                                                <br/>
-                                                <span className="text-black desc-nama">0812092092</span>
-                                            </div>
-                                            <br/>
-                                            <div className="desc-panitia">
-                                                <span className="text-black nama-panitia">Instagram</span>
-                                                <br/>
-                                                <span className="text-black desc-nama">@PPSMB_Palapa</span>
-                                            </div>
-                                        </Col>
-                                    </Row>
-                                </div>
+                                                <div className="desc-panitia">
+                                                    <span className="text-black nama-panitia">Nomor Induk Pegawai</span>
+                                                    <br/>
+                                                    <span className="text-black desc-nama">{data.nip}</span>
+                                                </div>
+                                            </Col>
+                                        </Row>
+                                    </div>
+                                )}
                             </Row>
-                            <LoadingContainer loading={initialData.loading}>
+                           
                                 <Row gutter={24} type="flex">
                             
                                     <TableProfile 
                                         columns={columns} 
                                         dataSource={data} 
-                                        className="table-active-event"
+                                        className="table-panitia"
                                     />
                                 </Row>
-                            </LoadingContainer>
+                           
                         </div>
+                        </LoadingContainer>
                     </Col>
                 </Row>
             </Content>
