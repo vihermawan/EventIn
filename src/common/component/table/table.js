@@ -12,7 +12,6 @@ function TableProfile({
             className={className}
             style={style}
             onChange={onChange}
-                
         >
         </Table>
     );
