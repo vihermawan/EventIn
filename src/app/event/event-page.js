@@ -44,7 +44,7 @@ class EventPage extends Component {
             // console.log(res.data.data.event)
             if(res.status == 200){
                 this.setState({
-                    event:res.data.data.event,
+                    event:res.data.data.event.data,
                 })
             }
             this.setState({loading: false})
