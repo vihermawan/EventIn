@@ -12,14 +12,10 @@ import Footer from '../../../common/layout/footer-landing'
 import ButtonRounded from '../../../common/component/button/button-rounded'
 
 
-
 const { Content } = Layout;
 const { Search } = Input;
 const { TabPane } = Tabs;
-
-
-
-
+ 
 const menu = (
     <Menu>
       <Menu.Item>
