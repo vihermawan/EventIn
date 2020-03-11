@@ -54,7 +54,7 @@ class EventComponent extends Component {
                                     <div className="title-container">
                                         <span className="text-soft-blue title-biggest bold">Temukan</span>
                                         <br/>
-                                        <span className="text-soft-blue title-big bold">event sesuai wilayahmu</span>
+                                        <span className="text-soft-blue title-big bold">event sesuai hobimu</span>
                                     </div>
                                 </Col>
                                 <Col span={24}>
@@ -66,36 +66,20 @@ class EventComponent extends Component {
                                         />
                                     </div>
                                     <div className="description-container desc-big">
-                                        Temukan berbagai event dari berbagai daerah...
+                                        Temukan berbagai event terkeren dan terupdate...
                                     </div>
                                 </Col>
                                 <Col span={24}>
-                                    <div className="button-section-1-container">
+                                    <div className="button-section-1-container-search">
                                         <Row>
-                                            <Col lg={12} md={12} sm={12}>
+                                            <Col lg={18} md={12} sm={12}>
                                                 <div className="button-search">
                                                     <Search
                                                         onSearch={value => console.log(value)}
-                                                        placeholder="Enter the location..."
+                                                        placeholder="Pencarian..."
                                                         // style={{ width: 200 }}
                                                     />
                                                 </div>
-                                            </Col>
-                                            <Col lg={{span: 11, offset:1}} md={12} sm={12}>
-                                                <Dropdown overlay={menu}>
-                                                    <div className="dropdown-category-event">
-                                                        <Button>
-                                                            <Row>
-                                                                <Col lg={23} md={24} sm={24}>
-                                                                    <span className="auth-dropdown-label text-black">Kategori Event</span>
-                                                                </Col>
-                                                                <Col lg={1} md={24} sm={24}>
-                                                                    <Icon type="down" style={{color:"#4D5AF2"}}/>
-                                                                </Col>
-                                                            </Row>
-                                                        </Button>
-                                                    </div>
-                                                </Dropdown>
                                             </Col>
                                         </Row>
                                     </div>
