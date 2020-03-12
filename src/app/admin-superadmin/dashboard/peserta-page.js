@@ -58,6 +58,11 @@ class PesertaAdminPage extends Component {
         this.props.navigate(CONSTANS.DETAIL_PESERTA_ADMIN_MENU_KEY)
     }
 
+    onEditPeserta = (id_users) => {
+        this.props.setIdUsers(id_users)
+        this.props.navigate(CONSTANS.EDIT_PROFILE_PESERTA_MENU_KEY)
+    }
+
     //function untuk modal
     showDeleteConfirm = (id) => {
         confirm({
@@ -123,6 +128,7 @@ class PesertaAdminPage extends Component {
                         borderRadius="5px"
                         background="#005568"
                         marginRight= "20px"
+                        onClick = { () => this.onEditPeserta(data.id_users)}
                     />,
                     <ButtonDashboard
                         text="Detail"

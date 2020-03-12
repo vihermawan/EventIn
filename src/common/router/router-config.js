@@ -26,7 +26,6 @@ const routeSources = [
     { component: HomePage, path: `${baseUrl}/`, exact: true },
     { component: EventPage, path: `${baseUrl}/event`, exact: true },
     { component: AllEventPage, path: `${baseUrl}/allevent`, exact: true },
-    { component: PilihanPage, path: `${baseUrl}/pilihan`, exact: true },
     { component: DetailPage, path: `${baseUrl}/detail`, exact: true },
     { component: LoginComponent, path: `${baseUrl}/login`, exact: true },
     { component: PilihanPage, path: `${baseUrl}/choose`, exact: true },

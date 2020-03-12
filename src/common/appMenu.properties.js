@@ -10,6 +10,9 @@ const menu = {
     LOGIN: {
         link: '/login',
     },
+    CHOOSE :{
+        link : '/choose'
+    },
     DETAIL_EVENT: {
         link : '/detail'
     },
@@ -51,6 +54,9 @@ const menu = {
     },
     EDIT_EVENT_PANITIA: {
         link : '/dashboard/edit-event',
+    },
+    EDIT_PROFILE_PESERTA: {
+        link : '/admin/edit-peserta',
     },
     EDIT_PROFILE_PANITIA : {
         link : '/dashboard/edit-profile',

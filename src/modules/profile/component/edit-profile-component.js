@@ -136,7 +136,7 @@ class EditProfilePesertaComponent extends Component {
                             </Col>
                         </Row>
                     </div>
-                    <div className="steps-action" style={{margin: "16px auto", textAlign: "left"}}>
+                    <div className="steps-action" style={{margin: "16px auto", textAlign: "center", Width: "200px"}}>
                         <Button
                             type="primary"
                             // onClick={() => onNext()}

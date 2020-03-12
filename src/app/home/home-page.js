@@ -1,11 +1,10 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { navigate } from '../../common/store/action'
-import { API } from '../../common/api'
+import CONSTANS from '../../common/utils/Constants'
 import HomeComponent from '../../modules/home/component/home-component';
-import { Lines } from 'react-preloaders';
- 
 
+ 
 class HomePage extends Component {
     state = {  }
 
@@ -13,10 +12,20 @@ class HomePage extends Component {
         
     }
 
+    onLoginHome = () => {
+        this.props.navigate(CONSTANS.LOGIN_MENU_KEY)
+    }
+
+    onRegisterHome = () => {
+        this.props.navigate(CONSTANS.CHOOSE_MENU_KEY)
+    }
+
     render() { 
         return ( 
             <HomeComponent
                 navigate={this.props.navigate}
+                onLoginHome = {this.onLoginHome}
+                onRegisterHome = {this.onRegisterHome}
             />
         );
     }
