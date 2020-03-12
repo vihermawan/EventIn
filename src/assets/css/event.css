@@ -81,7 +81,8 @@
 
 
 .tombol-tengah{
-    vertical-align: middle;
+    text-align: center;
+    margin: 16px auto;
 }
 .event-menu
 .ant-menu-item:hover, 

@@ -1,28 +1,30 @@
 import React, { Component } from 'react';
 import { Layout, BackTop, Row, Col,Icon, Tag } from 'antd';
-import { faUser } from '@fortawesome/free-solid-svg-icons'
+import { faUser, faInfoCircle } from '@fortawesome/free-solid-svg-icons'
 import '../../../assets/css/profile.css'
 // component
 import Navbar from '../../../common/layout/navbar-landing'
 import Footer from '../../../common/layout/footer-landing'
 import TableProfile from '../../../common/component/table/table'
-import ButtonIcon from '../../../common/component/button/button-icon'
 import 'moment-timezone';
 import 'moment/locale/id';
 import moment from 'moment-timezone';
+import ButtonDashboard from '../../../common/component/button/button-dashboard';
+import LoadingContainer from '../../../common/component/loading/loading-container'
 const { Content } = Layout;
 
 
 
 class ProfileComponent extends Component {
     render() { 
-        const {columns,data,initialData,dataProfile} =this.props;
+        const {columns,data,initialData,dataProfile,onEditPeserta} =this.props;
         return ( 
-            <Layout className="landing-container">
+            <Layout className="landing-container" style={{minHeight: "100vh"}} >
                 <Navbar
                     navigate={this.props.navigate}
                 />
                 <Content style={{ overflow: "hidden" }}>
+                <LoadingContainer loading={initialData.loading}>
                     {/* Section 1 */}
                     {
                         dataProfile.map( data =>
@@ -49,14 +51,13 @@ class ProfileComponent extends Component {
                                             <p className="text-soft-grey email-user"> <Icon type="mail" style={{marginRight:'10px'}} />{data.email}</p>                                      
                                         </div>
                                         <div>
-                                            <ButtonIcon
-                                                text="Edit Profile"
-                                                height={20}
-                                                icon={faUser}
-                                                borderRadius="5px"
-                                                background="#070E57"
-                                                marginLeft= "0px"
-                                                paddingLeft= "0px"
+                                            <ButtonDashboard
+                                                 text="Edit Profile"
+                                                 height={20}
+                                                 icon={faInfoCircle}
+                                                 borderRadius="5px"
+                                                 background="#070E57"
+                                                 onClick = { () => onEditPeserta(data.id_users)}
                                             />
                                         </div>
                                         </Col> 
@@ -117,6 +118,7 @@ class ProfileComponent extends Component {
                         </Col>
                     </Row>
                     <BackTop />
+                    </LoadingContainer>
                 </Content>
                 <Footer/>
             </Layout>

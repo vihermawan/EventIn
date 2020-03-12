@@ -14,6 +14,7 @@ class EventPage extends Component {
         kategori : [],
         eventbyKategori : [],
         loading : false,
+        countEvent : '',
         idkategori : '',
      }
 
@@ -41,10 +42,10 @@ class EventPage extends Component {
         this.setState({loading: true})
         API.get(`/peserta/event`)
         .then(res => {
-            // console.log(res.data.data.event)
+            console.log(res.data.size)
             if(res.status == 200){
                 this.setState({
-                    event:res.data.data.event,
+                    event:res.data.data.event.data,
                 })
             }
             this.setState({loading: false})
@@ -58,7 +59,7 @@ class EventPage extends Component {
             if(res.status == 200){
                 this.setState({
                     kategori:res.data.data.kategori,
-                    
+                    countEvent :res.data.size,
                 })
             }
         })

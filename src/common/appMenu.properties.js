@@ -16,6 +16,9 @@ const menu = {
     PROFILE:{
         link : '/profile'
     },
+    EDIT_PROFILE : {
+        link : '/edit-profile'
+    },
     REGISTER_PESERTA : {
         link : '/register-peserta'
     },

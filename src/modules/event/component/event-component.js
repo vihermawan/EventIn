@@ -189,13 +189,25 @@ class EventComponent extends Component {
                             </Tabs>       
                         </Col>
                     </Row>
+                    <Row>
+                        <Col span={24} >
+                            <div className="tombol-tengah button-section-1-container" style={initialData.countEvent < 17 ? {display:"none"}:{display:"block"}}>
+                                <Link to="/allevent">
+                                    <ButtonRounded
+                                        text="Semua Event"
+                                        className='button-participate'
+                                    />
+                                </Link>
+                            </div>
+                        </Col>
+                    </Row>
                     <Row className="section-container" style={{marginBottom: 50}}>
                         <Col lg={24}>
-                            <span style={{marginLeft:'5%'}} className="text-soft-blue title-big-event bold">Minggu ini</span>
+                            <span style={{marginLeft:'2%'}} className="text-soft-blue title-big-event bold">Minggu ini</span>
                         </Col>
                         <Col lg={24} className="card-container" >
                             <Col lg={24} >
-                                    <Row gutter={16} style={{marginLeft:'5%', marginRight:'5%'}}>
+                                    <Row gutter={[16,16]} style={{marginLeft:'2%', marginRight:'2%'}} type="flex">
                                         {
                                             cardData.map( data =>
                                                 <Col lg={6} md={12} sm={12} xs={24} className="mt-30">
@@ -235,7 +247,7 @@ class EventComponent extends Component {
                     </Row>
                     <Row>
                         <Col span={24} >
-                            <div className="tombol-tengah button-section-1-container">
+                            <div className="tombol-tengah button-section-1-container" style={initialData.countEvent < 17 ? {display:"none"}:{display:"block"}}>
                                 <Link to="/allevent">
                                     <ButtonRounded
                                         text="Semua Event"
