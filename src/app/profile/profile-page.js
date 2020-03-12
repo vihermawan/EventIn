@@ -9,6 +9,9 @@ import { API } from '../../common/api'
 import ProfileComponent from '../../modules/profile/component/profile-component';
 import ButtonDashboard from '../../common/component/button/button-dashboard';
 
+//import store
+import { setIdUsers } from '../../modules/admin-superadmin/user/store/users-action'
+
 class ProfilePage extends Component {
     state = { 
         user : [],
@@ -47,6 +50,11 @@ class ProfilePage extends Component {
               loading : false,
           })
       });
+    }
+
+    onEditPeserta = (id_users) => {
+      this.props.setIdUsers(id_users)
+      this.props.navigate(CONSTANS.EDIT_PROFILE_MENU_KEY)
     }
 
     render() { 
@@ -117,7 +125,6 @@ class ProfilePage extends Component {
           ];
         const data = this.state.eventPeserta.map( ({status, event}, index) => ({
             nomor : index+1,
-            // size :
             nama_event : event.nama_event,
             sertifikat : event.sertifikat.sertifikat,
             panitia : event.panitia.nama_panitia,
@@ -144,6 +151,7 @@ class ProfilePage extends Component {
                 columns = {columns}
                 data = {data}
                 dataProfile = {dataProfile}
+                onEditPeserta = {this.onEditPeserta}
             />
         );
     }
@@ -155,6 +163,7 @@ const mapStateToProps = state => ({
 
 const mapDispatchToProps = (dispatch => ({
     navigate,
+    setIdUsers,
 }))();
 
 const page = connect(mapStateToProps, mapDispatchToProps)(ProfilePage);
