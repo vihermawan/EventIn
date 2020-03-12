@@ -7,6 +7,7 @@ import CONSTANTS from '../../../common/utils/Constants';
 import Navbar from '../../../common/layout/navbar-landing'
 import Footer from '../../../common/layout/footer-landing'
 import ButtonRounded from '../../../common/component/button/button-rounded'
+import ButtonHome from '../../../common/component/button/button-home';
 
 const { Content } = Layout;
 const cardData = [
@@ -66,6 +67,7 @@ class HomeComponent extends Component {
         const image2 = require(`../../../assets/images/home-image2.png`);
         const image3 = require(`../../../assets/images/home-image3.png`);
         const bigLogo = require(`../../../assets/images/big-logo.png`);
+        const {onLoginHome,onRegisterHome} = this.props;
         return ( 
             <Layout className="landing-container">
                 <Navbar
@@ -98,20 +100,21 @@ class HomeComponent extends Component {
                                 <Col span={24}>
                                     <div className="button-section-1-container">
                                     <Link to="/login">
-                                        <ButtonRounded
+                                        <ButtonHome
                                             text="Daftar event"
                                             className='button-participate'
-                        
+                                            onClick = { () => onLoginHome}
                                         />
                                     </Link>
                                     <Link to="/login">
-                                        <ButtonRounded
+                                        <ButtonHome
                                             text="Kelolah event"
                                             background="white"
                                             textColor="#4D5AF2"
                                             border="1px solid #4D5AF2"
                                             marginLeft={16}
                                             className='button-participate'
+                                            onClick = { () => onRegisterHome}
                                         />
                                     </Link>
                                     </div>
