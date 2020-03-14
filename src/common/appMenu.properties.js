@@ -49,6 +49,9 @@ const menu = {
     PARTICIPANT_EVENT: {
         link :'/dashboard/participant-event/',
     },
+    CREATE_BIODATA_PENANDATNAGAN: {
+        link : '/dashboard/create-biodata-penandatangan',
+    },
     DETAIL_EVENT_PANITIA: {
         link : '/dashboard/detail-event',
     },

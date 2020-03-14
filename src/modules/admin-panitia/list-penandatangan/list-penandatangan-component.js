@@ -1,18 +1,19 @@
 import React, { Component } from 'react';
 import { Layout, Breadcrumb, Row, Tag, Col,Modal } from 'antd';
-import { faCheckCircle, faWindowClose } from '@fortawesome/free-solid-svg-icons'
+import { faCheckCircle, faWindowClose, faUserPlus } from '@fortawesome/free-solid-svg-icons'
 import ButtonIcon from '../../../common/component/button/button-icon'
 import TableProfile from '../../../common/component/table/table'
 import '../../../assets/css/dashboard-all/dashboard.css'
 import '../../../assets/css/dashboard-all/table-style.css'
 import LoadingContainer from '../../../common/component/loading/loading-container'
 import LoadingNotifContainer from '../../../common/component/loading/loading-notif';
+import ButtonDashboard from '../../../common/component/button/button-dashboard';
 // constant content
 const { Content } = Layout;
 
-class ListParticipantComponent extends Component {
+class ListPenandatanganComponent extends Component {
     render() { 
-      const { initialData, columns, data,componentDidMount } = this.props
+      const { initialData, columns, data,onCreatePenandatangan } = this.props
         return ( 
             <Content
                 style={{
@@ -23,16 +24,30 @@ class ListParticipantComponent extends Component {
                 }}
             >
                 <Breadcrumb separator=">">
-                    <Breadcrumb.Item>Dashboard List Participant</Breadcrumb.Item>
+                    <Breadcrumb.Item>Dashboard List Penandatangan</Breadcrumb.Item>
                 </Breadcrumb>
                 <Row style={{minHeight: '100%',marginBottom: '2%',marginTop:'2%',}} className="background">
                     <Col lg={24} md={24} sm={24}> 
                         
                         <div className="container-active-event">
                             <Row>
-                            <div className="container-title-event">
-                                <span>List Participant</span>
-                            </div>
+                                <Col lg={19} md={12} sm={12} xs={24}>
+                                    <div className="container-title-event">
+                                        <span>List Penandatangan</span>
+                                    </div>
+                                </Col>
+                                <Col lg={5} md={12} sm={12} xs={24}>
+                                    <div className="button-add">
+                                    <ButtonDashboard
+                                            text="Tambah Penandatangan"
+                                            height={20}
+                                            icon={faUserPlus}
+                                            borderRadius="5px"
+                                            background="#00C908"
+                                            onClick={ () => onCreatePenandatangan()}
+                                    />
+                                    </div>
+                                </Col>
                             </Row>
                             <LoadingContainer loading={initialData.loading}>
                             <Row gutter={24} type="flex">
@@ -63,4 +78,4 @@ class ListParticipantComponent extends Component {
     }
 }
  
-export default ListParticipantComponent;
+export default ListPenandatanganComponent;

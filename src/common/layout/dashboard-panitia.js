@@ -22,6 +22,8 @@ import LoadingContainer from '../../common/component/loading/loading-container'
 import DetailEvent from '../../app/admin-panitia/detail-page/detail-event-page'
 import DetailSertifPage from '../../app/admin-panitia/detail-page/detail-sertif-page'
 import TemplateSertifPage from '../../app/admin-panitia/dashboard/template-page'
+import ListPenandatanganPage from '../../app/admin-panitia/dashboard/list-penandatangan-page'
+import CreateBiodataPenandatanganPage from '../../app/admin-panitia/dashboard/create-biodata-penandatangan-page'
 import TabAbsentPage from '../../app/admin-panitia/dashboard/tab-absent-page'
 import EditEventPage from '../../app/admin-panitia/edit-page/edit-event-page'
 import EditProfilePage from '../../app/admin-panitia/edit-page/edit-profile-page'
@@ -174,6 +176,15 @@ class dashboard extends Component {
                           <span className={hidden}>List E-Certificate</span>
                         </Link>
                       </Menu.Item>
+                      <Menu.Item key="list-penandatangan">
+                        <Link to="/dashboard/list-penandatangan">
+                          <FontAwesomeIcon
+                              icon={faFile}
+                              style={{marginRight: 10}}
+                          /> 
+                          <span className={hidden}>List Signer</span>
+                        </Link>
+                      </Menu.Item>
                       <Menu.Item key="template">
                         <Link to="/dashboard/template-e-certificate">
                           <FontAwesomeIcon
@@ -279,6 +290,16 @@ class dashboard extends Component {
                     path='/dashboard/e-certificate'
                     exact
                     render={ (props) => <ECertificatePage {...props}/> }
+                />
+                <Route
+                    path='/dashboard/list-penandatangan'
+                    exact
+                    render={ (props) => <ListPenandatanganPage {...props}/> }
+                />
+                <Route
+                    path='/dashboard/create-biodata-penandatangan'
+                    exact
+                    render={ (props) => <CreateBiodataPenandatanganPage {...props}/> }
                 />
                 <Route
                     path='/dashboard/template-e-certificate'

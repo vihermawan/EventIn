@@ -13,6 +13,7 @@ const { confirm } = Modal;
 class ListParticipantPage extends Component {
     state = { 
         participant: [],
+        visible:false,
         loading : false,
     }
 
@@ -32,14 +33,22 @@ class ListParticipantPage extends Component {
         });
     }
 
+    showModal = () => {
+        this.setState({
+          visible: true,
+        });
+     };
+    
+
     //approve peserta
     ApprovePeserta = (id_pesertaevent) => {
-        this.setState({loading: true})
+        this.setState({loading: true,visible:true})
         console.log(id_pesertaevent)
         API.put(`/panitia/approvepeserta/${id_pesertaevent}`)
         .then(res => {
             console.log('res',res)
             if(res.status == 200){
+                this.setState({visible:false})
                 message.success('Peserta telah diterima');
                 this.componentDidMount();
             }   
