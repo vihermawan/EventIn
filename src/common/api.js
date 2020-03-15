@@ -54,7 +54,9 @@ export const API = {
     },
 
     post : function (endPoint, input) {        
-        let headers = {};
+        let headers = {
+            'Content-Type': 'application/octet-stream',
+        };
         let token = localStorage.getItem("token");
         // console.log(token)
         if(token != null)

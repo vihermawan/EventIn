@@ -24,7 +24,7 @@ const uploadButton = (
 );
 class CreatePenandatanganComponent extends Component {
     render() { 
-      const {initialData,handleChange,beforeUpload,handleChangeFoto,handleSubmit} = this.props  
+      const {initialData,handleChange,beforeUpload,handleChangeFoto,handleSubmit, onChange,uploadGambar} = this.props  
       const format = 'HH:mm';
       return ( 
         <Content
@@ -51,7 +51,7 @@ class CreatePenandatanganComponent extends Component {
                      
                             <div style={{minHeight:'100vh'}}>
                                 <div className="container-form">
-                                    <Form onSubmit={handleSubmit}>
+                                    <Form onSubmit={handleSubmit} encType="multipart/form-data">
                                         <div className="container-form">
                                             <Row>
                                                 <Col lg={24} md={24} sm={24}>
@@ -130,18 +130,31 @@ class CreatePenandatanganComponent extends Component {
                                                     </div>
                                                     <div>
 
-                                                        <Upload
+                                                         {/* <Upload
                                                             name="picture"
                                                             listType="picture-card"
                                                             className="avatar-uploader"
-                                                            showUploadList={true}
+                                                            showUploadList={false}
                                                             action="https://www.mocky.io/v2/5cc8019d300000980a055e76"
                                                             beforeUpload={beforeUpload}
                                                             onChange={handleChangeFoto}
                                                             previewFile={initialData.profile_picture}
                                                         >
                                                             {initialData.profile_picture ? <img src={initialData.profile_picture} alt="avatar" style={{ width: '10%' }} /> : uploadButton}
+                                                        </Upload>  */}
+                                                        <Upload 
+                                                        name= 'file'
+                                                        action= 'https://www.mocky.io/v2/5cc8019d300000980a055e76'
+                                                        onChange={onChange}
+                                                        >
+                                                            <Button>
+                                                                Click to Upload
+                                                            </Button>
                                                         </Upload>
+                                                        {/* <input 
+                                                            type="file"
+                                                            onChange={onChange}
+                                                        /> */}
 
                                                     </div>
                                                 </Col>
