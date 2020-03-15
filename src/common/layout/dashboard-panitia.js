@@ -32,15 +32,33 @@ const { Header, Sider } = Layout;
 
 class dashboard extends Component {
   state = {
+    picture : '',
+    nama_panitia : '',
     collapsed: false,
     loading : false,
     username: 'username',
   };
   
   componentDidMount(){
+    // this.getProfile();
     const username = localStorage.getItem("username")
-    this.setState({ username })
+    const picture = localStorage.getItem("picture")
+    this.setState({ username,picture })
   }
+
+  //get data profile dari API
+//   getProfile=()=>{
+//     this.setState({loading: true})
+//     API.get(`/panitia/profile-edit`)
+//     .then(res => {
+//         // console.log('res',res.data.data.user)
+//         this.setState({
+//           nama_panitia : res.data.data.user.panitia.nama_panitia,
+//           picture : res.data.data.user.panitia.image_URL,
+//           loading: false,
+//         })
+//     });
+// }
 
   handleLogout = e => {
      this.setState({loading: true})
@@ -246,7 +264,7 @@ class dashboard extends Component {
                     onClick={this.toggle}
                   />
                   <div className= "avatar">
-                    <Avatar size={40} icon="user" className="avatars" />
+                    <Avatar size={40} icon="user" className="avatars" src={this.state.picture} style={{maxHeight:'100%'}}/>
                         <span className="semi-bold">{this.state.username}</span>
                       <Dropdown overlay={menu} trigger={['click']}>
                         <a className="ant-dropdown-link" href="#">
