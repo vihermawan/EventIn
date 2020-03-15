@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Layout, Breadcrumb, Row, Col, Form, Select, DatePicker, TimePicker,Upload, Icon, Button  } from 'antd';
+import { Layout, Breadcrumb, Row, Col, Form, Select, Upload,Button, Input, Modal  } from 'antd';
 import { Link } from 'react-router-dom';
 import Navbar from '../../../common/layout/navbar-landing'
 import Footer from '../../../common/layout/footer-landing'
@@ -12,6 +12,9 @@ import InputForm from '../../../common/component/input/input-form';
 import 'moment-timezone';
 import 'moment/locale/id';
 import ButtonAuth from '../../../common/component/button/button-auth';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faUser } from '@fortawesome/free-solid-svg-icons'
+import LoadingNotifContainer from '../../../common/component/loading/loading-notif';
 // constant content
 const { Content } = Layout;
 const { Option } = Select;
@@ -19,7 +22,7 @@ const { Dragger } = Upload;
 const uploadButton = (
     <div>
       {/* {this.state.loading ? <LoadingOutlined /> : <PlusOutlined />} */}
-      <div className="ant-upload-text">Upload Foto Penandatangan</div>
+      <div className="ant-upload-text">Display Foto Profil</div>
     </div>
 );
 class CreatePenandatanganComponent extends Component {
@@ -129,31 +132,36 @@ class CreatePenandatanganComponent extends Component {
                                                         <span className="auth-input-label text-black">Foto profil*</span>
                                                     </div>
                                                     <div>
-
-                                                         {/* <Upload
+                                                        <Input
+                                                            type="file"
+                                                            onChange={uploadGambar}
+                                                           
+                                                            className="input-picture"
+                                                            style={{marginBottom : '30px',padding: '4px 11px 11px 11px', minHeight:'40px',borderColor:'#2C37BA'}}
+                                                        />
+                                                        <Upload
                                                             name="picture"
                                                             listType="picture-card"
                                                             className="avatar-uploader"
-                                                            showUploadList={false}
-                                                            action="https://www.mocky.io/v2/5cc8019d300000980a055e76"
-                                                            beforeUpload={beforeUpload}
-                                                            onChange={handleChangeFoto}
-                                                            previewFile={initialData.profile_picture}
+                                                            disabled = {true}
+                                                            icon={
+                                                                <FontAwesomeIcon
+                                                                    icon={faUser}
+                                                                /> 
+                                                            }
+                                                            previewFile={initialData.picture}
                                                         >
-                                                            {initialData.profile_picture ? <img src={initialData.profile_picture} alt="avatar" style={{ width: '10%' }} /> : uploadButton}
-                                                        </Upload>  */}
-                                                        <Upload 
-                                                        name= 'file'
-                                                        action= 'https://www.mocky.io/v2/5cc8019d300000980a055e76'
-                                                        onChange={onChange}
-                                                        >
-                                                            <Button>
-                                                                Click to Upload
-                                                            </Button>
-                                                        </Upload>
-                                                        {/* <input 
-                                                            type="file"
-                                                            onChange={onChange}
+                                                            {initialData.picture ? <img src={initialData.picture} alt="avatar" style={{ width: '50%' }} /> : uploadButton}
+                                                        </Upload>  
+                                                       
+                                                        {/* <Avatar
+                                                            size={64}
+                                                            src={initialData.picture}
+                                                            icon={
+                                                                <FontAwesomeIcon
+                                                                    icon={faUser}
+                                                                /> 
+                                                            }
                                                         /> */}
 
                                                     </div>
@@ -170,6 +178,17 @@ class CreatePenandatanganComponent extends Component {
                                             </Button>
                                         </div>
                                     </Form>
+                                    <Modal
+                                        title="Proses Penerimaan Peserta"
+                                        visible={initialData.visible}
+                                        className = "modal-notif"
+                                        >
+                                        <p className="text-notif">Mohon tunggu sebentar, sistem akan mengirimkan email untuk peserta...</p>
+                                        <div >
+                                            <LoadingNotifContainer loading={initialData.loading_notif} style={{ minHeight:'20px', marginTop:'50px',}}/>
+                                        </div>
+                                    </Modal>
+                                
                                 </div>
                             </div>
                        
