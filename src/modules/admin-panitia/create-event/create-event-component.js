@@ -11,7 +11,6 @@ import VenuePage from '../../../app/admin-panitia/component-create-event/venue-p
 import DateTimePage from '../../../app/admin-panitia/component-create-event/date-time-page'
 import VisualPage from '../../../app/admin-panitia/component-create-event/visual-page'
 import CertificatePage from '../../../app/admin-panitia/component-create-event/certificate-page'
-import BiodataPenandatanganPage from '../../../app/admin-panitia/component-create-event/biodata-penandatangan-page'
 // constant content
 const { Content } = Layout;
 const { Step } = Steps;
@@ -21,7 +20,7 @@ class CreateEventComponent extends Component {
     constructor(props) {
         super(props);
         this.state = {
-          current: 0,
+          current: 5,
         };
       }
     
@@ -88,15 +87,6 @@ class CreateEventComponent extends Component {
                 title: 'Certificate',
                 content: 
                     <CertificatePage
-                        next={this.next}
-                        prev={this.prev}
-                    />
-                ,
-            },
-            {
-                title: 'Biodata Penandatangan',
-                content: 
-                    <BiodataPenandatanganPage
                         next={this.next}
                         prev={this.prev}
                     />

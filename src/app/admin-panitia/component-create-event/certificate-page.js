@@ -61,44 +61,17 @@ class CertificatePage extends Component {
       return isPdf && isLt2M;
     }
 
-    handleChangePdf = info => {
-      if (info.file.status === 'uploading') {
-        this.setState({ 
-          loading: true 
-        });
-        return;
-      }
-      if (info.file.status === 'done') {
-        // Get this url from response in real world.
-        this.getBase64(info.file.originFileObj, sertifikat =>
-          this.setState({
-            sertifikat : info.file,
-            loading: false,
-          }),
-        );
-      }
-    };
+
+    uploadFile = (event) => {
+      // this.getBase64(event.target.files[0], imageUrl => {
+      //     this.setState({ picture: imageUrl })
+      // })
+      this.setState({ sertifikat:event.target.files[0] })
+      console.log('sertif',this.state.sertifikat)
+  }
     
   
     render() {
-
-
-    const handleUpload = {
-        name: 'file',
-        multiple: true,
-        action: 'https://www.mocky.io/v2/5cc8019d300000980a055e76',
-        onChange(info) {
-          const { status } = info.file;
-          if (status !== 'uploading') {
-            console.log(info.file, info.fileList);
-          }
-          if (status === 'done') {
-            message.success(`${info.file.name} file uploaded successfully.`);
-          } else if (status === 'error') {
-            message.error(`${info.file.name} file upload failed.`);
-          }
-        },
-      };
 
         return ( 
             <CertificateComponent
@@ -106,8 +79,7 @@ class CertificatePage extends Component {
                 navigate={this.props.navigate}
                 handleChange={this.handleChange}
                 beforeUpload = {this.beforeUpload}
-                handleChangePdf = {this.handleChangePdf}
-                handleUpload={handleUpload}
+                uploadFile = {this.uploadFile}
                 onNext={this.onNext}
                 onPrev={this.onPrev}
             />
