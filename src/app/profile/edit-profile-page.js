@@ -43,6 +43,20 @@ class EditProfilePage extends Component {
             })
         });
     }
+
+    uploadGambar = (event) => {
+        this.getBase64(event.target.files[0], imageUrl => {
+            this.setState({ picture: imageUrl })
+        })
+        this.setState({ profile_picture:event.target.files[0] })
+    }
+
+    
+    getBase64 = (img, callback)  =>{
+        const reader = new FileReader();
+        reader.addEventListener('load', () => callback(reader.result));
+        reader.readAsDataURL(img);
+    }
     
 
     render() { 
@@ -50,6 +64,7 @@ class EditProfilePage extends Component {
             <EditProfileComponent
                 navigate={this.props.navigate}
                 initialData={this.state}
+                uploadGambar = {this.uploadGambar}
             />
         );
     }
