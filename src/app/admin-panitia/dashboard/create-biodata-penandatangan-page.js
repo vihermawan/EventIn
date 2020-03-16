@@ -121,7 +121,6 @@ class CreateBiodataPenandatanganPage extends Component {
                 handleChange={this.handleChange}
                 handleSubmit={this.handleSubmit}
                 beforeUpload = {this.beforeUpload}
-                handleChangeFoto = {this.handleChangeFoto}
                 uploadGambar={this.uploadGambar}
             />
         );

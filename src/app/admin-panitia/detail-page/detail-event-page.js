@@ -15,6 +15,7 @@ class DetailEventPage extends Component {
     }
 
     componentDidMount(){
+        console.log('props',this.props)
         this.getDetailEvent(this.props.idEvent);
     }
 

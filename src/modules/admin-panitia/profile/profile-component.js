@@ -58,7 +58,7 @@ class ProfilePanitiaComponent extends Component {
                                         icon={faInfoCircle}
                                         borderRadius="5px"
                                         background="#070E57"
-                                        onClick={ () => onEditPanitia(data.id_users)}
+                                        onClick={ () => onEditPanitia(data.id_panitia)}
                                     />
                                    </div>
                                 </Col> 

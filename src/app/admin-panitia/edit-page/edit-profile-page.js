@@ -9,6 +9,7 @@ import EditProfileComponent from '../../../modules/admin-panitia/profile/edit-pr
 class EditProfilePage extends Component {
     state = {
         user : [],
+        id_user : '',
         nama_panitia : '',
         email : '',
         organsiasi : '',
@@ -19,6 +20,7 @@ class EditProfilePage extends Component {
     }
 
     componentDidMount(){
+        console.log('id_panitia',this.props.idPanitia)
         this.getProfile();
     }
 
@@ -72,8 +74,9 @@ class EditProfilePage extends Component {
         this.setState({loading: true})
         API.get(`/panitia/profile-edit`)
         .then(res => {
-            console.log('res',res.data.data.user)
+            console.log('res',res)
             this.setState({
+                id_user : res.data.data.user.id_users,
                 nama_panitia : res.data.data.user.panitia.nama_panitia,
                 email : res.data.data.user.email,
                 organisasi : res.data.data.user.panitia.organisasi,
@@ -85,6 +88,36 @@ class EditProfilePage extends Component {
         });
     }
 
+    
+    uploadGambar = (event) => {
+        this.getBase64(event.target.files[0], imageUrl => {
+            this.setState({ picture: imageUrl })
+        })
+        this.setState({ profile_picture:event.target.files[0] })
+    }
+
+    handleSubmit = (id_user) => {
+        // e.preventDefault();
+        const params = new FormData()
+        params.append('profile_picture',this.state.profile_picture)
+        params.set('nama_panitia',this.state.nama_panitia)
+        params.set('email',this.state.email)
+        params.set('organisasi',this.state.organisasi)
+        params.set('instagram',this.state.instagram)
+        params.set('no_telepon',this.state.no_telepon)
+
+        API.post(`/editprofile/${id_user}`, params)
+            .then(res => {
+                console.log('res',res)
+                // if(res.status == 201){
+                //     this.props.navigate(CONSTANS.LIST_BIODATA_PENANDATANGAN_PANITIA_MENU_KEY)
+                // }else{
+                //     this.openNotification('Data Salah', 'Silahkan isi data dengan benar')
+                // }
+                // this.setState({loading: false})
+            });
+    }
+
     render() { 
 
         return ( 
@@ -93,6 +126,7 @@ class EditProfilePage extends Component {
                 navigate={this.props.navigate}
                 handleChange = {this.handleChange}
                 beforeUpload = {this.beforeUpload}
+                uploadGambar = {this.uploadGambar}
                 handleChangeFoto = {this.handleChangeFoto}
             />
         );
@@ -100,7 +134,7 @@ class EditProfilePage extends Component {
 }
  
 const mapStateToProps = state => ({
-    ...state.activeEvent,
+    ...state.user,
 });
 
 const mapDispatchToProps = (dispatch => ({
