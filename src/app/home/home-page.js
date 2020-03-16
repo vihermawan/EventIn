@@ -9,7 +9,7 @@ class HomePage extends Component {
     state = {  }
 
     componentDidMount(){
-        
+    
     }
 
     onLoginHome = () => {

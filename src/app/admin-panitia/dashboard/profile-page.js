@@ -6,13 +6,12 @@ import CONSTANS from '../../../common/utils/Constants'
 import ProfileComponent from '../../../modules/admin-panitia/profile/profile-component';
 
 //import store
+import { setIdPanitia } from '../../../modules/admin-superadmin/user/panitia/store/panitia-action'
 import { setIdUsers } from '../../../modules/admin-superadmin/user/store/users-action'
 
 class ProfilePage extends Component {
     state = {  
         user : [],
-        nama_panitia : '',
-        panitia:[],
         loading : false,
     }
 
@@ -33,8 +32,8 @@ class ProfilePage extends Component {
         });
     }
 
-    onEditPanitia = (id_users) => {
-        this.props.setIdUsers(id_users)
+    onEditPanitia = (id_panitia) => {
+        this.props.setIdPanitia(id_panitia)
         this.props.navigate(CONSTANS.EDIT_PROFILE_PANITIA_MENU_KEY)
     }
 
@@ -42,6 +41,7 @@ class ProfilePage extends Component {
 
         const dataProfile =  this.state.user.map( ({id_users, email, panitia}, index) => ({
             id_users : id_users,
+            id_panitia : panitia.id_panitia,
             email : email,
             nama_panitia : panitia.nama_panitia,
             organisasi : panitia.organisasi,
@@ -68,6 +68,7 @@ const mapStateToProps = state => ({
 
 const mapDispatchToProps = (dispatch => ({
     setIdUsers,
+    setIdPanitia,
     navigate,
 }))();
 

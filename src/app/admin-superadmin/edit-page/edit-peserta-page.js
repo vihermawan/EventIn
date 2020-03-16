@@ -84,6 +84,13 @@ class EditProfilePesertaAdminPage extends Component {
         });
     }
 
+    uploadGambar = (event) => {
+        this.getBase64(event.target.files[0], imageUrl => {
+            this.setState({ picture: imageUrl })
+        })
+        this.setState({ profile_picture:event.target.files[0] })
+    }
+
     render() { 
 
 
@@ -94,6 +101,7 @@ class EditProfilePesertaAdminPage extends Component {
                 handleChange = {this.handleChange}
                 beforeUpload = {this.beforeUpload}
                 handleChangeFoto = {this.handleChangeFoto}
+                uploadGambar = {this.uploadGambar}
             />
         );
     }

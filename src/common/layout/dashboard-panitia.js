@@ -4,7 +4,7 @@ import './style/dashboard-style.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { Layout, Menu, Icon,Avatar,Dropdown } from 'antd';
 /*Import Icon */
-import { faDesktop,faPen, faCalendarCheck, faHistory, faFile,faUserFriends,faUserCircle, faClipboard } from '@fortawesome/free-solid-svg-icons'
+import { faDesktop,faPen, faCalendarCheck, faHistory, faFile,faUserFriends,faUserCircle, faClipboard, faUserTie } from '@fortawesome/free-solid-svg-icons'
 import ButtonAuth from '../component/button/button-auth'
 import { connect } from 'react-redux';
 import { navigate } from '../../common/store/action'
@@ -197,7 +197,7 @@ class dashboard extends Component {
                       <Menu.Item key="list-penandatangan">
                         <Link to="/dashboard/list-penandatangan">
                           <FontAwesomeIcon
-                              icon={faFile}
+                              icon={faUserTie}
                               style={{marginRight: 10}}
                           /> 
                           <span className={hidden}>List Signer</span>

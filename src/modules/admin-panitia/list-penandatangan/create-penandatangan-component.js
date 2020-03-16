@@ -153,17 +153,6 @@ class CreatePenandatanganComponent extends Component {
                                                         >
                                                             {initialData.picture ? <img src={initialData.picture} alt="avatar" style={{ width: '50%' }} /> : uploadButton}
                                                         </Upload>  
-                                                       
-                                                        {/* <Avatar
-                                                            size={64}
-                                                            src={initialData.picture}
-                                                            icon={
-                                                                <FontAwesomeIcon
-                                                                    icon={faUser}
-                                                                /> 
-                                                            }
-                                                        /> */}
-
                                                     </div>
                                                 </Col>
                                             </Row>

@@ -15,6 +15,7 @@ class EditProfileAdminSignerPage extends Component {
         jabatan : '',
         p_12 : '',
         picture : '',
+        name_photo : '',
         loading: false,
     }
 
@@ -48,30 +49,25 @@ class EditProfileAdminSignerPage extends Component {
         return isJpgOrPng && isLt2M;
     }
       
-    handleChangeFoto = info => {
-        if (info.file.status === 'uploading') {
-            this.setState({ 
-                loading: true 
-            });
-            return;
+    uploadGambar = (event) => {
+        this.getBase64(event.target.files[0], imageUrl => {
+            this.setState({ picture: imageUrl })
+        })
+        this.setState({ profile_picture:event.target.files[0] })
     }
-        if (info.file.status === 'done') {
-            // Get this url from response in real world.
-            this.getBase64(info.file.originFileObj, picture =>
-            this.setState({
-                picture,
-                loading: false,
-            }),
-        );
+
+    uploadP12 = (event) => {
+        this.setState({
+            p_12:event.target.files[0]
+        })
     }
-    };
     
     //get data profile dari API
     getProfile=(id_users)=>{
         this.setState({loading: true})
         API.get(`/admin/showeditpenandatangan/${id_users}`)
         .then(res => {
-          console.log('res',res.data.data.penandatangan.penandatangan.nama_penandatangan)
+          console.log('res',res)
           this.setState({
             nama_penandatangan :res.data.data.penandatangan.penandatangan.nama_penandatangan ,
             email : res.data.data.penandatangan.email,
@@ -80,9 +76,32 @@ class EditProfileAdminSignerPage extends Component {
             p_12 : res.data.data.penandatangan.penandatangan.p_12,
             picture : res.data.data.penandatangan.penandatangan.image_URL,
             jabatan : res.data.data.penandatangan.penandatangan.jabatan,
+            name_photo :res.data.data.penandatangan.penandatangan.profile_picture,
             loading: false,
           })
         });
+    }
+    handleSubmit = e => {
+        e.preventDefault();
+        const params = new FormData()
+        params.append('profile_picture',this.state.profile_picture)
+        params.set('nama',this.state.nama)
+        params.set('email',this.state.email)
+        params.set('jabatan',this.state.jabatan)
+        params.set('nip',this.state.nip)
+        params.set('instansi',this.state.instansi)
+        params.append('file_p12',this.state.p_12)
+        API.put(`/admin/editpenandatangan`, params)
+            .then(res => {
+                console.log('res',res)
+                // if(res.status == 201){
+                //     this.props.navigate(CONSTANS.LIST_BIODATA_PENANDATANGAN_PANITIA_MENU_KEY)
+                // }else{
+                //     this.openNotification('Data Salah', 'Silahkan isi data dengan benar')
+                // }
+                this.setState({loading: false})
+            });
+
     }
 
     render() { 
@@ -91,7 +110,8 @@ class EditProfileAdminSignerPage extends Component {
                 initialData={this.state}
                 navigate={this.props.navigate}
                 handleChange = {this.handleChange}
-                beforeUpload = {this.beforeUpload}
+                uploadGambar = {this.uploadGambar}
+                uploadP12 = {this.uploadP12}
                 handleChangeFoto = {this.handleChangeFoto}
             />
         );
