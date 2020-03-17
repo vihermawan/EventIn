@@ -37,32 +37,19 @@ class dashboard extends Component {
     collapsed: false,
     loading : false,
     username: 'username',
+    profile_picture:'',
   };
   
   componentDidMount(){
     // this.getProfile();
     const username = localStorage.getItem("username")
-    const picture = localStorage.getItem("picture")
-    this.setState({ username,picture })
+    const profile_picture = localStorage.getItem("profile_picture")
+    this.setState({ username,profile_picture })
   }
-
-  //get data profile dari API
-//   getProfile=()=>{
-//     this.setState({loading: true})
-//     API.get(`/panitia/profile-edit`)
-//     .then(res => {
-//         // console.log('res',res.data.data.user)
-//         this.setState({
-//           nama_panitia : res.data.data.user.panitia.nama_panitia,
-//           picture : res.data.data.user.panitia.image_URL,
-//           loading: false,
-//         })
-//     });
-// }
 
   handleLogout = e => {
      this.setState({loading: true})
-      API.post(`/logout`)
+      API.get(`/auth/logout`)
       .then(res => {
           console.log('res',res)
           if(res.status == 200){
@@ -264,7 +251,7 @@ class dashboard extends Component {
                     onClick={this.toggle}
                   />
                   <div className= "avatar">
-                    <Avatar size={40} icon="user" className="avatars" src={this.state.picture} style={{maxHeight:'100%'}}/>
+                    <Avatar size={40} icon="user" className="avatars" src={this.state.profile_picture} style={{maxHeight:'100%'}}/>
                         <span className="semi-bold">{this.state.username}</span>
                       <Dropdown overlay={menu} trigger={['click']}>
                         <a className="ant-dropdown-link" href="#">
