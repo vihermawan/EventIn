@@ -157,7 +157,6 @@ class EditProfileSignerAdminComponent extends Component {
                                                     <Input
                                                         type="file"
                                                         onChange={uploadGambar}
-                                                        // value='initialData.name_photo'
                                                         className="input-picture"
                                                         style={{marginBottom : '30px',padding: '4px 11px 11px 11px', minHeight:'40px',borderColor:'#2C37BA'}}
                                                     />       
@@ -175,10 +174,51 @@ class EditProfileSignerAdminComponent extends Component {
                                                  </div>  
                                             </Col>
                                             <Col lg={24} md={24} sm={24}>
-                                                <div>   
-                                                    <span className="auth-input-label text-black">File P_12*</span>
+                                                <div style={{marginBottom:'5px'}}>
+                                                    <Row>
+                                                        <Col lg={21} md={24} sm={24}>
+                                                            <div>   
+                                                                <span className="auth-input-label text-black">File P_12*</span>
+                                                            </div>
+                                                        </Col>
+                                                        <Col lg={3} md={24} sm={24}>
+                                                            <div style={initialData.button_p12 === 'Edit File P_12' ? {display:"block"}:{display:"none"}}>
+                                                                <ButtonDashboard
+                                                                    text="Edit File P_12"
+                                                                    height={20}
+                                                                    icon={faUserEdit}
+                                                                    borderRadius="5px"
+                                                                    background="#00C908"
+                                                                    onClick={handleButtonEdit}
+                                                                />
+                                                            </div>
+                                                            <div style={initialData.button_p12 === 'Upload File' ? {display:"block"}:{display:"none"}}>
+                                                                <ButtonDashboard
+                                                                    text="Kembali Lagi"
+                                                                    height={20}
+                                                                    icon={faBackward}
+                                                                    borderRadius="5px"
+                                                                    float = 'Right'
+                                                                    background="#00C908"
+                                                                    onClick={handleButtonGambar}
+                                                                />
+                                                            </div>
+                                                        </Col>
+                                                    </Row>
                                                 </div>
-                                                <div>
+                                            </Col>
+                                            <Col lg={24} md={24} sm={24}>
+                                                <div style={initialData.button_p12 === 'Upload File' ? {display:"none"}:{display:"block"}}>
+                                                    <InputForm
+                                                        name='file_p12'
+                                                        placeholder="Masukan jabatan...."
+                                                        className="input-event mt-5 mb-20"
+                                                        onChange={handleChange}
+                                                        value={initialData.file_p12}
+                                                        disabled = {true}
+                                                    />
+                                                </div>
+                                                <div style={initialData.button_p12 === 'Upload File' ? {display:"block"}:{display:"none"}}>
                                                     <Input
                                                         type="file"
                                                         name="file"

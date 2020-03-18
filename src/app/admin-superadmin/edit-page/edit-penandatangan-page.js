@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { Upload, Icon, message } from 'antd';
+import CONSTANS from '../../../common/utils/Constants'
 import { connect } from 'react-redux';
 import { API } from '../../../common/api'
 import { navigate } from '../../../common/store/action'
@@ -21,6 +22,7 @@ class EditProfileAdminSignerPage extends Component {
         profile_picture: null,
         loading: false,
         button_edit : 'Edit Foto Profil',
+        button_p12 : 'Edit File P_12',
     }
 
     componentDidMount(){
@@ -98,29 +100,32 @@ class EditProfileAdminSignerPage extends Component {
         params.set('jabatan',this.state.jabatan)
         params.set('nip',this.state.nip)
         params.set('instansi',this.state.instansi)
-        
+        this.setState({loading: true})
         API.postEdit(`/admin/penandatangan/edit/${id_penandatangan}`, params)
             .then(res => {
                 console.log('res',res)
-                // if(res.status == 201){
-                //     this.props.navigate(CONSTANS.LIST_BIODATA_PENANDATANGAN_PANITIA_MENU_KEY)
-                // }else{
-                //     this.openNotification('Data Salah', 'Silahkan isi data dengan benar')
-                // }
-                this.setState({loading: false})
+                if(res.status == 200){
+                    message.success('Data Berhasil di Ubah');
+                    this.componentDidMount();
+                }else{
+                    this.openNotification('Data Salah', 'Silahkan isi data dengan benar')
+                }
+               
             });
 
     }
 
     handleButtonEdit = () => {
         this.setState({
-            button_edit : 'Upload Gambar'
+            button_edit : 'Upload Gambar',
+            button_p12 : 'Upload File'
         })
     }
 
     handleButtonGambar = () => {
         this.setState({
-            button_edit : 'Edit Foto Profil'
+            button_edit : 'Edit Foto Profil',
+            button_p12 : 'Edit File P_12',
         })
     }
 
