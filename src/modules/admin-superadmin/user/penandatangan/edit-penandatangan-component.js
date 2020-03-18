@@ -9,7 +9,7 @@ import LoadingContainer from '../../../../common/component/loading/loading-conta
 import InputForm from '../../../../common/component/input/input-form';
 import 'moment-timezone';
 import 'moment/locale/id';
-// constant content
+// constant content.
 const { Content } = Layout;
 const { Option } = Select;
 const { Dragger } = Upload;
