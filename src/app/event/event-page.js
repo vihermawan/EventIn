@@ -64,7 +64,7 @@ class EventPage extends Component {
         })
     }
 
-    //button detail participant
+    //button detail participant.
     onDetailEvent = (id) => {
         console.log('id ini',id)
         this.props.setIdEvent(id);
