@@ -9,6 +9,7 @@ import LoadingContainer from '../../../../common/component/loading/loading-conta
 import InputForm from '../../../../common/component/input/input-form';
 import 'moment-timezone';
 import 'moment/locale/id';
+import ButtonDashboard from '../../../../common/component/button/button-dashboard';
 // constant content
 const { Content } = Layout;
 const { Option } = Select;
@@ -21,7 +22,7 @@ const uploadButton = (
 );
 class EditProfileSignerAdminComponent extends Component {
     render() { 
-      const {initialData,handleChange,uploadGambar,uploadP12} = this.props  
+      const {initialData,handleChange,uploadGambar,uploadP12,handleSubmit} = this.props  
       return ( 
             <Content
                 style={{
@@ -45,7 +46,7 @@ class EditProfileSignerAdminComponent extends Component {
                                 </div>
                             </Row>
                             <LoadingContainer loading={initialData.loading}>
-                                <Form>
+                                <Form onSubmit={handleSubmit}>
                                     <div className="container-form">
                                         <Row>
                                             <Col lg={24} md={24} sm={24}>
@@ -119,8 +120,23 @@ class EditProfileSignerAdminComponent extends Component {
                                                 </div>
                                             </Col>
                                             <Col lg={24} md={24} sm={24}>
-                                                    <div>   
-                                                        <span className="auth-input-label text-black">Foto profil*</span>
+                                                    <div>
+                                                        <Row>
+                                                            <Col lg={20} md={24} sm={24}>
+                                                                <span className="auth-input-label text-black">Foto profil*</span>
+                                                            </Col>
+                                                            <Col lg={4} md={24} sm={24}>
+                                                                <ButtonDashboard
+                                                                        text="Tambah Penandatangan"
+                                                                        height={20}
+                                                                        // icon={faUserPlus}
+                                                                        borderRadius="5px"
+                                                                        background="#00C908"
+                                                                        // onClick={ () => onCreatePenandatangan()}
+                                                                />
+                                                            </Col>
+                                                        </Row>   
+                                                        
                                                     </div>
                                                     <div>
                                                         <Input
@@ -130,16 +146,21 @@ class EditProfileSignerAdminComponent extends Component {
                                                             className="input-picture"
                                                             style={{marginBottom : '30px',padding: '4px 11px 11px 11px', minHeight:'40px',borderColor:'#2C37BA'}}
                                                         />
-                                                        <Upload
-                                                            name="picture"
-                                                            listType="picture-card"
-                                                            className="avatar-uploader"
-                                                            disabled = {true}
-                                                            previewFile={initialData.picture}
-                                                        >
-                                                            {initialData.picture ? <img src={initialData.picture} alt="avatar" style={{ width: '50%' }} /> : uploadButton}
-                                                        </Upload>  
+                                                       
                                                     </div>
+                                            </Col>
+                                            <Col lg={24} md={24} sm={24}>
+                                                <div>
+                                                    <Upload
+                                                        name="picture"
+                                                        listType="picture-card"
+                                                        className="avatar-uploader"
+                                                        disabled = {true}
+                                                        previewFile={initialData.picture}
+                                                    >
+                                                        {initialData.picture ? <img src={initialData.picture} alt="avatar" style={{ width: '50%' }} /> : uploadButton}
+                                                    </Upload>  
+                                                </div>
                                             </Col>
                                             <Col lg={24} md={24} sm={24}>
                                                 <div>   
@@ -148,8 +169,9 @@ class EditProfileSignerAdminComponent extends Component {
                                                 <div>
                                                     <Input
                                                         type="file"
+                                                        name="file"
                                                         onChange={uploadP12}
-                                                        // value='initialData.name_photo'
+                                                        // value={initialData.name_photo}
                                                         className="input-picture"
                                                         style={{marginBottom : '30px',padding: '4px 11px 11px 11px', minHeight:'40px',borderColor:'#2C37BA'}}
                                                     />
@@ -160,6 +182,7 @@ class EditProfileSignerAdminComponent extends Component {
                                     <div className="steps-action">
                                         <Button
                                             type="primary"
+                                            htmlType="submit"
                                             // onClick={() => onNext()}
                                         >
                                             Done

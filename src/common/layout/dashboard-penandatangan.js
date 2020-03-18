@@ -37,7 +37,7 @@ class signer extends Component {
 
   handleLogout = e => {
     this.setState({loading: true})
-    API.post(`/logout`)
+    API.get(`/auth/logout`)
     .then(res => {
         console.log('res',res)
         if(res.status == 200){
