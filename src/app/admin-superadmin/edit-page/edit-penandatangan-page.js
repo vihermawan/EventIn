@@ -15,10 +15,12 @@ class EditProfileAdminSignerPage extends Component {
         nip : '',
         method : 'PUT',
         jabatan : '',
-        p_12 : '',
+        file_p12 : null,
         picture : '',
         name_photo : '',
+        profile_picture: null,
         loading: false,
+        button_edit : 'Edit Foto Profil',
     }
 
     componentDidMount(){
@@ -60,7 +62,7 @@ class EditProfileAdminSignerPage extends Component {
 
     uploadP12 = (event) => {
         this.setState({
-            p_12:event.target.files[0]
+            file_p12:event.target.files[0]
         })
     }
     
@@ -76,10 +78,10 @@ class EditProfileAdminSignerPage extends Component {
             email : res.data.data.penandatangan.email,
             instansi :res.data.data.penandatangan.penandatangan.instansi ,
             nip :res.data.data.penandatangan.penandatangan.nip,
-            p_12 : res.data.data.penandatangan.penandatangan.p_12,
+            file_p12 : res.data.data.penandatangan.penandatangan.file_p12,
             picture : res.data.data.penandatangan.penandatangan.image_URL,
             jabatan : res.data.data.penandatangan.penandatangan.jabatan,
-            name_photo :res.data.data.penandatangan.penandatangan.profile_picture,
+            profile_picture :res.data.data.penandatangan.penandatangan.profile_picture,
             loading: false,
           })
         });
@@ -90,7 +92,7 @@ class EditProfileAdminSignerPage extends Component {
         const params = new FormData()
         params.append('profile_picture',this.state.profile_picture)
         params.append("_method", 'PUT')
-        params.append('file_p12',this.state.p_12)
+        params.append('file_p12',this.state.file_p12)
         params.set('nama_penandatangan',this.state.nama_penandatangan)
         params.set('email',this.state.email)
         params.set('jabatan',this.state.jabatan)
@@ -110,6 +112,18 @@ class EditProfileAdminSignerPage extends Component {
 
     }
 
+    handleButtonEdit = () => {
+        this.setState({
+            button_edit : 'Upload Gambar'
+        })
+    }
+
+    handleButtonGambar = () => {
+        this.setState({
+            button_edit : 'Edit Foto Profil'
+        })
+    }
+
     render() { 
         return ( 
             <EditProfileSignerComponent
@@ -118,8 +132,9 @@ class EditProfileAdminSignerPage extends Component {
                 handleChange = {this.handleChange}
                 uploadGambar = {this.uploadGambar}
                 uploadP12 = {this.uploadP12}
-                handleChangeFoto = {this.handleChangeFoto}
                 handleSubmit = {this.handleSubmit}
+                handleButtonEdit = {this.handleButtonEdit}
+                handleButtonGambar = {this.handleButtonGambar}
             />
         );
     }
