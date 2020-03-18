@@ -36,6 +36,8 @@ const { Header, Sider, Content } = Layout;
 const { SubMenu } = Menu;
 class signer extends Component {
   state = {
+    username : '',
+    profile_picture:'',
     collapsed: false,
     loading : false,
   };
@@ -46,9 +48,16 @@ class signer extends Component {
     });
   };
 
+  componentDidMount(){
+    // this.getProfile();
+    const username = localStorage.getItem("username")
+    const profile_picture = localStorage.getItem("profile_picture")
+    this.setState({ username,profile_picture })
+  }
+
   handleLogout = e => {
     this.setState({loading: true})
-     API.post(`/logout`)
+     API.get(`/auth/logout`)
      .then(res => {
          console.log('res',res)
          if(res.status == 200){
