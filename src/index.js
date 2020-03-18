@@ -6,4 +6,4 @@ import App from './app/App';
 //import {Ripple} from 'react-preloaders';
 
 
-ReactDOM.render(<App />, document.getElementById('root'));
+ReactDOM.render(<App/>, document.getElementById('root'));

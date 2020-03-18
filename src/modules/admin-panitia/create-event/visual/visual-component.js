@@ -1,13 +1,12 @@
 import React, { Component } from 'react';
-import { Layout, Row, Col, Upload, Form,Icon,Button,message } from 'antd';
-import { LoadingOutlined, PlusOutlined } from '@ant-design/icons';
+import { Layout, Row, Col, Upload, Form,Icon,Button,Input } from 'antd';
 // component
 const { Content } = Layout;
 const { Dragger } = Upload;
 
 class BasicInfoComponent extends Component{
     render(){
-        const { initialData, onChangePhoto, onNext, onPrev,beforeUpload,handleChangeFoto } = this.props;
+        const { initialData,  onNext, onPrev,uploadGambar } = this.props;
         const uploadButton = (
             <div>
               {/* {this.state.loading ? <LoadingOutlined /> : <PlusOutlined />} */}
@@ -27,31 +26,21 @@ class BasicInfoComponent extends Component{
                                             <span className="auth-input-label text-black">Upload Poster*</span>
                                         </div>
                                         <div>
-                                            {/* <Dragger
-                                                name='file'
-                                                multiple={true}
-                                                action='https://www.mocky.io/v2/5cc8019d300000980a055e76'
-                                                onChange={onChangePhoto}
-                                            >
-                                                <p className="ant-upload-drag-icon">
-                                                    <Icon type="inbox" />
-                                                </p>
-                                                <p className="ant-upload-text">Upload Poster Eventmu !</p>
-                                                <p className="ant-upload-hint">Tambahkan file untuk acaramu agar terlihat menarik :)</p>
-                                            </Dragger>, */}
-                                       
-                                            <Upload
-                                                name="avatar"
-                                                listType="picture-card"
-                                                className="avatar-uploader"
-                                                showUploadList={false}
-                                                action="https://www.mocky.io/v2/5cc8019d300000980a055e76"
-                                                beforeUpload={beforeUpload}
-                                                onChange={handleChangeFoto}
-                                            >
-                                                {initialData.imageUrl ? <img src={initialData.imageUrl} alt="avatar" style={{ width: '100%' }} /> : uploadButton}
-                                            </Upload>
-
+                                        <Input
+                                            type="file"
+                                            onChange={uploadGambar}
+                                            className="input-picture"
+                                            style={{marginBottom : '30px',padding: '4px 11px 11px 11px', minHeight:'40px',borderColor:'#2C37BA'}}
+                                        />
+                                        <Upload
+                                            name="picture"
+                                            listType="picture-card"
+                                            className="avatar-uploader"
+                                            disabled = {true}
+                                            previewFile={initialData.picture}
+                                        >
+                                            {initialData.picture ? <img src={initialData.picture} alt="avatar" style={{ width: '30%' }} /> : uploadButton}
+                                        </Upload>
                                         </div>
                                     </Col>
                                 </Row>

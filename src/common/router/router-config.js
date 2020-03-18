@@ -11,6 +11,7 @@ import EventPage from '../../app/event/event-page'
 import AllEventPage from '../../app/event/allevent-page'
 import DetailPage from '../../app/detail/detail-page'
 import ProfilePage from '../../app/profile/profile-page'
+import EditProfilePage from '../../app/profile/edit-profile-page'
 import DashboardPanitiaPage from '../../common/layout/dashboard-panitia'
 import LoginComponent from '../../app/auth/authlogin-page'
 import RegisterPesertaComponent from '../../app/auth/authregister-page'
@@ -25,13 +26,13 @@ const routeSources = [
     { component: HomePage, path: `${baseUrl}/`, exact: true },
     { component: EventPage, path: `${baseUrl}/event`, exact: true },
     { component: AllEventPage, path: `${baseUrl}/allevent`, exact: true },
-    { component: PilihanPage, path: `${baseUrl}/pilihan`, exact: true },
     { component: DetailPage, path: `${baseUrl}/detail`, exact: true },
     { component: LoginComponent, path: `${baseUrl}/login`, exact: true },
     { component: PilihanPage, path: `${baseUrl}/choose`, exact: true },
     { component: RegisterPesertaComponent, path: `${baseUrl}/register-peserta`, exact: true },
     { component: RegisterPanitiaComponent, path: `${baseUrl}/register-panitia`, exact: true },
     { component: ProfilePage, path: `${baseUrl}/profile`, exact: true },
+    { component: EditProfilePage, path: `${baseUrl}/edit-profile`, exact: true },
     { component: AboutPage, path: `${baseUrl}/about`, exact: false },
     { component: DashboardPanitiaPage, path: `${baseUrl}/dashboard`, exact: false },
     { component: DashboardPenandatanganPage, path: `${baseUrl}/signer`, exact: false },

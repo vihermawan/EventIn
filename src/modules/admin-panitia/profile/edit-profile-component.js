@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Layout, Breadcrumb, Row, Col, Form, Select, DatePicker, TimePicker,Upload, Icon, Button  } from 'antd';
+import { Layout, Breadcrumb, Row, Col, Form, Select, Input,Upload, Button  } from 'antd';
 import { Link } from 'react-router-dom';
 import '../../../assets/css/dashboard-all/dashboard.css'
 import '../../../assets/css/dashboard-all/table-style.css'
@@ -13,10 +13,15 @@ import 'moment/locale/id';
 const { Content } = Layout;
 const { Option } = Select;
 const { Dragger } = Upload;
-
+const uploadButton = (
+    <div>
+      {/* {this.state.loading ? <LoadingOutlined /> : <PlusOutlined />} */}
+      <div className="ant-upload-text">Upload Foto Eventmu</div>
+    </div>
+);
 class EditProfileComponent extends Component {
     render() { 
-      const {initialData,handleChange,dataProfile} = this.props  
+      const {initialData,handleChange,uploadGambar} = this.props  
       const format = 'HH:mm';
       return ( 
             <Content
@@ -33,8 +38,6 @@ class EditProfileComponent extends Component {
                 </Breadcrumb>
 
                 <Row style={{minHeight: '100%',marginBottom: '2%',marginTop:'2%',}} className="background">
-                {
-                    dataProfile.map( data =>
                     <Col lg={24} md={24} sm={24}> 
                         <div className="container-active-event">
                             <Row>
@@ -42,8 +45,10 @@ class EditProfileComponent extends Component {
                                     <span>Edit Profile</span>
                                 </div>
                             </Row>
-                            <LoadingContainer loading={initialData.loading}>
+                     
                                 <Form>
+                                <div style={{minHeight:'100vh'}}>
+                                <LoadingContainer loading={initialData.loading}>
                                     <div className="container-form">
                                         <Row>
                                             <Col lg={24} md={24} sm={24}>
@@ -116,6 +121,28 @@ class EditProfileComponent extends Component {
                                                     />
                                                 </div>
                                             </Col>
+                                            <Col lg={24} md={24} sm={24}>
+                                                <div>   
+                                                    <span className="auth-input-label text-black">Foto profil*</span>
+                                                </div>
+                                                <div>
+                                                    <Input
+                                                        type="file"
+                                                        onChange={uploadGambar}
+                                                        className="input-picture"
+                                                        style={{marginBottom : '30px',padding: '4px 11px 11px 11px', minHeight:'40px',borderColor:'#2C37BA'}}
+                                                    />
+                                                    <Upload
+                                                        name="picture"
+                                                        listType="picture-card"
+                                                        className="avatar-uploader"
+                                                        disabled = {true}
+                                                        previewFile={initialData.picture}
+                                                    >
+                                                        {initialData.picture ? <img src={initialData.picture} alt="avatar" style={{ width: '30%' }} /> : uploadButton}
+                                                    </Upload>  
+                                                </div>
+                                            </Col>
                                         </Row>
                                     </div>
                                     <div className="steps-action">
@@ -126,11 +153,12 @@ class EditProfileComponent extends Component {
                                             Done
                                         </Button>
                                     </div>
+                                    </LoadingContainer>
+                                    </div>
                                 </Form>
-                            </LoadingContainer>
+                           
                         </div>
                     </Col>
-                )}
                 </Row>
             </Content>
         );

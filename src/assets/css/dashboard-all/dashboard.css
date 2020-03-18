@@ -88,3 +88,25 @@
     margin-left: 20px;
     min-height: 300px;
 }
+
+.modal-notif .ant-modal-footer{
+    display: none;
+}
+.modal-notif .ant-modal-title{
+    text-align: center;
+}
+.modal-notif .ant-modal-content{
+    margin-top: 40px;
+}
+
+.modal-notif .ant-modal-body{
+    min-height: 100px;
+}
+.text-notif{
+    text-align: center;
+}
+.button-add{
+    margin: 10px auto;
+    text-align: right;
+}
+

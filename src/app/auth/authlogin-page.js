@@ -55,33 +55,36 @@ class AuthLogin extends Component {
             this.openNotification(message, 'harus diisi email')
         }else {
             this.setState({loading: true})
-            API.post(`/login`, params)
+            API.post(`/auth/login`, params)
             .then(res => {
                 console.log('res',res )
                 if(res.status == 200){
-                    if(res.data.data.id_role == 2){
+                    if(res.data.id_role == 2){
                         localStorage.setItem('username', res.data.nama)
+                        localStorage.setItem('profile_picture', res.data.profile_picture)
                         this.props.navigate(CONSTANS.PANITIA_MENU_KEY)
-                        localStorage.setItem('token', res.data.data.api_token)
+                        localStorage.setItem('token', res.data.token)
                     }
-                    else if(res.data.data.id_role == 1) {
+                    else if(res.data.id_role == 1) {
                         localStorage.setItem('username', res.data.nama)
+                        localStorage.setItem('profile_picture', res.data.profile_picture)
                         this.props.navigate(CONSTANS.ADMIN_MENU_KEY)
-                        localStorage.setItem('token', res.data.data.api_token)
+                        localStorage.setItem('token', res.data.data.token)
                     }
-                    else if(res.data.data.id_role == 3) {
+                    else if(res.data.id_role == 3) {
                         localStorage.setItem('username', res.data.nama)
+                        localStorage.setItem('profile_picture', res.data.profile_picture)
                         this.props.navigate(CONSTANS.HOME_MENU_KEY)
-                        localStorage.setItem('token', res.data.data.api_token)
+                        localStorage.setItem('token', res.data.token)
                     }
-                    else if(res.data.data.id_role == 4) {
+                    else if(res.data.id_role == 4) {
                         localStorage.setItem('username', res.data.nama)
                         this.props.navigate(CONSTANS.SIGNER_MENU_KEY)
-                        localStorage.setItem('token', res.data.data.api_token)
+                        localStorage.setItem('token', res.data.token)
                     }
                 }
                 else{
-                    // alert('Login salah')
+                    alert('Login salah')
                     this.openNotification('Login Salah', 'Silahkan isi email dan password dengan benar')
                 }
                 this.setState({loading: false})

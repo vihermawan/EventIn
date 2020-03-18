@@ -1,11 +1,12 @@
 import React, { Component } from 'react';
-import { Layout, Breadcrumb, Row, Tag, Col } from 'antd';
+import { Layout, Breadcrumb, Row, Col,Modal } from 'antd';
 import { faCheckCircle, faWindowClose } from '@fortawesome/free-solid-svg-icons'
 import ButtonIcon from '../../../common/component/button/button-icon'
 import TableProfile from '../../../common/component/table/table'
 import '../../../assets/css/dashboard-all/dashboard.css'
 import '../../../assets/css/dashboard-all/table-style.css'
 import LoadingContainer from '../../../common/component/loading/loading-container'
+import LoadingNotifContainer from '../../../common/component/loading/loading-notif';
 // constant content
 const { Content } = Layout;
 
@@ -40,6 +41,18 @@ class ListParticipantComponent extends Component {
                                     dataSource={data} 
                                     className="table-active-event"
                                 />
+                                <div>
+                                    <Modal
+                                        title="Proses Penerimaan Peserta"
+                                        visible={initialData.visible}
+                                        className = "modal-notif"
+                                        >
+                                        <p className="text-notif">Mohon tunggu sebentar, sistem akan mengirimkan data biodata...</p>
+                                        <div >
+                                            <LoadingNotifContainer loading={initialData.loading_notif} style={{ minHeight:'20px', marginTop:'50px',}}/>
+                                        </div>
+                                    </Modal>
+                                </div>
                             </Row>
                             </LoadingContainer>
                         </div>

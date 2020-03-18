@@ -64,6 +64,14 @@ class EditProfilePanitiaAdminPage extends Component {
         );
     }
     };
+
+    uploadGambar = (event) => {
+        this.getBase64(event.target.files[0], imageUrl => {
+            this.setState({ picture: imageUrl })
+        })
+        this.setState({ profile_picture:event.target.files[0] })
+    }
+
     
     //get data profile dari API
     getProfile=(id_users)=>{
@@ -93,6 +101,7 @@ class EditProfilePanitiaAdminPage extends Component {
                 handleChange = {this.handleChange}
                 beforeUpload = {this.beforeUpload}
                 handleChangeFoto = {this.handleChangeFoto}
+                uploadGambar = {this.uploadGambar}
             />
         );
     }

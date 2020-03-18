@@ -9,6 +9,7 @@ class VisualPage extends Component {
     state = {
         picture_event : '',
         imageUrl : '',
+        picture : '',
     }
 
     componentDidMount(){
@@ -62,6 +63,14 @@ class VisualPage extends Component {
         );
       }
     };
+
+    uploadGambar = (event) => {
+      this.getBase64(event.target.files[0], imageUrl => {
+          this.setState({ picture: imageUrl })
+      })
+      this.setState({ profile_picture:event.target.files[0] })
+  }
+
   
 
     render() {
@@ -73,6 +82,7 @@ class VisualPage extends Component {
                 onChangePhoto={this.onChangePhoto}
                 beforeUpload = {this.beforeUpload}
                 handleChangeFoto = {this.handleChangeFoto}
+                uploadGambar={this.uploadGambar}
                 onNext={this.onNext}
                 onPrev={this.onPrev}
             />

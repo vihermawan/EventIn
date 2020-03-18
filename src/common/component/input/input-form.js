@@ -4,7 +4,7 @@ import './style.css';
 
 function InputForm({
     value, onChange, placeholder, className, style, name, type,
-    iconType = 'user', withIcon = true, iconColor = 'white',
+    iconType = 'user', withIcon = true, iconColor = '#2C37BA',
 }) {
     return (        
         <Input

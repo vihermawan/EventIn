@@ -54,7 +54,7 @@ class EventComponent extends Component {
                                     <div className="title-container">
                                         <span className="text-soft-blue title-biggest bold">Temukan</span>
                                         <br/>
-                                        <span className="text-soft-blue title-big bold">event sesuai wilayahmu</span>
+                                        <span className="text-soft-blue title-big bold">event sesuai hobimu</span>
                                     </div>
                                 </Col>
                                 <Col span={24}>
@@ -66,36 +66,20 @@ class EventComponent extends Component {
                                         />
                                     </div>
                                     <div className="description-container desc-big">
-                                        Temukan berbagai event dari berbagai daerah...
+                                        Temukan berbagai event terkeren dan terupdate...
                                     </div>
                                 </Col>
                                 <Col span={24}>
-                                    <div className="button-section-1-container">
+                                    <div className="button-section-1-container-search">
                                         <Row>
-                                            <Col lg={12} md={12} sm={12}>
+                                            <Col lg={18} md={12} sm={12}>
                                                 <div className="button-search">
                                                     <Search
                                                         onSearch={value => console.log(value)}
-                                                        placeholder="Enter the location..."
+                                                        placeholder="Pencarian..."
                                                         // style={{ width: 200 }}
                                                     />
                                                 </div>
-                                            </Col>
-                                            <Col lg={{span: 11, offset:1}} md={12} sm={12}>
-                                                <Dropdown overlay={menu}>
-                                                    <div className="dropdown-category-event">
-                                                        <Button>
-                                                            <Row>
-                                                                <Col lg={23} md={24} sm={24}>
-                                                                    <span className="auth-dropdown-label text-black">Kategori Event</span>
-                                                                </Col>
-                                                                <Col lg={1} md={24} sm={24}>
-                                                                    <Icon type="down" style={{color:"#4D5AF2"}}/>
-                                                                </Col>
-                                                            </Row>
-                                                        </Button>
-                                                    </div>
-                                                </Dropdown>
                                             </Col>
                                         </Row>
                                     </div>
@@ -114,10 +98,10 @@ class EventComponent extends Component {
                     </Row>
                     <Row className="section-container" style={{marginBottom: 50}}>
                         <Col lg={24}>
-                            <span style={{marginLeft:'5%'}} className="text-soft-blue title-big-event bold">Populer</span>
+                            <span style={{marginLeft:'2%'}} className="text-soft-blue title-big-event bold">Populer</span>
                         </Col>
                         <Col lg={24} className="card-container">
-                            <Tabs style={{marginLeft:'5%', marginRight:'5%'}} defaultActiveKey="1" onChange={onTabChange}>
+                            <Tabs style={{marginLeft:'2%', marginRight:'2%'}} defaultActiveKey="1" onChange={onTabChange}>
                                 <TabPane 
                                     tab="All" key="0">                              
                                     <LoadingContainer loading={initialData.loading}>
@@ -205,13 +189,25 @@ class EventComponent extends Component {
                             </Tabs>       
                         </Col>
                     </Row>
+                    <Row>
+                        <Col span={24} >
+                            <div className="tombol-tengah button-section-1-container" style={initialData.countEvent < 17 ? {display:"none"}:{display:"block"}}>
+                                <Link to="/allevent">
+                                    <ButtonRounded
+                                        text="Semua Event"
+                                        className='button-participate'
+                                    />
+                                </Link>
+                            </div>
+                        </Col>
+                    </Row>
                     <Row className="section-container" style={{marginBottom: 50}}>
                         <Col lg={24}>
-                            <span style={{marginLeft:'5%'}} className="text-soft-blue title-big-event bold">Minggu ini</span>
+                            <span style={{marginLeft:'2%'}} className="text-soft-blue title-big-event bold">Minggu ini</span>
                         </Col>
                         <Col lg={24} className="card-container" >
                             <Col lg={24} >
-                                    <Row gutter={16} style={{marginLeft:'5%', marginRight:'5%'}}>
+                                    <Row gutter={[16,16]} style={{marginLeft:'2%', marginRight:'2%'}} type="flex">
                                         {
                                             cardData.map( data =>
                                                 <Col lg={6} md={12} sm={12} xs={24} className="mt-30">
@@ -251,7 +247,7 @@ class EventComponent extends Component {
                     </Row>
                     <Row>
                         <Col span={24} >
-                            <div className="tombol-tengah button-section-1-container">
+                            <div className="tombol-tengah button-section-1-container" style={initialData.countEvent < 17 ? {display:"none"}:{display:"block"}}>
                                 <Link to="/allevent">
                                     <ButtonRounded
                                         text="Semua Event"

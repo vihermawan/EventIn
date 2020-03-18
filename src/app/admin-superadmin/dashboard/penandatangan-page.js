@@ -26,6 +26,8 @@ class PenandatanganAdminPage extends Component {
         this.getPenandatangan();
     }
 
+    
+
     getPenandatangan=()=>{
         this.setState({loading: true})
         API.get(`/admin/showpenandatangan`)

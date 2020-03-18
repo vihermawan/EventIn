@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Layout, Breadcrumb, Row, Col, Form, Select, DatePicker, TimePicker,Upload, Icon, Button  } from 'antd';
+import { Layout, Breadcrumb, Row, Col, Form, Select, Input,Upload, Icon, Button  } from 'antd';
 import { Link } from 'react-router-dom';
 import '../../../../assets/css/dashboard-all/dashboard.css'
 import '../../../../assets/css/dashboard-all/table-style.css'
@@ -21,7 +21,7 @@ const uploadButton = (
 );
 class EditProfileSignerAdminComponent extends Component {
     render() { 
-      const {initialData,handleChange,beforeUpload,handleChangeFoto} = this.props  
+      const {initialData,handleChange,uploadGambar,uploadP12} = this.props  
       return ( 
             <Content
                 style={{
@@ -119,24 +119,40 @@ class EditProfileSignerAdminComponent extends Component {
                                                 </div>
                                             </Col>
                                             <Col lg={24} md={24} sm={24}>
+                                                    <div>   
+                                                        <span className="auth-input-label text-black">Foto profil*</span>
+                                                    </div>
+                                                    <div>
+                                                        <Input
+                                                            type="file"
+                                                            onChange={uploadGambar}
+                                                            // value='initialData.name_photo'
+                                                            className="input-picture"
+                                                            style={{marginBottom : '30px',padding: '4px 11px 11px 11px', minHeight:'40px',borderColor:'#2C37BA'}}
+                                                        />
+                                                        <Upload
+                                                            name="picture"
+                                                            listType="picture-card"
+                                                            className="avatar-uploader"
+                                                            disabled = {true}
+                                                            previewFile={initialData.picture}
+                                                        >
+                                                            {initialData.picture ? <img src={initialData.picture} alt="avatar" style={{ width: '50%' }} /> : uploadButton}
+                                                        </Upload>  
+                                                    </div>
+                                            </Col>
+                                            <Col lg={24} md={24} sm={24}>
                                                 <div>   
-                                                    <span className="auth-input-label text-black">Foto profil*</span>
+                                                    <span className="auth-input-label text-black">File P_12*</span>
                                                 </div>
                                                 <div>
-
-                                                    <Upload
-                                                        name="picture"
-                                                        listType="picture-card"
-                                                        className="avatar-uploader"
-                                                        showUploadList={true}
-                                                        action="https://www.mocky.io/v2/5cc8019d300000980a055e76"
-                                                        beforeUpload={beforeUpload}
-                                                        onChange={handleChangeFoto}
-                                                        previewFile={initialData.picture}
-                                                    >
-                                                        {initialData.picture ? <img src={initialData.picture} alt="avatar" style={{ width: '10%' }} /> : uploadButton}
-                                                    </Upload>
-
+                                                    <Input
+                                                        type="file"
+                                                        onChange={uploadP12}
+                                                        // value='initialData.name_photo'
+                                                        className="input-picture"
+                                                        style={{marginBottom : '30px',padding: '4px 11px 11px 11px', minHeight:'40px',borderColor:'#2C37BA'}}
+                                                    />
                                                 </div>
                                             </Col>
                                         </Row>

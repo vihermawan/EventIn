@@ -23,9 +23,17 @@ const { Header, Sider, Content } = Layout;
 
 class signer extends Component {
   state = {
+    username:'',
+    profile_picture:'',
     collapsed: false,
     loading : false,
   };
+
+  componentDidMount(){
+    const username = localStorage.getItem("username")
+    const profile_picture = localStorage.getItem("profile_picture")
+    this.setState({ username,profile_picture })
+  }
 
   handleLogout = e => {
     this.setState({loading: true})
@@ -168,8 +176,8 @@ class signer extends Component {
                       onClick={this.toggle}
                     />
                     <div className= "avatar">
-                        <Avatar size={40} icon="user" className="avatars" />
-                        <span className="semi-bold">PPSMB PALAPA</span>
+                        <Avatar size={40} icon="user" className="avatars" src={this.state.profile_picture}/>
+                        <span className="semi-bold">{this.state.username}</span>
                           <Dropdown overlay={menu} trigger={['click']}>
                             <a className="ant-dropdown-link" href="#">
                               <Icon type="down" style={{marginLeft:"20px", color:"black", fontSize:"13px"}} />
