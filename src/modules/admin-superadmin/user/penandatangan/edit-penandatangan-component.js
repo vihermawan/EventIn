@@ -23,7 +23,7 @@ const uploadButton = (
 );
 class EditProfileSignerAdminComponent extends Component {
     render() { 
-      const {initialData,handleChange,uploadGambar,uploadP12,handleSubmit,handleButtonEdit,handleButtonGambar} = this.props  
+      const {initialData,handleChange,uploadGambar,uploadP12,handleSubmit,handleButtonEdit,handleButtonGambar,handleButtonP12,handleBackP12} = this.props  
       return ( 
             <Content
                 style={{
@@ -133,6 +133,7 @@ class EditProfileSignerAdminComponent extends Component {
                                                                     height={20}
                                                                     icon={faUserEdit}
                                                                     borderRadius="5px"
+                                                                    float = 'Right'
                                                                     background="#00C908"
                                                                     onClick={handleButtonEdit}
                                                                 />
@@ -188,8 +189,9 @@ class EditProfileSignerAdminComponent extends Component {
                                                                     height={20}
                                                                     icon={faUserEdit}
                                                                     borderRadius="5px"
+                                                                    float = 'Right'
                                                                     background="#00C908"
-                                                                    onClick={handleButtonEdit}
+                                                                    onClick={handleButtonP12}
                                                                 />
                                                             </div>
                                                             <div style={initialData.button_p12 === 'Upload File' ? {display:"block"}:{display:"none"}}>
@@ -200,7 +202,7 @@ class EditProfileSignerAdminComponent extends Component {
                                                                     borderRadius="5px"
                                                                     float = 'Right'
                                                                     background="#00C908"
-                                                                    onClick={handleButtonGambar}
+                                                                    onClick={handleBackP12}
                                                                 />
                                                             </div>
                                                         </Col>

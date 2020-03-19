@@ -129,6 +129,18 @@ class EditProfileAdminSignerPage extends Component {
         })
     }
 
+    handleButtonP12 = () => {
+        this.setState({
+            button_p12 : 'Upload File'
+        })
+    }
+
+    handleBackP12 = () =>{
+        this.setState({
+            button_p12 : 'Edit File P_12',
+        })
+    }
+
     render() { 
         return ( 
             <EditProfileSignerComponent
@@ -140,6 +152,8 @@ class EditProfileAdminSignerPage extends Component {
                 handleSubmit = {this.handleSubmit}
                 handleButtonEdit = {this.handleButtonEdit}
                 handleButtonGambar = {this.handleButtonGambar}
+                handleButtonP12 = {this.handleButtonP12}
+                handleBackP12 = {this.handleBackP12}
             />
         );
     }

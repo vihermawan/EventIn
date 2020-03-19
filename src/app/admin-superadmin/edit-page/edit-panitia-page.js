@@ -8,6 +8,7 @@ import EditProfilePanitiaAdminComponent from '../../../modules/admin-superadmin/
 
 class EditProfilePanitiaAdminPage extends Component {
     state = {
+        id_panitia : '',
         nama_panitia : '',
         email : '',
         organisasi : '',
@@ -15,6 +16,8 @@ class EditProfilePanitiaAdminPage extends Component {
         no_telepon : '',
         picture : '',
         loading: false,
+        foto_panitia: null,
+        button_edit : 'Edit Foto Profil',
     }
 
     componentDidMount(){
@@ -46,30 +49,12 @@ class EditProfilePanitiaAdminPage extends Component {
         }
         return isJpgOrPng && isLt2M;
     }
-      
-    handleChangeFoto = info => {
-        if (info.file.status === 'uploading') {
-            this.setState({ 
-                loading: true 
-            });
-            return;
-    }
-        if (info.file.status === 'done') {
-            // Get this url from response in real world.
-            this.getBase64(info.file.originFileObj, picture =>
-            this.setState({
-                picture,
-                loading: false,
-            }),
-        );
-    }
-    };
 
     uploadGambar = (event) => {
         this.getBase64(event.target.files[0], imageUrl => {
             this.setState({ picture: imageUrl })
         })
-        this.setState({ profile_picture:event.target.files[0] })
+        this.setState({ foto_panitia:event.target.files[0] })
     }
 
     
@@ -80,15 +65,55 @@ class EditProfilePanitiaAdminPage extends Component {
         .then(res => {
             console.log('res',res.data.data)
             this.setState({
+                id_panitia : res.data.data.panitia.panitia.id_panitia,
                 nama_panitia :res.data.data.panitia.panitia.nama_panitia,
                 email : res.data.data.panitia.email,
                 instagram : res.data.data.panitia.panitia.instagram,
                 organisasi : res.data.data.panitia.panitia.organisasi,
                 no_telepon : res.data.data.panitia.panitia.no_telepon,
                 picture : res.data.data.panitia.panitia.image_URL,
+                foto_panitia :res.data.data.panitia.panitia.foto_panitia,
                 loading: false,
             })
         });
+    }
+
+    
+    handleButtonEdit = () => {
+        this.setState({
+            button_edit : 'Upload Gambar',
+        })
+    }
+
+    handleButtonGambar = () => {
+        this.setState({
+            button_edit : 'Edit Foto Profil',
+        })
+    }
+
+    handleSubmit = e => {
+        e.preventDefault();
+        const id_panitia = this.state.id_panitia
+        const params = new FormData()
+        params.append('foto_panitia',this.state.foto_panitia)
+        params.append("_method", 'PUT')
+        params.set('nama_panitia',this.state.nama_panitia)
+        params.set('email',this.state.email)
+        params.set('organisasi',this.state.organisasi)
+        params.set('instagram',this.state.instagram)
+        params.set('no_telepon',this.state.no_telepon)
+        this.setState({loading: true})
+        API.postEdit(`/admin/panitia/edit/${id_panitia}`, params)
+            .then(res => {
+                console.log('res',res)
+                if(res.status == 200){
+                    message.success('Data Berhasil di Ubah');
+                    this.componentDidMount();
+                }else{
+                    this.openNotification('Data Salah', 'Silahkan isi data dengan benar')
+                }
+            });
+
     }
 
     render() { 
@@ -100,8 +125,10 @@ class EditProfilePanitiaAdminPage extends Component {
                 navigate={this.props.navigate}
                 handleChange = {this.handleChange}
                 beforeUpload = {this.beforeUpload}
-                handleChangeFoto = {this.handleChangeFoto}
                 uploadGambar = {this.uploadGambar}
+                handleSubmit = {this.handleSubmit}
+                handleButtonEdit = {this.handleButtonEdit}
+                handleButtonGambar = {this.handleButtonGambar}
             />
         );
     }
