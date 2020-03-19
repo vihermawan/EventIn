@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Upload, Icon, message } from 'antd';
+import { notification, message } from 'antd';
 import { connect } from 'react-redux';
 import { API } from '../../../common/api'
 import { navigate } from '../../../common/store/action'
@@ -95,6 +95,14 @@ class EditProfilePesertaAdminPage extends Component {
         this.setState({ jenis_kelamin: value.key })
         console.log('jenis_kelamin', value.key);
     }
+
+    
+    openNotification = (message, description) => {
+        notification.error({
+            message,
+            description,
+        });
+    };
 
 
     handleSubmit = e => {
