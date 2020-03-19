@@ -1,12 +1,14 @@
 import React, { Component } from 'react';
 import { Layout, Row, Col, Button, Form, DatePicker, TimePicker, } from 'antd';
 import '../../../../assets/css/admin-panitia/component-create-event.css'
+import moment from 'moment';
 const { Content } = Layout;
 
 class DateTimeComponent extends Component{
     render(){
-        const {onNext, onPrev, onChangeTimeStart,onChangeTimeEnd,onChangeDateStart,onChangeDateEnd,onChangeDateRegisStart,onChangeDateRegistEnd} = this.props;
+        const {onNext,initialData, onPrev, onChangeTimeStart,onChangeTimeEnd,onChangeDateStart,onChangeDateEnd,onChangeDateRegisStart,onChangeDateRegistEnd} = this.props;
         const format = 'HH:mm';
+        const dateFormat = 'YYYY/MM/DD';
         return (
             
             <Layout className="login-container">
@@ -24,7 +26,11 @@ class DateTimeComponent extends Component{
                                                 <div className="date-picker">
                                                     <Row>
                                                         <Col lg={24} md={24} sm={24}>
-                                                            <DatePicker placeholder="Pilih tanggal" onChange={onChangeDateStart}/>
+                                                            <DatePicker 
+                                                                placeholder="Pilih tanggal" 
+                                                                onChange={onChangeDateStart} 
+                                                                defaultValue={moment(String(initialData.start_event), dateFormat)}
+                                                             />
                                                         </Col>
                                                     </Row>
                                                 </div>
@@ -45,6 +51,7 @@ class DateTimeComponent extends Component{
                                                                 size="medium"
                                                                 placeholder="Pilih waktu"
                                                                 onChange={onChangeTimeStart}
+                                                                defaultValue={moment(String(initialData.time_start), format)}
                                                                 />
                                                         </Col>
                                                     </Row>
@@ -61,7 +68,11 @@ class DateTimeComponent extends Component{
                                                 <div className="date-picker">
                                                     <Row>
                                                         <Col lg={24} md={24} sm={24}>
-                                                            <DatePicker placeholder="Pilih tanggal" onChange={onChangeDateEnd} />
+                                                            <DatePicker 
+                                                                placeholder="Pilih tanggal" 
+                                                                onChange={onChangeDateEnd} 
+                                                                defaultValue={moment(String(initialData.end_event), dateFormat)}
+                                                            />
                                                         </Col>
                                                     </Row>
                                                 </div>
@@ -82,6 +93,7 @@ class DateTimeComponent extends Component{
                                                                 size="medium"
                                                                 placeholder="Pilih waktu"
                                                                 onChange={onChangeTimeEnd}
+                                                                defaultValue={moment(String(initialData.time_end), format)}
                                                                 />
                                                         </Col>
                                                     </Row>
@@ -100,7 +112,11 @@ class DateTimeComponent extends Component{
                                                 <div className="date-picker-panjang">
                                                     <Row>
                                                         <Col lg={24} md={24} sm={24}>
-                                                            <DatePicker placeholder="Pilih tanggal" onChange={onChangeDateRegisStart} />
+                                                            <DatePicker 
+                                                                placeholder="Pilih tanggal" 
+                                                                onChange={onChangeDateRegisStart} 
+                                                                defaultValue={moment(String(initialData.open_registration), dateFormat)}
+                                                            />
                                                         </Col>
                                                     </Row>
                                                 </div>
@@ -116,7 +132,11 @@ class DateTimeComponent extends Component{
                                                 <div className="date-picker-panjang">
                                                     <Row>
                                                         <Col lg={24} md={24} sm={24}>
-                                                            <DatePicker placeholder="Pilih tanggal" onChange={onChangeDateRegistEnd}/>
+                                                            <DatePicker 
+                                                                placeholder="Pilih tanggal" 
+                                                                onChange={onChangeDateRegistEnd}
+                                                                defaultValue={moment(String(initialData.end_registration), dateFormat)}
+                                                            />
                                                         </Col>
                                                     </Row>
                                                 </div>

@@ -10,7 +10,6 @@ class BasicInfoComponent extends Component{
     render(){
         const { menu,initialData, handleChange, onNext, handleKategori } = this.props;
         return (
-            
             <Layout className="login-container">
                  <Content style={{ overflow: "hidden", backgroundColor :"white" }}>
                     <div>
@@ -87,13 +86,19 @@ class BasicInfoComponent extends Component{
                                             <div className="select-kategori">
                                                  <Select
                                                     labelInValue
-                                                    defaultValue={{ key: 'lucy' }}
+                                                    defaultValue={{ key: 'Pilih Kategori' }}
                                                     style={{ width: '100%' }}
                                                     className="select-kategori"
                                                     onChange={handleKategori}
                                                 >
-                                                    <Option value="jack">Jack (100)</Option>
-                                                    <Option value="lucy">Lucy (101)</Option>
+                                                    <Option value="Olahraga">Olahraga</Option>
+                                                    <Option value="Musik">Musik</Option>
+                                                    <Option value="Budaya">Budaya</Option>
+                                                    <Option value="Game">Game</Option>
+                                                    <Option value="Seni">Seni</Option>
+                                                    <Option value="Teknologi">Teknologi</Option>
+                                                    <Option value="Pendidikan">Pendidikan</Option>
+                                                    <Option value="Agama">Agama</Option>
                                                 </Select>,
                                             </div>
                                         </div>
