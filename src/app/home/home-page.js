@@ -7,13 +7,16 @@ import HomeComponent from '../../modules/home/component/home-component';
  
 class HomePage extends Component {
     state = { 
-        loading : false,
+        loadingHome: false,
     }
 
     componentDidMount(){
     
     }
 
+    onStartLoadingHome = () =>  this.setState({ loadingHome: true })
+    onFinishLoadingHome = () =>  this.setState({ loadingHome: false })
+ 
     onLoginHome = () => {
         this.props.navigate(CONSTANS.LOGIN_MENU_KEY)
     }
@@ -29,6 +32,8 @@ class HomePage extends Component {
                 navigate={this.props.navigate}
                 onLoginHome = {this.onLoginHome}
                 onRegisterHome = {this.onRegisterHome}
+                onStartLoadingHome={this.onStartLoadingHome}
+                onFinishLoadingHome={this.onFinishLoadingHome}
             />
         );
     }
