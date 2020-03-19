@@ -61,6 +61,7 @@ class BiayaPage extends Component {
     }
     onPrev = () => {
         this.props.prev();
+        localStorage.setItem('step-2', JSON.stringify(this.state));
     }
   
     render() {

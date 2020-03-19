@@ -24,6 +24,7 @@ class VenuePage extends Component {
         }
     }
 
+    
     handleChange = (e) => {
         let target = e.target.name;
         let value = e.target.value;
@@ -32,14 +33,9 @@ class VenuePage extends Component {
         })
     }
 
-    handleButtonClick(e) {
-        message.info('Click on left button.');
-        console.log('click left button', e);
-      }
-      
-    handleMenuClick(e) {
-        message.info('Click on menu item.');
-        console.log('click', e);
+    handleTempat = (value) => {
+        this.setState({ venue: value.key })
+        console.log('venue', value.key);
     }
 
     onNext = () => {
@@ -48,6 +44,7 @@ class VenuePage extends Component {
     }
     onPrev = () => {
         this.props.prev();
+        localStorage.setItem('step-3', JSON.stringify(this.state));
     }
   
     render() {
@@ -57,6 +54,7 @@ class VenuePage extends Component {
                 initialData={this.state}
                 navigate={this.props.navigate}
                 handleChange={this.handleChange}
+                handleTempat = {this.handleTempat}
                 onNext={this.onNext}
                 onPrev={this.onPrev}
             />
