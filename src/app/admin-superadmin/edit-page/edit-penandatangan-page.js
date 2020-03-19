@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
-import { Upload, Icon, message } from 'antd';
-import CONSTANS from '../../../common/utils/Constants'
+import { message,notification } from 'antd';
 import { connect } from 'react-redux';
 import { API } from '../../../common/api'
 import { navigate } from '../../../common/store/action'
@@ -88,6 +87,15 @@ class EditProfileAdminSignerPage extends Component {
           })
         });
     }
+
+    openNotification = (message, description) => {
+        notification.error({
+            message,
+            description,
+        });
+    };
+
+
     handleSubmit = e => {
         e.preventDefault();
         const id_penandatangan = this.state.id_penandatangan
@@ -140,6 +148,8 @@ class EditProfileAdminSignerPage extends Component {
             button_p12 : 'Edit File P_12',
         })
     }
+
+    
 
     render() { 
         return ( 

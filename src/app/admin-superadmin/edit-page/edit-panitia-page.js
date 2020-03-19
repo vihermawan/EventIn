@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Upload, Icon, message } from 'antd';
+import { notification, message } from 'antd';
 import { connect } from 'react-redux';
 import { API } from '../../../common/api'
 import { navigate } from '../../../common/store/action'
@@ -90,6 +90,14 @@ class EditProfilePanitiaAdminPage extends Component {
             button_edit : 'Edit Foto Profil',
         })
     }
+
+    
+    openNotification = (message, description) => {
+        notification.error({
+            message,
+            description,
+        });
+    };
 
     handleSubmit = e => {
         e.preventDefault();
