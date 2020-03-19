@@ -17,6 +17,7 @@ class Navbar extends Component {
 		username :'username',
 		visible: false,
 		isLogin: false,
+		loading: false,
 	}
 
 	

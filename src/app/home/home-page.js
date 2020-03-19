@@ -6,7 +6,9 @@ import HomeComponent from '../../modules/home/component/home-component';
 
  
 class HomePage extends Component {
-    state = {  }
+    state = { 
+        loading : false,
+    }
 
     componentDidMount(){
     
@@ -23,6 +25,7 @@ class HomePage extends Component {
     render() { 
         return ( 
             <HomeComponent
+                initialData = {this.state}
                 navigate={this.props.navigate}
                 onLoginHome = {this.onLoginHome}
                 onRegisterHome = {this.onRegisterHome}
