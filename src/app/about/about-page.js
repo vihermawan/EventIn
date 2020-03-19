@@ -4,12 +4,20 @@ import { navigate } from '../../common/store/action'
 import AboutComponent from '../../modules/about/component/about-component';
 
 class AboutPage extends Component {
-    state = {  }
+    state = { 
+        loadingHome: false,
+    }
+
+    onStartLoadingHome = () =>  this.setState({ loadingHome: true })
+    onFinishLoadingHome = () =>  this.setState({ loadingHome: false })
 
     render() { 
         return (
             <AboutComponent
                 navigate={this.props.navigate}
+                initialData= {this.state}
+                onStartLoadingHome={this.onStartLoadingHome}
+                onFinishLoadingHome={this.onFinishLoadingHome}
             />
         );
     }

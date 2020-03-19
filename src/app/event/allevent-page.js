@@ -15,6 +15,7 @@ class AllEventPage extends Component {
         eventbyKategori : [],
         loading : false,
         idkategori : '',
+        loadingHome: false,
      }
 
      componentDidMount(){
@@ -22,6 +23,9 @@ class AllEventPage extends Component {
         this.getKategori();
         
     }
+
+    onStartLoadingHome = () =>  this.setState({ loadingHome: true })
+    onFinishLoadingHome = () =>  this.setState({ loadingHome: false })
 
     onTabChange = (id_kategori) => {
         this.setState({loading: true})
@@ -105,6 +109,8 @@ class AllEventPage extends Component {
                 kategori = {kategori}
                 cardDataEventKategori = {cardDataEventKategori}
                 onTabChange={this.onTabChange}
+                onStartLoadingHome={this.onStartLoadingHome}
+                onFinishLoadingHome={this.onFinishLoadingHome}
             />
         );
     }

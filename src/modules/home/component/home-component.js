@@ -66,13 +66,16 @@ class HomeComponent extends Component {
         const image1 = require(`../../../assets/images/home-image1.png`);
         const image2 = require(`../../../assets/images/home-image2.png`);
         const image3 = require(`../../../assets/images/home-image3.png`);
-        const {onLoginHome,onRegisterHome,initialData} = this.props;
+        const {onLoginHome,onRegisterHome,initialData,onStartLoadingHome ,onFinishLoadingHome} = this.props;
         return ( 
             <Layout className="landing-container">
+                
                 <Navbar
                     navigate={this.props.navigate}
+                    onStartLoadingHome={onStartLoadingHome}
+                    onFinishLoadingHome={onFinishLoadingHome}
                 />
-                <LoadingContainer loading={initialData.loading}>
+                <LoadingContainer loading={initialData.loadingHome}>
                     <Content style={{ overflow: "hidden" }}>
                         {/* Section 1 */}
                         <Row className="section-container">
