@@ -79,6 +79,7 @@ class AuthLogin extends Component {
                     }
                     else if(res.data.id_role == 4) {
                         localStorage.setItem('username', res.data.nama)
+                        localStorage.setItem('profile_picture', res.data.profile_picture)
                         this.props.navigate(CONSTANS.SIGNER_MENU_KEY)
                         localStorage.setItem('token', res.data.token)
                     }

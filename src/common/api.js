@@ -69,6 +69,24 @@ export const API = {
             });
     },
 
+    postEdit : function (endPoint, input) {        
+        let headers = {
+            'Content-Type': 'multipart/form-data',
+        };
+        let token = localStorage.getItem("token");
+        // console.log(token)
+        if(token != null)
+            headers.Authorization = `Bearer ${token}`;
+
+        return  axios.post(BASE_URL+endPoint, input, {headers : headers})
+            .then( ( response ) => {
+                return response;
+            })
+            .catch( ( error ) => {
+                return error;
+            });
+    },
+
     put : function (endPoint, input) {
         let headers = {};
 
