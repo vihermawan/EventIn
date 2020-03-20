@@ -4,7 +4,7 @@ import './style.css';
 
 function InputForm({
     value, onChange, placeholder, className, style, name, type,
-    iconType = 'user', withIcon = true, iconColor = '#2C37BA',
+    iconType = 'user', withIcon = true, iconColor = '#2C37BA', disabled
 }) {
     return (        
         <Input
@@ -16,6 +16,7 @@ function InputForm({
             prefix={withIcon ? <Icon type={iconType} style={{ color: iconColor, fontSize: '16px' }} /> : false}
             style={style}
             type={type}
+            disabled = {disabled}
         />
     );
 }

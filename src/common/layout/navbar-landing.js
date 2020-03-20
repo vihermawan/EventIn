@@ -17,6 +17,7 @@ class Navbar extends Component {
 		username :'username',
 		visible: false,
 		isLogin: false,
+		loading: false,
 	}
 
 	
@@ -43,6 +44,7 @@ class Navbar extends Component {
 	};
 
 	handleLogout = e => {
+		this.props.onStartLoadingHome();
 		this.setState({loading: true})
 		 API.get(`/auth/logout`)
 		 .then(res => {
@@ -54,6 +56,7 @@ class Navbar extends Component {
 				 })
 				 this.props.navigate(CONSTANS.LOGIN_MENU_KEY)
 			 }
+			 this.props.onFinishLoadingHome();
 		 });
 	}
 

@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Upload, Icon, message } from 'antd';
+import { notification, message } from 'antd';
 import { connect } from 'react-redux';
 import { API } from '../../../common/api'
 import { navigate } from '../../../common/store/action'
@@ -8,6 +8,7 @@ import EditProfilePesertaAdminComponent from '../../../modules/admin-superadmin/
 
 class EditProfilePesertaAdminPage extends Component {
     state = {
+        id_peserta : '',
         nama_peserta : '',
         email : '',
         pekerjaan : '',
@@ -15,6 +16,8 @@ class EditProfilePesertaAdminPage extends Component {
         no_telepon : '',
         picture : '',
         loading: false,
+        foto_peserta: null,
+        button_edit : 'Edit Foto Profil',
     }
 
     componentDidMount(){
@@ -47,23 +50,17 @@ class EditProfilePesertaAdminPage extends Component {
         return isJpgOrPng && isLt2M;
     }
       
-    handleChangeFoto = info => {
-        if (info.file.status === 'uploading') {
-            this.setState({ 
-                loading: true 
-            });
-            return;
+    handleButtonEdit = () => {
+        this.setState({
+            button_edit : 'Upload Gambar',
+        })
     }
-        if (info.file.status === 'done') {
-            // Get this url from response in real world.
-            this.getBase64(info.file.originFileObj, picture =>
-            this.setState({
-                picture,
-                loading: false,
-            }),
-        );
+
+    handleButtonGambar = () => {
+        this.setState({
+            button_edit : 'Edit Foto Profil',
+        })
     }
-    };
     
     //get data profile dari API
     getProfile=(id_users)=>{
@@ -72,6 +69,7 @@ class EditProfilePesertaAdminPage extends Component {
         .then(res => {
             console.log('res',res.data.data)
             this.setState({
+                id_peserta : res.data.data.peserta.peserta.id_peserta,
                 nama_peserta :res.data.data.peserta.peserta.nama_peserta,
                 email : res.data.data.peserta.email,
                 organisasi : res.data.data.peserta.peserta.organisasi,
@@ -79,6 +77,7 @@ class EditProfilePesertaAdminPage extends Component {
                 pekerjaan : res.data.data.peserta.peserta.pekerjaan,
                 no_telepon : res.data.data.peserta.peserta.no_telefon,
                 picture : res.data.data.peserta.peserta.image_URL,
+                foto_peserta :res.data.data.peserta.peserta.foto_peserta,
                 loading: false,
             })
         });
@@ -88,11 +87,50 @@ class EditProfilePesertaAdminPage extends Component {
         this.getBase64(event.target.files[0], imageUrl => {
             this.setState({ picture: imageUrl })
         })
-        this.setState({ profile_picture:event.target.files[0] })
+        this.setState({ foto_peserta:event.target.files[0] })
     }
 
-    render() { 
 
+    handleJenisKelamin = (value) => {
+        this.setState({ jenis_kelamin: value.key })
+        console.log('jenis_kelamin', value.key);
+    }
+
+    
+    openNotification = (message, description) => {
+        notification.error({
+            message,
+            description,
+        });
+    };
+
+
+    handleSubmit = e => {
+        e.preventDefault();
+        const id_peserta = this.state.id_peserta
+        const params = new FormData()
+        params.append('foto_peserta',this.state.foto_peserta)
+        params.append("_method", 'PUT')
+        params.set('nama_peserta',this.state.nama_peserta)
+        params.set('email',this.state.email)
+        params.set('jenis_kelamin',this.state.jenis_kelamin)
+        params.set('organisasi',this.state.organisasi)
+        params.set('instagram',this.state.instagram)
+        params.set('no_telepon',this.state.no_telepon)
+        this.setState({loading: true})
+        API.postEdit(`/admin/peserta/edit/${id_peserta}`, params)
+            .then(res => {
+                console.log('res',res)
+                if(res.status == 200){
+                    message.success('Data Berhasil di Ubah');
+                    this.componentDidMount();
+                }else{
+                    this.openNotification('Data Salah', 'Silahkan isi data dengan benar')
+                }
+            });
+    }  
+
+    render() { 
 
         return ( 
             <EditProfilePesertaAdminComponent
@@ -100,8 +138,11 @@ class EditProfilePesertaAdminPage extends Component {
                 navigate={this.props.navigate}
                 handleChange = {this.handleChange}
                 beforeUpload = {this.beforeUpload}
-                handleChangeFoto = {this.handleChangeFoto}
                 uploadGambar = {this.uploadGambar}
+                handleButtonEdit = {this.handleButtonEdit}
+                handleButtonGambar = {this.handleButtonGambar}
+                handleSubmit = {this.handleSubmit}
+                handleJenisKelamin ={this.handleJenisKelamin}
             />
         );
     }

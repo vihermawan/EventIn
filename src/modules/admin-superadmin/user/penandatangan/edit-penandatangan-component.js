@@ -10,6 +10,7 @@ import InputForm from '../../../../common/component/input/input-form';
 import 'moment-timezone';
 import 'moment/locale/id';
 import ButtonDashboard from '../../../../common/component/button/button-dashboard';
+import { faBackward, faUserEdit } from '@fortawesome/free-solid-svg-icons';
 // constant content
 const { Content } = Layout;
 const { Option } = Select;
@@ -22,7 +23,7 @@ const uploadButton = (
 );
 class EditProfileSignerAdminComponent extends Component {
     render() { 
-      const {initialData,handleChange,uploadGambar,uploadP12,handleSubmit} = this.props  
+      const {initialData,handleChange,uploadGambar,uploadP12,handleSubmit,handleButtonEdit,handleButtonGambar,handleButtonP12,handleBackP12} = this.props  
       return ( 
             <Content
                 style={{
@@ -120,37 +121,48 @@ class EditProfileSignerAdminComponent extends Component {
                                                 </div>
                                             </Col>
                                             <Col lg={24} md={24} sm={24}>
-                                                    <div>
-                                                        <Row>
-                                                            <Col lg={20} md={24} sm={24}>
-                                                                <span className="auth-input-label text-black">Foto profil*</span>
-                                                            </Col>
-                                                            <Col lg={4} md={24} sm={24}>
+                                                <div style={{marginBottom:'10px'}}> 
+                                                    <Row>
+                                                        <Col lg={21} md={24} sm={24}>
+                                                            <span className="auth-input-label text-black">Foto profil*</span>
+                                                        </Col>
+                                                        <Col lg={3} md={24} sm={24}>
+                                                            <div style={initialData.button_edit === 'Edit Foto Profil' ? {display:"block"}:{display:"none"}}>
                                                                 <ButtonDashboard
-                                                                        text="Tambah Penandatangan"
-                                                                        height={20}
-                                                                        // icon={faUserPlus}
-                                                                        borderRadius="5px"
-                                                                        background="#00C908"
-                                                                        // onClick={ () => onCreatePenandatangan()}
+                                                                    text="Edit Foto Profil"
+                                                                    height={20}
+                                                                    icon={faUserEdit}
+                                                                    borderRadius="5px"
+                                                                    float = 'Right'
+                                                                    background="#00C908"
+                                                                    onClick={handleButtonEdit}
                                                                 />
-                                                            </Col>
-                                                        </Row>   
-                                                        
-                                                    </div>
-                                                    <div>
-                                                        <Input
-                                                            type="file"
-                                                            onChange={uploadGambar}
-                                                            // value='initialData.name_photo'
-                                                            className="input-picture"
-                                                            style={{marginBottom : '30px',padding: '4px 11px 11px 11px', minHeight:'40px',borderColor:'#2C37BA'}}
-                                                        />
-                                                       
-                                                    </div>
+                                                            </div>
+                                                            <div style={initialData.button_edit === 'Upload Gambar' ? {display:"block"}:{display:"none"}}>
+                                                                <ButtonDashboard
+                                                                    text="Kembali Lagi"
+                                                                    height={20}
+                                                                    icon={faBackward}
+                                                                    borderRadius="5px"
+                                                                    float = 'Right'
+                                                                    background="#00C908"
+                                                                    onClick={handleButtonGambar}
+                                                                />
+                                                            </div>
+                                                        </Col>
+                                                    </Row>  
+                                                </div>
                                             </Col>
                                             <Col lg={24} md={24} sm={24}>
-                                                <div>
+                                                <div style={initialData.button_edit === 'Upload Gambar' || null ? {display:"block"}:{display:"none"}}>
+                                                    <Input
+                                                        type="file"
+                                                        onChange={uploadGambar}
+                                                        className="input-picture"
+                                                        style={{marginBottom : '30px',padding: '4px 11px 11px 11px', minHeight:'40px',borderColor:'#2C37BA'}}
+                                                    />       
+                                                 </div>
+                                                 <div>
                                                     <Upload
                                                         name="picture"
                                                         listType="picture-card"
@@ -160,13 +172,55 @@ class EditProfileSignerAdminComponent extends Component {
                                                     >
                                                         {initialData.picture ? <img src={initialData.picture} alt="avatar" style={{ width: '50%' }} /> : uploadButton}
                                                     </Upload>  
+                                                 </div>  
+                                            </Col>
+                                            <Col lg={24} md={24} sm={24}>
+                                                <div style={{marginBottom:'5px'}}>
+                                                    <Row>
+                                                        <Col lg={21} md={24} sm={24}>
+                                                            <div>   
+                                                                <span className="auth-input-label text-black">File P_12*</span>
+                                                            </div>
+                                                        </Col>
+                                                        <Col lg={3} md={24} sm={24}>
+                                                            <div style={initialData.button_p12 === 'Edit File P_12' ? {display:"block"}:{display:"none"}}>
+                                                                <ButtonDashboard
+                                                                    text="Edit File P_12"
+                                                                    height={20}
+                                                                    icon={faUserEdit}
+                                                                    borderRadius="5px"
+                                                                    float = 'Right'
+                                                                    background="#00C908"
+                                                                    onClick={handleButtonP12}
+                                                                />
+                                                            </div>
+                                                            <div style={initialData.button_p12 === 'Upload File' ? {display:"block"}:{display:"none"}}>
+                                                                <ButtonDashboard
+                                                                    text="Kembali Lagi"
+                                                                    height={20}
+                                                                    icon={faBackward}
+                                                                    borderRadius="5px"
+                                                                    float = 'Right'
+                                                                    background="#00C908"
+                                                                    onClick={handleBackP12}
+                                                                />
+                                                            </div>
+                                                        </Col>
+                                                    </Row>
                                                 </div>
                                             </Col>
                                             <Col lg={24} md={24} sm={24}>
-                                                <div>   
-                                                    <span className="auth-input-label text-black">File P_12*</span>
+                                                <div style={initialData.button_p12 === 'Upload File' ? {display:"none"}:{display:"block"}}>
+                                                    <InputForm
+                                                        name='file_p12'
+                                                        placeholder="Masukan jabatan...."
+                                                        className="input-event mt-5 mb-20"
+                                                        onChange={handleChange}
+                                                        value={initialData.file_p12}
+                                                        disabled = {true}
+                                                    />
                                                 </div>
-                                                <div>
+                                                <div style={initialData.button_p12 === 'Upload File' ? {display:"block"}:{display:"none"}}>
                                                     <Input
                                                         type="file"
                                                         name="file"

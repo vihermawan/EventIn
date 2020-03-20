@@ -64,11 +64,11 @@ class BiayaComponent extends Component{
                                             </div>
                                             <div>
                                                 <InputForm
-                                                    name='rekening'
-                                                    placeholder="Masukkan nama rekening...."
+                                                    name='no_rekening'
+                                                    placeholder="Masukkan nomor rekening...."
                                                     className="input-event mt-5 mb-20"
                                                     onChange={handleChange}
-                                                    value={initialData.rekening}
+                                                    value={initialData.no_rekening}
                                                 />
                                             </div>
                                         </div>

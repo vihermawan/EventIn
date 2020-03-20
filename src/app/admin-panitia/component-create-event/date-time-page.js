@@ -6,6 +6,7 @@ import DateTimeComponent from '../../../modules/admin-panitia/create-event/date-
 class DateTimePage extends Component {
     state = {
         start_event : '',
+        display_start : '',
         end_event : '',
         time_start : '',
         time_end : '',

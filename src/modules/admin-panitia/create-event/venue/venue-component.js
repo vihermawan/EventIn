@@ -6,7 +6,7 @@ const { Content } = Layout;
 const { Option } = Select;
 class VenueComponent extends Component{
     render(){
-        const { menu,initialData, handleChange, handleSubmit, onNext, onPrev } = this.props;
+        const {initialData, handleChange,handleTempat, onNext, onPrev } = this.props;
         return (
             
             <Layout className="login-container">
@@ -26,7 +26,7 @@ class VenueComponent extends Component{
                                                     defaultValue={{ key: 'Pilih Tempat' }}
                                                     style={{ width: '103%' }}
                                                     className="select-kategori"
-                                                    onChange={handleChange}
+                                                    onChange={handleTempat}
                                                 >
                                                     <Option value="Terbuka">Terbuka</Option>
                                                     <Option value="Tertutup">Tertutup</Option>
@@ -42,12 +42,12 @@ class VenueComponent extends Component{
                                         </div>
                                         <div>
                                             <InputForm
-                                                name='location'
+                                                name='lokasi'
                                                 placeholder="Masukan lokasi event...."
                                                 className="input-location-event mt-5"
                                                 iconType="lock"
                                                 onChange={handleChange}
-                                                value={initialData.location}
+                                                value={initialData.lokasi}
                                             />
                                         </div>
                                     </Col>
@@ -59,12 +59,13 @@ class VenueComponent extends Component{
                                         </div>
                                         <div>
                                             <InputForm
-                                                name='location'
+                                                name='map'
                                                 placeholder="Ini Buat Gmaps Langitute longituted...."
                                                 className="input-location-event mt-5"
                                                 iconType="lock"
+                                                disabled={true}
                                                 onChange={handleChange}
-                                                value={initialData.location}
+                                                value={initialData.map}
                                             />
                                         </div>
                                     </Col>

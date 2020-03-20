@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Upload, Icon, message } from 'antd';
+import { message,notification } from 'antd';
 import { connect } from 'react-redux';
 import { API } from '../../../common/api'
 import { navigate } from '../../../common/store/action'
@@ -15,10 +15,13 @@ class EditProfileAdminSignerPage extends Component {
         nip : '',
         method : 'PUT',
         jabatan : '',
-        p_12 : '',
+        file_p12 : null,
         picture : '',
         name_photo : '',
+        profile_picture: null,
         loading: false,
+        button_edit : 'Edit Foto Profil',
+        button_p12 : 'Edit File P_12',
     }
 
     componentDidMount(){
@@ -60,7 +63,7 @@ class EditProfileAdminSignerPage extends Component {
 
     uploadP12 = (event) => {
         this.setState({
-            p_12:event.target.files[0]
+            file_p12:event.target.files[0]
         })
     }
     
@@ -76,39 +79,77 @@ class EditProfileAdminSignerPage extends Component {
             email : res.data.data.penandatangan.email,
             instansi :res.data.data.penandatangan.penandatangan.instansi ,
             nip :res.data.data.penandatangan.penandatangan.nip,
-            p_12 : res.data.data.penandatangan.penandatangan.p_12,
+            file_p12 : res.data.data.penandatangan.penandatangan.file_p12,
             picture : res.data.data.penandatangan.penandatangan.image_URL,
             jabatan : res.data.data.penandatangan.penandatangan.jabatan,
-            name_photo :res.data.data.penandatangan.penandatangan.profile_picture,
+            profile_picture :res.data.data.penandatangan.penandatangan.profile_picture,
             loading: false,
           })
         });
     }
+
+    openNotification = (message, description) => {
+        notification.error({
+            message,
+            description,
+        });
+    };
+
+
     handleSubmit = e => {
         e.preventDefault();
         const id_penandatangan = this.state.id_penandatangan
         const params = new FormData()
         params.append('profile_picture',this.state.profile_picture)
         params.append("_method", 'PUT')
-        params.append('file_p12',this.state.p_12)
+        params.append('file_p12',this.state.file_p12)
         params.set('nama_penandatangan',this.state.nama_penandatangan)
         params.set('email',this.state.email)
         params.set('jabatan',this.state.jabatan)
         params.set('nip',this.state.nip)
         params.set('instansi',this.state.instansi)
-        
+        this.setState({loading: true})
         API.postEdit(`/admin/penandatangan/edit/${id_penandatangan}`, params)
             .then(res => {
                 console.log('res',res)
-                // if(res.status == 201){
-                //     this.props.navigate(CONSTANS.LIST_BIODATA_PENANDATANGAN_PANITIA_MENU_KEY)
-                // }else{
-                //     this.openNotification('Data Salah', 'Silahkan isi data dengan benar')
-                // }
-                this.setState({loading: false})
+                if(res.status == 200){
+                    message.success('Data Berhasil di Ubah');
+                    this.componentDidMount();
+                }else{
+                    this.openNotification('Data Salah', 'Silahkan isi data dengan benar')
+                }
+               
             });
 
     }
+
+    handleButtonEdit = () => {
+        this.setState({
+            button_edit : 'Upload Gambar',
+            button_p12 : 'Upload File'
+        })
+    }
+
+    handleButtonGambar = () => {
+        this.setState({
+            button_edit : 'Edit Foto Profil',
+            button_p12 : 'Edit File P_12',
+        })
+    }
+
+    handleButtonP12 = () => {
+        this.setState({
+            button_p12 : 'Upload File'
+        })
+    }
+
+    handleBackP12 = () =>{
+        this.setState({
+            button_p12 : 'Edit File P_12',
+        })
+    }
+
+    
 
     render() { 
         return ( 
@@ -118,8 +159,11 @@ class EditProfileAdminSignerPage extends Component {
                 handleChange = {this.handleChange}
                 uploadGambar = {this.uploadGambar}
                 uploadP12 = {this.uploadP12}
-                handleChangeFoto = {this.handleChangeFoto}
                 handleSubmit = {this.handleSubmit}
+                handleButtonEdit = {this.handleButtonEdit}
+                handleButtonGambar = {this.handleButtonGambar}
+                handleButtonP12 = {this.handleButtonP12}
+                handleBackP12 = {this.handleBackP12}
             />
         );
     }

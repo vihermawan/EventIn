@@ -3,20 +3,10 @@ import { Layout, Row, Col, Upload, Form,Icon, Button, Input} from 'antd';
 // component
 import InputForm from '../../../../common/component/input/input-form';
 const { Content } = Layout;
-const { Dragger } = Upload;
 
 class CertificateComponent extends Component{
     render(){
         const { initialData, handleChange,onNext, onPrev,uploadFile } = this.props;
-        const uploadButton = (
-            <div>
-              {/* {this.state.loading ? <LoadingOutlined /> : <PlusOutlined />} */}
-                <p className="ant-upload-drag-icon">
-                    <Icon type="inbox" />
-                </p>
-                <div className="ant-upload-text">Preview file</div>
-            </div>
-          );
         return (
             
             <Layout className="login-container">
@@ -31,11 +21,11 @@ class CertificateComponent extends Component{
                                         </div>
                                         <div>
                                             <InputForm
-                                                name='sertifikat'
+                                                name='nama_sertifikat'
                                                 placeholder="Masukan nama sertifikat...."
                                                 className="input-event mt-5 mb-20"
                                                 onChange={handleChange}
-                                                value={initialData.sertifikat}
+                                                value={initialData.nama_sertifikat}
                                             />
                                         </div>
                                     </Col>
@@ -58,12 +48,12 @@ class CertificateComponent extends Component{
                                             <span className="auth-input-label text-black">Upload Sertifikat*</span>
                                         </div>
                                         <div>
-                                        <Input
-                                            type="file"
-                                            onChange={uploadFile}
-                                            className="input-picture"
-                                            style={{marginBottom : '30px',padding: '4px 11px 11px 11px', minHeight:'40px',borderColor:'#2C37BA'}}
-                                        />
+                                            <Input
+                                                type="file"
+                                                onChange={uploadFile}
+                                                className="input-picture"
+                                                style={{marginBottom : '30px',padding: '4px 11px 11px 11px', minHeight:'40px',borderColor:'#2C37BA'}}
+                                            />
                                         </div>
                                     </Col>
                                 </Row>
@@ -72,9 +62,9 @@ class CertificateComponent extends Component{
                     </div>
                     <Button
                         type="primary"
-                        onClick={() => onNext()}
+                        htmlType="submit"
                     >
-                        Next
+                        Done
                     </Button>
                     <Button
                         style={{ marginLeft: 8, marginTop:0 }}

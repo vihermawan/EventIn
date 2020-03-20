@@ -15,17 +15,17 @@ class CertificatePage extends Component {
        
     }
 
-  componentWillMount(){
-        const data = JSON.parse(localStorage.getItem('step-6'));
-        console.log(data)
-        if(data !== null){
-            this.setState({
-                nama_sertifikat: data.nama_sertifikat,
-                deskripsi: data.deskripsi,
-                sertifikat: data.sertifikat,
-            })
-        }
-  }
+    componentWillMount(){
+      const data = JSON.parse(localStorage.getItem('step-6'));
+      console.log(data)
+      if(data !== null){
+          this.setState({
+              nama_sertifikat: data.nama_sertifikat,
+              deskripsi: data.deskripsi,
+              sertifikat: data.sertifikat,
+          })
+      }
+    }
 
     handleChange = (e) => {
         let target = e.target.name;
@@ -39,8 +39,10 @@ class CertificatePage extends Component {
       this.props.next();
       localStorage.setItem('step-6', JSON.stringify(this.state));
     }
+
     onPrev = () => {
-        this.props.prev();
+      this.props.prev();
+      localStorage.setItem('step-6', JSON.stringify(this.state));
     }
 
     getBase64 = (pdf, callback)  =>{
@@ -50,26 +52,24 @@ class CertificatePage extends Component {
     }
 
     beforeUpload = (file) => {
-      const isPdf = file.type === '.pdf';
-      if (!isPdf) {
-        message.error('You can only upload PDF file!');
-      }
-      const isLt2M = file.size / 1024 / 1024 < 2;
-      if (!isLt2M) {
-        message.error('Image must smaller than 2MB!');
-      }
-      return isPdf && isLt2M;
+        const isPdf = file.type === '.pdf';
+        if (!isPdf) {
+          message.error('You can only upload PDF file!');
+        }
+        const isLt2M = file.size / 1024 / 1024 < 2;
+        if (!isLt2M) {
+          message.error('Image must smaller than 2MB!');
+        }
+        return isPdf && isLt2M;
     }
 
 
     uploadFile = (event) => {
-      // this.getBase64(event.target.files[0], imageUrl => {
-      //     this.setState({ picture: imageUrl })
-      // })
-      this.setState({ sertifikat:event.target.files[0] })
-      console.log('sertif',this.state.sertifikat)
-  }
-    
+        this.setState({ 
+          sertifikat:event.target.files[0] 
+        })
+        console.log('sertif',this.state.sertifikat)
+    }    
   
     render() {
 
