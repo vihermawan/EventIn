@@ -73,6 +73,7 @@ class BiayaPage extends Component {
                 handleChange={this.handleChange}
                 handleStatus={this.handleStatus}
                 handleBank={this.handleBank}
+             
                 onNext={this.onNext}
                 onPrev = {this.onPrev}
             />
