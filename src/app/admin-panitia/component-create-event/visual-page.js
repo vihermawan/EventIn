@@ -6,7 +6,7 @@ import VisualComponent from '../../../modules/admin-panitia/create-event/visual/
 
 class VisualPage extends Component {
     state = {
-        picture_event : '',
+        picture_event : {},
         picture : '',
         button_edit : 'Edit Foto Profil',
     }
@@ -17,7 +17,7 @@ class VisualPage extends Component {
 
     componentWillMount(){
         const data = JSON.parse(localStorage.getItem('step-5', this.state));
-        console.log(data)
+        // console.log(data)
         if(data !== null){
           this.setState({
               picture_event: data.picture_event,
@@ -49,7 +49,8 @@ class VisualPage extends Component {
       this.getBase64(event.target.files[0], imageUrl => {
           this.setState({ picture: imageUrl })
       })
-      this.setState({ picture_event:event.target.files[0] })
+      this.setState({ picture_event:event.target.files[0], tes:event.target.result, })
+      console.log('cek event',event.target)
   }
 
     handleButtonEdit = () => {

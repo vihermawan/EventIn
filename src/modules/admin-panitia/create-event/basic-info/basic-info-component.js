@@ -94,14 +94,14 @@ class BasicInfoComponent extends Component{
                                                     onChange={handleKategori}
                                                 >
                                                     <Option value="">Pilih Kategori</Option>
-                                                    <Option value="Olahraga">Olahraga</Option>
-                                                    <Option value="Musik">Musik</Option>
-                                                    <Option value="Budaya">Budaya</Option>
-                                                    <Option value="Game">Game</Option>
-                                                    <Option value="Seni">Seni</Option>
-                                                    <Option value="Teknologi">Teknologi</Option>
-                                                    <Option value="Pendidikan">Pendidikan</Option>
-                                                    <Option value="Agama">Agama</Option>
+                                                    <Option value="1">Olahraga</Option>
+                                                    <Option value="2">Musik</Option>
+                                                    <Option value="3">Budaya</Option>
+                                                    <Option value="4">Game</Option>
+                                                    <Option value="5">Seni</Option>
+                                                    <Option value="6">Teknologi</Option>
+                                                    <Option value="7">Pendidikan</Option>
+                                                    <Option value="8">Agama</Option>
                                                 </Select>,
                                             </div>
                                         </div>

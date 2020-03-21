@@ -20,7 +20,7 @@ class CreateEventComponent extends Component {
     constructor(props) {
         super(props);
         this.state = {
-          current: 5,
+          current: 4,
         };
       }
     
@@ -39,7 +39,7 @@ class CreateEventComponent extends Component {
         const { current } = this.state;
         const steps = [
             {
-                title: 'Basic Info',
+                title: 'Info Dasar',
                 content: 
                     <BasicInfoPage
                         next={this.next}
@@ -57,7 +57,7 @@ class CreateEventComponent extends Component {
                 ,
             },
             {
-                title: 'Venue',
+                title: 'Tempat',
                 content: 
                     <VenuePage
                         next={this.next}
@@ -66,7 +66,7 @@ class CreateEventComponent extends Component {
                 ,
             },
             {
-                title: 'Date Time',
+                title: 'Waktu',
                 content:
                     <DateTimePage
                         next={this.next}
@@ -74,17 +74,17 @@ class CreateEventComponent extends Component {
                     /> 
                 ,
             },
+            // {
+            //     title: 'Visual',
+            //     content: 
+            //         <VisualPage
+            //             next={this.next}
+            //             prev={this.prev}
+            //         />
+            //     ,
+            // },
             {
-                title: 'Visual',
-                content: 
-                    <VisualPage
-                        next={this.next}
-                        prev={this.prev}
-                    />
-                ,
-            },
-            {
-                title: 'Certificate',
+                title: 'Sertifikat dan Poster',
                 content: 
                     <CertificatePage
                         next={this.next}
