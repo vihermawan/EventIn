@@ -59,6 +59,7 @@ class EditProfileAdminSignerPage extends Component {
             this.setState({ picture: imageUrl })
         })
         this.setState({ profile_picture:event.target.files[0] })
+        
     }
 
     uploadP12 = (event) => {

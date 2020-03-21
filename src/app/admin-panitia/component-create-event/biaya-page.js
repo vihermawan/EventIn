@@ -7,9 +7,9 @@ import BiayaComponent from '../../../modules/admin-panitia/create-event/biaya/bi
 class BiayaPage extends Component {
     state = {
         status_biaya: '',
-        biaya: '',
-        bank: '',
-        no_rekening: '',
+        biaya: '0',
+        bank: '-',
+        no_rekening: '-',
     }
 
     componentDidMount(){

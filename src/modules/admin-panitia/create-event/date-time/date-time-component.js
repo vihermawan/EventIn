@@ -8,7 +8,7 @@ class DateTimeComponent extends Component{
     render(){
         const {onNext,initialData, onPrev, onChangeTimeStart,onChangeTimeEnd,onChangeDateStart,onChangeDateEnd,onChangeDateRegisStart,onChangeDateRegistEnd} = this.props;
         const format = 'HH:mm';
-        const dateFormat = 'YYYY/MM/DD';
+        const dateFormat = 'YYYY-MM-DD';
         return (
             
             <Layout className="login-container">

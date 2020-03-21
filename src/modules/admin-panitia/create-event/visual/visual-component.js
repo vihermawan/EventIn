@@ -55,7 +55,7 @@ class BasicInfoComponent extends Component{
                                         </div>
                                     </Col>
                                     <Col lg={24} md={24} sm={24}>
-                                        <div style={initialData.picture ===  null || initialData.button_edit === 'Edit Foto Profil' ? {display:"none"}:{display:"block"}}>
+                                        <div style={initialData.picture_event ===  null || initialData.button_edit === 'Edit Foto Profil' ? {display:"none"}:{display:"block"}}>
                                             <Input
                                                 type="file"
                                                 onChange={uploadGambar}

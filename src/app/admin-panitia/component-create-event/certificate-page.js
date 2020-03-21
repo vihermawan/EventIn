@@ -10,6 +10,9 @@ class CertificatePage extends Component {
       nama_sertifikat : '',
       deskripsi : '',
       sertifikat : '',
+      picture_event : {},
+      picture : '',
+      button_edit : 'Edit Foto Profil',
     }
 
     componentDidMount(){
@@ -17,13 +20,15 @@ class CertificatePage extends Component {
     }
 
     componentWillMount(){
-      const data = JSON.parse(localStorage.getItem('step-6'));
+      const data = JSON.parse(localStorage.getItem('step-5'));
       console.log(data)
       if(data !== null){
           this.setState({
               nama_sertifikat: data.nama_sertifikat,
               deskripsi: data.deskripsi,
               sertifikat: data.sertifikat,
+              picture_event: data.picture_event,
+              picture : data.picture,
           })
       }
     }
@@ -36,20 +41,14 @@ class CertificatePage extends Component {
         })
     }
 
-    onNext = () => {
-      this.props.next();
-      localStorage.setItem('step-6', JSON.stringify(this.state));
-    }
+    // onNext = () => {
+    //   this.props.next();
+    //   localStorage.setItem('step-6', JSON.stringify(this.state));
+    // }
 
     onPrev = () => {
       this.props.prev();
-      localStorage.setItem('step-6', JSON.stringify(this.state));
-    }
-
-    getBase64 = (pdf, callback)  =>{
-      const reader = new FileReader();
-      reader.addEventListener('load', () => callback(reader.result));
-      reader.readAsDataURL(pdf);
+      localStorage.setItem('step-5', JSON.stringify(this.state));
     }
 
     uploadFile = (event) => {
@@ -59,6 +58,31 @@ class CertificatePage extends Component {
         console.log('sertif',this.state.sertifikat)
     }    
 
+    getBase64 = (img, callback)  =>{
+      const reader = new FileReader();
+      reader.addEventListener('load', () => callback(reader.result));
+      reader.readAsDataURL(img);
+    }
+
+    uploadGambar = (event) => {
+      this.getBase64(event.target.files[0], imageUrl => {
+          this.setState({ picture: imageUrl })
+      })
+      this.setState({ picture_event:event.target.files[0] })
+  }
+
+  handleButtonEdit = () => {
+    this.setState({
+        button_edit : 'Upload Gambar'
+      })
+  }
+
+  handleButtonGambar = () => {
+      this.setState({
+          button_edit : 'Edit Foto Profil'
+      })
+  }
+
     handleSubmit = () => {
       // e.preventDefault();
       const params = new FormData()
@@ -66,10 +90,10 @@ class CertificatePage extends Component {
       const biaya = JSON.parse(localStorage.getItem('step-2'));
       const venue = JSON.parse(localStorage.getItem('step-3'));
       const datetime = JSON.parse(localStorage.getItem('step-4'));
-      const visual = JSON.parse(localStorage.getItem('step-5'));
+      // const visual = JSON.parse(localStorage.getItem('step-5'));
 
       params.set('nama_event',basic_info.nama)
-      params.set('description',basic_info.description)
+      params.set('deskripsi_event',basic_info.description)
       params.set('organisasi',basic_info.organisasi)
       params.set('email_event',basic_info.email_event)
       params.set('no_telepon',basic_info.no_telepon)
@@ -88,21 +112,21 @@ class CertificatePage extends Component {
       params.set('start_event',datetime.start_event)
       params.set('end_event',datetime.end_event)
       params.set('open_registration',datetime.open_registration)
-      params.set('close_registration',datetime.end_registration)
+      params.set('end_registration',datetime.end_registration)
       params.set('time_start',datetime.time_start)
       params.set('time_end',datetime.time_end)
-    
-      params.append('picture',visual.picture_event)
+      
       
       params.set('nama_sertifikat',this.state.nama_sertifikat)
       params.set('description',this.state.deskripsi)
       params.append('sertifikat',this.state.sertifikat)
+      params.append('picture',this.state.picture_event)
      
       console.log('params', params)
-      API.post(`/panitia/create/event`, params)
+      API.postEdit(`/panitia/create/event`, params)
       .then(res => {
           console.log('res',res)
-          // if(res.status == 200){
+          // if(res.status == 201){
           //     message.success('Data Berhasil di Ubah');
           //     this.componentDidMount();
           // }else{
@@ -121,9 +145,11 @@ class CertificatePage extends Component {
                 navigate={this.props.navigate}
                 handleChange={this.handleChange}
                 uploadFile = {this.uploadFile}
-                onNext={this.onNext}
                 onPrev={this.onPrev}
                 handleSubmit = {this.handleSubmit}
+                uploadGambar = {this.uploadGambar}
+                handleButtonEdit = {this.handleButtonEdit}
+                handleButtonGambar={this.handleButtonGambar}
             />
         );
     }
