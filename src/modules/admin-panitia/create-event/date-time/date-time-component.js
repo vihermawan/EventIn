@@ -134,7 +134,7 @@ class DateTimeComponent extends Component{
                                                         <Col lg={24} md={24} sm={24}>
                                                             <DatePicker 
                                                                 placeholder="Pilih tanggal" 
-                                                                onChange={onChangeDateRegistEnd}
+                                                                onChange={onChangeDateRegistEnd} 
                                                                 defaultValue={moment(String(initialData.end_registration), dateFormat)}
                                                             />
                                                         </Col>

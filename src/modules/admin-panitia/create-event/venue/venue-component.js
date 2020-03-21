@@ -23,11 +23,12 @@ class VenueComponent extends Component{
                                             <div>
                                                 <Select
                                                     labelInValue
-                                                    defaultValue={{ key: 'Pilih Tempat' }}
+                                                    defaultValue={{ key: String(initialData.venue) }}
                                                     style={{ width: '103%' }}
                                                     className="select-kategori"
                                                     onChange={handleTempat}
                                                 >
+                                                    <Option value="">Pilih Tempat</Option>
                                                     <Option value="Terbuka">Terbuka</Option>
                                                     <Option value="Tertutup">Tertutup</Option>
                                                 </Select>,

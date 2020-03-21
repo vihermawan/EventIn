@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { navigate } from '../../../common/store/action'
 import DateTimeComponent from '../../../modules/admin-panitia/create-event/date-time/date-time-component';
+import moment from 'moment';
 
 class DateTimePage extends Component {
     state = {
@@ -71,6 +72,15 @@ class DateTimePage extends Component {
                 time_end: data.time_end,
                 open_registration: data.open_registration,
                 end_registration: data.end_registration,
+            })
+        }else{
+            this.setState({
+                start_event: moment().format('YYYY/MM/DD'),
+                end_event: moment().format('YYYY/MM/DD'),
+                time_start: moment().format('HH:mm'),
+                time_end: moment().format('HH:mm'),
+                open_registration: moment().format('YYYY/MM/DD'),
+                end_registration: moment().format('YYYY/MM/DD'),
             })
         }
     }
