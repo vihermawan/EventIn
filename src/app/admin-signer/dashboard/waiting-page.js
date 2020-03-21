@@ -94,11 +94,11 @@ class WaitingListPage extends Component {
                 dataIndex: 'sertifikat',
                 key: 'sertifikat',
             },
-            {
-                title: 'Tenggang Waktu',
-                dataIndex: 'tenggang_waktu',
-                key: 'tenggang_waktu',
-            },
+            // {
+            //     title: 'Tenggang Waktu',
+            //     dataIndex: 'tenggang_waktu',
+            //     key: 'tenggang_waktu',
+            // },
             {
               title: 'Action',
               key: 'action',
