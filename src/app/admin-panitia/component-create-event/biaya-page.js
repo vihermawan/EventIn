@@ -7,6 +7,7 @@ import BiayaComponent from '../../../modules/admin-panitia/create-event/biaya/bi
 class BiayaPage extends Component {
     state = {
         status_biaya: '',
+        biaya: '',
         bank: '',
         no_rekening: '',
     }
@@ -21,6 +22,7 @@ class BiayaPage extends Component {
         if(data !== null){
             this.setState({
                 status_biaya: data.status_biaya,
+                biaya: data.biaya,
                 bank: data.bank,
                 no_rekening: data.no_rekening,
             })

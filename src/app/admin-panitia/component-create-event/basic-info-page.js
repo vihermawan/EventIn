@@ -12,6 +12,9 @@ class BasicInfoPage extends Component {
         organisasi: '',
         batas_peserta: '',
         kategori_input : '',
+        no_telepon : '',
+        email_event : '',
+        instagram : '',
         kategori: [],
     }
 
@@ -41,7 +44,10 @@ class BasicInfoPage extends Component {
                 description: data.description,
                 organisasi: data.organisasi,
                 batas_peserta: data.batas_peserta,
-                kategori_input : data.kategori_input
+                kategori_input : data.kategori_input,
+                no_telepon : data.no_telepon,
+                email_event : data.email_event,
+                instagram : data.instagram,
             })
         }
     }

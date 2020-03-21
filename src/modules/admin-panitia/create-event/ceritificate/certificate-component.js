@@ -6,7 +6,7 @@ const { Content } = Layout;
 
 class CertificateComponent extends Component{
     render(){
-        const { initialData, handleChange,onNext, onPrev,uploadFile } = this.props;
+        const { initialData, handleChange,onNext, onPrev,uploadFile,handleSubmit } = this.props;
         return (
             
             <Layout className="login-container">
@@ -62,7 +62,7 @@ class CertificateComponent extends Component{
                     </div>
                     <Button
                         type="primary"
-                        htmlType="submit"
+                        onClick={() => handleSubmit()}
                     >
                         Done
                     </Button>
