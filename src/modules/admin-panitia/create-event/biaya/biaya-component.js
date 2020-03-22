@@ -3,6 +3,7 @@ import { Layout, Row, Col, Button, Form, Select } from 'antd';
 import '../../../../assets/css/admin-panitia/create-event.css'
 // component
 import InputForm from '../../../../common/component/input/input-form';
+import { faWallet, faMoneyCheck } from '@fortawesome/free-solid-svg-icons';
 const { Content } = Layout;
 const { Option } = Select;
 
@@ -32,15 +33,15 @@ class BiayaComponent extends Component{
                                                     style={initialData.status_biaya === null ? {display:"none"}:{display:"block"}}
                                                 >
                                                     <Option value ="">Pilih Kategori</Option>
-                                                    <Option value="9">Berbayar</Option>
-                                                    <Option value="10">Tidak Berbayar</Option>
+                                                    <Option value="10">Berbayar</Option>
+                                                    <Option value="9">Tidak Berbayar</Option>
                                                 </Select>
                                                 
                                             </div>
                                         </div>
                                     </Col>
                                     <Col lg={24} md={24} sm={24}>
-                                        <div style={initialData.status_biaya === '9' || null ? {display:"block"}:{display:"none"}} className="kategori-bayar mb-20">
+                                        <div style={initialData.status_biaya === '10' || null ? {display:"block"}:{display:"none"}} className="kategori-bayar mb-20">
                                             <div>   
                                                 <span className="auth-input-label text-black">Biaya*</span>
                                             </div>
@@ -50,7 +51,8 @@ class BiayaComponent extends Component{
                                                     placeholder="Masukkan biaya...."
                                                     className="input-event mt-5 mb-20"
                                                     onChange={handleChange}
-                                                    value={initialData.biaya}
+                                                    value={'Rp '+initialData.biaya}
+                                                    icon={faWallet}
                                                 />
                                             </div>
                                             <div>   
@@ -64,7 +66,7 @@ class BiayaComponent extends Component{
                                                     className="select-kategori"
                                                     onChange={handleBank}
                                                 >
-                                                    <Option value ="">Pilih Bank</Option>
+                                                    <Option value ="-">Pilih Bank</Option>
                                                     <Option value="Mandiri">Mandiri</Option>
                                                     <Option value="BNI">BNI</Option>
                                                     <Option value="BCA">BCA</Option>
@@ -74,7 +76,7 @@ class BiayaComponent extends Component{
                                         </div>
                                     </Col>
                                     <Col lg={24} md={24} sm={24}>
-                                        <div style={initialData.status_biaya === '9' || null ? {display:"block"}:{display:"none"}} className="kategori-bayar mb-20">
+                                        <div style={initialData.status_biaya === '10' || null ? {display:"block"}:{display:"none"}} className="kategori-bayar mb-20">
                                             <div>   
                                                 <span className="auth-input-label text-black">Nomor Rekening*</span>
                                             </div>
@@ -85,6 +87,7 @@ class BiayaComponent extends Component{
                                                     className="input-event mt-5 mb-20"
                                                     onChange={handleChange}
                                                     value={initialData.no_rekening}
+                                                    icon={faMoneyCheck}
                                                 />
                                             </div>
                                         </div>

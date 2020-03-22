@@ -3,6 +3,7 @@ import { Layout, Row, Col, Button, Form, Select, Input } from 'antd';
 import '../../../../assets/css/admin-panitia/create-event.css'
 // component
 import InputForm from '../../../../common/component/input/input-form';
+import { faUserTie, faStickyNote, faIdCard, faUserFriends, faAddressBook, faEnvelope, faInfoCircle } from '@fortawesome/free-solid-svg-icons';
 const { Content } = Layout;
 const { Option } = Select;
 const { TextArea } = Input;
@@ -27,6 +28,7 @@ class BasicInfoComponent extends Component{
                                                 className="input-event mt-5 mb-20"
                                                 onChange={handleChange}
                                                 value={initialData.nama}
+                                                icon={faStickyNote}
                                             />
                                         </div>
                                     </Col>
@@ -60,6 +62,7 @@ class BasicInfoComponent extends Component{
                                                     className="input-event mt-5 mb-20"
                                                     onChange={handleChange}
                                                     value={initialData.organisasi}
+                                                    icon={faIdCard}
                                                 />
                                             </div>
                                         </div>   
@@ -76,6 +79,7 @@ class BasicInfoComponent extends Component{
                                                     className="input-event mt-5 mb-20"
                                                     onChange={handleChange}
                                                     value={initialData.batas_peserta}
+                                                    icon={faUserFriends}
                                                 />
                                             </div>
                                         </div>
@@ -120,6 +124,7 @@ class BasicInfoComponent extends Component{
                                                     className="input-event mt-5 mb-20"
                                                     onChange={handleChange}
                                                     value={initialData.no_telepon}
+                                                    icon={faAddressBook}
                                                 />
                                             </div>
                                         </div>   
@@ -136,6 +141,7 @@ class BasicInfoComponent extends Component{
                                                     className="input-event mt-5 mb-20"
                                                     onChange={handleChange}
                                                     value={initialData.email_event}
+                                                    icon={faEnvelope}
                                                 />
                                             </div>
                                         </div>
@@ -152,6 +158,7 @@ class BasicInfoComponent extends Component{
                                                     className="input-event mt-5 mb-20"
                                                     onChange={handleChange}
                                                     value={initialData.instagram}
+                                                    icon={faInfoCircle}
                                                 />
                                             </div>
                                         </div>

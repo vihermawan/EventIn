@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { message } from 'antd';
+import { notification } from 'antd';
 import { navigate } from '../../../common/store/action'
+import * as validation from '../../../common/utils/validation'
 import BiayaComponent from '../../../modules/admin-panitia/create-event/biaya/biaya-component';
 
 class BiayaPage extends Component {
@@ -47,19 +48,31 @@ class BiayaPage extends Component {
         this.setState({ bank: value.key })
     }
 
-    handleButtonClick(e) {
-        message.info('Click on left button.');
-        console.log('click left button', e);
-      }
-      
-    handleMenuClick(e) {
-        message.info('Click on menu item.');
-        console.log('click', e);
-      }
+    openNotification = (message, description) => {
+        notification.error({
+            message,
+            description,
+        });
+    };
+
 
     onNext = () => {
-        this.props.next();
-        localStorage.setItem('step-2', JSON.stringify(this.state));
+        if(validation.required(this.state.status_biaya) != null){
+            const message = validation.required(this.state.status_biaya);
+            this.openNotification(message, 'Kategori Bayar Harus Diisi')
+        }else if(this.state.status_biaya === '10' && validation.biayaRequired(this.state.biaya) != '0'){
+            const message = validation.biayaRequired(this.state.biaya);
+            this.openNotification(message, 'Biaya Event Harus Diisi')
+        }else if(this.state.status_biaya === '10' && validation.biayaRequired(this.state.bank) != '0'){
+            const message = validation.biayaRequired(this.state.bank);
+            this.openNotification(message, 'Bank Harus Dipilih')
+        }
+        
+        else{
+            this.props.next();
+            localStorage.setItem('step-2', JSON.stringify(this.state));
+        }
+      
     }
     onPrev = () => {
         this.props.prev();

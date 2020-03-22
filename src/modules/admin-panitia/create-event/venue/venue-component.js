@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { Layout, Row, Col, Button, Form,Select} from 'antd';
 // component
 import InputForm from '../../../../common/component/input/input-form';
+import { faMapMarker } from '@fortawesome/free-solid-svg-icons';
 const { Content } = Layout;
 const { Option } = Select;
 class VenueComponent extends Component{
@@ -49,6 +50,7 @@ class VenueComponent extends Component{
                                                 iconType="lock"
                                                 onChange={handleChange}
                                                 value={initialData.lokasi}
+                                                icon={faMapMarker}
                                             />
                                         </div>
                                     </Col>

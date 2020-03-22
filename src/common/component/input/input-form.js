@@ -1,10 +1,11 @@
 import React from 'react';
 import { Input, Icon } from 'antd';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import './style.css';
 
 function InputForm({
     value, onChange, placeholder, className, style, name, type,
-    iconType = 'user', withIcon = true, iconColor = '#2C37BA', disabled
+    iconType = 'user', withIcon = true, iconColor = '#2C37BA', disabled, icon
 }) {
     return (        
         <Input
@@ -13,7 +14,10 @@ function InputForm({
             onChange={onChange}
             value={value}
             className={className}
-            prefix={withIcon ? <Icon type={iconType} style={{ color: iconColor, fontSize: '16px' }} /> : false}
+            prefix={withIcon ? <FontAwesomeIcon
+                icon={icon}
+                style={{marginRight: 10,color:"#2C37BA"}}
+            />  : false}
             style={style}
             type={type}
             disabled = {disabled}
