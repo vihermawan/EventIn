@@ -1,8 +1,9 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { API } from '../../../common/api'
-import {message } from 'antd';
+import {message, notification } from 'antd';
 import { navigate } from '../../../common/store/action'
+import * as validation from '../../../common/utils/validation'
 import BasicInfoComponent from '../../../modules/admin-panitia/create-event/basic-info/basic-info-component';
 
 class BasicInfoPage extends Component {
@@ -72,11 +73,45 @@ class BasicInfoPage extends Component {
     handleMenuClick(e) {
         message.info('Click on menu item.');
         console.log('click', e);
-      }
+    }
+
+    openNotification = (message, description) => {
+        notification.error({
+            message,
+            description,
+        });
+    };
 
     onNext = () => {
-        this.props.next()
-        localStorage.setItem('step-1', JSON.stringify(this.state));
+        if(validation.required(this.state.nama) != null){
+            const message = validation.required(this.state.nama);
+            this.openNotification(message, 'Nama Event Harus Diisi')
+        }else if(validation.required(this.state.description) != null){
+            const message = validation.required(this.state.description);
+            this.openNotification(message, 'Deskripsi Event Harus Diisi')
+        }else if(validation.required(this.state.organisasi) != null){
+            const message = validation.required(this.state.organisasi);
+            this.openNotification(message, 'Organisasi Harus Diisi')
+        }else if(validation.numberRequired(this.state.batas_peserta) != null){
+            const message = validation.numberRequired(this.state.batas_peserta);
+            this.openNotification(message, 'Batas Peserta Event Harus Diisi')
+        }else if(validation.numberRequired(this.state.no_telepon) != null){
+            const message = validation.numberRequired(this.state.no_telepon);
+            this.openNotification(message, 'Nomor Telefon Harus Diisi')
+        }else if(validation.emailRequired(this.state.email_event) != null){
+            const message = validation.emailRequired(this.state.email_event);
+            this.openNotification(message, 'Email Event Harus Diisi')
+        }else if(validation.required(this.state.kategori_input) != null){
+            const message = validation.required(this.state.kategori_input);
+            this.openNotification(message, 'Kategori Event Harus Dipilih')
+        }else if(validation.required(this.state.instagram) != null){
+            const message = validation.required(this.state.instagram);
+            this.openNotification(message, 'Akun Instagram Event Harus Diisi')
+        }else{
+            this.props.next()
+            localStorage.setItem('step-1', JSON.stringify(this.state));
+        }
+        
     }
   
     render() {

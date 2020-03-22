@@ -3,7 +3,7 @@ import { Layout, Row, Col, Upload, Form,Icon, Button, Input} from 'antd';
 // component
 import InputForm from '../../../../common/component/input/input-form';
 import ButtonDashboard from '../../../../common/component/button/button-dashboard';
-import { faBackward, faUserEdit } from '@fortawesome/free-solid-svg-icons';
+import { faBackward, faUserEdit, faFile, faFileAlt } from '@fortawesome/free-solid-svg-icons';
 const { Content } = Layout;
 
 class CertificateComponent extends Component{
@@ -33,6 +33,7 @@ class CertificateComponent extends Component{
                                                 className="input-event mt-5 mb-20"
                                                 onChange={handleChange}
                                                 value={initialData.nama_sertifikat}
+                                                icon={faFile}
                                             />
                                         </div>
                                     </Col>
@@ -47,6 +48,7 @@ class CertificateComponent extends Component{
                                                 className="input-event mt-5 mb-20"
                                                 onChange={handleChange}
                                                 value={initialData.deskripsi}
+                                                icon={faFileAlt}
                                             />
                                         </div>
                                     </Col>

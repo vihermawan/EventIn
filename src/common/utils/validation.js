@@ -11,7 +11,7 @@ export const required = (value, allvalues) => {
     if (value) {
         return null;
     }
-    return 'harus diisi';
+    return 'Harus diisi';
 };
 
 export const noSpecialCharacter = (value) => {
@@ -22,18 +22,20 @@ export const noSpecialCharacter = (value) => {
         }
         return null;
     }
-    return 'harus diisi';
+    return 'Harus diisi';
 };
 
 export const numberRequired = (value) => {
-    const numberPattern = /^\d+$/;
+    const numberPattern = /^(\(?\+?[0-9]*\)?)?[0-9_\- \(\)]*$/g;
     if (value) {
         if (!numberPattern.test(value)) {
-            return console.log('format number');
+            // return console.log('format number');
+            return 'Isi Dalam format Angka';
         }
         return null;
     }
-    return console.log('harus diisi');
+    return 'Harus diisi';
+    return console.log('Harus diisi');
 };
 
 export const emailRequired = (value) => {
@@ -44,7 +46,7 @@ export const emailRequired = (value) => {
         }
         return null;
     }
-    return 'harus diisi';
+    return 'Harus diisi';
 };
 
 export const minPassword = (value) => {
@@ -54,6 +56,16 @@ export const minPassword = (value) => {
         }
         return null;
     }
-    return 'harus diisi';
+    return 'Harus diisi';
+};
+
+export const biayaRequired = (value) => {
+    if (value) {
+        if(value == 0){
+            return "Biaya Harus Diisi"
+        }
+        return null;
+    }
+    return 'Harus diisi';
 };
 

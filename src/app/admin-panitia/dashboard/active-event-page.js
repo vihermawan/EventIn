@@ -196,6 +196,7 @@ class ActiveEventPage extends Component {
                 columns={columns}
                 data={data}
             />
+            
         );
     }
 }
