@@ -39,11 +39,50 @@ class dashboard extends Component {
     username: 'username',
     profile_picture:'',
   };
+  
+//  async componentWillMount(){
+//      const res = await API.get(`/panitia/profile-edit`)
+//      console.log(res)
+//       const set = await this.setState({
+//         nama_panitia : res.data.data.user.panitia.nama_panitia,
+//         picture : res.data.data.user.panitia.image_URL,
+//         loading: false,
+//     })
+//     // async function f(){
+//     //   const res = await API.get(`/panitia/profile-edit`)
+//     //   const set = await this.setState({
+//     //     id_panitia : res.data.data.user.panitia.id_panitia,
+//     //     nama_panitia : res.data.data.user.panitia.nama_panitia,
+//     //     picture : res.data.data.user.panitia.image_URL,
+//     //     loading: false,
+//     // })
+//         // await this.getProfile();
+//         // await console.log(res)
+//     // }
+//     // f();
 
+//   //   (async () => {
+//   //     try {
+//   //       const res = await API.get(`/panitia/profile-edit`)
+//   //     const set = await this.setState({
+//   //       id_panitia : res.data.data.user.panitia.id_panitia,
+//   //       nama_panitia : res.data.data.user.panitia.nama_panitia,
+//   //       picture : res.data.data.user.panitia.image_URL,
+//   //       loading: false,
+//   //   })
+//   //     } catch (e) {
+//   //      this.setState({load: false, notify: "error"});
+//   //     }
+//   //  })();
+//     // this.getProfile();
+//     // const username = localStorage.getItem("username")
+//     // const profile_picture = localStorage.getItem("profile_picture")
+//     // this.setState({ username,profile_picture })
+//  }
 
-  componentDidMount(){
-    this.getProfile();
-  }
+componentDidMount(){
+  this.getProfile();
+}
 
   getProfile=()=>{
     this.setState({loading: true})
