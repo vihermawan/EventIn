@@ -56,23 +56,25 @@ class BiayaPage extends Component {
     };
 
 
-    onNext = () => {
+    onNext = () => {       
         if(validation.required(this.state.status_biaya) != null){
             const message = validation.required(this.state.status_biaya);
-            this.openNotification(message, 'Kategori Bayar Harus Diisi')
-        }else if(this.state.status_biaya === '10' && validation.biayaRequired(this.state.biaya) != '0'){
-            const message = validation.biayaRequired(this.state.biaya);
-            this.openNotification(message, 'Biaya Event Harus Diisi')
-        }else if(this.state.status_biaya === '10' && validation.biayaRequired(this.state.bank) != '0'){
-            const message = validation.biayaRequired(this.state.bank);
-            this.openNotification(message, 'Bank Harus Dipilih')
-        }
-        
-        else{
+            this.openNotification(message, 'Kategori Bayar Harus Diisi')   
+        }else if(this.state.status_biaya == 10){
+            if(this.state.biaya == 0){
+                this.openNotification('Biaya Harus Diisi', 'Biaya Harus Diisi')
+            }else if(this.state.bank == '-'){
+                this.openNotification('Bank Belum Dipilih', 'Bank Harus Dipilih')
+            }else if(this.state.no_rekening == '-'){
+                this.openNotification('Nomor Rekening Belum Diisi', 'Nomor Rekening Harus Diisi')
+            }else{
+                this.props.next();
+                localStorage.setItem('step-2', JSON.stringify(this.state));
+            }
+        }else{
             this.props.next();
             localStorage.setItem('step-2', JSON.stringify(this.state));
-        }
-      
+        }   
     }
     onPrev = () => {
         this.props.prev();

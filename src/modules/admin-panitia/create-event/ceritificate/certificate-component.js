@@ -8,7 +8,7 @@ const { Content } = Layout;
 
 class CertificateComponent extends Component{
     render(){
-        const { initialData, handleChange, onPrev,uploadFile,handleSubmit,uploadGambar,handleButtonEdit,handleButtonGambar } = this.props;
+        const { initialData, handleChange, onPrev,uploadFile,handleSubmit,uploadGambar,handleButtonEdit,handleButtonGambar,beforeUpload } = this.props;
         const uploadButton = (
             <div>
               <div className="ant-upload-text">Display Foto Event</div>
@@ -103,6 +103,7 @@ class CertificateComponent extends Component{
                                             <Input
                                                 type="file"
                                                 onChange={uploadGambar}
+                                                beforeUpload={beforeUpload}
                                                 className="input-picture"
                                                 style={{marginBottom : '30px',padding: '4px 11px 11px 11px', minHeight:'40px',borderColor:'#2C37BA'}}
                                             />       

@@ -59,13 +59,6 @@ export const minPassword = (value) => {
     return 'Harus diisi';
 };
 
-export const biayaRequired = (value) => {
-    if (value) {
-        if(value == 0){
-            return "Biaya Harus Diisi"
-        }
-        return null;
-    }
-    return 'Harus diisi';
-};
+
+
 

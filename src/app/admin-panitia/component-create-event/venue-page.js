@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { message, Menu, Icon } from 'antd';
+import { notification } from 'antd';
 import { navigate } from '../../../common/store/action'
+import * as validation from '../../../common/utils/validation'
 import VenueComponent from '../../../modules/admin-panitia/create-event/venue/venue-component';
 
 class VenuePage extends Component {
@@ -38,9 +39,28 @@ class VenuePage extends Component {
         console.log('venue', value.key);
     }
 
+    openNotification = (message, description) => {
+        notification.error({
+            message,
+            description,
+        });
+    };
+
+
     onNext = () => {
-        this.props.next();
-        localStorage.setItem('step-3', JSON.stringify(this.state));
+
+        if(validation.required(this.state.venue) != null){
+            const message = validation.required(this.state.venue);
+            this.openNotification(message, 'Tempat Harus Diisi')   
+        }else if(validation.required(this.state.lokasi) != null){
+            const message = validation.required(this.state.lokasi);
+            this.openNotification(message, 'Lokasi Harus Diisi')
+        }
+        else{
+            this.props.next();
+            localStorage.setItem('step-3', JSON.stringify(this.state));
+        }
+        
     }
     onPrev = () => {
         this.props.prev();
