@@ -4,6 +4,7 @@ import { Layout, Row, Col, Upload, Form,Icon, Button, Input} from 'antd';
 import InputForm from '../../../../common/component/input/input-form';
 import ButtonDashboard from '../../../../common/component/button/button-dashboard';
 import { faBackward, faUserEdit, faFile, faFileAlt } from '@fortawesome/free-solid-svg-icons';
+import LoadingContainer from '../../../../common/component/loading/loading-container';
 const { Content } = Layout;
 
 class CertificateComponent extends Component{
@@ -19,6 +20,7 @@ class CertificateComponent extends Component{
             <Layout className="login-container">
                  <Content style={{ overflow: "hidden", backgroundColor :"white" }}>
                     <div>
+                    <LoadingContainer loading={initialData.loading}>
                         <Form>
                             <div className="container-form">
                                 <Row>
@@ -125,6 +127,7 @@ class CertificateComponent extends Component{
                                 </Row>
                             </div>
                         </Form>
+                        </LoadingContainer>
                     </div>
                     <Button
                         type="primary"

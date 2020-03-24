@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import { notification } from 'antd'
-import { Route } from 'react-router-dom';
 import { API } from '../../common/api'
 import { connect } from 'react-redux';
 import { navigate } from '../../common/store/action'

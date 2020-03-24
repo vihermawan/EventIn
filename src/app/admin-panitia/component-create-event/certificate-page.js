@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { API } from '../../../common/api'
 import { notification,message } from 'antd';
+import CONSTANS from '../../../common/utils/Constants'
 import * as validation from '../../../common/utils/validation'
 import { navigate } from '../../../common/store/action'
 import CertificateComponent from '../../../modules/admin-panitia/create-event/ceritificate/certificate-component';
@@ -14,6 +15,7 @@ class CertificatePage extends Component {
       picture_event : '',
       size_sertifikat:'',
       picture : '',
+      loading:false,
       button_edit : 'Edit Foto Profil',
     }
 
@@ -28,9 +30,6 @@ class CertificatePage extends Component {
           this.setState({
               nama_sertifikat: data.nama_sertifikat,
               deskripsi: data.deskripsi,
-              sertifikat: data.sertifikat,
-              picture_event: data.picture_event,
-              picture : data.picture,
           })
       }
     }
@@ -158,22 +157,23 @@ class CertificatePage extends Component {
     }else if(validation.required(this.state.deskripsi) != null){
         const message = validation.required(this.state.deskripsi);
         this.openNotification(message, 'Deskripsi Sertifikat Harus Diisi')
-    }else if(validation.required(this.state.sertifikat) != null){
+    }else if(validation.required(this.state.sertifikat) != null ){
         const message = validation.required(this.state.sertifikat);
         this.openNotification(message, 'Sertifikat Harus Diupload')
-    }else if(validation.required(this.state.picture_event) != null){
+    }else if(validation.required(this.state.picture_event) != null ){
         const message = validation.required(this.state.picture_event);
         this.openNotification(message, 'Gambar Event Harus di upload')
     }else{
+        this.setState({loading: true})
         API.postEdit(`/panitia/create/event`, params)
         .then(res => {
             console.log('res',res)
-            // if(res.status == 201){
-            //     message.success('Data Berhasil di Ubah');
-            //     this.componentDidMount();
-            // }else{
-            //     this.openNotification('Data Salah', 'Silahkan isi data dengan benar')
-            // }
+            if(res.status == 201){
+                message.success('Event Berhasil Ditambahkan');
+                this.props.navigate(CONSTANS.ACTIVE_EVENT_MENU_KEY)
+            }else{
+                this.openNotification('Data Salah', 'Silahkan isi data dengan benar')
+            }
            
         });
      }
