@@ -51,7 +51,7 @@ class BiayaComponent extends Component{
                                                     placeholder="Masukkan biaya...."
                                                     className="input-event mt-5 mb-20"
                                                     onChange={handleChange}
-                                                    value={'Rp '+initialData.biaya}
+                                                    value= {initialData.biaya}
                                                     icon={faWallet}
                                                 />
                                             </div>
