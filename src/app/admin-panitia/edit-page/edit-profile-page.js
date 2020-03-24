@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { message,notification } from 'antd';
+import CONSTANS from '../../../common/utils/Constants'
 import { connect } from 'react-redux';
 import { API } from '../../../common/api'
 import { navigate } from '../../../common/store/action'
@@ -119,7 +120,9 @@ class EditProfilePage extends Component {
                 console.log('res',res)
                 if(res.status == 200){
                     message.success('Data Berhasil di Ubah');
-                    this.componentDidMount();
+                    this.props.navigate(CONSTANS.PROFILE_ADMIN_PANITIA_MENU_KEY)
+                    window.location.reload();
+                   
                 }else{
                     this.openNotification('Data Salah', 'Silahkan isi data dengan benar')
                 }

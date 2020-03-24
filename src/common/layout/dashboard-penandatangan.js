@@ -30,10 +30,22 @@ class signer extends Component {
   };
 
   componentDidMount(){
-    const username = localStorage.getItem("username")
-    const profile_picture = localStorage.getItem("profile_picture")
-    this.setState({ username,profile_picture })
+    this.getProfile();
   }
+
+  //get data profile dari API
+    getProfile=()=>{
+        this.setState({loading: true})
+        API.get(`/penandatangan/profile-edit`)
+        .then(res => {
+            console.log('res',res)
+            this.setState({
+                username :res.data.data.penandatangan.penandatangan.nama_penandatangan ,
+                profile_picture : res.data.data.penandatangan.penandatangan.image_URL,
+                loading: false,
+            })
+        });
+    }
 
   handleLogout = e => {
     this.setState({loading: true})
