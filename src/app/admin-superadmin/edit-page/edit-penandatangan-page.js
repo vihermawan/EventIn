@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Upload, Icon, message } from 'antd';
+import { message,notification } from 'antd';
 import { connect } from 'react-redux';
 import { API } from '../../../common/api'
 import { navigate } from '../../../common/store/action'
@@ -8,14 +8,20 @@ import EditProfileSignerComponent from '../../../modules/admin-superadmin/user/p
 
 class EditProfileAdminSignerPage extends Component {
     state = {
+        id_penandantangan : '',
         nama_penandatangan : '',
         email : '',
         instansi : '',
         nip : '',
+        method : 'PUT',
         jabatan : '',
-        p_12 : '',
+        file_p12 : null,
         picture : '',
+        name_photo : '',
+        profile_picture: null,
         loading: false,
+        button_edit : 'Edit Foto Profil',
+        button_p12 : 'Edit File P_12',
     }
 
     componentDidMount(){
@@ -48,42 +54,103 @@ class EditProfileAdminSignerPage extends Component {
         return isJpgOrPng && isLt2M;
     }
       
-    handleChangeFoto = info => {
-        if (info.file.status === 'uploading') {
-            this.setState({ 
-                loading: true 
-            });
-            return;
+    uploadGambar = (event) => {
+        this.getBase64(event.target.files[0], imageUrl => {
+            this.setState({ picture: imageUrl })
+        })
+        this.setState({ profile_picture:event.target.files[0] })
+        
     }
-        if (info.file.status === 'done') {
-            // Get this url from response in real world.
-            this.getBase64(info.file.originFileObj, picture =>
-            this.setState({
-                picture,
-                loading: false,
-            }),
-        );
+
+    uploadP12 = (event) => {
+        this.setState({
+            file_p12:event.target.files[0]
+        })
     }
-    };
     
     //get data profile dari API
     getProfile=(id_users)=>{
         this.setState({loading: true})
         API.get(`/admin/showeditpenandatangan/${id_users}`)
         .then(res => {
-          console.log('res',res.data.data.penandatangan.penandatangan.nama_penandatangan)
+          console.log('res',res.data.data.penandatangan)
           this.setState({
+            id_penandatangan : res.data.data.penandatangan.penandatangan.id_penandatangan,
             nama_penandatangan :res.data.data.penandatangan.penandatangan.nama_penandatangan ,
             email : res.data.data.penandatangan.email,
             instansi :res.data.data.penandatangan.penandatangan.instansi ,
             nip :res.data.data.penandatangan.penandatangan.nip,
-            p_12 : res.data.data.penandatangan.penandatangan.p_12,
+            file_p12 : res.data.data.penandatangan.penandatangan.file_p12,
             picture : res.data.data.penandatangan.penandatangan.image_URL,
             jabatan : res.data.data.penandatangan.penandatangan.jabatan,
+            profile_picture :res.data.data.penandatangan.penandatangan.profile_picture,
             loading: false,
           })
         });
     }
+
+    openNotification = (message, description) => {
+        notification.error({
+            message,
+            description,
+        });
+    };
+
+
+    handleSubmit = e => {
+        e.preventDefault();
+        const id_penandatangan = this.state.id_penandatangan
+        const params = new FormData()
+        params.append('profile_picture',this.state.profile_picture)
+        params.append("_method", 'PUT')
+        params.append('file_p12',this.state.file_p12)
+        params.set('nama_penandatangan',this.state.nama_penandatangan)
+        params.set('email',this.state.email)
+        params.set('jabatan',this.state.jabatan)
+        params.set('nip',this.state.nip)
+        params.set('instansi',this.state.instansi)
+        this.setState({loading: true})
+        API.postEdit(`/admin/penandatangan/edit/${id_penandatangan}`, params)
+            .then(res => {
+                console.log('res',res)
+                if(res.status == 200){
+                    message.success('Data Berhasil di Ubah');
+                    this.componentDidMount();
+                }else{
+                    this.openNotification('Data Salah', 'Silahkan isi data dengan benar')
+                }
+               
+            });
+
+    }
+
+    handleButtonEdit = () => {
+        this.setState({
+            button_edit : 'Upload Gambar',
+            button_p12 : 'Upload File'
+        })
+    }
+
+    handleButtonGambar = () => {
+        this.setState({
+            button_edit : 'Edit Foto Profil',
+            button_p12 : 'Edit File P_12',
+        })
+    }
+
+    handleButtonP12 = () => {
+        this.setState({
+            button_p12 : 'Upload File'
+        })
+    }
+
+    handleBackP12 = () =>{
+        this.setState({
+            button_p12 : 'Edit File P_12',
+        })
+    }
+
+    
 
     render() { 
         return ( 
@@ -91,8 +158,13 @@ class EditProfileAdminSignerPage extends Component {
                 initialData={this.state}
                 navigate={this.props.navigate}
                 handleChange = {this.handleChange}
-                beforeUpload = {this.beforeUpload}
-                handleChangeFoto = {this.handleChangeFoto}
+                uploadGambar = {this.uploadGambar}
+                uploadP12 = {this.uploadP12}
+                handleSubmit = {this.handleSubmit}
+                handleButtonEdit = {this.handleButtonEdit}
+                handleButtonGambar = {this.handleButtonGambar}
+                handleButtonP12 = {this.handleButtonP12}
+                handleBackP12 = {this.handleBackP12}
             />
         );
     }

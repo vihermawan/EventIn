@@ -4,7 +4,7 @@ import './style/dashboard-style.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { Layout, Menu, Icon,Avatar,Dropdown } from 'antd';
 /*Import Icon */
-import { faDesktop,faPen, faCalendarCheck, faHistory, faFile,faUserFriends,faUserCircle, faClipboard } from '@fortawesome/free-solid-svg-icons'
+import { faDesktop,faPen, faCalendarCheck, faHistory, faFile,faUserFriends,faUserCircle, faClipboard, faUserTie } from '@fortawesome/free-solid-svg-icons'
 import ButtonAuth from '../component/button/button-auth'
 import { connect } from 'react-redux';
 import { navigate } from '../../common/store/action'
@@ -22,6 +22,8 @@ import LoadingContainer from '../../common/component/loading/loading-container'
 import DetailEvent from '../../app/admin-panitia/detail-page/detail-event-page'
 import DetailSertifPage from '../../app/admin-panitia/detail-page/detail-sertif-page'
 import TemplateSertifPage from '../../app/admin-panitia/dashboard/template-page'
+import ListPenandatanganPage from '../../app/admin-panitia/dashboard/list-penandatangan-page'
+import CreateBiodataPenandatanganPage from '../../app/admin-panitia/dashboard/create-biodata-penandatangan-page'
 import TabAbsentPage from '../../app/admin-panitia/dashboard/tab-absent-page'
 import EditEventPage from '../../app/admin-panitia/edit-page/edit-event-page'
 import EditProfilePage from '../../app/admin-panitia/edit-page/edit-profile-page'
@@ -30,19 +32,76 @@ const { Header, Sider } = Layout;
 
 class dashboard extends Component {
   state = {
+    picture : '',
+    nama_panitia : '',
     collapsed: false,
     loading : false,
     username: 'username',
+    profile_picture:'',
   };
   
-  componentDidMount(){
-    const username = localStorage.getItem("username")
-    this.setState({ username })
-  }
+//  async componentWillMount(){
+//      const res = await API.get(`/panitia/profile-edit`)
+//      console.log(res)
+//       const set = await this.setState({
+//         nama_panitia : res.data.data.user.panitia.nama_panitia,
+//         picture : res.data.data.user.panitia.image_URL,
+//         loading: false,
+//     })
+//     // async function f(){
+//     //   const res = await API.get(`/panitia/profile-edit`)
+//     //   const set = await this.setState({
+//     //     id_panitia : res.data.data.user.panitia.id_panitia,
+//     //     nama_panitia : res.data.data.user.panitia.nama_panitia,
+//     //     picture : res.data.data.user.panitia.image_URL,
+//     //     loading: false,
+//     // })
+//         // await this.getProfile();
+//         // await console.log(res)
+//     // }
+//     // f();
+
+//   //   (async () => {
+//   //     try {
+//   //       const res = await API.get(`/panitia/profile-edit`)
+//   //     const set = await this.setState({
+//   //       id_panitia : res.data.data.user.panitia.id_panitia,
+//   //       nama_panitia : res.data.data.user.panitia.nama_panitia,
+//   //       picture : res.data.data.user.panitia.image_URL,
+//   //       loading: false,
+//   //   })
+//   //     } catch (e) {
+//   //      this.setState({load: false, notify: "error"});
+//   //     }
+//   //  })();
+//     // this.getProfile();
+//     // const username = localStorage.getItem("username")
+//     // const profile_picture = localStorage.getItem("profile_picture")
+//     // this.setState({ username,profile_picture })
+//  }
+
+componentDidMount(){
+  this.getProfile();
+}
+
+  getProfile=()=>{
+    this.setState({loading: true})
+    API.get(`/panitia/profile-edit`)
+    .then(res => {
+        console.log('res',res)
+        this.setState({
+            id_panitia : res.data.data.user.panitia.id_panitia,
+            nama_panitia : res.data.data.user.panitia.nama_panitia,
+            picture : res.data.data.user.panitia.image_URL,
+            loading: false,
+        })
+    });
+}
+
 
   handleLogout = e => {
      this.setState({loading: true})
-      API.post(`/logout`)
+      API.get(`/auth/logout`)
       .then(res => {
           console.log('res',res)
           if(res.status == 200){
@@ -174,6 +233,15 @@ class dashboard extends Component {
                           <span className={hidden}>List E-Certificate</span>
                         </Link>
                       </Menu.Item>
+                      <Menu.Item key="list-penandatangan">
+                        <Link to="/dashboard/list-penandatangan">
+                          <FontAwesomeIcon
+                              icon={faUserTie}
+                              style={{marginRight: 10}}
+                          /> 
+                          <span className={hidden}>List Signer</span>
+                        </Link>
+                      </Menu.Item>
                       <Menu.Item key="template">
                         <Link to="/dashboard/template-e-certificate">
                           <FontAwesomeIcon
@@ -235,8 +303,8 @@ class dashboard extends Component {
                     onClick={this.toggle}
                   />
                   <div className= "avatar">
-                    <Avatar size={40} icon="user" className="avatars" />
-                        <span className="semi-bold">{this.state.username}</span>
+                    <Avatar size={40} icon="user" className="avatars" src={this.state.profile_picture} style={{maxHeight:'100%'}}/>
+                        <span className="semi-bold">{this.state.nama_panitia}</span>
                       <Dropdown overlay={menu} trigger={['click']}>
                         <a className="ant-dropdown-link" href="#">
                           <Icon type="down" style={{marginLeft:"20px", color:"black", fontSize:"13px"}} />
@@ -279,6 +347,16 @@ class dashboard extends Component {
                     path='/dashboard/e-certificate'
                     exact
                     render={ (props) => <ECertificatePage {...props}/> }
+                />
+                <Route
+                    path='/dashboard/list-penandatangan'
+                    exact
+                    render={ (props) => <ListPenandatanganPage {...props}/> }
+                />
+                <Route
+                    path='/dashboard/create-biodata-penandatangan'
+                    exact
+                    render={ (props) => <CreateBiodataPenandatanganPage {...props}/> }
                 />
                 <Route
                     path='/dashboard/template-e-certificate'

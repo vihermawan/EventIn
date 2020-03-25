@@ -15,8 +15,10 @@ class Navbar extends Component {
 	state = {
 		current: '',
 		username :'username',
+		picture:'',
 		visible: false,
 		isLogin: false,
+		loading: false,
 	}
 
 	
@@ -26,11 +28,27 @@ class Navbar extends Component {
 		pathName === '' ? this.setState({current : 'home'}) : this.setState({current : pathName});
 		let token = localStorage.getItem("token");
 		if (token != null){
-			this.setState({isLogin: true})
-			const username = localStorage.getItem("username")
-			this.setState({ username })
+			this.getProfile();
 		}
+		
 	}
+
+	
+    //get data profile dari API
+    getProfile=()=>{
+        this.setState({loading: true})
+        API.get(`/peserta/edit-profile`)
+        .then(res => {
+            console.log('res',res.data.data.user)
+            this.setState({
+                username : res.data.data.user.peserta.nama_peserta,
+                picture:res.data.data.user.peserta.image_URL,
+				loading: false,
+				isLogin: true,
+            })
+        });
+    }
+
 
 	handleClick = e => {
 		this.setState({ current: e.key });
@@ -43,8 +61,9 @@ class Navbar extends Component {
 	};
 
 	handleLogout = e => {
+		this.props.onStartLoadingHome();
 		this.setState({loading: true})
-		 API.post(`/logout`)
+		 API.get(`/auth/logout`)
 		 .then(res => {
 			 console.log('res',res)
 			 if(res.status == 200){
@@ -54,6 +73,7 @@ class Navbar extends Component {
 				 })
 				 this.props.navigate(CONSTANS.LOGIN_MENU_KEY)
 			 }
+			 this.props.onFinishLoadingHome();
 		 });
 	}
 
@@ -124,7 +144,7 @@ class Navbar extends Component {
 								display:`${this.state.isLogin ? 'block' : 'none'}`
 							 }}
 						 >
-							<Avatar size={40} icon="user" className="avatars" />
+							<Avatar size={40} icon="user" className="avatars" scr={this.state.picture}/>
 								<span className="semi-bold">{this.state.username}</span>
 								<Dropdown overlay={menu} trigger={['click']}>
 									<a className="ant-dropdown-link" href="#">

@@ -59,7 +59,7 @@ class DetailComponent extends Component {
                 <Navbar
                     navigate={this.props.navigate}
                 />
-                 <LoadingContainer loading={initialData.loading}>
+                <LoadingContainer loading={initialData.loading}>
                 <Content style={{ overflow: "hidden" }}>
                     <Row style={{minHeight: '100%',marginBottom: '2%',marginTop:'2%'}}>
                         <Col lg={12} md={12} sm={12}>

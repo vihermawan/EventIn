@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { message, Menu, Icon } from 'antd';
+import { notification } from 'antd';
 import { navigate } from '../../../common/store/action'
+import * as validation from '../../../common/utils/validation'
 import VenueComponent from '../../../modules/admin-panitia/create-event/venue/venue-component';
 
 class VenuePage extends Component {
@@ -24,6 +25,7 @@ class VenuePage extends Component {
         }
     }
 
+    
     handleChange = (e) => {
         let target = e.target.name;
         let value = e.target.value;
@@ -32,22 +34,37 @@ class VenuePage extends Component {
         })
     }
 
-    handleButtonClick(e) {
-        message.info('Click on left button.');
-        console.log('click left button', e);
-      }
-      
-    handleMenuClick(e) {
-        message.info('Click on menu item.');
-        console.log('click', e);
+    handleTempat = (value) => {
+        this.setState({ venue: value.key })
+        console.log('venue', value.key);
     }
 
+    openNotification = (message, description) => {
+        notification.error({
+            message,
+            description,
+        });
+    };
+
+
     onNext = () => {
-        this.props.next();
-        localStorage.setItem('step-3', JSON.stringify(this.state));
+
+        if(validation.required(this.state.venue) != null){
+            const message = validation.required(this.state.venue);
+            this.openNotification(message, 'Tempat Harus Diisi')   
+        }else if(validation.required(this.state.lokasi) != null){
+            const message = validation.required(this.state.lokasi);
+            this.openNotification(message, 'Lokasi Harus Diisi')
+        }
+        else{
+            this.props.next();
+            localStorage.setItem('step-3', JSON.stringify(this.state));
+        }
+        
     }
     onPrev = () => {
         this.props.prev();
+        localStorage.setItem('step-3', JSON.stringify(this.state));
     }
   
     render() {
@@ -57,6 +74,7 @@ class VenuePage extends Component {
                 initialData={this.state}
                 navigate={this.props.navigate}
                 handleChange={this.handleChange}
+                handleTempat = {this.handleTempat}
                 onNext={this.onNext}
                 onPrev={this.onPrev}
             />

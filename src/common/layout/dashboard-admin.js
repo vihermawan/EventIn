@@ -29,12 +29,15 @@ import DetailSertifikatAdminPage from '../../app/admin-superadmin/detail-page/de
 import DetailEventPage from '../../app/admin-superadmin/detail-page/detail-event-page'
 import EditPanitiaPage from '../../app/admin-superadmin/edit-page/edit-panitia-page'
 import EditPenandatanganPage from '../../app/admin-superadmin/edit-page/edit-penandatangan-page'
+import EditPesertaPage from '../../app/admin-superadmin/edit-page/edit-peserta-page'
 import ErrorPage from '../../app/error/error-page';
 
 const { Header, Sider, Content } = Layout;
 const { SubMenu } = Menu;
 class signer extends Component {
   state = {
+    username : '',
+    profile_picture:'',
     collapsed: false,
     loading : false,
   };
@@ -45,9 +48,16 @@ class signer extends Component {
     });
   };
 
+  componentDidMount(){
+    // this.getProfile();
+    const username = localStorage.getItem("username")
+    const profile_picture = localStorage.getItem("profile_picture")
+    this.setState({ username,profile_picture })
+  }
+
   handleLogout = e => {
     this.setState({loading: true})
-     API.post(`/logout`)
+     API.get(`/auth/logout`)
      .then(res => {
          console.log('res',res)
          if(res.status == 200){
@@ -286,6 +296,11 @@ class signer extends Component {
                     path='/admin/admin-detail-peserta'
                     exact
                     render={ (props) => <DetailPesertaAdminPage {...props}/> }
+                />
+                 <Route
+                    path='/admin/edit-peserta'
+                    exact
+                    render={ (props) => <EditPesertaPage {...props}/> }
                 />
                 <Route
                     path='/admin/list-panitia'

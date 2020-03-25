@@ -23,13 +23,33 @@ const { Header, Sider, Content } = Layout;
 
 class signer extends Component {
   state = {
+    username:'',
+    profile_picture:'',
     collapsed: false,
     loading : false,
   };
 
+  componentDidMount(){
+    this.getProfile();
+  }
+
+  //get data profile dari API
+    getProfile=()=>{
+        this.setState({loading: true})
+        API.get(`/penandatangan/profile-edit`)
+        .then(res => {
+            console.log('res',res)
+            this.setState({
+                username :res.data.data.penandatangan.penandatangan.nama_penandatangan ,
+                profile_picture : res.data.data.penandatangan.penandatangan.image_URL,
+                loading: false,
+            })
+        });
+    }
+
   handleLogout = e => {
     this.setState({loading: true})
-    API.post(`/logout`)
+    API.get(`/auth/logout`)
     .then(res => {
         console.log('res',res)
         if(res.status == 200){
@@ -168,8 +188,8 @@ class signer extends Component {
                       onClick={this.toggle}
                     />
                     <div className= "avatar">
-                        <Avatar size={40} icon="user" className="avatars" />
-                        <span className="semi-bold">PPSMB PALAPA</span>
+                        <Avatar size={40} icon="user" className="avatars" src={this.state.profile_picture}/>
+                        <span className="semi-bold">{this.state.username}</span>
                           <Dropdown overlay={menu} trigger={['click']}>
                             <a className="ant-dropdown-link" href="#">
                               <Icon type="down" style={{marginLeft:"20px", color:"black", fontSize:"13px"}} />

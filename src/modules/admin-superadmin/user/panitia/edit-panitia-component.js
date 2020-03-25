@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Layout, Breadcrumb, Row, Col, Form, Select, DatePicker, TimePicker,Upload, Icon, Button  } from 'antd';
+import { Layout, Breadcrumb, Row, Col, Form, Input,Upload, Button  } from 'antd';
 import { Link } from 'react-router-dom';
 import '../../../../assets/css/dashboard-all/dashboard.css'
 import '../../../../assets/css/dashboard-all/table-style.css'
@@ -9,6 +9,8 @@ import LoadingContainer from '../../../../common/component/loading/loading-conta
 import InputForm from '../../../../common/component/input/input-form';
 import 'moment-timezone';
 import 'moment/locale/id';
+import ButtonDashboard from '../../../../common/component/button/button-dashboard';
+import { faBackward, faUserEdit } from '@fortawesome/free-solid-svg-icons';
 // constant content
 const { Content } = Layout;
 const uploadButton = (
@@ -21,8 +23,7 @@ const { Dragger } = Upload;
 
 class EditProfilePanitiaAdminComponent extends Component {
     render() { 
-      const {initialData,handleChange,beforeUpload,handleChangeFoto} = this.props  
-      const format = 'HH:mm';
+      const {initialData,handleChange,uploadGambar,handleSubmit,handleButtonEdit,handleButtonGambar} = this.props  
       return ( 
             <Content
                 style={{
@@ -46,7 +47,7 @@ class EditProfilePanitiaAdminComponent extends Component {
                                 </div>
                             </Row>
                             <LoadingContainer loading={initialData.loading}>
-                                <Form>
+                                <Form onSubmit={handleSubmit}>
                                     <div className="container-form">
                                         <Row>
                                             <Col lg={24} md={24} sm={24}>
@@ -120,31 +121,65 @@ class EditProfilePanitiaAdminComponent extends Component {
                                                 </div>
                                             </Col>
                                             <Col lg={24} md={24} sm={24}>
-                                                <div>   
-                                                    <span className="auth-input-label text-black">Foto profil*</span>
+                                                <div style={{marginBottom:'10px'}}> 
+                                                    <Row>
+                                                        <Col lg={21} md={24} sm={24}>
+                                                            <span className="auth-input-label text-black">Foto profil*</span>
+                                                        </Col>
+                                                        <Col lg={3} md={24} sm={24}>
+                                                            <div style={initialData.button_edit === 'Edit Foto Profil' ? {display:"block"}:{display:"none"}}>
+                                                                <ButtonDashboard
+                                                                    text="Edit Foto Profil"
+                                                                    height={20}
+                                                                    icon={faUserEdit}
+                                                                    borderRadius="5px"
+                                                                    float = 'Right'
+                                                                    background="#00C908"
+                                                                    onClick={handleButtonEdit}
+                                                                />
+                                                            </div>
+                                                            <div style={initialData.button_edit === 'Upload Gambar' ? {display:"block"}:{display:"none"}}>
+                                                                <ButtonDashboard
+                                                                    text="Kembali Lagi"
+                                                                    height={20}
+                                                                    icon={faBackward}
+                                                                    borderRadius="5px"
+                                                                    float = 'Right'
+                                                                    background="#00C908"
+                                                                    onClick={handleButtonGambar}
+                                                                />
+                                                            </div>
+                                                        </Col>
+                                                    </Row>  
                                                 </div>
-                                                <div>
-
+                                            </Col>
+                                            <Col lg={24} md={24} sm={24}>
+                                                <div style={initialData.button_edit === 'Upload Gambar' || null ? {display:"block"}:{display:"none"}}>
+                                                    <Input
+                                                        type="file"
+                                                        onChange={uploadGambar}
+                                                        className="input-picture"
+                                                        style={{marginBottom : '30px',padding: '4px 11px 11px 11px', minHeight:'40px',borderColor:'#2C37BA'}}
+                                                    />       
+                                                 </div>
+                                                 <div>
                                                     <Upload
                                                         name="picture"
                                                         listType="picture-card"
                                                         className="avatar-uploader"
-                                                        showUploadList={true}
-                                                        action="https://www.mocky.io/v2/5cc8019d300000980a055e76"
-                                                        beforeUpload={beforeUpload}
-                                                        onChange={handleChangeFoto}
+                                                        disabled = {true}
                                                         previewFile={initialData.picture}
                                                     >
-                                                        {initialData.picture ? <img src={initialData.picture} alt="avatar" style={{ width: '10%' }} /> : uploadButton}
-                                                    </Upload>
-
-                                                </div>
+                                                        {initialData.picture ? <img src={initialData.picture} alt="avatar" style={{ width: '50%' }} /> : uploadButton}
+                                                    </Upload>  
+                                                 </div>  
                                             </Col>
                                         </Row>
                                     </div>
                                     <div className="steps-action">
                                         <Button
                                             type="primary"
+                                            htmlType="submit"
                                             // onClick={() => onNext()}
                                         >
                                             Done

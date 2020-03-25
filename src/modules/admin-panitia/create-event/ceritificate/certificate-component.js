@@ -1,20 +1,18 @@
 import React, { Component } from 'react';
-import { Layout, Row, Col, Upload, Form,Icon, Button} from 'antd';
+import { Layout, Row, Col, Upload, Form,Icon, Button, Input} from 'antd';
 // component
 import InputForm from '../../../../common/component/input/input-form';
+import ButtonDashboard from '../../../../common/component/button/button-dashboard';
+import { faBackward, faUserEdit, faFile, faFileAlt } from '@fortawesome/free-solid-svg-icons';
+import LoadingContainer from '../../../../common/component/loading/loading-container';
 const { Content } = Layout;
-const { Dragger } = Upload;
 
 class CertificateComponent extends Component{
     render(){
-        const { initialData, handleChange, handleUpload,onNext, onPrev,beforeUpload,handleChangePdf } = this.props;
+        const { initialData, handleChange, onPrev,uploadFile,handleSubmit,uploadGambar,handleButtonEdit,handleButtonGambar,beforeUpload } = this.props;
         const uploadButton = (
             <div>
-              {/* {this.state.loading ? <LoadingOutlined /> : <PlusOutlined />} */}
-                <p className="ant-upload-drag-icon">
-                    <Icon type="inbox" />
-                </p>
-                <div className="ant-upload-text">Upload Foto Eventmu</div>
+              <div className="ant-upload-text">Display Foto Event</div>
             </div>
           );
         return (
@@ -22,6 +20,7 @@ class CertificateComponent extends Component{
             <Layout className="login-container">
                  <Content style={{ overflow: "hidden", backgroundColor :"white" }}>
                     <div>
+                    <LoadingContainer loading={initialData.loading}>
                         <Form>
                             <div className="container-form">
                                 <Row>
@@ -31,11 +30,12 @@ class CertificateComponent extends Component{
                                         </div>
                                         <div>
                                             <InputForm
-                                                name='sertifikat'
+                                                name='nama_sertifikat'
                                                 placeholder="Masukan nama sertifikat...."
                                                 className="input-event mt-5 mb-20"
                                                 onChange={handleChange}
-                                                value={initialData.sertifikat}
+                                                value={initialData.nama_sertifikat}
+                                                icon={faFile}
                                             />
                                         </div>
                                     </Col>
@@ -50,6 +50,7 @@ class CertificateComponent extends Component{
                                                 className="input-event mt-5 mb-20"
                                                 onChange={handleChange}
                                                 value={initialData.deskripsi}
+                                                icon={faFileAlt}
                                             />
                                         </div>
                                     </Col>
@@ -58,35 +59,81 @@ class CertificateComponent extends Component{
                                             <span className="auth-input-label text-black">Upload Sertifikat*</span>
                                         </div>
                                         <div>
-                                            {/* <Dragger {...handleUpload}>
-                                                <p className="ant-upload-drag-icon">
-                                                    <Icon type="inbox" />
-                                                </p>
-                                                <p className="ant-upload-text">Upload Sertifikat Eventmu !</p>
-                                                <p className="ant-upload-hint">Tambahkan Sertifikat untuk acaramu   </p>
-                                            </Dragger>, */}
-                                               <Upload
-                                                name="avatar"
+                                            <Input
+                                                type="file"
+                                                onChange={uploadFile}
+                                                className="input-picture"
+                                                style={{marginBottom : '30px',padding: '4px 11px 11px 11px', minHeight:'40px',borderColor:'#2C37BA'}}
+                                            />
+                                        </div>
+                                    </Col>
+                                    <Col lg={24} md={24} sm={24}>
+                                        <div style={{marginBottom:'10px'}}> 
+                                            <Row>
+                                                <Col lg={21} md={24} sm={24}>
+                                                    <span className="auth-input-label text-black">Upload Poster*</span>
+                                                </Col>
+                                                <Col lg={3} md={24} sm={24} style={initialData.picture === null ? {display:"none"}:{display:"block"}}>
+                                                    <div style={initialData.button_edit === 'Edit Foto Profil' ? {display:"block"}:{display:"none"}}>
+                                                        <ButtonDashboard
+                                                            text="Upload Foto Event"
+                                                            height={20}
+                                                            icon={faUserEdit}
+                                                            borderRadius="5px"
+                                                            float = 'Right'
+                                                            background="#00C908"
+                                                            onClick={handleButtonEdit}
+                                                        />
+                                                    </div>
+                                                    <div style={initialData.button_edit === 'Upload Gambar' ? {display:"block"}:{display:"none"}}>
+                                                        <ButtonDashboard
+                                                            text="Kembali Lagi"
+                                                            height={20}
+                                                            icon={faBackward}
+                                                            borderRadius="5px"
+                                                            float = 'Right'
+                                                            background="#00C908"
+                                                            onClick={handleButtonGambar}
+                                                        />
+                                                    </div>
+                                                </Col>
+                                            </Row>  
+                                        </div>
+                                    </Col>
+                                    <Col lg={24} md={24} sm={24}>
+                                        <div style={initialData.picture_event ===  null || initialData.button_edit === 'Edit Foto Profil' ? {display:"none"}:{display:"block"}}>
+                                            <Input
+                                                type="file"
+                                                onChange={uploadGambar}
+                                                beforeUpload={beforeUpload}
+                                                className="input-picture"
+                                                style={{marginBottom : '30px',padding: '4px 11px 11px 11px', minHeight:'40px',borderColor:'#2C37BA'}}
+                                            />       
+                                        </div>
+                                    </Col>
+                                    <Col lg={24} md={24} sm={24}>
+                                        <div>
+                                            <Upload
+                                                name="picture"
                                                 listType="picture-card"
                                                 className="avatar-uploader"
-                                                showUploadList={false}
-                                                action="https://www.mocky.io/v2/5cc8019d300000980a055e76"
-                                                beforeUpload={beforeUpload}
-                                                onChange={handleChangePdf}
+                                                disabled = {true}
+                                                previewFile={initialData.picture}
                                             >
-                                                {initialData.sertifikat ? <img src={initialData.sertifikat} alt="avatar" style={{ width: '100%' }} /> : uploadButton}
-                                            </Upload>
-                                        </div>
+                                                {initialData.picture ? <img src={initialData.picture} alt="avatar" style={{ width: '50%' }} /> : uploadButton}
+                                            </Upload>  
+                                        </div>  
                                     </Col>
                                 </Row>
                             </div>
                         </Form>
+                        </LoadingContainer>
                     </div>
                     <Button
                         type="primary"
-                        onClick={() => onNext()}
+                        onClick={() => handleSubmit()}
                     >
-                        Next
+                        Done
                     </Button>
                     <Button
                         style={{ marginLeft: 8, marginTop:0 }}

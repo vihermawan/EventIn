@@ -11,7 +11,6 @@ import VenuePage from '../../../app/admin-panitia/component-create-event/venue-p
 import DateTimePage from '../../../app/admin-panitia/component-create-event/date-time-page'
 import VisualPage from '../../../app/admin-panitia/component-create-event/visual-page'
 import CertificatePage from '../../../app/admin-panitia/component-create-event/certificate-page'
-import BiodataPenandatanganPage from '../../../app/admin-panitia/component-create-event/biodata-penandatangan-page'
 // constant content
 const { Content } = Layout;
 const { Step } = Steps;
@@ -21,7 +20,7 @@ class CreateEventComponent extends Component {
     constructor(props) {
         super(props);
         this.state = {
-          current: 5,
+          current: 4,
         };
       }
     
@@ -40,7 +39,7 @@ class CreateEventComponent extends Component {
         const { current } = this.state;
         const steps = [
             {
-                title: 'Basic Info',
+                title: 'Info Dasar',
                 content: 
                     <BasicInfoPage
                         next={this.next}
@@ -58,7 +57,7 @@ class CreateEventComponent extends Component {
                 ,
             },
             {
-                title: 'Venue',
+                title: 'Tempat',
                 content: 
                     <VenuePage
                         next={this.next}
@@ -67,7 +66,7 @@ class CreateEventComponent extends Component {
                 ,
             },
             {
-                title: 'Date Time',
+                title: 'Waktu',
                 content:
                     <DateTimePage
                         next={this.next}
@@ -75,28 +74,19 @@ class CreateEventComponent extends Component {
                     /> 
                 ,
             },
+            // {
+            //     title: 'Visual',
+            //     content: 
+            //         <VisualPage
+            //             next={this.next}
+            //             prev={this.prev}
+            //         />
+            //     ,
+            // },
             {
-                title: 'Visual',
-                content: 
-                    <VisualPage
-                        next={this.next}
-                        prev={this.prev}
-                    />
-                ,
-            },
-            {
-                title: 'Certificate',
+                title: 'Sertifikat dan Poster',
                 content: 
                     <CertificatePage
-                        next={this.next}
-                        prev={this.prev}
-                    />
-                ,
-            },
-            {
-                title: 'Biodata Penandatangan',
-                content: 
-                    <BiodataPenandatanganPage
                         next={this.next}
                         prev={this.prev}
                     />
@@ -136,26 +126,6 @@ class CreateEventComponent extends Component {
                                     <div className="steps-content">
                                         {steps[current].content}
                                     </div>
-                                        {/* <div className="steps-action">
-                                        {current < steps.length - 1 && (
-                                            <Button
-                                                type="primary"
-                                                onClick={() => this.next()}
-                                            >
-                                            Next
-                                            </Button>
-                                        )}
-                                        {current === steps.length - 1 && (
-                                            <Button type="primary" onClick={() => message.success('Processing complete!')}>
-                                            Done
-                                            </Button>
-                                        )}
-                                        {current > 0 && (
-                                            <Button style={{ marginLeft: 8, marginTop:0 }} onClick={() => this.prev()}>
-                                            Previous
-                                            </Button>
-                                        )}
-                                     </div> */}
                                 </div>
                             </Row>
                         </div>

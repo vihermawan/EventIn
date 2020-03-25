@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { Modal, message, Select } from 'antd';
 import { connect } from 'react-redux';
 import { API } from '../../../common/api'
 import { navigate } from '../../../common/store/action'
@@ -7,14 +8,21 @@ import { faInfoCircle } from '@fortawesome/free-solid-svg-icons'
 import WaitingComponent from '../../../modules/admin-superadmin/e-certificate/waiting-list/waiting-list-component';
 import ButtonDashboard from '../../../common/component/button/button-dashboard';
 
+const { confirm } = Modal;
+
 class WaitingPage extends Component {
     state = { 
         waitingSertifikat : [],
+        penandatangan : [],
+        id_sertifikat:'',
+        id_penandatangan : '',
         loading : false,
+        visible : false,
     }
 
     componentDidMount(){
         this.getCertificateAdmin();
+        this.getPenandatangan();
     }
 
     getCertificateAdmin=()=>{
@@ -27,6 +35,70 @@ class WaitingPage extends Component {
         });
     }
 
+    getPenandatangan=()=>{
+        this.setState({loading: true})
+        API.get(`/admin/showpenandatangan`)
+        .then(res => {
+          console.log('res',res.data.data.penandatangan)
+          this.setState({
+            penandatangan:res.data.data.penandatangan,
+            loading: false,
+          })
+        });
+    }
+    
+    handlePenandatangan = (value) => {
+        this.setState({ id_penandatangan: value.key })
+        console.log('status', value.key);
+    }
+
+    //function untuk modal
+    showAcceptConfirm = (id_sertifikat) => {
+        confirm({
+            title: 'Apakah yakin untuk mengirim sertifikat ?',
+            okText: 'Yes',
+            okType: 'success',
+            content: 
+                <Select
+                    labelInValue
+                    defaultValue={{ key: 'Pilih Penandatangan' }}
+                    style={{ width: '100%' }}
+                    onChange={this.handlePenandatangan}
+                >
+                    {this.state.penandatangan.map(({penandatangan}) => (
+                        <Select.Option key={penandatangan.id_penandatangan} value={penandatangan.id_penandatangan}>
+                            {penandatangan.nama_penandatangan}
+                        </Select.Option>
+                ))}
+            </Select>
+            ,
+            cancelText: 'No',
+            onOk: () => {
+               this.handleSubmit(id_sertifikat,this.state.id_penandatangan)
+            },
+            onCancel(){
+                console.log('Cancel')
+            }
+        });
+    }
+
+    handleSubmit = (id_sertifikat,id_penandatangan) => {
+        const params = {
+            id_sertifikat: id_sertifikat, 
+            id_penandatangan : id_penandatangan, 
+        }
+        console.log('params',params)
+        this.setState({loading: true})
+        API.post(`/admin/sendSertifikat/${id_sertifikat}`,params)
+        .then(res => {
+            console.log('res',res)
+            if(res.status == 200){
+                message.success('Berhasil mengirim sertifikat');
+                this.componentDidMount(); 
+            }  
+            this.setState({loading: false}) 
+        });
+    }
 
     render() { 
         const columns = [
@@ -71,6 +143,7 @@ class WaitingPage extends Component {
                     borderRadius="5px"
                     background="#36FF03"
                     marginRight= "20px"
+                    onClick = {() => this.showAcceptConfirm(data.id_sertifikat)}
                 />,
                 <ButtonDashboard
                     text="Detail"
@@ -82,17 +155,16 @@ class WaitingPage extends Component {
               ),
             },
           ];
+
         const data =  this.state.waitingSertifikat.map( ({id_sertifikat, event,description, sertifikat}, index) => ({
             no : index+1,
-            nomor : id_sertifikat,
+            id_sertifikat : id_sertifikat,
             nama_event : event.nama_event,
             nama_panitia : event.panitia.nama_panitia,
             organisasi : event.organisasi,
             description : description,
             sertifikat : sertifikat,
         }))
-        
-
         return ( 
             <WaitingComponent
                 navigate={this.props.navigate}
