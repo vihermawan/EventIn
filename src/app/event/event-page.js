@@ -72,6 +72,10 @@ class EventPage extends Component {
         this.props.navigate(CONSTANS.DETAIL_EVENT_KEY)
     }
 
+    onEditPeserta = (id_users) => {
+        this.props.navigate(CONSTANS.ALL_EVENT_MENU_KEY)
+    }
+
     render() { 
 
         const cardData =  this.state.event.map( data => ({

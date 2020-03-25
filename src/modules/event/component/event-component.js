@@ -10,6 +10,7 @@ import '../../../assets/css/event.css'
 import Navbar from '../../../common/layout/navbar-landing'
 import Footer from '../../../common/layout/footer-landing'
 import ButtonRounded from '../../../common/component/button/button-rounded'
+import ButtonDashboard from '../../../common/component/button/button-dashboard';
 
 
 const { Content } = Layout;
@@ -96,7 +97,7 @@ class EventComponent extends Component {
                             </div>
                         </Col>
                     </Row>
-                    <Row className="section-container" style={{marginBottom: 50}}>
+                    <Row className="section-container" style={{marginBottom: 100}}>
                         <Col lg={24}>
                             <span style={{marginLeft:'2%'}} className="text-soft-blue title-big-event bold">Populer</span>
                         </Col>
@@ -247,7 +248,7 @@ class EventComponent extends Component {
                     </Row>
                     <Row>
                         <Col span={24} >
-                            <div className="tombol-tengah button-section-1-container" style={initialData.countEvent < 17 ? {display:"none"}:{display:"block"}}>
+                            <div className="tombol-tengah button-section-1-container" style={initialData.countEvent > 17 ? {display:"none"}:{display:"block"}}>
                                 <Link to="/allevent">
                                     <ButtonRounded
                                         text="Semua Event"
