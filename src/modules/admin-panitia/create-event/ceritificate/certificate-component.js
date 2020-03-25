@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 import { Layout, Row, Col, Upload, Form,Icon, Button, Input} from 'antd';
+import ReactCrop from 'react-image-crop';
+import 'react-image-crop/dist/ReactCrop.css';
 // component
 import InputForm from '../../../../common/component/input/input-form';
 import ButtonDashboard from '../../../../common/component/button/button-dashboard';
@@ -9,7 +11,13 @@ const { Content } = Layout;
 
 class CertificateComponent extends Component{
     render(){
-        const { initialData, handleChange, onPrev,uploadFile,handleSubmit,uploadGambar,handleButtonEdit,handleButtonGambar,beforeUpload } = this.props;
+        const { initialData, 
+                handleChange, 
+                onPrev,uploadFile,
+                handleSubmit,uploadGambar,
+                handleButtonEdit,handleButtonGambar,
+                onImageLoaded,onCropComplete,onCropChange,onSelectFile
+            } = this.props;
         const uploadButton = (
             <div>
               <div className="ant-upload-text">Display Foto Event</div>
@@ -105,10 +113,23 @@ class CertificateComponent extends Component{
                                             <Input
                                                 type="file"
                                                 onChange={uploadGambar}
-                                                beforeUpload={beforeUpload}
                                                 className="input-picture"
                                                 style={{marginBottom : '30px',padding: '4px 11px 11px 11px', minHeight:'40px',borderColor:'#2C37BA'}}
-                                            />       
+                                            />
+                                            {initialData.picture && (
+                                            <ReactCrop
+                                                src={initialData.picture}
+                                                crop={initialData.crop}
+                                                ruleOfThirds
+                                                onImageLoaded={onImageLoaded}
+                                                onComplete={onCropComplete}
+                                                onChange={onCropChange}
+                                                style={{width:"30%"}}
+                                            />
+                                            )} 
+                                             {/* {initialData.picture && (
+                                                <img alt="Crop" style={{ maxWidth: '100%' }} src={initialData.picture} />
+                                             )}       */}
                                         </div>
                                     </Col>
                                     <Col lg={24} md={24} sm={24}>
@@ -118,9 +139,9 @@ class CertificateComponent extends Component{
                                                 listType="picture-card"
                                                 className="avatar-uploader"
                                                 disabled = {true}
-                                                previewFile={initialData.picture}
+                                                previewFile={initialData.picture_event}
                                             >
-                                                {initialData.picture ? <img src={initialData.picture} alt="avatar" style={{ width: '50%' }} /> : uploadButton}
+                                                {initialData.croppedImageUrl ? <img src={initialData.croppedImageUrl} alt="Crop" style={{ width: '10%' }} /> : uploadButton}
                                             </Upload>  
                                         </div>  
                                     </Col>

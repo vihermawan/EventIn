@@ -1,10 +1,13 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { API } from '../../../common/api'
+import ReactCrop from 'react-image-crop';
+import 'react-image-crop/dist/ReactCrop.css';
 import { notification,message } from 'antd';
 import CONSTANS from '../../../common/utils/Constants'
 import * as validation from '../../../common/utils/validation'
 import { navigate } from '../../../common/store/action'
+
 import CertificateComponent from '../../../modules/admin-panitia/create-event/ceritificate/certificate-component';
 
 class CertificatePage extends Component {
@@ -17,6 +20,12 @@ class CertificatePage extends Component {
       picture : '',
       loading:false,
       button_edit : 'Edit Foto Profil',
+      crop: {
+        unit: '%',
+        width: 30,
+        aspect: 16 / 9,
+      },
+      croppedImageUrl : '',
     }
 
     componentDidMount(){
@@ -42,11 +51,162 @@ class CertificatePage extends Component {
         })
     }
 
-    // onNext = () => {
-    //   this.props.next();
-    //   localStorage.setItem('step-6', JSON.stringify(this.state));
-    // }
+    
+    getBase64 = (img, callback)  =>{
+        const reader = new FileReader();
+        reader.addEventListener('load', () => callback(reader.result));
+        reader.readAsDataURL(img);
+    }
+  
+    uploadGambar = (event) => {
+        if(event.target.files[0].type != 'image/jpeg' ){
+            console.log('harusnya')
+            this.openNotification('Format Gambar Salah', 'Silahkan Upload Kembali dengan format JPG')
+        }
+        else if(event.target.files[0].size / 1024 / 1024 > 2){
+            this.openNotification('Ukuran file Melebihi 2Mb', 'Silahkan Upload Kembali')
+        }else{
+            this.getBase64(event.target.files[0], imageUrl => {
+                this.setState({ picture: imageUrl,croppedImageUrl :imageUrl,picture_event:imageUrl })
+            })
+            
+            // this.setState({ picture_event:event.target.files[0] })
+        }
+        
+    }
+      
 
+    onImageLoaded = image => {
+        this.imageRef = image;
+    };
+
+    onCropComplete = crop => {
+        this.makeClientCrop(crop);
+    };
+
+    onCropChange = (crop, percentCrop) => {
+        // You could also use percentCrop:
+        this.setState({ crop: percentCrop });
+        this.setState({ crop });
+    };
+
+    async makeClientCrop(crop) {
+        if (this.imageRef && crop.width && crop.height) {
+          const croppedImageUrl = await this.getCroppedImgLink(
+            this.imageRef,
+            crop,
+            'newFile.jpeg'
+          );
+          const picture_event = await this.getCroppedImg(
+            this.imageRef,
+            crop,
+            'newFile.jpeg'
+          );
+          this.setState({ picture_event,croppedImageUrl });
+          console.log('croping',this.state.croppedImageUrl)
+        }
+      }
+    
+    getCroppedImgLink(image, crop, fileName) {
+        const canvas = document.createElement('canvas');
+        const scaleX = image.naturalWidth / image.width;
+        const scaleY = image.naturalHeight / image.height;
+        canvas.width = crop.width;
+        canvas.height = crop.height;
+        const ctx = canvas.getContext('2d');
+
+        ctx.drawImage(
+            image,
+            crop.x * scaleX,
+            crop.y * scaleY,
+            crop.width * scaleX,
+            crop.height * scaleY,
+            0,
+            0,
+            crop.width,
+            crop.height
+        );
+
+    return new Promise((resolve, reject) => {
+        canvas.toBlob(blob => {
+        if (!blob) {
+            //reject(new Error('Canvas is empty'));
+            console.error('Canvas is empty');
+            return;
+        }
+        blob.name = fileName;
+        window.URL.revokeObjectURL(this.fileUrl);
+        this.fileUrl = window.URL.createObjectURL(blob);
+        resolve(this.fileUrl);
+        // this.setState({croppedImageUrl: this.fileUrl})
+        // console.log('file',this.state.croppedImageUrl)
+        
+        }, 'image/jpeg');
+    });
+    }
+
+
+    getCroppedImg(image, crop, fileName) {
+        const canvas = document.createElement('canvas');
+        const scaleX = image.naturalWidth / image.width;
+        const scaleY = image.naturalHeight / image.height;
+        canvas.width = crop.width;
+        canvas.height = crop.height;
+        const ctx = canvas.getContext('2d');
+    
+        ctx.drawImage(
+          image,
+          crop.x * scaleX,
+          crop.y * scaleY,
+          crop.width * scaleX,
+          crop.height * scaleY,
+          0,
+          0,
+          crop.width,
+          crop.height
+        );
+        
+        const reader = new FileReader()
+        canvas.toBlob(blob => {
+            reader.readAsDataURL(blob)
+            reader.onloadend = () => {
+                this.dataURLtoFile(reader.result, 'cropped.jpg')
+            }
+        })
+    
+        // return new Promise((resolve, reject) => {
+        //   canvas.toBlob(blob => {
+        //     if (!blob) {
+        //       //reject(new Error('Canvas is empty'));
+        //       console.error('Canvas is empty');
+        //       return;
+        //     }
+        //     blob.name = fileName;
+        //     window.URL.revokeObjectURL(this.fileUrl);
+        //     this.fileUrl = window.URL.createObjectURL(blob);
+        //     resolve(this.fileUrl);
+        //     this.setState({croppedImageUrl: this.fileUrl})
+        //     console.log('file',this.state.croppedImageUrl)
+           
+        //   }, 'image/jpeg');
+        // });
+    }
+
+      dataURLtoFile = (dataurl, filename) => {
+        let arr = dataurl.split(','),
+            mime = arr[0].match(/:(.*?);/)[1],
+            bstr = atob(arr[1]), 
+            n = bstr.length, 
+            u8arr = new Uint8Array(n);
+                
+        while(n--){
+            u8arr[n] = bstr.charCodeAt(n);
+        }
+        let croppedImage = new File([u8arr], filename, {type:mime});
+        this.setState({picture_event: croppedImage}) 
+        console.log('ini lo', this.state.picture_event)
+    }
+   
     onPrev = () => {
       this.props.prev();
       localStorage.setItem('step-5', JSON.stringify(this.state));
@@ -70,26 +230,6 @@ class CertificatePage extends Component {
         console.log('sertif',event.target.files[0])
     }    
 
-    getBase64 = (img, callback)  =>{
-      const reader = new FileReader();
-      reader.addEventListener('load', () => callback(reader.result));
-      reader.readAsDataURL(img);
-    }
-
-    uploadGambar = (event) => {
-        if(event.target.files[0].type != 'image/jpeg' ){
-            console.log('harusnya')
-            this.openNotification('Format Gambar Salah', 'Silahkan Upload Kembali dengan format JPG')
-        }
-        else if(event.target.files[0].size / 1024 / 1024 > 2){
-            this.openNotification('Ukuran file Melebihi 2Mb', 'Silahkan Upload Kembali')
-        }else{
-            this.getBase64(event.target.files[0], imageUrl => {
-                this.setState({ picture: imageUrl })
-            })
-            this.setState({ picture_event:event.target.files[0] })
-        }
-    }
 
     handleButtonEdit = () => {
         this.setState({
@@ -194,7 +334,9 @@ class CertificatePage extends Component {
                 uploadGambar = {this.uploadGambar}
                 handleButtonEdit = {this.handleButtonEdit}
                 handleButtonGambar={this.handleButtonGambar}
-                beforeUpload={this.beforeUpload}
+                onImageLoaded={this.onImageLoaded}
+                onCropComplete={this.onCropComplete}
+                onCropChange={this.onCropChange}
             />
         );
     }
