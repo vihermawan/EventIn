@@ -16,6 +16,9 @@ const menu = {
     DETAIL_EVENT: {
         link : '/detail'
     },
+    ALL_EVENT: {
+        link : '/allevent'
+    },
     PROFILE:{
         link : '/profile'
     },

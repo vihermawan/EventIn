@@ -10,6 +10,7 @@ import '../../../assets/css/event.css'
 import Navbar from '../../../common/layout/navbar-landing'
 import Footer from '../../../common/layout/footer-landing'
 import ButtonRounded from '../../../common/component/button/button-rounded'
+import ButtonDashboard from '../../../common/component/button/button-dashboard';
 
 
 const { Content } = Layout;
@@ -47,6 +48,7 @@ class EventComponent extends Component {
                     onStartLoadingHome={onStartLoadingHome}
                     onFinishLoadingHome={onFinishLoadingHome}
                 />
+
                 <LoadingContainer loading={initialData.loadingHome}>
                     <Content style={{ overflow: "hidden" }}>
                         {/* Section 1 */}
@@ -244,7 +246,6 @@ class EventComponent extends Component {
                                                 )
                                             }
                                         </Row>
-
                                     </Col>
                             </Col>
                         </Row>
