@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { API } from '../../../common/api'
-import ReactCrop from 'react-image-crop';
 import 'react-image-crop/dist/ReactCrop.css';
 import { notification,message } from 'antd';
 import CONSTANS from '../../../common/utils/Constants'
@@ -19,6 +18,7 @@ class CertificatePage extends Component {
       size_sertifikat:'',
       picture : '',
       loading:false,
+      visible:false,
       button_edit : 'Edit Foto Profil',
       crop: {
         unit: '%',
@@ -51,7 +51,6 @@ class CertificatePage extends Component {
         })
     }
 
-    
     getBase64 = (img, callback)  =>{
         const reader = new FileReader();
         reader.addEventListener('load', () => callback(reader.result));
@@ -67,7 +66,7 @@ class CertificatePage extends Component {
             this.openNotification('Ukuran file Melebihi 2Mb', 'Silahkan Upload Kembali')
         }else{
             this.getBase64(event.target.files[0], imageUrl => {
-                this.setState({ picture: imageUrl,croppedImageUrl :imageUrl,picture_event:imageUrl })
+                this.setState({ picture: imageUrl,croppedImageUrl :imageUrl,picture_event:imageUrl,visible:true })
             })
             
             // this.setState({ picture_event:event.target.files[0] })
@@ -75,7 +74,6 @@ class CertificatePage extends Component {
         
     }
       
-
     onImageLoaded = image => {
         this.imageRef = image;
     };
@@ -105,7 +103,7 @@ class CertificatePage extends Component {
           this.setState({ picture_event,croppedImageUrl });
           console.log('croping',this.state.croppedImageUrl)
         }
-      }
+    }
     
     getCroppedImgLink(image, crop, fileName) {
         const canvas = document.createElement('canvas');
@@ -130,7 +128,6 @@ class CertificatePage extends Component {
     return new Promise((resolve, reject) => {
         canvas.toBlob(blob => {
         if (!blob) {
-            //reject(new Error('Canvas is empty'));
             console.error('Canvas is empty');
             return;
         }
@@ -138,13 +135,9 @@ class CertificatePage extends Component {
         window.URL.revokeObjectURL(this.fileUrl);
         this.fileUrl = window.URL.createObjectURL(blob);
         resolve(this.fileUrl);
-        // this.setState({croppedImageUrl: this.fileUrl})
-        // console.log('file',this.state.croppedImageUrl)
-        
         }, 'image/jpeg');
     });
     }
-
 
     getCroppedImg(image, crop, fileName) {
         const canvas = document.createElement('canvas');
@@ -192,7 +185,7 @@ class CertificatePage extends Component {
         // });
     }
 
-      dataURLtoFile = (dataurl, filename) => {
+    dataURLtoFile = (dataurl, filename) => {
         let arr = dataurl.split(','),
             mime = arr[0].match(/:(.*?);/)[1],
             bstr = atob(arr[1]), 
@@ -208,8 +201,8 @@ class CertificatePage extends Component {
     }
    
     onPrev = () => {
-      this.props.prev();
-      localStorage.setItem('step-5', JSON.stringify(this.state));
+        this.props.prev();
+        localStorage.setItem('step-5', JSON.stringify(this.state));
     }
 
     uploadFile = (event) => {
@@ -229,7 +222,6 @@ class CertificatePage extends Component {
        
         console.log('sertif',event.target.files[0])
     }    
-
 
     handleButtonEdit = () => {
         this.setState({
@@ -320,6 +312,26 @@ class CertificatePage extends Component {
      
 
     }
+
+    showModal = () => {
+        this.setState({
+            visible: true,
+        });
+    };
+    
+    handleOk = e => {
+        console.log(e);
+        this.setState({
+            visible: false,
+        });
+    };
+    
+    handleCancel = e => {
+        console.log(e);
+        this.setState({
+            visible: false,
+        });
+    };
   
     render() {
 
@@ -337,6 +349,9 @@ class CertificatePage extends Component {
                 onImageLoaded={this.onImageLoaded}
                 onCropComplete={this.onCropComplete}
                 onCropChange={this.onCropChange}
+                showModal={this.showModal}
+                handleOk={this.handleOk}
+                handleCancel={this.handleCancel}
             />
         );
     }
