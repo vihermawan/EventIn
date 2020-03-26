@@ -109,7 +109,7 @@ class CertificateComponent extends Component{
                                         </div>
                                     </Col>
                                     <Col lg={24} md={24} sm={24}>
-                                        <div style={initialData.picture_event ===  null || initialData.button_edit === 'Edit Foto Profil' ? {display:"none"}:{display:"block"}}>
+                                        <div >
                                             <Input
                                                 type="file"
                                                 onChange={uploadGambar}
@@ -122,7 +122,7 @@ class CertificateComponent extends Component{
                                     <Col lg={24} md={24} sm={24}>
                                         <div>
                                             <Modal
-                                                title="Basic Modal"
+                                                title="Atur Ukuran Gambar"
                                                 visible={initialData.visible}
                                                 onOk={handleOk}
                                                 onCancel={handleCancel}
