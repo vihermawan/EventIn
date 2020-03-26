@@ -1,7 +1,13 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { message } from 'antd';
+import { API } from '../../../common/api'
+import ReactCrop from 'react-image-crop';
+import 'react-image-crop/dist/ReactCrop.css';
+import { notification,message } from 'antd';
+import CONSTANS from '../../../common/utils/Constants'
+import * as validation from '../../../common/utils/validation'
 import { navigate } from '../../../common/store/action'
+
 import CertificateComponent from '../../../modules/admin-panitia/create-event/ceritificate/certificate-component';
 
 class CertificatePage extends Component {
@@ -9,6 +15,17 @@ class CertificatePage extends Component {
       nama_sertifikat : '',
       deskripsi : '',
       sertifikat : '',
+      picture_event : '',
+      size_sertifikat:'',
+      picture : '',
+      loading:false,
+      button_edit : 'Edit Foto Profil',
+      crop: {
+        unit: '%',
+        width: 30,
+        aspect: 16 / 9,
+      },
+      croppedImageUrl : '',
     }
 
     componentDidMount(){
@@ -16,13 +33,12 @@ class CertificatePage extends Component {
     }
 
     componentWillMount(){
-      const data = JSON.parse(localStorage.getItem('step-6'));
+      const data = JSON.parse(localStorage.getItem('step-5'));
       console.log(data)
       if(data !== null){
           this.setState({
               nama_sertifikat: data.nama_sertifikat,
               deskripsi: data.deskripsi,
-              sertifikat: data.sertifikat,
           })
       }
     }
@@ -35,41 +51,275 @@ class CertificatePage extends Component {
         })
     }
 
-    onNext = () => {
-      this.props.next();
-      localStorage.setItem('step-6', JSON.stringify(this.state));
+    
+    getBase64 = (img, callback)  =>{
+        const reader = new FileReader();
+        reader.addEventListener('load', () => callback(reader.result));
+        reader.readAsDataURL(img);
+    }
+  
+    uploadGambar = (event) => {
+        if(event.target.files[0].type != 'image/jpeg' ){
+            console.log('harusnya')
+            this.openNotification('Format Gambar Salah', 'Silahkan Upload Kembali dengan format JPG')
+        }
+        else if(event.target.files[0].size / 1024 / 1024 > 2){
+            this.openNotification('Ukuran file Melebihi 2Mb', 'Silahkan Upload Kembali')
+        }else{
+            this.getBase64(event.target.files[0], imageUrl => {
+                this.setState({ picture: imageUrl,croppedImageUrl :imageUrl,picture_event:imageUrl })
+            })
+            
+            // this.setState({ picture_event:event.target.files[0] })
+        }
+        
+    }
+      
+
+    onImageLoaded = image => {
+        this.imageRef = image;
+    };
+
+    onCropComplete = crop => {
+        this.makeClientCrop(crop);
+    };
+
+    onCropChange = (crop, percentCrop) => {
+        // You could also use percentCrop:
+        this.setState({ crop: percentCrop });
+        this.setState({ crop });
+    };
+
+    async makeClientCrop(crop) {
+        if (this.imageRef && crop.width && crop.height) {
+          const croppedImageUrl = await this.getCroppedImgLink(
+            this.imageRef,
+            crop,
+            'newFile.jpeg'
+          );
+          const picture_event = await this.getCroppedImg(
+            this.imageRef,
+            crop,
+            'newFile.jpeg'
+          );
+          this.setState({ picture_event,croppedImageUrl });
+          console.log('croping',this.state.croppedImageUrl)
+        }
+      }
+    
+    getCroppedImgLink(image, crop, fileName) {
+        const canvas = document.createElement('canvas');
+        const scaleX = image.naturalWidth / image.width;
+        const scaleY = image.naturalHeight / image.height;
+        canvas.width = crop.width;
+        canvas.height = crop.height;
+        const ctx = canvas.getContext('2d');
+
+        ctx.drawImage(
+            image,
+            crop.x * scaleX,
+            crop.y * scaleY,
+            crop.width * scaleX,
+            crop.height * scaleY,
+            0,
+            0,
+            crop.width,
+            crop.height
+        );
+
+    return new Promise((resolve, reject) => {
+        canvas.toBlob(blob => {
+        if (!blob) {
+            //reject(new Error('Canvas is empty'));
+            console.error('Canvas is empty');
+            return;
+        }
+        blob.name = fileName;
+        window.URL.revokeObjectURL(this.fileUrl);
+        this.fileUrl = window.URL.createObjectURL(blob);
+        resolve(this.fileUrl);
+        // this.setState({croppedImageUrl: this.fileUrl})
+        // console.log('file',this.state.croppedImageUrl)
+        
+        }, 'image/jpeg');
+    });
     }
 
+
+    getCroppedImg(image, crop, fileName) {
+        const canvas = document.createElement('canvas');
+        const scaleX = image.naturalWidth / image.width;
+        const scaleY = image.naturalHeight / image.height;
+        canvas.width = crop.width;
+        canvas.height = crop.height;
+        const ctx = canvas.getContext('2d');
+    
+        ctx.drawImage(
+          image,
+          crop.x * scaleX,
+          crop.y * scaleY,
+          crop.width * scaleX,
+          crop.height * scaleY,
+          0,
+          0,
+          crop.width,
+          crop.height
+        );
+        
+        const reader = new FileReader()
+        canvas.toBlob(blob => {
+            reader.readAsDataURL(blob)
+            reader.onloadend = () => {
+                this.dataURLtoFile(reader.result, 'cropped.jpg')
+            }
+        })
+    
+        // return new Promise((resolve, reject) => {
+        //   canvas.toBlob(blob => {
+        //     if (!blob) {
+        //       //reject(new Error('Canvas is empty'));
+        //       console.error('Canvas is empty');
+        //       return;
+        //     }
+        //     blob.name = fileName;
+        //     window.URL.revokeObjectURL(this.fileUrl);
+        //     this.fileUrl = window.URL.createObjectURL(blob);
+        //     resolve(this.fileUrl);
+        //     this.setState({croppedImageUrl: this.fileUrl})
+        //     console.log('file',this.state.croppedImageUrl)
+           
+        //   }, 'image/jpeg');
+        // });
+    }
+
+      dataURLtoFile = (dataurl, filename) => {
+        let arr = dataurl.split(','),
+            mime = arr[0].match(/:(.*?);/)[1],
+            bstr = atob(arr[1]), 
+            n = bstr.length, 
+            u8arr = new Uint8Array(n);
+                
+        while(n--){
+            u8arr[n] = bstr.charCodeAt(n);
+        }
+        let croppedImage = new File([u8arr], filename, {type:mime});
+        this.setState({picture_event: croppedImage}) 
+        console.log('ini lo', this.state.picture_event)
+    }
+   
     onPrev = () => {
       this.props.prev();
-      localStorage.setItem('step-6', JSON.stringify(this.state));
+      localStorage.setItem('step-5', JSON.stringify(this.state));
     }
-
-    getBase64 = (pdf, callback)  =>{
-      const reader = new FileReader();
-      reader.addEventListener('load', () => callback(reader.result));
-      reader.readAsDataURL(pdf);
-    }
-
-    beforeUpload = (file) => {
-        const isPdf = file.type === '.pdf';
-        if (!isPdf) {
-          message.error('You can only upload PDF file!');
-        }
-        const isLt2M = file.size / 1024 / 1024 < 2;
-        if (!isLt2M) {
-          message.error('Image must smaller than 2MB!');
-        }
-        return isPdf && isLt2M;
-    }
-
 
     uploadFile = (event) => {
-        this.setState({ 
-          sertifikat:event.target.files[0] 
-        })
-        console.log('sertif',this.state.sertifikat)
+        if(event.target.files[0].type != 'application/msword'){
+            console.log('harusnya')
+            this.openNotification('Format Sertifikat Salah', 'Silahkan Upload Kembali dengan format RTF')
+        }
+        else if(event.target.files[0].size / 1024 / 1024 > 2){
+            console.log('ukuran', this.state.size_sertifikat)
+            this.openNotification('Ukuran file Melebihi 2Mb', 'Silahkan Upload Kembali')
+        }else{ 
+            this.setState({ 
+                sertifikat:event.target.files[0],
+                size_sertifikat : event.target.files[0].size / 1024 / 1024,
+            })
+        }
+       
+        console.log('sertif',event.target.files[0])
     }    
+
+
+    handleButtonEdit = () => {
+        this.setState({
+            button_edit : 'Upload Gambar'
+        })
+    }
+
+    handleButtonGambar = () => {
+        this.setState({
+            button_edit : 'Edit Foto Profil'
+        })
+    }
+
+    openNotification = (message, description) => {
+        notification.error({
+            message,
+            description,
+        });
+    };
+
+    handleSubmit = () => {
+        const params = new FormData()
+        const basic_info = JSON.parse(localStorage.getItem('step-1'));
+        const biaya = JSON.parse(localStorage.getItem('step-2'));
+        const venue = JSON.parse(localStorage.getItem('step-3'));
+        const datetime = JSON.parse(localStorage.getItem('step-4'));
+        // const visual = JSON.parse(localStorage.getItem('step-5'));
+
+        params.set('nama_event',basic_info.nama)
+        params.set('deskripsi_event',basic_info.description)
+        params.set('organisasi',basic_info.organisasi)
+        params.set('email_event',basic_info.email_event)
+        params.set('no_telepon',basic_info.no_telepon)
+        params.set('instagram',basic_info.instagram)
+        params.set('id_kategori',basic_info.kategori_input)
+        params.set('limit_participant',basic_info.batas_peserta)
+
+        params.set('id_status_biaya',biaya.status_biaya)
+        params.set('biaya',biaya.biaya)
+        params.set('nomor_rekening',biaya.no_rekening)
+        params.set('bank',biaya.bank)
+
+        params.set('lokasi',venue.lokasi)
+        params.set('venue',venue.venue)
+
+        params.set('start_event',datetime.start_event)
+        params.set('end_event',datetime.end_event)
+        params.set('open_registration',datetime.open_registration)
+        params.set('end_registration',datetime.end_registration)
+        params.set('time_start',datetime.time_start)
+        params.set('time_end',datetime.time_end)
+        
+        
+        params.set('nama_sertifikat',this.state.nama_sertifikat)
+        params.set('description',this.state.deskripsi)
+        params.append('sertifikat',this.state.sertifikat)
+        params.append('picture',this.state.picture_event)
+        
+        console.log('params', params)
+
+      
+    if(validation.required(this.state.nama_sertifikat) != null){
+        const message = validation.required(this.state.nama_sertifikat);
+        this.openNotification(message, 'Nama Sertifikat Harus Diisi')
+    }else if(validation.required(this.state.deskripsi) != null){
+        const message = validation.required(this.state.deskripsi);
+        this.openNotification(message, 'Deskripsi Sertifikat Harus Diisi')
+    }else if(validation.required(this.state.sertifikat) != null ){
+        const message = validation.required(this.state.sertifikat);
+        this.openNotification(message, 'Sertifikat Harus Diupload')
+    }else if(validation.required(this.state.picture_event) != null ){
+        const message = validation.required(this.state.picture_event);
+        this.openNotification(message, 'Gambar Event Harus di upload')
+    }else{
+        this.setState({loading: true})
+        API.postEdit(`/panitia/create/event`, params)
+        .then(res => {
+            console.log('res',res)
+            if(res.status == 201){
+                message.success('Event Berhasil Ditambahkan');
+                this.props.navigate(CONSTANS.ACTIVE_EVENT_MENU_KEY)
+            }else{
+                this.openNotification('Data Salah', 'Silahkan isi data dengan benar')
+            }
+           
+        });
+     }
+     
+
+    }
   
     render() {
 
@@ -78,10 +328,15 @@ class CertificatePage extends Component {
                 initialData={this.state}
                 navigate={this.props.navigate}
                 handleChange={this.handleChange}
-                beforeUpload = {this.beforeUpload}
                 uploadFile = {this.uploadFile}
-                onNext={this.onNext}
                 onPrev={this.onPrev}
+                handleSubmit = {this.handleSubmit}
+                uploadGambar = {this.uploadGambar}
+                handleButtonEdit = {this.handleButtonEdit}
+                handleButtonGambar={this.handleButtonGambar}
+                onImageLoaded={this.onImageLoaded}
+                onCropComplete={this.onCropComplete}
+                onCropChange={this.onCropChange}
             />
         );
     }

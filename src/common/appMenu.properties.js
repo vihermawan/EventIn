@@ -16,6 +16,9 @@ const menu = {
     DETAIL_EVENT: {
         link : '/detail'
     },
+    ALL_EVENT: {
+        link : '/allevent'
+    },
     PROFILE:{
         link : '/profile'
     },
@@ -39,6 +42,9 @@ const menu = {
     },
     SIGNER: {
         link :'/signer/dashboard-signer',
+    },
+    PROFILE_ADMIN_PANITIA : {
+        link : '/dashboard/profile/',
     },
     DETAIL_SERTIF_SIGNER: {
         link : '/signer/detail/e-certificate'

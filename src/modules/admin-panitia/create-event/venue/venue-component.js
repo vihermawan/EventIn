@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { Layout, Row, Col, Button, Form,Select} from 'antd';
 // component
 import InputForm from '../../../../common/component/input/input-form';
+import { faMapMarker } from '@fortawesome/free-solid-svg-icons';
 const { Content } = Layout;
 const { Option } = Select;
 class VenueComponent extends Component{
@@ -23,11 +24,12 @@ class VenueComponent extends Component{
                                             <div>
                                                 <Select
                                                     labelInValue
-                                                    defaultValue={{ key: 'Pilih Tempat' }}
+                                                    defaultValue={{ key: String(initialData.venue) }}
                                                     style={{ width: '103%' }}
                                                     className="select-kategori"
                                                     onChange={handleTempat}
                                                 >
+                                                    <Option value="">Pilih Tempat</Option>
                                                     <Option value="Terbuka">Terbuka</Option>
                                                     <Option value="Tertutup">Tertutup</Option>
                                                 </Select>,
@@ -48,6 +50,7 @@ class VenueComponent extends Component{
                                                 iconType="lock"
                                                 onChange={handleChange}
                                                 value={initialData.lokasi}
+                                                icon={faMapMarker}
                                             />
                                         </div>
                                     </Col>

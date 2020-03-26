@@ -6,9 +6,9 @@ const { Content } = Layout;
 
 class DateTimeComponent extends Component{
     render(){
-        const {onNext,initialData, onPrev, onChangeTimeStart,onChangeTimeEnd,onChangeDateStart,onChangeDateEnd,onChangeDateRegisStart,onChangeDateRegistEnd} = this.props;
+        const {onNext,initialData, onPrev, onChangeTimeStart,onChangeTimeEnd,onChangeDateStart,onChangeDateEnd,onChangeDateRegisStart,onChangeDateRegistEnd, disabledDate} = this.props;
         const format = 'HH:mm';
-        const dateFormat = 'YYYY/MM/DD';
+        const dateFormat = 'YYYY-MM-DD';
         return (
             
             <Layout className="login-container">
@@ -30,6 +30,7 @@ class DateTimeComponent extends Component{
                                                                 placeholder="Pilih tanggal" 
                                                                 onChange={onChangeDateStart} 
                                                                 defaultValue={moment(String(initialData.start_event), dateFormat)}
+                                                                disabledDate={disabledDate}
                                                              />
                                                         </Col>
                                                     </Row>
@@ -72,6 +73,7 @@ class DateTimeComponent extends Component{
                                                                 placeholder="Pilih tanggal" 
                                                                 onChange={onChangeDateEnd} 
                                                                 defaultValue={moment(String(initialData.end_event), dateFormat)}
+                                                                disabledDate={disabledDate}
                                                             />
                                                         </Col>
                                                     </Row>
@@ -116,6 +118,7 @@ class DateTimeComponent extends Component{
                                                                 placeholder="Pilih tanggal" 
                                                                 onChange={onChangeDateRegisStart} 
                                                                 defaultValue={moment(String(initialData.open_registration), dateFormat)}
+                                                                disabledDate={disabledDate}
                                                             />
                                                         </Col>
                                                     </Row>
@@ -134,8 +137,9 @@ class DateTimeComponent extends Component{
                                                         <Col lg={24} md={24} sm={24}>
                                                             <DatePicker 
                                                                 placeholder="Pilih tanggal" 
-                                                                onChange={onChangeDateRegistEnd}
+                                                                onChange={onChangeDateRegistEnd} 
                                                                 defaultValue={moment(String(initialData.end_registration), dateFormat)}
+                                                                disabledDate={disabledDate}
                                                             />
                                                         </Col>
                                                     </Row>

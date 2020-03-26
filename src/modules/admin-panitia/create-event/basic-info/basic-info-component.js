@@ -1,11 +1,12 @@
 import React, { Component } from 'react';
-import { Layout, Row, Col, Button, Form, Select } from 'antd';
+import { Layout, Row, Col, Button, Form, Select, Input } from 'antd';
 import '../../../../assets/css/admin-panitia/create-event.css'
 // component
 import InputForm from '../../../../common/component/input/input-form';
+import { faUserTie, faStickyNote, faIdCard, faUserFriends, faAddressBook, faEnvelope, faInfoCircle } from '@fortawesome/free-solid-svg-icons';
 const { Content } = Layout;
 const { Option } = Select;
-
+const { TextArea } = Input;
 class BasicInfoComponent extends Component{
     render(){
         const { menu,initialData, handleChange, onNext, handleKategori } = this.props;
@@ -27,6 +28,7 @@ class BasicInfoComponent extends Component{
                                                 className="input-event mt-5 mb-20"
                                                 onChange={handleChange}
                                                 value={initialData.nama}
+                                                icon={faStickyNote}
                                             />
                                         </div>
                                     </Col>
@@ -35,12 +37,14 @@ class BasicInfoComponent extends Component{
                                             <span className="auth-input-label text-black">Deskripsi Event*</span>
                                         </div>
                                         <div>
-                                            <InputForm
+                                            <TextArea 
                                                 name='description'
                                                 placeholder="Masukan deskripsi event...."
                                                 className="input-description-event mt-5"
+                                                rows={5}
                                                 onChange={handleChange}
                                                 value={initialData.description}
+                                                style={{borderColor: "#4D5AF2"}}
                                             />
                                         </div>
                                     </Col>
@@ -58,6 +62,7 @@ class BasicInfoComponent extends Component{
                                                     className="input-event mt-5 mb-20"
                                                     onChange={handleChange}
                                                     value={initialData.organisasi}
+                                                    icon={faIdCard}
                                                 />
                                             </div>
                                         </div>   
@@ -74,6 +79,7 @@ class BasicInfoComponent extends Component{
                                                     className="input-event mt-5 mb-20"
                                                     onChange={handleChange}
                                                     value={initialData.batas_peserta}
+                                                    icon={faUserFriends}
                                                 />
                                             </div>
                                         </div>
@@ -86,20 +92,74 @@ class BasicInfoComponent extends Component{
                                             <div className="select-kategori">
                                                  <Select
                                                     labelInValue
-                                                    defaultValue={{ key: 'Pilih Kategori' }}
+                                                    defaultValue={{ key: String(initialData.kategori_input) }}
                                                     style={{ width: '100%' }}
                                                     className="select-kategori"
                                                     onChange={handleKategori}
                                                 >
-                                                    <Option value="Olahraga">Olahraga</Option>
-                                                    <Option value="Musik">Musik</Option>
-                                                    <Option value="Budaya">Budaya</Option>
-                                                    <Option value="Game">Game</Option>
-                                                    <Option value="Seni">Seni</Option>
-                                                    <Option value="Teknologi">Teknologi</Option>
-                                                    <Option value="Pendidikan">Pendidikan</Option>
-                                                    <Option value="Agama">Agama</Option>
+                                                    <Option value="">Pilih Kategori</Option>
+                                                    <Option value="1">Olahraga</Option>
+                                                    <Option value="2">Musik</Option>
+                                                    <Option value="3">Budaya</Option>
+                                                    <Option value="4">Game</Option>
+                                                    <Option value="5">Seni</Option>
+                                                    <Option value="6">Teknologi</Option>
+                                                    <Option value="7">Pendidikan</Option>
+                                                    <Option value="8">Agama</Option>
                                                 </Select>,
+                                            </div>
+                                        </div>
+                                    </Col>
+                                </Row>
+                                <Row style={{marginTop:'10px'}}>
+                                <Col lg={8} md={24} sm={24}>
+                                        <div className="form-section-3">
+                                            <div>   
+                                                <span className="auth-input-label text-black">No Telepon*</span>
+                                            </div>
+                                            <div>
+                                                <InputForm
+                                                    name='no_telepon'
+                                                    placeholder="Masukkan nomor telepon...."
+                                                    className="input-event mt-5 mb-20"
+                                                    onChange={handleChange}
+                                                    value={initialData.no_telepon}
+                                                    icon={faAddressBook}
+                                                />
+                                            </div>
+                                        </div>   
+                                    </Col>
+                                    <Col lg={8} md={24} sm={24}>
+                                        <div className="form-section-3">
+                                            <div>   
+                                                <span className="auth-input-label text-black">Email Event*</span>
+                                            </div>
+                                            <div>
+                                                <InputForm
+                                                    name='email_event'
+                                                    placeholder="Masukkan email event...."
+                                                    className="input-event mt-5 mb-20"
+                                                    onChange={handleChange}
+                                                    value={initialData.email_event}
+                                                    icon={faEnvelope}
+                                                />
+                                            </div>
+                                        </div>
+                                    </Col>
+                                    <Col lg={8} md={24} sm={24}>
+                                        <div className="form-section-3">
+                                            <div>   
+                                                <span className="auth-input-label text-black">Instagram*</span>
+                                            </div>
+                                            <div>
+                                                <InputForm
+                                                    name='instagram'
+                                                    placeholder="Masukkan akun instagram...."
+                                                    className="input-event mt-5 mb-20"
+                                                    onChange={handleChange}
+                                                    value={initialData.instagram}
+                                                    icon={faInfoCircle}
+                                                />
                                             </div>
                                         </div>
                                     </Col>

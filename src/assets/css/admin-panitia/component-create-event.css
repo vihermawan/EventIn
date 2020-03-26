@@ -1,3 +1,5 @@
+
+
 .date-picker .ant-input{
     width: 240px;
     text-align: left;
@@ -35,6 +37,7 @@
     color: #4D5AF2;
     font-size: 15px;
     font-weight: 600;
+    float: right;
     margin-right: 0%;
 }
 
