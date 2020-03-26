@@ -64,7 +64,9 @@ class CertificatePage extends Component {
         }
         else if(event.target.files[0].size / 1024 / 1024 > 2){
             this.openNotification('Ukuran file Melebihi 2Mb', 'Silahkan Upload Kembali')
-        }else{
+        }
+        else{
+            console.log('cek', event.currentTarget.value)
             this.getBase64(event.target.files[0], imageUrl => {
                 this.setState({ picture: imageUrl,croppedImageUrl :imageUrl,picture_event:imageUrl,visible:true })
             })
@@ -330,6 +332,8 @@ class CertificatePage extends Component {
         console.log(e);
         this.setState({
             visible: false,
+            picture_event : null,
+            croppedImageUrl : null,
         });
     };
   
