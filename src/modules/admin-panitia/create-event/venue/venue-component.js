@@ -1,10 +1,16 @@
 import React, { Component } from 'react';
 import { Layout, Row, Col, Button, Form,Select} from 'antd';
 // component
+import GoogleMapReact from 'google-map-react';
 import InputForm from '../../../../common/component/input/input-form';
+import Marker from '../../../../common/component/marker/marker'
 import { faMapMarker } from '@fortawesome/free-solid-svg-icons';
+
+
 const { Content } = Layout;
 const { Option } = Select;
+const AnyReactComponent = ({ text }) => <div>{text}</div>;
+const Balloon = () => <img width="25" src='http://speedwaymiracletournament.com/Images/cmnh-logo-no-text.png'/>;
 class VenueComponent extends Component{
     render(){
         const {initialData, handleChange,handleTempat, onNext, onPrev } = this.props;
@@ -60,8 +66,8 @@ class VenueComponent extends Component{
                                         <div>   
                                             <span className="auth-input-label text-black">Temukan Lokasi*</span>
                                         </div>
-                                        <div>
-                                            <InputForm
+                                       
+                                            {/* <InputForm
                                                 name='map'
                                                 placeholder="Ini Buat Gmaps Langitute longituted...."
                                                 className="input-location-event mt-5"
@@ -69,8 +75,21 @@ class VenueComponent extends Component{
                                                 disabled={true}
                                                 onChange={handleChange}
                                                 value={initialData.map}
-                                            />
-                                        </div>
+                                            /> */}
+                                             <div style={{ height: '100vh', width: '100%' }}>
+                                                <GoogleMapReact
+                                                // bootstrapURLKeys={{ key: 'AIzaSyBAXxSKTSgQnJl2DxPNybd3r_9Pm6EG_RY' }}
+                                                defaultCenter={initialData.center}
+                                                defaultZoom={initialData.zoom}
+                                                >
+                                                <Balloon 
+                                                    lat={-7.7713847}
+                                                    lng={110.3753111,17}
+                                                    text="My Marker"
+                                                    color="blue"
+                                                />
+                                                </GoogleMapReact>
+                                         </div>
                                     </Col>
                                 </Row>
                             </div>

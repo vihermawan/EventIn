@@ -39,20 +39,33 @@ class WaitingListPage extends Component {
     }
 
     //function untuk modal
-    showSignedConfirm = (id) => {
+    showSignedConfirm = (id_sertifikat) => {
         confirm({
             title: ' Apakah anda yakin untuk menandatangani dokumen ini ?',
             okText: 'Yes',
             okType: 'danger',
             cancelText: 'No',
             onOk: () => {
-               // this.deleteEvent(id)
+               this.assignSertifikat(id_sertifikat)
             },
             onCancel(){
                 console.log('Cancel')
             }
         });
     }
+
+     //delete event
+     assignSertifikat = (id_sertifikat) => {
+        console.log(id_sertifikat)
+        API.delete(`/penandatangan/sertifikat/assign/${id_sertifikat}`)
+        .then(res => {
+            console.log('res',res)
+            if(res.status == 200){
+                message.success('Sertifikat Berhasil ditandantangani');
+                window.location.reload(); 
+            }   
+        });
+      }
 
     //button detail certificate
     onDetailCertificate = (id) => {
@@ -110,7 +123,7 @@ class WaitingListPage extends Component {
                     borderRadius="5px"
                     background="#004A03"
                     marginRight= "20px"
-                    onClick = {() => this.showSignedConfirm(data.nomor)}
+                    onClick = {() => this.showSignedConfirm(data.id_sertifikat)}
                 />,
                 <ButtonDashboard
                     text="Detail"
@@ -118,15 +131,16 @@ class WaitingListPage extends Component {
                     icon={faInfoCircle}
                     borderRadius="5px"
                     background="#FFA903"
-                    onClick={() => this.onDetailCertificate(data.id_sertif)}
+                    onClick={() => this.onDetailCertificate(data.id_sertifikat)}
                 />]
               ),
             },
           ];
+
         const data =  this.state.e_certificate.map( ({id_penandatangan_sertifikat, id_sertifikat, sertifikat,tenggang_waktu}, index) => ({
             no : index+1,
             nomor : id_penandatangan_sertifikat,
-            id_sertif : id_sertifikat,
+            id_sertifikat : id_sertifikat,
             nama_event : sertifikat.event.nama_event,
             nama_panitia : sertifikat.event.panitia.nama_panitia,
             organisasi : sertifikat.event.organisasi,
