@@ -9,13 +9,13 @@ import '../../../assets/css/event.css'
 // component
 import Navbar from '../../../common/layout/navbar-landing'
 import Footer from '../../../common/layout/footer-landing'
+import ButtonDashboard from '../../../common/component/button/button-dashboard';
 
 const { Content } = Layout;
 
 class AllEventComponent extends Component {
     render() { 
-        const {cardData,initialData,onDetailEvent,onStartLoadingHome ,onFinishLoadingHome} = this.props
-        const image1 = require(`../../../assets/images/event-image1.png`);  
+        const {cardData,initialData,onDetailEvent,onStartLoadingHome ,onFinishLoadingHome,nextPage} = this.props
         return ( 
             <Layout className="landing-container">
                 <Navbar
@@ -30,8 +30,10 @@ class AllEventComponent extends Component {
                             <Col lg={24}>
                                 <span style={{marginLeft:'1%'}} className="text-soft-blue title-big-event bold">Semua Event</span>
                             </Col>
-                            <Col lg={24} className="card-container">
-                                <LoadingContainer loading={initialData.loading}>
+                            <LoadingContainer loading={initialData.loading}>
+                            <Col lg={24} className="card-container" style={{minHeight:"80vh"}}>
+                            {!initialData.loading && (
+                              
                                     <Col lg={24} style={{minHeight: "300px"}}>
                                         <Row gutter={16}>
                                             {
@@ -65,9 +67,24 @@ class AllEventComponent extends Component {
                                             </Col>
                                             )}
                                         </Row>
+                                        <Row>
+                                            <Col span={24} >
+                                                <div className="tombol-tengah button-section-1-container" style={initialData.current_page ===  initialData.last_page ? {display:"none"}:{display:"block"}}>
+                                                        <ButtonDashboard
+                                                            text="Show More"
+                                                            className='button-participate'
+                                                            onClick={nextPage}
+                                                            paddingLeft="40px"
+                                                            paddingRight="40px"
+                                                        />
+                                                </div>
+                                            </Col>
+                                        </Row>
                                     </Col>
-                                </LoadingContainer>       
+                              
+                                )}      
                             </Col>
+                            </LoadingContainer> 
                         </Row>
                         <BackTop />
                     </Content>
