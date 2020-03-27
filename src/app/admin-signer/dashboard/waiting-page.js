@@ -54,7 +54,7 @@ class WaitingListPage extends Component {
         });
     }
 
-     //delete event
+     //assign sertifikat
      assignSertifikat = (id_sertifikat) => {
         console.log(id_sertifikat)
         API.delete(`/penandatangan/sertifikat/assign/${id_sertifikat}`)
@@ -107,11 +107,6 @@ class WaitingListPage extends Component {
                 dataIndex: 'sertifikat',
                 key: 'sertifikat',
             },
-            // {
-            //     title: 'Tenggang Waktu',
-            //     dataIndex: 'tenggang_waktu',
-            //     key: 'tenggang_waktu',
-            // },
             {
               title: 'Action',
               key: 'action',
