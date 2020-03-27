@@ -9,11 +9,17 @@ class VenuePage extends Component {
     state = {
        venue:'',
        lokasi : '',
+       center: {
+        lat: -7.770717,
+        lng: 110.377724
+      },
+      zoom: 15
     }
 
     componentDidMount(){
         
     }
+
     componentWillMount(){
         const data = JSON.parse(localStorage.getItem('step-3'));
         console.log(data)
@@ -24,8 +30,8 @@ class VenuePage extends Component {
             })
         }
     }
-
     
+
     handleChange = (e) => {
         let target = e.target.name;
         let value = e.target.value;
@@ -45,7 +51,6 @@ class VenuePage extends Component {
             description,
         });
     };
-
 
     onNext = () => {
 
