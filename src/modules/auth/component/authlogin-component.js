@@ -24,7 +24,7 @@ class LoginComponent extends Component{
                             <Row>
                                 <div className="login-section-container">
                                     <img src={logo} alt="EventIn logo" width="100"/>
-                                    <div className="auth-image-container">
+                                    <div className="auth-image-container float-ease text-align-center">
 					                <img
                                         src={login}
                                         alt="EventIn login"
@@ -32,7 +32,7 @@ class LoginComponent extends Component{
                                     />
                                     </div>
                                 </div>
-                                <div className="text-soft-blue title-medium text-align-center">
+                                <div className="text-soft-blue title-medium text-align-center mt-30">
                                     Find a newst event nearby you
                                 </div>
                                 <div className="text-soft-black title-more-small text-align-center thin">

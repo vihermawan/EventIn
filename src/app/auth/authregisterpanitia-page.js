@@ -14,7 +14,9 @@ class AuthRegisterPanitia extends Component {
         nama_panitia: '',
         email : '',
         password: '',
-        id_role: '3',
+        no_telepon :'Silahkan isi',
+        instagram : 'Silahkan isi',
+        organisasi :'Silahkan isi',
         password_confirmation: '',
         loading:false,
     }
@@ -36,15 +38,17 @@ class AuthRegisterPanitia extends Component {
     };
 
 
-    handleSubmit = e => {
-        e.preventDefault();
-        const params = {
-            nama_panitia: this.state.nama_panitia,
-            email: this.state.email,
-            password: this.state.password,
-            id_role: this.state.id_role,
-            password_confirmation: this.state.password_confirmation,   
-        }
+    handleSubmit = () => {
+        // e.preventDefault();
+        const params = new FormData()
+        params.set('nama_panitia',this.state.nama_panitia)
+        params.set('password',this.state.password)
+        params.set('email',this.state.email)
+        params.set('password_confirmation',this.state.password_confirmation)
+        params.set('no_telepon',this.state.no_telepon)
+        params.set('instagram',this.state.instagram)
+        params.set('organisasi',this.state.organisasi)
+        // params.append('foto_panitia',this.state.foto_panitia)
 
         if(validation.required(this.state.nama_panitia) != null){
             const message = validation.required(this.state.nama_panitia)  
@@ -61,9 +65,9 @@ class AuthRegisterPanitia extends Component {
         }else{
             console.log('params',params)
             this.setState({loading: true})
-            API.post(`/register/panitia`, params)
+            API.post(`/auth/register/panitia`, params)
             .then(res => {
-                console.log('res',res.status)
+                console.log('res',res)
                 if(res.status == 201){
                     this.props.navigate(CONSTANS.LOGIN_MENU_KEY)
                 }else{
