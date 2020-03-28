@@ -1,10 +1,9 @@
 import React, { Component } from 'react';
-import { Layout, BackTop, Row, Col } from 'antd';
-import { Route, Link } from 'react-router-dom'
+import { Layout, Row, Col } from 'antd';
+import {Link } from 'react-router-dom'
 import '../../../assets/css/pilihan.css'
 import CONSTANTS from '../../../common/utils/Constants';
 // component
-import ButtonAuth from '../../../common/component/button/button-auth'
 import ButtonIcon from '../../../common/component/button/button-icon';
 const { Content } = Layout;
 
@@ -13,15 +12,13 @@ class PilihanComponent extends Component {
     render() { 
         const cardData = [
             {
-                image: require(`../../../assets/images/organizer.png`),
-                title: 'Organizer',
-                link :<a href="/login">Register Now !</a>,
+                image: require(`../../../assets/images/pilih-panitia.png`),
+                title: 'Panitia',   
                 target : CONSTANTS.REGISTER_PANITIA_KEY,
             },
             {
-                image: require(`../../../assets/images/organizer.png`),
-                title: 'Participant',
-                link :<a href="/login">Register Now !</a>,
+                image: require(`../../../assets/images/pilih-peserta.png`),
+                title: 'Peserta',
                 target : CONSTANTS.REGISTER_PESERTA_KEY,
             }
         ]
@@ -34,12 +31,12 @@ class PilihanComponent extends Component {
                     <Row className="section-pilihan">
                         <Col lg={24}>
                             <div className="text-white title-big bold pilihan-container">
-                                Choose Your Account
+                                Pilih Jadi Apa yang Kamu Mau
                             </div>
                         </Col>
                         <Col lg={24}>
                             <div className="text-white description-pilihan">
-                               <p className="text-description-pilihan">You can choose your account as what you want, every one people just have 1 account. So Les't register!</p>
+                               <p className="text-description-pilihan">Kamu dapat memilih menjadi apa yang kamu mau, setiap orang nantinya hanya akan mempunyai 1 akun, yuk mendaftar!</p>
                             </div>
                         </Col>
                         <Col lg={24} className="card-container">
@@ -48,13 +45,15 @@ class PilihanComponent extends Component {
                                     cardData.map( data =>
                                         <Col lg={12} className="text-align-center">
                                             <div className="card-content-pilihan">
-                                                <img src={data.image} alt="organizer" className="card-image-pilihan"/>
+                                                <div className="image-card">
+                                                <img src={data.image} alt="organizer" className="card-image-pilihan float-ease"/>
+                                                </div>
                                                 <div className="text-black semi-bold card-title-pilihan">
                                                     {data.title}
                                                 </div>
                                                 <div className="card-description-pilihan">
                                                     <ButtonIcon
-                                                        text="Register Now"
+                                                        text="Daftar Sekarang"
                                                         className="auth-button-red mt-0 auth-button-login"
                                                         style={{borderRadius: '10px',backgroundColor:'#FA607E',border:'none',color:'#ffff'}}
                                                         block={true}
