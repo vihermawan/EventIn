@@ -19,6 +19,7 @@ class Navbar extends Component {
 		visible: false,
 		isLogin: false,
 		loading: false,
+		isAuthenticated:'',
 	}
 
 	
@@ -26,6 +27,7 @@ class Navbar extends Component {
 		let pathArray = window.location.pathname.split('/');
 		let pathName = pathArray[1];
 		pathName === '' ? this.setState({current : 'home'}) : this.setState({current : pathName});
+
 		let token = localStorage.getItem("token");
 		if (token != null){
 			this.getProfile();
@@ -47,8 +49,8 @@ class Navbar extends Component {
 				isLogin: true,
             })
         });
-    }
-
+	}
+	
 
 	handleClick = e => {
 		this.setState({ current: e.key });

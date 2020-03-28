@@ -32,7 +32,7 @@
 }
 .card-content-pilihan {
     margin: 0px auto;
-    max-width: 500px;
+    max-width:350px;
     height: 450px;
     padding: 28px;
     border-radius: 10px;
@@ -43,9 +43,12 @@
     box-shadow: 0px 9px 19px -5px rgba(0,0,0,0.75);
 }
 .card-image-pilihan {
-    max-width: 100%;
-    max-height: 400px;
+    margin-top: 20px;
+    max-width: 80%;
+    max-height: 350px;
 }
+
+
 .card-title-pilihan {
     margin-top: 20px;
     font-size: 26px;
@@ -54,8 +57,8 @@
 .card-description-pilihan {
     margin-top: 15px;
     font-size: 15px;
-    width: 50%;
-    margin: 16px auto;
+    width: 100%;
+    margin: 7px auto;
     
 }
 .bottom-container{

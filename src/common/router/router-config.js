@@ -24,7 +24,7 @@ const baseUrl = process.env.PUBLIC_URL;
 
 const routeSources = [
     { component: HomePage, path: `${baseUrl}/`, exact: true },
-    { component: EventPage, path: `${baseUrl}/event`, exact: true },
+    { component: EventPage, path: `${baseUrl}/event`, exact: true, private: true },
     { component: AllEventPage, path: `${baseUrl}/allevent`, exact: true },
     { component: DetailPage, path: `${baseUrl}/detail`, exact: true },
     { component: LoginComponent, path: `${baseUrl}/login`, exact: true },
