@@ -1,9 +1,9 @@
-import * as actionType from './active-event-action-type';
+import * as actionType from './kategori-action-type';
 
 const initialState = {
     loading: false,
     data: [],
-    idEvent: null,
+    idKategori: null,
 };
 
 const handler = (currentState) => {
@@ -22,17 +22,16 @@ const handler = (currentState) => {
         }),
     };
 
-    const setIdEvent = {
-        setIdDataEvent: data => ({
+    const setIdKategori = {
+        setIdDataKategori: data => ({
             ...currentState,
-            idEvent: data
+            idKategori: data
         })
     }
 
-
     return {
         ...getDataParticipant,
-        ...setIdEvent,
+        ...setIdKategori,
     };
 };
 
@@ -45,9 +44,9 @@ export default (state = initialState, action) => {
             return handler(state).finishGetDataParticipant();
         case actionType.SET_DATA:
             return handler(state).setDataParticipant(payload);
-
-        case actionType.SET_ID_EVENT:
-            return handler(state).setIdDataEvent(payload);
+        
+        case actionType.SET_ID_KATEGORI:
+            return handler(state).setIdDataKategori(payload);
 
         default:
             return state;

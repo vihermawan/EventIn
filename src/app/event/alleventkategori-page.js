@@ -10,28 +10,34 @@ import { setIdEvent } from '../../modules/admin-panitia/active-event/store/activ
 
 class AllEventKategoriPage extends Component {
     state = { 
+        page: 1,
         event:[],
         loading : false,
         loadingHome: false,
+        current_page :'',
+        last_page : '',
      }
 
      componentDidMount(){
-        this.getAllEvent(this.props.idKategori);
-        console.log(this.props)
+        this.getAllEvent(this.props.idKategori,this.state.page);
+        console.log(this.props.idKategori)
     }
 
     onStartLoadingHome = () =>  this.setState({ loadingHome: true })
     onFinishLoadingHome = () =>  this.setState({ loadingHome: false })
 
 
-    getAllEvent=(id_kategori)=>{
+    getAllEvent=(id_kategori,page)=>{
         this.setState({loading: true})
-        API.get(`/peserta/Allevent/Kategori/4`)
+        API.get(`/peserta/Allevent/Kategori/${id_kategori}/?page=${page}`)
         .then(res => {
             console.log(res)
             if(res.status == 200){
+                const allData = this.state.event.concat(res.data.data.event.data);
                 this.setState({
-                    event:res.data.data.event.data,
+                    event:allData,
+                    current_page: res.data.data.event.current_page,
+                    last_page: res.data.data.event.last_page,
                 })
             }
             this.setState({loading: false})
@@ -43,6 +49,14 @@ class AllEventKategoriPage extends Component {
         console.log('id ini',id)
         this.props.setIdEvent(id);
         this.props.navigate(CONSTANS.DETAIL_EVENT_KEY)
+    }
+
+    
+    nextPage = () => {
+        const { page } = this.state;
+        const nextPage = page + 1;
+        this.getAllEvent(nextPage);
+        this.setState({ page: nextPage });
     }
 
     render() { 
@@ -64,13 +78,14 @@ class AllEventKategoriPage extends Component {
                 onDetailEvent  = {this.onDetailEvent}
                 onStartLoadingHome={this.onStartLoadingHome}
                 onFinishLoadingHome={this.onFinishLoadingHome}
+                nextPage={this.nextPage}
             />
         );
     }
 }
  
 const mapStateToProps = state => ({
-    ...state.event
+    ...state.kategori
 });
 
 const mapDispatchToProps = (dispatch => ({

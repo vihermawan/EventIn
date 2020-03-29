@@ -91,7 +91,7 @@ componentDidMount(){
     this.setState({loading: true})
     API.get(`/panitia/profile-edit`)
     .then(res => {
-        console.log('res',res)
+        // console.log('res',res)
         this.setState({
             id_panitia : res.data.data.user.panitia.id_panitia,
             nama_panitia : res.data.data.user.panitia.nama_panitia,

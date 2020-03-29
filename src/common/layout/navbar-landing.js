@@ -32,9 +32,9 @@ class Navbar extends Component {
 		if (token != null){
 			this.getProfile();
 		}
-		window.onbeforeunload = function() {
-			localStorage.clear();
-		}
+		// window.onbeforeunload = function() {
+		// 	localStorage.clear();
+		// }
 		
 	}
 	
@@ -45,7 +45,7 @@ class Navbar extends Component {
         this.setState({loading: true})
         API.get(`/peserta/edit-profile`)
         .then(res => {
-            console.log('res',res.data.data.user)
+            // console.log('res',res.data.data.user)
             this.setState({
                 username : res.data.data.user.peserta.nama_peserta,
                 picture:res.data.data.user.peserta.image_URL,

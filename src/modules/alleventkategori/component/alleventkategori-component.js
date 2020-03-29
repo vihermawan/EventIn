@@ -9,12 +9,13 @@ import '../../../assets/css/event.css'
 // component
 import Navbar from '../../../common/layout/navbar-landing'
 import Footer from '../../../common/layout/footer-landing'
+import ButtonDashboard from '../../../common/component/button/button-dashboard';
 
 const { Content } = Layout;
 
 class AllEventKategoriComponent extends Component {
     render() { 
-        const {cardData,initialData,onDetailEvent,onStartLoadingHome ,onFinishLoadingHome} = this.props
+        const {cardData,initialData,onDetailEvent,onStartLoadingHome ,onFinishLoadingHome,nextPage} = this.props
         const image1 = require(`../../../assets/images/event-image1.png`);  
         return ( 
             <Layout className="landing-container">
@@ -33,7 +34,7 @@ class AllEventKategoriComponent extends Component {
                             <Col lg={24} className="card-container">
                                 <LoadingContainer loading={initialData.loading}>
                                     <Col lg={24} style={{minHeight: "300px"}}>
-                                        <Row gutter={16}>
+                                        <Row gutter={[16,16]}>
                                             {
                                             cardData.map( data =>
                                                 <Col lg={6} md={12} sm={12} xs={24} className="mt-30">
@@ -64,6 +65,19 @@ class AllEventKategoriComponent extends Component {
                                                 </Card>
                                             </Col>
                                             )}
+                                        </Row>
+                                        <Row>
+                                            <Col span={24} >
+                                                <div className="tombol-tengah button-section-1-container" style={initialData.current_page ===  initialData.last_page ? {display:"none"}:{display:"block"}}>
+                                                        <ButtonDashboard
+                                                            text="Show More"
+                                                            className='button-participate'
+                                                            onClick={nextPage}
+                                                            paddingLeft="40px"
+                                                            paddingRight="40px"
+                                                        />
+                                                </div>
+                                            </Col>
                                         </Row>
                                     </Col>
                                 </LoadingContainer>       
