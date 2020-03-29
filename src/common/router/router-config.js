@@ -9,6 +9,7 @@ import HomePage from '../../app/home/home-page'
 import PilihanPage from '../../app/pilihan/pilihan-page'
 import EventPage from '../../app/event/event-page'
 import AllEventPage from '../../app/event/allevent-page'
+import AllEventKategoriPage from '../../app/event/alleventkategori-page'
 import DetailPage from '../../app/detail/detail-page'
 import ProfilePage from '../../app/profile/profile-page'
 import EditProfilePage from '../../app/profile/edit-profile-page'
@@ -24,6 +25,7 @@ const baseUrl = process.env.PUBLIC_URL;
 
 const routeSources = [
     { component: HomePage, path: `${baseUrl}/`, exact: true },
+    { component: AllEventKategoriPage, path: `${baseUrl}/allkategori`, exact: true },
     { component: EventPage, path: `${baseUrl}/event`, exact: true, private: true },
     { component: AllEventPage, path: `${baseUrl}/allevent`, exact: true,  private: true},
     { component: DetailPage, path: `${baseUrl}/detail`, exact: true,  private: true },

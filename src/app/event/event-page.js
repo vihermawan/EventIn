@@ -7,6 +7,7 @@ import EventComponent from '../../modules/event/component/event-component';
 
 // import store
 import { setIdEvent } from '../../modules/admin-panitia/active-event/store/active-event-action'
+import { setIdKategori } from '../../modules/admin-panitia/active-event/store/active-event-action'
 
 class EventPage extends Component {
     state = { 
@@ -80,6 +81,13 @@ class EventPage extends Component {
         this.props.navigate(CONSTANS.ALL_EVENT_MENU_KEY)
     }
 
+    onEventKategori =(id_kategori) => {
+        this.props.setIdKategori(id_kategori)
+        this.props.navigate(CONSTANS.ALL_KATEGORI_MENU_KEY)
+
+
+    }
+
     render() { 
 
         const cardData =  this.state.event.map( data => ({
@@ -116,18 +124,20 @@ class EventPage extends Component {
                 onTabChange={this.onTabChange}
                 onStartLoadingHome={this.onStartLoadingHome}
                 onFinishLoadingHome={this.onFinishLoadingHome}
+                onEventKategori={this.onEventKategori}
             />
         );
     }
 }
  
 const mapStateToProps = state => ({
-    
+
 });
 
 const mapDispatchToProps = (dispatch => ({
     navigate,
     setIdEvent,
+    setIdKategori,
 }))();
 
 const page = connect(mapStateToProps, mapDispatchToProps)(EventPage);

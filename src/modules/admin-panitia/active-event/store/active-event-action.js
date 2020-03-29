@@ -18,6 +18,11 @@ const setIdDataEvent = payload => ({
     payload,
 })
 
+const setIdDataKategori = payload => ({
+    type: actionType.SET_ID_KATEGORI,
+    payload,
+})
+
 export const getData = (service, params) => (dispatch) => {
     dispatch(startGetDataParticipant());
     API.get(service, params)
@@ -30,4 +35,8 @@ export const getData = (service, params) => (dispatch) => {
 
 export const setIdEvent = (data) => (dispatch) => {
     dispatch(setIdDataEvent(data));
+}
+
+export const setIdKategori = (data) => (dispatch) => {
+    dispatch(setIdDataKategori(data));
 }
