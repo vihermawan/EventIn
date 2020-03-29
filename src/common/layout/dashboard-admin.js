@@ -32,9 +32,10 @@ import EditPenandatanganPage from '../../app/admin-superadmin/edit-page/edit-pen
 import EditPesertaPage from '../../app/admin-superadmin/edit-page/edit-peserta-page'
 import ErrorPage from '../../app/error/error-page';
 
-const { Header, Sider, Content } = Layout;
+const { Header, Sider} = Layout;
 const { SubMenu } = Menu;
-class signer extends Component {
+
+class Admin extends Component {
   state = {
     username : '',
     profile_picture:'',
@@ -48,14 +49,18 @@ class signer extends Component {
     });
   };
 
+ 
   componentDidMount(){
     // this.getProfile();
     const username = localStorage.getItem("username")
     const profile_picture = localStorage.getItem("profile_picture")
     this.setState({ username,profile_picture })
+    // window.onbeforeunload = function() {
+		// 	localStorage.clear();
+		// }
   }
 
-  handleLogout = e => {
+  handleLogout = () => {
     this.setState({loading: true})
      API.get(`/auth/logout`)
      .then(res => {
@@ -78,13 +83,6 @@ class signer extends Component {
 
     const menu = (
       <Menu>
-        <Menu.Item key="0">
-          <a href="http://www.alipay.com/">1st menu item</a>
-        </Menu.Item>
-        <Menu.Item key="1">
-          <a href="http://www.taobao.com/">2nd menu item</a>
-        </Menu.Item>
-        <Menu.Divider />
         <Menu.Item key="3">
             <ButtonAuth
                 text="Logout"
@@ -109,8 +107,7 @@ class signer extends Component {
               <Menu mode="inline" defaultSelectedKeys={['dashboard']}>
                   <div className="title-dashboard">
                       <span className="title-desc-dashboard">REPORT</span>
-                  </div>              
-                
+                  </div>                              
                   <Menu.Item key="dashboard"  >
                     <Link to="/admin/dashboard-admin">
                     
@@ -385,5 +382,5 @@ const mapDispatchToProps = (dispatch => ({
     navigate, 
 }))();
 
-const page = connect(mapStateToProps, mapDispatchToProps)(signer);
+const page = connect(mapStateToProps, mapDispatchToProps)(Admin);
 export default page

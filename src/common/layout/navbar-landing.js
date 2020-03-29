@@ -32,8 +32,12 @@ class Navbar extends Component {
 		if (token != null){
 			this.getProfile();
 		}
+		window.onbeforeunload = function() {
+			localStorage.clear();
+		}
 		
 	}
+	
 
 	
     //get data profile dari API

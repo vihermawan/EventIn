@@ -31,6 +31,9 @@ class signer extends Component {
 
   componentDidMount(){
     this.getProfile();
+    // window.onbeforeunload = function() {
+		// 	localStorage.clear();
+		// }
   }
 
   //get data profile dari API

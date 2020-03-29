@@ -39,7 +39,6 @@ class AuthRegisterPanitia extends Component {
 
 
     handleSubmit = () => {
-        // e.preventDefault();
         const params = new FormData()
         params.set('nama_panitia',this.state.nama_panitia)
         params.set('password',this.state.password)
@@ -48,7 +47,6 @@ class AuthRegisterPanitia extends Component {
         params.set('no_telepon',this.state.no_telepon)
         params.set('instagram',this.state.instagram)
         params.set('organisasi',this.state.organisasi)
-        // params.append('foto_panitia',this.state.foto_panitia)
 
         if(validation.required(this.state.nama_panitia) != null){
             const message = validation.required(this.state.nama_panitia)  
@@ -82,8 +80,7 @@ class AuthRegisterPanitia extends Component {
         return (
         <RegisterComponent
             initialData={this.state}
-            navigate={this.props.navigate}
-            
+            navigate={this.props.navigate}           
             handleChange={this.handleChange}
             handleSubmit={this.handleSubmit}
         />
