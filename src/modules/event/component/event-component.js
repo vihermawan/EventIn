@@ -39,7 +39,7 @@ const menu = (
 
 class EventComponent extends Component {
     render() { 
-        const {cardData,initialData,onDetailEvent,kategori, onTabChange,cardDataEventKategori,onStartLoadingHome ,onFinishLoadingHome} = this.props
+        const {cardData,initialData,onDetailEvent,kategori, onTabChange,cardDataEventKategori,onStartLoadingHome ,onFinishLoadingHome, onEventKategori} = this.props
         const image1 = require(`../../../assets/images/event-image1.png`);  
         return ( 
             <Layout className="landing-container">
@@ -145,6 +145,18 @@ class EventComponent extends Component {
                                                         )
                                                     }
                                                 </Row>
+                                                <Row>
+                                                    <Col span={24} >
+                                                        <div className="tombol-tengah button-section-1-container" style={initialData.countEvent < 17 ? {display:"none"}:{display:"block"}}>
+                                                            <Link to="/allevent">
+                                                                <ButtonRounded
+                                                                    text="Semua Event"
+                                                                    className='button-participate'
+                                                                />
+                                                            </Link>
+                                                        </div>
+                                                    </Col>
+                                                </Row>
                                             </Col>
                                         </LoadingContainer>
                                     </TabPane>
@@ -185,25 +197,25 @@ class EventComponent extends Component {
                                                                 </Card>
                                                             </Col>
                                                         )
+        
                                                     }
+                                                </Row>
+                                                <Row>
+                                                    <Col span={24} >
+                                                        <div className="tombol-tengah button-section-1-container" style={initialData.countEvent < 1 ? {display:"none"}:{display:"block"}}>
+                                                                <ButtonDashboard
+                                                                    text="Semua Event"
+                                                                    className='button-participate'
+                                                                    onClick={() => onEventKategori(data.id_kategori)}
+                                                                />
+                                                        </div>
+                                                    </Col>
                                                 </Row>
                                             </Col>
                                         </LoadingContainer>
                                     </TabPane>
                                     )}
                                 </Tabs>       
-                            </Col>
-                        </Row>
-                        <Row>
-                            <Col span={24} >
-                                <div className="tombol-tengah button-section-1-container" style={initialData.countEvent < 17 ? {display:"none"}:{display:"block"}}>
-                                    <Link to="/allevent">
-                                        <ButtonRounded
-                                            text="Semua Event"
-                                            className='button-participate'
-                                        />
-                                    </Link>
-                                </div>
                             </Col>
                         </Row>
                         <Row className="section-container" style={{marginBottom: 50}}>

@@ -4,4 +4,5 @@ export const SET_DATA = '@active-event/set_data';
 
 //halaman active event
 export const SET_ID_EVENT = '@active-event/set_id_event';
+export const SET_ID_KATEGORI = '@active-event/set_id_kategori';
 

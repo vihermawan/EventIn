@@ -19,6 +19,9 @@ const menu = {
     ALL_EVENT: {
         link : '/allevent'
     },
+    ALL_KATEGORI: {
+        link : '/allkategori'
+    },
     PROFILE:{
         link : '/profile'
     },
