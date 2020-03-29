@@ -45,7 +45,7 @@ class RegisterComponent extends Component{
                                         <div className="auth-form-container">
                                             <div className="text-white text-align-center title-more-small mb-20 mt-10">
                                                 <p className="title-medium semi-bold m-0">Welcome!</p>
-                                                <p className="form-description">Resiter in to your account</p>
+                                                <p className="form-description">Register in to your account</p>
                                             </div>
                                             <span className="auth-input-label text-white">Nama Peserta</span>
                                             <InputAuth
