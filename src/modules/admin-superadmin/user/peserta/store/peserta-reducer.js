@@ -55,11 +55,9 @@ export default (state = initialState, action) => {
             return handler(state).finishGetDataParticipant();
         case actionType.SET_DATA:
             return handler(state).setDataParticipant(payload);
-
     
         case actionType.SET_ID_PESERTA:
             return handler(state).setIdDataPeserta(payload);
-
         
         case actionType.SET_ID_USERS:
                 return handler(state).setIdDataUsers(payload);

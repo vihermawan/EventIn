@@ -82,6 +82,9 @@ class dashboard extends Component {
 
 componentDidMount(){
   this.getProfile();
+  // window.onbeforeunload = function() {
+  //   localStorage.clear();
+  // }
 }
 
   getProfile=()=>{

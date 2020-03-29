@@ -12,8 +12,13 @@ class AuthRegister extends Component {
     state = {
         nama_peserta: '',
         email : '',
+        jenis_kelamin : '',
+        organisasi: 'Silahkan diisi',
+        pekerjaan : 'Silahkan diisi',
+        umur : '',
+        no_telefon : 'Silahkan diisi',
+        tanggal_lahir : '',
         password: '',
-        id_role: '2',
         password_confirmation: '',
         loading: false,
     }
@@ -37,15 +42,14 @@ class AuthRegister extends Component {
     };
 
     
-    handleSubmit = e => {
-        e.preventDefault();
-        const params = {
-            nama_peserta: this.state.nama_peserta,
-            email: this.state.email,
-            password: this.state.password,
-            id_role: this.state.id_role,
-            password_confirmation: this.state.password_confirmation,   
-        }
+    handleSubmit = () => {
+        // e.preventDefault();
+        // const params = {
+        //     nama_peserta: this.state.nama_peserta,
+        //     email: this.state.email,
+        //     password: this.state.password,
+        //     password_confirmation: this.state.password_confirmation,   
+        // }
         
         if(validation.required(this.state.nama_panitia) != null){
             const message = validation.required(this.state.nama_panitia)  
@@ -60,18 +64,18 @@ class AuthRegister extends Component {
             const message = validation.minPassword(this.state.password_confirmation);
             this.openNotification(message, 'Harap memasukkan password yang sama')
         }else{
-            console.log('params',params)
-            this.setState({loading: true})
-            API.post(`/register/peserta`, params)
-            .then(res => {
-                console.log('res',res)
-                if(res.status == 201){
-                    this.props.navigate(CONSTANS.LOGIN_MENU_KEY)
-                }else{
-                    this.openNotification('Register Salah', 'Silahkan isi data dengan benar')
-                }
-                this.setState({loading: false})
-            });
+            // console.log('params',params)
+            // this.setState({loading: true})
+            // API.post(`/register/peserta`, params)
+            // .then(res => {
+            //     console.log('res',res)
+            //     if(res.status == 201){
+            //         this.props.navigate(CONSTANS.LOGIN_MENU_KEY)
+            //     }else{
+            //         this.openNotification('Register Salah', 'Silahkan isi data dengan benar')
+            //     }
+            //     this.setState({loading: false})
+            // });
         }
 
             
