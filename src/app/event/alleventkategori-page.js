@@ -31,6 +31,7 @@ class AllEventKategoriPage extends Component {
         this.setState({loading: true})
         API.get(`/peserta/Allevent/Kategori/${id_kategori}/?page=${page}`)
         .then(res => {
+            console.log('kategori',id_kategori,'page',page)
             console.log(res)
             if(res.status == 200){
                 const allData = this.state.event.concat(res.data.data.event.data);
@@ -55,7 +56,7 @@ class AllEventKategoriPage extends Component {
     nextPage = () => {
         const { page } = this.state;
         const nextPage = page + 1;
-        this.getAllEvent(nextPage);
+        this.getAllEvent(this.props.idKategori,nextPage);
         this.setState({ page: nextPage });
     }
 
