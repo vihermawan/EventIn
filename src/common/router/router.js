@@ -22,7 +22,7 @@ class Routers extends Component {
 }
 
 function RouteWithSubRoutes(route) {
-    console.log(route.private)
+    // console.log(route.private)
     return route.private ? (
         <PrivateRoute
             path={route.path}

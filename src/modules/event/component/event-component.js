@@ -165,7 +165,7 @@ class EventComponent extends Component {
                                     <TabPane tab={data.kategori} key={data.id_kategori}>
                                             <LoadingContainer loading={initialData.loading}>
                                             <Col lg={24} style={{minHeight: "300px"}}>
-                                                <Row gutter={16}>
+                                                <Row gutter={[16,16]}>
                                                     {
                                                         cardDataEventKategori.map( data =>
                                                             <Col lg={6} md={12} sm={12} xs={24} className="mt-30">
