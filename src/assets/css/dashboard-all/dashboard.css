@@ -116,3 +116,27 @@
     position: absolute;
     margin-top: -7px;
 }
+
+.date-picker-profile .ant-input{
+    width: 100%;
+    text-align: left;
+    height: 40px;
+    margin-top: 5px;
+    border-color: #4D5AF2;
+    color : #4D5AF2;
+}
+
+.date-picker-panjang .ant-input{
+    width: 520px;
+    text-align: left;
+    height: 40px;
+    margin-top: 5px;
+    border-color: #4D5AF2;
+    color : #4D5AF2;
+}
+
+.date-picker-profile .ant-calendar-picker-icon{
+    color: #4D5AF2;
+    font-size: 15px;
+    font-weight: 600;
+}

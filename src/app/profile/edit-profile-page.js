@@ -17,6 +17,7 @@ class EditProfilePage extends Component {
         pekerjaan : '',
         picture : '',
         foto_peserta : '',
+        umur : '',
         button_edit : 'Edit Foto Profil',
         loading : false
     }
@@ -36,6 +37,8 @@ class EditProfilePage extends Component {
                 nama_peserta : res.data.data.user.peserta.nama_peserta,
                 email : res.data.data.user.email,
                 pekerjaan : res.data.data.user.peserta.pekerjaan,
+                tanggal_lahir:res.data.data.user.peserta.tanggal_lahir,
+                umur:res.data.data.user.peserta.umur,
                 no_telepon : res.data.data.user.peserta.no_telefon,
                 jenis_kelamin : res.data.data.user.peserta.jenis_kelamin,
                 picture:res.data.data.user.peserta.image_URL,
@@ -96,7 +99,27 @@ class EditProfilePage extends Component {
         console.log('jenis_kelamin', value.key);
     }
 
-    
+    onChangeBirthDate = (date, dateString) => {
+        this.setState({ 
+            tanggal_lahir: dateString,
+        })
+        // this.calculate_age(this.state.tanggal_lahir)
+        console.log(date, dateString);
+    }
+
+    calculate_age = (dob1) => {
+        var today = new Date();
+        var birthDate = new Date(dob1);  // create a date object directly from `dob1` argument
+        var age_now = today.getFullYear() - birthDate.getFullYear();
+        var m = today.getMonth() - birthDate.getMonth();
+        if (m < 0 || (m === 0 && today.getDate() < birthDate.getDate())) 
+        {
+            age_now--;
+        }
+        console.log(age_now);
+        return age_now;
+      }
+
     openNotification = (message, description) => {
         notification.error({
             message,
@@ -140,6 +163,7 @@ class EditProfilePage extends Component {
                 handleButtonGambar = {this.handleButtonGambar}
                 handleJenisKelamin ={this.handleJenisKelamin}
                 handleSubmit = {this.handleSubmit}
+                onChangeBirthDate={this.onChangeBirthDate}
             />
         );
     }
