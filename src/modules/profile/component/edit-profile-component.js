@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Layout, Row, Col, Form, Input,Upload, Button,Select,DatePicker  } from 'antd';
+import { Layout, Row, Col, Form, Input,Upload, Button,Select,DatePicker,Modal  } from 'antd';
 import Navbar from '../../../common/layout/navbar-landing'
 import Footer from '../../../common/layout/footer-landing'
 import '../../../assets/css/dashboard-all/dashboard.css'
@@ -10,6 +10,7 @@ import LoadingContainer from '../../../common/component/loading/loading-containe
 import InputForm from '../../../common/component/input/input-form';
 import ButtonDashboard from '../../../common/component/button/button-dashboard';
 import { faUserEdit, faBackward } from '@fortawesome/free-solid-svg-icons';
+import ReactCrop from 'react-image-crop';
 import moment from 'moment';
 // constant content
 const { Content } = Layout;
@@ -21,7 +22,11 @@ const uploadButton = (
 );
 class EditProfilePesertaComponent extends Component {
     render() { 
-      const {initialData,handleChange,handleSubmit,uploadGambar,handleJenisKelamin,handleButtonEdit,handleButtonGambar,onChangeBirthDate} = this.props  
+      const {initialData,handleChange,handleSubmit,
+            uploadGambar,handleJenisKelamin,handleButtonEdit,
+            handleButtonGambar,onChangeBirthDate,
+            onImageLoaded,onCropComplete,onCropChange,handleOk,handleCancel
+    } = this.props  
       const dateFormat = 'YYYY-MM-DD';
       return ( 
         <Layout className="landing-container" style={{minHeight: "100vh"}} >
@@ -210,14 +215,32 @@ class EditProfilePesertaComponent extends Component {
                                     />       
                                     </div>
                                     <div>
+                                    <Modal
+                                        title="Atur Ukuran Gambar"
+                                        visible={initialData.visible}
+                                        onOk={handleOk}
+                                        onCancel={handleCancel}
+                                        >
+                                            {initialData.picture && (
+                                            <ReactCrop
+                                                src={initialData.picture}
+                                                crop={initialData.crop}
+                                                ruleOfThirds
+                                                onImageLoaded={onImageLoaded}
+                                                onComplete={onCropComplete}
+                                                onChange={onCropChange}
+                                                style={{width:"100%"}}
+                                            />
+                                        )} 
+                                    </Modal>
                                     <Upload
                                         name="picture"
                                         listType="picture-card"
                                         className="avatar-uploader"
                                         disabled = {true}
-                                        previewFile={initialData.picture}
+                                        // previewFile={initialData.picture}
                                     >
-                                        {initialData.picture ? <img src={initialData.picture} alt="avatar" style={{ width: '50%' }} /> : uploadButton}
+                                        {initialData.croppedImageUrl ? <img src={initialData.croppedImageUrl} alt="avatar" style={{ width: '50%' }} /> : uploadButton}
                                     </Upload>  
                                     </div>  
                             </Col>
