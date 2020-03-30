@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Layout, Row, Col, Upload, Form,Icon, Button, Input} from 'antd';
+import { Layout, Row, Col, Upload, Form,Modal, Button, Input} from 'antd';
 import ReactCrop from 'react-image-crop';
 import 'react-image-crop/dist/ReactCrop.css';
 // component
@@ -16,7 +16,7 @@ class CertificateComponent extends Component{
                 onPrev,uploadFile,
                 handleSubmit,uploadGambar,
                 handleButtonEdit,handleButtonGambar,
-                onImageLoaded,onCropComplete,onCropChange,onSelectFile
+                onImageLoaded,onCropComplete,onCropChange,handleOk,handleCancel
             } = this.props;
         const uploadButton = (
             <div>
@@ -109,41 +109,45 @@ class CertificateComponent extends Component{
                                         </div>
                                     </Col>
                                     <Col lg={24} md={24} sm={24}>
-                                        <div style={initialData.picture_event ===  null || initialData.button_edit === 'Edit Foto Profil' ? {display:"none"}:{display:"block"}}>
+                                        <div >
                                             <Input
                                                 type="file"
                                                 onChange={uploadGambar}
                                                 className="input-picture"
                                                 style={{marginBottom : '30px',padding: '4px 11px 11px 11px', minHeight:'40px',borderColor:'#2C37BA'}}
                                             />
-                                            {initialData.picture && (
-                                            <ReactCrop
-                                                src={initialData.picture}
-                                                crop={initialData.crop}
-                                                ruleOfThirds
-                                                onImageLoaded={onImageLoaded}
-                                                onComplete={onCropComplete}
-                                                onChange={onCropChange}
-                                                style={{width:"30%"}}
-                                            />
-                                            )} 
-                                             {/* {initialData.picture && (
-                                                <img alt="Crop" style={{ maxWidth: '100%' }} src={initialData.picture} />
-                                             )}       */}
+                                            
                                         </div>
                                     </Col>
                                     <Col lg={24} md={24} sm={24}>
                                         <div>
+                                            <Modal
+                                                title="Atur Ukuran Gambar"
+                                                visible={initialData.visible}
+                                                onOk={handleOk}
+                                                onCancel={handleCancel}
+                                                >
+                                                    {initialData.picture && (
+                                                    <ReactCrop
+                                                        src={initialData.picture}
+                                                        crop={initialData.crop}
+                                                        ruleOfThirds
+                                                        onImageLoaded={onImageLoaded}
+                                                        onComplete={onCropComplete}
+                                                        onChange={onCropChange}
+                                                        style={{width:"100%"}}
+                                                    />
+                                                )} 
+                                            </Modal>
                                             <Upload
                                                 name="picture"
                                                 listType="picture-card"
                                                 className="avatar-uploader"
                                                 disabled = {true}
-                                                previewFile={initialData.picture_event}
                                             >
-                                                {initialData.croppedImageUrl ? <img src={initialData.croppedImageUrl} alt="Crop" style={{ width: '10%' }} /> : uploadButton}
+                                                {initialData.croppedImageUrl ? <img src={initialData.croppedImageUrl} alt="Crop" style={{ width: '100%' }} /> : uploadButton}
                                             </Upload>  
-                                        </div>  
+                                        </div>
                                     </Col>
                                 </Row>
                             </div>
