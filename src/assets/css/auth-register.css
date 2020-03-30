@@ -6,7 +6,7 @@
     padding: 60px;
     padding-bottom: 0px;;
 }
-.auth-form-container {
+.auth-register-form-container {
     padding: 80px;
 }
 
@@ -16,6 +16,24 @@
 .auth-reminder-label{
     font-size: 15px;
     text-align: right;
+}
+
+.select-jenis-kelamin .ant-select-selection--single{
+    min-height: 50px !important;
+    background-color: #2C37BA;
+    border-radius: 8px;
+    border: none;
+    font-size: 18px;
+    /* padding-left: 38px !important; */
+    color: white;
+}
+
+.select-jenis-kelamin .ant-select-selection-selected-value{
+    margin-top: 10px;
+}
+
+.select-jenis-kelamin .ant-select-arrow{
+    color: white !important;
 }
 .auth-button-login{
     font-size: 22px;

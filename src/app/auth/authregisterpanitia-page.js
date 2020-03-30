@@ -16,7 +16,7 @@ class AuthRegisterPanitia extends Component {
         password: '',
         no_telepon :'Silahkan isi',
         instagram : 'Silahkan isi',
-        organisasi :'Silahkan isi',
+        organisasi :'',
         password_confirmation: '',
         loading:false,
     }
@@ -43,7 +43,7 @@ class AuthRegisterPanitia extends Component {
         params.set('nama_panitia',this.state.nama_panitia)
         params.set('password',this.state.password)
         params.set('email',this.state.email)
-        params.set('password_confirmation',this.state.password_confirmation)
+        params.set('password_confirmation',this.state.password)
         params.set('no_telepon',this.state.no_telepon)
         params.set('instagram',this.state.instagram)
         params.set('organisasi',this.state.organisasi)
@@ -54,12 +54,12 @@ class AuthRegisterPanitia extends Component {
         }else if(validation.minPassword(this.state.password)){
             const message = validation.minPassword(this.state.password);
             this.openNotification(message, 'Password minimal 8 karakter')
+        }else if(validation.required(this.state.organisasi) != null){
+            const message = validation.required(this.state.organisasi);
+            this.openNotification(message, 'Organisasi belum diisi')
         }else if(validation.emailRequired(this.state.email) != null){
             const message = validation.emailRequired(this.state.email);
             this.openNotification(message, 'Harap memasukkan email dengan benar')
-        }else if(validation.minPassword(this.state.password_confirmation)){
-            const message = validation.minPassword(this.state.password_confirmation);
-            this.openNotification(message, 'Harap memasukkan password yang sama')
         }else{
             console.log('params',params)
             this.setState({loading: true})
