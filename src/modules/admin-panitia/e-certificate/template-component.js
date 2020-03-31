@@ -36,7 +36,7 @@ class TemplateCertificateComponent extends Component {
                         <div className="container-active-event">
                             <Row>
                             <div className="container-title-event">
-                                <span>Template Certificate</span>
+                                <span>Template Sertifikat</span>
                             </div>
                             </Row>
                             <LoadingContainer loading={false}>
@@ -96,10 +96,10 @@ class TemplateCertificateComponent extends Component {
                                                 </Col>
                                                 <Col lg={12} md={12} sm={12}>
                                                     <div className="template">
-                                                        <PDFViewer src={document}  style={{minWidth: '100%', minHeight: '500px',border:"none"}}>
+                                                        <PDFViewer src={document}  save={false} style={{minWidth: '100%', minHeight: '500px',border:"none"}}>
                                                             <Document>
                                                                 <Page>
-                                                                
+                                                                    
                                                                </Page>
                                                             </Document> 
                                                         </PDFViewer>

@@ -147,7 +147,7 @@ class BasicInfoComponent extends Component{
                                         </div>
                                     </Col>
                                     <Col lg={8} md={24} sm={24}>
-                                        <div className="form-section-3">
+                                        {/* <div className="form-section-3"> */}
                                             <div>   
                                                 <span className="auth-input-label text-black">Instagram*</span>
                                             </div>
@@ -161,7 +161,7 @@ class BasicInfoComponent extends Component{
                                                     icon={faInfoCircle}
                                                 />
                                             </div>
-                                        </div>
+                                        {/* </div> */}
                                     </Col>
                                 </Row>
                             </div>
