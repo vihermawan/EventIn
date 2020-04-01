@@ -14,8 +14,8 @@ const { Content } = Layout;
 
 class TemplateCertificateComponent extends Component {
     render() { 
-      const { initialData } = this.props;
-      const image1 = require(`../../../assets/images/home-image1.png`);
+      const { getTemplate } = this.props;
+      const image1 = require(`../../../assets/images/template.png`);
       const document = require(`../../../assets/images/template.pdf`);
         return ( 
             <Content
@@ -74,7 +74,7 @@ class TemplateCertificateComponent extends Component {
                                                                                 icon={faInfoCircle}
                                                                                 borderRadius="5px"
                                                                                 background="#4D5AF2"
-                                                                                // onClick={ }
+                                                                                onClick={getTemplate}
                                                                             />
                                                                         </div>
                                                                     </Col>
@@ -96,13 +96,11 @@ class TemplateCertificateComponent extends Component {
                                                 </Col>
                                                 <Col lg={12} md={12} sm={12}>
                                                     <div className="template">
-                                                        <PDFViewer src={document}  save={false} style={{minWidth: '100%', minHeight: '500px',border:"none"}}>
-                                                            <Document>
-                                                                <Page>
-                                                                    
-                                                               </Page>
-                                                            </Document> 
-                                                        </PDFViewer>
+                                                        <img
+                                                            src={image1}
+                                                            alt="Home 1"
+                                                            style={{maxWidth: '100%'}}
+                                                        />
                                                     </div>
                                                 </Col>
                                             </Row>
