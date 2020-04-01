@@ -7,10 +7,15 @@ import BiayaComponent from '../../../modules/admin-panitia/create-event/biaya/bi
 
 class BiayaPage extends Component {
     state = {
-        status_biaya: '',
-        biaya: '0',
-        bank: '-',
-        no_rekening: '-',
+        nama: '',
+        description: '',
+        organisasi: '',
+        batas_peserta: '',
+        kategori_input : '',
+        no_telepon : '',
+        email_event : '',
+        instagram : '',
+        kategori: [],
     }
 
     componentDidMount(){
