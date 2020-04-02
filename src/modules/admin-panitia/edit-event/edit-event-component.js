@@ -25,20 +25,11 @@ class EditEventComponent extends Component {
              handleBank,onChangeTimeStart,
              onChangeTimeEnd,onChangeDateStart,onChangeDateEnd,
              onChangeDateRegisStart,onChangeDateRegistEnd,onImageLoaded,onCropComplete,onCropChange,handleOk,handleCancel,
-             handleTempat,uploadGambar,handleButtonEdit,handleButtonGambar} 
+             handleTempat,uploadGambar,handleButtonEdit,handleButtonGambar,handleSubmit,uploadButton} 
      = this.props  
      const format = 'HH:mm';
      const dateFormat = 'YYYY-MM-DD';
-     const uploadButton = (
-        <div>
-            <p className="ant-upload-drag-icon">
-                <Icon type="inbox" />
-            </p>
-            <div className="ant-upload-text">Upload Foto Eventmu</div>
-        </div>
-      );
-      console.log("coba", String(initialData.start_event))
-      return ( 
+    return ( 
             <Content
                 style={{
                     margin : "5px 10px 0px 10px",
@@ -61,7 +52,7 @@ class EditEventComponent extends Component {
                                 </div>
                             </Row>
                             <LoadingContainer loading={initialData.loading}>
-                                <Form>
+                                <Form onSubmit={handleSubmit}>
                                     <div className="container-form">
                                         <Row>
                                             <Col lg={24} md={24} sm={24}>
@@ -531,7 +522,7 @@ class EditEventComponent extends Component {
                                     <div className="steps-action">
                                         <Button
                                             type="primary"
-                                            // onClick={() => onNext()}
+                                            htmlType="submit"
                                         >
                                             Done
                                         </Button>

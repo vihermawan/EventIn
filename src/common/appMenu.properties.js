@@ -58,6 +58,9 @@ const menu = {
     PARTICIPANT_EVENT: {
         link :'/dashboard/participant-event/',
     },
+    LIST_PARTICIPANT_EVENT: {
+        link : '/dashboard/list-participant',
+    },
     LIST_BIODATA_PENANDATANGAN : {
         link : '/dashboard/list-penandatangan/',
     },
@@ -91,7 +94,6 @@ const menu = {
     DETAIL_PENANDATANGAN_ADMIN : {
         link :'/admin/detail-penandatangan'
     },
-    
     DETAIL_PESERTA_ADMIN :{
         link: '/admin/admin-detail-peserta'
     },

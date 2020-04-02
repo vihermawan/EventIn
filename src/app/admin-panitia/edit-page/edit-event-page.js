@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { API } from '../../../common/api'
+import CONSTANS from '../../../common/utils/Constants'
 import {message, notification } from 'antd';
 import { navigate } from '../../../common/store/action'
 import EditEventComponent from '../../../modules/admin-panitia/edit-event/edit-event-component';
@@ -8,6 +9,7 @@ import moment from 'moment';
 
 class EditEventPage extends Component {
     state = {
+        id_event : '',
         nama: '',
         description: '',
         organisasi: '',
@@ -51,6 +53,7 @@ class EditEventPage extends Component {
         .then(res => {
             console.log('res',res)
                 this.setState({
+                    id_event : res.data.data.event.id_event,
                     nama : res.data.data.event.nama_event,
                     description : res.data.data.event.detail_event.deskripsi_event,
                     organisasi: res.data.data.event.organisasi,
@@ -68,10 +71,10 @@ class EditEventPage extends Component {
                     end_registration : res.data.data.event.detail_event.end_registration,
                     venue : res.data.data.event.detail_event.venue,
                     location : res.data.data.event.detail_event.lokasi,
+                    picture_event : res.data.data.event.detail_event.picture,
                     croppedImageUrl: res.data.data.event.detail_event.image_URL,
                     loading: false,
                 })
-            console.log('kategori',this.state.start_event)
         });
     }
 
@@ -319,6 +322,54 @@ class EditEventPage extends Component {
             description,
         });
     };
+
+    handleSubmit = e => {
+        e.preventDefault();
+        const params = new FormData()
+        const id_panitia = this.props.idEvent
+        params.set('nama_event',this.state.nama)
+        params.set('deskripsi_event',this.state.description)
+        params.set('organisasi',this.state.organisasi)
+        params.set('email_event',this.state.email_event)
+        params.set('no_telepon',this.state.no_telepon)
+        params.set('instagram',this.state.instagram)
+        params.set('id_kategori',this.state.kategori_input)
+        params.set('limit_participant',this.state.batas_peserta)
+
+        params.set('id_status_biaya',this.state.status_biaya)
+        params.set('biaya',this.state.biaya)
+        params.set('nomor_rekening',this.state.no_rekening)
+        params.set('bank',this.state.bank)
+
+        params.set('lokasi',this.state.lokasi)
+        params.set('venue',this.state.venue)
+
+        params.set('start_event',this.state.start_event)
+        params.set('end_event',this.state.end_event)
+        params.set('open_registration',this.state.open_registration)
+        params.set('end_registration',this.state.end_registration)
+        params.set('time_start',this.state.time_start)
+        params.set('time_end',this.state.time_end)
+        
+        params.append('picture',this.state.picture_event)
+        params.append("_method", 'PUT')
+
+
+        API.postEdit(`/panitia/editevent/${id_panitia}`, params)
+        .then(res => {
+            console.log('res',res)
+            if(res.status == 200){
+                message.success('Data Berhasil di Ubah');
+                // this.props.navigate(CONSTANS.PROFILE_ADMIN_PANITIA_MENU_KEY)
+                // window.location.reload();
+                
+            }else{
+                this.openNotification('Data Salah', 'Silahkan isi data dengan benar')
+            }
+            this.setState({loading: false})
+        });
+
+    }
     
 
     render() { 
@@ -347,6 +398,7 @@ class EditEventPage extends Component {
                 showModal={this.showModal}
                 handleOk={this.handleOk}
                 handleCancel={this.handleCancel}
+                handleSubmit = {this.handleSubmit}
             />
         );
     }
