@@ -16,6 +16,7 @@ import CreateEventPage from '../../app/admin-panitia/dashboard/create-event-page
 import ActiveEventPage from '../../app/admin-panitia/dashboard/active-event-page'
 import ECertificatePage from '../../app/admin-panitia/dashboard/e-certificate-page'
 import HistoryEventPage from '../../app/admin-panitia/dashboard/history-event-page'
+import CountRegistEventPage from '../../app/admin-panitia/dashboard/count-regist-event-page'
 import ListParticipantPage from '../../app/admin-panitia/dashboard/list-participant-page'
 import ProfilePage from '../../app/admin-panitia/dashboard/profile-page'
 import LoadingContainer from '../../common/component/loading/loading-container'
@@ -260,8 +261,8 @@ componentDidMount(){
                       <div className="title-dashboard">
                           <span className="title-desc-dashboard">PARTICIPANT</span>
                       </div>  
-                      <Menu.Item key="list-participant">
-                        <Link to="/dashboard/list-participant">
+                      <Menu.Item key="list-count-regist">
+                        <Link to="/dashboard/list-count-regist">
                           <FontAwesomeIcon
                               icon={faUserFriends}
                               style={{marginRight: 10}}
@@ -365,6 +366,11 @@ componentDidMount(){
                     path='/dashboard/detail-e-certificate'
                     exact
                     render={ (props) => <DetailSertifPage {...props}/> }
+                />
+                <Route
+                    path='/dashboard/list-count-regist'
+                    exact
+                    render={ (props) => <CountRegistEventPage {...props}/> }
                 />
                 <Route
                     path='/dashboard/list-participant'
