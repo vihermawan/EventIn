@@ -1,32 +1,43 @@
 import React, { Component } from 'react';
-import { Layout, Breadcrumb, Row, Col, Form, Select, DatePicker, TimePicker,Upload, Icon, Button  } from 'antd';
+import { Layout, Breadcrumb, Row, Col, Form, Select, DatePicker, TimePicker,Upload, Icon, Button,Input, Modal  } from 'antd';
 import { Link } from 'react-router-dom';
 import '../../../assets/css/dashboard-all/dashboard.css'
 import '../../../assets/css/dashboard-all/table-style.css'
 import '../../../assets/css/admin-superadmin/detail-event.css'
+import '../../../assets/css/admin-panitia/edit-event.css'
 // component
+import ReactCrop from 'react-image-crop';
+import 'react-image-crop/dist/ReactCrop.css';
 import LoadingContainer from '../../../common/component/loading/loading-container'
 import InputForm from '../../../common/component/input/input-form';
-import 'moment-timezone';
-import 'moment/locale/id';
+import moment from 'moment';
+import ButtonDashboard from '../../../common/component/button/button-dashboard';
+import { faBackward, faUserEdit, faStickyNote, faIdCard, faUserFriends, faAddressBook, faEnvelope, faInfoCircle, faWallet, faMapMarker } from '@fortawesome/free-solid-svg-icons';
 // constant content
 const { Content } = Layout;
 const { Option } = Select;
-const { Dragger } = Upload;
+const { TextArea } = Input;
 
 class EditEventComponent extends Component {
     render() { 
-      const {initialData,handleChange,handleKategori,handleStatus,handleBank,onChangeTimeStart,onChangeTimeEnd,onChangeDateStart,onChangeDateEnd,onChangeDateRegisStart,onChangeDateRegistEnd,handleUpload,beforeUpload,handleChangePdf} = this.props  
-      const format = 'HH:mm';
-      const uploadButton = (
+      const {initialData,handleChange,
+             handleKategori,handleStatus,
+             handleBank,onChangeTimeStart,
+             onChangeTimeEnd,onChangeDateStart,onChangeDateEnd,
+             onChangeDateRegisStart,onChangeDateRegistEnd,onImageLoaded,onCropComplete,onCropChange,handleOk,handleCancel,
+             handleTempat,uploadGambar,handleButtonEdit,handleButtonGambar} 
+     = this.props  
+     const format = 'HH:mm';
+     const dateFormat = 'YYYY-MM-DD';
+     const uploadButton = (
         <div>
-          {/* {this.state.loading ? <LoadingOutlined /> : <PlusOutlined />} */}
             <p className="ant-upload-drag-icon">
                 <Icon type="inbox" />
             </p>
             <div className="ant-upload-text">Upload Foto Eventmu</div>
         </div>
       );
+      console.log("coba", String(initialData.start_event))
       return ( 
             <Content
                 style={{
@@ -64,6 +75,7 @@ class EditEventComponent extends Component {
                                                         className="input-event mt-5 mb-20"
                                                         onChange={handleChange}
                                                         value={initialData.nama}
+                                                        icon={faStickyNote}
                                                     />
                                                 </div>
                                             </Col>
@@ -72,12 +84,14 @@ class EditEventComponent extends Component {
                                                     <span className="auth-input-label text-black">Deskripsi Event*</span>
                                                 </div>
                                                 <div>
-                                                    <InputForm
+                                                    <TextArea 
                                                         name='description'
                                                         placeholder="Masukan deskripsi event...."
                                                         className="input-description-event mt-5"
+                                                        rows={5}
                                                         onChange={handleChange}
                                                         value={initialData.description}
+                                                        style={{borderColor: "#4D5AF2"}}
                                                     />
                                                 </div>
                                             </Col>
@@ -95,6 +109,7 @@ class EditEventComponent extends Component {
                                                             className="input-event mt-5 mb-20"
                                                             onChange={handleChange}
                                                             value={initialData.organisasi}
+                                                            icon={faIdCard}
                                                         />
                                                     </div>
                                                 </div>   
@@ -111,6 +126,7 @@ class EditEventComponent extends Component {
                                                             className="input-event mt-5 mb-20"
                                                             onChange={handleChange}
                                                             value={initialData.batas_peserta}
+                                                            icon={faUserFriends}
                                                         />
                                                     </div>
                                                 </div>
@@ -122,17 +138,74 @@ class EditEventComponent extends Component {
                                                     </div>
                                                     <div className="select-kategori">
                                                         <Select
-                                                            labelInValue
-                                                            defaultValue={{ key: 'lucy' }}
+                                                            value={String(initialData.kategori_input)}
                                                             style={{ width: '100%' }}
                                                             className="select-kategori"
                                                             onChange={handleKategori}
                                                         >
-                                                            <Option value="jack">Jack (100)</Option>
-                                                            <Option value="lucy">Lucy (101)</Option>
+                                                            <Option value="">Pilih Kategori</Option>
+                                                            <Option value="1">Olahraga</Option>
+                                                            <Option value="2">Musik</Option>
+                                                            <Option value="3">Budaya</Option>
+                                                            <Option value="4">Game</Option>
+                                                            <Option value="5">Seni</Option>
+                                                            <Option value="6">Teknologi</Option>
+                                                            <Option value="7">Pendidikan</Option>
+                                                            <Option value="8">Agama</Option>
                                                         </Select>,
                                                     </div>
                                                 </div>
+                                            </Col>
+                                        </Row>
+                                        <Row style={{marginTop:'10px'}}>
+                                            <Col lg={8} md={24} sm={24}>
+                                                <div className="form-section-3">
+                                                    <div>   
+                                                        <span className="auth-input-label text-black">No Telepon*</span>
+                                                    </div>
+                                                    <div>
+                                                        <InputForm
+                                                            name='no_telepon'
+                                                            placeholder="Masukkan nomor telepon...."
+                                                            className="input-event mt-5 mb-20"
+                                                            onChange={handleChange}
+                                                            value={initialData.no_telepon}
+                                                            icon={faAddressBook}
+                                                        />
+                                                    </div>
+                                                </div>   
+                                            </Col>
+                                            <Col lg={8} md={24} sm={24}>
+                                                <div className="form-section-3">
+                                                    <div>   
+                                                        <span className="auth-input-label text-black">Email Event*</span>
+                                                    </div>
+                                                    <div>
+                                                        <InputForm
+                                                            name='email_event'
+                                                            placeholder="Masukkan email event...."
+                                                            className="input-event mt-5 mb-20"
+                                                            onChange={handleChange}
+                                                            value={initialData.email_event}
+                                                            icon={faEnvelope}
+                                                        />
+                                                    </div>
+                                                </div>
+                                            </Col>
+                                            <Col lg={8} md={24} sm={24}>
+                                                    <div>   
+                                                        <span className="auth-input-label text-black">Instagram*</span>
+                                                    </div>
+                                                    <div>
+                                                        <InputForm
+                                                            name='instagram'
+                                                            placeholder="Masukkan akun instagram...."
+                                                            className="input-event mt-5 mb-20"
+                                                            onChange={handleChange}
+                                                            value={initialData.instagram}
+                                                            icon={faInfoCircle}
+                                                        />
+                                                    </div>
                                             </Col>
                                         </Row>
                                         <Row>
@@ -143,31 +216,44 @@ class EditEventComponent extends Component {
                                                     </div>
                                                     <div>
                                                         <Select
-                                                            labelInValue
-                                                            defaultValue={{ key: 'Pilih Kategori' }}
+                                                            value={String(initialData.status_biaya)}
                                                             style={{ width: '100%' }}
                                                             className="select-kategori "
                                                             onChange={handleStatus}
                                                         >
-                                                            <Option value="paid">Berbayar</Option>
-                                                            <Option value="free">Tidak Berbayar</Option>
-                                                        </Select>,
+                                                            <Option value ="">Pilih Kategori</Option>
+                                                            <Option value ='10'>Berbayar</Option>
+                                                            <Option value='9'>Tidak Berbayar</Option>
+                                                        </Select>
                                                     </div>
                                                 </div>
                                             </Col>
                                             <Col lg={24} md={24} sm={24}>
-                                                <div style={initialData.status_biaya === 'paid' || null ? {display:"block"}:{display:"none"}} className="kategori-bayar mb-20">
+                                                <div style={initialData.status_biaya === '10' || null ? {display:"block"}:{display:"none"}} className="kategori-bayar mb-20">
+                                                    <div>   
+                                                        <span className="auth-input-label text-black">Biaya*</span>
+                                                    </div>
+                                                    <div>
+                                                        <InputForm
+                                                            name='biaya'
+                                                            placeholder="Masukkan biaya...."
+                                                            className="input-event mt-5 mb-20"
+                                                            onChange={handleChange}
+                                                            value= {initialData.biaya}
+                                                            icon={faWallet}
+                                                        />
+                                                    </div>
                                                     <div>   
                                                         <span className="auth-input-label text-black">Bank*</span>
                                                     </div>
                                                     <div>
                                                         <Select
-                                                            labelInValue
-                                                            defaultValue={{ key: 'Pilih Bank' }}
+                                                            value={String(initialData.bank)}
                                                             style={{ width: '100%' }}
                                                             className="select-kategori"
                                                             onChange={handleBank}
                                                         >
+                                                            <Option value ="-">Pilih Bank</Option>
                                                             <Option value="Mandiri">Mandiri</Option>
                                                             <Option value="BNI">BNI</Option>
                                                             <Option value="BCA">BCA</Option>
@@ -177,7 +263,7 @@ class EditEventComponent extends Component {
                                                 </div>
                                             </Col>
                                             <Col lg={24} md={24} sm={24}>
-                                                <div style={initialData.status_biaya === 'paid' || null ? {display:"block"}:{display:"none"}} className="kategori-bayar mb-20">
+                                                <div style={initialData.status_biaya === '10' || null ? {display:"block"}:{display:"none"}} className="kategori-bayar mb-20">
                                                     <div>   
                                                         <span className="auth-input-label text-black">Nomor Rekening*</span>
                                                     </div>
@@ -195,26 +281,26 @@ class EditEventComponent extends Component {
                                         </Row>
                                         <Row>
                                             <Col lg={24} md={24} sm={24}>
-                                            <div className="form-section-5">
-                                                <div>   
-                                                    <span className="auth-input-label text-black">Tempat*</span>
+                                                <div className="kategori-bayar">
+                                                    <div>   
+                                                        <span className="auth-input-label text-black">Tempat*</span>
+                                                    </div>
+                                                    <div>
+                                                        <Select
+                                                            value={String(initialData.venue)}
+                                                            style={{ width: '100%' }}
+                                                            className="select-kategori"
+                                                            onChange={handleTempat}
+                                                        >
+                                                            <Option value="">Pilih Tempat</Option>
+                                                            <Option value="Terbuka">Terbuka</Option>
+                                                            <Option value="Indoor">Tertutup</Option>
+                                                        </Select>,
+                                                    </div>
                                                 </div>
-                                                <div>
-                                                    <Select
-                                                        labelInValue
-                                                        defaultValue={{ key: 'Pilih Tempat' }}
-                                                        style={{ width: '103%' }}
-                                                        className="select-kategori"
-                                                        onChange={handleChange}
-                                                    >
-                                                        <Option value="Terbuka">Terbuka</Option>
-                                                        <Option value="Tertutup">Tertutup</Option>
-                                                    </Select>,
-                                                </div>
-                                            </div>
-                                        </Col>
+                                            </Col>
                                         </Row>
-                                        <Row style={{marginTop:'20px'}}>
+                                        <Row style={{marginTop:'20px', marginBottom:'30px'}}>
                                             <Col lg={24} md={24} sm={24}>
                                                 <div>   
                                                     <span className="auth-input-label text-black">Lokasi Event*</span>
@@ -223,42 +309,30 @@ class EditEventComponent extends Component {
                                                     <InputForm
                                                         name='location'
                                                         placeholder="Masukan lokasi event...."
-                                                        className="input-location-event mt-5"
+                                                        className="input-event mt-5"
                                                         iconType="lock"
                                                         onChange={handleChange}
                                                         value={initialData.location}
+                                                        icon={faMapMarker}
                                                     />
                                                 </div>
                                             </Col>
                                         </Row>
-                                        <Row style={{marginTop:'20px', marginBottom:'30px'}}>
-                                            <Col lg={24} md={24} sm={24}>
-                                                <div>   
-                                                    <span className="auth-input-label text-black">Temukan Lokasi*</span>
-                                                </div>
-                                                <div>
-                                                    <InputForm
-                                                        name='location'
-                                                        placeholder="Ini Buat Gmaps Langitute longituted...."
-                                                        className="input-location-event mt-5"
-                                                        iconType="lock"
-                                                        onChange={handleChange}
-                                                        value={initialData.location}
-                                                    />
-                                                </div>
-                                            </Col>
-                                        </Row>
-                                        <Row>
+                                        <Row >
                                             <Col lg={6} md={12} sm={24}>
-                                                <div className="form-section-6">
+                                                <div className="form-edit-section-6">
                                                     <div>   
                                                         <span className="auth-input-label text-black">Tanggal Mulai*</span>
                                                     </div>
                                                     <div>
-                                                        <div className="date-picker">
+                                                        <div className="date-picker-edit">
                                                             <Row>
                                                                 <Col lg={24} md={24} sm={24}>
-                                                                    <DatePicker placeholder="Pilih tanggal" onChange={onChangeDateStart}/>
+                                                                    <DatePicker 
+                                                                        placeholder="Pilih tanggal" 
+                                                                        onChange={onChangeDateStart} 
+                                                                        value={moment(String(initialData.start_event), dateFormat)}
+                                                                        style={{width:"100%"}}/>
                                                                 </Col>
                                                             </Row>
                                                         </div>
@@ -266,12 +340,12 @@ class EditEventComponent extends Component {
                                                 </div>
                                             </Col>
                                             <Col lg={6} md={12} sm={24}>
-                                                <div className="form-section-6">
+                                                <div className="form-edit-section-6">
                                                     <div>   
                                                         <span className="auth-input-label text-black">Waktu Mulai*</span>
                                                     </div>
                                                     <div>
-                                                        <div className="time-picker">
+                                                        <div className="time-picker-edit">
                                                             <Row>
                                                                 <Col lg={24} md={24} sm={24}>
                                                                     <TimePicker 
@@ -279,6 +353,8 @@ class EditEventComponent extends Component {
                                                                         size="medium"
                                                                         placeholder="Pilih waktu"
                                                                         onChange={onChangeTimeStart}
+                                                                        style={{width:"100%"}}
+                                                                        value={moment(String(initialData.time_start), format)}
                                                                         />
                                                                 </Col>
                                                             </Row>
@@ -287,15 +363,20 @@ class EditEventComponent extends Component {
                                                 </div>
                                             </Col>
                                             <Col lg={6} md={12} sm={24}>
-                                                <div className="form-section-6">
+                                                <div className="form-edit-section-6">
                                                     <div>   
                                                         <span className="auth-input-label text-black">Tanggal Berakhir*</span>
                                                     </div>
                                                     <div>
-                                                        <div className="date-picker">
+                                                        <div className="date-picker-edit">
                                                             <Row>
                                                                 <Col lg={24} md={24} sm={24}>
-                                                                    <DatePicker placeholder="Pilih tanggal" onChange={onChangeDateEnd} />
+                                                                    <DatePicker 
+                                                                        placeholder="Pilih tanggal"
+                                                                        value={moment(String(initialData.end_event), dateFormat)}
+                                                                        onChange={onChangeDateEnd}
+                                                                        style={{width:"100%"}}
+                                                                    />
                                                                 </Col>
                                                             </Row>
                                                         </div>
@@ -303,19 +384,21 @@ class EditEventComponent extends Component {
                                                 </div>
                                             </Col>
                                             <Col lg={6} md={12} sm={24}>
-                                                <div className="form-section-6">
+                                                <div className="form-edit">
                                                     <div>   
                                                         <span className="auth-input-label text-black">Waktu Berakhir*</span>
                                                     </div>
                                                     <div>
-                                                        <div className="time-picker">
+                                                        <div className="time-picker-edit">
                                                             <Row>
                                                                 <Col lg={24} md={24} sm={24}>
                                                                     <TimePicker 
+                                                                        value={moment(String(initialData.time_end), format)}
                                                                         format={format} 
                                                                         size="medium"
                                                                         placeholder="Pilih waktu"
                                                                         onChange={onChangeTimeEnd}
+                                                                        style={{width:"100%"}}
                                                                         />
                                                                 </Col>
                                                             </Row>
@@ -331,10 +414,15 @@ class EditEventComponent extends Component {
                                                         <span className="auth-input-label text-black">Buka Pendaftaran*</span>
                                                     </div>
                                                     <div>
-                                                        <div className="date-picker-panjang">
+                                                        <div className="date-picker-edit">
                                                             <Row>
                                                                 <Col lg={24} md={24} sm={24}>
-                                                                    <DatePicker placeholder="Pilih tanggal" onChange={onChangeDateRegisStart} />
+                                                                    <DatePicker 
+                                                                        placeholder="Pilih tanggal" 
+                                                                        onChange={onChangeDateRegisStart} 
+                                                                        style={{width:"100%"}}
+                                                                        value={moment(String(initialData.open_registration), dateFormat)}
+                                                                    />
                                                                 </Col>
                                                             </Row>
                                                         </div>
@@ -342,15 +430,20 @@ class EditEventComponent extends Component {
                                                 </div>
                                             </Col>
                                             <Col lg={12} md={24} sm={24}>
-                                                <div className="form-section-5">
+                                                <div className="form-section-5-edit">
                                                     <div>   
                                                         <span className="auth-input-label text-black">Tutup Pendaftaran*</span>
                                                     </div>
                                                     <div>
-                                                        <div className="date-picker-panjang">
+                                                        <div className="date-picker-edit">
                                                             <Row>
                                                                 <Col lg={24} md={24} sm={24}>
-                                                                    <DatePicker placeholder="Pilih tanggal" onChange={onChangeDateRegistEnd}/>
+                                                                    <DatePicker 
+                                                                        placeholder="Pilih tanggal" 
+                                                                        onChange={onChangeDateRegistEnd}
+                                                                        style={{width:"100%"}}
+                                                                        value={moment(String(initialData.end_registration), dateFormat)}
+                                                                    />
                                                                 </Col>
                                                             </Row>
                                                         </div>
@@ -360,72 +453,77 @@ class EditEventComponent extends Component {
                                         </Row>
                                         <Row>
                                             <Col lg={24} md={24} sm={24}>
-                                                <div>   
-                                                    <span className="auth-input-label text-black">Upload Poster*</span>
-                                                </div>
-                                                <div>
-                                                    <Dragger {...handleUpload}>
-                                                        <p className="ant-upload-drag-icon">
-                                                            <Icon type="inbox" />
-                                                        </p>
-                                                        <p className="ant-upload-text">Upload Poster Eventmu !</p>
-                                                        <p className="ant-upload-hint">Tambahkan file untuk acaramu agar terlihat menarik :)</p>
-                                                    </Dragger>,
+                                                <div style={{marginBottom:'10px'}}> 
+                                                    <Row>
+                                                        <Col lg={21} md={24} sm={24}>
+                                                            <span className="auth-input-label text-black">Upload Poster*</span>
+                                                        </Col>
+                                                        <Col lg={3} md={24} sm={24} style={initialData.picture === null ? {display:"none"}:{display:"block"}}>
+                                                            <div style={initialData.button_edit === 'Edit Foto Profil' ? {display:"block"}:{display:"none"}}>
+                                                                <ButtonDashboard
+                                                                    text="Upload Foto Event"
+                                                                    height={20}
+                                                                    icon={faUserEdit}
+                                                                    borderRadius="5px"
+                                                                    float = 'Right'
+                                                                    background="#00C908"
+                                                                    onClick={handleButtonEdit}
+                                                                />
+                                                            </div>
+                                                            <div style={initialData.button_edit === 'Upload Gambar' ? {display:"block"}:{display:"none"}}>
+                                                                <ButtonDashboard
+                                                                    text="Kembali Lagi"
+                                                                    height={20}
+                                                                    icon={faBackward}
+                                                                    borderRadius="5px"
+                                                                    float = 'Right'
+                                                                    background="#00C908"
+                                                                    onClick={handleButtonGambar}
+                                                                />
+                                                            </div>
+                                                        </Col>
+                                                    </Row>  
                                                 </div>
                                             </Col>
-                                        </Row>
-                                        <Row>
                                             <Col lg={24} md={24} sm={24}>
-                                                <div>   
-                                                    <span className="auth-input-label text-black">Nama Sertifikat*</span>
-                                                </div>
-                                                <div>
-                                                    <InputForm
-                                                        name='sertifikat'
-                                                        placeholder="Masukan nama sertifikat...."
-                                                        className="input-event mt-5 mb-20"
-                                                        onChange={handleChange}
-                                                        value={initialData.sertifikat}
+                                                <div style={initialData.button_edit === 'Upload Gambar' || null ? {display:"block"}:{display:"none"}}>
+                                                    <Input
+                                                        type="file"
+                                                        onChange={uploadGambar}
+                                                        className="input-picture"
+                                                        style={{marginBottom : '30px',padding: '4px 11px 11px 11px', minHeight:'40px',borderColor:'#2C37BA'}}
                                                     />
+                                                    
                                                 </div>
                                             </Col>
                                             <Col lg={24} md={24} sm={24}>
-                                                <div>   
-                                                    <span className="auth-input-label text-black">Deskripsi*</span>
-                                                </div>
                                                 <div>
-                                                    <InputForm
-                                                        name='deskripsi'
-                                                        placeholder="Masukan deskripsi sertifikat...."
-                                                        className="input-event mt-5 mb-20"
-                                                        onChange={handleChange}
-                                                        value={initialData.deskripsi}
-                                                    />
-                                                </div>
-                                            </Col>
-                                            <Col lg={24} md={24} sm={24}>
-                                                <div>   
-                                                    <span className="auth-input-label text-black">Upload Sertifikat*</span>
-                                                </div>
-                                                <div>
-                                                    {/* <Dragger {...handleUpload}>
-                                                        <p className="ant-upload-drag-icon">
-                                                            <Icon type="inbox" />
-                                                        </p>
-                                                        <p className="ant-upload-text">Upload Sertifikat Eventmu !</p>
-                                                        <p className="ant-upload-hint">Tambahkan Sertifikat untuk acaramu   </p>
-                                                    </Dragger>, */}
+                                                    <Modal
+                                                        title="Atur Ukuran Gambar"
+                                                        visible={initialData.visible}
+                                                        onOk={handleOk}
+                                                        onCancel={handleCancel}
+                                                        >
+                                                            {initialData.picture && (
+                                                            <ReactCrop
+                                                                src={initialData.picture}
+                                                                crop={initialData.crop}
+                                                                ruleOfThirds
+                                                                onImageLoaded={onImageLoaded}
+                                                                onComplete={onCropComplete}
+                                                                onChange={onCropChange}
+                                                                style={{width:"100%"}}
+                                                            />
+                                                        )} 
+                                                    </Modal>
                                                     <Upload
-                                                        name="avatar"
+                                                        name="picture"
                                                         listType="picture-card"
                                                         className="avatar-uploader"
-                                                        showUploadList={false}
-                                                        action="https://www.mocky.io/v2/5cc8019d300000980a055e76"
-                                                        beforeUpload={beforeUpload}
-                                                        onChange={handleChangePdf}
+                                                        disabled = {true}
                                                     >
-                                                        {initialData.sertifikat ? <img src={initialData.sertifikat} alt="avatar" style={{ width: '100%' }} /> : uploadButton}
-                                                    </Upload>
+                                                        {initialData.croppedImageUrl ? <img src={initialData.croppedImageUrl} alt="Crop" style={{ width: '100%' }} /> : uploadButton}
+                                                    </Upload>  
                                                 </div>
                                             </Col>
                                         </Row>
@@ -437,12 +535,6 @@ class EditEventComponent extends Component {
                                         >
                                             Done
                                         </Button>
-                                        {/* <Button
-                                            style={{ marginLeft: 8, marginTop:0 }}
-                                            onClick={() => onPrev()}
-                                        >
-                                            Previous
-                                        </Button> */}
                                     </div>
                                 </Form>
                             </LoadingContainer>

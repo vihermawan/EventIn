@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { Layout, BackTop, Row, Col,Icon, Tag } from 'antd';
 import { faUser, faInfoCircle } from '@fortawesome/free-solid-svg-icons'
 import '../../../assets/css/profile.css'
+
 // component
 import Navbar from '../../../common/layout/navbar-landing'
 import Footer from '../../../common/layout/footer-landing'

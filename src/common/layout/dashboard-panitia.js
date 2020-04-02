@@ -38,6 +38,8 @@ class dashboard extends Component {
     loading : false,
     username: 'username',
     profile_picture:'',
+    no_telepon :'',
+    instagram : '',
   };
   
 //  async componentWillMount(){
@@ -96,6 +98,8 @@ componentDidMount(){
             id_panitia : res.data.data.user.panitia.id_panitia,
             nama_panitia : res.data.data.user.panitia.nama_panitia,
             profile_picture : res.data.data.user.panitia.image_URL,
+            no_telepon: res.data.data.user.panitia.no_telepon,
+            instagram : res.data.data.user.panitia.instagram,
             loading: false,
         })
     });
@@ -174,12 +178,10 @@ componentDidMount(){
                               marginBottom:'10px',
                           }}/>
                       </div>
-
                       <div className="title-dashboard">
                           <span className="title-desc-dashboard">EVENT</span>
                       </div>  
-                      
-                      <Menu.Item key="create-event">
+                      <Menu.Item key="create-event"  style={this.state.no_telepon === 'Silahkan isi' || this.state.instagram === 'Silahkan isi'  ? {display:"none"}:{display:"block"}}>
                         <Link to="/dashboard/create-event">
                           <FontAwesomeIcon
                               icon={faPen}
@@ -188,7 +190,7 @@ componentDidMount(){
                           <span className={hidden}>Create Event</span>
                         </Link>
                       </Menu.Item>
-                      <Menu.Item key="active-event">
+                      <Menu.Item key="active-event" >
                         <Link to="/dashboard/active-event">
                           <FontAwesomeIcon
                               icon={faCalendarCheck}

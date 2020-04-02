@@ -17,8 +17,15 @@ class EditProfilePage extends Component {
         pekerjaan : '',
         picture : '',
         foto_peserta : '',
+        umur : '',
         button_edit : 'Edit Foto Profil',
-        loading : false
+        crop: {
+            unit: '%',
+            width: 30,
+            aspect: 1 / 1,
+          },
+        loading : false,
+        croppedImageUrl : '',
     }
 
     componentDidMount(){
@@ -36,6 +43,8 @@ class EditProfilePage extends Component {
                 nama_peserta : res.data.data.user.peserta.nama_peserta,
                 email : res.data.data.user.email,
                 pekerjaan : res.data.data.user.peserta.pekerjaan,
+                tanggal_lahir:res.data.data.user.peserta.tanggal_lahir,
+                umur:res.data.data.user.peserta.umur,
                 no_telepon : res.data.data.user.peserta.no_telefon,
                 jenis_kelamin : res.data.data.user.peserta.jenis_kelamin,
                 picture:res.data.data.user.peserta.image_URL,
@@ -83,20 +92,190 @@ class EditProfilePage extends Component {
         })
     }
 
+    getBase64 = (img, callback)  =>{
+        const reader = new FileReader();
+        reader.addEventListener('load', () => callback(reader.result));
+        reader.readAsDataURL(img);
+    }
+  
     uploadGambar = (event) => {
-        this.getBase64(event.target.files[0], imageUrl => {
-            this.setState({ picture: imageUrl })
-        })
-        this.setState({ foto_peserta:event.target.files[0] })
+        if(event.target.files[0].type != 'image/jpeg' ){
+            console.log('harusnya')
+            this.openNotification('Format Gambar Salah', 'Silahkan Upload Kembali dengan format JPG')
+        }
+        else if(event.target.files[0].size / 1024 / 1024 > 2){
+            this.openNotification('Ukuran file Melebihi 2Mb', 'Silahkan Upload Kembali')
+        }
+        else{
+            console.log('cek', event.currentTarget.value)
+            this.getBase64(event.target.files[0], imageUrl => {
+                this.setState({ picture: imageUrl,croppedImageUrl :imageUrl,foto_peserta:imageUrl,visible:true })
+            })
+            // this.setState({ foto_peserta:event.target.files[0] })
+        }
+        
+    }
+      
+    onImageLoaded = image => {
+        this.imageRef = image;
+    };
+
+    onCropComplete = crop => {
+        this.makeClientCrop(crop);
+    };
+
+    onCropChange = (crop, percentCrop) => {
+        // You could also use percentCrop:
+        this.setState({ crop: percentCrop });
+        this.setState({ crop });
+    };
+
+    async makeClientCrop(crop) {
+        if (this.imageRef && crop.width && crop.height) {
+          const croppedImageUrl = await this.getCroppedImgLink(
+            this.imageRef,
+            crop,
+            'newFile.jpeg'
+          );
+          const foto_peserta = await this.getCroppedImg(
+            this.imageRef,
+            crop,
+            'newFile.jpeg'
+          );
+          this.setState({ foto_peserta,croppedImageUrl });
+          console.log('croping',this.state.croppedImageUrl)
+        }
+    }
+    
+    getCroppedImgLink(image, crop, fileName) {
+        const canvas = document.createElement('canvas');
+        const scaleX = image.naturalWidth / image.width;
+        const scaleY = image.naturalHeight / image.height;
+        canvas.width = crop.width;
+        canvas.height = crop.height;
+        const ctx = canvas.getContext('2d');
+
+        ctx.drawImage(
+            image,
+            crop.x * scaleX,
+            crop.y * scaleY,
+            crop.width * scaleX,
+            crop.height * scaleY,
+            0,
+            0,
+            crop.width,
+            crop.height
+        );
+
+    return new Promise((resolve, reject) => {
+        canvas.toBlob(blob => {
+        if (!blob) {
+            console.error('Canvas is empty');
+            return;
+        }
+        blob.name = fileName;
+        window.URL.revokeObjectURL(this.fileUrl);
+        this.fileUrl = window.URL.createObjectURL(blob);
+        resolve(this.fileUrl);
+        }, 'image/jpeg');
+    });
     }
 
+    getCroppedImg(image, crop, fileName) {
+        const canvas = document.createElement('canvas');
+        const scaleX = image.naturalWidth / image.width;
+        const scaleY = image.naturalHeight / image.height;
+        canvas.width = crop.width;
+        canvas.height = crop.height;
+        const ctx = canvas.getContext('2d');
+    
+        ctx.drawImage(
+          image,
+          crop.x * scaleX,
+          crop.y * scaleY,
+          crop.width * scaleX,
+          crop.height * scaleY,
+          0,
+          0,
+          crop.width,
+          crop.height
+        );
+        
+        const reader = new FileReader()
+        canvas.toBlob(blob => {
+            reader.readAsDataURL(blob)
+            reader.onloadend = () => {
+                this.dataURLtoFile(reader.result, 'cropped.jpg')
+            }
+        })
+    
+        // return new Promise((resolve, reject) => {
+        //   canvas.toBlob(blob => {
+        //     if (!blob) {
+        //       //reject(new Error('Canvas is empty'));
+        //       console.error('Canvas is empty');
+        //       return;
+        //     }
+        //     blob.name = fileName;
+        //     window.URL.revokeObjectURL(this.fileUrl);
+        //     this.fileUrl = window.URL.createObjectURL(blob);
+        //     resolve(this.fileUrl);
+        //     this.setState({croppedImageUrl: this.fileUrl})
+        //     console.log('file',this.state.croppedImageUrl)
+           
+        //   }, 'image/jpeg');
+        // });
+    }
+
+    dataURLtoFile = (dataurl, filename) => {
+        let arr = dataurl.split(','),
+            mime = arr[0].match(/:(.*?);/)[1],
+            bstr = atob(arr[1]), 
+            n = bstr.length, 
+            u8arr = new Uint8Array(n);
+                
+        while(n--){
+            u8arr[n] = bstr.charCodeAt(n);
+        }
+        let croppedImage = new File([u8arr], filename, {type:mime});
+        this.setState({foto_peserta: croppedImage}) 
+        console.log('ini lo', this.state.foto_peserta)
+    }
+  
+    showModal = () => {
+        this.setState({
+            visible: true,
+        });
+    };
+    
+    handleOk = e => {
+        console.log(e);
+        this.setState({
+            visible: false,
+        });
+    };
+    
+    handleCancel = e => {
+        console.log(e);
+        this.setState({
+            visible: false,
+            foto_peserta : null,
+            croppedImageUrl : null,
+        });
+    };
 
     handleJenisKelamin = (value) => {
         this.setState({ jenis_kelamin: value.key })
         console.log('jenis_kelamin', value.key);
     }
 
-    
+    onChangeBirthDate = (date, dateString) => {
+        this.setState({ 
+            tanggal_lahir: dateString,
+        })
+        console.log(date, dateString);
+    }
+
     openNotification = (message, description) => {
         notification.error({
             message,
@@ -140,6 +319,13 @@ class EditProfilePage extends Component {
                 handleButtonGambar = {this.handleButtonGambar}
                 handleJenisKelamin ={this.handleJenisKelamin}
                 handleSubmit = {this.handleSubmit}
+                onChangeBirthDate={this.onChangeBirthDate}
+                onImageLoaded={this.onImageLoaded}
+                onCropComplete={this.onCropComplete}
+                onCropChange={this.onCropChange}
+                showModal={this.showModal}
+                handleOk={this.handleOk}
+                handleCancel={this.handleCancel}
             />
         );
     }

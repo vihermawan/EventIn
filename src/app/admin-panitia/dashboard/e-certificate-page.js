@@ -27,7 +27,7 @@ class ECertificatePage extends Component {
         this.setState({loading: true})
         API.get(`/panitia/event-sertifikat`)
         .then(res => {
-          console.log('res',res.data.data.sertifikat)
+          console.log('res',res)
           this.setState({
               certificate:res.data.data.sertifikat,
               loading: false,
@@ -69,11 +69,6 @@ class ECertificatePage extends Component {
             title: 'File',
             dataIndex: 'sertifikat',
             key: 'sertifikat',
-        },
-        {
-            title: 'Tenggang Waktu',
-            dataIndex: 'tenggang_waktu',
-            key: 'tenggang_waktu',
         },
         {
             title: 'Status Sertifikat',
@@ -124,15 +119,13 @@ class ECertificatePage extends Component {
         },
     ];
     
-    const data =  this.state.certificate.map( ({id_sertifikat, sertifikat, penandatangan, tenggang_waktu, status}, index) => ({
+    const data =  this.state.certificate.map( ({id_sertifikat, sertifikat, penandatangan, status}, index) => ({
         no : index+1,
         nomor : id_sertifikat,
         nama_event: sertifikat.event.nama_event,
         penandatangan : penandatangan.nama_penandatangan,
         sertifikat :sertifikat.sertifikat,
-        tenggang_waktu :moment(tenggang_waktu).format("DD MMMM YYYY"),
-        status : [status.nama_status],
-               
+        status : [status.nama_status],        
     }))
 
         return ( 

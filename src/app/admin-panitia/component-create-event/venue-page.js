@@ -9,11 +9,6 @@ class VenuePage extends Component {
     state = {
        venue:'',
        lokasi : '',
-       center: {
-        lat: -7.770717,
-        lng: 110.377724
-      },
-      zoom: 15
     }
 
     componentDidMount(){

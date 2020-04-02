@@ -21,13 +21,15 @@ class RegisterComponent extends Component{
                             <Row>
                                 <Col lg={15} md={12} sm={12} className="background-white container-full">                             
                                     <div className="login-section-container">
-                                        <img src={logo} alt="EventIn logo" width="100"/>
+                                        <Link to="/">
+                                            <img src={logo} alt="EventIn logo" width="100"/>
+                                        </Link>
                                         <div className="auth-image-container mt-50 text-align-center float-ease" >
-                                            <img
-                                                src={login}
-                                                alt="EventIn login"
-                                                style={{maxWidth: '65%'}}
-                                            />
+                                                <img
+                                                    src={login}
+                                                    alt="EventIn login"
+                                                    style={{maxWidth: '65%'}}
+                                                />
                                         </div>
                                     </div>
                                     <div className="text-soft-blue title-medium text-align-center bold">
@@ -62,6 +64,15 @@ class RegisterComponent extends Component{
                                                     className="input-auth mt-5 mb-20"
                                                     iconType="mail"
                                                 />
+                                                <span className="auth-input-label text-white">Organisasi</span>
+                                                <InputAuth
+                                                    name='organisasi'
+                                                    placeholder="Masukkan Organisasi Anda"
+                                                    onChange={handleChange}
+                                                    value={initialData.organisasi}
+                                                    className="input-auth mt-5 mb-20"
+                                                    iconType="user"
+                                                />
                                                 <span className="auth-input-label text-white">Password</span>
                                                 <InputAuth
                                                     name='password'
@@ -72,7 +83,7 @@ class RegisterComponent extends Component{
                                                     iconType="lock"
                                                     type="password"
                                                 />
-                                                <span className="auth-input-label text-white">Confirm Password</span>
+                                                {/* <span className="auth-input-label text-white">Confirm Password</span>
                                                 <InputAuth
                                                     name='password_confirmation'
                                                     placeholder="Masukkan Password Konfirmasi"
@@ -81,7 +92,7 @@ class RegisterComponent extends Component{
                                                     className="input-auth mt-5"
                                                     iconType="lock"
                                                     type="password"
-                                                />
+                                                /> */}
                                                 <div>
                                                     <ButtonAuth
                                                         text="Register"

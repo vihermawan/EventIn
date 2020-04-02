@@ -1,0 +1,22 @@
+.date-picker-edit .ant-input{
+    width: 100%;
+    text-align: left;
+    height: 40px;
+    margin-top: 5px;
+    border-color: #4D5AF2;
+    color : #4D5AF2;
+}
+
+
+.time-picker-edit .ant-time-picker-input{
+    width: 100%;
+    text-align: left;
+    height: 40px;
+    margin-top: 5px;
+    border-color: #4D5AF2;
+    color : #4D5AF2;
+}
+
+.form-edit-section-6{
+    width: 90%;
+}

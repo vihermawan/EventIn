@@ -30,7 +30,6 @@ class BasicInfoPage extends Component {
             if(res.status == 200){
                 this.setState({
                     kategori:res.data.data.kategori,
-                    
                 })
             }
         })

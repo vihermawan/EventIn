@@ -1,20 +1,21 @@
 import React, { Component } from 'react';
-import { Layout, Breadcrumb, Row, Col, Form, Select, Input,Upload, Button  } from 'antd';
+import { Layout, Breadcrumb, Row, Col, Form, Modal, Input,Upload, Button  } from 'antd';
 import { Link } from 'react-router-dom';
 import '../../../assets/css/dashboard-all/dashboard.css'
 import '../../../assets/css/dashboard-all/table-style.css'
 import '../../../assets/css/admin-superadmin/detail-event.css'
 // component
+import ReactCrop from 'react-image-crop';
 import LoadingContainer from '../../../common/component/loading/loading-container'
 import InputForm from '../../../common/component/input/input-form';
+import ButtonDashboard from '../../../common/component/button/button-dashboard';
+import { faUserEdit, faBackward, faIdCard, faInfoCircle, faEnvelope, faAddressBook, faUserAlt } from '@fortawesome/free-solid-svg-icons';
 import 'moment-timezone';
 import 'moment/locale/id';
-import ButtonDashboard from '../../../common/component/button/button-dashboard';
-import { faUserEdit, faBackward } from '@fortawesome/free-solid-svg-icons';
+import 'react-image-crop/dist/ReactCrop.css';
+
 // constant content
 const { Content } = Layout;
-const { Option } = Select;
-const { Dragger } = Upload;
 const uploadButton = (
     <div>
       {/* {this.state.loading ? <LoadingOutlined /> : <PlusOutlined />} */}
@@ -23,8 +24,7 @@ const uploadButton = (
 );
 class EditProfileComponent extends Component {
     render() { 
-      const {initialData,handleChange,uploadButton,handleButtonEdit,handleButtonGambar,uploadGambar,handleSubmit} = this.props  
-      const format = 'HH:mm';
+      const {initialData,handleChange,uploadButton,handleButtonEdit,handleButtonGambar,uploadGambar,handleSubmit, onImageLoaded,onCropComplete,onCropChange,handleOk,handleCancel} = this.props  
       return ( 
             <Content
                 style={{
@@ -64,6 +64,7 @@ class EditProfileComponent extends Component {
                                                         className="input-event mt-5 mb-20"
                                                         onChange={handleChange}
                                                         value={initialData.nama_panitia}
+                                                        icon={faUserAlt}
                                                     />
                                                 </div>
                                             </Col>
@@ -78,6 +79,7 @@ class EditProfileComponent extends Component {
                                                         className="input-event mt-5 mb-20"
                                                         onChange={handleChange}
                                                         value={initialData.email}
+                                                        icon={faEnvelope}
                                                     />
                                                 </div>
                                             </Col>
@@ -92,12 +94,13 @@ class EditProfileComponent extends Component {
                                                         className="input-event mt-5 mb-20"
                                                         onChange={handleChange}
                                                         value={initialData.organisasi}
+                                                        icon={faIdCard}
                                                     />
                                                 </div>
                                             </Col>
                                             <Col lg={24} md={24} sm={24}>
                                                 <div>   
-                                                    <span className="auth-input-label text-black">Media Sosial*</span>
+                                                    <span className="auth-input-label text-black">Instagram*</span>
                                                 </div>
                                                 <div>
                                                     <InputForm
@@ -106,6 +109,7 @@ class EditProfileComponent extends Component {
                                                         className="input-event mt-5 mb-20"
                                                         onChange={handleChange}
                                                         value={initialData.instagram}
+                                                        icon={faInfoCircle}
                                                     />
                                                 </div>
                                             </Col>
@@ -120,6 +124,7 @@ class EditProfileComponent extends Component {
                                                         className="input-event mt-5 mb-20"
                                                         onChange={handleChange}
                                                         value={initialData.no_telepon}
+                                                        icon={faAddressBook}
                                                     />
                                                 </div>
                                             </Col>
@@ -166,14 +171,31 @@ class EditProfileComponent extends Component {
                                                     />       
                                                  </div>
                                                  <div>
+                                                 <Modal
+                                                        title="Atur Ukuran Gambar"
+                                                        visible={initialData.visible}
+                                                        onOk={handleOk}
+                                                        onCancel={handleCancel}
+                                                        >
+                                                            {initialData.picture && (
+                                                            <ReactCrop
+                                                                src={initialData.picture}
+                                                                crop={initialData.crop}
+                                                                ruleOfThirds
+                                                                onImageLoaded={onImageLoaded}
+                                                                onComplete={onCropComplete}
+                                                                onChange={onCropChange}
+                                                                style={{width:"100%"}}
+                                                            />
+                                                        )} 
+                                                    </Modal>
                                                     <Upload
                                                         name="picture"
                                                         listType="picture-card"
                                                         className="avatar-uploader"
                                                         disabled = {true}
-                                                        previewFile={initialData.picture}
                                                     >
-                                                        {initialData.picture ? <img src={initialData.picture} alt="avatar" style={{ width: '50%' }} /> : uploadButton}
+                                                        {initialData.croppedImageUrl ? <img src={initialData.croppedImageUrl} alt="avatar" style={{ width: '50%' }} /> : uploadButton}
                                                     </Upload>  
                                                  </div>  
                                             </Col>
