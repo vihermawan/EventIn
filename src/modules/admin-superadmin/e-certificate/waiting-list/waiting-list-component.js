@@ -10,8 +10,10 @@ const { Content } = Layout;
 
 
 class PesertaAdminComponent extends Component {
-    render() { 
+    render() {
+        
       const {initialData, data, columns} = this.props;
+    //    console.log(`selected`, initialData.id_penandatangan);
         return ( 
             <Content
                 style={{

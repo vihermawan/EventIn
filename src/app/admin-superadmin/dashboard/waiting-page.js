@@ -9,13 +9,13 @@ import WaitingComponent from '../../../modules/admin-superadmin/e-certificate/wa
 import ButtonDashboard from '../../../common/component/button/button-dashboard';
 
 const { confirm } = Modal;
-
+const { Option } = Select;
 class WaitingPage extends Component {
     state = { 
         waitingSertifikat : [],
         penandatangan : [],
         id_sertifikat:'',
-        id_penandatangan : '',
+        id_penandatangan : undefined,
         loading : false,
         visible : false,
     }
@@ -48,8 +48,9 @@ class WaitingPage extends Component {
     }
     
     handlePenandatangan = (value) => {
-        this.setState({ id_penandatangan: value.key })
-        console.log('status', value.key);
+        console.log(`s ${value}`);
+        this.setState({ id_penandatangan: value })
+        
     }
 
     //function untuk modal
@@ -60,15 +61,15 @@ class WaitingPage extends Component {
             okType: 'success',
             content: 
                 <Select
-                    labelInValue
-                    defaultValue={{ key: 'Pilih Penandatangan' }}
+                    mode="multiple"
+                    placeholder="Pilih Penandatangan"
                     style={{ width: '100%' }}
                     onChange={this.handlePenandatangan}
                 >
                     {this.state.penandatangan.map(({penandatangan}) => (
-                        <Select.Option key={penandatangan.id_penandatangan} value={penandatangan.id_penandatangan}>
+                        <Option key={penandatangan.id_penandatangan}>
                             {penandatangan.nama_penandatangan}
-                        </Select.Option>
+                        </Option>
                 ))}
             </Select>
             ,
