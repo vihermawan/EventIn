@@ -19,6 +19,9 @@ const menu = {
     ALL_EVENT: {
         link : '/allevent'
     },
+    ALL_KATEGORI: {
+        link : '/allkategori'
+    },
     PROFILE:{
         link : '/profile'
     },
@@ -88,6 +91,7 @@ const menu = {
     DETAIL_PENANDATANGAN_ADMIN : {
         link :'/admin/detail-penandatangan'
     },
+    
     DETAIL_PESERTA_ADMIN :{
         link: '/admin/admin-detail-peserta'
     },

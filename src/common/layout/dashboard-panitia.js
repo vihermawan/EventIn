@@ -82,17 +82,20 @@ class dashboard extends Component {
 
 componentDidMount(){
   this.getProfile();
+  // window.onbeforeunload = function() {
+  //   localStorage.clear();
+  // }
 }
 
   getProfile=()=>{
     this.setState({loading: true})
     API.get(`/panitia/profile-edit`)
     .then(res => {
-        console.log('res',res)
+        // console.log('res',res)
         this.setState({
             id_panitia : res.data.data.user.panitia.id_panitia,
             nama_panitia : res.data.data.user.panitia.nama_panitia,
-            picture : res.data.data.user.panitia.image_URL,
+            profile_picture : res.data.data.user.panitia.image_URL,
             loading: false,
         })
     });
@@ -126,13 +129,6 @@ componentDidMount(){
     let hidden = this.state.collapsed ? 'hidden-objek' : 'block-objek'
     const menu = (
       <Menu>
-        <Menu.Item key="0">
-          <a href="http://www.alipay.com/">1st menu item</a>
-        </Menu.Item>
-        <Menu.Item key="1">
-          <a href="http://www.taobao.com/">2nd menu item</a>
-        </Menu.Item>
-        <Menu.Divider />
         <Menu.Item key="3">
             <ButtonAuth
                 text="Logout"

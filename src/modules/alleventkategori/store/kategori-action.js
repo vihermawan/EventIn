@@ -1,5 +1,5 @@
-import { API } from '../../../../common/api'
-import * as actionType from './active-event-action-type';
+import { API } from '../../../common/api'
+import * as actionType from './kategori-action-type';
 
 const startGetDataParticipant = () => ({
     type: actionType.START_GET_DATA,
@@ -13,11 +13,10 @@ const setDataParticipant = payload => ({
 });
 
 //halaman active event
-const setIdDataEvent = payload => ({
-    type: actionType.SET_ID_EVENT,
+const setIdDataKategori = payload => ({
+    type: actionType.SET_ID_KATEGORI,
     payload,
 })
-
 
 export const getData = (service, params) => (dispatch) => {
     dispatch(startGetDataParticipant());
@@ -29,6 +28,6 @@ export const getData = (service, params) => (dispatch) => {
     })
 };
 
-export const setIdEvent = (data) => (dispatch) => {
-    dispatch(setIdDataEvent(data));
+export const setIdKategori = (data) => (dispatch) => {
+    dispatch(setIdDataKategori(data));
 }

@@ -30,7 +30,7 @@ class WaitingListPage extends Component {
         this.setState({loading: true})
         API.get(`/penandatangan/sertifikat/waiting`)
         .then(res => {
-          console.log('res',res)
+          console.log('res',res.data.data.sertifikat)
             this.setState({
                 e_certificate:res.data.data.sertifikat,
                 loading: false,

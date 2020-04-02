@@ -19,6 +19,7 @@ import pesertaEventReducer from '../../modules/admin-superadmin/user/peserta/sto
 import panitiaEventReducer from '../../modules/admin-superadmin/user/panitia/store/panitia-reducer'
 import penandatanganReducer from '../../modules/admin-superadmin/user/penandatangan/store/penandatangan-reducer'
 import usersReducer from '../../modules/admin-superadmin/user/store/users-reducer'
+import kategoriReducer from '../../modules/alleventkategori/store/kategori-reducer'
 import loginReducer from '../../modules/auth/store/login-reducer'
 
 const history = createHistory();
@@ -28,7 +29,7 @@ const persistConfig = {
     key: 'your-apps',
     storage,
     stateReconciler: autoMergeLevel1,
-    whitelist: ['login','activeEvent','certificate','peserta','panitia','penandatangan','users'],
+    whitelist: ['login','activeEvent','certificate','peserta','panitia','penandatangan','users','kategori'],
 };
 
 const reducers = combineReducers({
@@ -40,6 +41,7 @@ const reducers = combineReducers({
     penandatangan : penandatanganReducer,
     users : usersReducer,
     login : loginReducer,
+    kategori : kategoriReducer,
 })
 
 const persistedReducer = persistReducer(persistConfig, reducers);

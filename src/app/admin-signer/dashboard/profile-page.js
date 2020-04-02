@@ -5,7 +5,7 @@ import CONSTANS from '../../../common/utils/Constants'
 import { navigate } from '../../../common/store/action'
 import ProfileSignerComponent from '../../../modules/admin-signer/profile/profile-component';
 
-//import store
+//import store.
 import { setIdUsers } from '../../../modules/admin-superadmin/user/store/users-action'
 
 class ProfilePage extends Component {

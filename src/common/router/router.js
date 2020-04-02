@@ -4,7 +4,7 @@
 */
 
 import React, { Component } from 'react'
-import { Router, Switch, Route } from "react-router-dom";
+import { Router, Switch, Route, Redirect } from "react-router-dom";
 import routeSources from './router-config';
 
 class Routers extends Component {
@@ -22,7 +22,14 @@ class Routers extends Component {
 }
 
 function RouteWithSubRoutes(route) {
-    return (
+    // console.log(route.private)
+    return route.private ? (
+        <PrivateRoute
+            path={route.path}
+        >
+            <route.component routes={route.routes} />
+        </PrivateRoute>
+    ) : (
         <Route
             path={route.path}
             render={props => (
@@ -31,5 +38,27 @@ function RouteWithSubRoutes(route) {
         />
     );
 }
+
+function PrivateRoute({ children, ...rest }) {
+    let isAuthenticated = false;
+    if(localStorage.getItem("token") != null) isAuthenticated = true;
+    return (
+      <Route
+        {...rest}
+        render={({ location }) =>
+          isAuthenticated ? (
+            children
+          ) : (
+            <Redirect
+              to={{
+                pathname: "/login",
+                state: { from: location }
+              }}
+            />
+          )
+        }
+      />
+    );
+  }
 
 export default Routers;

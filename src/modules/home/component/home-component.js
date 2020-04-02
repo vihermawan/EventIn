@@ -102,14 +102,11 @@ class HomeComponent extends Component {
                                     </Col>
                                     <Col span={24}>
                                         <div className="button-section-1-container">
-                                        <Link to="/login">
                                             <ButtonHome
                                                 text="Daftar event"
                                                 className='button-participate'
-                                                onClick = { () => onLoginHome}
+                                                onClick = {onLoginHome}
                                             />
-                                        </Link>
-                                        <Link to="/login">
                                             <ButtonHome
                                                 text="Kelolah event"
                                                 background="white"
@@ -117,9 +114,8 @@ class HomeComponent extends Component {
                                                 border="1px solid #4D5AF2"
                                                 marginLeft={16}
                                                 className='button-participate'
-                                                onClick = { () => onRegisterHome}
+                                                onClick = {onRegisterHome}
                                             />
-                                        </Link>
                                         </div>
                                     </Col>
                                 </Row>

@@ -13,9 +13,10 @@ import ButtonDashboard from '../../../common/component/button/button-dashboard';
 
 const { Content } = Layout;
 
-class AllEventComponent extends Component {
+class AllEventKategoriComponent extends Component {
     render() { 
         const {cardData,initialData,onDetailEvent,onStartLoadingHome ,onFinishLoadingHome,nextPage} = this.props
+        const image1 = require(`../../../assets/images/event-image1.png`);  
         return ( 
             <Layout className="landing-container">
                 <Navbar
@@ -30,12 +31,10 @@ class AllEventComponent extends Component {
                             <Col lg={24}>
                                 <span style={{marginLeft:'1%'}} className="text-soft-blue title-big-event bold">Semua Event</span>
                             </Col>
-                            <LoadingContainer loading={initialData.loading}>
-                            <Col lg={24} className="card-container" style={{minHeight:"80vh"}}>
-                            {!initialData.loading && (
-                              
+                            <Col lg={24} className="card-container">
+                                <LoadingContainer loading={initialData.loading}>
                                     <Col lg={24} style={{minHeight: "300px"}}>
-                                        <Row gutter={16}>
+                                        <Row gutter={[16,16]}>
                                             {
                                             cardData.map( data =>
                                                 <Col lg={6} md={12} sm={12} xs={24} className="mt-30">
@@ -81,10 +80,8 @@ class AllEventComponent extends Component {
                                             </Col>
                                         </Row>
                                     </Col>
-                              
-                                )}      
+                                </LoadingContainer>       
                             </Col>
-                            </LoadingContainer> 
                         </Row>
                         <BackTop />
                     </Content>
@@ -94,4 +91,4 @@ class AllEventComponent extends Component {
         );
     }
 }
-export default AllEventComponent;
+export default AllEventKategoriComponent;

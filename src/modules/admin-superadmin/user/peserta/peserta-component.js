@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Layout, Breadcrumb, Row, Table, Input, Col,Tag } from 'antd';
+import { Layout, Breadcrumb, Row, Col } from 'antd';
 import '../../../../assets/css/dashboard-all/dashboard.css'
 import '../../../../assets/css/dashboard-all/table-style.css'
 import TableProfile from '../../../../common/component/table/table'

@@ -7,6 +7,7 @@ import EventComponent from '../../modules/event/component/event-component';
 
 // import store
 import { setIdEvent } from '../../modules/admin-panitia/active-event/store/active-event-action'
+import { setIdKategori } from '../../modules/alleventkategori/store/kategori-action'
 
 class EventPage extends Component {
     state = { 
@@ -32,7 +33,7 @@ class EventPage extends Component {
         this.setState({loading: true})
         API.get(`/peserta/event/kategori/${id_kategori}`)
         .then(res => {
-            console.log('res',res)
+            // console.log('res',res)
             if(res.status == 200){
                 this.setState({
                     eventbyKategori:res.data.data.event,
@@ -46,7 +47,7 @@ class EventPage extends Component {
         this.setState({loading: true})
         API.get(`/peserta/event`)
         .then(res => {
-            console.log(res.data.size)
+            // console.log(res.data.size)
             if(res.status == 200){
                 this.setState({
                     event:res.data.data.event.data,
@@ -59,7 +60,7 @@ class EventPage extends Component {
     getKategori=()=>{
         API.get('/peserta/kategori')
         .then(res => {
-            console.log('kategori',res)
+            // console.log('kategori',res)
             if(res.status == 200){
                 this.setState({
                     kategori:res.data.data.kategori,
@@ -78,6 +79,12 @@ class EventPage extends Component {
 
     onEditPeserta = (id_users) => {
         this.props.navigate(CONSTANS.ALL_EVENT_MENU_KEY)
+    }
+
+    onEventKategori = (id_kategori) => {
+        console.log('ini id', id_kategori)
+        this.props.setIdKategori(id_kategori)
+        this.props.navigate(CONSTANS.ALL_KATEGORI_MENU_KEY)
     }
 
     render() { 
@@ -116,18 +123,20 @@ class EventPage extends Component {
                 onTabChange={this.onTabChange}
                 onStartLoadingHome={this.onStartLoadingHome}
                 onFinishLoadingHome={this.onFinishLoadingHome}
+                onEventKategori={this.onEventKategori}
             />
         );
     }
 }
  
 const mapStateToProps = state => ({
-    
+
 });
 
 const mapDispatchToProps = (dispatch => ({
     navigate,
     setIdEvent,
+    setIdKategori,
 }))();
 
 const page = connect(mapStateToProps, mapDispatchToProps)(EventPage);

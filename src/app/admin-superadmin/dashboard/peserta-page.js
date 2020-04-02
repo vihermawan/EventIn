@@ -45,7 +45,7 @@ class PesertaAdminPage extends Component {
             console.log('res',res)
             if(res.status == 200){
                 message.success('This is a success message');
-                window.location.reload(); 
+                this.componentDidMount(); 
             }   
         });
     }

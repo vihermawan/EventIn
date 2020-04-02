@@ -3,12 +3,12 @@ import { API } from '../../common/api'
 import { connect } from 'react-redux';
 import CONSTANS from '../../common/utils/Constants'
 import { navigate } from '../../common/store/action'
-import AllEventComponent from '../../modules/allevent/component/allevent-component';
+import AllEventKategoriComponent from '../../modules/alleventkategori/component/alleventkategori-component';
 
-// import store.
+// import store
 import { setIdEvent } from '../../modules/admin-panitia/active-event/store/active-event-action'
 
-class AllEventPage extends Component {
+class AllEventKategoriPage extends Component {
     state = { 
         page: 1,
         event:[],
@@ -19,18 +19,20 @@ class AllEventPage extends Component {
      }
 
      componentDidMount(){
-        this.getAllEvent();
+        this.getAllEvent(this.props.idKategori,this.state.page);
+        console.log(this.props.idKategori)
     }
 
     onStartLoadingHome = () =>  this.setState({ loadingHome: true })
     onFinishLoadingHome = () =>  this.setState({ loadingHome: false })
 
 
-    getAllEvent=(page)=>{
+    getAllEvent=(id_kategori,page)=>{
         this.setState({loading: true})
-        API.get(`/peserta/Allevent?page=${page}`)
+        API.get(`/peserta/Allevent/Kategori/${id_kategori}/?page=${page}`)
         .then(res => {
-            console.log(res.data.data.event)
+            console.log('kategori',id_kategori,'page',page)
+            console.log(res)
             if(res.status == 200){
                 const allData = this.state.event.concat(res.data.data.event.data);
                 this.setState({
@@ -50,10 +52,11 @@ class AllEventPage extends Component {
         this.props.navigate(CONSTANS.DETAIL_EVENT_KEY)
     }
 
+    
     nextPage = () => {
         const { page } = this.state;
         const nextPage = page + 1;
-        this.getAllEvent(nextPage);
+        this.getAllEvent(this.props.idKategori,nextPage);
         this.setState({ page: nextPage });
     }
 
@@ -69,7 +72,7 @@ class AllEventPage extends Component {
         }))
 
         return (
-            <AllEventComponent
+            <AllEventKategoriComponent
                 navigate={this.props.navigate}
                 cardData = {cardData}
                 initialData = {this.state}
@@ -83,7 +86,7 @@ class AllEventPage extends Component {
 }
  
 const mapStateToProps = state => ({
-    
+    ...state.kategori
 });
 
 const mapDispatchToProps = (dispatch => ({
@@ -91,5 +94,5 @@ const mapDispatchToProps = (dispatch => ({
     setIdEvent,
 }))();
 
-const page = connect(mapStateToProps, mapDispatchToProps)(AllEventPage);
+const page = connect(mapStateToProps, mapDispatchToProps)(AllEventKategoriPage);
 export default page

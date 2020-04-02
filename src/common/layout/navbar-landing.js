@@ -19,6 +19,7 @@ class Navbar extends Component {
 		visible: false,
 		isLogin: false,
 		loading: false,
+		isAuthenticated:'',
 	}
 
 	
@@ -26,12 +27,17 @@ class Navbar extends Component {
 		let pathArray = window.location.pathname.split('/');
 		let pathName = pathArray[1];
 		pathName === '' ? this.setState({current : 'home'}) : this.setState({current : pathName});
+
 		let token = localStorage.getItem("token");
 		if (token != null){
 			this.getProfile();
 		}
+		// window.onbeforeunload = function() {
+		// 	localStorage.clear();
+		// }
 		
 	}
+	
 
 	
     //get data profile dari API
@@ -39,7 +45,7 @@ class Navbar extends Component {
         this.setState({loading: true})
         API.get(`/peserta/edit-profile`)
         .then(res => {
-            console.log('res',res.data.data.user)
+            // console.log('res',res.data.data.user)
             this.setState({
                 username : res.data.data.user.peserta.nama_peserta,
                 picture:res.data.data.user.peserta.image_URL,
@@ -47,8 +53,8 @@ class Navbar extends Component {
 				isLogin: true,
             })
         });
-    }
-
+	}
+	
 
 	handleClick = e => {
 		this.setState({ current: e.key });

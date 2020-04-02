@@ -9,7 +9,7 @@ import LoadingContainer from '../../../common/component/loading/loading-containe
 
 const { Content } = Layout;
 const logo = require(`../../../assets/images/logo.png`);
-const login = require(`../../../assets/images/register-image.png`);
+const login = require(`../../../assets/images/peserta.png`);
 
 class RegisterComponent extends Component{
     render(){
@@ -23,15 +23,15 @@ class RegisterComponent extends Component{
                                 <Row>
                                     <div className="login-section-container">
                                         <img src={logo} alt="EventIn logo" width="100"/>
-                                        <div className="auth-image-container mt-50">
+                                        <div className="auth-image-container mt-30 text-align-center float-ease">
                                         <img
                                             src={login}
                                             alt="EventIn login"
-                                            style={{maxWidth: '100%'}}
+                                            style={{maxWidth: '80%'}}
                                         />
                                         </div>
                                     </div>
-                                    <div className="text-soft-blue title-medium text-align-center">
+                                    <div className="text-soft-blue title-medium text-align-center mt-30">
                                         Find a newst event nearby you
                                     </div>
                                     <div className="text-soft-black title-more-small text-align-center thin">
@@ -45,7 +45,7 @@ class RegisterComponent extends Component{
                                         <div className="auth-form-container">
                                             <div className="text-white text-align-center title-more-small mb-20 mt-10">
                                                 <p className="title-medium semi-bold m-0">Welcome!</p>
-                                                <p className="form-description">Resiter in to your account</p>
+                                                <p className="form-description">Register in to your account</p>
                                             </div>
                                             <span className="auth-input-label text-white">Nama Peserta</span>
                                             <InputAuth
