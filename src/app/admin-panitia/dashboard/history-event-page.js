@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Tag } from 'antd';
 import {  faUsers, faTrash, faInfoCircle } from '@fortawesome/free-solid-svg-icons'
-import { Modal, message, Divider } from 'antd'
+import { Modal, message, Divider,Tooltip } from 'antd'
 import CONSTANS from '../../../common/utils/Constants'
 import { API } from '../../../common/api'
 import { navigate } from '../../../common/store/action'
@@ -133,34 +133,37 @@ class HistoryEventPage extends Component {
               title: 'Action',
               key: 'action',
               render: (data) => (
-                [<ButtonDashboard
-                    text="Participant"
-                    height={20}
-                    icon={faUsers}
-                    borderRadius="5px"
-                    background="#070E57"
-                    onClick={() =>this.onDetailParticipant(data.nomor)}
-                    // marginRight= "20px"
-                />,
+                [
+                <Tooltip title="Participant">
+                  <ButtonDashboard
+                      height={20}
+                      icon={faUsers}
+                      borderRadius="5px"
+                      background="#070E57"
+                      onClick={() =>this.onDetailParticipant(data.nomor)}
+                  />,
+                </Tooltip>,
                 <Divider type="vertical" />,
-                <ButtonDashboard
-                    text="Delete"
-                    height={20}
-                    icon={faTrash}
-                    borderRadius="5px"
-                    background="#FF0303"
-                    // marginRight= "20px"
-                    onClick={ () => this.showDeleteConfirm(data.nomor)}
-                />,
+                <Tooltip title="Delete">
+                  <ButtonDashboard
+                      height={20}
+                      icon={faTrash}
+                      borderRadius="5px"
+                      background="#FF0303"
+                      onClick={ () => this.showDeleteConfirm(data.nomor)}
+                  />,
+                </Tooltip>,
                 <Divider type="vertical" />,
-                <ButtonDashboard
-                    text="Detail"
-                    height={20}
-                    icon={faInfoCircle}
-                    borderRadius="5px"
-                    background="#FFA903"
-                    onClick={ () => this.onDetailEvent(data.nomor)}
-                />]
+                <Tooltip title="Detail">
+                  <ButtonDashboard
+                      height={20}
+                      icon={faInfoCircle}
+                      borderRadius="5px"
+                      background="#FFA903"
+                      onClick={ () => this.onDetailEvent(data.nomor)}
+                  />,
+                 </Tooltip>,
+                ]
               ),
             },
           ];

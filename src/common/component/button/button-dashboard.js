@@ -7,7 +7,7 @@ function ButtonDashboard({
     type, text, disabled, height = 48, borderRadius = 25,
     background = '#4D5AF2', textColor = "white", border = 'none',
     margin , marginLeft, marginRight, marginTop, marginBottom,
-    navigate, target, icon, onClick,paddingRight,paddingLeft,float
+    navigate, target, icon, onClick,paddingRight,paddingLeft,float,textAlign
 }) {
     return (
         <Button
@@ -28,12 +28,13 @@ function ButtonDashboard({
                 marginTop: marginTop,
                 marginBottom: marginBottom,
                 float : float,
+                textAlign : textAlign
             }}
             onClick={onClick}
         >
             <FontAwesomeIcon
                 icon={icon}
-                style={{marginRight: 10}}
+                // style={{marginRight: 10}}
             /> 
             {text}
         </Button>

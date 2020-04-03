@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import { Modal, message, Tag, Divider, Tooltip } from 'antd'
 import { API } from '../../../common/api'
 import { navigate } from '../../../common/store/action'
 import CONSTANS from '../../../common/utils/Constants'
@@ -88,14 +89,17 @@ class CountRegistEventPage extends Component {
               title: 'Action',
               key: 'action',
               render: (data) => (
-                [<ButtonDashboard
-                    text="Participant"
+                [
+                <Tooltip title="Participant">
+                <ButtonDashboard
                     height={20}
                     icon={faUsers}
                     borderRadius="5px"
                     background="#4D5AF2"
                     onClick={ () => this.onListParticipant(data.id_event)}
-                />]
+                />,
+                </Tooltip>
+                ]
               ),
             },
           ];

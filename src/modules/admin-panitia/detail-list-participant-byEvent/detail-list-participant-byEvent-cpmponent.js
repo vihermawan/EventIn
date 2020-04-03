@@ -1,17 +1,19 @@
 import React, { Component } from 'react';
 import { Layout, Breadcrumb, Row, Col } from 'antd';
-import TableProfile from '../../../common/component/table/table'
+import { Link } from 'react-router-dom';
 import '../../../assets/css/dashboard-all/dashboard.css'
 import '../../../assets/css/dashboard-all/table-style.css'
+// component
+import TableProfile from '../../../common/component/table/table'
 import LoadingContainer from '../../../common/component/loading/loading-container'
 // constant content
 const { Content } = Layout;
 
-class HistoryEventComponent extends Component {
+
+
+class DetailListParticipantbyEventComponent extends Component {
     render() { 
       const { initialData, columns, data } = this.props
-     
-      
         return ( 
             <Content
                 style={{
@@ -22,27 +24,27 @@ class HistoryEventComponent extends Component {
                 }}
             >
                 <Breadcrumb separator=">">
-                    <Breadcrumb.Item>Dashboard History Event</Breadcrumb.Item>
+                    <Breadcrumb.Item><Link to='/dashboard/active-event'>Dashboard Active Event</Link></Breadcrumb.Item>
+                    <Breadcrumb.Item>Dashboard List Participant by Event</Breadcrumb.Item>
                 </Breadcrumb>
+
                 <Row style={{minHeight: '100%',marginBottom: '2%',marginTop:'2%',}} className="background">
                     <Col lg={24} md={24} sm={24}> 
                         
                         <div className="container-active-event">
                             <Row>
                             <div className="container-title-event">
-                                <span>History Event</span>
+                                <span>List Participant by Event</span>
                             </div>
                             </Row>
                             <LoadingContainer loading={initialData.loading}>
-                            <Row gutter={24} type="flex">
-                          
-                                <TableProfile 
-                                    columns={columns} 
-                                    dataSource={data} 
-                                    className="table-active-event"
-                                />
-                            
-                            </Row>
+                                <Row gutter={24} type="flex">
+                                    <TableProfile 
+                                        columns={columns} 
+                                        dataSource={data} 
+                                        className="table-active-event"
+                                    />
+                                </Row>
                             </LoadingContainer>
                         </div>
                     </Col>
@@ -52,4 +54,4 @@ class HistoryEventComponent extends Component {
     }
 }
  
-export default HistoryEventComponent;
+export default DetailListParticipantbyEventComponent;
