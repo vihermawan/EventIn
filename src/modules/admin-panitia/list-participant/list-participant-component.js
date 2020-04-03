@@ -1,18 +1,17 @@
 import React, { Component } from 'react';
 import { Layout, Breadcrumb, Row, Col,Modal } from 'antd';
-import { faCheckCircle, faWindowClose } from '@fortawesome/free-solid-svg-icons'
-import ButtonIcon from '../../../common/component/button/button-icon'
 import TableProfile from '../../../common/component/table/table'
 import '../../../assets/css/dashboard-all/dashboard.css'
 import '../../../assets/css/dashboard-all/table-style.css'
 import LoadingContainer from '../../../common/component/loading/loading-container'
 import LoadingNotifContainer from '../../../common/component/loading/loading-notif';
+import { Link } from 'react-router-dom';
 // constant content
 const { Content } = Layout;
 
 class ListParticipantComponent extends Component {
     render() { 
-      const { initialData, columns, data,componentDidMount } = this.props
+      const { initialData, columns, data } = this.props
         return ( 
             <Content
                 style={{
@@ -23,6 +22,7 @@ class ListParticipantComponent extends Component {
                 }}
             >
                 <Breadcrumb separator=">">
+                    <Breadcrumb.Item><Link to='/dashboard/list-count-regist'>Dashboard List Register</Link></Breadcrumb.Item>
                     <Breadcrumb.Item>Dashboard List Participant</Breadcrumb.Item>
                 </Breadcrumb>
                 <Row style={{minHeight: '100%',marginBottom: '2%',marginTop:'2%',}} className="background">

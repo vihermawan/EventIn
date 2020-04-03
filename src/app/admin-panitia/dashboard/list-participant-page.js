@@ -18,12 +18,12 @@ class ListParticipantPage extends Component {
     }
 
     componentDidMount(){
-        this.getParticipant();
+        this.getParticipant(this.props.idEvent);
     }
 
-    getParticipant=()=>{
+    getParticipant=(id_event)=>{
         this.setState({loading: true})
-        API.get(`/panitia/regist-peserta`)
+        API.get(`/panitia/regist-peserta/${id_event}`)
         .then(res => {
           console.log('res',res.data.data)
           this.setState({
@@ -114,11 +114,6 @@ class ListParticipantPage extends Component {
             key: 'organisasi',
         },
         {
-            title: 'Event yang didaftar',
-            dataIndex: 'nama_event',
-            key: 'nama_event',
-        },
-        {
             title: 'Email',
             dataIndex: 'email',
             key: 'email',
@@ -186,7 +181,6 @@ class ListParticipantPage extends Component {
         nama_peserta : peserta.nama_peserta,
         organisasi : peserta.organisasi,
         umur : peserta.umur,
-        nama_event : event.nama_event,
         jenis_kelamin : peserta.jenis_kelamin,
         email : peserta.users.email,
         status : [status.nama_status],
@@ -204,7 +198,7 @@ class ListParticipantPage extends Component {
 }
  
 const mapStateToProps = state => ({
-    
+    ...state.activeEvent,
 });
 
 const mapDispatchToProps = (dispatch => ({
