@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import CONSTANS from '../../../common/utils/Constants'
+import {message, notification } from 'antd';
 import { API } from '../../../common/api'
 import { navigate } from '../../../common/store/action'
 import PanitiaComponent from '../../../modules/admin-panitia/dashboard-panitia/panitia-component';
@@ -8,20 +8,40 @@ import Axios from 'axios';
 
 class PanitiaPage extends Component {
     state = {
-        sertifikat: [],
+        id_panitia : '',
+        no_telepon :'',
+        instagram : '',
     }
 
     componentDidMount(){
-        // this.getStatus();
+        this.getProfile();
     }
 
-    // getStatus=()=>{
-    //     API.get(`/status`)
-    //     .then(res => {
-    //         console.log('res',res)
-           
-    //     });
-    // }
+    getProfile=()=>{
+        this.setState({loading: true})
+        API.get(`/panitia/profile-edit`)
+        .then(res => {
+            console.log('res',res.data.data.user.panitia.no_telepon)
+            this.setState({
+                id_panitia : res.data.data.user.panitia.id_panitia,
+                no_telepon: res.data.data.user.panitia.no_telepon,
+                instagram : res.data.data.user.panitia.instagram,
+                loading: false,
+            })
+            if(res.data.data.user.panitia.no_telepon == 'Silahkan isi'){
+                this.openNotification('Silahkan lengkapi biodata', 'Agar bisa membuat event!')
+            }else if(res.data.data.user.panitia.instagram == 'Silahkan isi'){
+                this.openNotification('Silahkan lengkapi biodata', 'Agar bisa membuat event!')
+            }
+        });
+    }
+
+    openNotification = (message, description) => {
+        notification.error({
+            message,
+            description,
+        });
+    };
     
   
     render() {

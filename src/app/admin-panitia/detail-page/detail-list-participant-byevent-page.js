@@ -94,8 +94,10 @@ class DetailListParticipantbyEventPage extends Component {
             organisasi  :peserta.organisasi,
             jenis_kelamin : peserta.jenis_kelamin,
             pekerjaan : peserta.pekerjaan,
+            umur : peserta.umur,
             nama_event : event.nama_event,
             email : peserta.users.email,
+            no_telefon : peserta.no_telefon
         }))
         
 
