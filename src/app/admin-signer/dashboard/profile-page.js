@@ -20,7 +20,7 @@ class ProfilePage extends Component {
         this.getProfile();
     }
     
-    //get data profile dari API
+    //get data profile dari API.
     getProfile=()=>{
         this.setState({loading: true})
         API.get(`/penandatangan/profile`)
