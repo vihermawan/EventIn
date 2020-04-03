@@ -12,37 +12,11 @@ class TabAbsentPage extends Component {
       
     }
 
-    render() { 
-          const columns = [
-            {
-                title: 'No',
-                dataIndex: 'nomor',
-                key: 'nomor',
-                render: text => <a>{text}</a>,
-            },
-            {
-              title: 'Nama Sertifikat',
-              dataIndex: 'nama_sertifikat',
-              key: 'nama_sertifikat',
-              render: text => <a>{text}</a>,
-            },
-            {
-              title: 'Gambar Sertifikat',
-              dataIndex: 'gambar',
-              key: 'gambar',
-            },
-          ];
-
-         
-        
+    render() {  
         return ( 
             <TabAbsentComponent
                 initialData={this.state}
                 navigate={this.props.navigate}
-
-                columns={columns}
-              
-                // data={data}
             />
         );
     }

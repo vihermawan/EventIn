@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { Modal, message, Tag, Divider } from 'antd'
+import { Modal, message, Tag, Divider, Tooltip } from 'antd'
 import { API } from '../../../common/api'
 import { navigate } from '../../../common/store/action'
 import CONSTANS from '../../../common/utils/Constants'
@@ -8,7 +8,7 @@ import 'moment-timezone';
 import 'moment/locale/id';
 import moment from 'moment-timezone';
 //import component
-import { faUsers } from '@fortawesome/free-solid-svg-icons'
+import { faUsers, faUserCheck } from '@fortawesome/free-solid-svg-icons'
 import { faInfoCircle } from '@fortawesome/free-solid-svg-icons' 
 import ButtonDashboard from '../../../common/component/button/button-dashboard';
 import ActiveEventComponent from '../../../modules/admin-panitia/active-event/active-event-component';
@@ -70,11 +70,18 @@ class ActiveEventPage extends Component {
         });
     }
 
+    //button absent participant
+    onAbsentParticipant = (id) => {
+        console.log('id ini',id)
+        this.props.setIdEvent(id);
+        this.props.navigate(CONSTANS.PARTICIPANT_EVENT_MENU_KEY)
+    }
+
     //button detail participant
     onDetailParticipant = (id) => {
         console.log('id ini',id)
         this.props.setIdEvent(id);
-        this.props.navigate(CONSTANS.PARTICIPANT_EVENT_MENU_KEY)
+        this.props.navigate(CONSTANS.DETAIL_LIST_PARTICIPANT_EVENT_MENU_KEY)
     }
 
     //button detail event
@@ -148,32 +155,48 @@ class ActiveEventPage extends Component {
               title: 'Action',
               key: 'action',
               render: (data) => (
-                [<ButtonDashboard
-                    text="Participant"
+                [
+                <Tooltip title="Absent">
+                <ButtonDashboard
                     height={20}
-                    icon={faUsers}
+                    icon={faUserCheck}
                     borderRadius="5px"
                     background="#4D5AF2"
-                    onClick={ () => this.onDetailParticipant(data.nomor)}
+                    onClick={ () => this.onAbsentParticipant(data.nomor)}
                 />,
+                </Tooltip>,
                 <Divider type="vertical" />,
-                <ButtonDashboard
-                    text="Detail"
-                    height={20}
-                    icon={faInfoCircle}
-                    borderRadius="5px"
-                    background="#FFA903"
-                    onClick={ () => this.onDetailEvent(data.nomor)}
-                />,
+                <Tooltip title="Participant">
+                    <ButtonDashboard
+                        height={20}
+                        icon={faUsers}
+                        borderRadius="5px"
+                        textAlign="center"
+                        background="#4D5AF2"
+                        onClick={ () => this.onDetailParticipant(data.nomor)}
+                    />,
+                </Tooltip>,
                 <Divider type="vertical" />,
-                <ButtonDashboard
-                    text="Edit"
-                    height={20}
-                    icon={faInfoCircle}
-                    borderRadius="5px"
-                    background="#088C0D"
-                    onClick={ () => this.onEditEvent(data.nomor)}
-                />]
+                <Tooltip title="Detail">
+                    <ButtonDashboard
+                        height={20}
+                        icon={faInfoCircle}
+                        borderRadius="5px"
+                        background="#FFA903"
+                        onClick={ () => this.onDetailEvent(data.nomor)}
+                    />,
+                </Tooltip>,
+                <Divider type="vertical" />,
+                <Tooltip title="Edit">
+                    <ButtonDashboard
+                        height={20}
+                        icon={faInfoCircle}
+                        borderRadius="5px"
+                        background="#088C0D"
+                        onClick={ () => this.onEditEvent(data.nomor)}
+                    />,
+                </Tooltip>
+                ]
               ),
             },
           ];
