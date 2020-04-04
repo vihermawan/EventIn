@@ -237,8 +237,8 @@ componentDidMount(){
                           <span className="title-desc-dashboard">CERTIFICATE</span>
                       </div>  
                       
-                      <Menu.Item key="e-certificate">
-                        <NavLink to="/dashboard/e-certificate" onClick={this.clickedMenu}>
+                      <Menu.Item key="certificate-event"  onClick={this.clickedMenu}>
+                        <NavLink to="/dashboard/certificate-event">
                           <FontAwesomeIcon
                               icon={faFile}
                               style={{marginRight: 10}}
@@ -362,7 +362,7 @@ componentDidMount(){
                     render={ (props) => <HistoryEventPage {...props}/> }
                 />
                 <Route
-                    path='/dashboard/e-certificate'
+                    path='/dashboard/certificate-event'
                     exact
                     render={ (props) => <ECertificatePage {...props}/> }
                 />

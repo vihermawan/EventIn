@@ -57,7 +57,7 @@ class WaitingListPage extends Component {
      //assign sertifikat
      assignSertifikat = (id_sertifikat) => {
         console.log(id_sertifikat)
-        API.delete(`/penandatangan/sertifikat/assign/${id_sertifikat}`)
+        API.post(`/penandatangan/sertifikat/assign/${id_sertifikat}`)
         .then(res => {
             console.log('res',res)
             if(res.status == 200){

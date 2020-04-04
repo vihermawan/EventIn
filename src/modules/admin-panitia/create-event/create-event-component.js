@@ -20,7 +20,7 @@ class CreateEventComponent extends Component {
     constructor(props) {
         super(props);
         this.state = {
-          current: 0,
+          current: 4,
         };
       }
     
@@ -74,15 +74,6 @@ class CreateEventComponent extends Component {
                     /> 
                 ,
             },
-            // {
-            //     title: 'Visual',
-            //     content: 
-            //         <VisualPage
-            //             next={this.next}
-            //             prev={this.prev}
-            //         />
-            //     ,
-            // },
             {
                 title: 'Sertifikat dan Poster',
                 content: 
