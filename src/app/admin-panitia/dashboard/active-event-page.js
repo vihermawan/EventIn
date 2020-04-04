@@ -91,7 +91,6 @@ class ActiveEventPage extends Component {
           searchText: selectedKeys[0],
           searchedColumn: dataIndex,
         });
-        console.log(selectedKeys)
     };
     
     handleReset = clearFilters => {
@@ -104,7 +103,7 @@ class ActiveEventPage extends Component {
         this.setState({loading: true})
         API.get(`/panitia/event`)
         .then(res => {
-            console.log('res',res)
+            // console.log('res',res)
             this.setState({
                 activeEvent:res.data.data.event,
                 loading: false,
