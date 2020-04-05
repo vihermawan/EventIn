@@ -32,6 +32,7 @@ import CreateBiodataPenandatanganPage from '../../app/admin-panitia/dashboard/cr
 import TabAbsentPage from '../../app/admin-panitia/dashboard/tab-absent-page'
 import EditEventPage from '../../app/admin-panitia/edit-page/edit-event-page'
 import EditProfilePage from '../../app/admin-panitia/edit-page/edit-profile-page'
+import EditCertificatePage from '../../app/admin-panitia/edit-page/edit-certificate-page'
 
 const { Header, Sider } = Layout;
 
@@ -392,6 +393,11 @@ componentDidMount(){
                     path='/dashboard/waiting-certificate-event'
                     exact
                     render={ (props) => <WaitingCertificatePage {...props}/> }
+                />
+                <Route
+                    path='/dashboard/waiting-certificate-event/edit-certificate'
+                    exact
+                    render={ (props) => <EditCertificatePage {...props}/>}
                 />
                  <Route
                     path='/dashboard/received-certificate-event'

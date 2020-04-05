@@ -88,6 +88,13 @@ const menu = {
     DETAIL_SERTIF_PANITIA : {
         link : '/dashboard/detail-e-certificate',
     },
+    //sertifikat panitia
+    WAITING_SERTIF_PANITIA : {
+        link : '/dashboard/waiting-certificate-event/',
+    },
+    EDIT_SERTIF_PANITIA : {
+        link : '/dashboard/waiting-certificate-event/edit-certificate',
+    },
 
     //link admin
     ADMIN :{

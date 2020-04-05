@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Tag, Divider, Tooltip, } from 'antd';
-import { faInfoCircle} from '@fortawesome/free-solid-svg-icons'
+import { faInfoCircle, faEdit} from '@fortawesome/free-solid-svg-icons'
 import CONSTANS from '../../../common/utils/Constants'
 import { API } from '../../../common/api'
 import { navigate } from '../../../common/store/action'
@@ -32,11 +32,18 @@ class WaitingCertificatePage extends Component {
         });
     }
 
-    //button detail event
+    //button detail sertifikat
     onDetailCertificate = (id) => {
         console.log('id ini',id)
         this.props.setIdSertifikat(id);
         this.props.navigate(CONSTANS.DETAIL_SERTIF_PANITIA_MENU_KEY)
+    }
+
+    //button edit sertifikat
+    onEditCertificate = (id) => {
+        console.log('id ini',id)
+        this.props.setIdSertifikat(id);
+        this.props.navigate(CONSTANS.EDIT_SERTIF_PANITIA_MENU_KEY)
     }
 
     render() { 
@@ -58,9 +65,9 @@ class WaitingCertificatePage extends Component {
             sortDirections: ['descend'],
         },
         {
-            title: 'Penandatangan',
-            dataIndex: 'penandatangan',
-            key: 'penandatangan',
+            title: 'Deskripsi',
+            dataIndex: 'description',
+            key: 'description',
         },
         {
             title: 'File',
@@ -101,7 +108,6 @@ class WaitingCertificatePage extends Component {
                 icon={faInfoCircle}
                 borderRadius="5px"
                 background="#FFA903"
-                marginRight= "20px"
                 onClick = {() => this.onDetailCertificate(data.nomor)}
             />,
             </Tooltip>,
@@ -109,11 +115,10 @@ class WaitingCertificatePage extends Component {
             <Tooltip title="Edit">
             <ButtonDashboard
                 height={20}
-                icon={faInfoCircle}
+                icon={faEdit}
                 borderRadius="5px"
-                background="#FFA903"
-                marginRight= "20px"
-                onClick = {() => this.onDetailCertificate(data.nomor)}
+                background="#088C0D"
+                onClick = {() => this.onEditCertificate(data.nomor)}
             />,
             </Tooltip>]
             ),
@@ -124,7 +129,7 @@ class WaitingCertificatePage extends Component {
         no : index+1,
         nomor : id_sertifikat,
         nama_event: sertifikat.event.nama_event,
-        penandatangan : penandatangan.nama_penandatangan,
+        description : sertifikat.description,
         sertifikat :sertifikat.sertifikat,
         status : [status.nama_status],        
     }))
