@@ -56,7 +56,7 @@ class HistoryEventPage extends Component {
     onDetailParticipant = (id) => {
       console.log('id ini',id)
       this.props.setIdEvent(id);
-      this.props.navigate(CONSTANS.PARTICIPANT_EVENT_MENU_KEY)
+      this.props.navigate(CONSTANS.DETAIL_LIST_PARTICIPANT_HISTORY_EVENT_MENU_KEY)
     }
 
     //delete event
@@ -76,7 +76,7 @@ class HistoryEventPage extends Component {
      onDetailEvent = (id) => {
       console.log('id ini',id)
       this.props.setIdEvent(id);
-      this.props.navigate(CONSTANS.DETAIL_EVENT_PANITIA_MENU_KEY)
+      this.props.navigate(CONSTANS.DETAIL_HISTORY_EVENT_PANITIA_MENU_KEY)
     }
 
     render() { 

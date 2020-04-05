@@ -22,6 +22,7 @@ const { confirm } = Modal;
 
 class ActiveEventPage extends Component {
     state = {  
+        halaman : 'active',
         activeEvent: [],
         loading: false,
         searchText: '',

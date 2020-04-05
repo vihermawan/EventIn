@@ -4,7 +4,7 @@ import './style/dashboard-style.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { Layout, Menu, Icon,Avatar,Dropdown } from 'antd';
 /*Import Icon */
-import { faDesktop,faPen, faCalendarCheck, faHistory, faFile,faUserFriends,faUserCircle, faClipboard, faUserTie } from '@fortawesome/free-solid-svg-icons'
+import { faDesktop,faPen, faCalendarCheck, faHistory, faFile,faUserFriends,faUserCircle, faClipboard, faUserTie, faEnvelope, faEnvelopeOpen } from '@fortawesome/free-solid-svg-icons'
 import ButtonAuth from '../component/button/button-auth'
 import { connect } from 'react-redux';
 import { navigate } from '../../common/store/action'
@@ -14,14 +14,17 @@ import CONSTANS from '../utils/Constants'
 import DashboardPanitiaPage from '../../app/admin-panitia/dashboard/panitia-page'
 import CreateEventPage from '../../app/admin-panitia/dashboard/create-event-page'
 import ActiveEventPage from '../../app/admin-panitia/dashboard/active-event-page'
-import ECertificatePage from '../../app/admin-panitia/dashboard/e-certificate-page'
+import WaitingCertificatePage from '../../app/admin-panitia/dashboard/waiting-certificate-page'
+import ReceivedCertificatePage from '../../app/admin-panitia/dashboard/received-certificate-page'
 import HistoryEventPage from '../../app/admin-panitia/dashboard/history-event-page'
 import CountRegistEventPage from '../../app/admin-panitia/dashboard/count-regist-event-page'
 import ListParticipantPage from '../../app/admin-panitia/dashboard/list-participant-page'
 import DetailListParticipantbyEventPage from '../../app/admin-panitia/detail-page/detail-list-participant-byevent-page'
+import DetailListParticipantbyHistoryEventPage from '../../app/admin-panitia/detail-page/detail-list-participant-byhistoryevent-page'
 import ProfilePage from '../../app/admin-panitia/dashboard/profile-page'
 import LoadingContainer from '../../common/component/loading/loading-container'
 import DetailEvent from '../../app/admin-panitia/detail-page/detail-event-page'
+import DetailHistoryEventPage from '../../app/admin-panitia/detail-page/detail-history-event-page'
 import DetailSertifPage from '../../app/admin-panitia/detail-page/detail-sertif-page'
 import TemplateSertifPage from '../../app/admin-panitia/dashboard/template-page'
 import ListPenandatanganPage from '../../app/admin-panitia/dashboard/list-penandatangan-page'
@@ -237,13 +240,22 @@ componentDidMount(){
                           <span className="title-desc-dashboard">CERTIFICATE</span>
                       </div>  
                       
-                      <Menu.Item key="certificate-event"  onClick={this.clickedMenu}>
-                        <NavLink to="/dashboard/certificate-event">
+                      <Menu.Item key="waiting-certificate-event"  onClick={this.clickedMenu}>
+                        <NavLink to="/dashboard/waiting-certificate-event">
                           <FontAwesomeIcon
-                              icon={faFile}
+                              icon={faEnvelope}
                               style={{marginRight: 10}}
                           /> 
-                          <span className={hidden}>List E-Certificate</span>
+                          <span className={hidden}>Waiting</span>
+                        </NavLink>
+                      </Menu.Item>
+                      <Menu.Item key="received-certificate-event"  onClick={this.clickedMenu}>
+                        <NavLink to="/dashboard/received-certificate-event">
+                          <FontAwesomeIcon
+                              icon={faEnvelopeOpen}
+                              style={{marginRight: 10}}
+                          /> 
+                          <span className={hidden}>Received</span>
                         </NavLink>
                       </Menu.Item>
                       <Menu.Item key="list-penandatangan" onClick={this.clickedMenu}>
@@ -342,17 +354,22 @@ componentDidMount(){
                     render={ (props) => <ActiveEventPage {...props}/> }
                 />
                 <Route
-                    path='/dashboard/detail-list-participant'
+                    path='/dashboard/active-event/detail-list-participant'
                     exact
                     render={ (props) => <DetailListParticipantbyEventPage {...props}/>}
                 />
                  <Route
-                    path='/dashboard/participant-event'
+                    path='/dashboard/active-event/participant-event'
                     exact
                     render={ (props) => <TabAbsentPage {...props}/> }
                 />
                 <Route
-                    path='/dashboard/detail-event'
+                    path='/dashboard/active-event/edit-event'
+                    exact
+                    render={ (props) => <EditEventPage {...props}/> }
+                />
+                <Route
+                    path='/dashboard/active-event/detail-event'
                     exact
                     render={ (props) => <DetailEvent {...props}/> }
                 />
@@ -361,10 +378,25 @@ componentDidMount(){
                     exact
                     render={ (props) => <HistoryEventPage {...props}/> }
                 />
-                <Route
-                    path='/dashboard/certificate-event'
+                  <Route
+                    path='/dashboard/history-event/detail-event'
                     exact
-                    render={ (props) => <ECertificatePage {...props}/> }
+                    render={ (props) => <DetailHistoryEventPage {...props}/> }
+                />
+                 <Route
+                    path='/dashboard/history-event/detail-list-participant'
+                    exact
+                    render={ (props) => <DetailListParticipantbyHistoryEventPage {...props}/>}
+                />
+                <Route
+                    path='/dashboard/waiting-certificate-event'
+                    exact
+                    render={ (props) => <WaitingCertificatePage {...props}/> }
+                />
+                 <Route
+                    path='/dashboard/received-certificate-event'
+                    exact
+                    render={ (props) => <ReceivedCertificatePage {...props}/> }
                 />
                 <Route
                     path='/dashboard/list-penandatangan'
@@ -406,11 +438,7 @@ componentDidMount(){
                     exact
                     render={ (props) => <EditProfilePage {...props}/> }
                 />
-                <Route
-                    path='/dashboard/edit-event'
-                    exact
-                    render={ (props) => <EditEventPage {...props}/> }
-                />
+                
               </Layout>
             
         

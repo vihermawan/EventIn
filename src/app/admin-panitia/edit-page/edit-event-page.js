@@ -369,7 +369,6 @@ class EditEventPage extends Component {
 
     }
     
-
     render() { 
         return ( 
             <EditEventComponent
