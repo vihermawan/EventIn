@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { Tag } from 'antd';
+import { Tag, Divider, Tooltip, } from 'antd';
 import { faInfoCircle ,faDownload} from '@fortawesome/free-solid-svg-icons'
 import CONSTANS from '../../../common/utils/Constants'
 import { API } from '../../../common/api'
@@ -63,6 +63,11 @@ class ReceivedCertificatePage extends Component {
             key: 'penandatangan',
         },
         {
+            title: 'Nomor Induk Pegawai',
+            dataIndex: 'nip',
+            key: 'nip',
+        },
+        {
             title: 'File',
             dataIndex: 'sertifikat',
             key: 'sertifikat',
@@ -94,24 +99,25 @@ class ReceivedCertificatePage extends Component {
             title: 'Action',
             key: 'action',
             render: (data) => (
-            [<ButtonDashboard
-                text="Download"
-                height={20}
-                icon={faDownload}
-                borderRadius="5px"
-                background="#070E57"
-                marginRight= "20px"
-              
-            />,
+            [
+            <Tooltip title="Download">
+                <ButtonDashboard
+                    height={20}
+                    icon={faDownload}
+                    borderRadius="5px"
+                    background="#070E57"
+                />,
+            </Tooltip>,
+            <Divider type="vertical" />,
+            <Tooltip title="Detail">
             <ButtonDashboard
-                text="Detail"
                 height={20}
                 icon={faInfoCircle}
                 borderRadius="5px"
                 background="#FFA903"
-                marginRight= "20px"
                 onClick = {() => this.onDetailCertificate(data.nomor)}
-            />]
+            />,
+            </Tooltip>]
             ),
         },
     ];
@@ -121,6 +127,7 @@ class ReceivedCertificatePage extends Component {
         nomor : id_sertifikat,
         nama_event: sertifikat.event.nama_event,
         penandatangan : penandatangan.nama_penandatangan,
+        nip : penandatangan.nip,
         sertifikat :sertifikat.sertifikat,
         status : [status.nama_status],        
     }))
