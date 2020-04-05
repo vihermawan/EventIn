@@ -40,7 +40,7 @@ class Navbar extends Component {
 	
 
 	
-    //get data profile dari API
+    //get data profile dari API.
     getProfile=()=>{
         this.setState({loading: true})
         API.get(`/peserta/edit-profile`)
