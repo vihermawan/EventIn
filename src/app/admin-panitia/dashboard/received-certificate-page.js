@@ -5,15 +5,12 @@ import { faInfoCircle ,faDownload} from '@fortawesome/free-solid-svg-icons'
 import CONSTANS from '../../../common/utils/Constants'
 import { API } from '../../../common/api'
 import { navigate } from '../../../common/store/action'
-import ECertificateComponent from '../../../modules/admin-panitia/e-certificate/e-certificate-component';
+import ReceivedCertificateComponent from '../../../modules/admin-panitia/e-certificate/received-certificate-component';
 import ButtonDashboard from '../../../common/component/button/button-dashboard';
-import 'moment-timezone';
-import 'moment/locale/id';
-import moment from 'moment-timezone';
 // import store
 import { setIdSertifikat } from '../../../modules/admin-panitia/e-certificate/store/e-certificate-action'
 
-class ECertificatePage extends Component {
+class ReceivedCertificatePage extends Component {
     state = {  
         certificate: [],
         loading: false,
@@ -35,8 +32,8 @@ class ECertificatePage extends Component {
         });
     }
 
-     //button detail event
-     onDetailCertificate = (id) => {
+    //button detail event
+    onDetailCertificate = (id) => {
         console.log('id ini',id)
         this.props.setIdSertifikat(id);
         this.props.navigate(CONSTANS.DETAIL_SERTIF_PANITIA_MENU_KEY)
@@ -127,9 +124,9 @@ class ECertificatePage extends Component {
         sertifikat :sertifikat.sertifikat,
         status : [status.nama_status],        
     }))
-
+    
         return ( 
-            <ECertificateComponent
+            <ReceivedCertificateComponent
                 navigate={this.props.navigate}
                 initialData={this.state}
                 columns={columns}
@@ -148,5 +145,5 @@ const mapDispatchToProps = (dispatch => ({
     setIdSertifikat,
 }))();
 
-const page = connect(mapStateToProps, mapDispatchToProps)(ECertificatePage);
+const page = connect(mapStateToProps, mapDispatchToProps)(ReceivedCertificatePage);
 export default page
