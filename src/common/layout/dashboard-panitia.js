@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Route, Link } from 'react-router-dom'
+import { Route, Link, NavLink } from 'react-router-dom'
 import './style/dashboard-style.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { Layout, Menu, Icon,Avatar,Dropdown } from 'antd';
@@ -18,6 +18,7 @@ import ECertificatePage from '../../app/admin-panitia/dashboard/e-certificate-pa
 import HistoryEventPage from '../../app/admin-panitia/dashboard/history-event-page'
 import CountRegistEventPage from '../../app/admin-panitia/dashboard/count-regist-event-page'
 import ListParticipantPage from '../../app/admin-panitia/dashboard/list-participant-page'
+import DetailListParticipantbyEventPage from '../../app/admin-panitia/detail-page/detail-list-participant-byevent-page'
 import ProfilePage from '../../app/admin-panitia/dashboard/profile-page'
 import LoadingContainer from '../../common/component/loading/loading-container'
 import DetailEvent from '../../app/admin-panitia/detail-page/detail-event-page'
@@ -33,6 +34,7 @@ const { Header, Sider } = Layout;
 
 class dashboard extends Component {
   state = {
+    current: '',
     picture : '',
     nama_panitia : '',
     collapsed: false,
@@ -85,6 +87,9 @@ class dashboard extends Component {
 
 componentDidMount(){
   this.getProfile();
+  let pathArray = window.location.pathname.split('/');
+  let pathName = pathArray[2];
+  pathName === '' ? this.setState({current: '/dashboard'}) : this.setState({current: pathName});
   // window.onbeforeunload = function() {
   //   localStorage.clear();
   // }
@@ -128,6 +133,11 @@ componentDidMount(){
     });
   };
   
+  clickedMenu = e => {
+    console.log(e.key)
+    this.setState({ current: e.key });
+  }
+
   render() {
     const logo = require(`../../assets/images/logo.png`);
     const logoadmin = require(`../../assets/images/En.png`);
@@ -156,19 +166,23 @@ componentDidMount(){
                   <img src={this.state.collapsed? logoadmin : logo} className={this.state.collapsed ? 'hidden-admin-logo' : 'logo-admin'} alt="EventIn logo" width="100"/>
                 </div>
                 <div className="menu-dashboard">
-                  <Menu mode="inline" defaultSelectedKeys={['dashboard']}>
+                  <Menu
+                    mode="inline"
+                    defaultSelectedKeys={['dashboard-panitia']}
+                    selectedKeys={[this.state.current]}
+                  >
                       <div className="title-dashboard">
                           <span className="title-desc-dashboard">REPORT</span>
                       </div>              
-                      <Menu.Item key="dashboard"  >
-                        <Link to="/dashboard/dashboard-panitia">
+                      <Menu.Item key="dashboard-panitia" onClick={this.clickedMenu}>
+                        <NavLink to="/dashboard/dashboard-panitia">
                           <FontAwesomeIcon
                               icon={faDesktop}
                               style={{marginRight: 10}}
                               className={this.state.collapsed ? 'hidden-logo' : 'block-logo'}
                           />
                           <span className={hidden} >Dashboard</span>
-                        </Link>
+                        </NavLink>
                       </Menu.Item>
                       <div className="title-dashboard">
                           <hr style={{
@@ -182,32 +196,32 @@ componentDidMount(){
                       <div className="title-dashboard">
                           <span className="title-desc-dashboard">EVENT</span>
                       </div>  
-                      <Menu.Item key="create-event"  style={this.state.no_telepon === 'Silahkan isi' || this.state.instagram === 'Silahkan isi'  ? {display:"none"}:{display:"block"}}>
-                        <Link to="/dashboard/create-event">
+                      <Menu.Item key="create-event" onClick={this.clickedMenu} style={this.state.no_telepon === 'Silahkan isi' || this.state.instagram === 'Silahkan isi'  ? {display:"none"}:{display:"block"}}>
+                        <NavLink to="/dashboard/create-event">
                           <FontAwesomeIcon
                               icon={faPen}
                               style={{marginRight: 10}}
                           /> 
                           <span className={hidden}>Create Event</span>
-                        </Link>
+                        </NavLink>
                       </Menu.Item>
-                      <Menu.Item key="active-event" >
-                        <Link to="/dashboard/active-event">
+                      <Menu.Item key="active-event" onClick={this.clickedMenu}>
+                        <NavLink to="/dashboard/active-event">
                           <FontAwesomeIcon
                               icon={faCalendarCheck}
                               style={{marginRight: 10}}
                           /> 
                           <span className={hidden}>Active Event</span>
-                        </Link>
+                        </NavLink>
                       </Menu.Item>
-                      <Menu.Item key="history-event">
-                        <Link to="/dashboard/history-event">
+                      <Menu.Item key="history-event" onClick={this.clickedMenu}>
+                        <NavLink to="/dashboard/history-event">
                           <FontAwesomeIcon
                               icon={faHistory}
                               style={{marginRight: 10}}
                           /> 
                           <span className={hidden}>History Event</span>
-                        </Link>
+                        </NavLink>
                       </Menu.Item>
                       <div className="title-dashboard">
                           <hr style={{
@@ -223,32 +237,32 @@ componentDidMount(){
                           <span className="title-desc-dashboard">CERTIFICATE</span>
                       </div>  
                       
-                      <Menu.Item key="e-certificate">
-                        <Link to="/dashboard/e-certificate">
+                      <Menu.Item key="certificate-event"  onClick={this.clickedMenu}>
+                        <NavLink to="/dashboard/certificate-event">
                           <FontAwesomeIcon
                               icon={faFile}
                               style={{marginRight: 10}}
                           /> 
                           <span className={hidden}>List E-Certificate</span>
-                        </Link>
+                        </NavLink>
                       </Menu.Item>
-                      <Menu.Item key="list-penandatangan">
-                        <Link to="/dashboard/list-penandatangan">
+                      <Menu.Item key="list-penandatangan" onClick={this.clickedMenu}>
+                        <NavLink to="/dashboard/list-penandatangan">
                           <FontAwesomeIcon
                               icon={faUserTie}
                               style={{marginRight: 10}}
                           /> 
                           <span className={hidden}>List Signer</span>
-                        </Link>
+                        </NavLink>
                       </Menu.Item>
-                      <Menu.Item key="template">
-                        <Link to="/dashboard/template-e-certificate">
+                      <Menu.Item key="template-e-certificate" onClick={this.clickedMenu}>
+                        <NavLink to="/dashboard/template-e-certificate">
                           <FontAwesomeIcon
                               icon={faClipboard}
                               style={{marginRight: 10}}
                           /> 
                           <span className={hidden}>Template</span>
-                        </Link>
+                        </NavLink>
                       </Menu.Item>
                       <div className="title-dashboard">
                           <hr style={{
@@ -261,14 +275,14 @@ componentDidMount(){
                       <div className="title-dashboard">
                           <span className="title-desc-dashboard">PARTICIPANT</span>
                       </div>  
-                      <Menu.Item key="list-count-regist">
-                        <Link to="/dashboard/list-count-regist">
+                      <Menu.Item key="list-count-regist" onClick={this.clickedMenu}>
+                        <NavLink to="/dashboard/list-count-regist">
                           <FontAwesomeIcon
                               icon={faUserFriends}
                               style={{marginRight: 10}}
                           /> 
                           <span className={hidden}>List Participant</span>
-                        </Link>
+                        </NavLink>
                       </Menu.Item>
                       <div className="title-dashboard">
                           <hr style={{
@@ -281,14 +295,14 @@ componentDidMount(){
                       <div className="title-dashboard">
                           <span className="title-desc-dashboard">PROFILE</span>
                       </div> 
-                      <Menu.Item key="profile">
-                        <Link to="/dashboard/profile">
+                      <Menu.Item key="profile" onClick={this.clickedMenu}>
+                        <NavLink to="/dashboard/profile">
                           <FontAwesomeIcon
                               icon={faUserCircle}
                               style={{marginRight: 10}}
                           /> 
                           <span className={hidden}>Profile</span>
-                        </Link>
+                        </NavLink>
                       </Menu.Item>
                   </Menu>
                 </div>
@@ -327,6 +341,11 @@ componentDidMount(){
                     exact
                     render={ (props) => <ActiveEventPage {...props}/> }
                 />
+                <Route
+                    path='/dashboard/detail-list-participant'
+                    exact
+                    render={ (props) => <DetailListParticipantbyEventPage {...props}/>}
+                />
                  <Route
                     path='/dashboard/participant-event'
                     exact
@@ -343,7 +362,7 @@ componentDidMount(){
                     render={ (props) => <HistoryEventPage {...props}/> }
                 />
                 <Route
-                    path='/dashboard/e-certificate'
+                    path='/dashboard/certificate-event'
                     exact
                     render={ (props) => <ECertificatePage {...props}/> }
                 />

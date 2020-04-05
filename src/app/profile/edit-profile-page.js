@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { message, notification } from 'antd';
+import CONSTANS from '../../../src/common/utils/Constants'
 import { navigate } from '../../common/store/action'
 import { API } from '../../common/api'
 //import component
@@ -301,10 +302,13 @@ class EditProfilePage extends Component {
                 console.log('res',res)
                 if(res.status == 200){
                     message.success('Data Berhasil di Ubah');
-                    this.componentDidMount();
+                    this.props.navigate(CONSTANS.PROFILE_MENU_KEY)
+                    window.location.reload();
+                    //this.componentDidMount();
                 }else{
                     this.openNotification('Data Salah', 'Silahkan isi data dengan benar')
                 }
+                this.setState({loading: false})
             });
     }  
 
@@ -332,6 +336,7 @@ class EditProfilePage extends Component {
 }
  
 const mapStateToProps = state => ({
+    ...state.user, 
     
 });
 

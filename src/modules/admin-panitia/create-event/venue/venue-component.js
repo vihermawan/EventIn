@@ -1,9 +1,7 @@
 import React, { Component } from 'react';
 import { Layout, Row, Col, Button, Form,Select} from 'antd';
 // component
-import GoogleMapReact from 'google-map-react';
 import InputForm from '../../../../common/component/input/input-form';
-import Marker from '../../../../common/component/marker/marker'
 import { faMapMarker } from '@fortawesome/free-solid-svg-icons';
 
 

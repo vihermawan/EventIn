@@ -22,7 +22,7 @@ class HistoryEventComponent extends Component {
                 }}
             >
                 <Breadcrumb separator=">">
-                    <Breadcrumb.Item>Dashboard CreateEvent</Breadcrumb.Item>
+                    <Breadcrumb.Item>Dashboard History Event</Breadcrumb.Item>
                 </Breadcrumb>
                 <Row style={{minHeight: '100%',marginBottom: '2%',marginTop:'2%',}} className="background">
                     <Col lg={24} md={24} sm={24}> 
