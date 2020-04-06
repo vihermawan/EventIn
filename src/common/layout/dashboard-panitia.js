@@ -49,54 +49,11 @@ class dashboard extends Component {
     instagram : '',
   };
   
-//  async componentWillMount(){
-//      const res = await API.get(`/panitia/profile-edit`)
-//      console.log(res)
-//       const set = await this.setState({
-//         nama_panitia : res.data.data.user.panitia.nama_panitia,
-//         picture : res.data.data.user.panitia.image_URL,
-//         loading: false,
-//     })
-//     // async function f(){
-//     //   const res = await API.get(`/panitia/profile-edit`)
-//     //   const set = await this.setState({
-//     //     id_panitia : res.data.data.user.panitia.id_panitia,
-//     //     nama_panitia : res.data.data.user.panitia.nama_panitia,
-//     //     picture : res.data.data.user.panitia.image_URL,
-//     //     loading: false,
-//     // })
-//         // await this.getProfile();
-//         // await console.log(res)
-//     // }
-//     // f();
-
-//   //   (async () => {
-//   //     try {
-//   //       const res = await API.get(`/panitia/profile-edit`)
-//   //     const set = await this.setState({
-//   //       id_panitia : res.data.data.user.panitia.id_panitia,
-//   //       nama_panitia : res.data.data.user.panitia.nama_panitia,
-//   //       picture : res.data.data.user.panitia.image_URL,
-//   //       loading: false,
-//   //   })
-//   //     } catch (e) {
-//   //      this.setState({load: false, notify: "error"});
-//   //     }
-//   //  })();
-//     // this.getProfile();
-//     // const username = localStorage.getItem("username")
-//     // const profile_picture = localStorage.getItem("profile_picture")
-//     // this.setState({ username,profile_picture })
-//  }
-
 componentDidMount(){
-  this.getProfile();
+  // this.getProfile();
   let pathArray = window.location.pathname.split('/');
   let pathName = pathArray[2];
   pathName === '' ? this.setState({current: '/dashboard'}) : this.setState({current: pathName});
-  // window.onbeforeunload = function() {
-  //   localStorage.clear();
-  // }
 }
 
   getProfile=()=>{
@@ -330,7 +287,7 @@ componentDidMount(){
                   />
                   <div className= "avatar">
                     <Avatar size={40} icon="user" className="avatars" src={this.state.profile_picture} style={{maxHeight:'100%'}}/>
-                        <span className="semi-bold">{this.state.nama_panitia}</span>
+                        <span className="semi-bold">{this.props.namaUser}</span>
                       <Dropdown overlay={menu} trigger={['click']}>
                         <a className="ant-dropdown-link" href="#">
                           <Icon type="down" style={{marginLeft:"20px", color:"black", fontSize:"13px"}} />
@@ -455,7 +412,7 @@ componentDidMount(){
 }
 
 const mapStateToProps = state => ({
-    ...state,
+    ...state.login,
 });
 
 const mapDispatchToProps = (dispatch => ({

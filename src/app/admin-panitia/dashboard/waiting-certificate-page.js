@@ -32,11 +32,17 @@ class WaitingCertificatePage extends Component {
         });
     }
 
-    //button detail sertifikat
-    onDetailCertificate = (id) => {
-        console.log('id ini',id)
-        this.props.setIdSertifikat(id);
-        this.props.navigate(CONSTANS.DETAIL_SERTIF_PANITIA_MENU_KEY)
+    getFile=(id,sertifikat)=>{
+        API.get(`/panitia/detail-sertifikat/${id}`)
+        .then(res => {
+          console.log('res',res)
+          const url = window.URL.createObjectURL(new Blob([res.data]));
+          const link = document.createElement('a');
+          link.href = url;
+          link.setAttribute('download', `${sertifikat}`); 
+          document.body.appendChild(link);
+          link.click();
+        });
     }
 
     //button edit sertifikat
@@ -108,7 +114,7 @@ class WaitingCertificatePage extends Component {
                 icon={faInfoCircle}
                 borderRadius="5px"
                 background="#FFA903"
-                onClick = {() => this.onDetailCertificate(data.nomor)}
+                onClick = {() => this.getFile(data.nomor,data.sertifikat)}
             />,
             </Tooltip>,
             <Divider type="vertical" />,
@@ -132,6 +138,7 @@ class WaitingCertificatePage extends Component {
         description : sertifikat.description,
         sertifikat :sertifikat.sertifikat,
         status : [status.nama_status],        
+        sertif_URL : sertifikat.sertif_URL,
     }))
     
         return ( 

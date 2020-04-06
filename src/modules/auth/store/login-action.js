@@ -27,6 +27,11 @@ export const getData = (service, params) => (dispatch) => {
     })
 };
 
-export const setNamaUser = (data) => (dispatch) => {
-    dispatch(setNamaDataUser(data));
+export const setNamaUser = (service, params) => (dispatch) => {
+    dispatch(setNamaDataUser());
+    API.get(`/panitia/profile-edit`)
+    .then(res => {
+       console.log(res)
+       dispatch(setNamaDataUser(res.data.data.user.panitia.nama_panitia));
+    });
 }

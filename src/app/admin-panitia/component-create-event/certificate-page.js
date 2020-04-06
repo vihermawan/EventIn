@@ -168,22 +168,6 @@ class CertificatePage extends Component {
             }
         })
     
-        // return new Promise((resolve, reject) => {
-        //   canvas.toBlob(blob => {
-        //     if (!blob) {
-        //       //reject(new Error('Canvas is empty'));
-        //       console.error('Canvas is empty');
-        //       return;
-        //     }
-        //     blob.name = fileName;
-        //     window.URL.revokeObjectURL(this.fileUrl);
-        //     this.fileUrl = window.URL.createObjectURL(blob);
-        //     resolve(this.fileUrl);
-        //     this.setState({croppedImageUrl: this.fileUrl})
-        //     console.log('file',this.state.croppedImageUrl)
-           
-        //   }, 'image/jpeg');
-        // });
     }
 
     dataURLtoFile = (dataurl, filename) => {
