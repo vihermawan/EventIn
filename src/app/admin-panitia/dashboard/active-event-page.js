@@ -10,7 +10,7 @@ import 'moment/locale/id';
 import moment from 'moment-timezone';
 
 //import component
-import { faUsers, faUserCheck } from '@fortawesome/free-solid-svg-icons'
+import { faUsers, faUserCheck, faEdit } from '@fortawesome/free-solid-svg-icons'
 import { faInfoCircle } from '@fortawesome/free-solid-svg-icons' 
 import ButtonDashboard from '../../../common/component/button/button-dashboard';
 import ActiveEventComponent from '../../../modules/admin-panitia/active-event/active-event-component';
@@ -22,6 +22,7 @@ const { confirm } = Modal;
 
 class ActiveEventPage extends Component {
     state = {  
+        halaman : 'active',
         activeEvent: [],
         loading: false,
         searchText: '',
@@ -259,7 +260,7 @@ class ActiveEventPage extends Component {
                 <Tooltip title="Edit">
                     <ButtonDashboard
                         height={20}
-                        icon={faInfoCircle}
+                        icon={faEdit}
                         borderRadius="5px"
                         background="#088C0D"
                         onClick={ () => this.onEditEvent(data.nomor)}
