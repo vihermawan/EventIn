@@ -47,6 +47,13 @@ class AuthRegister extends Component {
         console.log('jenis_kelamin', value.key);
     }
 
+    successNotification = (message, description) => {
+        notification.success({
+            message,
+            description,
+        });
+    };
+
     
     handleSubmit = e => {
         e.preventDefault();
@@ -77,11 +84,12 @@ class AuthRegister extends Component {
                 console.log('res',res)
                 if(res.status == 201){
                     this.props.navigate(CONSTANS.LOGIN_MENU_KEY)
+                    this.successNotification('Sukses', 'Register Berhasil')
                 }else{
                     this.openNotification('Register Salah', 'Silahkan isi data dengan benar')
                 }
                 this.setState({loading: false})
-            });
+            }); 
         }
 
             

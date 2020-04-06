@@ -3,7 +3,6 @@ import * as actionType from './login-action-type';
 const initialState = {
     loading: false,
     data: [],
-    idEvent: null,
     namaUser : null,
 };
 
@@ -46,7 +45,6 @@ export default (state = initialState, action) => {
             return handler(state).finishGetDataParticipant();
         case actionType.SET_DATA:
             return handler(state).setDataParticipant(payload);  
-
         case actionType.SET_NAMA_USER:
             return handler(state).setNamaDataUser(payload);
 
