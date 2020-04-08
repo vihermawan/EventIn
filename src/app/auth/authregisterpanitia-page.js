@@ -68,6 +68,8 @@ class AuthRegisterPanitia extends Component {
                 console.log('res',res)
                 if(res.status == 201){
                     this.props.navigate(CONSTANS.LOGIN_MENU_KEY)
+                }else if(res.error == 422){
+                    this.openNotification('Email telah terdaftar', 'Silahkan daftar dengan email lain')
                 }else{
                     this.openNotification('Register Salah', 'Silahkan isi data dengan benar')
                 }

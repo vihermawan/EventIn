@@ -21,10 +21,6 @@ class DetailSertifPage extends Component {
         API.get(`/penandatangan/sertifikat-detail/${id}`)
         .then(res => {
           console.log('res',res)
-          // this.setState({
-          //   detail_certificate:res.data.data.sertifikat,
-          //   loading: false,
-          // })
         });
     }
 
