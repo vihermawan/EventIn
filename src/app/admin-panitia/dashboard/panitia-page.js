@@ -21,7 +21,6 @@ class PanitiaPage extends Component {
         this.setState({loading: true})
         API.get(`/panitia/profile-edit`)
         .then(res => {
-            console.log('res',res.data.data.user.panitia.no_telepon)
             this.setState({
                 id_panitia : res.data.data.user.panitia.id_panitia,
                 no_telepon: res.data.data.user.panitia.no_telepon,

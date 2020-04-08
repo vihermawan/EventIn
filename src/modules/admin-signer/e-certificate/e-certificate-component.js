@@ -1,17 +1,17 @@
 import React, { Component } from 'react';
-import { Layout, Breadcrumb, Row, Table, Input, Col,Tag } from 'antd';
+import { Layout, Breadcrumb, Row, Modal, Col } from 'antd';
 import '../../../assets/css/dashboard-all/dashboard.css'
 import '../../../assets/css/dashboard-all/table-style.css'
 import TableProfile from '../../../common/component/table/table'
 import LoadingContainer from '../../../common/component/loading/loading-container'
+import { PDFViewer,Document,Page, Text, View, } from '@react-pdf/renderer';
 // constant content
 const { Content } = Layout;
 
-
-
 class ActiveEventComponent extends Component {
     render() { 
-      const { initialData, columns, data } = this.props
+        const { initialData, columns, data,handleOk,handleCancel } = this.props
+        console.log(initialData.url)
         return ( 
             <Content
                 style={{
@@ -42,6 +42,19 @@ class ActiveEventComponent extends Component {
                                         className="table-active-event"
                                     />
                                 </Row>
+                                <Modal
+                                    title="Sertifikat"
+                                    visible={initialData.visible}
+                                    onOk={handleOk}
+                                    onCancel={handleCancel}
+                                    >
+                                   <PDFViewer src={initialData.url}  style={{minWidth: '100%', minHeight: '500px',border:"none"}}>
+                                        <Document>
+                                            <Page>
+                                            </Page>
+                                        </Document> 
+                                    </PDFViewer>
+                                </Modal>
                             </LoadingContainer>
                         </div>
                     </Col>
