@@ -132,7 +132,9 @@ const menu = {
     SIGNER: {
         link :'/signer/dashboard-signer',
     },
-    
+    PROFILE_SIGNER : {
+        link : '/signer/profile',
+    },
     DETAIL_SERTIF_SIGNER: {
         link : '/signer/detail/e-certificate'
     },
