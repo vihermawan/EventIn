@@ -4,7 +4,7 @@ import '../../../assets/css/dashboard-all/dashboard.css'
 import '../../../assets/css/dashboard-all/table-style.css'
 import TableProfile from '../../../common/component/table/table'
 import LoadingContainer from '../../../common/component/loading/loading-container'
-import { PDFViewer,Document,Page, Text, View, } from '@react-pdf/renderer';
+import { PDFViewer,Document,Page } from '@react-pdf/renderer';
 // constant content
 const { Content } = Layout;
 

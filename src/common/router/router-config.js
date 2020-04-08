@@ -30,7 +30,7 @@ const routeSources = [
     { component: AllEventPage, path: `${baseUrl}/allevent`, exact: true,  private: true},
     { component: DetailPage, path: `${baseUrl}/detail`, exact: true,  private: true },
     { component: LoginComponent, path: `${baseUrl}/login`, exact: true },
-    { component: PilihanPage, path: `${baseUrl}/choose`, exact: true ,private: true},
+    { component: PilihanPage, path: `${baseUrl}/choose`, exact: true },
     { component: RegisterPesertaComponent, path: `${baseUrl}/register-peserta`, exact: true },
     { component: RegisterPanitiaComponent, path: `${baseUrl}/register-panitia`, exact: true },
     { component: ProfilePage, path: `${baseUrl}/profile`, exact: true ,private: true},
