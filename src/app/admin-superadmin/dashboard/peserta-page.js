@@ -121,15 +121,16 @@ class PesertaAdminPage extends Component {
                 title: 'Action',
                 key: 'action',
                 render: (data) => (
-                    [<ButtonDashboard
-                        text="Edit"
-                        height={20}
-                        icon={faPen}
-                        borderRadius="5px"
-                        background="#005568"
-                        marginRight= "20px"
-                        onClick = { () => this.onEditPeserta(data.id_users)}
-                    />,
+                    [
+                    //  <ButtonDashboard
+                    //     text="Edit"
+                    //     height={20}
+                    //     icon={faPen}
+                    //     borderRadius="5px"
+                    //     background="#005568"
+                    //     marginRight= "20px"
+                    //     onClick = { () => this.onEditPeserta(data.id_users)}
+                    // />,
                     <ButtonDashboard
                         text="Detail"
                         height={20}

@@ -181,12 +181,12 @@ class Admin extends Component {
                     >
                       <Menu.Item key="list-penandatangan">
                           <Link to="/admin/admin-penandatangan">
-                              <span>Daftar</span>
+                              <span>List Penandatangan</span>
                           </Link>
                       </Menu.Item>
                       <Menu.Item key="biodata-penandatangan">
                           <Link to="/admin/biodata-penandatangan">
-                              <span>Biodata</span>
+                              <span>Request</span>
                           </Link>
                       </Menu.Item>
                   </SubMenu>
@@ -213,7 +213,7 @@ class Admin extends Component {
                       <span className={hidden} >Waiting List</span>
                     </Link>
                   </Menu.Item>
-                  <Menu.Item key="received"  >
+                  {/* <Menu.Item key="received"  >
                     <Link to="/admin/received">
                     
                       <FontAwesomeIcon
@@ -223,7 +223,7 @@ class Admin extends Component {
                       />
                       <span className={hidden} >Received</span>
                     </Link>
-                  </Menu.Item>
+                  </Menu.Item> */}
                   <div className="title-dashboard">
                       <hr style={{
                           minHeight: 1,
@@ -236,7 +236,7 @@ class Admin extends Component {
                   <div className="title-dashboard">
                       <span className="title-desc-dashboard">Data Master</span>
                   </div>
-                  <Menu.Item key="status"  >
+                  {/* <Menu.Item key="status"  >
                     <Link to="/admin/status-master">
                     
                       <FontAwesomeIcon
@@ -246,7 +246,7 @@ class Admin extends Component {
                       />
                       <span className={hidden} >Status</span>
                     </Link>
-                  </Menu.Item>
+                  </Menu.Item> */}
                   <Menu.Item key="kategori"  >
                     <Link to="/admin/kategori-master">
                     
@@ -354,11 +354,11 @@ class Admin extends Component {
                     exact
                     render={ (props) => <ReceivedPage {...props}/> }
                 />
-                <Route
+                {/* <Route
                     path='/admin/status-master'
                     exact
                     render={ (props) => <StatusMasterPage {...props}/> }
-                />
+                /> */}
                 <Route
                     path='/admin/kategori-master'
                     exact
