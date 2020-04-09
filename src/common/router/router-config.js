@@ -36,9 +36,9 @@ const routeSources = [
     { component: ProfilePage, path: `${baseUrl}/profile`, exact: true ,private: true},
     { component: EditProfilePage, path: `${baseUrl}/edit-profile`, exact: true ,private: true},
     { component: AboutPage, path: `${baseUrl}/about`, exact: false,private: true ,private: true},
-    { component: DashboardPanitiaPage, path: `${baseUrl}/dashboard`, exact: false },
-    { component: DashboardPenandatanganPage, path: `${baseUrl}/signer`, exact: false },
-    { component: DashboardAdminPage, path:`${baseUrl}/admin`, exact:false},
+    { component: DashboardPanitiaPage, path: `${baseUrl}/dashboard`, exact: false ,private: true},
+    { component: DashboardPenandatanganPage, path: `${baseUrl}/signer`, exact: false ,private: true},
+    { component: DashboardAdminPage, path:`${baseUrl}/admin`, exact:false ,private: true},
     { component: ErrorPage },
     // { component: ExamplePage, path: `${baseUrl}/example`, exact: true},
 ];
