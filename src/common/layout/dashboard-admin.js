@@ -175,7 +175,7 @@ class Admin extends Component {
                               style={{marginRight: 10}}
                               className={this.state.collapsed ? 'hidden-logo' : 'block-logo'}
                           />
-                          Penandatangan
+                          <span className={hidden}>Penandatangan</span>
                       </span>
                       }
                     >
