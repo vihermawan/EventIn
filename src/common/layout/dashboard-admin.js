@@ -169,23 +169,24 @@ class Admin extends Component {
                   <SubMenu
                       key="sub2"
                       title={
-                      <span>
+                      <span className={hidden}>
                           <FontAwesomeIcon
                               icon={faUserTie}
                               style={{marginRight: 10}}
+                              className={this.state.collapsed ? 'hidden-logo' : 'block-logo'}
                           />
-                          <span className={hidden}>Penandatangan</span>
+                          Penandatangan
                       </span>
                       }
                     >
                       <Menu.Item key="admin-penandatangan" onClick={this.clickedMenu}>
                           <Link to="/admin/admin-penandatangan">
-                              <span>List Penandatangan</span>
+                              <span>Daftar</span>
                           </Link>
                       </Menu.Item>
                       <Menu.Item key="biodata-penandatangan" onClick={this.clickedMenu}>
                           <Link to="/admin/biodata-penandatangan">
-                              <span>Request</span>
+                              <span>Biodata</span>
                           </Link>
                       </Menu.Item>
                   </SubMenu>
@@ -212,9 +213,7 @@ class Admin extends Component {
                       <span className={hidden} >Waiting List</span>
                     </Link>
                   </Menu.Item>
-
                   <Menu.Item key="received"  onClick={this.clickedMenu}>
-
                     <Link to="/admin/received">
                     
                       <FontAwesomeIcon
@@ -224,7 +223,7 @@ class Admin extends Component {
                       />
                       <span className={hidden} >Received</span>
                     </Link>
-                  </Menu.Item> */}
+                  </Menu.Item>
                   <div className="title-dashboard">
                       <hr style={{
                           minHeight: 1,
@@ -247,9 +246,8 @@ class Admin extends Component {
                       />
                       <span className={hidden} >Status</span>
                     </Link>
-
+                  </Menu.Item> */}
                   <Menu.Item key="kategori-master" onClick={this.clickedMenu}>
-
                     <Link to="/admin/kategori-master">
                     
                       <FontAwesomeIcon
@@ -278,7 +276,6 @@ class Admin extends Component {
                           <Icon type="down" style={{marginLeft:"20px", color:"black", fontSize:"13px"}} />
                         </a>
                       </Dropdown>
-                    {/* <p>sa</p> */}
                   </div>
                 </Header>
                 <Route
@@ -356,11 +353,11 @@ class Admin extends Component {
                     exact
                     render={ (props) => <ReceivedPage {...props}/> }
                 />
-                {/* <Route
+                <Route
                     path='/admin/status-master'
                     exact
                     render={ (props) => <StatusMasterPage {...props}/> }
-                /> */}
+                />
                 <Route
                     path='/admin/kategori-master'
                     exact
