@@ -77,7 +77,7 @@ class PenandatanganAdminPage extends Component {
         this.props.navigate(CONSTANS.DETAIL_PENANDATANGAN_ADMIN_MENU_KEY)
     }
 
-    //edit penandatangan
+    //edit penandatangan.
     onEditPenandatangan = (id_users) => {
         this.props.setIdUsers(id_users)
         this.props.navigate(CONSTANS.EDIT_PENANDATANGAN_ADMIN_MENU_KEY)
