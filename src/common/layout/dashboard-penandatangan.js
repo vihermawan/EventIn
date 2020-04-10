@@ -38,17 +38,16 @@ class signer extends Component {
     let profile_picture = localStorage.getItem("profile_picture");
     this.setState({username : username_penandatangan, profile_picture : profile_picture })
     this.getProfile();
+    window.onunload = () => {
+      // Clear the local storage
+      localStorage.clear();
+   }
   }
 
   //get data profile dari API
   getProfile=()=>{
       API.get(`/penandatangan/profile-edit`)
       .then(res => {
-          // this.setState({
-          //     username :res.data.data.penandatangan.penandatangan.nama_penandatangan ,
-          //     profile_picture : res.data.data.penandatangan.penandatangan.image_URL,
-          //     loading: false,
-          // })
           let username_penandatangan = localStorage.getItem("username");
           let profile_picture = localStorage.getItem("profile_picture");
           if ((res.data.data.penandatangan.penandatangan.nama_penandatangan != username_penandatangan) || (res.data.data.penandatangan.penandatangan.image_URL != profile_picture)){

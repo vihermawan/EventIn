@@ -32,9 +32,10 @@ class Navbar extends Component {
 		if (token != null){
 			this.getProfile();
 		}
-		// window.onbeforeunload = function() {
-		// 	localStorage.clear();
-		// }
+		window.onunload = () => {
+			// Clear the local storage
+			localStorage.clear();
+		}
 		
 	}
 	

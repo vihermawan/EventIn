@@ -66,16 +66,21 @@ getProfile=()=>{
     });
 }
   
-componentDidMount(){
-  this.getProfile();
-  let pathArray = window.location.pathname.split('/');
-  let pathName = pathArray[2];
-  pathName === '' ? this.setState({current: '/dashboard'}) : this.setState({current: pathName});
-  let username_panitia = localStorage.getItem("username");
-  let profile_panitia = localStorage.getItem("profile_picture");
-  this.setState({username : username_panitia, profile_picture : profile_panitia })
+  componentDidMount(){
+    this.getProfile();
+    let pathArray = window.location.pathname.split('/');
+    let pathName = pathArray[2];
+    pathName === '' ? this.setState({current: '/dashboard'}) : this.setState({current: pathName});
+    let username_panitia = localStorage.getItem("username");
+    let profile_panitia = localStorage.getItem("profile_picture");
+    this.setState({username : username_panitia, profile_picture : profile_panitia })
+    // window.onunload = () => {
+    //   // Clear the local storage
+    //   localStorage.clear();
+    // }
+  }
 
-}
+
 
 
 
