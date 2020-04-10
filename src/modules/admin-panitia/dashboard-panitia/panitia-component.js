@@ -121,7 +121,8 @@ class PanitiaComponent extends Component {
                             <Row>
                                 <Col lg={24} md={24} sm={24}>
                                     <div className="card-graphic">
-                                        asa
+                                        <div style={{textAlign:"center",fontWeight:"bold"}}><span>Grafik Total Peserta Event</span></div>
+                                        <div id="chartdiv" style={{ width: "100%", height: "500px" }}></div>
                                     </div>
                                 </Col>  
                             </Row>

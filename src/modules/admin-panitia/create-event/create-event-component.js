@@ -9,7 +9,6 @@ import BasicInfoPage from '../../../app/admin-panitia/component-create-event/bas
 import BiayaPage from '../../../app/admin-panitia/component-create-event/biaya-page'
 import VenuePage from '../../../app/admin-panitia/component-create-event/venue-page'
 import DateTimePage from '../../../app/admin-panitia/component-create-event/date-time-page'
-import VisualPage from '../../../app/admin-panitia/component-create-event/visual-page'
 import CertificatePage from '../../../app/admin-panitia/component-create-event/certificate-page'
 // constant content
 const { Content } = Layout;
