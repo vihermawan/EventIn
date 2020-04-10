@@ -16,30 +16,10 @@ import ButtonDashboard from '../../../common/component/button/button-dashboard';
 const { Content } = Layout;
 const { Search } = Input;
 const { TabPane } = Tabs;
- 
-const menu = (
-    <Menu>
-      <Menu.Item>
-        <a target="_blank" rel="noopener noreferrer" href="http://www.alipay.com/">
-          1st menu item
-        </a>
-      </Menu.Item>
-      <Menu.Item>
-        <a target="_blank" rel="noopener noreferrer" href="http://www.taobao.com/">
-          2nd menu item
-        </a>
-      </Menu.Item>
-      <Menu.Item>
-        <a target="_blank" rel="noopener noreferrer" href="http://www.tmall.com/">
-          3rd menu item
-        </a>
-      </Menu.Item>
-    </Menu>
-  );
 
 class EventComponent extends Component {
     render() { 
-        const {cardData,initialData,onDetailEvent,kategori, onTabChange,cardDataEventKategori,onStartLoadingHome ,onFinishLoadingHome, onEventKategori} = this.props
+        const {cardData,initialData,onDetailEvent,kategori, onTabChange,cardDataEventKategori,onStartLoadingHome ,onFinishLoadingHome, onEventKategori,onSeacrhEvent,cardDataEventSeacrh} = this.props
         const image1 = require(`../../../assets/images/event-image1.png`);  
         return ( 
             <Layout className="landing-container">
@@ -80,9 +60,9 @@ class EventComponent extends Component {
                                                 <Col lg={18} md={12} sm={12}>
                                                     <div className="button-search">
                                                         <Search
-                                                            onSearch={value => console.log(value)}
+                                                            onSearch={value => onSeacrhEvent(value)}
                                                             placeholder="Pencarian..."
-                                                            // style={{ width: 200 }}
+                                                            // style={{ width: '100%' }}
                                                         />
                                                     </div>
                                                 </Col>
@@ -101,178 +81,237 @@ class EventComponent extends Component {
                                 </div>
                             </Col>
                         </Row>
-                        <Row className="section-container" style={{marginBottom: 50}}>
-                            <Col lg={24}>
-                                <span style={{marginLeft:'2%'}} className="text-soft-blue title-big-event bold">Populer</span>
-                            </Col>
-                            <Col lg={24} className="card-container">
-                                <Tabs style={{marginLeft:'2%', marginRight:'2%'}} defaultActiveKey="1" onChange={onTabChange}>
-                                    <TabPane 
-                                        tab="All" key="0">                              
-                                        <LoadingContainer loading={initialData.loading}>
-                                            <Col lg={24} style={{minHeight: "300px"}}>
-                                                <Row gutter={[16,16]} type="flex">
-                                                    {
-                                                        cardData.map( data =>
-                                                            <Col lg={6} md={12} sm={12} xs={24}>
-                                                                <Card
-                                                                    hoverable
-                                                                    className="event-card-container"
-                                                                    cover={<img
-                                                                        alt="background event card"
-                                                                        src={data.foto}
-                                                                        style={{borderTopLeftRadius: 16, borderTopRightRadius: 16}}
-                                                                    />}
-                                                                    >
-                                                                    <Row>
-                                                                        <Col lg={12} md={12} sm={24} xs={12}>
-                                                                            <div className="text-black semi-bold"><Moment format="DD MMMM YYYY">{data.date}</Moment></div>
-                                                                        </Col>
-                                                                        <Col lg={12} md={12} sm={24} xs={12}>
-                                                                            <span className="text-white background-soft-blue semi-bold event-card-badge">
-                                                                                {data.price}
-                                                                            </span>
-                                                                        </Col>
-                                                                        <Col lg={24} className="mt-10">
-                                                                            <Link onClick={() => onDetailEvent(data.id)}><h2 className="text-soft-blue semi-bold">{data.title}</h2></Link>
-                                                                        </Col>
-                                                                        <Col lg={24}>
-                                                                            {data.place}
-                                                                        </Col>
-                                                                    </Row>
-                                                                </Card>
-                                                            </Col>
-                                                        )
-                                                    }
-                                                </Row>
-                                                <Row>
-                                                    <Col span={24} >
-                                                        <div className="tombol-tengah button-section-1-container" style={initialData.countEvent < 17 ? {display:"none"}:{display:"block"}}>
-                                                            <Link to="/allevent">
-                                                                <ButtonRounded
-                                                                    text="Semua Event"
-                                                                    className='button-participate'
-                                                                />
-                                                            </Link>
-                                                        </div>
-                                                    </Col>
-                                                </Row>
-                                            </Col>
-                                        </LoadingContainer>
-                                    </TabPane>
-                                    {
-                                    kategori.map( data =>
-                                    <TabPane tab={data.kategori} key={data.id_kategori}>
+                        <div style={initialData.size_event_seacrh > 0 ? {display:"none"}:{display:"block"}}>
+                            <Row className="section-container" style={{marginBottom: 50}}>
+                                <Col lg={24}>
+                                    <span style={{marginLeft:'2%'}} className="text-soft-blue title-big-event bold">Populer</span>
+                                </Col>
+                                <Col lg={24} className="card-container">
+                                    <Tabs style={{marginLeft:'2%', marginRight:'2%'}} defaultActiveKey="1" onChange={onTabChange}>
+                                        <TabPane 
+                                            tab="All" key="0">                              
                                             <LoadingContainer loading={initialData.loading}>
-                                            <Col lg={24} style={{minHeight: "300px"}}>
-                                                <Row gutter={[16,16]}>
-                                                    {
-                                                        cardDataEventKategori.map( data =>
-                                                            <Col lg={6} md={12} sm={12} xs={24} className="mt-30">
-                                                                <Card
-                                                                    hoverable
-                                                                    className="event-card-container"
-                                                                    cover={<img
-                                                                        alt="background event card"
-                                                                        src={data.foto}
-                                                                        style={{borderTopLeftRadius: 16, borderTopRightRadius: 16}}
-                                                                    />}
-                                                                    >
-                                                                    <Row>
-                                                                        <Col lg={12} md={12} sm={24} xs={12}>
-                                                                            <div className="text-black semi-bold"><Moment format="DD MMMM YYYY">{data.date}</Moment></div>
-                                                                        </Col>
-                                                                        <Col lg={12} md={12} sm={24} xs={12}>
-                                                                            <span className="text-white background-soft-blue semi-bold event-card-badge">
-                                                                                {data.price}
-                                                                            </span>
-                                                                        </Col>
-                                                                        <Col lg={24} className="mt-10">
-                                                                            <Link onClick={() => onDetailEvent(data.id)}><h2 className="text-soft-blue semi-bold">{data.title}</h2></Link>
-                                                                        </Col>
-                                                                        <Col lg={24}>
-                                                                            {data.place}
-                                                                        </Col>
-                                                                    </Row>
-                                                                </Card>
-                                                            </Col>
-                                                        )
-        
-                                                    }
-                                                </Row>
-                                                <Row>
-                                                    <Col span={24} >
-                                                        <div className="tombol-tengah button-section-1-container" style={initialData.countEvent < 1 ? {display:"none"}:{display:"block"}}>
-                                                                <ButtonDashboard
-                                                                    text="Semua Event"
-                                                                    className='button-participate'
-                                                                    onClick={() => onEventKategori(data.id_kategori)}
-                                                                />
-                                                        </div>
-                                                    </Col>
-                                                </Row>
-                                            </Col>
-                                        </LoadingContainer>
-                                    </TabPane>
-                                    )}
-                                </Tabs>       
-                            </Col>
-                        </Row>
-                        <Row className="section-container" style={{marginBottom: 50}}>
-                            <Col lg={24}>
-                                <span style={{marginLeft:'2%'}} className="text-soft-blue title-big-event bold">Minggu ini</span>
-                            </Col>
-                            <Col lg={24} className="card-container" >
-                                <Col lg={24} >
-                                        <Row gutter={[16,16]} style={{marginLeft:'2%', marginRight:'2%'}} type="flex">
-                                            {
-                                                cardData.map( data =>
-                                                    <Col lg={6} md={12} sm={12} xs={24} className="mt-30">
-                                                        <Card
-                                                            hoverable
-                                                            className="event-card-container"
-                                                            cover={<img
-                                                                alt="background event card"
-                                                                src={data.foto}
-                                                                style={{borderTopLeftRadius: 16, borderTopRightRadius: 16}}
-                                                            />}
-                                                        >
-                                                            <Row>
-                                                                <Col lg={12} md={12} sm={24} xs={12}>
-                                                                    <div className="text-black semi-bold">{data.date}</div>
+                                                <Col lg={24} style={{minHeight: "300px"}}>
+                                                    <Row gutter={[16,16]} type="flex">
+                                                        {
+                                                            cardData.map( data =>
+                                                                <Col lg={6} md={12} sm={12} xs={24}>
+                                                                    <Card
+                                                                        hoverable
+                                                                        className="event-card-container"
+                                                                        cover={<img
+                                                                            alt="background event card"
+                                                                            src={data.foto}
+                                                                            style={{borderTopLeftRadius: 16, borderTopRightRadius: 16}}
+                                                                        />}
+                                                                        >
+                                                                        <Row>
+                                                                            <Col lg={12} md={12} sm={24} xs={12}>
+                                                                                <div className="text-black semi-bold"><Moment format="DD MMMM YYYY">{data.date}</Moment></div>
+                                                                            </Col>
+                                                                            <Col lg={12} md={12} sm={24} xs={12}>
+                                                                                <span className="text-white background-soft-blue semi-bold event-card-badge">
+                                                                                    {data.price}
+                                                                                </span>
+                                                                            </Col>
+                                                                            <Col lg={24} className="mt-10">
+                                                                                <Link onClick={() => onDetailEvent(data.id)}><h2 className="text-soft-blue semi-bold">{data.title}</h2></Link>
+                                                                            </Col>
+                                                                            <Col lg={24}>
+                                                                                {data.place}
+                                                                            </Col>
+                                                                        </Row>
+                                                                    </Card>
                                                                 </Col>
-                                                                <Col lg={12} md={12} sm={24} xs={12}>
-                                                                    <span className="text-white background-soft-blue semi-bold event-card-badge">
-                                                                        {data.price}
-                                                                    </span>
+                                                            )
+                                                        }
+                                                    </Row>
+                                                    <Row>
+                                                        <Col span={24} >
+                                                            <div className="tombol-tengah button-section-1-container" style={initialData.countEvent < 17 ? {display:"none"}:{display:"block"}}>
+                                                                <Link to="/allevent">
+                                                                    <ButtonRounded
+                                                                        text="Semua Event"
+                                                                        className='button-participate'
+                                                                    />
+                                                                </Link>
+                                                            </div>
+                                                        </Col>
+                                                    </Row>
+                                                </Col>
+                                            </LoadingContainer>
+                                        </TabPane>
+                                        {
+                                        kategori.map( data =>
+                                        <TabPane tab={data.kategori} key={data.id_kategori}>
+                                                <LoadingContainer loading={initialData.loading}>
+                                                <Col lg={24} style={{minHeight: "300px"}}>
+                                                    <Row gutter={[16,16]}>
+                                                        {
+                                                            cardDataEventKategori.map( data =>
+                                                                <Col lg={6} md={12} sm={12} xs={24} className="mt-30">
+                                                                    <Card
+                                                                        hoverable
+                                                                        className="event-card-container"
+                                                                        cover={<img
+                                                                            alt="background event card"
+                                                                            src={data.foto}
+                                                                            style={{borderTopLeftRadius: 16, borderTopRightRadius: 16}}
+                                                                        />}
+                                                                        >
+                                                                        <Row>
+                                                                            <Col lg={12} md={12} sm={24} xs={12}>
+                                                                                <div className="text-black semi-bold"><Moment format="DD MMMM YYYY">{data.date}</Moment></div>
+                                                                            </Col>
+                                                                            <Col lg={12} md={12} sm={24} xs={12}>
+                                                                                <span className="text-white background-soft-blue semi-bold event-card-badge">
+                                                                                    {data.price}
+                                                                                </span>
+                                                                            </Col>
+                                                                            <Col lg={24} className="mt-10">
+                                                                                <Link onClick={() => onDetailEvent(data.id)}><h2 className="text-soft-blue semi-bold">{data.title}</h2></Link>
+                                                                            </Col>
+                                                                            <Col lg={24}>
+                                                                                {data.place}
+                                                                            </Col>
+                                                                        </Row>
+                                                                    </Card>
                                                                 </Col>
-                                                                <Col lg={24} className="mt-10">
-                                                                    <Link to='/detail'><h2 className="text-soft-blue semi-bold">{data.title}</h2></Link>
-                                                                </Col>
-                                                                <Col lg={24}>
-                                                                    {data.place}
-                                                                </Col>
-                                                            </Row>
-                                                        </Card>
-                                                    </Col>
-                                                )
-                                            }
-                                        </Row>
-                                    </Col>
-                            </Col>
-                        </Row>
-                        <Row>
-                            <Col span={24} >
-                                <div className="tombol-tengah button-section-1-container" style={initialData.countEvent < 17 ? {display:"none"}:{display:"block"}}>
-                                    <Link to="/allevent">
-                                        <ButtonRounded
-                                            text="Semua Event"
-                                            className='button-participate'
-                                        />
-                                    </Link>
-                                </div>
-                            </Col>
-                        </Row>
+                                                            )
+            
+                                                        }
+                                                    </Row>
+                                                    <Row>
+                                                        <Col span={24} >
+                                                            <div className="tombol-tengah button-section-1-container" style={initialData.countEvent < 1 ? {display:"none"}:{display:"block"}}>
+                                                                    <ButtonDashboard
+                                                                        text="Semua Event"
+                                                                        className='button-participate'
+                                                                        onClick={() => onEventKategori(data.id_kategori)}
+                                                                    />
+                                                            </div>
+                                                        </Col>
+                                                    </Row>
+                                                </Col>
+                                            </LoadingContainer>
+                                        </TabPane>
+                                        )}
+                                    </Tabs>       
+                                </Col>
+                            </Row>
+                            <Row className="section-container" style={{marginBottom: 50}}>
+                                <Col lg={24}>
+                                    <span style={{marginLeft:'2%'}} className="text-soft-blue title-big-event bold">Minggu ini</span>
+                                </Col>
+                                <Col lg={24} className="card-container" >
+                                    <Col lg={24} >
+                                            <Row gutter={[16,16]} style={{marginLeft:'2%', marginRight:'2%'}} type="flex">
+                                                {
+                                                    cardData.map( data =>
+                                                        <Col lg={6} md={12} sm={12} xs={24} className="mt-30">
+                                                            <Card
+                                                                hoverable
+                                                                className="event-card-container"
+                                                                cover={<img
+                                                                    alt="background event card"
+                                                                    src={data.foto}
+                                                                    style={{borderTopLeftRadius: 16, borderTopRightRadius: 16}}
+                                                                />}
+                                                            >
+                                                                <Row>
+                                                                    <Col lg={12} md={12} sm={24} xs={12}>
+                                                                        <div className="text-black semi-bold">{data.date}</div>
+                                                                    </Col>
+                                                                    <Col lg={12} md={12} sm={24} xs={12}>
+                                                                        <span className="text-white background-soft-blue semi-bold event-card-badge">
+                                                                            {data.price}
+                                                                        </span>
+                                                                    </Col>
+                                                                    <Col lg={24} className="mt-10">
+                                                                        <Link to='/detail'><h2 className="text-soft-blue semi-bold">{data.title}</h2></Link>
+                                                                    </Col>
+                                                                    <Col lg={24}>
+                                                                        {data.place}
+                                                                    </Col>
+                                                                </Row>
+                                                            </Card>
+                                                        </Col>
+                                                    )
+                                                }
+                                            </Row>
+                                        </Col>
+                                </Col>
+                            </Row>
+                            <Row>
+                                <Col span={24} >
+                                    <div className="tombol-tengah button-section-1-container" style={initialData.countEvent < 17 ? {display:"none"}:{display:"block"}}>
+                                        <Link to="/allevent">
+                                            <ButtonRounded
+                                                text="Semua Event"
+                                                className='button-participate'
+                                            />
+                                        </Link>
+                                    </div>
+                                </Col>
+                            </Row>
+                        </div>
+                        <div style={initialData.size_event_seacrh > 0 ? {display:"block"}:{display:"none"}}>
+                            <Row className="section-container" style={{marginBottom: 50}}>
+                                <Col lg={24}>
+                                    <span style={{marginLeft:'2%'}} className="text-soft-blue title-big-event bold">Hasil Pencarian</span>
+                                </Col>
+                                <Col lg={24} className="card-container" >
+                                    <Col lg={24} >
+                                            <Row gutter={[16,16]} style={{marginLeft:'2%', marginRight:'2%'}} type="flex">
+                                                {
+                                                    cardDataEventSeacrh.map( data =>
+                                                        <Col lg={6} md={12} sm={12} xs={24} className="mt-30">
+                                                            <Card
+                                                                hoverable
+                                                                className="event-card-container"
+                                                                cover={<img
+                                                                    alt="background event card"
+                                                                    src={data.foto}
+                                                                    style={{borderTopLeftRadius: 16, borderTopRightRadius: 16}}
+                                                                />}
+                                                            >
+                                                                <Row>
+                                                                    <Col lg={12} md={12} sm={24} xs={12}>
+                                                                        <div className="text-black semi-bold"><Moment format="DD MMMM YYYY">{data.date}</Moment></div>
+                                                                    </Col>
+                                                                    <Col lg={12} md={12} sm={24} xs={12}>
+                                                                        <span className="text-white background-soft-blue semi-bold event-card-badge">
+                                                                            {data.price}
+                                                                        </span>
+                                                                    </Col>
+                                                                    <Col lg={24} className="mt-10">
+                                                                        <Link to='/detail'><h2 className="text-soft-blue semi-bold">{data.title}</h2></Link>
+                                                                    </Col>
+                                                                    <Col lg={24}>
+                                                                        {data.place}
+                                                                    </Col>
+                                                                </Row>
+                                                            </Card>
+                                                        </Col>
+                                                    )
+                                                }
+                                            </Row>
+                                        </Col>
+                                </Col>
+                            </Row>
+                            <Row>
+                                <Col span={24} >
+                                    <div className="tombol-tengah button-section-1-container" style={initialData.countEvent < 17 ? {display:"none"}:{display:"block"}}>
+                                        <Link to="/allevent">
+                                            <ButtonRounded
+                                                text="Semua Event"
+                                                className='button-participate'
+                                            />
+                                        </Link>
+                                    </div>
+                                </Col>
+                            </Row>
+                        </div>
                         <BackTop />
                     </Content>
                     <Footer/>
