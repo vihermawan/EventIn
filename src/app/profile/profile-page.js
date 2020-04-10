@@ -18,6 +18,7 @@ class ProfilePage extends Component {
         peserta:[],
         sizeEvent : '',
         eventPeserta : [],
+        loadingHome: false,
     }
 
     componentDidMount(){
@@ -25,15 +26,18 @@ class ProfilePage extends Component {
         this.getProfileEvent();
     }
 
+    onStartLoadingHome = () =>  this.setState({ loadingHome: true })
+    onFinishLoadingHome = () =>  this.setState({ loadingHome: false })
+
     //get data profile dari API
     getProfile=()=>{
-        this.setState({loading: true})
+        this.setState({loadingHome: true})
         API.get(`/peserta/profile`)
         .then(res => {
             console.log('res',res.data.data.user)
             this.setState({
                 user:res.data.data.user,
-                loading: false,
+                loadingHome: false,
             })
         });
     }
@@ -152,6 +156,8 @@ class ProfilePage extends Component {
                 data = {data}
                 dataProfile = {dataProfile}
                 onEditPeserta = {this.onEditPeserta}
+                onStartLoadingHome={this.onStartLoadingHome}
+                onFinishLoadingHome={this.onFinishLoadingHome}
             />
         );
     }

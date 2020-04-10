@@ -79,11 +79,7 @@ getProfile=()=>{
     //   localStorage.clear();
     // }
   }
-
-
-
-
-
+  
   handleLogout = e => {
      this.setState({loading: true})
       API.get(`/auth/logout`)

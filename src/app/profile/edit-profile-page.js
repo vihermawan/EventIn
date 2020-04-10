@@ -18,6 +18,7 @@ class EditProfilePage extends Component {
         pekerjaan : '',
         picture : '',
         foto_peserta : '',
+        organisasi:'',
         umur : '',
         button_edit : 'Edit Foto Profil',
         crop: {
@@ -48,7 +49,8 @@ class EditProfilePage extends Component {
                 umur:res.data.data.user.peserta.umur,
                 no_telepon : res.data.data.user.peserta.no_telefon,
                 jenis_kelamin : res.data.data.user.peserta.jenis_kelamin,
-                picture:res.data.data.user.peserta.image_URL,
+                organisasi : res.data.data.user.peserta.organisasi,
+                croppedImageUrl:res.data.data.user.peserta.image_URL,
                 foto_peserta : res.data.data.user.peserta.foto_peserta,
                 loading: false,
             })
@@ -249,8 +251,8 @@ class EditProfilePage extends Component {
     };
 
     handleJenisKelamin = (value) => {
-        this.setState({ jenis_kelamin: value.key })
-        console.log('jenis_kelamin', value.key);
+        this.setState({ jenis_kelamin: value })
+        console.log('jenis_kelamin', value);
     }
 
     onChangeBirthDate = (date, dateString) => {
@@ -278,6 +280,7 @@ class EditProfilePage extends Component {
         params.set('jenis_kelamin',this.state.jenis_kelamin)
         params.set('organisasi',this.state.organisasi)
         params.set('instagram',this.state.instagram)
+        params.set('tanggal_lahir',this.state.tanggal_lahir)
         params.set('no_telepon',this.state.no_telepon)
         this.setState({loading: true})
         API.postEdit(`/peserta/profile/edit/${id_peserta}`, params)

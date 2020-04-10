@@ -1,11 +1,12 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
-import { Layout, BackTop, Row, Col, Button, Input, Dropdown, Menu, Icon, Tabs, Card } from 'antd';
+import { Layout, BackTop, Row, Col, Input, Tabs, Card } from 'antd';
 import Moment from 'react-moment';
 import 'moment-timezone';
 import 'moment/locale/id';
 import LoadingContainer from '../../../common/component/loading/loading-container'
 import '../../../assets/css/event.css'
+import EllipsisText from "react-ellipsis-text";
 // component
 import Navbar from '../../../common/layout/navbar-landing'
 import Footer from '../../../common/layout/footer-landing'
@@ -62,7 +63,6 @@ class EventComponent extends Component {
                                                         <Search
                                                             onSearch={value => onSeacrhEvent(value)}
                                                             placeholder="Pencarian..."
-                                                            // style={{ width: '100%' }}
                                                         />
                                                     </div>
                                                 </Col>
@@ -115,7 +115,7 @@ class EventComponent extends Component {
                                                                                 </span>
                                                                             </Col>
                                                                             <Col lg={24} className="mt-10">
-                                                                                <Link onClick={() => onDetailEvent(data.id)}><h2 className="text-soft-blue semi-bold">{data.title}</h2></Link>
+                                                                                <Link onClick={() => onDetailEvent(data.id)}><h2 className="text-soft-blue semi-bold"><EllipsisText text={data.title} length={"20"} tooltip={data.title}/></h2></Link>
                                                                             </Col>
                                                                             <Col lg={24}>
                                                                                 {data.place}
@@ -169,7 +169,7 @@ class EventComponent extends Component {
                                                                                 </span>
                                                                             </Col>
                                                                             <Col lg={24} className="mt-10">
-                                                                                <Link onClick={() => onDetailEvent(data.id)}><h2 className="text-soft-blue semi-bold">{data.title}</h2></Link>
+                                                                                <Link onClick={() => onDetailEvent(data.id)}><h2 className="text-soft-blue semi-bold"><EllipsisText text={data.title} length={"20"} tooltip={data.title}/></h2></Link>
                                                                             </Col>
                                                                             <Col lg={24}>
                                                                                 {data.place}
@@ -285,7 +285,7 @@ class EventComponent extends Component {
                                                                         </span>
                                                                     </Col>
                                                                     <Col lg={24} className="mt-10">
-                                                                        <Link to='/detail'><h2 className="text-soft-blue semi-bold">{data.title}</h2></Link>
+                                                                        <Link to='/detail'><h2 className="text-soft-blue semi-bold"><EllipsisText text={data.title} length={"20"} tooltip={data.title}/></h2></Link>
                                                                     </Col>
                                                                     <Col lg={24}>
                                                                         {data.place}

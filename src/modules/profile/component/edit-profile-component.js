@@ -9,7 +9,7 @@ import '../../../assets/css/admin-superadmin/detail-event.css'
 import LoadingContainer from '../../../common/component/loading/loading-container'
 import InputForm from '../../../common/component/input/input-form';
 import ButtonDashboard from '../../../common/component/button/button-dashboard';
-import { faUserEdit, faBackward } from '@fortawesome/free-solid-svg-icons';
+import { faUserEdit, faBackward, faIdCard, faAddressBook, faUserAlt, faEnvelope } from '@fortawesome/free-solid-svg-icons';
 import ReactCrop from 'react-image-crop';
 import moment from 'moment';
 // constant content
@@ -54,6 +54,7 @@ class EditProfilePesertaComponent extends Component {
                                         className="input-event mt-5 mb-20"
                                         onChange={handleChange}
                                         value={initialData.nama_peserta}
+                                        icon={faUserAlt}
                                     />
                                 </div>
                             </Col>
@@ -68,6 +69,7 @@ class EditProfilePesertaComponent extends Component {
                                         className="input-event mt-5 mb-20"
                                         onChange={handleChange}
                                         value={initialData.email}
+                                        icon={faEnvelope}
                                     />
                                 </div>
                             </Col>
@@ -78,8 +80,7 @@ class EditProfilePesertaComponent extends Component {
                                     </div>
                                     <div className="select-value">
                                         <Select
-                                            labelInValue 
-                                            defaultValue = {{ key: String(initialData.jenis_kelamin) }}
+                                            value = { String(initialData.jenis_kelamin) }
                                             style={{ width: '100%' }}
                                             className="select-kategori "
                                             onChange={handleJenisKelamin}
@@ -105,7 +106,7 @@ class EditProfilePesertaComponent extends Component {
                                                         style={{ width: '100%' }}
                                                         placeholder="Pilih tanggal" 
                                                         onChange={onChangeBirthDate} 
-                                                        defaultValue={moment(String(initialData.tanggal_lahir), dateFormat)}
+                                                        value={moment(String(initialData.tanggal_lahir), dateFormat)}
                                                     />
                                                 </Col>
                                             </Row>
@@ -141,6 +142,7 @@ class EditProfilePesertaComponent extends Component {
                                         className="input-event mt-5 mb-20"
                                         onChange={handleChange}
                                         value={initialData.pekerjaan}
+                                        icon={faIdCard}
                                     />
                                 </div>
                             </Col>
@@ -155,6 +157,7 @@ class EditProfilePesertaComponent extends Component {
                                         className="input-event mt-5 mb-20"
                                         onChange={handleChange}
                                         value={initialData.organisasi}
+                                        icon={faIdCard}
                                     />
                                 </div>
                             </Col>
@@ -169,6 +172,7 @@ class EditProfilePesertaComponent extends Component {
                                         className="input-event mt-5 mb-20"
                                         onChange={handleChange}
                                         value={initialData.no_telepon}
+                                        icon={faAddressBook}
                                     />
                                 </div>
                             </Col>
