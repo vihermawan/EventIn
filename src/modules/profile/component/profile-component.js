@@ -18,14 +18,16 @@ const { Content } = Layout;
 
 class ProfileComponent extends Component {
     render() { 
-        const {columns,data,initialData,dataProfile,onEditPeserta} =this.props;
+        const {columns,data,initialData,dataProfile,onEditPeserta,onStartLoadingHome,onFinishLoadingHome} =this.props;
         return ( 
             <Layout className="landing-container" style={{minHeight: "100vh"}} >
                 <Navbar
                     navigate={this.props.navigate}
+                    onStartLoadingHome={onStartLoadingHome}
+                    onFinishLoadingHome={onFinishLoadingHome}
                 />
                 <Content style={{ overflow: "hidden" }}>
-                <LoadingContainer loading={initialData.loading}>
+                <LoadingContainer loading={initialData.loadingHome}>
                     {/* Section 1 */}
                     {
                         dataProfile.map( data =>

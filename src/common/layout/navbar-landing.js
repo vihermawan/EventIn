@@ -15,7 +15,7 @@ class Navbar extends Component {
 	state = {
 		current: '',
 		username :'username',
-		picture:'',
+		profile_picture : '',
 		visible: false,
 		isLogin: false,
 		loading: false,
@@ -29,7 +29,10 @@ class Navbar extends Component {
 		pathName === '' ? this.setState({current : 'home'}) : this.setState({current : pathName});
 
 		let token = localStorage.getItem("token");
+		let username_peserta = localStorage.getItem("username");
+		let profile_picture = localStorage.getItem("profile_picture");
 		if (token != null){
+			this.setState({username : username_peserta, profile_picture : profile_picture, isLogin: true })
 			this.getProfile();
 		}
 		// window.onunload = () => {
@@ -46,14 +49,16 @@ class Navbar extends Component {
         this.setState({loading: true})
         API.get(`/peserta/edit-profile`)
         .then(res => {
-            // console.log('res',res.data.data.user)
-            this.setState({
-                username : res.data.data.user.peserta.nama_peserta,
-                picture:res.data.data.user.peserta.image_URL,
-				loading: false,
-				isLogin: true,
-            })
-        });
+			let username_peserta = localStorage.getItem("username");
+			let profile_picture = localStorage.getItem("profile_picture");
+			if ((res.data.data.user.peserta.nama_peserta != username_peserta) || (res.data.data.user.peserta.image_URL != profile_picture)){
+				localStorage.setItem('username', res.data.data.user.peserta.nama_peserta)
+				localStorage.setItem('profile_picture', res.data.data.user.peserta.image_URL)
+				let username_peserta = localStorage.getItem("username");
+				let profile_picture = localStorage.getItem("profile_picture");
+				this.setState({username : username_peserta, profile_picture : profile_picture,isLogin: true })
+				}
+			});
 	}
 	
 
@@ -151,7 +156,7 @@ class Navbar extends Component {
 								display:`${this.state.isLogin ? 'block' : 'none'}`
 							 }}
 						 >
-							<Avatar size={40} icon="user" className="avatars" scr={this.state.picture}/>
+							<Avatar size={40} icon="user" className="avatars" src={this.state.profile_picture}/>
 								<span className="semi-bold">{this.state.username}</span>
 								<Dropdown overlay={menu} trigger={['click']}>
 									<a className="ant-dropdown-link" href="#">
