@@ -13,7 +13,9 @@ import { setIdSertifikat } from '../../../modules/admin-panitia/e-certificate/st
 class ReceivedCertificatePage extends Component {
     state = {  
         certificate: [],
+        url : '',
         loading: false,
+        visible:false,
     }
 
     componentDidMount(){
@@ -33,11 +35,27 @@ class ReceivedCertificatePage extends Component {
     }
 
     //button detail event
-    onDetailCertificate = (id) => {
-        console.log('id ini',id)
-        this.props.setIdSertifikat(id);
-        this.props.navigate(CONSTANS.DETAIL_SERTIF_PANITIA_MENU_KEY)
+    onDetailCertificate = (sertif_URL) => {
+        this.setState({
+            visible: true,
+            url : sertif_URL,
+        });
     }
+
+    handleOk = e => {
+        console.log(e);
+        this.setState({
+          visible: false,
+        });
+      };
+    
+      handleCancel = e => {
+        console.log(e);
+        this.setState({
+          visible: false,
+        });
+      };
+  
 
     render() { 
 
@@ -110,13 +128,13 @@ class ReceivedCertificatePage extends Component {
             </Tooltip>,
             <Divider type="vertical" />,
             <Tooltip title="Detail">
-            <ButtonDashboard
-                height={20}
-                icon={faInfoCircle}
-                borderRadius="5px"
-                background="#FFA903"
-                onClick = {() => this.onDetailCertificate(data.nomor)}
-            />,
+                <ButtonDashboard
+                    height={20}
+                    icon={faInfoCircle}
+                    borderRadius="5px"
+                    background="#FFA903"
+                    onClick = {() => this.onDetailCertificate(data.sertif_URL)}
+                />,
             </Tooltip>]
             ),
         },
@@ -129,7 +147,8 @@ class ReceivedCertificatePage extends Component {
         penandatangan : penandatangan.nama_penandatangan,
         nip : penandatangan.nip,
         sertifikat :sertifikat.sertifikat,
-        status : [status.nama_status],        
+        status : [status.nama_status],    
+        sertif_URL :sertifikat.sertif_URL,    
     }))
     
         return ( 
@@ -138,6 +157,8 @@ class ReceivedCertificatePage extends Component {
                 initialData={this.state}
                 columns={columns}
                 data={data}
+                handleCancel= {this.handleCancel}
+                handleOk = {this.handleOk}
             />
         );
     }

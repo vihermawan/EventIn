@@ -43,77 +43,40 @@ class dashboard extends Component {
     nama_panitia : '',
     collapsed: false,
     loading : false,
-    username: 'username',
+    username: '',
     profile_picture:'',
     no_telepon :'',
     instagram : '',
   };
+
   
-//  async componentWillMount(){
-//      const res = await API.get(`/panitia/profile-edit`)
-//      console.log(res)
-//       const set = await this.setState({
-//         nama_panitia : res.data.data.user.panitia.nama_panitia,
-//         picture : res.data.data.user.panitia.image_URL,
-//         loading: false,
-//     })
-//     // async function f(){
-//     //   const res = await API.get(`/panitia/profile-edit`)
-//     //   const set = await this.setState({
-//     //     id_panitia : res.data.data.user.panitia.id_panitia,
-//     //     nama_panitia : res.data.data.user.panitia.nama_panitia,
-//     //     picture : res.data.data.user.panitia.image_URL,
-//     //     loading: false,
-//     // })
-//         // await this.getProfile();
-//         // await console.log(res)
-//     // }
-//     // f();
-
-//   //   (async () => {
-//   //     try {
-//   //       const res = await API.get(`/panitia/profile-edit`)
-//   //     const set = await this.setState({
-//   //       id_panitia : res.data.data.user.panitia.id_panitia,
-//   //       nama_panitia : res.data.data.user.panitia.nama_panitia,
-//   //       picture : res.data.data.user.panitia.image_URL,
-//   //       loading: false,
-//   //   })
-//   //     } catch (e) {
-//   //      this.setState({load: false, notify: "error"});
-//   //     }
-//   //  })();
-//     // this.getProfile();
-//     // const username = localStorage.getItem("username")
-//     // const profile_picture = localStorage.getItem("profile_picture")
-//     // this.setState({ username,profile_picture })
-//  }
-
+getProfile=()=>{
+    // this.setState({loading: true})
+    API.get(`/panitia/profile-edit`)
+    .then(res => {
+       let username_panitia = localStorage.getItem("username");
+       let profile_panitia = localStorage.getItem("profile_picture");
+       if ((res.data.data.user.panitia.nama_panitia != username_panitia) || (res.data.data.user.panitia.image_URL != profile_panitia)){
+          localStorage.setItem('username', res.data.data.user.panitia.nama_panitia)
+          localStorage.setItem('profile_picture', res.data.data.user.panitia.image_URL)
+          let username_panitia = localStorage.getItem("username");
+          let profile_panitia = localStorage.getItem("profile_picture");
+          this.setState({username : username_panitia, profile_picture : profile_panitia })
+        }
+    });
+}
+  
 componentDidMount(){
   this.getProfile();
   let pathArray = window.location.pathname.split('/');
   let pathName = pathArray[2];
   pathName === '' ? this.setState({current: '/dashboard'}) : this.setState({current: pathName});
-  // window.onbeforeunload = function() {
-  //   localStorage.clear();
-  // }
+  let username_panitia = localStorage.getItem("username");
+  let profile_panitia = localStorage.getItem("profile_picture");
+  this.setState({username : username_panitia, profile_picture : profile_panitia })
+
 }
 
-  getProfile=()=>{
-    this.setState({loading: true})
-    API.get(`/panitia/profile-edit`)
-    .then(res => {
-        // console.log('res',res)
-        this.setState({
-            id_panitia : res.data.data.user.panitia.id_panitia,
-            nama_panitia : res.data.data.user.panitia.nama_panitia,
-            profile_picture : res.data.data.user.panitia.image_URL,
-            no_telepon: res.data.data.user.panitia.no_telepon,
-            instagram : res.data.data.user.panitia.instagram,
-            loading: false,
-        })
-    });
-}
 
 
   handleLogout = e => {
@@ -330,7 +293,7 @@ componentDidMount(){
                   />
                   <div className= "avatar">
                     <Avatar size={40} icon="user" className="avatars" src={this.state.profile_picture} style={{maxHeight:'100%'}}/>
-                        <span className="semi-bold">{this.state.nama_panitia}</span>
+                        <span className="semi-bold">{this.state.username}</span>
                       <Dropdown overlay={menu} trigger={['click']}>
                         <a className="ant-dropdown-link" href="#">
                           <Icon type="down" style={{marginLeft:"20px", color:"black", fontSize:"13px"}} />
@@ -455,7 +418,7 @@ componentDidMount(){
 }
 
 const mapStateToProps = state => ({
-    ...state,
+    ...state.login,
 });
 
 const mapDispatchToProps = (dispatch => ({

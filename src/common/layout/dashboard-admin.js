@@ -37,6 +37,7 @@ const { SubMenu } = Menu;
 
 class Admin extends Component {
   state = {
+    current: '',
     username : '',
     profile_picture:'',
     collapsed: false,
@@ -49,15 +50,10 @@ class Admin extends Component {
     });
   };
 
- 
   componentDidMount(){
-    // this.getProfile();
-    const username = localStorage.getItem("username")
-    const profile_picture = localStorage.getItem("profile_picture")
-    this.setState({ username,profile_picture })
-    // window.onbeforeunload = function() {
-		// 	localStorage.clear();
-		// }
+    let pathArray = window.location.pathname.split('/');
+    let pathName = pathArray[2];
+    pathName === '' ? this.setState({current: '/admin'}) : this.setState({current: pathName});
   }
 
   handleLogout = () => {
@@ -73,7 +69,12 @@ class Admin extends Component {
              this.props.navigate(CONSTANS.LOGIN_MENU_KEY)
          }
      });
- }
+  }
+
+  clickedMenu = e => {
+    console.log(e.key)
+    this.setState({ current: e.key });
+  }
 
   render() {
     const logo = require(`../../assets/images/logo.png`);
@@ -104,11 +105,11 @@ class Admin extends Component {
               <img src={this.state.collapsed? logoadmin : logo} className={this.state.collapsed ? 'hidden-admin-logo' : 'logo-admin'} alt="EventIn logo" width="100"/>
             </div>
             <div className="menu-dashboard">
-              <Menu mode="inline" defaultSelectedKeys={['dashboard']}>
+              <Menu mode="inline" defaultSelectedKeys={['dashboard']} selectedKeys={[this.state.current]}>
                   <div className="title-dashboard">
                       <span className="title-desc-dashboard">REPORT</span>
                   </div>                              
-                  <Menu.Item key="dashboard"  >
+                  <Menu.Item key="dashboard-admin"  onClick={this.clickedMenu}>
                     <Link to="/admin/dashboard-admin">
                     
                       <FontAwesomeIcon
@@ -131,7 +132,7 @@ class Admin extends Component {
                   <div className="title-dashboard">
                       <span className="title-desc-dashboard">User</span>
                   </div>  
-                  <Menu.Item key="peserta"  >
+                  <Menu.Item key="admin-peserta"  onClick={this.clickedMenu}>
                     <Link to="/admin/admin-peserta">
                     
                       <FontAwesomeIcon
@@ -145,22 +146,21 @@ class Admin extends Component {
                   <SubMenu
                       key="sub1"
                       title={
-                      <span className={hidden}>
+                      <span>
                           <FontAwesomeIcon
                               icon={faUserFriends}
                               style={{marginRight: 10}}
-                              className={this.state.collapsed ? 'hidden-logo' : 'block-logo'}
                           />
-                          Panitia
+                          <span className={hidden}>Panitia</span>
                       </span>
                       }
                     >
-                      <Menu.Item key="list-panitia">
+                      <Menu.Item key="list-panitia" onClick={this.clickedMenu}>
                           <Link to="/admin/list-panitia">
                               <span>List Panitia</span>
                           </Link>
                       </Menu.Item>
-                      <Menu.Item key="approval-event">
+                      <Menu.Item key="approval-event" onClick={this.clickedMenu}>
                           <Link to="/admin/approval-event">
                               <span>Approval Event</span>
                           </Link>
@@ -175,18 +175,18 @@ class Admin extends Component {
                               style={{marginRight: 10}}
                               className={this.state.collapsed ? 'hidden-logo' : 'block-logo'}
                           />
-                          Penandatangan
+                          <span className={hidden}>Penandatangan</span>
                       </span>
                       }
                     >
-                      <Menu.Item key="list-penandatangan">
+                      <Menu.Item key="admin-penandatangan" onClick={this.clickedMenu}>
                           <Link to="/admin/admin-penandatangan">
-                              <span>List Penandatangan</span>
+                              <span>Daftar</span>
                           </Link>
                       </Menu.Item>
-                      <Menu.Item key="biodata-penandatangan">
+                      <Menu.Item key="biodata-penandatangan" onClick={this.clickedMenu}>
                           <Link to="/admin/biodata-penandatangan">
-                              <span>Request</span>
+                              <span>Biodata</span>
                           </Link>
                       </Menu.Item>
                   </SubMenu>
@@ -202,7 +202,7 @@ class Admin extends Component {
                   <div className="title-dashboard">
                       <span className="title-desc-dashboard">Certificate</span>
                   </div>  
-                  <Menu.Item key="waiting-list"  >
+                  <Menu.Item key="waiting-list"  onClick={this.clickedMenu}>
                     <Link to="/admin/waiting-list">
                     
                       <FontAwesomeIcon
@@ -213,7 +213,7 @@ class Admin extends Component {
                       <span className={hidden} >Waiting List</span>
                     </Link>
                   </Menu.Item>
-                  {/* <Menu.Item key="received"  >
+                  <Menu.Item key="received"  onClick={this.clickedMenu}>
                     <Link to="/admin/received">
                     
                       <FontAwesomeIcon
@@ -223,7 +223,7 @@ class Admin extends Component {
                       />
                       <span className={hidden} >Received</span>
                     </Link>
-                  </Menu.Item> */}
+                  </Menu.Item>
                   <div className="title-dashboard">
                       <hr style={{
                           minHeight: 1,
@@ -247,7 +247,7 @@ class Admin extends Component {
                       <span className={hidden} >Status</span>
                     </Link>
                   </Menu.Item> */}
-                  <Menu.Item key="kategori"  >
+                  <Menu.Item key="kategori-master" onClick={this.clickedMenu}>
                     <Link to="/admin/kategori-master">
                     
                       <FontAwesomeIcon
@@ -276,7 +276,6 @@ class Admin extends Component {
                           <Icon type="down" style={{marginLeft:"20px", color:"black", fontSize:"13px"}} />
                         </a>
                       </Dropdown>
-                    {/* <p>sa</p> */}
                   </div>
                 </Header>
                 <Route
@@ -354,11 +353,11 @@ class Admin extends Component {
                     exact
                     render={ (props) => <ReceivedPage {...props}/> }
                 />
-                {/* <Route
+                <Route
                     path='/admin/status-master'
                     exact
                     render={ (props) => <StatusMasterPage {...props}/> }
-                /> */}
+                />
                 <Route
                     path='/admin/kategori-master'
                     exact

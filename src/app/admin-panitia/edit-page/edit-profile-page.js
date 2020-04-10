@@ -252,10 +252,9 @@ class EditProfilePage extends Component {
             .then(res => {
                 console.log('res',res)
                 if(res.status == 200){
-                    message.success('Data Berhasil di Ubah');
                     this.props.navigate(CONSTANS.PROFILE_ADMIN_PANITIA_MENU_KEY)
                     window.location.reload();
-                   
+                    message.success('Data Berhasil di Ubah');
                 }else{
                     this.openNotification('Data Salah', 'Silahkan isi data dengan benar')
                 }

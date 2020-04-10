@@ -1,15 +1,11 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { Modal, Tag } from 'antd'
-import CONSTANS from '../../../common/utils/Constants'
+import { Tooltip, Tag,Modal } from 'antd'
 import { faInfoCircle } from '@fortawesome/free-solid-svg-icons'
 import { API } from '../../../common/api'
 import { navigate } from '../../../common/store/action'
 import ECertificateComponent from '../../../modules/admin-signer/e-certificate/e-certificate-component';
 import ButtonDashboard from '../../../common/component/button/button-dashboard';
-import 'moment-timezone';
-import 'moment/locale/id';
-import moment from 'moment-timezone';
 // import store
 import { setIdSertifikat } from '../../../modules/admin-panitia/e-certificate/store/e-certificate-action'
 
@@ -17,15 +13,26 @@ import { setIdSertifikat } from '../../../modules/admin-panitia/e-certificate/st
 class ECertificatePage extends Component {
     state = {  
         signed_e_certificate: [],
+        url: '',
         loading : false,
+        visible: false
     }
 
-    //button detail certificate
-    onDetailCertificate = (id) => {
-      console.log('id ini',id)
-      this.props.setIdSertifikat(id);
-      this.props.navigate(CONSTANS.DETAIL_SERTIF_SIGNER_MENU_KEY)
-    }
+   
+
+    handleOk = e => {
+      console.log(e);
+      this.setState({
+        visible: false,
+      });
+    };
+  
+    handleCancel = e => {
+      console.log(e);
+      this.setState({
+        visible: false,
+      });
+    };
 
     componentDidMount(){
         this.getCertificateAdmin();
@@ -41,8 +48,16 @@ class ECertificatePage extends Component {
         });
     }
 
-    render() { 
+     //button detail certificate
+     onDetailCertificate = (sertif_URL) => {
+      this.setState({
+        visible: true,
+        url : sertif_URL,
+      });
+      console.log(sertif_URL)
+    }
 
+    render() { 
         const columns = [
               {
                 title: 'No',
@@ -75,11 +90,6 @@ class ECertificatePage extends Component {
                 key: 'sertifikat',
             },
             {
-                title: 'Tenggang Waktu',
-                dataIndex: 'tenggang_waktu',
-                key: 'tenggang_waktu',
-            },
-            {
               title: 'Status',
               key: 'status',
               dataIndex: 'status',
@@ -103,14 +113,17 @@ class ECertificatePage extends Component {
               title: 'Action',
               key: 'action',
               render: (data) => (
-                [<ButtonDashboard
-                    text="Detail"
+                [
+                <Tooltip title="Detail">
+                <ButtonDashboard
                     height={20}
                     icon={faInfoCircle}
                     borderRadius="5px"
                     background="#FFA903"
-                    onClick = {() => this.onDetailCertificate(data.id_sertif)}
-                />]
+                    onClick = {() => this.onDetailCertificate(data.sertif_URL)}
+                />,
+                </Tooltip>
+                ]
               ),
             },
           ];
@@ -124,7 +137,7 @@ class ECertificatePage extends Component {
             organisasi : sertifikat.event.organisasi,
             sertifikat : sertifikat.sertifikat,
             status : [status.nama_status],
-            tenggang_waktu :moment(tenggang_waktu).format("DD MMMM YYYY"),
+            sertif_URL :sertifikat.sertif_URL
         }))
 
         return ( 
@@ -133,6 +146,8 @@ class ECertificatePage extends Component {
                 initialData = {this.state}
                 columns={columns}
                 data={data}
+                handleCancel= {this.handleCancel}
+                handleOk = {this.handleOk}
             />
         );
     }
