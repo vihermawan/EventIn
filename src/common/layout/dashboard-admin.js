@@ -4,7 +4,7 @@ import './style/dashboard-style.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { Layout, Menu, Icon, Avatar, Dropdown } from 'antd';
 /*Import Icon */
-import { faDesktop, faEnvelope, faUserTag, faUserTie, faUserFriends, faEnvelopeOpen, faBookOpen, faEyeDropper } from '@fortawesome/free-solid-svg-icons'
+import { faDesktop, faEnvelope, faUserTag, faUserTie, faUserFriends, faEnvelopeOpen, faBookOpen } from '@fortawesome/free-solid-svg-icons'
 import { API } from '../../common/api'
 import CONSTANS from '../utils/Constants'
 import ButtonAuth from '../component/button/button-auth'
@@ -25,7 +25,6 @@ import BiodataPenandatanganPage from '../../app/admin-superadmin/dashboard/bioda
 import DetailPesertaAdminPage from '../../app/admin-superadmin/detail-page/detail-peserta-page'
 import DetailPanitiaAdminPage from '../../app/admin-superadmin/detail-page/detail-panitia-page'
 import DetailPenandatanganAdminPage from '../../app/admin-superadmin/detail-page/detail-penandatangan-page'
-import DetailSertifikatAdminPage from '../../app/admin-superadmin/detail-page/detail-sertif-page'
 import DetailEventPage from '../../app/admin-superadmin/detail-page/detail-event-page'
 import EditPanitiaPage from '../../app/admin-superadmin/edit-page/edit-panitia-page'
 import EditPenandatanganPage from '../../app/admin-superadmin/edit-page/edit-penandatangan-page'
@@ -367,9 +366,9 @@ class Admin extends Component {
                     exact
                     render={ (props) => <KategoriMasterPage {...props}/> }
                 />
-                {/* <Route
+                <Route
                     render={ (props) => <ErrorPage/> }
-                /> */}
+                />
               </Layout>
         </Layout>
       </LoadingContainer>

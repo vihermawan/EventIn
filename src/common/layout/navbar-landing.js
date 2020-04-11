@@ -22,7 +22,6 @@ class Navbar extends Component {
 		isAuthenticated:'',
 	}
 
-	
 	componentDidMount(){
 		let pathArray = window.location.pathname.split('/');
 		let pathName = pathArray[1];
@@ -41,9 +40,7 @@ class Navbar extends Component {
 		// }
 		
 	}
-	
-
-	
+		
     //get data profile dari API.
     getProfile=()=>{
         this.setState({loading: true})
@@ -61,7 +58,6 @@ class Navbar extends Component {
 			});
 	}
 	
-
 	handleClick = e => {
 		this.setState({ current: e.key });
 	};
@@ -92,6 +88,14 @@ class Navbar extends Component {
 	handleProfile = () =>{
 		this.props.navigate(CONSTANS.PROFILE_MENU_KEY);
 	}
+	
+	handleListEvent = () => {
+		this.props.navigate(CONSTANS.LIST_EVENT_MENU_KEY);
+	}
+
+	handleDoneEvent = () => {
+
+	}
 
 	render() {
 		const logo = require(`../../assets/images/logo.png`);
@@ -106,7 +110,15 @@ class Navbar extends Component {
 					  onClick={this.handleProfile}
 				  />
 			  </Menu.Item>
-			  {/* <Menu.Divider /> */}
+			  <Menu.Item key="2">
+			  	<ButtonAuth
+					  text="History Event"
+					  className="auth-button-logout"
+					  style={{borderRadius: '10px',color:'black'}}
+					  block={true}
+					  onClick={this.handleListEvent}
+				  />
+			  </Menu.Item>
 			  <Menu.Item key="3">
 				  <ButtonAuth
 					  text="Keluar"

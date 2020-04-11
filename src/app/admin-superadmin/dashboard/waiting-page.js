@@ -93,7 +93,7 @@ class WaitingPage extends Component {
         API.post(`/admin/sendSertifikat/${id_sertifikat}`,params)
         .then(res => {
             console.log('res',res)
-            if(res.status == 200){
+            if(res.status === 200){
                 message.success('Berhasil mengirim sertifikat');
                 this.componentDidMount(); 
             }  

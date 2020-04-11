@@ -73,7 +73,7 @@ class WaitingListPage extends Component {
         API.post(`/penandatangan/sertifikat/assign/${id_sertifikat}`)
         .then(res => {
             console.log('res',res)
-            if(res.status == 200){
+            if(res.status === 200){
                 message.success('Sertifikat Berhasil ditandantangani');
                 window.location.reload(); 
             }   

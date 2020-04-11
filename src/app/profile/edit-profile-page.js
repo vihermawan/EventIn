@@ -34,6 +34,9 @@ class EditProfilePage extends Component {
         this.getProfile();
     }
 
+    onStartLoadingHome = () =>  this.setState({ loadingHome: true })
+    onFinishLoadingHome = () =>  this.setState({ loadingHome: false })
+
     //get data profile dari API
     getProfile=()=>{
         this.setState({loading: true})
@@ -114,7 +117,6 @@ class EditProfilePage extends Component {
             this.getBase64(event.target.files[0], imageUrl => {
                 this.setState({ picture: imageUrl,croppedImageUrl :imageUrl,foto_peserta:imageUrl,visible:true })
             })
-            // this.setState({ foto_peserta:event.target.files[0] })
         }
         
     }
@@ -316,6 +318,8 @@ class EditProfilePage extends Component {
                 showModal={this.showModal}
                 handleOk={this.handleOk}
                 handleCancel={this.handleCancel}
+                onStartLoadingHome={this.onStartLoadingHome}
+                onFinishLoadingHome={this.onFinishLoadingHome}
             />
         );
     }

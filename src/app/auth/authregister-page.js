@@ -82,7 +82,7 @@ class AuthRegister extends Component {
             API.post(`/auth/register/peserta`, params)
             .then(res => {
                 console.log('res',res)
-                if(res.status == 201){
+                if(res.status === 201){
                     this.props.navigate(CONSTANS.LOGIN_MENU_KEY)
                     this.successNotification('Sukses', 'Register Berhasil')
                 }else{

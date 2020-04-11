@@ -1,24 +1,21 @@
 import React, { Component } from 'react';
 import { Layout, BackTop, Row, Col,Icon, Tag } from 'antd';
-import { faUser, faInfoCircle } from '@fortawesome/free-solid-svg-icons'
+import {  faInfoCircle } from '@fortawesome/free-solid-svg-icons'
 import '../../../assets/css/profile.css'
 
 // component
 import Navbar from '../../../common/layout/navbar-landing'
 import Footer from '../../../common/layout/footer-landing'
-import TableProfile from '../../../common/component/table/table'
 import 'moment-timezone';
 import 'moment/locale/id';
 import moment from 'moment-timezone';
-import ButtonDashboard from '../../../common/component/button/button-dashboard';
+import ButtonEdit from '../../../common/component/button/button-edit';
 import LoadingContainer from '../../../common/component/loading/loading-container'
 const { Content } = Layout;
 
-
-
 class ProfileComponent extends Component {
     render() { 
-        const {columns,data,initialData,dataProfile,onEditPeserta,onStartLoadingHome,onFinishLoadingHome} =this.props;
+        const {initialData,dataProfile,onEditPeserta,onStartLoadingHome,onFinishLoadingHome} =this.props;
         return ( 
             <Layout className="landing-container" style={{minHeight: "100vh"}} >
                 <Navbar
@@ -28,7 +25,7 @@ class ProfileComponent extends Component {
                 />
                 <Content style={{ overflow: "hidden" }}>
                 <LoadingContainer loading={initialData.loadingHome}>
-                    {/* Section 1 */}
+                    <div style={{minHeight:"500px"}}>
                     {
                         dataProfile.map( data =>
                             <Row className="section-container">
@@ -36,7 +33,7 @@ class ProfileComponent extends Component {
                                     <Row>
                                         <Col span={24}>
                                         <div className="container-profile">
-                                        <img
+                                            <img
                                                 src={data.picture}
                                                 alt="Event 1"
                                                 style={{maxWidth: '100%', borderRadius: '10px'}}
@@ -54,7 +51,7 @@ class ProfileComponent extends Component {
                                             <p className="text-soft-grey email-user"> <Icon type="mail" style={{marginRight:'10px'}} />{data.email}</p>                                      
                                         </div>
                                         <div>
-                                            <ButtonDashboard
+                                            <ButtonEdit
                                                  text="Edit Profile"
                                                  height={20}
                                                  icon={faInfoCircle}
@@ -92,34 +89,7 @@ class ProfileComponent extends Component {
                                 </Col>
                             </Row>
                     )}
-                    {/* Section 2 */}
-                    <Row className="section-container profile">
-                        <Col lg={6} md={12} sm={12}>
-                          <div className="title-total-event">
-                              <span className="text-soft-blue title-medium bold"> Total ada</span>
-                          </div>
-                          <div className="total-event">
-                              <span className="text-soft-blue title-biggest bold"> {initialData.sizeEvent}</span>
-                          </div>
-                          <div className="desc-total-event">
-                              <span className="text-soft-blue title-small bold"> Event yang kamu ikuti</span>
-                          </div>
-                        </Col>
-                        <Col lg={18} md={12} sm={12}>
-                            <Col lg={24}>
-                                <div className="desc-table-event">
-                                  <span className="text-soft-blue title-medium bold"> Tabel Event</span>
-                                </div>
-                            </Col>
-                            <Row gutter={24} type="flex">
-                                <TableProfile 
-                                    columns={columns} 
-                                    dataSource={data} 
-                                    className="table-profile"
-                                />
-                            </Row>
-                        </Col>
-                    </Row>
+                    </div>
                     <BackTop />
                     </LoadingContainer>
                 </Content>
