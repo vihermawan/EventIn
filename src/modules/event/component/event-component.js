@@ -20,7 +20,7 @@ const { TabPane } = Tabs;
 
 class EventComponent extends Component {
     render() { 
-        const {cardData,initialData,onDetailEvent,kategori, onTabChange,cardDataEventKategori,onStartLoadingHome ,onFinishLoadingHome, onEventKategori,onSeacrhEvent,cardDataEventSeacrh} = this.props
+        const {cardData,initialData,onDetailEvent,kategori, onTabChange,cardDataEventKategori,onStartLoadingHome ,onFinishLoadingHome, onEventKategori,onSeacrhEvent,cardDataEventSeacrh,cardDataEvenyWeek} = this.props
         const image1 = require(`../../../assets/images/event-image1.png`);  
         return ( 
             <Layout className="landing-container">
@@ -83,6 +83,7 @@ class EventComponent extends Component {
                         </Row>
                         <div style={initialData.size_event_seacrh > 0 ? {display:"none"}:{display:"block"}}>
                             <Row className="section-container" style={{marginBottom: 50}}>
+                            {/* Populer Event */}
                                 <Col lg={24}>
                                     <span style={{marginLeft:'2%'}} className="text-soft-blue title-big-event bold">Populer</span>
                                 </Col>
@@ -144,7 +145,8 @@ class EventComponent extends Component {
                                         {
                                         kategori.map( data =>
                                         <TabPane tab={data.kategori} key={data.id_kategori}>
-                                                <LoadingContainer loading={initialData.loading}>
+                                        {/* Kategori Event */}
+                                            <LoadingContainer loading={initialData.loading}>
                                                 <Col lg={24} style={{minHeight: "300px"}}>
                                                     <Row gutter={[16,16]}>
                                                         {
@@ -182,13 +184,13 @@ class EventComponent extends Component {
                                                         }
                                                     </Row>
                                                     <Row>
-                                                        <Col span={24} >
-                                                            <div className="tombol-tengah button-section-1-container" style={initialData.countEvent < 1 ? {display:"none"}:{display:"block"}}>
-                                                                    <ButtonDashboard
-                                                                        text="Semua Event"
-                                                                        className='button-participate'
-                                                                        onClick={() => onEventKategori(data.id_kategori)}
-                                                                    />
+                                                        <Col span={24}>
+                                                            <div className="tombol-tengah button-section-1-container" style={initialData.countEvent < 1 && initialData.loading == true ? {display:"none"}:{display:"block"}}>
+                                                                <ButtonDashboard
+                                                                    text="Semua Event"
+                                                                    className='button-participate'
+                                                                    onClick={() => onEventKategori(data.id_kategori)}
+                                                                />
                                                             </div>
                                                         </Col>
                                                     </Row>
@@ -204,10 +206,12 @@ class EventComponent extends Component {
                                     <span style={{marginLeft:'2%'}} className="text-soft-blue title-big-event bold">Minggu ini</span>
                                 </Col>
                                 <Col lg={24} className="card-container" >
-                                    <Col lg={24} >
+                                <LoadingContainer loading={initialData.loadingWeek}>
+                                    {/*Event Minggu Ini */}
+                                    <Col lg={24} style={{minHeight: "300px"}}>
                                             <Row gutter={[16,16]} style={{marginLeft:'2%', marginRight:'2%'}} type="flex">
                                                 {
-                                                    cardData.map( data =>
+                                                    cardDataEvenyWeek.map( data =>
                                                         <Col lg={6} md={12} sm={12} xs={24} className="mt-30">
                                                             <Card
                                                                 hoverable
@@ -220,7 +224,7 @@ class EventComponent extends Component {
                                                             >
                                                                 <Row>
                                                                     <Col lg={12} md={12} sm={24} xs={12}>
-                                                                        <div className="text-black semi-bold">{data.date}</div>
+                                                                        <div className="text-black semi-bold"><Moment format="DD MMMM YYYY">{data.date}</Moment></div>
                                                                     </Col>
                                                                     <Col lg={12} md={12} sm={24} xs={12}>
                                                                         <span className="text-white background-soft-blue semi-bold event-card-badge">
@@ -228,7 +232,7 @@ class EventComponent extends Component {
                                                                         </span>
                                                                     </Col>
                                                                     <Col lg={24} className="mt-10">
-                                                                        <Link to='/detail'><h2 className="text-soft-blue semi-bold">{data.title}</h2></Link>
+                                                                        <Link to='/detail'><h2 className="text-soft-blue semi-bold"><EllipsisText text={data.title} length={"20"} tooltip={data.title}/></h2></Link>
                                                                     </Col>
                                                                     <Col lg={24}>
                                                                         {data.place}
@@ -240,11 +244,12 @@ class EventComponent extends Component {
                                                 }
                                             </Row>
                                         </Col>
+                                </LoadingContainer>
                                 </Col>
                             </Row>
                             <Row>
                                 <Col span={24} >
-                                    <div className="tombol-tengah button-section-1-container" style={initialData.countEvent < 17 ? {display:"none"}:{display:"block"}}>
+                                    <div className="tombol-tengah button-section-1-container" style={initialData.countEvent < 12 ? {display:"none"}:{display:"block"}}>
                                         <Link to="/allevent">
                                             <ButtonRounded
                                                 text="Semua Event"
@@ -256,6 +261,7 @@ class EventComponent extends Component {
                             </Row>
                         </div>
                         <div style={initialData.size_event_seacrh > 0 ? {display:"block"}:{display:"none"}}>
+                            {/* Pencarian Event */}
                             <Row className="section-container" style={{marginBottom: 50}}>
                                 <Col lg={24}>
                                     <span style={{marginLeft:'2%'}} className="text-soft-blue title-big-event bold">Hasil Pencarian</span>

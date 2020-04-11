@@ -242,7 +242,7 @@ class EditProfilePage extends Component {
         const params = new FormData()
         params.append('profile_picture',this.state.profile_picture)
         params.append("_method", 'PUT')
-        params.append('file_p12',this.state.file_p12)
+        // params.append('file_p12',this.state.file_p12)
         params.set('nama_penandatangan',this.state.nama_penandatangan)
         params.set('email',this.state.email)
         params.set('jabatan',this.state.jabatan)
