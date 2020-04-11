@@ -6,11 +6,10 @@ import { navigate } from '../../../common/store/action'
 import CONSTANS from '../../../common/utils/Constants'
 //component
 import PenandatanganAdminComponent from '../../../modules/admin-superadmin/user/penandatangan/penandatangan-component';
-import { faUsers, faTrash, faPen, faInfoCircle } from '@fortawesome/free-solid-svg-icons'
+import { faTrash, faInfoCircle } from '@fortawesome/free-solid-svg-icons'
 import ButtonDashboard from '../../../common/component/button/button-dashboard';
 
 //import store
-import { setIdPenandatangan } from '../../../modules/admin-superadmin/user/penandatangan/store/penandatangan-action'
 import { setIdUsers } from '../../../modules/admin-superadmin/user/store/users-action'
 
 const {confirm} = Modal;

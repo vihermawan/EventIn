@@ -25,13 +25,15 @@ class EditProfilePesertaComponent extends Component {
       const {initialData,handleChange,handleSubmit,
             uploadGambar,handleJenisKelamin,handleButtonEdit,
             handleButtonGambar,onChangeBirthDate,
-            onImageLoaded,onCropComplete,onCropChange,handleOk,handleCancel
-    } = this.props  
+            onImageLoaded,onCropComplete,onCropChange,handleOk,handleCancel,onStartLoadingHome,onFinishLoadingHome
+      } = this.props  
       const dateFormat = 'YYYY-MM-DD';
       return ( 
         <Layout className="landing-container" style={{minHeight: "100vh"}} >
             <Navbar
                 navigate={this.props.navigate}
+                onStartLoadingHome={onStartLoadingHome}
+                onFinishLoadingHome={onFinishLoadingHome}
             />
             <Content style={{ overflow: "hidden" }}>
              <LoadingContainer loading={initialData.loading}>

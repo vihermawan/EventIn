@@ -18,6 +18,7 @@ import LoginComponent from '../../app/auth/authlogin-page'
 import RegisterPesertaComponent from '../../app/auth/authregister-page'
 import RegisterPanitiaComponent from '../../app/auth/authregisterpanitia-page'
 import AboutPage from '../../app/about/about-page'
+import SwitchPage from '../../app/list-event/switch-event-page'
 import DashboardAdminPage from '../../common/layout/dashboard-admin'
 import DashboardPenandatanganPage from '../../common/layout/dashboard-penandatangan'
 
@@ -35,6 +36,7 @@ const routeSources = [
     { component: RegisterPanitiaComponent, path: `${baseUrl}/register-panitia`, exact: true },
     { component: ProfilePage, path: `${baseUrl}/profile`, exact: true ,private: true},
     { component: EditProfilePage, path: `${baseUrl}/edit-profile`, exact: true ,private: true},
+    { component: SwitchPage, path: `${baseUrl}/list-event`, exact: true ,private: true},
     { component: AboutPage, path: `${baseUrl}/about`, exact: false,private: true ,private: true},
     { component: DashboardPanitiaPage, path: `${baseUrl}/dashboard`, exact: false ,private: true},
     { component: DashboardPenandatanganPage, path: `${baseUrl}/signer`, exact: false ,private: true},

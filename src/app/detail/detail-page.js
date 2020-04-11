@@ -5,8 +5,6 @@ import { connect } from 'react-redux';
 import { navigate } from '../../common/store/action'
 import DetailComponent from '../../modules/detail/component/detail-component';
 
-const { confirm } = Modal;
-
 class DetailPage extends Component {
     state = { 
         Event: [],
@@ -62,14 +60,14 @@ class DetailPage extends Component {
         API.post(`/peserta/pesertaevent`,params)
         .then(res => {
             console.log('res',res)
-            if(res.status == 201){
+            if(res.status === 201){
                 this.setState({
                     visible:false,
                     loading : true,
                 })
                 message.success('This is a success message');
                 this.componentDidMount(); 
-            }else if(res.data.status == "Register"){
+            }else if(res.data.status === "Register"){
                 this.setState({visible:false})
                 this.openNotification('Anda Telah Terdaftar', res.data.messages)
             }   

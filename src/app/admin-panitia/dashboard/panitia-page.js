@@ -93,9 +93,9 @@ class PanitiaPage extends Component {
                 instagram : res.data.data.user.panitia.instagram,
                 loading: false,
             })
-            if(res.data.data.user.panitia.no_telepon == 'Silahkan isi'){
+            if(res.data.data.user.panitia.no_telepon === 'Silahkan isi'){
                 this.openNotification('Silahkan lengkapi biodata', 'Agar bisa membuat event!')
-            }else if(res.data.data.user.panitia.instagram == 'Silahkan isi'){
+            }else if(res.data.data.user.panitia.instagram === 'Silahkan isi'){
                 this.openNotification('Silahkan lengkapi biodata', 'Agar bisa membuat event!')
             }
         });
