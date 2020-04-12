@@ -2,13 +2,15 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { navigate } from '../../common/store/action'
 import { API } from '../../common/api'
-import { Divider, Tooltip } from 'antd';
-import { faInfoCircle, faUserCheck } from '@fortawesome/free-solid-svg-icons';
+import { Divider, Tooltip, Modal, message, } from 'antd';
+import { faInfoCircle, faTrash } from '@fortawesome/free-solid-svg-icons';
 import RegisterEventComponent from '../../modules/list-event/component/register-event-component';
 import ButtonDashboard from '../../common/component/button/button-dashboard';
 import 'moment-timezone';
 import 'moment/locale/id';
 import moment from 'moment-timezone';
+
+const { confirm } = Modal;
 
 class RegisterEventPage extends Component {
     state = {
@@ -30,6 +32,33 @@ class RegisterEventPage extends Component {
                 registerEvent:res.data.data.event,
                 loadingHome: false,
             })
+        });
+    }
+
+    showDeleteConfirm = (id_event) => {
+        confirm({
+            title: 'Apakah Yakin untuk batal mendaftar ?',
+            okText: 'Yes',
+            okType: 'danger',
+            cancelText: 'No',
+            onOk: () => {
+                this.onCancelRegister(id_event)
+            },
+            onCancel(){
+                console.log('Cancel')
+            }
+        });
+    }
+
+    onCancelRegister = (id_event) => {
+        this.setState({loadingHome: true})
+        API.delete(`/peserta/profile/event/${id_event}/delete`)
+        .then(res => {
+            console.log('res',res)
+            if(res.status == 200){
+                message.success('Berhasil membatalkan pendaftaran');
+                this.componentDidMount();
+            } 
         });
     }
 
@@ -77,10 +106,10 @@ class RegisterEventPage extends Component {
                 <Tooltip title="Cancel Register">
                 <ButtonDashboard
                     height={20}
-                    icon={faUserCheck}
+                    icon={faTrash}
                     borderRadius="5px"
-                    background="#4D5AF2"
-                    onClick={ () => this.onAbsentParticipant(data.nomor)}
+                    background="#FF0303"
+                    onClick={ () => this.showDeleteConfirm(data.id_event)}
                 />,
                 </Tooltip>,
                 <Divider type="vertical" />,

@@ -33,6 +33,10 @@ class DoneEventPage extends Component {
         });
     }
 
+    downloadSertifikat = () => {
+        
+    }
+
     render() {  
 
         const columns = [
@@ -112,6 +116,7 @@ class DoneEventPage extends Component {
             nama_panitia : event.panitia.nama_panitia,
             organisasi : event.organisasi,
             sertifikat : event.sertifikat.sertifikat,
+            link_sertifikat : event.sertifikat.sertif_URL,
             start_event :  moment(event.detail_event.start_event).format("DD MMMM YYYY"),
             end_event : moment(event.detail_event.end_event).format("DD MMMM YYYY"),
         }))
