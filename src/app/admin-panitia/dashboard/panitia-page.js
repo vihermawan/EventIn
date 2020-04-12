@@ -44,6 +44,10 @@ class PanitiaPage extends Component {
 
     reportChart = (data_event_ac) => {
         let chart = am4core.create("chartdiv", am4charts.XYChart);
+        chart.scrollbarX = new am4core.Scrollbar();
+        // chart.scrollbarY = new am4core.Scrollbar(); 
+        chart.legend = new am4charts.Legend();
+        // chart.cursor = new am4charts.XYCursor();
         
         let data_event = [];
         console.log(data_event_ac)
@@ -71,16 +75,8 @@ class PanitiaPage extends Component {
         series.dataFields.valueY = "diterima";
         series.dataFields.categoryX = "nama_event";
         series.name = "Peserta";
-        series.columns.template.tooltipText = "Daftar: {name}\nEvent: {categoryX}\nValue: {valueY}";
+        series.columns.template.tooltipText = "Event: {categoryX}\nTotal: {valueY}";
         series.columns.template.fill = am4core.color("#104547"); // fill
-
-        // let series2 = chart.series.push(new am4charts.ColumnSeries());
-        // series2.name = "Units";
-        // series2.dataFields.valueY = "litres";
-        // series2.dataFields.categoryX = "nama_event";
-        // series2.dataFields.valueY = "units";
-        // series2.dataFields.categoryX = "nama_event";
-        // series2.columns.template.tooltipText = "Series: {name}\nCategory: {categoryX}\nValue: {valueY}";
     }
 
     getProfile=()=>{
