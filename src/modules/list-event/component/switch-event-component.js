@@ -36,7 +36,7 @@ class SwitchEventComponent extends Component {
                                     </Row>
                                     <Row className="table-list-event">
                                     <Col lg={24} md={24} sm={24}> 
-                                        <div className="card-container">
+                                        <div className="card-container-list">
                                             <Tabs defaultActiveKey="1" type="card">
                                                 <TabPane
                                                     tab={ 

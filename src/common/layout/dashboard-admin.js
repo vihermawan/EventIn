@@ -172,7 +172,7 @@ class Admin extends Component {
                   <SubMenu
                       key="sub2"
                       title={
-                      <span className={hidden}>
+                      <span>
                           <FontAwesomeIcon
                               icon={faUserTie}
                               style={{marginRight: 10}}
