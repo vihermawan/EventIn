@@ -30,9 +30,7 @@ class AdminPage extends Component {
     reportChart = (data_event_ac) => {
         let chart = am4core.create("chartdiv", am4charts.XYChart);
         chart.scrollbarX = new am4core.Scrollbar();
-        // chart.scrollbarY = new am4core.Scrollbar(); 
         chart.legend = new am4charts.Legend();
-        // chart.cursor = new am4charts.XYCursor();
         let data_event = [];
         console.log(data_event_ac)
        
