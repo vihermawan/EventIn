@@ -74,11 +74,15 @@ getProfile=()=>{
     let username_panitia = localStorage.getItem("username");
     let profile_panitia = localStorage.getItem("profile_picture");
     this.setState({username : username_panitia, profile_picture : profile_panitia })
-    // window.onunload = () => {
-    //   // Clear the local storage
-    //   localStorage.clear();
-    // }
+    let token = localStorage.getItem("token");
+    if (token != null){
+			this.setTimeOut();
+		}
   }
+
+  setTimeOut = () => {
+		setTimeout(function(){localStorage.clear();}, 1000 * 60 * 60 * 24);
+	}
   
   handleLogout = e => {
      this.setState({loading: true})

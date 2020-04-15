@@ -38,11 +38,15 @@ class signer extends Component {
     let profile_picture = localStorage.getItem("profile_picture");
     this.setState({username : username_penandatangan, profile_picture : profile_picture })
     this.getProfile();
-    window.onunload = () => {
-      // Clear the local storage
-      localStorage.clear();
-   }
+    let token = localStorage.getItem("token");
+    if (token != null){
+			this.setTimeOut();
+		}
   }
+
+  setTimeOut = () => {
+		setTimeout(function(){localStorage.clear();}, 1000 * 60 * 60 * 24);
+	}
 
   //get data profile dari API
   getProfile=()=>{

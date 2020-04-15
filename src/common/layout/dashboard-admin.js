@@ -53,11 +53,15 @@ class Admin extends Component {
     let pathArray = window.location.pathname.split('/');
     let pathName = pathArray[2];
     pathName === '' ? this.setState({current: '/admin'}) : this.setState({current: pathName});
-  //   window.onunload = () => {
-  //     // Clear the local storage
-  //     localStorage.clear();
-  //  }
+    let token = localStorage.getItem("token");
+    if (token != null){
+			this.setTimeOut();
+		}
   }
+
+  setTimeOut = () => {
+		setTimeout(function(){localStorage.clear();}, 1000 * 60 * 60 * 24);
+	}
 
   handleLogout = () => {
     this.setState({loading: true})

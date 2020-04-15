@@ -33,12 +33,18 @@ class Navbar extends Component {
 		if (token != null){
 			this.setState({username : username_peserta, profile_picture : profile_picture, isLogin: true })
 			this.getProfile();
+			this.setTimeOut();
 		}
+		
 		// window.onunload = () => {
 		// 	// Clear the local storage
 		// 	localStorage.clear();
 		// }
 		
+	}
+
+	setTimeOut = () => {
+		setTimeout(function(){localStorage.clear();}, 1000 * 60 * 60 * 24);
 	}
 		
     //get data profile dari API.
