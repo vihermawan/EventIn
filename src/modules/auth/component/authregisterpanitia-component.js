@@ -73,7 +73,7 @@ class RegisterComponent extends Component{
                                                     className="input-auth mt-5 mb-20"
                                                     iconType="user"
                                                 />
-                                                <span className="auth-input-label text-white">Password</span>
+                                                <span className="auth-input-label text-white">Kata Sandi</span>
                                                 <InputAuth
                                                     name='password'
                                                     placeholder="Masukan Password Anda"

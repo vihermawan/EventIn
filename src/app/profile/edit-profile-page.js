@@ -18,6 +18,7 @@ class EditProfilePage extends Component {
         pekerjaan : '',
         picture : '',
         foto_peserta : '',
+        organisasi :'',
         umur : '',
         button_edit : 'Edit Foto Profil',
         crop: {
@@ -46,6 +47,7 @@ class EditProfilePage extends Component {
                 pekerjaan : res.data.data.user.peserta.pekerjaan,
                 tanggal_lahir:res.data.data.user.peserta.tanggal_lahir,
                 umur:res.data.data.user.peserta.umur,
+                organisasi :res.data.data.user.peserta.organisasi,
                 no_telepon : res.data.data.user.peserta.no_telefon,
                 jenis_kelamin : res.data.data.user.peserta.jenis_kelamin,
                 picture:res.data.data.user.peserta.image_URL,
@@ -209,23 +211,6 @@ class EditProfilePage extends Component {
                 this.dataURLtoFile(reader.result, 'cropped.jpg')
             }
         })
-    
-        // return new Promise((resolve, reject) => {
-        //   canvas.toBlob(blob => {
-        //     if (!blob) {
-        //       //reject(new Error('Canvas is empty'));
-        //       console.error('Canvas is empty');
-        //       return;
-        //     }
-        //     blob.name = fileName;
-        //     window.URL.revokeObjectURL(this.fileUrl);
-        //     this.fileUrl = window.URL.createObjectURL(blob);
-        //     resolve(this.fileUrl);
-        //     this.setState({croppedImageUrl: this.fileUrl})
-        //     console.log('file',this.state.croppedImageUrl)
-           
-        //   }, 'image/jpeg');
-        // });
     }
 
     dataURLtoFile = (dataurl, filename) => {
@@ -266,8 +251,8 @@ class EditProfilePage extends Component {
     };
 
     handleJenisKelamin = (value) => {
-        this.setState({ jenis_kelamin: value.key })
-        console.log('jenis_kelamin', value.key);
+        this.setState({ jenis_kelamin: value })
+        console.log('jenis_kelamin', value);
     }
 
     onChangeBirthDate = (date, dateString) => {
@@ -292,10 +277,13 @@ class EditProfilePage extends Component {
         params.append("_method", 'PUT')
         params.set('nama_peserta',this.state.nama_peserta)
         params.set('email',this.state.email)
+        params.set('umur',this.state.umur)
+        params.set('pekerjaan',this.state.pekerjaan)
+        params.set('tanggal_lahir',this.state.tanggal_lahir)
         params.set('jenis_kelamin',this.state.jenis_kelamin)
         params.set('organisasi',this.state.organisasi)
         params.set('instagram',this.state.instagram)
-        params.set('no_telepon',this.state.no_telepon)
+        params.set('no_telefon',this.state.no_telepon)
         this.setState({loading: true})
         API.postEdit(`/peserta/profile/edit/${id_peserta}`, params)
             .then(res => {

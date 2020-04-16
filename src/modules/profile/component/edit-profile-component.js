@@ -78,13 +78,12 @@ class EditProfilePesertaComponent extends Component {
                                     </div>
                                     <div className="select-value">
                                         <Select
-                                            labelInValue 
-                                            defaultValue = {{ key: String(initialData.jenis_kelamin) }}
+                                        
+                                            value = { String(initialData.jenis_kelamin) }
                                             style={{ width: '100%' }}
                                             className="select-kategori "
                                             onChange={handleJenisKelamin}
                                         >   
-                                            <Option value = '' >Pilih Jenis Kelamin</Option>
                                             <Option value = 'Laki-Laki'>Laki-Laki</Option>
                                             <Option value = 'Perempuan'>Perempuan</Option>
                                         </Select>,
@@ -105,7 +104,7 @@ class EditProfilePesertaComponent extends Component {
                                                         style={{ width: '100%' }}
                                                         placeholder="Pilih tanggal" 
                                                         onChange={onChangeBirthDate} 
-                                                        defaultValue={moment(String(initialData.tanggal_lahir), dateFormat)}
+                                                        value={moment(String(initialData.tanggal_lahir), dateFormat)}
                                                     />
                                                 </Col>
                                             </Row>
