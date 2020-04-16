@@ -48,7 +48,7 @@ class LoginComponent extends Component{
                                     <div className="auth-form-container">
                                         <div className="text-white text-align-center title-more-small mb-50 mt-60">
                                             <p className="title-medium semi-bold m-0">Selamat Datang!</p>
-                                            <p className="form-description">Sign in ke dalam akun anda</p>
+                                            <p className="form-description">Masuk ke akun anda</p>
                                         </div>
                                         <span className="auth-input-label text-white">Email</span>
                                         <InputAuth
@@ -58,7 +58,7 @@ class LoginComponent extends Component{
                                             value={initialData.email}
                                             className="input-auth mt-5 mb-20"
                                         />
-                                        <span className="auth-input-label text-white">Password</span>
+                                        <span className="auth-input-label text-white">Kata Sandi</span>
                                         <InputAuth
                                             name='password'
                                             placeholder="Masukkan Password Anda"
@@ -67,9 +67,8 @@ class LoginComponent extends Component{
                                             className="input-auth mt-5"
                                             iconType="lock"
                                             type="password"
-                                            onBlur = {handleConfirmBlur}
-                                        />
-                                         <p className="auth-reminder-label mt-10 text-white">Forgot Password?</p>
+                                           />
+                                         <p className="auth-reminder-label mt-10 text-white">Lupa Kata Sandi?</p>
                                         <div>
                                             <ButtonAuth
                                                 text="Login"

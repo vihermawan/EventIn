@@ -1,4 +1,5 @@
-import React, { Component } from 'react';
+      
+      import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { API } from '../../../common/api'
 import { navigate } from '../../../common/store/action'

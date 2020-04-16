@@ -50,6 +50,7 @@ class EditProfilePage extends Component {
                 pekerjaan : res.data.data.user.peserta.pekerjaan,
                 tanggal_lahir:res.data.data.user.peserta.tanggal_lahir,
                 umur:res.data.data.user.peserta.umur,
+                organisasi :res.data.data.user.peserta.organisasi,
                 no_telepon : res.data.data.user.peserta.no_telefon,
                 jenis_kelamin : res.data.data.user.peserta.jenis_kelamin,
                 organisasi : res.data.data.user.peserta.organisasi,
@@ -279,6 +280,9 @@ class EditProfilePage extends Component {
         params.append("_method", 'PUT')
         params.set('nama_peserta',this.state.nama_peserta)
         params.set('email',this.state.email)
+        params.set('umur',this.state.umur)
+        params.set('pekerjaan',this.state.pekerjaan)
+        params.set('tanggal_lahir',this.state.tanggal_lahir)
         params.set('jenis_kelamin',this.state.jenis_kelamin)
         params.set('organisasi',this.state.organisasi)
         params.set('instagram',this.state.instagram)
