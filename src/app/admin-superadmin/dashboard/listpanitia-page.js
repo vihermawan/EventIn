@@ -6,7 +6,7 @@ import { navigate } from '../../../common/store/action'
 import CONSTANS from '../../../common/utils/Constants'
 import ListPanitiaAdminComponent from '../../../modules/admin-superadmin/user/panitia/listpanitia-component';
 //component
-import { faTrash, faPen } from '@fortawesome/free-solid-svg-icons'
+import { faTrash } from '@fortawesome/free-solid-svg-icons'
 import { faInfoCircle } from '@fortawesome/free-solid-svg-icons'
 import ButtonDashboard from '../../../common/component/button/button-dashboard';
 

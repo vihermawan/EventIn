@@ -4,7 +4,7 @@ import './style/dashboard-style.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { Layout, Menu, Icon, Avatar, Dropdown } from 'antd';
 /*Import Icon */
-import { faDesktop, faEnvelope, faUserTag, faUserTie, faUserFriends, faEnvelopeOpen, faBookOpen, faEyeDropper } from '@fortawesome/free-solid-svg-icons'
+import { faDesktop, faEnvelope, faUserTag, faUserTie, faUserFriends, faEnvelopeOpen, faBookOpen } from '@fortawesome/free-solid-svg-icons'
 import { API } from '../../common/api'
 import CONSTANS from '../utils/Constants'
 import ButtonAuth from '../component/button/button-auth'
@@ -25,7 +25,6 @@ import BiodataPenandatanganPage from '../../app/admin-superadmin/dashboard/bioda
 import DetailPesertaAdminPage from '../../app/admin-superadmin/detail-page/detail-peserta-page'
 import DetailPanitiaAdminPage from '../../app/admin-superadmin/detail-page/detail-panitia-page'
 import DetailPenandatanganAdminPage from '../../app/admin-superadmin/detail-page/detail-penandatangan-page'
-import DetailSertifikatAdminPage from '../../app/admin-superadmin/detail-page/detail-sertif-page'
 import DetailEventPage from '../../app/admin-superadmin/detail-page/detail-event-page'
 import EditPanitiaPage from '../../app/admin-superadmin/edit-page/edit-panitia-page'
 import EditPenandatanganPage from '../../app/admin-superadmin/edit-page/edit-penandatangan-page'
@@ -54,11 +53,15 @@ class Admin extends Component {
     let pathArray = window.location.pathname.split('/');
     let pathName = pathArray[2];
     pathName === '' ? this.setState({current: '/admin'}) : this.setState({current: pathName});
-    window.onunload = () => {
-      // Clear the local storage
-      localStorage.clear();
-   }
+    let token = localStorage.getItem("token");
+    if (token != null){
+			this.setTimeOut();
+		}
   }
+
+  setTimeOut = () => {
+		setTimeout(function(){localStorage.clear();}, 1000 * 60 * 60 * 24);
+	}
 
   handleLogout = () => {
     this.setState({loading: true})
@@ -173,7 +176,7 @@ class Admin extends Component {
                   <SubMenu
                       key="sub2"
                       title={
-                      <span className={hidden}>
+                      <span>
                           <FontAwesomeIcon
                               icon={faUserTie}
                               style={{marginRight: 10}}
@@ -368,7 +371,8 @@ class Admin extends Component {
                     render={ (props) => <KategoriMasterPage {...props}/> }
                 />
                 {/* <Route
-                    render={ (props) => <ErrorPage/> }
+                     exact 
+                     render={ (props) => <ErrorPage {...props}/> }
                 /> */}
               </Layout>
         </Layout>

@@ -82,6 +82,7 @@ class AuthLogin extends Component {
                         localStorage.setItem('token', res.data.token)
                         localStorage.setItem('username', res.data.nama)
                         localStorage.setItem('profile_picture', res.data.profile_picture)
+                        localStorage.setItem('id_role', res.data.id_role)
                         this.props.navigate(CONSTANS.ADMIN_MENU_KEY)
                         this.successNotification('Sukses', 'Berhasil Login')
                        
@@ -90,6 +91,7 @@ class AuthLogin extends Component {
                         localStorage.setItem('token', res.data.token)
                         localStorage.setItem('username', res.data.nama)
                         localStorage.setItem('profile_picture', res.data.profile_picture)
+                        localStorage.setItem('id_role', res.data.id_role)
                         this.props.navigate(CONSTANS.HOME_MENU_KEY)
                         this.successNotification('Sukses', 'Berhasil Login')
                         
@@ -98,6 +100,7 @@ class AuthLogin extends Component {
                         localStorage.setItem('token', res.data.token)
                         localStorage.setItem('username', res.data.nama)
                         localStorage.setItem('profile_picture', res.data.profile_picture)
+                        localStorage.setItem('id_role', res.data.id_role)
                         this.props.navigate(CONSTANS.SIGNER_MENU_KEY)
                         this.successNotification('Sukses', 'Berhasil Login')
                     }
