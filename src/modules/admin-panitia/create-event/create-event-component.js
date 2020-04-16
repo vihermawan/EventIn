@@ -9,7 +9,6 @@ import BasicInfoPage from '../../../app/admin-panitia/component-create-event/bas
 import BiayaPage from '../../../app/admin-panitia/component-create-event/biaya-page'
 import VenuePage from '../../../app/admin-panitia/component-create-event/venue-page'
 import DateTimePage from '../../../app/admin-panitia/component-create-event/date-time-page'
-import VisualPage from '../../../app/admin-panitia/component-create-event/visual-page'
 import CertificatePage from '../../../app/admin-panitia/component-create-event/certificate-page'
 // constant content
 const { Content } = Layout;
@@ -20,7 +19,7 @@ class CreateEventComponent extends Component {
     constructor(props) {
         super(props);
         this.state = {
-          current: 0,
+          current: 4,
         };
       }
     
@@ -74,15 +73,6 @@ class CreateEventComponent extends Component {
                     /> 
                 ,
             },
-            // {
-            //     title: 'Visual',
-            //     content: 
-            //         <VisualPage
-            //             next={this.next}
-            //             prev={this.prev}
-            //         />
-            //     ,
-            // },
             {
                 title: 'Sertifikat dan Poster',
                 content: 

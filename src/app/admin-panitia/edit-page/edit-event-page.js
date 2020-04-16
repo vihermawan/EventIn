@@ -70,7 +70,7 @@ class EditEventPage extends Component {
                     open_registration : res.data.data.event.detail_event.open_registration,
                     end_registration : res.data.data.event.detail_event.end_registration,
                     venue : res.data.data.event.detail_event.venue,
-                    location : res.data.data.event.detail_event.lokasi,
+                    lokasi : res.data.data.event.detail_event.lokasi,
                     picture_event : res.data.data.event.detail_event.picture,
                     croppedImageUrl: res.data.data.event.detail_event.image_URL,
                     loading: false,
@@ -354,15 +354,13 @@ class EditEventPage extends Component {
         params.append('picture',this.state.picture_event)
         params.append("_method", 'PUT')
 
-
+        this.setState({loading: true})
         API.postEdit(`/panitia/editevent/${id_panitia}`, params)
         .then(res => {
             console.log('res',res)
             if(res.status == 200){
                 message.success('Data Berhasil di Ubah');
-                // this.props.navigate(CONSTANS.PROFILE_ADMIN_PANITIA_MENU_KEY)
-                // window.location.reload();
-                
+                this.props.navigate(CONSTANS. ACTIVE_EVENT_MENU_KEY)                
             }else{
                 this.openNotification('Data Salah', 'Silahkan isi data dengan benar')
             }
@@ -371,7 +369,6 @@ class EditEventPage extends Component {
 
     }
     
-
     render() { 
         return ( 
             <EditEventComponent

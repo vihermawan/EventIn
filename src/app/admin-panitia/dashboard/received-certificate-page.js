@@ -1,22 +1,21 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { Tag } from 'antd';
+import { Tag, Divider, Tooltip, } from 'antd';
 import { faInfoCircle ,faDownload} from '@fortawesome/free-solid-svg-icons'
 import CONSTANS from '../../../common/utils/Constants'
 import { API } from '../../../common/api'
 import { navigate } from '../../../common/store/action'
-import ECertificateComponent from '../../../modules/admin-panitia/e-certificate/e-certificate-component';
+import ReceivedCertificateComponent from '../../../modules/admin-panitia/e-certificate/received-certificate-component';
 import ButtonDashboard from '../../../common/component/button/button-dashboard';
-import 'moment-timezone';
-import 'moment/locale/id';
-import moment from 'moment-timezone';
 // import store
 import { setIdSertifikat } from '../../../modules/admin-panitia/e-certificate/store/e-certificate-action'
 
-class ECertificatePage extends Component {
+class ReceivedCertificatePage extends Component {
     state = {  
         certificate: [],
+        url : '',
         loading: false,
+        visible:false,
     }
 
     componentDidMount(){
@@ -35,12 +34,28 @@ class ECertificatePage extends Component {
         });
     }
 
-     //button detail event
-     onDetailCertificate = (id) => {
-        console.log('id ini',id)
-        this.props.setIdSertifikat(id);
-        this.props.navigate(CONSTANS.DETAIL_SERTIF_PANITIA_MENU_KEY)
+    //button detail event
+    onDetailCertificate = (sertif_URL) => {
+        this.setState({
+            visible: true,
+            url : sertif_URL,
+        });
     }
+
+    handleOk = e => {
+        console.log(e);
+        this.setState({
+          visible: false,
+        });
+      };
+    
+      handleCancel = e => {
+        console.log(e);
+        this.setState({
+          visible: false,
+        });
+      };
+  
 
     render() { 
 
@@ -64,6 +79,11 @@ class ECertificatePage extends Component {
             title: 'Penandatangan',
             dataIndex: 'penandatangan',
             key: 'penandatangan',
+        },
+        {
+            title: 'Nomor Induk Pegawai',
+            dataIndex: 'nip',
+            key: 'nip',
         },
         {
             title: 'File',
@@ -97,24 +117,25 @@ class ECertificatePage extends Component {
             title: 'Action',
             key: 'action',
             render: (data) => (
-            [<ButtonDashboard
-                text="Download"
-                height={20}
-                icon={faDownload}
-                borderRadius="5px"
-                background="#070E57"
-                marginRight= "20px"
-              
-            />,
-            <ButtonDashboard
-                text="Detail"
-                height={20}
-                icon={faInfoCircle}
-                borderRadius="5px"
-                background="#FFA903"
-                marginRight= "20px"
-                onClick = {() => this.onDetailCertificate(data.nomor)}
-            />]
+            [
+            <Tooltip title="Download">
+                <ButtonDashboard
+                    height={20}
+                    icon={faDownload}
+                    borderRadius="5px"
+                    background="#070E57"
+                />,
+            </Tooltip>,
+            <Divider type="vertical" />,
+            <Tooltip title="Detail">
+                <ButtonDashboard
+                    height={20}
+                    icon={faInfoCircle}
+                    borderRadius="5px"
+                    background="#FFA903"
+                    onClick = {() => this.onDetailCertificate(data.sertif_URL)}
+                />,
+            </Tooltip>]
             ),
         },
     ];
@@ -124,16 +145,20 @@ class ECertificatePage extends Component {
         nomor : id_sertifikat,
         nama_event: sertifikat.event.nama_event,
         penandatangan : penandatangan.nama_penandatangan,
+        nip : penandatangan.nip,
         sertifikat :sertifikat.sertifikat,
-        status : [status.nama_status],        
+        status : [status.nama_status],    
+        sertif_URL :sertifikat.sertif_URL,    
     }))
-
+    
         return ( 
-            <ECertificateComponent
+            <ReceivedCertificateComponent
                 navigate={this.props.navigate}
                 initialData={this.state}
                 columns={columns}
                 data={data}
+                handleCancel= {this.handleCancel}
+                handleOk = {this.handleOk}
             />
         );
     }
@@ -148,5 +173,5 @@ const mapDispatchToProps = (dispatch => ({
     setIdSertifikat,
 }))();
 
-const page = connect(mapStateToProps, mapDispatchToProps)(ECertificatePage);
+const page = connect(mapStateToProps, mapDispatchToProps)(ReceivedCertificatePage);
 export default page

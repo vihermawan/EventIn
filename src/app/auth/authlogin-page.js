@@ -8,6 +8,9 @@ import LoginComponent from '../../modules/auth/component/authlogin-component';
 import '../../assets/css/auth-login.css'
 import * as validation from '../../common/utils/validation'
 
+// import store
+import { setNamaUser } from '../../modules/auth/store/login-action'
+
 class AuthLogin extends Component {
     state = {
         email: '',
@@ -39,6 +42,13 @@ class AuthLogin extends Component {
         });
     };
 
+    successNotification = (message, description) => {
+        notification.success({
+            message,
+            description,
+        });
+    };
+
     handleSubmit = e => {
         e.preventDefault();
         const params = {
@@ -61,29 +71,38 @@ class AuthLogin extends Component {
                     if(res.data.id_role == 2){
                         localStorage.setItem('token', res.data.token)
                         localStorage.setItem('username', res.data.nama)
+                        // this.props.setNamaUser(res.data.nama)
+                        localStorage.setItem('id_role', res.data.id_role)
                         localStorage.setItem('profile_picture', res.data.profile_picture)
                         this.props.navigate(CONSTANS.PANITIA_MENU_KEY)
+                        this.successNotification('Sukses', 'Berhasil Login')
                       
                     }
                     else if(res.data.id_role == 1) {
                         localStorage.setItem('token', res.data.token)
                         localStorage.setItem('username', res.data.nama)
                         localStorage.setItem('profile_picture', res.data.profile_picture)
+                        localStorage.setItem('id_role', res.data.id_role)
                         this.props.navigate(CONSTANS.ADMIN_MENU_KEY)
+                        this.successNotification('Sukses', 'Berhasil Login')
                        
                     }
                     else if(res.data.id_role == 3) {
                         localStorage.setItem('token', res.data.token)
                         localStorage.setItem('username', res.data.nama)
                         localStorage.setItem('profile_picture', res.data.profile_picture)
+                        localStorage.setItem('id_role', res.data.id_role)
                         this.props.navigate(CONSTANS.HOME_MENU_KEY)
+                        this.successNotification('Sukses', 'Berhasil Login')
                         
                     }
                     else if(res.data.id_role == 4) {
                         localStorage.setItem('token', res.data.token)
                         localStorage.setItem('username', res.data.nama)
                         localStorage.setItem('profile_picture', res.data.profile_picture)
+                        localStorage.setItem('id_role', res.data.id_role)
                         this.props.navigate(CONSTANS.SIGNER_MENU_KEY)
+                        this.successNotification('Sukses', 'Berhasil Login')
                     }
                 }
                 else{
@@ -115,6 +134,7 @@ const mapStateToProps = state => ({
 
 const mapDispatchToProps = (dispatch => ({
     navigate,
+    setNamaUser,
 }))();
 
 const page = connect(mapStateToProps, mapDispatchToProps)(AuthLogin);

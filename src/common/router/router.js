@@ -22,10 +22,10 @@ class Routers extends Component {
 }
 
 function RouteWithSubRoutes(route) {
-    // console.log(route.private)
     return route.private ? (
         <PrivateRoute
             path={route.path}
+            role={route.role ? route.role : 0}
         >
             <route.component routes={route.routes} />
         </PrivateRoute>
@@ -39,26 +39,113 @@ function RouteWithSubRoutes(route) {
     );
 }
 
-function PrivateRoute({ children, ...rest }) {
+function PrivateRoute({ children, ...rest}) {
     let isAuthenticated = false;
-    if(localStorage.getItem("token") != null) isAuthenticated = true;
+    let role = parseInt(localStorage.getItem("id_role"), 10);
+    console.log(rest.path)
+    if(localStorage.getItem("token") !== null &&
+    role === rest.role
+    ){
+      isAuthenticated = true;
+    }
+    console.log(rest.role)
     return (
       <Route
         {...rest}
         render={({ location }) =>
-          isAuthenticated ? (
-            children
-          ) : (
-            <Redirect
-              to={{
-                pathname: "/login",
-                state: { from: location }
-              }}
-            />
-          )
+        {
+          if(role === 1){
+            if(isAuthenticated)
+              return children
+            else {
+              return (
+              <Redirect
+                to={{
+                  pathname: '/admin',
+                  state: { from: location }
+                }}
+              />
+              )
+            }
+          } else if(role === 2){
+            if(isAuthenticated)
+              return children
+            else {
+              return (
+              <Redirect
+                to={{
+                  pathname: '/dashboard',
+                  state: { from: location }
+                }}
+              />
+              )
+            }
+          } else if(role === 3){
+            if(isAuthenticated)
+              return children
+            else {
+              return (
+              <Redirect
+                to={{
+                  pathname: '/event',
+                  state: { from: location }
+                }}
+              />
+              )
+            }
+          } else if(role === 4){
+            if(isAuthenticated)
+              return children
+            else {
+              return (
+              <Redirect
+                to={{
+                  pathname: '/signer',
+                  state: { from: location }
+                }}
+              />
+              )
+            }
+          } else {
+            if(isAuthenticated)
+              return children
+            else {
+              return (
+              <Redirect
+                to={{
+                  pathname: '/login',
+                  state: { from: location }
+                }}
+              />
+              )
+            }
+          }
+        }
         }
       />
     );
-  }
+}
+
+function PrivatePanitiiaRoute({ children, ...rest }) {
+  let isAuthenticated = false;
+  if(localStorage.getItem("token") != null && localStorage.getItem("id_role" == 2)) isAuthenticated = true;
+  return (
+    <Route
+      {...rest}
+      render={({ location }) =>
+        isAuthenticated ? (
+          children
+        ) : (
+          <Redirect
+            to={{
+              pathname: "/dashboard/dashboard-panitia",
+              state: { from: location }
+            }}
+          />
+        )
+      }
+    />
+  );
+}
 
 export default Routers;

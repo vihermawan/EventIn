@@ -10,6 +10,7 @@ import ButtonDashboard from '../../../common/component/button/button-dashboard';
 
 const { confirm } = Modal;
 const { Option } = Select;
+
 class WaitingPage extends Component {
     state = { 
         waitingSertifikat : [],
@@ -47,9 +48,9 @@ class WaitingPage extends Component {
         });
     }
     
-    handlePenandatangan = (value) => {
-        console.log(`s ${value}`);
-        this.setState({ id_penandatangan: value })
+    handlePenandatangan = (input, option) => {
+        console.log('input', input, 'option', option);
+        this.setState({ id_penandatangan: input })
         
     }
 
@@ -60,18 +61,22 @@ class WaitingPage extends Component {
             okText: 'Yes',
             okType: 'success',
             content: 
-                <Select
-                    mode="multiple"
-                    placeholder="Pilih Penandatangan"
-                    style={{ width: '100%' }}
-                    onChange={this.handlePenandatangan}
-                >
-                    {this.state.penandatangan.map(({penandatangan}) => (
-                        <Option key={penandatangan.id_penandatangan}>
-                            {penandatangan.nama_penandatangan}
-                        </Option>
-                ))}
-            </Select>
+            <Select
+            mode="multiple"
+            optionFilterProp="children"
+            style={{ width: '100%' }}
+            placeholder="Please select"
+            onChange={(input, option)=>this.handlePenandatangan(input,option)}
+          >
+            {
+                this.state.penandatangan.map( data =>     
+                    <Option
+                    key={data.penandatangan.nama_penandatangan.toString()}
+                    value={data.penandatangan.id_penandatangan}
+                    >{data.penandatangan.nama_penandatangan}</Option>
+                )
+            }
+          </Select>
             ,
             cancelText: 'No',
             onOk: () => {
@@ -93,7 +98,7 @@ class WaitingPage extends Component {
         API.post(`/admin/sendSertifikat/${id_sertifikat}`,params)
         .then(res => {
             console.log('res',res)
-            if(res.status == 200){
+            if(res.status === 200){
                 message.success('Berhasil mengirim sertifikat');
                 this.componentDidMount(); 
             }  

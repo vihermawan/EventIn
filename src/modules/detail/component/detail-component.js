@@ -4,18 +4,11 @@ import '../../../assets/css/detail.css'
 import Navbar from '../../../common/layout/navbar-landing'
 import Footer from '../../../common/layout/footer-landing'
 import LoadingContainer from '../../../common/component/loading/loading-container'
-import Moment from 'react-moment';
 import 'moment-timezone';
 import 'moment/locale/id';
 import moment from 'moment-timezone';
 const { Content } = Layout;
 const { Countdown } = Statistic;
-const deadline = Date.now() + 5000 * 60 * 60 * 24 * 2 + 1000 * 30; // Moment is also OK
-
-
-function onFinish() {
-  console.log('finished!');
-}
 
 class DetailComponent extends Component {
     state = {

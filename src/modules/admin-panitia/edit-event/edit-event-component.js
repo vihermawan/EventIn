@@ -298,12 +298,12 @@ class EditEventComponent extends Component {
                                                 </div>
                                                 <div>
                                                     <InputForm
-                                                        name='location'
+                                                        name='lokasi'
                                                         placeholder="Masukan lokasi event...."
                                                         className="input-event mt-5"
                                                         iconType="lock"
                                                         onChange={handleChange}
-                                                        value={initialData.location}
+                                                        value={initialData.lokasi}
                                                         icon={faMapMarker}
                                                     />
                                                 </div>

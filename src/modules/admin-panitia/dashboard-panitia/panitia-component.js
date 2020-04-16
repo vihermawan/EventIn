@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { Layout, Breadcrumb, Row, Table, Input, Col } from 'antd';
 import '../../../assets/css/dashboard-all/dashboard.css'
 import '../../../assets/css/dashboard-all/table-style.css'
+import LoadingContainer from '../../../common/component/loading/loading-container'
 // constant content
 const { Content } = Layout;
 
@@ -12,8 +13,6 @@ class PanitiaComponent extends Component {
         const image3 = require(`../../../assets/images/certificate-dashboard.png`);
 
         const { initialData } = this.props
-
-        // console.log('data sertif',initialData.sertifikat)
         return ( 
             <Content
                 style={{
@@ -29,6 +28,7 @@ class PanitiaComponent extends Component {
                 <Row style={{minHeight: '100%',marginBottom: '2%',marginTop:'2%',}} className="background">
                     <Col lg={24}>
                             <Row>
+                                 
                                 <Col lg={8} md={12} sm={12}>
                                     <div className="card-dashboard">
                                     <Row>
@@ -65,9 +65,11 @@ class PanitiaComponent extends Component {
                                                 <div className="title-desc-card">
                                                     <span>Total Event</span>
                                                 </div>
-                                                <div className="title-total-card">
-                                                    <span>10</span>
+                                                <LoadingContainer loading={initialData.loading}>
+                                                <div className="title-total-card" style={{minHeight:"105px"}}>
+                                                    <span>{initialData.total_event}</span>
                                                 </div>
+                                                </LoadingContainer>
                                                 <div className="title-info-card">
                                                     <span>Event has been done</span>
                                                 </div>
@@ -93,9 +95,11 @@ class PanitiaComponent extends Component {
                                                 <div className="title-desc-card">
                                                     <span>Total Certificate</span>
                                                 </div>
-                                                <div className="title-total-card">
-                                                    <span>10</span>
+                                                <LoadingContainer loading={initialData.loading}>
+                                                <div className="title-total-card"  style={{minHeight:"105px"}}>
+                                                    <span>{initialData.total_certificate}</span>
                                                 </div>
+                                                </LoadingContainer>
                                                 <div className="title-info-card">
                                                     <span>Certificate has been asigned</span>
                                                 </div>
@@ -117,7 +121,10 @@ class PanitiaComponent extends Component {
                             <Row>
                                 <Col lg={24} md={24} sm={24}>
                                     <div className="card-graphic">
-                                        asa
+                                        <LoadingContainer loading={initialData.loading}>
+                                            <div style={{textAlign:"center",fontWeight:"bold"}}><span>Grafik Total Peserta Event</span></div>
+                                            <div id="chartdiv" style={{ width: "100%", height: "500px" }}></div>
+                                        </LoadingContainer>
                                     </div>
                                 </Col>  
                             </Row>

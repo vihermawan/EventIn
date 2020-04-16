@@ -12,18 +12,23 @@ import { setIdKategori } from '../../modules/alleventkategori/store/kategori-act
 class EventPage extends Component {
     state = { 
         event:[],
+        event_seacrh : [],
+        event_week : [],
+        size_event_seacrh: '',
         kategori : [],
         eventbyKategori : [],
         loading : false,
         countEvent : '',
         idkategori : '',
+        nama_event : '',
         loadingHome: false,
+        loadingWeek : false,
      }
 
-     componentDidMount(){
+    componentDidMount(){
         this.getEvent();
         this.getKategori();
-        
+        this.getEventbyWeek();
     }
 
     onStartLoadingHome = () =>  this.setState({ loadingHome: true })
@@ -37,6 +42,7 @@ class EventPage extends Component {
             if(res.status == 200){
                 this.setState({
                     eventbyKategori:res.data.data.event,
+                    countEvent :res.data.size,
                 })
             }
             this.setState({loading: false})
@@ -47,7 +53,6 @@ class EventPage extends Component {
         this.setState({loading: true})
         API.get(`/peserta/event`)
         .then(res => {
-            // console.log(res.data.size)
             if(res.status == 200){
                 this.setState({
                     event:res.data.data.event.data,
@@ -57,17 +62,43 @@ class EventPage extends Component {
         });
     }
 
+    getEventbyWeek =()=>{
+        this.setState({loadingWeek: true})
+        API.get(`/peserta/eventbyWeek`)
+        .then(res => {
+            console.log(res.data.data)
+            if(res.status == 200){
+                this.setState({
+                    event_week:res.data.data.event.data,
+                })
+            }
+            this.setState({loadingWeek: false})
+        });
+    }
+
     getKategori=()=>{
         API.get('/peserta/kategori')
         .then(res => {
-            // console.log('kategori',res)
             if(res.status == 200){
                 this.setState({
                     kategori:res.data.data.kategori,
-                    countEvent :res.data.size,
                 })
             }
         })
+    }
+
+    onSeacrhEvent = (params) =>{
+        API.get(`/event/search?nama=${params}`)
+        .then(res => {
+            console.log(res.data.data.event.data)
+            if(res.status == 200){
+                this.setState({
+                    event_seacrh:res.data.data.event.data,
+                    size_event_seacrh : res.data.data.event.total,
+                })
+            }
+            this.setState({loading: false})
+        });
     }
 
     //button detail participant
@@ -75,10 +106,6 @@ class EventPage extends Component {
         console.log('id ini',id)
         this.props.setIdEvent(id);
         this.props.navigate(CONSTANS.DETAIL_EVENT_KEY)
-    }
-
-    onEditPeserta = (id_users) => {
-        this.props.navigate(CONSTANS.ALL_EVENT_MENU_KEY)
     }
 
     onEventKategori = (id_kategori) => {
@@ -112,6 +139,24 @@ class EventPage extends Component {
             foto : data.detail_event.image_URL,
         }))
 
+        const cardDataEvenyWeek =  this.state.event_week.map( data => ({
+            id : data.id_event,
+            date: data.detail_event.start_event,
+            price: data.status_biaya.nama_status,
+            title: data.nama_event,
+            place: data.detail_event.lokasi,
+            foto : data.detail_event.image_URL,
+        }))
+
+        const cardDataEventSeacrh =  this.state.event_seacrh.map( data => ({
+            id : data.id_event,
+            date: data.detail_event.start_event,
+            price: data.status_biaya.nama_status,
+            title: data.nama_event,
+            place: data.detail_event.lokasi,
+            foto : data.detail_event.image_URL,
+        }))
+
         return (
             <EventComponent
                 navigate={this.props.navigate}
@@ -120,10 +165,13 @@ class EventPage extends Component {
                 onDetailEvent  = {this.onDetailEvent}
                 kategori = {kategori}
                 cardDataEventKategori = {cardDataEventKategori}
+                cardDataEventSeacrh = {cardDataEventSeacrh}
+                cardDataEvenyWeek = {cardDataEvenyWeek}
                 onTabChange={this.onTabChange}
                 onStartLoadingHome={this.onStartLoadingHome}
                 onFinishLoadingHome={this.onFinishLoadingHome}
                 onEventKategori={this.onEventKategori}
+                onSeacrhEvent = {this.onSeacrhEvent}
             />
         );
     }

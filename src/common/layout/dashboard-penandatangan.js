@@ -23,32 +23,46 @@ const { Header, Sider, Content } = Layout;
 
 class signer extends Component {
   state = {
+    current: '',
     username:'',
     profile_picture:'',
     collapsed: false,
     loading : false,
   };
 
-  componentDidMount(){
+  componentDidMount(){  
+    let pathArray = window.location.pathname.split('/');
+    let pathName = pathArray[2];
+    pathName === '' ? this.setState({current: '/signer'}) : this.setState({current: pathName});
+    let username_penandatangan = localStorage.getItem("username");
+    let profile_picture = localStorage.getItem("profile_picture");
+    this.setState({username : username_penandatangan, profile_picture : profile_picture })
     this.getProfile();
-    // window.onbeforeunload = function() {
-		// 	localStorage.clear();
-		// }
+    let token = localStorage.getItem("token");
+    if (token != null){
+			this.setTimeOut();
+		}
   }
 
+  setTimeOut = () => {
+		setTimeout(function(){localStorage.clear();}, 1000 * 60 * 60 * 24);
+	}
+
   //get data profile dari API
-    getProfile=()=>{
-        this.setState({loading: true})
-        API.get(`/penandatangan/profile-edit`)
-        .then(res => {
-            console.log('res',res)
-            this.setState({
-                username :res.data.data.penandatangan.penandatangan.nama_penandatangan ,
-                profile_picture : res.data.data.penandatangan.penandatangan.image_URL,
-                loading: false,
-            })
-        });
-    }
+  getProfile=()=>{
+      API.get(`/penandatangan/profile-edit`)
+      .then(res => {
+          let username_penandatangan = localStorage.getItem("username");
+          let profile_picture = localStorage.getItem("profile_picture");
+          if ((res.data.data.penandatangan.penandatangan.nama_penandatangan != username_penandatangan) || (res.data.data.penandatangan.penandatangan.image_URL != profile_picture)){
+              localStorage.setItem('username', res.data.data.penandatangan.penandatangan.nama_penandatangan)
+              localStorage.setItem('profile_picture', res.data.data.penandatangan.penandatangan.image_URL)
+              let username_penandatangan = localStorage.getItem("username");
+              let profile_picture = localStorage.getItem("profile_picture");
+              this.setState({username : username_penandatangan, profile_picture : profile_picture })
+          }
+      });
+  }
 
   handleLogout = e => {
     this.setState({loading: true})
@@ -63,14 +77,18 @@ class signer extends Component {
             this.props.navigate(CONSTANS.LOGIN_MENU_KEY)
         }
     });
-}
-
+  }
 
   toggle = () => {
     this.setState({
       collapsed: !this.state.collapsed,
     });
   };
+
+  clickedMenu = e => {
+    console.log(e.key)
+    this.setState({ current: e.key });
+  }
 
   render() {
     const logo = require(`../../assets/images/logo.png`);
@@ -80,13 +98,6 @@ class signer extends Component {
 
     const menu = (
       <Menu>
-        <Menu.Item key="0">
-          <a href="http://www.alipay.com/">1st menu item</a>
-        </Menu.Item>
-        <Menu.Item key="1">
-          <a href="http://www.taobao.com/">2nd menu item</a>
-        </Menu.Item>
-        <Menu.Divider />
         <Menu.Item key="3">
             <ButtonAuth
                 text="Logout"
@@ -107,12 +118,12 @@ class signer extends Component {
               <img src={this.state.collapsed? logoadmin : logo} className={this.state.collapsed ? 'hidden-admin-logo' : 'logo-admin'} alt="EventIn logo" width="100"/>
             </div>
             <div className="menu-dashboard">
-              <Menu mode="inline" defaultSelectedKeys={['dashboard']}>
+              <Menu mode="inline" defaultSelectedKeys={['dashboard']} selectedKeys={[this.state.current]}>
                   <div className="title-dashboard">
                       <span className="title-desc-dashboard">REPORT</span>
                   </div>              
                 
-                  <Menu.Item key="dashboard"  >
+                  <Menu.Item key="dashboard-signer" onClick={this.clickedMenu}>
                     <Link to="/signer/dashboard-signer">
                   
                       <FontAwesomeIcon
@@ -135,7 +146,7 @@ class signer extends Component {
                   <div className="title-dashboard">
                       <span className="title-desc-dashboard">SIGNATURED</span>
                   </div>  
-                  <Menu.Item key="waiting-list"  >
+                  <Menu.Item key="waiting-list" onClick={this.clickedMenu} >
                     <Link to="/signer/waiting-list">
                   
                       <FontAwesomeIcon
@@ -146,7 +157,7 @@ class signer extends Component {
                       <span className={hidden} >Waiting List</span>
                     </Link>
                   </Menu.Item>
-                  <Menu.Item key="e-certificate"  >
+                  <Menu.Item key="e-certificate" onClick={this.clickedMenu} >
                     <Link to="/signer/e-certificate">
       
                       <FontAwesomeIcon
@@ -169,7 +180,7 @@ class signer extends Component {
                   <div className="title-dashboard">
                       <span className="title-desc-dashboard">SETTINGS</span>
                   </div>  
-                  <Menu.Item key="profile"  >
+                  <Menu.Item key="profile"  onClick={this.clickedMenu}>
                     <Link to="/signer/profile">
                   
                       <FontAwesomeIcon
@@ -198,7 +209,6 @@ class signer extends Component {
                               <Icon type="down" style={{marginLeft:"20px", color:"black", fontSize:"13px"}} />
                             </a>
                           </Dropdown>
-                        {/* <p>sa</p> */}
                       </div>
                   </Header>
                   <Route

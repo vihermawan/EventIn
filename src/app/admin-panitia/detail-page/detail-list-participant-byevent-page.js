@@ -3,7 +3,6 @@ import { connect } from 'react-redux';
 import { API } from '../../../common/api'
 import { navigate } from '../../../common/store/action'
 import { Modal, message, Tag, Divider, Tooltip } from 'antd'
-import { faUsers, faUserCheck } from '@fortawesome/free-solid-svg-icons'
 import { faInfoCircle } from '@fortawesome/free-solid-svg-icons' 
 import ButtonDashboard from '../../../common/component/button/button-dashboard';
 import DetailListParticipantbyEvent from '../../../modules/admin-panitia/detail-list-participant-byEvent/detail-list-participant-byEvent-cpmponent';

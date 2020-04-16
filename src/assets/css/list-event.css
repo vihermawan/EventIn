@@ -1,0 +1,18 @@
+.container-list-event{
+    margin: 0px auto;
+    max-width: 100%;
+    min-height: 500px;
+    padding: 10px;
+    border-radius: 10px;
+    /* background-color: green; */
+}
+.card-container-list{
+    background-color: rgb(255, 255, 255);
+    /* padding: 10px; */
+}
+
+.table-list-event{
+    margin: 16px auto;
+    width: 98%;
+}
+
