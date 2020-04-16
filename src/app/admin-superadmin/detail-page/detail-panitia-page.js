@@ -11,7 +11,7 @@ import { navigate } from '../../../common/store/action'
 import DetailPanitiaComponent from '../../../modules/admin-superadmin/user/panitia/detail-panitia-component';
 import ButtonDashboard from '../../../common/component/button/button-dashboard';
 
-// import store
+/// import store
 import { setIdEvent } from '../../../modules/admin-panitia/active-event/store/active-event-action'
 
 class DetailPanitiaPage extends Component {
@@ -30,7 +30,7 @@ class DetailPanitiaPage extends Component {
 
     getDetailPanitia=(id_users)=>{
         this.setState({loading: true})
-        API.get(`/admin/detail-panitia/admin/${id_users}`)
+        API.get(`/admin/detail-panitia/${id_users}`)
         .then(res => {
           console.log('res',res.data.data.panitia)
           this.setState({

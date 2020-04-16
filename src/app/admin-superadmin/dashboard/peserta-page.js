@@ -5,7 +5,7 @@ import { API } from '../../../common/api'
 import CONSTANS from '../../../common/utils/Constants'
 import { navigate } from '../../../common/store/action'
 import PesertaAdminComponent from '../../../modules/admin-superadmin/user/peserta/peserta-component';
-import { faTrash, faPen } from '@fortawesome/free-solid-svg-icons'
+import { faTrash } from '@fortawesome/free-solid-svg-icons'
 import { faInfoCircle } from '@fortawesome/free-solid-svg-icons'
 import ButtonDashboard from '../../../common/component/button/button-dashboard';
 
@@ -121,15 +121,16 @@ class PesertaAdminPage extends Component {
                 title: 'Action',
                 key: 'action',
                 render: (data) => (
-                    [<ButtonDashboard
-                        text="Edit"
-                        height={20}
-                        icon={faPen}
-                        borderRadius="5px"
-                        background="#005568"
-                        marginRight= "20px"
-                        onClick = { () => this.onEditPeserta(data.id_users)}
-                    />,
+                    [
+                    //  <ButtonDashboard
+                    //     text="Edit"
+                    //     height={20}
+                    //     icon={faPen}
+                    //     borderRadius="5px"
+                    //     background="#005568"
+                    //     marginRight= "20px"
+                    //     onClick = { () => this.onEditPeserta(data.id_users)}
+                    // />,
                     <ButtonDashboard
                         text="Detail"
                         height={20}

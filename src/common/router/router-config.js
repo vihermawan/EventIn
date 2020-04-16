@@ -18,27 +18,33 @@ import LoginComponent from '../../app/auth/authlogin-page'
 import RegisterPesertaComponent from '../../app/auth/authregister-page'
 import RegisterPanitiaComponent from '../../app/auth/authregisterpanitia-page'
 import AboutPage from '../../app/about/about-page'
+import SwitchPage from '../../app/list-event/switch-event-page'
 import DashboardAdminPage from '../../common/layout/dashboard-admin'
 import DashboardPenandatanganPage from '../../common/layout/dashboard-penandatangan'
 
 const baseUrl = process.env.PUBLIC_URL;
 
 const routeSources = [
+    //user
     { component: HomePage, path: `${baseUrl}/`, exact: true },
     { component: AllEventKategoriPage, path: `${baseUrl}/allkategori`, exact: true },
-    { component: EventPage, path: `${baseUrl}/event`, exact: true, private: true },
-    { component: AllEventPage, path: `${baseUrl}/allevent`, exact: true,  private: true},
-    { component: DetailPage, path: `${baseUrl}/detail`, exact: true,  private: true },
     { component: LoginComponent, path: `${baseUrl}/login`, exact: true },
     { component: PilihanPage, path: `${baseUrl}/choose`, exact: true },
     { component: RegisterPesertaComponent, path: `${baseUrl}/register-peserta`, exact: true },
     { component: RegisterPanitiaComponent, path: `${baseUrl}/register-panitia`, exact: true },
-    { component: ProfilePage, path: `${baseUrl}/profile`, exact: true ,private: true},
-    { component: EditProfilePage, path: `${baseUrl}/edit-profile`, exact: true ,private: true},
-    { component: AboutPage, path: `${baseUrl}/about`, exact: false,private: true ,private: true},
-    { component: DashboardPanitiaPage, path: `${baseUrl}/dashboard`, exact: false },
-    { component: DashboardPenandatanganPage, path: `${baseUrl}/signer`, exact: false },
-    { component: DashboardAdminPage, path:`${baseUrl}/admin`, exact:false},
+    { component: EventPage, path: `${baseUrl}/event`, exact: true, private: true, role: 3},
+    { component: AllEventPage, path: `${baseUrl}/allevent`, exact: true,  private: true, role: 3},
+    { component: DetailPage, path: `${baseUrl}/detail`, exact: true,  private: true, role: 3 },
+    { component: ProfilePage, path: `${baseUrl}/profile`, exact: true ,private: true, role: 3},
+    { component: EditProfilePage, path: `${baseUrl}/edit-profile`, exact: true ,private: true, role: 3},
+    { component: SwitchPage, path: `${baseUrl}/list-event`, exact: true ,private: true, role: 3},
+    { component: AboutPage, path: `${baseUrl}/about`, exact: false,private: true, role: 3},
+    //panitia
+    { component: DashboardPanitiaPage, path: `${baseUrl}/dashboard`, exact: false ,private: true, role: 2},
+    //penandatangan
+    { component: DashboardPenandatanganPage, path: `${baseUrl}/signer`, exact: false ,private: true, role: 4},
+    //admin
+    { component: DashboardAdminPage, path:`${baseUrl}/admin`, exact:false ,private: true, role: 1},
     { component: ErrorPage },
     // { component: ExamplePage, path: `${baseUrl}/example`, exact: true},
 ];

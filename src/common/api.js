@@ -26,7 +26,8 @@ export const API = {
                 return response.data;
             })
             .catch( ( error ) => {
-                console.log( error );
+                return error.data;
+                console.log( error.data );
             });
     },
 
@@ -65,6 +66,7 @@ export const API = {
                 return response;
             })
             .catch( ( error ) => {
+                console.log(error.message)
                 return error;
             });
     },

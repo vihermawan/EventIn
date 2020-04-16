@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { Modal, message } from 'antd'
+import { Modal, message, Divider, Tooltip, } from 'antd'
 import CONSTANS from '../../../common/utils/Constants'
 import { faInfoCircle , faCheckCircle} from '@fortawesome/free-solid-svg-icons'
 import { API } from '../../../common/api'
@@ -38,6 +38,19 @@ class WaitingListPage extends Component {
         });
     }
 
+    getFile=(id,sertifikat)=>{
+        API.get(`/penandatangan/detail-sertifikat/${id}`)
+        .then(res => {
+          console.log('res',res)
+          const url = window.URL.createObjectURL(new Blob([res.data]));
+          const link = document.createElement('a');
+          link.href = url;
+          link.setAttribute('download', `${sertifikat}`); 
+          document.body.appendChild(link);
+          link.click();
+        });
+    }
+
     //function untuk modal
     showSignedConfirm = (id_sertifikat) => {
         confirm({
@@ -54,18 +67,18 @@ class WaitingListPage extends Component {
         });
     }
 
-     //assign sertifikat
-     assignSertifikat = (id_sertifikat) => {
+    //assign sertifikat
+    assignSertifikat = (id_sertifikat) => {
         console.log(id_sertifikat)
-        API.delete(`/penandatangan/sertifikat/assign/${id_sertifikat}`)
+        API.post(`/penandatangan/sertifikat/assign/${id_sertifikat}`)
         .then(res => {
             console.log('res',res)
-            if(res.status == 200){
+            if(res.status === 200){
                 message.success('Sertifikat Berhasil ditandantangani');
                 window.location.reload(); 
             }   
         });
-      }
+    }
 
     //button detail certificate
     onDetailCertificate = (id) => {
@@ -111,23 +124,26 @@ class WaitingListPage extends Component {
               title: 'Action',
               key: 'action',
               render: (data) => (
-                [<ButtonDashboard
-                    text="Signed"
-                    height={20}
-                    icon={faCheckCircle}
-                    borderRadius="5px"
-                    background="#004A03"
-                    marginRight= "20px"
-                    onClick = {() => this.showSignedConfirm(data.id_sertifikat)}
-                />,
-                <ButtonDashboard
-                    text="Detail"
-                    height={20}
-                    icon={faInfoCircle}
-                    borderRadius="5px"
-                    background="#FFA903"
-                    onClick={() => this.onDetailCertificate(data.id_sertifikat)}
-                />]
+                [
+                <Tooltip title="Signed">
+                    <ButtonDashboard
+                        height={20}
+                        icon={faCheckCircle}
+                        borderRadius="5px"
+                        background="#004A03"
+                        onClick = {() => this.showSignedConfirm(data.id_sertifikat)}
+                    />,
+                </Tooltip>,
+                <Divider type="vertical" />,
+                <Tooltip title="Detail">,
+                    <ButtonDashboard
+                        height={20}
+                        icon={faInfoCircle}
+                        borderRadius="5px"
+                        background="#FFA903"
+                        onClick={() => this.getFile(data.id_sertifikat,data.sertifikat)}
+                    />,
+                </Tooltip>,]
               ),
             },
           ];

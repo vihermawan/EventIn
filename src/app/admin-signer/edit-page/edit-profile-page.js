@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { message,notification } from 'antd';
 import { connect } from 'react-redux';
 import { API } from '../../../common/api'
+import CONSTANS from '../../../common/utils/Constants'
 import { navigate } from '../../../common/store/action'
 import EditProfileSignerComponent from '../../../modules/admin-signer/profile/edit-profile-component';
 
@@ -18,6 +19,12 @@ class EditProfilePage extends Component {
         profile_picture :'',
         loading: false,
         button_edit : 'Edit Foto Profil',
+        crop: {
+            unit: '%',
+            width: 30,
+            aspect: 1 / 1,
+          },
+        croppedImageUrl : '',
     }
 
     componentDidMount(){
@@ -59,24 +66,154 @@ class EditProfilePage extends Component {
         reader.readAsDataURL(img);
     }
   
-    beforeUpload = (file) => {
-        const isJpgOrPng = file.type === 'image/jpeg' || file.type === 'image/png';
-        if (!isJpgOrPng) {
-            message.error('You can only upload JPG/PNG file!');
+    uploadGambar = (event) => {
+        if(event.target.files[0].type != 'image/jpeg' ){
+            console.log('harusnya')
+            this.openNotification('Format Gambar Salah', 'Silahkan Upload Kembali dengan format JPG')
         }
-        const isLt2M = file.size / 1024 / 1024 < 2;
-        if (!isLt2M) {
-            message.error('Image must smaller than 2MB!');
+        else if(event.target.files[0].size / 1024 / 1024 > 2){
+            this.openNotification('Ukuran file Melebihi 2Mb', 'Silahkan Upload Kembali')
         }
-        return isJpgOrPng && isLt2M;
+        else{
+            console.log('cek', event.currentTarget.value)
+            this.getBase64(event.target.files[0], imageUrl => {
+                this.setState({ picture: imageUrl,croppedImageUrl :imageUrl,profile_picture:imageUrl,visible:true })
+            })
+            // this.setState({ picture_event:event.target.files[0] })
+        }
+        
     }
       
-    uploadGambar = (event) => {
-        this.getBase64(event.target.files[0], imageUrl => {
-            this.setState({ picture: imageUrl })
-        })
-        this.setState({ profile_picture:event.target.files[0] })
+    onImageLoaded = image => {
+        this.imageRef = image;
+    };
+
+    onCropComplete = crop => {
+        this.makeClientCrop(crop);
+    };
+
+    onCropChange = (crop, percentCrop) => {
+        // You could also use percentCrop:
+        this.setState({ crop: percentCrop });
+        this.setState({ crop });
+    };
+
+    async makeClientCrop(crop) {
+        if (this.imageRef && crop.width && crop.height) {
+          const croppedImageUrl = await this.getCroppedImgLink(
+            this.imageRef,
+            crop,
+            'newFile.jpeg'
+          );
+          const profile_picture = await this.getCroppedImg(
+            this.imageRef,
+            crop,
+            'newFile.jpeg'
+          );
+          this.setState({ profile_picture,croppedImageUrl });
+          console.log('croping',this.state.croppedImageUrl)
+        }
     }
+    
+    getCroppedImgLink(image, crop, fileName) {
+        const canvas = document.createElement('canvas');
+        const scaleX = image.naturalWidth / image.width;
+        const scaleY = image.naturalHeight / image.height;
+        canvas.width = crop.width;
+        canvas.height = crop.height;
+        const ctx = canvas.getContext('2d');
+
+        ctx.drawImage(
+            image,
+            crop.x * scaleX,
+            crop.y * scaleY,
+            crop.width * scaleX,
+            crop.height * scaleY,
+            0,
+            0,
+            crop.width,
+            crop.height
+        );
+
+    return new Promise((resolve, reject) => {
+        canvas.toBlob(blob => {
+        if (!blob) {
+            console.error('Canvas is empty');
+            return;
+        }
+        blob.name = fileName;
+        window.URL.revokeObjectURL(this.fileUrl);
+        this.fileUrl = window.URL.createObjectURL(blob);
+        resolve(this.fileUrl);
+        }, 'image/jpeg');
+    });
+    }
+
+    getCroppedImg(image, crop, fileName) {
+        const canvas = document.createElement('canvas');
+        const scaleX = image.naturalWidth / image.width;
+        const scaleY = image.naturalHeight / image.height;
+        canvas.width = crop.width;
+        canvas.height = crop.height;
+        const ctx = canvas.getContext('2d');
+    
+        ctx.drawImage(
+          image,
+          crop.x * scaleX,
+          crop.y * scaleY,
+          crop.width * scaleX,
+          crop.height * scaleY,
+          0,
+          0,
+          crop.width,
+          crop.height
+        );
+        
+        const reader = new FileReader()
+        canvas.toBlob(blob => {
+            reader.readAsDataURL(blob)
+            reader.onloadend = () => {
+                this.dataURLtoFile(reader.result, 'cropped.jpg')
+            }
+        })     
+    }
+
+    dataURLtoFile = (dataurl, filename) => {
+        let arr = dataurl.split(','),
+            mime = arr[0].match(/:(.*?);/)[1],
+            bstr = atob(arr[1]), 
+            n = bstr.length, 
+            u8arr = new Uint8Array(n);
+                
+        while(n--){
+            u8arr[n] = bstr.charCodeAt(n);
+        }
+        let croppedImage = new File([u8arr], filename, {type:mime});
+        this.setState({profile_picture: croppedImage}) 
+        console.log('ini lo', this.state.profile_picture)
+    }
+
+    showModal = () => {
+        this.setState({
+            visible: true,
+        });
+    };
+    
+    handleOk = e => {
+        console.log(e);
+        this.setState({
+            visible: false,
+        });
+    };
+    
+    handleCancel = e => {
+        console.log(e);
+        this.setState({
+            visible: false,
+            profile_picture : null,
+            croppedImageUrl : null,
+        });
+    };
 
     handleButtonEdit = () => {
         this.setState({
@@ -91,7 +228,6 @@ class EditProfilePage extends Component {
             button_p12 : 'Edit File P_12',
         })
     }
-
     
     openNotification = (message, description) => {
         notification.error({
@@ -106,7 +242,7 @@ class EditProfilePage extends Component {
         const params = new FormData()
         params.append('profile_picture',this.state.profile_picture)
         params.append("_method", 'PUT')
-        params.append('file_p12',this.state.file_p12)
+        // params.append('file_p12',this.state.file_p12)
         params.set('nama_penandatangan',this.state.nama_penandatangan)
         params.set('email',this.state.email)
         params.set('jabatan',this.state.jabatan)
@@ -117,8 +253,10 @@ class EditProfilePage extends Component {
             .then(res => {
                 console.log('res',res)
                 if(res.status == 200){
+                    this.props.navigate(CONSTANS.PROFILE_SIGNER_MENU_KEY)
+                    window.location.reload();
                     message.success('Data Berhasil di Ubah');
-                    this.componentDidMount();
+                    // this.componentDidMount();
                 }else{
                     this.openNotification('Data Salah', 'Silahkan isi data dengan benar')
                 }
@@ -137,6 +275,12 @@ class EditProfilePage extends Component {
                 handleSubmit = {this.handleSubmit}
                 handleButtonEdit = {this.handleButtonEdit}
                 handleButtonGambar = {this.handleButtonGambar}
+                onImageLoaded={this.onImageLoaded}
+                onCropComplete={this.onCropComplete}
+                onCropChange={this.onCropChange}
+                showModal={this.showModal}
+                handleOk={this.handleOk}
+                handleCancel={this.handleCancel}
             />
         );
     }

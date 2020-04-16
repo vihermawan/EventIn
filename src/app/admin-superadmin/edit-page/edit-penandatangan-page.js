@@ -68,7 +68,7 @@ class EditProfileAdminSignerPage extends Component {
         })
     }
     
-    //get data profile dari API
+    //get data profile dari API 
     getProfile=(id_users)=>{
         this.setState({loading: true})
         API.get(`/admin/showeditpenandatangan/${id_users}`)

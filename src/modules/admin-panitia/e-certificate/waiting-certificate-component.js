@@ -8,7 +8,7 @@ import LoadingContainer from '../../../common/component/loading/loading-containe
 // constant content
 const { Content } = Layout;
 
-class ECertificateComponent extends Component {
+class WaitingCertificateComponent extends Component {
     render() { 
     const { initialData, columns, data } = this.props
         return ( 
@@ -21,7 +21,7 @@ class ECertificateComponent extends Component {
                 }}
             >
                 <Breadcrumb separator=">">
-                    <Breadcrumb.Item>Dashboard E-Certificate</Breadcrumb.Item>
+                    <Breadcrumb.Item>Dashboard Waiting E-Certificate</Breadcrumb.Item>
                 </Breadcrumb>
                 <Row style={{minHeight: '100%',marginBottom: '2%',marginTop:'2%',}} className="background">
                     <Col lg={24} md={24} sm={24}> 
@@ -29,7 +29,7 @@ class ECertificateComponent extends Component {
                         <div className="container-active-event">
                             <Row>
                             <div className="container-title-event">
-                                <span>E Certificate</span>
+                                <span>Waiting E Certificate</span>
                             </div>
                             </Row>
                             <LoadingContainer loading={initialData.loading}>
@@ -49,4 +49,4 @@ class ECertificateComponent extends Component {
     }
 }
  
-export default ECertificateComponent;
+export default WaitingCertificateComponent;

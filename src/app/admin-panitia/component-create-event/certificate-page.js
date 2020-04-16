@@ -168,22 +168,6 @@ class CertificatePage extends Component {
             }
         })
     
-        // return new Promise((resolve, reject) => {
-        //   canvas.toBlob(blob => {
-        //     if (!blob) {
-        //       //reject(new Error('Canvas is empty'));
-        //       console.error('Canvas is empty');
-        //       return;
-        //     }
-        //     blob.name = fileName;
-        //     window.URL.revokeObjectURL(this.fileUrl);
-        //     this.fileUrl = window.URL.createObjectURL(blob);
-        //     resolve(this.fileUrl);
-        //     this.setState({croppedImageUrl: this.fileUrl})
-        //     console.log('file',this.state.croppedImageUrl)
-           
-        //   }, 'image/jpeg');
-        // });
     }
 
     dataURLtoFile = (dataurl, filename) => {
@@ -249,7 +233,6 @@ class CertificatePage extends Component {
         const biaya = JSON.parse(localStorage.getItem('step-2'));
         const venue = JSON.parse(localStorage.getItem('step-3'));
         const datetime = JSON.parse(localStorage.getItem('step-4'));
-        // const visual = JSON.parse(localStorage.getItem('step-5'));
 
         params.set('nama_event',basic_info.nama)
         params.set('deskripsi_event',basic_info.description)
@@ -304,6 +287,10 @@ class CertificatePage extends Component {
             if(res.status == 201){
                 message.success('Event Berhasil Ditambahkan');
                 this.props.navigate(CONSTANS.ACTIVE_EVENT_MENU_KEY)
+                localStorage.removeItem('step-1');
+                localStorage.removeItem('step-2');
+                localStorage.removeItem('step-3');
+                localStorage.removeItem('step-4');
             }else{
                 this.openNotification('Data Salah', 'Silahkan isi data dengan benar')
             }

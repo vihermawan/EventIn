@@ -15,47 +15,55 @@ class Navbar extends Component {
 	state = {
 		current: '',
 		username :'username',
-		picture:'',
+		profile_picture : '',
 		visible: false,
 		isLogin: false,
 		loading: false,
 		isAuthenticated:'',
 	}
 
-	
 	componentDidMount(){
 		let pathArray = window.location.pathname.split('/');
 		let pathName = pathArray[1];
 		pathName === '' ? this.setState({current : 'home'}) : this.setState({current : pathName});
 
 		let token = localStorage.getItem("token");
+		let username_peserta = localStorage.getItem("username");
+		let profile_picture = localStorage.getItem("profile_picture");
 		if (token != null){
+			this.setState({username : username_peserta, profile_picture : profile_picture, isLogin: true })
 			this.getProfile();
+			this.setTimeOut();
 		}
-		// window.onbeforeunload = function() {
+		
+		// window.onunload = () => {
+		// 	// Clear the local storage
 		// 	localStorage.clear();
 		// }
 		
 	}
-	
 
-	
-    //get data profile dari API
+	setTimeOut = () => {
+		setTimeout(function(){localStorage.clear();}, 1000 * 60 * 60 * 24);
+	}
+		
+    //get data profile dari API.
     getProfile=()=>{
         this.setState({loading: true})
         API.get(`/peserta/edit-profile`)
         .then(res => {
-            // console.log('res',res.data.data.user)
-            this.setState({
-                username : res.data.data.user.peserta.nama_peserta,
-                picture:res.data.data.user.peserta.image_URL,
-				loading: false,
-				isLogin: true,
-            })
-        });
+			let username_peserta = localStorage.getItem("username");
+			let profile_picture = localStorage.getItem("profile_picture");
+			if ((res.data.data.user.peserta.nama_peserta != username_peserta) || (res.data.data.user.peserta.image_URL != profile_picture)){
+				localStorage.setItem('username', res.data.data.user.peserta.nama_peserta)
+				localStorage.setItem('profile_picture', res.data.data.user.peserta.image_URL)
+				let username_peserta = localStorage.getItem("username");
+				let profile_picture = localStorage.getItem("profile_picture");
+				this.setState({username : username_peserta, profile_picture : profile_picture,isLogin: true })
+				}
+			});
 	}
 	
-
 	handleClick = e => {
 		this.setState({ current: e.key });
 	};
@@ -86,6 +94,14 @@ class Navbar extends Component {
 	handleProfile = () =>{
 		this.props.navigate(CONSTANS.PROFILE_MENU_KEY);
 	}
+	
+	handleListEvent = () => {
+		this.props.navigate(CONSTANS.LIST_EVENT_MENU_KEY);
+	}
+
+	handleDoneEvent = () => {
+
+	}
 
 	render() {
 		const logo = require(`../../assets/images/logo.png`);
@@ -100,7 +116,15 @@ class Navbar extends Component {
 					  onClick={this.handleProfile}
 				  />
 			  </Menu.Item>
-			  {/* <Menu.Divider /> */}
+			  <Menu.Item key="2">
+			  	<ButtonAuth
+					  text="History Event"
+					  className="auth-button-logout"
+					  style={{borderRadius: '10px',color:'black'}}
+					  block={true}
+					  onClick={this.handleListEvent}
+				  />
+			  </Menu.Item>
 			  <Menu.Item key="3">
 				  <ButtonAuth
 					  text="Keluar"
@@ -150,7 +174,7 @@ class Navbar extends Component {
 								display:`${this.state.isLogin ? 'block' : 'none'}`
 							 }}
 						 >
-							<Avatar size={40} icon="user" className="avatars" scr={this.state.picture}/>
+							<Avatar size={40} icon="user" className="avatars" src={this.state.profile_picture}/>
 								<span className="semi-bold">{this.state.username}</span>
 								<Dropdown overlay={menu} trigger={['click']}>
 									<a className="ant-dropdown-link" href="#">

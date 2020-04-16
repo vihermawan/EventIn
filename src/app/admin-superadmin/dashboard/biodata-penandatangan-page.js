@@ -33,6 +33,20 @@ class BiodataPenandatanganAdminPage extends Component {
         });
     }
 
+    //add penandatangan
+    addPenandatangan = (id_biodata_penandatangan) => {
+        console.log(id_biodata_penandatangan)
+        this.setState({loading: true})
+        API.post(`/admin/addpenandatangan`)
+        .then(res => {
+            console.log('res',res)
+            if(res.status == 200){
+                message.success('Event berhasil di approve');
+                this.componentDidMount(); 
+            }   
+        });
+    }
+
     //function untuk modal
     showAddConfirm = (id) => {
         confirm({

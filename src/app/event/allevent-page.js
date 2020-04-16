@@ -5,7 +5,7 @@ import CONSTANS from '../../common/utils/Constants'
 import { navigate } from '../../common/store/action'
 import AllEventComponent from '../../modules/allevent/component/allevent-component';
 
-// import store
+// import store.
 import { setIdEvent } from '../../modules/admin-panitia/active-event/store/active-event-action'
 
 class AllEventPage extends Component {
