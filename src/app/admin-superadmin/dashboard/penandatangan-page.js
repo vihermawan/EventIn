@@ -116,7 +116,7 @@ class PenandatanganAdminPage extends Component {
                 title: 'Action',
                 key: 'action',
                 render: (data) => (
-                    [
+                    [ 
                     // <ButtonDashboard
                     //     text="Edit"
                     //     height={20}
