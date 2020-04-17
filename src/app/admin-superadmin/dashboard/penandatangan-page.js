@@ -6,7 +6,7 @@ import { navigate } from '../../../common/store/action'
 import CONSTANS from '../../../common/utils/Constants'
 //component
 import PenandatanganAdminComponent from '../../../modules/admin-superadmin/user/penandatangan/penandatangan-component';
-import { faTrash, faInfoCircle } from '@fortawesome/free-solid-svg-icons'
+import { faBan, faInfoCircle, faPen } from '@fortawesome/free-solid-svg-icons'
 import ButtonDashboard from '../../../common/component/button/button-dashboard';
 
 //import store
@@ -55,7 +55,7 @@ class PenandatanganAdminPage extends Component {
     //function untuk modal
     showDeleteConfirm = (id) => {
         confirm({
-            title: ' Apakah yakin untuk menghapus data ?',
+            title: ' Apakah yakin untuk membanned user ?',
             okText: 'Yes',
             okType: 'danger',
             cancelText: 'No',
@@ -76,7 +76,7 @@ class PenandatanganAdminPage extends Component {
         this.props.navigate(CONSTANS.DETAIL_PENANDATANGAN_ADMIN_MENU_KEY)
     }
 
-    //edit penandatangan
+    //edit penandatangan.
     onEditPenandatangan = (id_users) => {
         this.props.setIdUsers(id_users)
         this.props.navigate(CONSTANS.EDIT_PENANDATANGAN_ADMIN_MENU_KEY)
@@ -115,16 +115,16 @@ class PenandatanganAdminPage extends Component {
                 title: 'Action',
                 key: 'action',
                 render: (data) => (
-                    [
-                    // <ButtonDashboard
-                    //     text="Edit"
-                    //     height={20}
-                    //     icon={faPen}
-                    //     borderRadius="5px"
-                    //     background="#005568"
-                    //     marginRight= "20px"
-                    //     onClick = { () => this.onEditPenandatangan(data.id_users)}
-                    // />,
+                    [ 
+                    <ButtonDashboard
+                        text="Edit"
+                        height={20}
+                        icon={faPen}
+                        borderRadius="5px"
+                        background="#005568"
+                        marginRight= "20px"
+                        onClick = { () => this.onEditPenandatangan(data.id_users)}
+                    />,
                     <ButtonDashboard
                         text="Detail"
                         height={20}
@@ -135,9 +135,9 @@ class PenandatanganAdminPage extends Component {
                         onClick = { () => this.onDetailPenandatangan(data.id_users)}
                     />,
                     <ButtonDashboard
-                        text="Delete"
+                        text="Banned"
                         height={20}
-                        icon={faTrash}
+                        icon={faBan}
                         borderRadius="5px"
                         background="#E11212"
                         onClick = {() => this.showDeleteConfirm(data.id_penandatangan)}

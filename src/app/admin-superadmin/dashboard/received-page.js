@@ -30,7 +30,7 @@ class ReceivedPage extends Component {
         });
     }
 
-    //function untuk modal
+    //function untuk modal.
     showSendConfirm = (id) => {
         confirm({
             title: 'Yakin untuk mengirim file ?',

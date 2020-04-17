@@ -5,7 +5,7 @@ import { API } from '../../../common/api'
 import CONSTANS from '../../../common/utils/Constants'
 import { navigate } from '../../../common/store/action'
 import PesertaAdminComponent from '../../../modules/admin-superadmin/user/peserta/peserta-component';
-import { faTrash } from '@fortawesome/free-solid-svg-icons'
+import { faBan } from '@fortawesome/free-solid-svg-icons'
 import { faInfoCircle } from '@fortawesome/free-solid-svg-icons'
 import ButtonDashboard from '../../../common/component/button/button-dashboard';
 
@@ -66,7 +66,7 @@ class PesertaAdminPage extends Component {
     //function untuk modal
     showDeleteConfirm = (id) => {
         confirm({
-            title: ' Apakah yakin untuk menghapus data ?',
+            title: ' Apakah yakin untuk membanned user ?',
             okText: 'Yes',
             okType: 'danger',
             cancelText: 'No',
@@ -141,9 +141,9 @@ class PesertaAdminPage extends Component {
                         onClick = { () => this.onDetailPeserta(data.id_users,data.id_peserta)}
                     />,
                     <ButtonDashboard
-                        text="Delete"
+                        text="Banned"
                         height={20}
-                        icon={faTrash}
+                        icon={faBan}
                         borderRadius="5px"
                         background="#FF0303"
                         onClick = { () => this.showDeleteConfirm(data.id_peserta)}

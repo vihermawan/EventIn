@@ -188,12 +188,12 @@ class Admin extends Component {
                     >
                       <Menu.Item key="admin-penandatangan" onClick={this.clickedMenu}>
                           <Link to="/admin/admin-penandatangan">
-                              <span>Daftar</span>
+                              <span>List Penandatangan</span>
                           </Link>
                       </Menu.Item>
                       <Menu.Item key="biodata-penandatangan" onClick={this.clickedMenu}>
                           <Link to="/admin/biodata-penandatangan">
-                              <span>Biodata</span>
+                              <span>Request</span>
                           </Link>
                       </Menu.Item>
                   </SubMenu>
@@ -220,7 +220,7 @@ class Admin extends Component {
                       <span className={hidden} >Waiting List</span>
                     </Link>
                   </Menu.Item>
-                  <Menu.Item key="received"  onClick={this.clickedMenu}>
+                  {/* <Menu.Item key="received"  onClick={this.clickedMenu}>
                     <Link to="/admin/received">
                     
                       <FontAwesomeIcon
@@ -230,7 +230,7 @@ class Admin extends Component {
                       />
                       <span className={hidden} >Received</span>
                     </Link>
-                  </Menu.Item>
+                  </Menu.Item> */}
                   <div className="title-dashboard">
                       <hr style={{
                           minHeight: 1,

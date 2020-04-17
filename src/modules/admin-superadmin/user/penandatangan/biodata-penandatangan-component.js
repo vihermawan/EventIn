@@ -4,7 +4,7 @@ import '../../../../assets/css/dashboard-all/dashboard.css'
 import '../../../../assets/css/dashboard-all/table-style.css'
 import TableProfile from '../../../../common/component/table/table'
 import LoadingContainer from '../../../../common/component/loading/loading-container'
-// constant content
+// constant content.
 const { Content } = Layout;
 
 
@@ -22,7 +22,7 @@ class BiodataPenandatanganAdminComponent extends Component {
                 }}
             >
                 <Breadcrumb separator=">">
-                    <Breadcrumb.Item>Dashboard Biodata Penandatangan</Breadcrumb.Item>
+                    <Breadcrumb.Item>Dashboard Request Penandatangan</Breadcrumb.Item>
                 </Breadcrumb>
 
                 <Row style={{minHeight: '100%',marginBottom: '2%',marginTop:'2%',}} className="background">
@@ -31,7 +31,7 @@ class BiodataPenandatanganAdminComponent extends Component {
                         <div className="container-active-event">
                             <Row>
                             <div className="container-title-event">
-                                <span>Daftar Biodata Penandatangan</span>
+                                <span>Daftar Request Penandatangan</span>
                             </div>
                             </Row>
                             <LoadingContainer loading={initialData.loading}>
