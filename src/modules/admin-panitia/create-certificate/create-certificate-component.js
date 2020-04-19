@@ -1,0 +1,140 @@
+import React, { Component } from 'react';
+import { Layout, Row, Col, Form, Breadcrumb, Input, Button,Select} from 'antd';
+import '../../../assets/css/admin-panitia/create-certificate.css'
+// component
+import InputForm from '../../../common/component/input/input-form';
+import { faFile} from '@fortawesome/free-solid-svg-icons';
+import LoadingContainer from '../../../common/component/loading/loading-container';
+const { Content } = Layout;
+const { Option } = Select;
+class CreateCertificateComponent extends Component{
+    render(){
+        const { initialData, handleChange, handlePenandatangan,uploadFile, handleSubmit, handleEvent} = this.props;
+        return (
+            
+            <Layout className="login-container">
+                <Content
+                style={{
+                    margin : "5px 10px 0px 10px",
+                    padding: 15,
+                    minHeight: 280,
+                    borderRadius: "8px",
+                }}
+            >
+                <Breadcrumb separator=">">
+                    <Breadcrumb.Item>Dashboard Upload Sertifikat</Breadcrumb.Item>
+                </Breadcrumb>
+
+                <Row style={{minHeight: '100%',marginBottom: '2%',marginTop:'2%',}} className="background">
+                    <Col lg={24} md={24} sm={24}> 
+                        
+                        <div className="container-active-event">
+                            <Row>
+                            <div className="container-title-event">
+                                <span>Upload Sertifikat</span>
+                            </div>
+                            </Row>
+                            <div>
+                                <div className="container-form">
+                                    <Form onSubmit={handleSubmit} encType="multipart/form-data">
+                                        <div className="container-form">
+                                            <Row>
+                                                <Col lg={24} md={24} sm={24}>
+                                                    <div>   
+                                                        <span className="auth-input-label text-black">Nama Sertifikat*</span>
+                                                    </div>
+                                                    <div>
+                                                        <InputForm
+                                                            name='nama_sertifikat'
+                                                            placeholder="Masukan nama sertifikat...."
+                                                            className="input-event mt-5 mb-20"
+                                                            onChange={handleChange}
+                                                            value={initialData.nama_sertifikat}
+                                                            icon={faFile}
+                                                        />
+                                                    </div>
+                                                </Col>
+                                                <Col lg={24} md={24} sm={24}>
+                                                    <div>   
+                                                        <span className="auth-input-label text-black">Pilih Event*</span>
+                                                    </div>
+                                                    <div>
+                                                    <Select
+                                                        placeholder="Pilih Event"
+                                                        optionFilterProp="children"
+                                                        style={{ width: '100%' }}
+                                                        className="select-sertifikat mb-20"
+                                                        onChange={handleEvent}
+                                                    >
+                                                        {
+                                                            initialData.activeEvent.map( data =>     
+                                                                <Option
+                                                                key={data.nama_event.toString()}
+                                                                value={data.id_event}
+                                                                >{data.nama_event}</Option>
+                                                            )
+                                                        }
+                                                    </Select>,
+                                                    </div>
+                                                </Col>
+                                                <Col lg={24} md={24} sm={24}>
+                                                    <div>   
+                                                        <span className="auth-input-label text-black">Pilih Penandatangan*</span>
+                                                    </div>
+                                                    <div>
+                                                    <Select
+                                                        mode="multiple"
+                                                        optionFilterProp="children"
+                                                        style={{ width: '100%' }}
+                                                        className="select-sertifikat mb-20"
+                                                        placeholder="Pilih Penandatangan"
+                                                        onChange={(input, option)=>handlePenandatangan(input,option)}
+                                                    >
+                                                         {
+                                                            initialData.penandatangan.map( data =>     
+                                                                <Option
+                                                                key={data.penandatangan.nama_penandatangan.toString()}
+                                                                value={data.penandatangan.id_penandatangan}
+                                                                >{data.penandatangan.nama_penandatangan}</Option>
+                                                            )
+                                                        }
+                                                    </Select>,
+                                                    </div>
+                                                </Col>
+                                                <Col lg={24} md={24} sm={24}>
+                                                    <div>   
+                                                        <span className="auth-input-label text-black">Upload Sertifikat*</span>
+                                                    </div>
+                                                    <div>
+                                                        <Input
+                                                            type="file"
+                                                            onChange={uploadFile}
+                                                            className="input-picture"
+                                                            style={{marginBottom : '30px',padding: '4px 11px 11px 11px', minHeight:'40px',borderColor:'#2C37BA'}}
+                                                        />
+                                                    </div>
+                                                </Col> 
+                                            </Row>
+                                        </div>
+                                        <div className="steps-action">
+                                            <Button
+                                                type="primary"
+                                                htmlType="submit"
+                                            >
+                                                Done
+                                            </Button>
+                                        </div>
+                                    </Form>
+                                </div>
+                            </div>
+                        </div>
+                    </Col>
+                </Row>
+            </Content>
+            </Layout>
+        );
+    }
+}
+
+
+export default CreateCertificateComponent;

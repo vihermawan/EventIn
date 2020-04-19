@@ -68,40 +68,27 @@ class WaitingCertificatePage extends Component {
             render: text => <a>{text}</a>,
             onFilter: (value, record) => record.nama_event.indexOf(value) === 0,
             sorter: (a, b) => a.nama_event.length - b.nama_event.length,
-            sortDirections: ['descend'],
+            sortDirections: ['descend', 'ascend'],
         },
         {
-            title: 'Deskripsi',
-            dataIndex: 'description',
-            key: 'description',
+            title: 'Nama Penandatangan',
+            dataIndex: 'nama_penandatangan',
+            key: 'nama_penandatangan',
+        },
+        {
+            title: 'Instansi',
+            dataIndex: 'instansi',
+            key: 'instansi',
+        },
+        {
+            title: 'Jabatan',
+            dataIndex: 'jabatan',
+            key: 'jabatan',
         },
         {
             title: 'File',
             dataIndex: 'sertifikat',
             key: 'sertifikat',
-        },
-        {
-            title: 'Status Sertifikat',
-            key: 'status',
-            dataIndex: 'status',
-            render: sertifikat => (
-            <span>
-                {sertifikat.map(tag => {
-                let color = tag.length > 5 ? 'geekblue' : '#87d068';
-                if (tag === 'reject') {
-                    color = 'volcano';
-                }
-                return (
-                    <Tag color={color} key={tag}>
-                    {tag.toUpperCase()}
-                    </Tag>
-                );
-                })}
-            </span>
-            ),
-            onFilter: (value, record) => record.status.indexOf(value) === 0,
-            sorter: (a, b) => a.status.length - b.status.length,
-            sortDirections: ['descend'],
         },
         {
             title: 'Action',
@@ -114,7 +101,7 @@ class WaitingCertificatePage extends Component {
                 icon={faInfoCircle}
                 borderRadius="5px"
                 background="#FFA903"
-                onClick = {() => this.getFile(data.nomor,data.sertifikat)}
+                onClick = {() => this.getFile(data.id_sertifikat,data.sertifikat)}
             />,
             </Tooltip>,
             <Divider type="vertical" />,
@@ -124,21 +111,23 @@ class WaitingCertificatePage extends Component {
                 icon={faEdit}
                 borderRadius="5px"
                 background="#088C0D"
-                onClick = {() => this.onEditCertificate(data.nomor)}
+                onClick = {() => this.onEditCertificate(data.id_sertifikat)}
             />,
             </Tooltip>]
             ),
         },
     ];
     
-    const data =  this.state.certificate.map( ({id_sertifikat, sertifikat, penandatangan, status}, index) => ({
+    const data =  this.state.certificate.map( ({id_penandatangan_sertifikat, id_sertifikat, sertifikat,penandatangan}, index) => ({
         no : index+1,
-        nomor : id_sertifikat,
-        nama_event: sertifikat.event.nama_event,
-        description : sertifikat.description,
-        sertifikat :sertifikat.sertifikat,
-        status : [status.nama_status],        
-        sertif_URL : sertifikat.sertif_URL,
+        id_sertifikat:id_sertifikat,
+        id_penandatangan_sertifikat : id_penandatangan_sertifikat,
+        nama_event : sertifikat.event.nama_event,
+        nama_penandatangan : penandatangan.nama_penandatangan,
+        instansi : penandatangan.instansi,
+        jabatan : penandatangan.jabatan,
+        sertifikat : sertifikat.sertifikat,
+        // nama_sertifikat : sertifikat.nama_sertifikat
     }))
     
         return ( 
