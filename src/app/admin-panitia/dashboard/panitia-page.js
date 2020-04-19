@@ -125,9 +125,6 @@ class PanitiaPage extends Component {
     }
     
     render() {
-        
-        
-
         return ( 
             <PanitiaComponent
                 initialData={this.state}

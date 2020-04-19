@@ -1,0 +1,23 @@
+
+.select-sertifikat .ant-select-selection{
+    margin-top: 4px;
+    /* min-width: 362px; */
+    border-color: #4D5AF2;
+}
+
+.select-sertifikat .ant-select-selection-selected-value{
+    margin: 4px;
+}
+
+.select-sertifikat .ant-select-selection--single {
+    height: 40px;
+}
+
+.select-sertifikat .ant-select-selection--multiple{
+    height: 40px;
+}
+
+.select-sertifikat .ant-select-selection__placeholder, .ant-select-search__field__placeholder{
+    margin-top: -5px;
+    /* background-color: red; */
+}

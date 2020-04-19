@@ -259,24 +259,24 @@ class CertificatePage extends Component {
         params.set('time_end',datetime.time_end)
         
         
-        params.set('nama_sertifikat',this.state.nama_sertifikat)
-        params.set('description',this.state.deskripsi)
-        params.append('sertifikat',this.state.sertifikat)
+        // params.set('nama_sertifikat',this.state.nama_sertifikat)
+        // params.set('description',this.state.deskripsi)
+        // params.append('sertifikat',this.state.sertifikat)
         params.append('picture',this.state.picture_event)
         
         console.log('params', params)
 
       
-    if(validation.required(this.state.nama_sertifikat) != null){
-        const message = validation.required(this.state.nama_sertifikat);
-        this.openNotification(message, 'Nama Sertifikat Harus Diisi')
-    }else if(validation.required(this.state.deskripsi) != null){
-        const message = validation.required(this.state.deskripsi);
-        this.openNotification(message, 'Deskripsi Sertifikat Harus Diisi')
-    }else if(validation.required(this.state.sertifikat) != null ){
-        const message = validation.required(this.state.sertifikat);
-        this.openNotification(message, 'Sertifikat Harus Diupload')
-    }else if(validation.required(this.state.picture_event) != null ){
+    // if(validation.required(this.state.nama_sertifikat) != null){
+    //     const message = validation.required(this.state.nama_sertifikat);
+    //     this.openNotification(message, 'Nama Sertifikat Harus Diisi')
+    // }else if(validation.required(this.state.deskripsi) != null){
+    //     const message = validation.required(this.state.deskripsi);
+    //     this.openNotification(message, 'Deskripsi Sertifikat Harus Diisi')
+    // }else if(validation.required(this.state.sertifikat) != null ){
+    //     const message = validation.required(this.state.sertifikat);
+    //     this.openNotification(message, 'Sertifikat Harus Diupload')}else 
+    if(validation.required(this.state.picture_event) != null ){
         const message = validation.required(this.state.picture_event);
         this.openNotification(message, 'Gambar Event Harus di upload')
     }else{
@@ -294,7 +294,6 @@ class CertificatePage extends Component {
             }else{
                 this.openNotification('Data Salah', 'Silahkan isi data dengan benar')
             }
-           
         });
      }
      

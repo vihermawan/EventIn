@@ -7,6 +7,7 @@ import { faPaperPlane } from '@fortawesome/free-solid-svg-icons'
 import { faInfoCircle } from '@fortawesome/free-solid-svg-icons'
 import WaitingComponent from '../../../modules/admin-superadmin/e-certificate/waiting-list/waiting-list-component';
 import ButtonDashboard from '../../../common/component/button/button-dashboard';
+import ButtonEdit from '../../../common/component/button/button-edit';
 
 const { confirm } = Modal;
 const { Option } = Select;
@@ -30,6 +31,7 @@ class WaitingPage extends Component {
         this.setState({loading: true})
         API.get(`/admin/sertifikat-waiting`)
         .then(res => {
+            // console.log(res)
             this.setState({loading: false})
             console.log('res',res.data.data.sertifikat)
             this.setState({waitingSertifikat:res.data.data.sertifikat})
@@ -50,8 +52,7 @@ class WaitingPage extends Component {
     
     handlePenandatangan = (input, option) => {
         console.log('input', input, 'option', option);
-        this.setState({ id_penandatangan: input })
-        
+        this.setState({ id_penandatangan: input })  
     }
 
     //function untuk modal
@@ -88,14 +89,30 @@ class WaitingPage extends Component {
         });
     }
 
-    handleSubmit = (id_sertifikat,id_penandatangan) => {
+    //function pop up notifikasi
+    showSendConfirm = (id_penandatangan_sertifikat,nama_penandatangan,instansi,jabatan) => {
+        confirm({
+            title: `Apakah Yakin untuk mengirim sertifikat ke ${nama_penandatangan} ${jabatan} ${instansi} ?`,
+            okText: 'Yes',
+            okType: 'danger',
+            cancelText: 'No',
+            onOk: () => {
+                console.log(id_penandatangan_sertifikat,nama_penandatangan,instansi,jabatan)
+                this.handleSubmit(id_penandatangan_sertifikat)
+            },
+            onCancel(){
+                console.log('Cancel')
+            }
+        });
+    }
+
+    handleSubmit = (id_penandatangan_sertifikat) => {
         const params = {
-            id_sertifikat: id_sertifikat, 
-            id_penandatangan : id_penandatangan, 
+            id_penandatangan_sertifikat : id_penandatangan_sertifikat, 
         }
         console.log('params',params)
         this.setState({loading: true})
-        API.post(`/admin/sendSertifikat/${id_sertifikat}`,params)
+        API.put(`/admin/send-sertifikat/${id_penandatangan_sertifikat}`)
         .then(res => {
             console.log('res',res)
             if(res.status === 200){
@@ -129,9 +146,19 @@ class WaitingPage extends Component {
                 key: 'nama_panitia',
             },
             {
-                title: 'Description',
-                dataIndex: 'description',
-                key: 'description',
+                title: 'Nama Penandatangan',
+                dataIndex: 'nama_penandatangan',
+                key: 'nama_penandatangan',
+            },
+            {
+                title: 'Instansi',
+                dataIndex: 'instansi',
+                key: 'instansi',
+            },
+            {
+                title: 'Jabatan',
+                dataIndex: 'jabatan',
+                key: 'jabatan',
             },
             {
                 title: 'File',
@@ -142,16 +169,16 @@ class WaitingPage extends Component {
               title: 'Action',
               key: 'action',
               render: (data) => (
-                [<ButtonDashboard
+                [<ButtonEdit
                     text="Send"
                     height={20}
                     icon={faPaperPlane}
                     borderRadius="5px"
                     background="#36FF03"
                     marginRight= "20px"
-                    onClick = {() => this.showAcceptConfirm(data.id_sertifikat)}
+                    onClick = {() => this.showSendConfirm(data.id_penandatangan_sertifikat, data.nama_penandatangan, data.instansi, data.jabatan)}
                 />,
-                <ButtonDashboard
+                <ButtonEdit
                     text="Detail"
                     height={20}
                     icon={faInfoCircle}
@@ -162,14 +189,15 @@ class WaitingPage extends Component {
             },
           ];
 
-        const data =  this.state.waitingSertifikat.map( ({id_sertifikat, event,description, sertifikat}, index) => ({
+        const data =  this.state.waitingSertifikat.map( ({id_penandatangan_sertifikat, id_sertifikat, sertifikat,penandatangan}, index) => ({
             no : index+1,
-            id_sertifikat : id_sertifikat,
-            nama_event : event.nama_event,
-            nama_panitia : event.panitia.nama_panitia,
-            organisasi : event.organisasi,
-            description : description,
-            sertifikat : sertifikat,
+            id_penandatangan_sertifikat : id_penandatangan_sertifikat,
+            nama_event : sertifikat.event.nama_event,
+            nama_penandatangan : penandatangan.nama_penandatangan,
+            instansi : penandatangan.instansi,
+            jabatan : penandatangan.jabatan,
+            sertifikat : sertifikat.sertifikat,
+            nama_panitia : sertifikat.event.panitia.nama_panitia
         }))
         return ( 
             <WaitingComponent
