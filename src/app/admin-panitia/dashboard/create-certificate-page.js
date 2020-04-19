@@ -115,12 +115,12 @@ class CreateCertificatePage extends Component {
             API.postEdit(`/panitia/create-sertifikat`, params)
             .then(res => {
                 console.log('res',res)
-                // if(res.status == 201){
-                //     message.success('Sertifikat berhasil Ditambahkan');
-                //     // this.props.navigate(CONSTANS.ACTIVE_EVENT_MENU_KEY)
-                // }else{
-                //     this.openNotification('Data Salah', 'Silahkan isi data dengan benar')
-                // }
+                if(res.status == 201){
+                    message.success('Sertifikat berhasil Ditambahkan');
+                    // this.props.navigate(CONSTANS.ACTIVE_EVENT_MENU_KEY)
+                }else{
+                    this.openNotification('Data Salah', 'Silahkan isi data dengan benar')
+                }
             });
         }
     }

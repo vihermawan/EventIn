@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { Modal, Tag,Divider, message } from 'antd'
+import { Modal, Tag,Divider, message,Button, Input, Icon, Tooltip } from 'antd'
 import { faCheckCircle, faWindowClose} from '@fortawesome/free-solid-svg-icons'
+import  * as Highlighter from 'react-highlight-words'
 import { API } from '../../../common/api'
 import { navigate } from '../../../common/store/action'
 import ListParticipantComponent from '../../../modules/admin-panitia/list-participant/list-participant-component';
@@ -37,9 +38,8 @@ class ListParticipantPage extends Component {
         this.setState({
           visible: true,
         });
-     };
+    };
     
-
     //approve peserta
     ApprovePeserta = (id_pesertaevent) => {
         this.setState({loading: true,visible:true})
@@ -55,6 +55,72 @@ class ListParticipantPage extends Component {
         });
     }
     
+    
+    getColumnSearchProps = dataIndex => ({
+        filterDropdown: ({ setSelectedKeys, selectedKeys, confirm, clearFilters }) => (
+          <div style={{ padding: 8 }}>
+            <Input
+              ref={node => {
+                this.searchInput = node;
+              }}
+              placeholder={`Search ${dataIndex}`}
+              value={selectedKeys[0]}
+              onChange={e => setSelectedKeys(e.target.value ? [e.target.value] : [])}
+              onPressEnter={() => this.handleSearch(selectedKeys, confirm, dataIndex)}
+              style={{ width: 188, marginBottom: 8, display: 'block' }}
+            />
+            <Button
+              type="primary"
+              onClick={() => this.handleSearch(selectedKeys, confirm, dataIndex)}
+              icon="search"
+              size="small"
+              style={{ width: 90, marginRight: 8 }}
+            >
+              Search
+            </Button>
+            <Button onClick={() => this.handleReset(clearFilters)} size="small" style={{ width: 90 }}>
+              Reset
+            </Button>
+          </div>
+        ),
+        filterIcon: filtered => (
+          <Icon type="search" style={{ color: filtered ? '#1890ff' : undefined }} />
+        ),
+        onFilter: (value, record) =>
+          record[dataIndex]
+            .toString()
+            .toLowerCase()
+            .includes(value.toLowerCase()),
+        onFilterDropdownVisibleChange: visible => {
+          if (visible) {
+            setTimeout(() => this.searchInput.select());
+          }
+        },
+        render: text =>
+          this.state.searchedColumn === dataIndex ? (
+            <Highlighter
+              highlightStyle={{ backgroundColor: '#ffc069', padding: 0 }}
+              searchWords={[this.state.searchText]}
+              autoEscape
+              textToHighlight={text.toString()}
+            />
+          ) : (
+            text
+          ),
+    });
+
+    handleSearch = (selectedKeys, confirm, dataIndex) => {
+        confirm();
+        this.setState({
+          searchText: selectedKeys[0],
+          searchedColumn: dataIndex,
+        });
+    };
+    
+    handleReset = clearFilters => {
+        clearFilters();
+        this.setState({ searchText: '' });
+    };
 
     //function untuk modal
     showAcceptConfirm = (id) => {
@@ -71,8 +137,6 @@ class ListParticipantPage extends Component {
             }
         });
     }
-
-
     
     //function untuk modal
     showRejectConfirm = (id) => {
@@ -98,35 +162,38 @@ class ListParticipantPage extends Component {
             dataIndex: 'no',
             key: 'no',
             render: text => <a>{text}</a>,
+            sorter: (a, b) => a.no - b.no,
+            sortDirections: ['ascend','descend'],
         },
         {
             title: 'Nama Peserta',
             dataIndex: 'nama_peserta',
             key: 'nama_peserta',
-            render: text => <a>{text}</a>,
-            onFilter: (value, record) => record.nama_peserta.indexOf(value) === 0,
-            sorter: (a, b) => a.nama_peserta.length - b.nama_peserta.length,
-            sortDirections: ['descend'],
+            ...this.getColumnSearchProps('nama_peserta'),
         },
         {
             title: 'Organisasi',
             dataIndex: 'organisasi',
             key: 'organisasi',
+            ...this.getColumnSearchProps('organisasi'),
         },
         {
             title: 'Email',
             dataIndex: 'email',
             key: 'email',
+            ...this.getColumnSearchProps('email'),
         },
         {
             title: 'Jenis Kelamin',
             dataIndex: 'jenis_kelamin',
             key: 'jenis_kelamin',
+            ...this.getColumnSearchProps('jenis_kelamin'),
         },
         {
             title: 'Umur',
             dataIndex: 'umur',
             key: 'umur',
+            ...this.getColumnSearchProps('umur'),
         },
         {
             title: 'Status Peserta',
@@ -154,23 +221,26 @@ class ListParticipantPage extends Component {
             title: 'Action',
             key: 'action',
             render: (data) => (
-            [<ButtonDashboard
-                // text="Accept"
-                height={20}
-                icon={faCheckCircle}
-                borderRadius="5px"
-                background="#00C908"
-                onClick={ () => this.showAcceptConfirm(data.nomor)}
-            />,
+            [
+            <Tooltip title="Accept">
+                <ButtonDashboard
+                    height={20}
+                    icon={faCheckCircle}
+                    borderRadius="5px"
+                    background="#00C908"
+                    onClick={ () => this.showAcceptConfirm(data.nomor)}
+                />,
+            </Tooltip>,
             <Divider type="vertical" />,
-            <ButtonDashboard
-                // text="Reject"
-                height={20}
-                icon={faWindowClose}
-                borderRadius="5px"
-                background="#FF0303"
-                onClick={ () => this.showRejectConfirm(data.nomor)}
-            />]
+            <Tooltip title="Reject">,
+                <ButtonDashboard
+                    height={20}
+                    icon={faWindowClose}
+                    borderRadius="5px"
+                    background="#FF0303"
+                    onClick={ () => this.showRejectConfirm(data.nomor)}
+                />
+            </Tooltip>,]
             ),
         },
     ];
