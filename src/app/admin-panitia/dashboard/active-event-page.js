@@ -187,17 +187,33 @@ class ActiveEventPage extends Component {
                 title: 'Tempat',
                 dataIndex: 'lokasi',
                 key: 'lokasi',
+                ...this.getColumnSearchProps('lokasi'),
             },
             {
                 title: 'Kategori',
                 dataIndex: 'kategori',
                 key: 'kategori',
+                ...this.getColumnSearchProps('kategori'),
                 render: kategori => (
                     <span>
                       {kategori.map(tag => {
                         let color = tag.length > 5 ? 'geekblue' : 'green';
-                        if (tag === 'loser') {
-                          color = 'volcano';
+                        if (tag === 'Budaya') {
+                          color = '#0046b8';
+                        }else if(tag === 'Musik'){
+                          color ='#018f52'
+                        }else if(tag === 'Olahraga'){
+                          color ='#8f1601'
+                        }else if(tag === 'Game'){
+                          color ='#016e8f'
+                        }else if(tag === 'Seni'){
+                          color ='#8f8f01'
+                        }else if(tag === 'Teknologi'){
+                          color ='#018f52'
+                        }else if(tag === 'Pendidikan'){
+                          color ='#8f0120'
+                        }else if(tag === 'Agama'){
+                          color ='#018f77'
                         }
                         return (
                           <Tag color={color} key={tag}>
@@ -207,19 +223,19 @@ class ActiveEventPage extends Component {
                       })}
                     </span>
                 ),
-                onFilter: (value, record) => record.nama_event.indexOf(value) === 0,
-                sorter: (a, b) => a.kategori.length - b.kategori.length,
-                sortDirections: ['descend', 'ascend'],
+               
             },
             {
                 title: 'Tanggal Mulai',
                 dataIndex: 'start_event',
                 key: 'start_event',
+                ...this.getColumnSearchProps('start_event'),
             },
             {
                 title: 'Tanggal Selesai',
                 dataIndex: 'end_event',
                 key: 'end_event',
+                ...this.getColumnSearchProps('end_event'),
               },
             {
               title: 'Action',
