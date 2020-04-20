@@ -14,7 +14,8 @@ class CreateCertificatePage extends Component {
         activeEvent:[],
         nama_sertifikat : '',
         id_penandatangan : '',
-        id_event : ''
+        id_event : '',
+        visible : false,
     }
 
     componentDidMount(){
@@ -47,7 +48,6 @@ class CreateCertificatePage extends Component {
         });
     }
 
-    
     handlePenandatangan = (input, option) => {
         console.log('input', input, 'option', option);
         this.setState({ id_penandatangan: input })  
@@ -91,6 +91,12 @@ class CreateCertificatePage extends Component {
         });
     };
 
+    showModal2 = () => {
+        this.setState({
+            show :true,
+        })
+    }
+
     handleSubmit = e => {
         e.preventDefault();
         const params = new FormData()
@@ -112,11 +118,13 @@ class CreateCertificatePage extends Component {
             this.openNotification(message, 'Sertifikat Harus Diupload')
         }else{
             this.setState({loading: true})
+            this.showModal2();
             API.postEdit(`/panitia/create-sertifikat`, params)
             .then(res => {
                 console.log('res',res)
                 if(res.status == 201){
                     message.success('Sertifikat berhasil Ditambahkan');
+                    
                     // this.props.navigate(CONSTANS.ACTIVE_EVENT_MENU_KEY)
                 }else{
                     this.openNotification('Data Salah', 'Silahkan isi data dengan benar')
@@ -126,6 +134,7 @@ class CreateCertificatePage extends Component {
     }
 
     
+
     render() { 
         return ( 
             <CreateCertificateComponent

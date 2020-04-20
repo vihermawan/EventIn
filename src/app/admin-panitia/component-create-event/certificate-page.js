@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { API } from '../../../common/api'
-import 'react-image-crop/dist/ReactCrop.css';
 import { notification,message } from 'antd';
 import CONSTANS from '../../../common/utils/Constants'
 import * as validation from '../../../common/utils/validation'

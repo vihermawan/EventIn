@@ -4,19 +4,15 @@ import '../../../assets/css/dashboard-all/dashboard.css'
 import '../../../assets/css/dashboard-all/table-style.css'
 // component
 import LoadingContainer from '../../../common/component/loading/loading-container'
-import ButtonDashboard from '../../../common/component/button/button-dashboard';
+import ButtonEdit from '../../../common/component/button/button-edit';
 import { faInfoCircle } from '@fortawesome/free-solid-svg-icons';
-import { PDFViewer,Document,Page, Text, View, } from '@react-pdf/renderer';
 // constant content
 const { Content } = Layout;
-
-
 
 class TemplateCertificateComponent extends Component {
     render() { 
       const { getTemplate } = this.props;
       const image1 = require(`../../../assets/images/template.png`);
-      const document = require(`../../../assets/images/template.pdf`);
         return ( 
             <Content
                 style={{
@@ -68,7 +64,7 @@ class TemplateCertificateComponent extends Component {
                                                                 <Row>
                                                                     <Col span={24} style={{ marginTop:'1%' }}>
                                                                         <div>
-                                                                            <ButtonDashboard
+                                                                            <ButtonEdit
                                                                                 text="Download"
                                                                                 height={20}
                                                                                 icon={faInfoCircle}

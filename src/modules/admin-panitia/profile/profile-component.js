@@ -1,10 +1,10 @@
 import React, { Component } from 'react';
-import { Layout, Breadcrumb, Row, Table, Input, Col,Icon } from 'antd';
+import { Layout, Breadcrumb, Row, Col,Icon } from 'antd';
 import { faInfoCircle } from '@fortawesome/free-solid-svg-icons'
 import '../../../assets/css/dashboard-all/dashboard.css'
 import '../../../assets/css/dashboard-all/table-style.css'
 import LoadingContainer from '../../../common/component/loading/loading-container'
-import ButtonDashboard from '../../../common/component/button/button-dashboard';
+import ButtonEdit from '../../../common/component/button/button-edit';
 // constant content
 const { Content } = Layout;
 
@@ -50,7 +50,7 @@ class ProfilePanitiaComponent extends Component {
                                         <p className="text-soft-grey email-user"> <Icon type="mail" style={{marginRight:'10px'}} />{data.email}</p>                                      
                                     </div>
                                     <div>
-                                        <ButtonDashboard
+                                        <ButtonEdit
                                             text="Edit Profile"
                                             height={20}
                                             icon={faInfoCircle}

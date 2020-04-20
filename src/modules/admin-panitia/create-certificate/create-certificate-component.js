@@ -1,10 +1,11 @@
 import React, { Component } from 'react';
-import { Layout, Row, Col, Form, Breadcrumb, Input, Button,Select} from 'antd';
+import { Layout, Row, Col, Form, Breadcrumb, Input, Button,Select, Modal} from 'antd';
 import '../../../assets/css/admin-panitia/create-certificate.css'
 // component
 import InputForm from '../../../common/component/input/input-form';
 import { faFile} from '@fortawesome/free-solid-svg-icons';
-import LoadingContainer from '../../../common/component/loading/loading-container';
+import LoadingNotifContainer from '../../../common/component/loading/loading-notif';
+import LoadingContainer from '../../../common/component/loading/loading-container'
 const { Content } = Layout;
 const { Option } = Select;
 class CreateCertificateComponent extends Component{
@@ -36,6 +37,7 @@ class CreateCertificateComponent extends Component{
                             </Row>
                             <div>
                                 <div className="container-form">
+                                <LoadingContainer loading={initialData.loading}>
                                     <Form onSubmit={handleSubmit} encType="multipart/form-data">
                                         <div className="container-form">
                                             <Row>
@@ -64,7 +66,7 @@ class CreateCertificateComponent extends Component{
                                                         optionFilterProp="children"
                                                         style={{ width: '100%' }}
                                                         className="select-sertifikat mb-20"
-                                                        onChange={handleEvent}
+                                                        onChange={(input, option)=>handleEvent(input,option)}
                                                     >
                                                         {
                                                             initialData.activeEvent.map( data =>     
@@ -125,6 +127,17 @@ class CreateCertificateComponent extends Component{
                                             </Button>
                                         </div>
                                     </Form>
+                                    </LoadingContainer>
+                                    <Modal
+                                        title="Proses Upload Sertifikat"
+                                        visible={initialData.show}
+                                        className = "modal-notif"
+                                        >
+                                        <p className="text-notif">Silahkan tunggu sertifikat anda sedang di upload</p>
+                                        <div >
+                                            <LoadingNotifContainer loading={initialData.loading_notif} style={{ minHeight:'20px', marginTop:'50px',}}/>
+                                        </div>
+                                    </Modal>
                                 </div>
                             </div>
                         </div>
