@@ -1,12 +1,13 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { Modal, message} from 'antd'
+import { Modal, message, Button, Input, Icon, Divider} from 'antd'
 import CONSTANS from '../../../common/utils/Constants'
 import { API } from '../../../common/api'
+import  * as Highlighter from 'react-highlight-words';
 import { faInfoCircle } from '@fortawesome/free-solid-svg-icons'
 import { navigate } from '../../../common/store/action'
 import BiodataPenandatanganAdminComponent from '../../../modules/admin-superadmin/user/penandatangan/biodata-penandatangan-component';
-import ButtonDashboard from '../../../common/component/button/button-dashboard';
+import ButtonEdit from '../../../common/component/button/button-edit';
 
 const {confirm} = Modal;
 
@@ -14,11 +15,77 @@ class BiodataPenandatanganAdminPage extends Component {
     state = { 
         penandatangan: [],
         loading : false,
-     }
+    }
 
-     componentDidMount(){
+    componentDidMount(){
          this.getBiodata();
-     }
+    }
+
+    getColumnSearchProps = dataIndex => ({
+        filterDropdown: ({ setSelectedKeys, selectedKeys, confirm, clearFilters }) => (
+          <div style={{ padding: 8 }}>
+            <Input
+              ref={node => {
+                this.searchInput = node;
+              }}
+              placeholder={`Search ${dataIndex}`}
+              value={selectedKeys[0]}
+              onChange={e => setSelectedKeys(e.target.value ? [e.target.value] : [])}
+              onPressEnter={() => this.handleSearch(selectedKeys, confirm, dataIndex)}
+              style={{ width: 188, marginBottom: 8, display: 'block' }}
+            />
+            <Button
+              type="primary"
+              onClick={() => this.handleSearch(selectedKeys, confirm, dataIndex)}
+              icon="search"
+              size="small"
+              style={{ width: 90, marginRight: 8 }}
+            >
+              Search
+            </Button>
+            <Button onClick={() => this.handleReset(clearFilters)} size="small" style={{ width: 90 }}>
+              Reset
+            </Button>
+          </div>
+        ),
+        filterIcon: filtered => (
+          <Icon type="search" style={{ color: filtered ? '#1890ff' : undefined }} />
+        ),
+        onFilter: (value, record) =>
+          record[dataIndex]
+            .toString()
+            .toLowerCase()
+            .includes(value.toLowerCase()),
+        onFilterDropdownVisibleChange: visible => {
+          if (visible) {
+            setTimeout(() => this.searchInput.select());
+          }
+        },
+        render: text =>
+          this.state.searchedColumn === dataIndex ? (
+            <Highlighter
+              highlightStyle={{ backgroundColor: '#ffc069', padding: 0 }}
+              searchWords={[this.state.searchText]}
+              autoEscape
+              textToHighlight={text.toString()}
+            />
+          ) : (
+            text
+          ),
+    });
+
+    handleSearch = (selectedKeys, confirm, dataIndex) => {
+        confirm();
+        this.setState({
+          searchText: selectedKeys[0],
+          searchedColumn: dataIndex,
+        });
+    };
+    
+    handleReset = clearFilters => {
+        clearFilters();
+        this.setState({ searchText: '' });
+    };
 
     //get data dari API
     getBiodata=()=>{
@@ -64,8 +131,8 @@ class BiodataPenandatanganAdminPage extends Component {
         });
     }
 
-     //add penandatangan
-     addPenandatangan = (id) => {
+    //add penandatangan
+    addPenandatangan = (id) => {
         // e.preventDefault();
 
         const params = {
@@ -86,54 +153,65 @@ class BiodataPenandatanganAdminPage extends Component {
     }
 
 
-    render() { 
-    
+    render() {  
         const columns = [
             {
                 title: 'No',
                 dataIndex: 'nomor',
                 key: 'nomor',
                 render: text => <a>{text}</a>,
+                sorter: (a, b) => a.no - b.no,
+                sortDirections: ['ascend','descend'],
             },
             {
                 title: 'Nama Penandatangan',
                 dataIndex: 'nama',
                 key: 'nama',
-                render: text => <a>{text}</a>,
-                onFilter: (value, record) => record.nama.indexOf(value) === 0,
-                sorter: (a, b) => a.nama.length - b.nama.length,
-                sortDirections: ['descend'],
+                ...this.getColumnSearchProps('nama'),
             },
             {
                 title: 'Instansi',
                 dataIndex: 'instansi',
                 key: 'instansi',
+                ...this.getColumnSearchProps('instansi'),
             },
             {
                 title: 'Email',
                 dataIndex: 'email',
                 key: 'email',
+                ...this.getColumnSearchProps('email'),
             },
             {
                 title: 'Jabatan',
                 dataIndex: 'jabatan',
                 key: 'jabatan',
+                ...this.getColumnSearchProps('jabatan'),
             },
             {
                 title: 'NIP',
                 dataIndex: 'nip',
                 key: 'nip',
+                ...this.getColumnSearchProps('nip'),
             },
             {
               title: 'Action',
               key: 'action',
               render: (data) => (
-                [<ButtonDashboard
+                [<ButtonEdit
                     text="Add"
                     height={20}
                     icon={faInfoCircle}
                     borderRadius="5px"
                     background="#FFA903"
+                    onClick= {()=> this.showAddConfirm(data.nomor)}
+                />,
+                <Divider type="vertical" />,
+                <ButtonEdit
+                    text="Reject"
+                    height={20}
+                    icon={faInfoCircle}
+                    borderRadius="5px"
+                    background="#FF0303"
                     marginRight= "20px"
                     onClick= {()=> this.showAddConfirm(data.nomor)}
                 />]

@@ -1,30 +1,20 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { API } from '../../../common/api'
-import { Modal, message, Button, Input, Icon, Divider } from 'antd'
 import { navigate } from '../../../common/store/action'
-import CONSTANS from '../../../common/utils/Constants'
-import ListPanitiaAdminComponent from '../../../modules/admin-superadmin/user/panitia/listpanitia-component';
+import { Button, Input, Icon, Divider } from 'antd'
 import  * as Highlighter from 'react-highlight-words';
+import BannedPanitiaComponent from '../../../modules/admin-superadmin/banned-page/banned-panitia-component';
 //component
-import { faBan } from '@fortawesome/free-solid-svg-icons'
-import { faInfoCircle } from '@fortawesome/free-solid-svg-icons'
-import ButtonDashboard from '../../../common/component/button/button-dashboard';
+import { faInfoCircle,faBan  } from '@fortawesome/free-solid-svg-icons'
+import ButtonEdit from '../../../common/component/button/button-edit';
 
-// import store
-import { setIdPanitia } from '../../../modules/admin-superadmin/user/panitia/store/panitia-action'
-import { setIdUsers } from '../../../modules/admin-superadmin/user/store/users-action'
-
-const { confirm } = Modal;
-
-class ListPanitiaAdminPage extends Component {
-    state = { 
-        panitia: [],
-        loading: false,
+class BannedPanitiaPage extends Component {
+    state = {
+        
     }
 
     componentDidMount(){
-        this.getPanitia();
+      
     }
 
     getColumnSearchProps = dataIndex => ({
@@ -93,66 +83,8 @@ class ListPanitiaAdminPage extends Component {
         this.setState({ searchText: '' });
     };
 
-    getPanitia=()=>{
-        this.setState({loading: true})
-        API.get(`/admin/showpanitia`)
-        .then(res => {
-          this.setState({
-            panitia:res.data.data.panitia,
-            loading: false,
-          })
-        });
-    }
-
-    //delete panitia
-    deletePanitia = (id_panitia) => {   
-        console.log(id_panitia)
-        API.delete(`/admin/deletepanitia/${id_panitia}`)
-        .then(res => {
-            // console.log('res',res)
-            if(res.status == 200){
-                message.success('This is a success message');
-                window.location.reload(); 
-            }   
-        });
-    }
-
-    //function untuk modal
-    showDeleteConfirm = (id) => {
-        confirm({
-            title: ' Apakah yakin untuk membanned user ?',
-            okText: 'Yes',
-            okType: 'danger',
-            cancelText: 'No',
-            onOk: () => {
-                console.log('id ini',id)
-                this.deletePanitia(id)
-            },
-            onCancel(){
-                console.log('Cancel')
-            }
-        });
-    }
-
-    //button detail event
-    onDetailPanitia = (id_users,id_panitia) => {
-        console.log('id ini',id_users,id_panitia)
-        this.props.setIdUsers(id_users)
-        this.props.setIdPanitia(id_panitia)
-        this.props.navigate(CONSTANS.DETAIL_PANITIA_ADMIN_MENU_KEY)
-    }
-
-    onEditPanitia = (id_users) => {
-        this.props.setIdUsers(id_users)
-        this.props.navigate(CONSTANS.EDIT_PANITIA_ADMIN_MENU_KEY)
-    }
-
-    onChange(pagination, filters, sorter, extra) {
-        // console.log('params', pagination, filters, sorter, extra);
-    }
-
     render() { 
-
+        
         const columns = [
             {
                 title: 'No',
@@ -191,16 +123,7 @@ class ListPanitiaAdminPage extends Component {
                 key: 'action',
                 render: (data) => (
                     [
-                    // <ButtonDashboard
-                    //     text="Edit"
-                    //     height={20}
-                    //     icon={faPen}
-                    //     borderRadius="5px"
-                    //     background="#005568"
-                    //     marginRight= "20px"
-                    //     onClick = { () => this.onEditPanitia(data.id_users)}
-                    // />,
-                    <ButtonDashboard
+                    <ButtonEdit
                         text="Detail"
                         height={20}
                         icon={faInfoCircle}
@@ -209,7 +132,7 @@ class ListPanitiaAdminPage extends Component {
                         onClick = { () => this.onDetailPanitia(data.id_users,data.id_panitia)}
                     />,
                     <Divider type="vertical" />,
-                    <ButtonDashboard
+                    <ButtonEdit
                         text="Banned"
                         height={20}
                         icon={faBan}
@@ -217,29 +140,16 @@ class ListPanitiaAdminPage extends Component {
                         background="#FF0303"
                         onClick = { () => this.showDeleteConfirm(data.id_panitia)}
                     />]
-              ),
+                ),
             },
-          ];
+        ];
 
-        const data =  this.state.panitia.map( ({id_users, panitia,email}, index) => ({
-            no : index+1,
-            id_panitia : panitia.id_panitia,
-            id_users : id_users,
-            panitia : panitia.nama_panitia,
-            email : email,
-            organisasi : panitia.organisasi,
-            no_telepon : panitia.no_telepon,
-        }))
-        
-        
-
+          
         return ( 
-            <ListPanitiaAdminComponent
+            <BannedPanitiaComponent
                 initialData={this.state}
                 navigate={this.props.navigate}
                 columns={columns}
-                data={data}
-                onChange={this.onChange()}
             />
         );
     }
@@ -251,9 +161,7 @@ const mapStateToProps = state => ({
 
 const mapDispatchToProps = (dispatch => ({
     navigate,
-    setIdPanitia,
-    setIdUsers,
 }))();
 
-const page = connect(mapStateToProps, mapDispatchToProps)(ListPanitiaAdminPage);
+const page = connect(mapStateToProps, mapDispatchToProps)(BannedPanitiaPage);
 export default page
