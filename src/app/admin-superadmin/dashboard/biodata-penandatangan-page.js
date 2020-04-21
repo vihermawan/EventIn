@@ -1,13 +1,13 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { Modal, message, Button, Input, Icon, Divider} from 'antd'
+import { Modal, message, Button, Input, Icon, Divider, Tooltip} from 'antd'
 import CONSTANS from '../../../common/utils/Constants'
 import { API } from '../../../common/api'
 import  * as Highlighter from 'react-highlight-words';
-import { faInfoCircle } from '@fortawesome/free-solid-svg-icons'
+import { faInfoCircle, faTrash } from '@fortawesome/free-solid-svg-icons'
 import { navigate } from '../../../common/store/action'
 import BiodataPenandatanganAdminComponent from '../../../modules/admin-superadmin/user/penandatangan/biodata-penandatangan-component';
-import ButtonEdit from '../../../common/component/button/button-edit';
+import ButtonDashboard from '../../../common/component/button/button-dashboard';
 
 const {confirm} = Modal;
 
@@ -15,6 +15,7 @@ class BiodataPenandatanganAdminPage extends Component {
     state = { 
         penandatangan: [],
         loading : false,
+        show : false,
     }
 
     componentDidMount(){
@@ -100,24 +101,10 @@ class BiodataPenandatanganAdminPage extends Component {
         });
     }
 
-    //add penandatangan
-    addPenandatangan = (id_biodata_penandatangan) => {
-        console.log(id_biodata_penandatangan)
-        this.setState({loading: true})
-        API.post(`/admin/addpenandatangan`)
-        .then(res => {
-            console.log('res',res)
-            if(res.status == 200){
-                message.success('Event berhasil di approve');
-                this.componentDidMount(); 
-            }   
-        });
-    }
-
     //function untuk modal
-    showAddConfirm = (id) => {
+    showAddConfirm = (id,nama,jabatan,instansi) => {
         confirm({
-            title: 'Yakin untuk menambah data ?',
+            title: `Yakin untuk menambah ${nama} ${jabatan} ${instansi} sebagai penandatangan ? `,
             okText: 'Yes',
             okType: 'danger',
             cancelText: 'No',
@@ -131,15 +118,31 @@ class BiodataPenandatanganAdminPage extends Component {
         });
     }
 
+     //function untuk modal
+     showRejectConfirm = (id,nama,jabatan,instansi) => {
+      confirm({
+          title: `Yakin untuk menolak ${nama} ${jabatan} ${instansi} sebagai penandatangan ?`,
+          okText: 'Yes',
+          okType: 'danger',
+          cancelText: 'No',
+          onOk: () => {
+              console.log("ini id", id)
+              this.rejectPenandatangan(id)
+          },
+          onCancel(){
+              console.log('Cancel')
+          }
+      });
+  }
+
     //add penandatangan
     addPenandatangan = (id) => {
-        // e.preventDefault();
-
         const params = {
             id_biodata_penandatangan: id,  
         }
         console.log('params',params)
         this.setState({loading: true})
+        this.showModal2();
         API.post(`/admin/addpenandatangan`,params)
         .then(res => {
             console.log('res',res)
@@ -150,6 +153,31 @@ class BiodataPenandatanganAdminPage extends Component {
             }  
             this.setState({loading: false}) 
         });
+    }
+
+    //add penandatangan
+    rejectPenandatangan = (id) => {
+      const params = {
+          id_biodata_penandatangan: id,  
+      }
+      console.log('params',params)
+      this.setState({loading: true})
+      this.showModal2();
+      API.post(`/admin/reject-penandatangan`,params)
+      .then(res => {
+          console.log('res',res)
+          if(res.status == 200){
+              message.success('Berhasil menolak penandatangan');
+              this.props.navigate(CONSTANS.BIODATA_PENANDATANGAN_ADMIN_KEY)
+          }  
+          this.setState({loading: false}) 
+      });
+    }
+
+    showModal2 = () => {
+      this.setState({
+          show :true,
+      })
     }
 
 
@@ -197,24 +225,27 @@ class BiodataPenandatanganAdminPage extends Component {
               title: 'Action',
               key: 'action',
               render: (data) => (
-                [<ButtonEdit
-                    text="Add"
-                    height={20}
-                    icon={faInfoCircle}
-                    borderRadius="5px"
-                    background="#FFA903"
-                    onClick= {()=> this.showAddConfirm(data.nomor)}
-                />,
-                <Divider type="vertical" />,
-                <ButtonEdit
-                    text="Reject"
-                    height={20}
-                    icon={faInfoCircle}
-                    borderRadius="5px"
-                    background="#FF0303"
-                    marginRight= "20px"
-                    onClick= {()=> this.showAddConfirm(data.nomor)}
-                />]
+                [
+                <Tooltip title="Add">,
+                  <ButtonDashboard
+                      height={20}
+                      icon={faInfoCircle}
+                      borderRadius="5px"
+                      background="#FFA903"
+                      onClick= {()=> this.showAddConfirm(data.nomor,data.nama,data.instansi,data.jabatan)}
+                  />,
+                </Tooltip>,
+                <Divider type="vertical"/>,
+                <Tooltip title="Reject">,
+                  <ButtonDashboard
+                      height={20}
+                      icon={faTrash}
+                      borderRadius="5px"
+                      background="#FF0303"
+                      onClick= {()=> this.showRejectConfirm(data.nomor,data.nama,data.instansi,data.jabatan)}
+                  />,
+                </Tooltip>
+                ]
               ),
             },
         ];

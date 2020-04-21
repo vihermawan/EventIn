@@ -113,7 +113,7 @@ class ApprovalEventPage extends Component {
         this.props.navigate(CONSTANS.DETAIL_EVENT_ADMIN_MENU_KEY)
     }
 
-    //delete event
+    //approve event
     approveEvent = (id_event) => {
         console.log(id_event)
         this.setState({loading: true})
@@ -126,11 +126,25 @@ class ApprovalEventPage extends Component {
             }   
         });
     }
+
+    //reject event
+    rejectEvent = (id_event) => {
+      console.log(id_event)
+      this.setState({loading: true})
+      API.put(`/admin/approvalevent/${id_event}/reject`)
+      .then(res => {
+          console.log('res',res)
+          if(res.status == 200){
+              message.success('Event berhasil di tolak');
+              this.componentDidMount(); 
+          }   
+      });
+    }
     
     //function untuk modal
-    showAcceptConfirm = (id) => {
+    showAcceptConfirm = (id,nama,panitia) => {
         confirm({
-            title: ' Apakah yakin untuk approve event ?',
+            title: `Apakah yakin untuk approve event ${nama} dari ${panitia} ?`,
             okText: 'Yes',
             okType: 'danger',
             cancelText: 'No',
@@ -144,14 +158,14 @@ class ApprovalEventPage extends Component {
     }
     
     //function untuk modal
-    showRejectConfirm = (id) => {
+    showRejectConfirm = (id,nama,panitia) => {
         confirm({
-            title: ' Apakah yakin untuk menolak peserta ?',
+            title: `Apakah yakin untuk menolak event ${nama} dari ${panitia} ?`,
             okText: 'Yes',
             okType: 'danger',
             cancelText: 'No',
             onOk: () => {
-               // this.deleteEvent(id)
+               this.rejectEvent(id)
             },
             onCancel(){
                 console.log('Cancel')
@@ -246,7 +260,7 @@ class ApprovalEventPage extends Component {
                         icon={faCheckCircle}
                         borderRadius="5px"
                         background="#00C908"
-                        onClick = { () => this.showAcceptConfirm(data.nomor)}
+                        onClick = { () => this.showAcceptConfirm(data.nomor,data.nama_event,data.panitia)}
                     />,
                  </Tooltip>,
                 <Divider type="vertical" />,
@@ -256,7 +270,7 @@ class ApprovalEventPage extends Component {
                         icon={faWindowClose}
                         borderRadius="5px"
                         background="#FF0303"
-                        onClick = { () => this.showRejectConfirm(data.nomor)}
+                        onClick = { () => this.showRejectConfirm(data.nomor,data.nama_event,data.panitia)}
                     />, 
                 </Tooltip>,
                 <Divider type="vertical" />,
@@ -271,9 +285,8 @@ class ApprovalEventPage extends Component {
                 </Tooltip>,]
               ),
             },
-          ];
+        ];
        
-           
         const data =  this.state.approvalevent.map( ({id_event, nama_event,detail_event,kategori,panitia}, index) => ({
             no : index+1,
             nomor : id_event,

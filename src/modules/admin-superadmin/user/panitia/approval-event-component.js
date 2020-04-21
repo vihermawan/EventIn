@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Layout, Breadcrumb, Row, Table, Input, Col,Tag } from 'antd';
+import { Layout, Breadcrumb, Row, Col } from 'antd';
 import '../../../../assets/css/dashboard-all/dashboard.css'
 import '../../../../assets/css/dashboard-all/table-style.css'
 import TableProfile from '../../../../common/component/table/table'
@@ -22,7 +22,7 @@ class ApprovalEventComponent extends Component {
                 }}
             >
                 <Breadcrumb separator=">">
-                    <Breadcrumb.Item>Dashboard List Penandatangan</Breadcrumb.Item>
+                    <Breadcrumb.Item>Dashboard List Event</Breadcrumb.Item>
                 </Breadcrumb>
 
                 <Row style={{minHeight: '100%',marginBottom: '2%',marginTop:'2%',}} className="background">
