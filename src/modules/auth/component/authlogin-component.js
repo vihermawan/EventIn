@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Layout, Row, Col, Button, Form,Icon, Modal, Input, } from 'antd';
+import { Layout, Row, Col, Button, Form } from 'antd';
 import '../../../assets/css/auth-login.css'
 import { Link } from 'react-router-dom';
 // component
@@ -13,7 +13,7 @@ const login = require(`../../../assets/images/login-image.png`);
 
 class LoginComponent extends Component{
     render(){
-        const { initialData, handleChange, handleSubmit,handleConfirmBlur } = this.props;
+        const { initialData, handleChange, handleSubmit } = this.props;
         return (
             
             <Layout className="login-container">
@@ -68,7 +68,7 @@ class LoginComponent extends Component{
                                             iconType="lock"
                                             type="password"
                                            />
-                                         <p className="auth-reminder-label mt-10 text-white">Lupa Kata Sandi?</p>
+                                       <Link to="/forgot-password">  <p className="auth-reminder-label mt-10 text-white">Lupa Kata Sandi?</p></Link>
                                         <div>
                                             <ButtonAuth
                                                 text="Login"
