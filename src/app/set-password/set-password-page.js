@@ -1,8 +1,9 @@
 import React, { Component } from 'react';
-import { notification } from 'antd';
+import { notification, message } from 'antd';
 import { connect } from 'react-redux';
 import { API } from '../../common/api'
 import { navigate } from '../../common/store/action'
+import CONSTANS from '../../common/utils/Constants'
 import * as validation from '../../common/utils/validation'
 import SetPasswordComponent from '../../modules/set-password/set-password-component.js';
 
@@ -11,6 +12,7 @@ class SetPasswordPage extends Component {
         current: '',
         password : '',
         loading : false,
+        show : false,
     }
 
     componentDidMount(){
@@ -27,14 +29,19 @@ class SetPasswordPage extends Component {
             [target]: value
         })
     }
-    //
 
     openNotification = (message, description) => {
-        notification.success({
+        notification.error({
             message,
             description,
         });
     };
+
+    showModal2 = () => {
+        this.setState({
+            show :true,
+        })
+    }
 
     handleSubmit = e => {
         console.log('path',this.state.current)
@@ -48,9 +55,18 @@ class SetPasswordPage extends Component {
             this.openNotification(message, 'Password minimal 8 karakter')
         }else{
             this.setState({loading: true})
+            this.showModal2();
             API.post(`/password/reset/${this.state.current}`, params)
             .then(res => {
                 console.log('res',res)
+                if( res.status === 200){
+                    this.props.navigate(CONSTANS.LOGIN_MENU_KEY)
+                    message.success('Berhasil Mengubah Password');
+                }else {
+                    this.setState({show :false})
+                    this.props.navigate(CONSTANS.FORGET_PASSWORD_MENU_KEY)
+                    this.openNotification('Token Invalid','Silahkan kirim masukkan email kembali')
+                }
             });
         }
         

@@ -1,11 +1,12 @@
 import React, { Component } from 'react';
-import { Layout, Row, Col, Button, Form } from 'antd';
+import { Layout, Row, Col, Form,Modal} from 'antd';
 import '../../assets/css/admin-signer/set-password.css'
 import { Link } from 'react-router-dom';
 // component
 import InputAuth from '../../common/component/input/input-auth'
 import ButtonAuth from '../../common/component/button/button-auth'
-import LoadingContainer from '../../common/component/loading/loading-container'
+import LoadingNotifContainer from '../../common/component/loading/loading-notif';
+
 const { Content } = Layout;
 const logo = require(`../../assets/images/logo.png`);
 const login = require(`../../assets/images/login-image.png`);
@@ -17,7 +18,7 @@ class ForgotPasswordComponent extends Component{
         return (
             
             <Layout className="login-container">
-                <LoadingContainer loading={initialData.loading}>
+                {/* <LoadingContainer loading={initialData.loading}> */}
                     <Content style={{ overflow: "hidden"}}>
                         <Row>
                             <Col lg={24} md={24} sm={24} className="background-white container-full">
@@ -58,10 +59,20 @@ class ForgotPasswordComponent extends Component{
                                         </div>
                                     </div>
                                 </Row>
+                                <Modal
+                                    title="Proses Mengirim Email"
+                                    visible={initialData.show}
+                                    className = "modal-notif"
+                                    >
+                                    <p className="text-notif">Silahkan tunggu pesan sedang dikirim ke email anda</p>
+                                    <div >
+                                        <LoadingNotifContainer loading={initialData.loading_notif} style={{ minHeight:'20px', marginTop:'50px',}}/>
+                                    </div>
+                                </Modal>
                             </Col>
                         </Row>
                     </Content>
-                </LoadingContainer>
+                {/* </LoadingContainer> */}
             </Layout>
         );
     }

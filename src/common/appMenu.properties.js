@@ -37,6 +37,9 @@ const menu = {
     REGISTER_PANITIA : {
         link : '/register-panitia'
     },
+    FORGET_PASSWORD : {
+        link : '/forgot-password'
+    },
 
     //Link panitia
     PANITIA: {
