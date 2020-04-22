@@ -16,6 +16,7 @@ const CONSTANTS = {
     REGISTER_PESERTA_KEY : 'REGISTER_PESERTA',
     CHOOSE_MENU_KEY : 'CHOOSE',
     LIST_EVENT_MENU_KEY : 'LIST_EVENT',
+    FORGET_PASSWORD_MENU_KEY : 'FORGET_PASSWORD',
     //dashboard Panitia
 
     //active event
