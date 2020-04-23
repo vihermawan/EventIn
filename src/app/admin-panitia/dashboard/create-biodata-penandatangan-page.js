@@ -203,6 +203,14 @@ class CreateBiodataPenandatanganPage extends Component {
             croppedImageUrl : null,
         });
     };
+
+    successNotification = (message, description) => {
+        notification.success({
+            message,
+            description,
+        });
+    };
+
     
     handleSubmit = e => {
         e.preventDefault();
@@ -239,7 +247,8 @@ class CreateBiodataPenandatanganPage extends Component {
                 console.log('res',res)
                 if(res.status == 201){
                     this.props.navigate(CONSTANS.LIST_BIODATA_PENANDATANGAN_PANITIA_MENU_KEY)
-                    message.success('Biodata Penandatangan Berhasil Ditambahkan silahkan cek email anda 1 x 24 jam untuk melihat notifikasi');
+                    message.success('Biodata Penandatangan Berhasil Ditambahkan');
+                    this.successNotification('Sukses menambah data penandatangan', 'Tunggu 1 x 24 jam di email anda untuk mendapat pemberitahuan apakah penandatangan ditolak atau diterima')
                 }else{
                     this.openNotification('Data Salah', 'Silahkan isi data dengan benar')
                 }

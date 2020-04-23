@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Layout, BackTop, Row, Col,Icon, Tag } from 'antd';
+import { Layout, BackTop, Row, Col,Icon, Avatar } from 'antd';
 import {  faInfoCircle } from '@fortawesome/free-solid-svg-icons'
 import '../../../assets/css/profile.css'
 
@@ -33,11 +33,12 @@ class ProfileComponent extends Component {
                                     <Row>
                                         <Col span={24}>
                                         <div className="container-profile">
-                                            <img
+                                            {/* <img
                                                 src={data.picture}
                                                 alt="Event 1"
                                                 style={{maxWidth: '100%', borderRadius: '10px'}}
-                                            />
+                                            /> */}
+                                              <Avatar shape="square" size={300} src={data.picture} classname="profile-picture" icon="user"/>
                                         </div>
                                         </Col>
                                     </Row>
