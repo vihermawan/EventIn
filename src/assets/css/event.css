@@ -139,6 +139,16 @@
     border-radius: 8px;
     text-align: center;
 }
+
+.event-card-badge-quota {
+    margin-left: 5px;
+    padding: 2px;
+    padding-left: 15px;
+    padding-right: 15px;
+    border-radius: 8px;
+    text-align: center;
+}
+
 .title-big-event {
     font-size: 48px;
 }
