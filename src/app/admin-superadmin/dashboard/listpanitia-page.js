@@ -1,12 +1,13 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { API } from '../../../common/api'
-import { Modal, message } from 'antd'
+import { Modal, message, Button, Input, Icon, Divider } from 'antd'
 import { navigate } from '../../../common/store/action'
 import CONSTANS from '../../../common/utils/Constants'
 import ListPanitiaAdminComponent from '../../../modules/admin-superadmin/user/panitia/listpanitia-component';
+import  * as Highlighter from 'react-highlight-words';
 //component
-import { faTrash } from '@fortawesome/free-solid-svg-icons'
+import { faBan } from '@fortawesome/free-solid-svg-icons'
 import { faInfoCircle } from '@fortawesome/free-solid-svg-icons'
 import ButtonDashboard from '../../../common/component/button/button-dashboard';
 
@@ -25,6 +26,72 @@ class ListPanitiaAdminPage extends Component {
     componentDidMount(){
         this.getPanitia();
     }
+
+    getColumnSearchProps = dataIndex => ({
+        filterDropdown: ({ setSelectedKeys, selectedKeys, confirm, clearFilters }) => (
+          <div style={{ padding: 8 }}>
+            <Input
+              ref={node => {
+                this.searchInput = node;
+              }}
+              placeholder={`Search ${dataIndex}`}
+              value={selectedKeys[0]}
+              onChange={e => setSelectedKeys(e.target.value ? [e.target.value] : [])}
+              onPressEnter={() => this.handleSearch(selectedKeys, confirm, dataIndex)}
+              style={{ width: 188, marginBottom: 8, display: 'block' }}
+            />
+            <Button
+              type="primary"
+              onClick={() => this.handleSearch(selectedKeys, confirm, dataIndex)}
+              icon="search"
+              size="small"
+              style={{ width: 90, marginRight: 8 }}
+            >
+              Search
+            </Button>
+            <Button onClick={() => this.handleReset(clearFilters)} size="small" style={{ width: 90 }}>
+              Reset
+            </Button>
+          </div>
+        ),
+        filterIcon: filtered => (
+          <Icon type="search" style={{ color: filtered ? '#1890ff' : undefined }} />
+        ),
+        onFilter: (value, record) =>
+          record[dataIndex]
+            .toString()
+            .toLowerCase()
+            .includes(value.toLowerCase()),
+        onFilterDropdownVisibleChange: visible => {
+          if (visible) {
+            setTimeout(() => this.searchInput.select());
+          }
+        },
+        render: text =>
+          this.state.searchedColumn === dataIndex ? (
+            <Highlighter
+              highlightStyle={{ backgroundColor: '#ffc069', padding: 0 }}
+              searchWords={[this.state.searchText]}
+              autoEscape
+              textToHighlight={text.toString()}
+            />
+          ) : (
+            text
+          ),
+    });
+
+    handleSearch = (selectedKeys, confirm, dataIndex) => {
+        confirm();
+        this.setState({
+          searchText: selectedKeys[0],
+          searchedColumn: dataIndex,
+        });
+    };
+    
+    handleReset = clearFilters => {
+        clearFilters();
+        this.setState({ searchText: '' });
+    };
 
     getPanitia=()=>{
         this.setState({loading: true})
@@ -50,11 +117,10 @@ class ListPanitiaAdminPage extends Component {
         });
     }
 
-
     //function untuk modal
     showDeleteConfirm = (id) => {
         confirm({
-            title: ' Apakah yakin untuk menghapus data ?',
+            title: ' Apakah yakin untuk membanned user ?',
             okText: 'Yes',
             okType: 'danger',
             cancelText: 'No',
@@ -93,32 +159,32 @@ class ListPanitiaAdminPage extends Component {
                 dataIndex: 'no',
                 key: 'no',
                 render: text => <a>{text}</a>,
+                sorter: (a, b) => a.no - b.no,
+                sortDirections: ['ascend','descend'],
             },
             {
                 title: 'Nama Panitia',
                 dataIndex: 'panitia',
                 key: 'panitia',
-                render: text => <a>{text}</a>,
-                onFilter: (value, record) => record.panitia.indexOf(value) === 0,
-                sorter: (a, b) => a.panitia.length - b.panitia.length,
-                sortDirections: ['descend', 'ascend'],
+                ...this.getColumnSearchProps('panitia'),
             },
             {
                 title: 'Organisasi',
                 dataIndex: 'organisasi',
                 key: 'organisasi',
-                sorter: (a, b) => a.organisasi.length - b.organisasi.length,
-                sortDirections: ['descend', 'ascend'],
+                ...this.getColumnSearchProps('organisasi'),
             },
             {
                 title: 'Email',
                 dataIndex: 'email',
                 key: 'email',
+                ...this.getColumnSearchProps('email'),
             },
             {
                 title: 'No Telepon',
                 dataIndex: 'no_telepon',
                 key: 'no_telepon',
+                ...this.getColumnSearchProps('no_telepon'),
             },
             {
                 title: 'Action',
@@ -140,13 +206,13 @@ class ListPanitiaAdminPage extends Component {
                         icon={faInfoCircle}
                         borderRadius="5px"
                         background="#FFA903"
-                        marginRight= "20px"
                         onClick = { () => this.onDetailPanitia(data.id_users,data.id_panitia)}
                     />,
+                    <Divider type="vertical" />,
                     <ButtonDashboard
-                        text="Delete"
+                        text="Banned"
                         height={20}
-                        icon={faTrash}
+                        icon={faBan}
                         borderRadius="5px"
                         background="#FF0303"
                         onClick = { () => this.showDeleteConfirm(data.id_panitia)}

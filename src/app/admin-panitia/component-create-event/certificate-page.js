@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { API } from '../../../common/api'
-import 'react-image-crop/dist/ReactCrop.css';
 import { notification,message } from 'antd';
 import CONSTANS from '../../../common/utils/Constants'
 import * as validation from '../../../common/utils/validation'
@@ -70,7 +69,6 @@ class CertificatePage extends Component {
             this.getBase64(event.target.files[0], imageUrl => {
                 this.setState({ picture: imageUrl,croppedImageUrl :imageUrl,picture_event:imageUrl,visible:true })
             })
-            // this.setState({ picture_event:event.target.files[0] })
         }
         
     }
@@ -227,6 +225,13 @@ class CertificatePage extends Component {
         });
     };
 
+    successNotification = (message, description) => {
+        notification.success({
+            message,
+            description,
+        });
+    };
+
     handleSubmit = () => {
         const params = new FormData()
         const basic_info = JSON.parse(localStorage.getItem('step-1'));
@@ -257,26 +262,12 @@ class CertificatePage extends Component {
         params.set('end_registration',datetime.end_registration)
         params.set('time_start',datetime.time_start)
         params.set('time_end',datetime.time_end)
-        
-        
-        params.set('nama_sertifikat',this.state.nama_sertifikat)
-        params.set('description',this.state.deskripsi)
-        params.append('sertifikat',this.state.sertifikat)
+    
         params.append('picture',this.state.picture_event)
         
         console.log('params', params)
 
-      
-    if(validation.required(this.state.nama_sertifikat) != null){
-        const message = validation.required(this.state.nama_sertifikat);
-        this.openNotification(message, 'Nama Sertifikat Harus Diisi')
-    }else if(validation.required(this.state.deskripsi) != null){
-        const message = validation.required(this.state.deskripsi);
-        this.openNotification(message, 'Deskripsi Sertifikat Harus Diisi')
-    }else if(validation.required(this.state.sertifikat) != null ){
-        const message = validation.required(this.state.sertifikat);
-        this.openNotification(message, 'Sertifikat Harus Diupload')
-    }else if(validation.required(this.state.picture_event) != null ){
+    if(validation.required(this.state.picture_event) != null ){
         const message = validation.required(this.state.picture_event);
         this.openNotification(message, 'Gambar Event Harus di upload')
     }else{
@@ -287,6 +278,7 @@ class CertificatePage extends Component {
             if(res.status == 201){
                 message.success('Event Berhasil Ditambahkan');
                 this.props.navigate(CONSTANS.ACTIVE_EVENT_MENU_KEY)
+                this.successNotification('Sukses membuat event', 'Tunggu 1x24 jam di email anda untuk mendapat pemberitahuan apakah event anda ditolak atau diterima')
                 localStorage.removeItem('step-1');
                 localStorage.removeItem('step-2');
                 localStorage.removeItem('step-3');
@@ -294,7 +286,6 @@ class CertificatePage extends Component {
             }else{
                 this.openNotification('Data Salah', 'Silahkan isi data dengan benar')
             }
-           
         });
      }
      

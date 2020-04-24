@@ -1,14 +1,14 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { Modal, message } from 'antd'
+import { Modal, message, Button, Input, Icon } from 'antd'
 import { API } from '../../../common/api'
 import CONSTANS from '../../../common/utils/Constants'
 import { navigate } from '../../../common/store/action'
 import PesertaAdminComponent from '../../../modules/admin-superadmin/user/peserta/peserta-component';
-import { faTrash } from '@fortawesome/free-solid-svg-icons'
+import { faBan } from '@fortawesome/free-solid-svg-icons'
 import { faInfoCircle } from '@fortawesome/free-solid-svg-icons'
-import ButtonDashboard from '../../../common/component/button/button-dashboard';
-
+import ButtonEdit from '../../../common/component/button/button-edit';
+import  * as Highlighter from 'react-highlight-words';
 // import store
 import { setIdUsers } from '../../../modules/admin-superadmin/user/store/users-action'
 import { setIdPeserta } from '../../../modules/admin-superadmin/user/peserta/store/peserta-action'
@@ -24,6 +24,72 @@ class PesertaAdminPage extends Component {
     componentDidMount(){
         this.getPeserta();
     }
+
+    getColumnSearchProps = dataIndex => ({
+        filterDropdown: ({ setSelectedKeys, selectedKeys, confirm, clearFilters }) => (
+          <div style={{ padding: 8 }}>
+            <Input
+              ref={node => {
+                this.searchInput = node;
+              }}
+              placeholder={`Search ${dataIndex}`}
+              value={selectedKeys[0]}
+              onChange={e => setSelectedKeys(e.target.value ? [e.target.value] : [])}
+              onPressEnter={() => this.handleSearch(selectedKeys, confirm, dataIndex)}
+              style={{ width: 188, marginBottom: 8, display: 'block' }}
+            />
+            <Button
+              type="primary"
+              onClick={() => this.handleSearch(selectedKeys, confirm, dataIndex)}
+              icon="search"
+              size="small"
+              style={{ width: 90, marginRight: 8 }}
+            >
+              Search
+            </Button>
+            <Button onClick={() => this.handleReset(clearFilters)} size="small" style={{ width: 90 }}>
+              Reset
+            </Button>
+          </div>
+        ),
+        filterIcon: filtered => (
+          <Icon type="search" style={{ color: filtered ? '#1890ff' : undefined }} />
+        ),
+        onFilter: (value, record) =>
+          record[dataIndex]
+            .toString()
+            .toLowerCase()
+            .includes(value.toLowerCase()),
+        onFilterDropdownVisibleChange: visible => {
+          if (visible) {
+            setTimeout(() => this.searchInput.select());
+          }
+        },
+        render: text =>
+          this.state.searchedColumn === dataIndex ? (
+            <Highlighter
+              highlightStyle={{ backgroundColor: '#ffc069', padding: 0 }}
+              searchWords={[this.state.searchText]}
+              autoEscape
+              textToHighlight={text.toString()}
+            />
+          ) : (
+            text
+          ),
+    });
+
+    handleSearch = (selectedKeys, confirm, dataIndex) => {
+        confirm();
+        this.setState({
+          searchText: selectedKeys[0],
+          searchedColumn: dataIndex,
+        });
+    };
+    
+    handleReset = clearFilters => {
+        clearFilters();
+        this.setState({ searchText: '' });
+    };
 
     getPeserta=()=>{
         this.setState({loading: true})
@@ -66,7 +132,7 @@ class PesertaAdminPage extends Component {
     //function untuk modal
     showDeleteConfirm = (id) => {
         confirm({
-            title: ' Apakah yakin untuk menghapus data ?',
+            title: ' Apakah yakin untuk membanned user ?',
             okText: 'Yes',
             okType: 'danger',
             cancelText: 'No',
@@ -87,35 +153,38 @@ class PesertaAdminPage extends Component {
                 dataIndex: 'no',
                 key: 'no',
                 render: text => <a>{text}</a>,
+                sorter: (a, b) => a.no - b.no,
+                sortDirections: ['ascend','descend'],
             },
             {
                 title: 'Nama Peserta',
                 dataIndex: 'peserta',
                 key: 'peserta',
-                render: text => <a>{text}</a>,
-                onFilter: (value, record) => record.peserta.indexOf(value) === 0,
-                sorter: (a, b) => a.peserta.length - b.peserta.length,
-                sortDirections: ['descend', 'ascend'],
+                ...this.getColumnSearchProps('nama_event'),
             },
             {
                 title: 'Email',
                 key: 'email',
                 dataIndex: 'email',
+                ...this.getColumnSearchProps('nama_event'),
             },
             {
                 title: 'Jenis Kelamin',
                 dataIndex: 'jenis_kelamin',
                 key: 'jenis_kelamin',
+                ...this.getColumnSearchProps('nama_event'),
             },
             {
                 title: 'Organisasi',
                 dataIndex: 'organisasi',
                 key: 'organisasi',
+                ...this.getColumnSearchProps('nama_event'),
             },
             {
                 title: 'Umur',
                 dataIndex: 'umur',
                 key: 'umur',
+                ...this.getColumnSearchProps('nama_event'),
             },
             {
                 title: 'Action',
@@ -131,7 +200,7 @@ class PesertaAdminPage extends Component {
                     //     marginRight= "20px"
                     //     onClick = { () => this.onEditPeserta(data.id_users)}
                     // />,
-                    <ButtonDashboard
+                    <ButtonEdit
                         text="Detail"
                         height={20}
                         icon={faInfoCircle}
@@ -140,17 +209,18 @@ class PesertaAdminPage extends Component {
                         marginRight= "20px"
                         onClick = { () => this.onDetailPeserta(data.id_users,data.id_peserta)}
                     />,
-                    <ButtonDashboard
-                        text="Delete"
+                    <ButtonEdit
+                        text="Banned"
                         height={20}
-                        icon={faTrash}
+                        icon={faBan}
                         borderRadius="5px"
                         background="#FF0303"
                         onClick = { () => this.showDeleteConfirm(data.id_peserta)}
                     />]
               ),
             },
-          ];
+        ];
+        
         const data =  this.state.peserta.map( ({id_users, peserta,email}, index) => ({
             no : index+1,
             id_users : id_users,

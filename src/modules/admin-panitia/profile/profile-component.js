@@ -1,10 +1,10 @@
 import React, { Component } from 'react';
-import { Layout, Breadcrumb, Row, Table, Input, Col,Icon } from 'antd';
+import { Layout, Breadcrumb, Row, Col,Icon,Avatar } from 'antd';
 import { faInfoCircle } from '@fortawesome/free-solid-svg-icons'
 import '../../../assets/css/dashboard-all/dashboard.css'
 import '../../../assets/css/dashboard-all/table-style.css'
 import LoadingContainer from '../../../common/component/loading/loading-container'
-import ButtonDashboard from '../../../common/component/button/button-dashboard';
+import ButtonEdit from '../../../common/component/button/button-edit';
 // constant content
 const { Content } = Layout;
 
@@ -31,13 +31,9 @@ class ProfilePanitiaComponent extends Component {
                             <Col lg={6} md={12} sm={12}>
                                 <Row gutter={40}>
                                     <Col span={24}>
-                                    <div className="container-profile-admin">
-                                            <img
-                                                src={data.picture}
-                                                alt="Event 1"
-                                                style={{maxWidth: '95%', borderRadius: '10px'}}
-                                            />
-                                    </div>
+                                        <div className="container-profile-admin">
+                                            <Avatar shape="square" size={300} src={data.picture} classname="profile-picture" icon="user"/>
+                                        </div>
                                     </Col>
                                 </Row>
                             </Col>
@@ -50,7 +46,7 @@ class ProfilePanitiaComponent extends Component {
                                         <p className="text-soft-grey email-user"> <Icon type="mail" style={{marginRight:'10px'}} />{data.email}</p>                                      
                                     </div>
                                     <div>
-                                        <ButtonDashboard
+                                        <ButtonEdit
                                             text="Edit Profile"
                                             height={20}
                                             icon={faInfoCircle}
@@ -74,8 +70,8 @@ class ProfilePanitiaComponent extends Component {
                                     </Col>
                                     <Col lg={8} md={12} sm={12}>
                                 <div className="container-desc">
-                                    <p className="text-soft-blue desc-title">No Telefon</p>
-                                    <p className="text-black desc-profile">{data.no_telepon}</p>
+                                    <p className="text-soft-blue desc-title">Nomor Telepon</p>
+                                    <p className="text-black desc-profile">{data.telepon}</p>
                                 </div>
                                 </Col>
                                 </Row>  

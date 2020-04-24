@@ -71,7 +71,6 @@ class AuthLogin extends Component {
                     if(res.data.id_role == 2){
                         localStorage.setItem('token', res.data.token)
                         localStorage.setItem('username', res.data.nama)
-                        // this.props.setNamaUser(res.data.nama)
                         localStorage.setItem('id_role', res.data.id_role)
                         localStorage.setItem('profile_picture', res.data.profile_picture)
                         this.props.navigate(CONSTANS.PANITIA_MENU_KEY)

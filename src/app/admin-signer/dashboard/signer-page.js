@@ -11,6 +11,7 @@ class SignerPage extends Component {
         nama_penandatangan:'',
         instansi: '',
         jabatan:'',
+        loading: false,
     }
 
     componentDidMount(){

@@ -1,24 +1,16 @@
 import React, { Component } from 'react';
-import { Layout, Breadcrumb, Row, Col, Form, Select, Upload,Button, Input, Modal  } from 'antd';
+import { Layout, Breadcrumb, Row, Col, Form, Upload,Button, Input, Modal  } from 'antd';
 import { Link } from 'react-router-dom';
-import Navbar from '../../../common/layout/navbar-landing'
-import Footer from '../../../common/layout/footer-landing'
-import '../../../assets/css/dashboard-all/dashboard.css'
 import '../../../assets/css/dashboard-all/table-style.css'
 import '../../../assets/css/admin-superadmin/detail-event.css'
 // component
-import LoadingContainer from '../../../common/component/loading/loading-container'
+import ReactCrop from 'react-image-crop';
+import 'react-image-crop/dist/ReactCrop.css';
 import InputForm from '../../../common/component/input/input-form';
-import 'moment-timezone';
-import 'moment/locale/id';
-import ButtonAuth from '../../../common/component/button/button-auth';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faUser } from '@fortawesome/free-solid-svg-icons'
+import { faUserTie, faEnvelope, faAddressCard, faAddressBook, faStickyNote } from '@fortawesome/free-solid-svg-icons'
 import LoadingNotifContainer from '../../../common/component/loading/loading-notif';
 // constant content
 const { Content } = Layout;
-const { Option } = Select;
-const { Dragger } = Upload;
 const uploadButton = (
     <div>
       {/* {this.state.loading ? <LoadingOutlined /> : <PlusOutlined />} */}
@@ -27,8 +19,7 @@ const uploadButton = (
 );
 class CreatePenandatanganComponent extends Component {
     render() { 
-      const {initialData,handleChange,beforeUpload,handleChangeFoto,handleSubmit, onChange,uploadGambar} = this.props  
-      const format = 'HH:mm';
+      const {initialData,handleChange,handleSubmit,uploadGambar,onImageLoaded,onCropComplete,onCropChange,handleOk,handleCancel} = this.props  
       return ( 
         <Content
             style={{
@@ -68,6 +59,7 @@ class CreatePenandatanganComponent extends Component {
                                                             className="input-event mt-5 mb-20"
                                                             onChange={handleChange}
                                                             value={initialData.nama}
+                                                            icon={faUserTie}
                                                         />
                                                     </div>
                                                 </Col>
@@ -82,6 +74,7 @@ class CreatePenandatanganComponent extends Component {
                                                             className="input-event mt-5 mb-20"
                                                             onChange={handleChange}
                                                             value={initialData.email}
+                                                            icon={faEnvelope}
                                                         />
                                                     </div>
                                                 </Col>
@@ -96,6 +89,7 @@ class CreatePenandatanganComponent extends Component {
                                                             className="input-event mt-5 mb-20"
                                                             onChange={handleChange}
                                                             value={initialData.instansi}
+                                                            icon={faAddressCard}
                                                         />
                                                     </div>
                                                 </Col>
@@ -110,6 +104,7 @@ class CreatePenandatanganComponent extends Component {
                                                             className="input-event mt-5 mb-20"
                                                             onChange={handleChange}
                                                             value={initialData.nip}
+                                                            icon={faAddressBook}
                                                         />
                                                     </div>
                                                 </Col>
@@ -124,6 +119,22 @@ class CreatePenandatanganComponent extends Component {
                                                             className="input-event mt-5 mb-20"
                                                             onChange={handleChange}
                                                             value={initialData.jabatan}
+                                                            icon={faStickyNote}
+                                                        />
+                                                    </div>
+                                                </Col>
+                                                <Col lg={24} md={24} sm={24}>
+                                                    <div>   
+                                                        <span className="auth-input-label text-black">Nomor Telepon*</span>
+                                                    </div>
+                                                    <div>
+                                                        <InputForm
+                                                            name='telepon'
+                                                            placeholder="Masukan nomor telepon...."
+                                                            className="input-event mt-5 mb-20"
+                                                            onChange={handleChange}
+                                                            value={initialData.telepon}
+                                                            icon={faStickyNote}
                                                         />
                                                     </div>
                                                 </Col>
@@ -139,19 +150,35 @@ class CreatePenandatanganComponent extends Component {
                                                             className="input-picture"
                                                             style={{marginBottom : '30px',padding: '4px 11px 11px 11px', minHeight:'40px',borderColor:'#2C37BA'}}
                                                         />
+                                                    </div>
+                                                </Col>
+                                                <Col lg={24} md={24} sm={24}>
+                                                    <div>
+                                                        <Modal
+                                                            title="Atur Ukuran Gambar"
+                                                            visible={initialData.visible}
+                                                            onOk={handleOk}
+                                                            onCancel={handleCancel}
+                                                            >
+                                                                {initialData.picture && (
+                                                                <ReactCrop
+                                                                    src={initialData.picture}
+                                                                    crop={initialData.crop}
+                                                                    ruleOfThirds
+                                                                    onImageLoaded={onImageLoaded}
+                                                                    onComplete={onCropComplete}
+                                                                    onChange={onCropChange}
+                                                                    style={{width:"100%"}}
+                                                                />
+                                                            )} 
+                                                        </Modal>
                                                         <Upload
                                                             name="picture"
                                                             listType="picture-card"
                                                             className="avatar-uploader"
                                                             disabled = {true}
-                                                            icon={
-                                                                <FontAwesomeIcon
-                                                                    icon={faUser}
-                                                                /> 
-                                                            }
-                                                            previewFile={initialData.picture}
                                                         >
-                                                            {initialData.picture ? <img src={initialData.picture} alt="avatar" style={{ width: '50%' }} /> : uploadButton}
+                                                            {initialData.croppedImageUrl ? <img src={initialData.croppedImageUrl} alt="Crop" style={{ width: '100%' }} /> : uploadButton}
                                                         </Upload>  
                                                     </div>
                                                 </Col>
@@ -161,18 +188,17 @@ class CreatePenandatanganComponent extends Component {
                                             <Button
                                                 type="primary"
                                                 htmlType="submit"
-                                                // onClick={() => handleSubmit()}
                                             >
                                                 Done
                                             </Button>
                                         </div>
                                     </Form>
                                     <Modal
-                                        title="Proses Penerimaan Peserta"
-                                        visible={initialData.visible}
+                                        title="Proses Pendaftaran Penandatangan"
+                                        visible={initialData.show}
                                         className = "modal-notif"
                                         >
-                                        <p className="text-notif">Mohon tunggu sebentar, sistem akan mengirimkan email untuk peserta...</p>
+                                        <p className="text-notif">Silahkan tunggu 1x24 jam di email anda apakah penandatangan telah disetujui atau tidak</p>
                                         <div >
                                             <LoadingNotifContainer loading={initialData.loading_notif} style={{ minHeight:'20px', marginTop:'50px',}}/>
                                         </div>

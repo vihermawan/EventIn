@@ -18,7 +18,15 @@ class CreateBiodataPenandatanganPage extends Component {
        picture: null,
        loading : false,
        visible:false,
-     }
+       show: false,
+       telepon : '',
+       crop: {
+        unit: '%',
+        width: 30,
+        aspect: 1 / 1,
+      },
+      croppedImageUrl : '',
+    }
 
     handleChange = (e) => {
         let target = e.target.name;
@@ -33,41 +41,178 @@ class CreateBiodataPenandatanganPage extends Component {
         reader.addEventListener('load', () => callback(reader.result));
         reader.readAsDataURL(img);
     }
-  
-    beforeUpload = (file) => {
-        const isJpgOrPng = file.type === 'image/jpeg' || file.type === 'image/png';
-        if (!isJpgOrPng) {
-            message.error('You can only upload JPG/PNG file!');
-        }
-        const isLt2M = file.size / 1024 / 1024 < 2;
-        if (!isLt2M) {
-            message.error('Image must smaller than 2MB!');
-        }
-        return isJpgOrPng && isLt2M;
-    }
 
     uploadGambar = (event) => {
-        this.getBase64(event.target.files[0], imageUrl => {
-            this.setState({ picture: imageUrl })
-        })
-        this.setState({ profile_picture:event.target.files[0] })
+        if(event.target.files[0].type != 'image/jpeg' ){
+            console.log('harusnya')
+            this.openNotification('Format Gambar Salah', 'Silahkan Upload Kembali dengan format JPG')
+        }
+        else if(event.target.files[0].size / 1024 / 1024 > 2){
+            this.openNotification('Ukuran file Melebihi 2Mb', 'Silahkan Upload Kembali')
+        }
+        else{
+            console.log('cek', event.currentTarget.value)
+            this.getBase64(event.target.files[0], imageUrl => {
+                this.setState({ picture: imageUrl,croppedImageUrl :imageUrl,profile_picture:imageUrl,visible:true })
+            })
+            // this.setState({ profile_picture:event.target.files[0] })
+        }
+    } 
+    
+    onImageLoaded = image => {
+        this.imageRef = image;
+    };
+
+    onCropComplete = crop => {
+        this.makeClientCrop(crop);
+    };
+
+    onCropChange = (crop, percentCrop) => {
+        // You could also use percentCrop:
+        this.setState({ crop: percentCrop });
+        this.setState({ crop });
+    };
+
+    async makeClientCrop(crop) {
+        if (this.imageRef && crop.width && crop.height) {
+          const croppedImageUrl = await this.getCroppedImgLink(
+            this.imageRef,
+            crop,
+            'newFile.jpeg'
+          );
+          const profile_picture = await this.getCroppedImg(
+            this.imageRef,
+            crop,
+            'newFile.jpeg'
+          );
+          this.setState({ profile_picture,croppedImageUrl });
+          console.log('croping',this.state.croppedImageUrl)
+        }
+    }
+    
+    getCroppedImgLink(image, crop, fileName) {
+        const canvas = document.createElement('canvas');
+        const scaleX = image.naturalWidth / image.width;
+        const scaleY = image.naturalHeight / image.height;
+        canvas.width = crop.width;
+        canvas.height = crop.height;
+        const ctx = canvas.getContext('2d');
+
+        ctx.drawImage(
+            image,
+            crop.x * scaleX,
+            crop.y * scaleY,
+            crop.width * scaleX,
+            crop.height * scaleY,
+            0,
+            0,
+            crop.width,
+            crop.height
+        );
+
+    return new Promise((resolve, reject) => {
+        canvas.toBlob(blob => {
+        if (!blob) {
+            console.error('Canvas is empty');
+            return;
+        }
+        blob.name = fileName;
+        window.URL.revokeObjectURL(this.fileUrl);
+        this.fileUrl = window.URL.createObjectURL(blob);
+        resolve(this.fileUrl);
+        }, 'image/jpeg');
+    });
     }
 
+    getCroppedImg(image, crop, fileName) {
+        const canvas = document.createElement('canvas');
+        const scaleX = image.naturalWidth / image.width;
+        const scaleY = image.naturalHeight / image.height;
+        canvas.width = crop.width;
+        canvas.height = crop.height;
+        const ctx = canvas.getContext('2d');
+    
+        ctx.drawImage(
+          image,
+          crop.x * scaleX,
+          crop.y * scaleY,
+          crop.width * scaleX,
+          crop.height * scaleY,
+          0,
+          0,
+          crop.width,
+          crop.height
+        );
+        
+        const reader = new FileReader()
+        canvas.toBlob(blob => {
+            reader.readAsDataURL(blob)
+            reader.onloadend = () => {
+                this.dataURLtoFile(reader.result, 'cropped.jpg')
+            }
+        })
+    
+    }
+
+    dataURLtoFile = (dataurl, filename) => {
+        let arr = dataurl.split(','),
+            mime = arr[0].match(/:(.*?);/)[1],
+            bstr = atob(arr[1]), 
+            n = bstr.length, 
+            u8arr = new Uint8Array(n);
+                
+        while(n--){
+            u8arr[n] = bstr.charCodeAt(n);
+        }
+        let croppedImage = new File([u8arr], filename, {type:mime});
+        this.setState({profile_picture: croppedImage}) 
+        console.log('ini lo', this.state.profile_picture)
+    }
+  
     showModal = () => {
         this.setState({
           visible: true,
+          
         });
     };
-    
 
+    showModal2 = () => {
+        this.setState({
+            show :true,
+        })
+    }
+    
     openNotification = (message, description) => {
         notification.error({
             message,
             description,
         });
     };
-    
 
+    handleOk = e => {
+        console.log(e);
+        this.setState({
+            visible: false,
+        });
+    };
+    
+    handleCancel = e => {
+        console.log(e);
+        this.setState({
+            visible: false,
+            picture_event : null,
+            croppedImageUrl : null,
+        });
+    };
+
+    successNotification = (message, description) => {
+        notification.success({
+            message,
+            description,
+        });
+    };
+
+    
     handleSubmit = e => {
         e.preventDefault();
         const params = new FormData()
@@ -77,6 +222,7 @@ class CreateBiodataPenandatanganPage extends Component {
         params.set('jabatan',this.state.jabatan)
         params.set('nip',this.state.nip)
         params.set('instansi',this.state.instansi)
+        params.set('telepon',this.state.telepon)
         
         console.log('params', params)
 
@@ -95,15 +241,19 @@ class CreateBiodataPenandatanganPage extends Component {
         }else if(validation.required(this.state.instansi) != null){
             const message = validation.required(this.state.instansi)  
             this.openNotification(message, 'Instansi belum dimasukkan')
-        }
-        
-        else{
-            this.setState({loading: true,visible:true})
+        }else if(validation.required(this.state.telepon) != null){
+            const message = validation.required(this.state.telepon)  
+            this.openNotification(message, 'Nomor Telepon belum dimasukkan')
+        }else{
+            this.setState({loading: true})
+            this.showModal2();
             API.post(`/panitia/create/biodata-penandatangan`, params)
             .then(res => {
                 console.log('res',res)
                 if(res.status == 201){
                     this.props.navigate(CONSTANS.LIST_BIODATA_PENANDATANGAN_PANITIA_MENU_KEY)
+                    message.success('Biodata Penandatangan Berhasil Ditambahkan');
+                    this.successNotification('Sukses menambah data penandatangan', 'Tunggu 1 x 24 jam di email anda untuk mendapat pemberitahuan apakah penandatangan ditolak atau diterima')
                 }else{
                     this.openNotification('Data Salah', 'Silahkan isi data dengan benar')
                 }
@@ -112,7 +262,6 @@ class CreateBiodataPenandatanganPage extends Component {
         }
     }
 
-    
     render() { 
         return ( 
             <CreateBiodataPenandatanganComponent
@@ -120,8 +269,12 @@ class CreateBiodataPenandatanganPage extends Component {
                 initialData={this.state}
                 handleChange={this.handleChange}
                 handleSubmit={this.handleSubmit}
-                beforeUpload = {this.beforeUpload}
+                handleCancel = {this.handleCancel}
+                handleOk ={this.handleOk}
                 uploadGambar={this.uploadGambar}
+                onImageLoaded={this.onImageLoaded}
+                onCropComplete={this.onCropComplete}
+                onCropChange={this.onCropChange}
             />
         );
     }

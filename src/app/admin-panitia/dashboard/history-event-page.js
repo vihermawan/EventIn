@@ -2,7 +2,8 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Tag } from 'antd';
 import {  faUsers, faTrash, faInfoCircle } from '@fortawesome/free-solid-svg-icons'
-import { Modal, message, Divider,Tooltip } from 'antd'
+import { Modal, message, Divider,Tooltip,Input, Icon, Button  } from 'antd'
+import  * as Highlighter from 'react-highlight-words';
 import CONSTANS from '../../../common/utils/Constants'
 import { API } from '../../../common/api'
 import { navigate } from '../../../common/store/action'
@@ -73,11 +74,78 @@ class HistoryEventPage extends Component {
     }
 
     //button detail event
-     onDetailEvent = (id) => {
+    onDetailEvent = (id) => {
       console.log('id ini',id)
       this.props.setIdEvent(id);
       this.props.navigate(CONSTANS.DETAIL_HISTORY_EVENT_PANITIA_MENU_KEY)
     }
+
+    
+    getColumnSearchProps = dataIndex => ({
+      filterDropdown: ({ setSelectedKeys, selectedKeys, confirm, clearFilters }) => (
+        <div style={{ padding: 8 }}>
+          <Input
+            ref={node => {
+              this.searchInput = node;
+            }}
+            placeholder={`Search ${dataIndex}`}
+            value={selectedKeys[0]}
+            onChange={e => setSelectedKeys(e.target.value ? [e.target.value] : [])}
+            onPressEnter={() => this.handleSearch(selectedKeys, confirm, dataIndex)}
+            style={{ width: 188, marginBottom: 8, display: 'block' }}
+          />
+          <Button
+            type="primary"
+            onClick={() => this.handleSearch(selectedKeys, confirm, dataIndex)}
+            icon="search"
+            size="small"
+            style={{ width: 90, marginRight: 8 }}
+          >
+            Search
+          </Button>
+          <Button onClick={() => this.handleReset(clearFilters)} size="small" style={{ width: 90 }}>
+            Reset
+          </Button>
+        </div>
+      ),
+      filterIcon: filtered => (
+        <Icon type="search" style={{ color: filtered ? '#1890ff' : undefined }} />
+      ),
+      onFilter: (value, record) =>
+        record[dataIndex]
+          .toString()
+          .toLowerCase()
+          .includes(value.toLowerCase()),
+      onFilterDropdownVisibleChange: visible => {
+        if (visible) {
+          setTimeout(() => this.searchInput.select());
+        }
+      },
+      render: text =>
+        this.state.searchedColumn === dataIndex ? (
+          <Highlighter
+            highlightStyle={{ backgroundColor: '#ffc069', padding: 0 }}
+            searchWords={[this.state.searchText]}
+            autoEscape
+            textToHighlight={text.toString()}
+          />
+        ) : (
+          text
+        ),
+  });
+
+  handleSearch = (selectedKeys, confirm, dataIndex) => {
+      confirm();
+      this.setState({
+        searchText: selectedKeys[0],
+        searchedColumn: dataIndex,
+      });
+  };
+  
+  handleReset = clearFilters => {
+      clearFilters();
+      this.setState({ searchText: '' });
+  };
 
     render() { 
           const columns = [
@@ -86,26 +154,40 @@ class HistoryEventPage extends Component {
                 dataIndex: 'no',
                 key: 'no',
                 render: text => <a>{text}</a>,
+                sorter: (a, b) => a.no - b.no,
+                sortDirections: ['ascend','descend'],
             },
             {
                 title: 'Nama Event',
                 dataIndex: 'nama_event',
                 key: 'nama_event',
-                render: text => <a>{text}</a>,
-                onFilter: (value, record) => record.nama_event.indexOf(value) === 0,
-                sorter: (a, b) => a.nama_event.length - b.nama_event.length,
-                sortDirections: ['descend'],
+                ...this.getColumnSearchProps('nama_event'),
             },
             {
               title: 'Kategori',
               dataIndex: 'kategori',
               key: 'kategori',
+              ...this.getColumnSearchProps('kategori'),
               render: kategori => (
                 <span>
                   {kategori.map(tag => {
                     let color = tag.length > 5 ? 'geekblue' : 'green';
-                    if (tag === 'loser') {
-                      color = 'volcano';
+                    if (tag === 'Budaya') {
+                      color = '#0046b8';
+                    }else if(tag === 'Musik'){
+                      color ='#018f52'
+                    }else if(tag === 'Olahraga'){
+                      color ='#8f1601'
+                    }else if(tag === 'Game'){
+                      color ='#016e8f'
+                    }else if(tag === 'Seni'){
+                      color ='#8f8f01'
+                    }else if(tag === 'Teknologi'){
+                      color ='#018f52'
+                    }else if(tag === 'Pendidikan'){
+                      color ='#8f0120'
+                    }else if(tag === 'Agama'){
+                      color ='#018f77'
                     }
                     return (
                       <Tag color={color} key={tag}>
@@ -115,19 +197,17 @@ class HistoryEventPage extends Component {
                   })}
                 </span>
             ),
-            onFilter: (value, record) => record.kategori.indexOf(value) === 0,
-            sorter: (a, b) => a.kategori.length - b.kategori.length,
-            sortDirections: ['descend'],
             },
             {
                 title: 'Tempat',
                 dataIndex: 'lokasi',
                 key: 'lokasi',
+                ...this.getColumnSearchProps('nama_event'),
             },
             {
-              title: 'Peserta',
-              dataIndex: 'peserta',
-              key: 'peserta',
+                title: 'Peserta',
+                dataIndex: 'peserta',
+                key: 'peserta',
             },
             {
               title: 'Action',

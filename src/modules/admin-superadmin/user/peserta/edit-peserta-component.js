@@ -35,7 +35,7 @@ class EditProfilePesertaAdminComponent extends Component {
                 }}
             >
                 <Breadcrumb separator=">">
-                    <Breadcrumb.Item><Link to='/admin/admin-peserta'>Dashboard List Panitia</Link></Breadcrumb.Item>
+                    <Breadcrumb.Item><Link to='/admin/admin-peserta'>Dashboard List Peserta</Link></Breadcrumb.Item>
                     <Breadcrumb.Item>Dashboard Edit Profile</Breadcrumb.Item>
                 </Breadcrumb>
 

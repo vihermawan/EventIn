@@ -1,9 +1,10 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { Modal, message} from 'antd'
+import { Modal, message, Button, Input, Icon, Divider, Tooltip} from 'antd'
 import CONSTANS from '../../../common/utils/Constants'
 import { API } from '../../../common/api'
-import { faInfoCircle } from '@fortawesome/free-solid-svg-icons'
+import  * as Highlighter from 'react-highlight-words';
+import { faInfoCircle, faTrash } from '@fortawesome/free-solid-svg-icons'
 import { navigate } from '../../../common/store/action'
 import BiodataPenandatanganAdminComponent from '../../../modules/admin-superadmin/user/penandatangan/biodata-penandatangan-component';
 import ButtonDashboard from '../../../common/component/button/button-dashboard';
@@ -14,11 +15,78 @@ class BiodataPenandatanganAdminPage extends Component {
     state = { 
         penandatangan: [],
         loading : false,
-     }
+        show : false,
+    }
 
-     componentDidMount(){
+    componentDidMount(){
          this.getBiodata();
-     }
+    }
+
+    getColumnSearchProps = dataIndex => ({
+        filterDropdown: ({ setSelectedKeys, selectedKeys, confirm, clearFilters }) => (
+          <div style={{ padding: 8 }}>
+            <Input
+              ref={node => {
+                this.searchInput = node;
+              }}
+              placeholder={`Search ${dataIndex}`}
+              value={selectedKeys[0]}
+              onChange={e => setSelectedKeys(e.target.value ? [e.target.value] : [])}
+              onPressEnter={() => this.handleSearch(selectedKeys, confirm, dataIndex)}
+              style={{ width: 188, marginBottom: 8, display: 'block' }}
+            />
+            <Button
+              type="primary"
+              onClick={() => this.handleSearch(selectedKeys, confirm, dataIndex)}
+              icon="search"
+              size="small"
+              style={{ width: 90, marginRight: 8 }}
+            >
+              Search
+            </Button>
+            <Button onClick={() => this.handleReset(clearFilters)} size="small" style={{ width: 90 }}>
+              Reset
+            </Button>
+          </div>
+        ),
+        filterIcon: filtered => (
+          <Icon type="search" style={{ color: filtered ? '#1890ff' : undefined }} />
+        ),
+        onFilter: (value, record) =>
+          record[dataIndex]
+            .toString()
+            .toLowerCase()
+            .includes(value.toLowerCase()),
+        onFilterDropdownVisibleChange: visible => {
+          if (visible) {
+            setTimeout(() => this.searchInput.select());
+          }
+        },
+        render: text =>
+          this.state.searchedColumn === dataIndex ? (
+            <Highlighter
+              highlightStyle={{ backgroundColor: '#ffc069', padding: 0 }}
+              searchWords={[this.state.searchText]}
+              autoEscape
+              textToHighlight={text.toString()}
+            />
+          ) : (
+            text
+          ),
+    });
+
+    handleSearch = (selectedKeys, confirm, dataIndex) => {
+        confirm();
+        this.setState({
+          searchText: selectedKeys[0],
+          searchedColumn: dataIndex,
+        });
+    };
+    
+    handleReset = clearFilters => {
+        clearFilters();
+        this.setState({ searchText: '' });
+    };
 
     //get data dari API
     getBiodata=()=>{
@@ -33,24 +101,10 @@ class BiodataPenandatanganAdminPage extends Component {
         });
     }
 
-    //add penandatangan
-    addPenandatangan = (id_biodata_penandatangan) => {
-        console.log(id_biodata_penandatangan)
-        this.setState({loading: true})
-        API.post(`/admin/addpenandatangan`)
-        .then(res => {
-            console.log('res',res)
-            if(res.status == 200){
-                message.success('Event berhasil di approve');
-                this.componentDidMount(); 
-            }   
-        });
-    }
-
     //function untuk modal
-    showAddConfirm = (id) => {
+    showAddConfirm = (id,nama,jabatan,instansi) => {
         confirm({
-            title: 'Yakin untuk menambah data ?',
+            title: `Yakin untuk menambah ${nama} ${jabatan} ${instansi} sebagai penandatangan ? `,
             okText: 'Yes',
             okType: 'danger',
             cancelText: 'No',
@@ -64,15 +118,31 @@ class BiodataPenandatanganAdminPage extends Component {
         });
     }
 
-     //add penandatangan
-     addPenandatangan = (id) => {
-        // e.preventDefault();
+     //function untuk modal
+     showRejectConfirm = (id,nama,jabatan,instansi) => {
+      confirm({
+          title: `Yakin untuk menolak ${nama} ${jabatan} ${instansi} sebagai penandatangan ?`,
+          okText: 'Yes',
+          okType: 'danger',
+          cancelText: 'No',
+          onOk: () => {
+              console.log("ini id", id)
+              this.rejectPenandatangan(id)
+          },
+          onCancel(){
+              console.log('Cancel')
+          }
+      });
+  }
 
+    //add penandatangan
+    addPenandatangan = (id) => {
         const params = {
             id_biodata_penandatangan: id,  
         }
         console.log('params',params)
         this.setState({loading: true})
+        this.showModal2();
         API.post(`/admin/addpenandatangan`,params)
         .then(res => {
             console.log('res',res)
@@ -85,58 +155,97 @@ class BiodataPenandatanganAdminPage extends Component {
         });
     }
 
+    //add penandatangan
+    rejectPenandatangan = (id) => {
+      const params = {
+          id_biodata_penandatangan: id,  
+      }
+      console.log('params',params)
+      this.setState({loading: true})
+      this.showModal2();
+      API.post(`/admin/reject-penandatangan`,params)
+      .then(res => {
+          console.log('res',res)
+          if(res.status == 200){
+              message.success('Berhasil menolak penandatangan');
+              this.props.navigate(CONSTANS.BIODATA_PENANDATANGAN_ADMIN_KEY)
+          }  
+          this.setState({loading: false}) 
+      });
+    }
 
-    render() { 
-    
+    showModal2 = () => {
+      this.setState({
+          show :true,
+      })
+    }
+
+
+    render() {  
         const columns = [
             {
                 title: 'No',
                 dataIndex: 'nomor',
                 key: 'nomor',
                 render: text => <a>{text}</a>,
+                sorter: (a, b) => a.no - b.no,
+                sortDirections: ['ascend','descend'],
             },
             {
                 title: 'Nama Penandatangan',
                 dataIndex: 'nama',
                 key: 'nama',
-                render: text => <a>{text}</a>,
-                onFilter: (value, record) => record.nama.indexOf(value) === 0,
-                sorter: (a, b) => a.nama.length - b.nama.length,
-                sortDirections: ['descend'],
+                ...this.getColumnSearchProps('nama'),
             },
             {
                 title: 'Instansi',
                 dataIndex: 'instansi',
                 key: 'instansi',
+                ...this.getColumnSearchProps('instansi'),
             },
             {
                 title: 'Email',
                 dataIndex: 'email',
                 key: 'email',
+                ...this.getColumnSearchProps('email'),
             },
             {
                 title: 'Jabatan',
                 dataIndex: 'jabatan',
                 key: 'jabatan',
+                ...this.getColumnSearchProps('jabatan'),
             },
             {
                 title: 'NIP',
                 dataIndex: 'nip',
                 key: 'nip',
+                ...this.getColumnSearchProps('nip'),
             },
             {
               title: 'Action',
               key: 'action',
               render: (data) => (
-                [<ButtonDashboard
-                    text="Add"
-                    height={20}
-                    icon={faInfoCircle}
-                    borderRadius="5px"
-                    background="#FFA903"
-                    marginRight= "20px"
-                    onClick= {()=> this.showAddConfirm(data.nomor)}
-                />]
+                [
+                <Tooltip title="Add">,
+                  <ButtonDashboard
+                      height={20}
+                      icon={faInfoCircle}
+                      borderRadius="5px"
+                      background="#FFA903"
+                      onClick= {()=> this.showAddConfirm(data.nomor,data.nama,data.instansi,data.jabatan)}
+                  />,
+                </Tooltip>,
+                <Divider type="vertical"/>,
+                <Tooltip title="Reject">,
+                  <ButtonDashboard
+                      height={20}
+                      icon={faTrash}
+                      borderRadius="5px"
+                      background="#FF0303"
+                      onClick= {()=> this.showRejectConfirm(data.nomor,data.nama,data.instansi,data.jabatan)}
+                  />,
+                </Tooltip>
+                ]
               ),
             },
         ];

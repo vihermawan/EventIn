@@ -1,9 +1,10 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { Modal, message, Tag, Divider, Tooltip } from 'antd'
+import { Tooltip,Button, Input, Icon } from 'antd'
 import { API } from '../../../common/api'
 import { navigate } from '../../../common/store/action'
 import CONSTANS from '../../../common/utils/Constants'
+import  * as Highlighter from 'react-highlight-words'
 //import component
 import { faUsers } from '@fortawesome/free-solid-svg-icons'
 import ButtonDashboard from '../../../common/component/button/button-dashboard';
@@ -35,13 +36,78 @@ class CountRegistEventPage extends Component {
         });
     }
 
-
     //button detail participant
     onListParticipant = (id_event) => {
         console.log('id ini',id_event)
         this.props.setIdEvent(id_event);
         this.props.navigate(CONSTANS.LIST_PARTICIPANT_EVENT_MENU_KEY)
     }
+
+    getColumnSearchProps = dataIndex => ({
+        filterDropdown: ({ setSelectedKeys, selectedKeys, confirm, clearFilters }) => (
+          <div style={{ padding: 8 }}>
+            <Input
+              ref={node => {
+                this.searchInput = node;
+              }}
+              placeholder={`Search ${dataIndex}`}
+              value={selectedKeys[0]}
+              onChange={e => setSelectedKeys(e.target.value ? [e.target.value] : [])}
+              onPressEnter={() => this.handleSearch(selectedKeys, confirm, dataIndex)}
+              style={{ width: 188, marginBottom: 8, display: 'block' }}
+            />
+            <Button
+              type="primary"
+              onClick={() => this.handleSearch(selectedKeys, confirm, dataIndex)}
+              icon="search"
+              size="small"
+              style={{ width: 90, marginRight: 8 }}
+            >
+              Search
+            </Button>
+            <Button onClick={() => this.handleReset(clearFilters)} size="small" style={{ width: 90 }}>
+              Reset
+            </Button>
+          </div>
+        ),
+        filterIcon: filtered => (
+          <Icon type="search" style={{ color: filtered ? '#1890ff' : undefined }} />
+        ),
+        onFilter: (value, record) =>
+          record[dataIndex]
+            .toString()
+            .toLowerCase()
+            .includes(value.toLowerCase()),
+        onFilterDropdownVisibleChange: visible => {
+          if (visible) {
+            setTimeout(() => this.searchInput.select());
+          }
+        },
+        render: text =>
+          this.state.searchedColumn === dataIndex ? (
+            <Highlighter
+              highlightStyle={{ backgroundColor: '#ffc069', padding: 0 }}
+              searchWords={[this.state.searchText]}
+              autoEscape
+              textToHighlight={text.toString()}
+            />
+          ) : (
+            text
+          ),
+    });
+
+    handleSearch = (selectedKeys, confirm, dataIndex) => {
+        confirm();
+        this.setState({
+          searchText: selectedKeys[0],
+          searchedColumn: dataIndex,
+        });
+    };
+    
+    handleReset = clearFilters => {
+        clearFilters();
+        this.setState({ searchText: '' });
+    };
 
     render() { 
         const columns = [
@@ -50,20 +116,20 @@ class CountRegistEventPage extends Component {
                 dataIndex: 'no',
                 key: 'no',
                 render: text => <a>{text}</a>,
+                sorter: (a, b) => a.no - b.no,
+                sortDirections: ['ascend','descend'],
             },
             {
                 title: 'Nama Event',
                 dataIndex: 'nama_event',
                 key: 'nama_event',
-                render: text => <a>{text}</a>,
-                onFilter: (value, record) => record.nama_event.indexOf(value) === 0,
-                sorter: (a, b) => a.nama_event.length - b.nama_event.length,
-                sortDirections: ['descend'],
+                ...this.getColumnSearchProps('nama_event'),
             },
             {
                 title: 'Organisasi',
                 dataIndex: 'organisasi',
                 key: 'organisasi',
+                ...this.getColumnSearchProps('organisasi'),
             },
             {
                 title: 'Pendaftar',

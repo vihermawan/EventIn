@@ -7,7 +7,7 @@ function ButtonEdit({
     type, text, disabled, height = 48, borderRadius = 25,
     background = '#4D5AF2', textColor = "white", border = 'none',
     margin , marginLeft, marginRight, marginTop, marginBottom,
-    icon, onClick,paddingRight,paddingLeft,float,textAlign
+    icon, onClick,paddingRight,paddingLeft,float,textAlign,fontSize
 }) {
     return (
         <Button
@@ -28,7 +28,8 @@ function ButtonEdit({
                 marginTop: marginTop,
                 marginBottom: marginBottom,
                 float : float,
-                textAlign : textAlign
+                textAlign : textAlign,
+                fontSize : fontSize
             }}
             onClick={onClick}
         >
