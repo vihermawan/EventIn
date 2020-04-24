@@ -82,10 +82,6 @@ class EditProfilePesertaComponent extends Component {
                                     </div>
                                     <div className="select-value">
                                         <Select
-<<<<<<< HEAD
-                                        
-=======
->>>>>>> fd2121fc68732902eca5e13a922dab54c34fb36b
                                             value = { String(initialData.jenis_kelamin) }
                                             style={{ width: '100%' }}
                                             className="select-kategori "

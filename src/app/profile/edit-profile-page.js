@@ -18,11 +18,7 @@ class EditProfilePage extends Component {
         pekerjaan : '',
         picture : '',
         foto_peserta : '',
-<<<<<<< HEAD
-        organisasi :'',
-=======
         organisasi:'',
->>>>>>> fd2121fc68732902eca5e13a922dab54c34fb36b
         umur : '',
         button_edit : 'Edit Foto Profil',
         crop: {
@@ -290,12 +286,11 @@ class EditProfilePage extends Component {
         params.set('jenis_kelamin',this.state.jenis_kelamin)
         params.set('organisasi',this.state.organisasi)
         params.set('instagram',this.state.instagram)
-<<<<<<< HEAD
         params.set('no_telefon',this.state.no_telepon)
-=======
         params.set('tanggal_lahir',this.state.tanggal_lahir)
         params.set('no_telepon',this.state.no_telepon)
->>>>>>> fd2121fc68732902eca5e13a922dab54c34fb36b
+        params.set('tanggal_lahir',this.state.tanggal_lahir)
+        params.set('no_telepon',this.state.no_telepon)
         this.setState({loading: true})
         API.postEdit(`/peserta/profile/edit/${id_peserta}`, params)
             .then(res => {
