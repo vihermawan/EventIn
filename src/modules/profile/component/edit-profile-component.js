@@ -87,7 +87,6 @@ class EditProfilePesertaComponent extends Component {
                                             className="select-kategori "
                                             onChange={handleJenisKelamin}
                                         >   
-                                            <Option value = '' >Pilih Jenis Kelamin</Option>
                                             <Option value = 'Laki-Laki'>Laki-Laki</Option>
                                             <Option value = 'Perempuan'>Perempuan</Option>
                                         </Select>,

@@ -1,13 +1,11 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { Modal, Tag,Divider, message } from 'antd'
-import { faCheckCircle, faWindowClose} from '@fortawesome/free-solid-svg-icons'
+import { Modal, Button, Input, Icon } from 'antd'
+import  * as Highlighter from 'react-highlight-words'
 import CONSTANS from '../../../common/utils/Constants'
 import { API } from '../../../common/api'
 import { navigate } from '../../../common/store/action'
 import ListPenandatanganComponent from '../../../modules/admin-panitia/list-penandatangan/list-penandatangan-component';
-import ButtonDashboard from '../../../common/component/button/button-dashboard';
-
 
 const { confirm } = Modal;
 
@@ -33,6 +31,72 @@ class ListPenandatanganPage extends Component {
         });
     }
 
+    getColumnSearchProps = dataIndex => ({
+        filterDropdown: ({ setSelectedKeys, selectedKeys, confirm, clearFilters }) => (
+          <div style={{ padding: 8 }}>
+            <Input
+              ref={node => {
+                this.searchInput = node;
+              }}
+              placeholder={`Search ${dataIndex}`}
+              value={selectedKeys[0]}
+              onChange={e => setSelectedKeys(e.target.value ? [e.target.value] : [])}
+              onPressEnter={() => this.handleSearch(selectedKeys, confirm, dataIndex)}
+              style={{ width: 188, marginBottom: 8, display: 'block' }}
+            />
+            <Button
+              type="primary"
+              onClick={() => this.handleSearch(selectedKeys, confirm, dataIndex)}
+              icon="search"
+              size="small"
+              style={{ width: 90, marginRight: 8 }}
+            >
+              Search
+            </Button>
+            <Button onClick={() => this.handleReset(clearFilters)} size="small" style={{ width: 90 }}>
+              Reset
+            </Button>
+          </div>
+        ),
+        filterIcon: filtered => (
+          <Icon type="search" style={{ color: filtered ? '#1890ff' : undefined }} />
+        ),
+        onFilter: (value, record) =>
+          record[dataIndex]
+            .toString()
+            .toLowerCase()
+            .includes(value.toLowerCase()),
+        onFilterDropdownVisibleChange: visible => {
+          if (visible) {
+            setTimeout(() => this.searchInput.select());
+          }
+        },
+        render: text =>
+          this.state.searchedColumn === dataIndex ? (
+            <Highlighter
+              highlightStyle={{ backgroundColor: '#ffc069', padding: 0 }}
+              searchWords={[this.state.searchText]}
+              autoEscape
+              textToHighlight={text.toString()}
+            />
+          ) : (
+            text
+          ),
+    });
+
+    handleSearch = (selectedKeys, confirm, dataIndex) => {
+        confirm();
+        this.setState({
+          searchText: selectedKeys[0],
+          searchedColumn: dataIndex,
+        });
+    };
+    
+    handleReset = clearFilters => {
+        clearFilters();
+        this.setState({ searchText: '' });
+    };
+
     onCreatePenandatangan = () => {
         this.props.navigate(CONSTANS.CREATE_BIODATA_PENANDATNAGAN_MENU_KEY)
     }
@@ -45,50 +109,39 @@ class ListPenandatanganPage extends Component {
             dataIndex: 'no',
             key: 'no',
             render: text => <a>{text}</a>,
+            sorter: (a, b) => a.no - b.no,
+            sortDirections: ['ascend','descend'],
         },
         {
             title: 'Nama Penandatangan',
             dataIndex: 'nama_penandatangan',
             key: 'nama_penandatangan',
-            render: text => <a>{text}</a>,
-            onFilter: (value, record) => record.nama_peserta.indexOf(value) === 0,
-            sorter: (a, b) => a.nama_peserta.length - b.nama_peserta.length,
-            sortDirections: ['descend'],
+            ...this.getColumnSearchProps('nama_penandatangan'),
         },
         {
             title: 'Instansi',
             dataIndex: 'instansi',
             key: 'instansi',
+            ...this.getColumnSearchProps('instansi'),
         },
         {
             title: 'Jabatan',
             dataIndex: 'jabatan',
             key: 'jabatan',
+            ...this.getColumnSearchProps('jabatan'),
         },
         {
             title: 'Email',
             dataIndex: 'email',
             key: 'email',
+            ...this.getColumnSearchProps('email'),
         },
         {
             title: 'Nomor Induk Pegawai',
             dataIndex: 'nip',
             key: 'nip',
+            ...this.getColumnSearchProps('nip'),
         },
-        // {
-        //     title: 'Action',
-        //     key: 'action',
-        //     render: (data) => (
-        //     [<ButtonDashboard
-        //         text="Detail"
-        //         height={20}
-        //         icon={faCheckCircle}
-        //         borderRadius="5px"
-        //         background="#00C908"
-        //         onClick={ () => this.showAcceptConfirm(data.nomor)}
-        //     />]
-        //     ),
-        // },
     ];
 
     const data =  this.state.penandatangan.map( ({id_users, penandatangan,email}, index) => ({

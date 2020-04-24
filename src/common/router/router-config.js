@@ -21,12 +21,16 @@ import AboutPage from '../../app/about/about-page'
 import SwitchPage from '../../app/list-event/switch-event-page'
 import DashboardAdminPage from '../../common/layout/dashboard-admin'
 import DashboardPenandatanganPage from '../../common/layout/dashboard-penandatangan'
+import SetPasswordPage from '../../app/set-password/set-password-page'
+import ForgotPasswordPage from '../../app/forgot-password/forgot-password-page'
 
 const baseUrl = process.env.PUBLIC_URL;
 
 const routeSources = [
     //user
     { component: HomePage, path: `${baseUrl}/`, exact: true },
+    { component: SetPasswordPage, path: `${baseUrl}/set-password`, exact: false },
+    { component: ForgotPasswordPage, path: `${baseUrl}/forgot-password`, exact: false },
     { component: AllEventKategoriPage, path: `${baseUrl}/allkategori`, exact: true },
     { component: LoginComponent, path: `${baseUrl}/login`, exact: true },
     { component: PilihanPage, path: `${baseUrl}/choose`, exact: true },
@@ -43,6 +47,7 @@ const routeSources = [
     { component: DashboardPanitiaPage, path: `${baseUrl}/dashboard`, exact: false ,private: true, role: 2},
     //penandatangan
     { component: DashboardPenandatanganPage, path: `${baseUrl}/signer`, exact: false ,private: true, role: 4},
+    
     //admin
     { component: DashboardAdminPage, path:`${baseUrl}/admin`, exact:false ,private: true, role: 1},
     { component: ErrorPage },

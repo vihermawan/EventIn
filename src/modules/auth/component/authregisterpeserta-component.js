@@ -82,7 +82,7 @@ class RegisterComponent extends Component{
                                                 </Select>,
                                             </div>
                                             
-                                            <span className="auth-input-label text-white">Password</span>
+                                            <span className="auth-input-label text-white">Kata Sandi</span>
                                             <InputAuth
                                                 name='password'
                                                 placeholder="Masukkan password anda"

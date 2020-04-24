@@ -1,13 +1,14 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { Modal, message } from 'antd'
+import { Modal, message, Button, Input, Icon, Divider  } from 'antd'
 import { API } from '../../../common/api'
 import { navigate } from '../../../common/store/action'
 import CONSTANS from '../../../common/utils/Constants'
+import  * as Highlighter from 'react-highlight-words';
 //component
 import PenandatanganAdminComponent from '../../../modules/admin-superadmin/user/penandatangan/penandatangan-component';
 import { faBan, faInfoCircle, faPen } from '@fortawesome/free-solid-svg-icons'
-import ButtonDashboard from '../../../common/component/button/button-dashboard';
+import ButtonEdit from '../../../common/component/button/button-edit';
 
 //import store
 import { setIdUsers } from '../../../modules/admin-superadmin/user/store/users-action'
@@ -19,13 +20,11 @@ class PenandatanganAdminPage extends Component {
     state = { 
         penandatangan: [],
         loading: false,
-     }
-
-     componentDidMount(){
-        this.getPenandatangan();
     }
 
-    
+    componentDidMount(){
+        this.getPenandatangan();
+    }
 
     getPenandatangan=()=>{
         this.setState({loading: true})
@@ -38,6 +37,72 @@ class PenandatanganAdminPage extends Component {
           })
         });
     }
+
+    getColumnSearchProps = dataIndex => ({
+        filterDropdown: ({ setSelectedKeys, selectedKeys, confirm, clearFilters }) => (
+          <div style={{ padding: 8 }}>
+            <Input
+              ref={node => {
+                this.searchInput = node;
+              }}
+              placeholder={`Search ${dataIndex}`}
+              value={selectedKeys[0]}
+              onChange={e => setSelectedKeys(e.target.value ? [e.target.value] : [])}
+              onPressEnter={() => this.handleSearch(selectedKeys, confirm, dataIndex)}
+              style={{ width: 188, marginBottom: 8, display: 'block' }}
+            />
+            <Button
+              type="primary"
+              onClick={() => this.handleSearch(selectedKeys, confirm, dataIndex)}
+              icon="search"
+              size="small"
+              style={{ width: 90, marginRight: 8 }}
+            >
+              Search
+            </Button>
+            <Button onClick={() => this.handleReset(clearFilters)} size="small" style={{ width: 90 }}>
+              Reset
+            </Button>
+          </div>
+        ),
+        filterIcon: filtered => (
+          <Icon type="search" style={{ color: filtered ? '#1890ff' : undefined }} />
+        ),
+        onFilter: (value, record) =>
+          record[dataIndex]
+            .toString()
+            .toLowerCase()
+            .includes(value.toLowerCase()),
+        onFilterDropdownVisibleChange: visible => {
+          if (visible) {
+            setTimeout(() => this.searchInput.select());
+          }
+        },
+        render: text =>
+          this.state.searchedColumn === dataIndex ? (
+            <Highlighter
+              highlightStyle={{ backgroundColor: '#ffc069', padding: 0 }}
+              searchWords={[this.state.searchText]}
+              autoEscape
+              textToHighlight={text.toString()}
+            />
+          ) : (
+            text
+          ),
+    });
+
+    handleSearch = (selectedKeys, confirm, dataIndex) => {
+        confirm();
+        this.setState({
+          searchText: selectedKeys[0],
+          searchedColumn: dataIndex,
+        });
+    };
+    
+    handleReset = clearFilters => {
+        clearFilters();
+        this.setState({ searchText: '' });
+    };
 
      //delete penandatangan
      deletePenandatangan = (id_penandatangan) => {   
@@ -89,34 +154,39 @@ class PenandatanganAdminPage extends Component {
                 dataIndex: 'no',
                 key: 'no',
                 render: text => <a>{text}</a>,
+                sorter: (a, b) => a.no - b.no,
+                sortDirections: ['ascend','descend'],
             },
             {
                 title: 'Nama Penandatangan',
                 dataIndex: 'penandatangan',
                 key: 'penandatangan',
-                render: text => <a>{text}</a>,
+                ...this.getColumnSearchProps('penandatangan'),
             },
             {
                 title: 'NIP',
                 dataIndex: 'nip',
                 key: 'nip',
+                ...this.getColumnSearchProps('nip'),
             },
             {
                 title: 'Instansi',
                 dataIndex: 'instansi',
                 key: 'instansi',
+                ...this.getColumnSearchProps('instansi'),
             },
             {
                 title: 'Jabatan',
                 dataIndex: 'jabatan',
                 key: 'jabatan',
+                ...this.getColumnSearchProps('jabatan'),
             },
             {
                 title: 'Action',
                 key: 'action',
                 render: (data) => (
                     [ 
-                    <ButtonDashboard
+                    <ButtonEdit
                         text="Edit"
                         height={20}
                         icon={faPen}
@@ -125,7 +195,8 @@ class PenandatanganAdminPage extends Component {
                         marginRight= "20px"
                         onClick = { () => this.onEditPenandatangan(data.id_users)}
                     />,
-                    <ButtonDashboard
+                    <Divider type="vertical" />,
+                    <ButtonEdit
                         text="Detail"
                         height={20}
                         icon={faInfoCircle}
@@ -134,7 +205,8 @@ class PenandatanganAdminPage extends Component {
                         marginRight= "20px"
                         onClick = { () => this.onDetailPenandatangan(data.id_users)}
                     />,
-                    <ButtonDashboard
+                    <Divider type="vertical" />,
+                    <ButtonEdit
                         text="Banned"
                         height={20}
                         icon={faBan}

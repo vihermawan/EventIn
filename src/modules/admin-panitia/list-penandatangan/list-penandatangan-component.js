@@ -1,13 +1,12 @@
 import React, { Component } from 'react';
-import { Layout, Breadcrumb, Row, Tag, Col,Modal } from 'antd';
-import { faCheckCircle, faWindowClose, faUserPlus } from '@fortawesome/free-solid-svg-icons'
-import ButtonIcon from '../../../common/component/button/button-icon'
+import { Layout, Breadcrumb, Row, Col,Modal } from 'antd';
+import { faUserPlus } from '@fortawesome/free-solid-svg-icons'
 import TableProfile from '../../../common/component/table/table'
 import '../../../assets/css/dashboard-all/dashboard.css'
 import '../../../assets/css/dashboard-all/table-style.css'
 import LoadingContainer from '../../../common/component/loading/loading-container'
 import LoadingNotifContainer from '../../../common/component/loading/loading-notif';
-import ButtonDashboard from '../../../common/component/button/button-dashboard';
+import ButtonEdit from '../../../common/component/button/button-edit';
 // constant content
 const { Content } = Layout;
 
@@ -38,7 +37,7 @@ class ListPenandatanganComponent extends Component {
                                 </Col>
                                 <Col lg={5} md={12} sm={12} xs={24}>
                                     <div className="button-add">
-                                    <ButtonDashboard
+                                    <ButtonEdit
                                             text="Tambah Penandatangan"
                                             height={20}
                                             icon={faUserPlus}

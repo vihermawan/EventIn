@@ -4,7 +4,7 @@ import './style/dashboard-style.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { Layout, Menu, Icon, Avatar, Dropdown } from 'antd';
 /*Import Icon */
-import { faDesktop, faEnvelope, faUserTag, faUserTie, faUserFriends, faEnvelopeOpen, faBookOpen } from '@fortawesome/free-solid-svg-icons'
+import { faDesktop, faEnvelope, faUserTag, faUserTie, faUserFriends,  faBookOpen } from '@fortawesome/free-solid-svg-icons'
 import { API } from '../../common/api'
 import CONSTANS from '../utils/Constants'
 import ButtonAuth from '../component/button/button-auth'
@@ -12,6 +12,9 @@ import { connect } from 'react-redux';
 import { navigate } from '../../common/store/action'
 /*Import Page */
 import DashboardAdminPage from '../../app/admin-superadmin/dashboard/admin-page'
+import SwitchPesertaPage from '../../app/admin-superadmin/switch-page/switch-peserta-page'
+import SwitchPanitiaPage from '../../app/admin-superadmin/switch-page/switch-panitia-page'
+import SwitchPenandatanganPage from '../../app/admin-superadmin/switch-page/switch-penandatangan-page'
 import ListPanitiaAdminPage from '../../app/admin-superadmin/dashboard/listpanitia-page'
 import ApprovalEventPage from '../../app/admin-superadmin/dashboard/approvalevent-page'
 import PesertaAdminPage from '../../app/admin-superadmin/dashboard/peserta-page'
@@ -290,10 +293,15 @@ class Admin extends Component {
                     exact
                     render={ (props) => <DashboardAdminPage {...props}/> }
                 />
-                <Route
+                {/* <Route
                     path='/admin/admin-peserta'
                     exact
                     render={ (props) => <PesertaAdminPage {...props}/> }
+                /> */}
+                 <Route
+                    path='/admin/admin-peserta'
+                    exact
+                    render={ (props) => <SwitchPesertaPage {...props}/> }
                 />
                 <Route
                     path='/admin/admin-detail-peserta'
@@ -305,10 +313,15 @@ class Admin extends Component {
                     exact
                     render={ (props) => <EditPesertaPage {...props}/> }
                 />
-                <Route
+                {/* <Route
                     path='/admin/list-panitia'
                     exact
                     render={ (props) => <ListPanitiaAdminPage {...props}/> }
+                /> */}
+                 <Route
+                    path='/admin/list-panitia'
+                    exact
+                    render={ (props) => <SwitchPanitiaPage {...props}/> }
                 />
                 <Route
                     path='/admin/detail-panitia'
@@ -330,10 +343,15 @@ class Admin extends Component {
                     exact
                     render={ (props) => <DetailEventPage {...props}/> }
                 />
-                <Route
+                {/* <Route
                     path='/admin/admin-penandatangan'
                     exact
                     render={ (props) => <PenandatanganAdminPage {...props}/> }
+                /> */}
+                 <Route
+                    path='/admin/admin-penandatangan'
+                    exact
+                    render={ (props) => <SwitchPenandatanganPage {...props}/> }
                 />
                  <Route
                     path='/admin/detail-penandatangan'

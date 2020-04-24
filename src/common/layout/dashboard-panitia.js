@@ -14,6 +14,7 @@ import CONSTANS from '../utils/Constants'
 import DashboardPanitiaPage from '../../app/admin-panitia/dashboard/panitia-page'
 import CreateEventPage from '../../app/admin-panitia/dashboard/create-event-page'
 import ActiveEventPage from '../../app/admin-panitia/dashboard/active-event-page'
+import CreateCertificatepage from '../../app/admin-panitia/dashboard/create-certificate-page'
 import WaitingCertificatePage from '../../app/admin-panitia/dashboard/waiting-certificate-page'
 import ReceivedCertificatePage from '../../app/admin-panitia/dashboard/received-certificate-page'
 import HistoryEventPage from '../../app/admin-panitia/dashboard/history-event-page'
@@ -35,36 +36,35 @@ import EditProfilePage from '../../app/admin-panitia/edit-page/edit-profile-page
 import EditCertificatePage from '../../app/admin-panitia/edit-page/edit-certificate-page'
 
 const { Header, Sider } = Layout;
-
+const { SubMenu } = Menu;
 class dashboard extends Component {
   state = {
-    current: '',
-    picture : '',
-    nama_panitia : '',
-    collapsed: false,
-    loading : false,
-    username: '',
-    profile_picture:'',
-    no_telepon :'',
-    instagram : '',
+      current: '',
+      picture : '',
+      nama_panitia : '',
+      collapsed: false,
+      loading : false,
+      username: '',
+      profile_picture:'',
+      no_telepon :'',
+      instagram : '',
   };
-
-  
-getProfile=()=>{
-    // this.setState({loading: true})
-    API.get(`/panitia/profile-edit`)
-    .then(res => {
-       let username_panitia = localStorage.getItem("username");
-       let profile_panitia = localStorage.getItem("profile_picture");
-       if ((res.data.data.user.panitia.nama_panitia != username_panitia) || (res.data.data.user.panitia.image_URL != profile_panitia)){
-          localStorage.setItem('username', res.data.data.user.panitia.nama_panitia)
-          localStorage.setItem('profile_picture', res.data.data.user.panitia.image_URL)
-          let username_panitia = localStorage.getItem("username");
-          let profile_panitia = localStorage.getItem("profile_picture");
-          this.setState({username : username_panitia, profile_picture : profile_panitia })
-        }
-    });
-}
+    
+  getProfile=()=>{
+      // this.setState({loading: true})
+      API.get(`/panitia/profile-edit`)
+      .then(res => {
+        let username_panitia = localStorage.getItem("username");
+        let profile_panitia = localStorage.getItem("profile_picture");
+        if ((res.data.data.user.panitia.nama_panitia != username_panitia) || (res.data.data.user.panitia.image_URL != profile_panitia)){
+            localStorage.setItem('username', res.data.data.user.panitia.nama_panitia)
+            localStorage.setItem('profile_picture', res.data.data.user.panitia.image_URL)
+            let username_panitia = localStorage.getItem("username");
+            let profile_panitia = localStorage.getItem("profile_picture");
+            this.setState({username : username_panitia, profile_picture : profile_panitia })
+          }
+      });
+  }
   
   componentDidMount(){
     this.getProfile();
@@ -127,8 +127,6 @@ getProfile=()=>{
         </Menu.Item>
       </Menu>
     );
-   
-
 
     return ( 
      <LoadingContainer loading={this.state.loading}>
@@ -208,25 +206,6 @@ getProfile=()=>{
                       <div className="title-dashboard">
                           <span className="title-desc-dashboard">CERTIFICATE</span>
                       </div>  
-                      
-                      <Menu.Item key="waiting-certificate-event"  onClick={this.clickedMenu}>
-                        <NavLink to="/dashboard/waiting-certificate-event">
-                          <FontAwesomeIcon
-                              icon={faEnvelope}
-                              style={{marginRight: 10}}
-                          /> 
-                          <span className={hidden}>Waiting</span>
-                        </NavLink>
-                      </Menu.Item>
-                      <Menu.Item key="received-certificate-event"  onClick={this.clickedMenu}>
-                        <NavLink to="/dashboard/received-certificate-event">
-                          <FontAwesomeIcon
-                              icon={faEnvelopeOpen}
-                              style={{marginRight: 10}}
-                          /> 
-                          <span className={hidden}>Received</span>
-                        </NavLink>
-                      </Menu.Item>
                       <Menu.Item key="list-penandatangan" onClick={this.clickedMenu}>
                         <NavLink to="/dashboard/list-penandatangan">
                           <FontAwesomeIcon
@@ -236,6 +215,47 @@ getProfile=()=>{
                           <span className={hidden}>List Signer</span>
                         </NavLink>
                       </Menu.Item>
+                      <SubMenu
+                        key="sub1"
+                        title={
+                        <span>
+                            <FontAwesomeIcon
+                                icon={faEnvelope}
+                                style={{marginRight: 10}}
+                            />
+                            <span className={hidden}>Sertifikat</span>
+                        </span>
+                        }
+                      >
+                       <Menu.Item key="upload-sertifikat"  onClick={this.clickedMenu}>
+                        <NavLink to="/dashboard/upload-sertifikat">
+                          {/* <FontAwesomeIcon
+                              icon={faEnvelope}
+                              style={{marginRight: 10}}
+                          />  */}
+                          <span>Upload</span>
+                        </NavLink>
+                      </Menu.Item>
+                      <Menu.Item key="waiting-certificate-event"  onClick={this.clickedMenu}>
+                        <NavLink to="/dashboard/waiting-certificate-event">
+                          {/* <FontAwesomeIcon
+                              icon={faEnvelope}
+                              style={{marginRight: 10}}
+                          />  */}
+                          <span>Waiting</span>
+                        </NavLink>
+                      </Menu.Item>
+                      <Menu.Item key="received-certificate-event"  onClick={this.clickedMenu}>
+                        <NavLink to="/dashboard/received-certificate-event">
+                          {/* <FontAwesomeIcon
+                              icon={faEnvelopeOpen}
+                              style={{marginRight: 10}}
+                          />  */}
+                          <span>Received</span>
+                        </NavLink>
+                      </Menu.Item>
+                    </SubMenu>
+                      
                       <Menu.Item key="template-e-certificate" onClick={this.clickedMenu}>
                         <NavLink to="/dashboard/template-e-certificate">
                           <FontAwesomeIcon
@@ -358,6 +378,11 @@ getProfile=()=>{
                     render={ (props) => <DetailListParticipantbyHistoryEventPage {...props}/>}
                 />
                 <Route
+                    path='/dashboard/upload-sertifikat'
+                    exact
+                    render={ (props) => <CreateCertificatepage {...props}/> }
+                />
+                <Route
                     path='/dashboard/waiting-certificate-event'
                     exact
                     render={ (props) => <WaitingCertificatePage {...props}/> }
@@ -367,7 +392,7 @@ getProfile=()=>{
                     exact
                     render={ (props) => <EditCertificatePage {...props}/>}
                 />
-                 <Route
+                <Route
                     path='/dashboard/received-certificate-event'
                     exact
                     render={ (props) => <ReceivedCertificatePage {...props}/> }
