@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { API } from '../../common/api'
 import { connect } from 'react-redux';
 import CONSTANS from '../../common/utils/Constants'
+import { message} from 'antd';
 import { navigate } from '../../common/store/action'
 import AllEventComponent from '../../modules/allevent/component/allevent-component';
 
@@ -57,6 +58,14 @@ class AllEventPage extends Component {
         this.setState({ page: nextPage });
     }
 
+    success = quota => {
+        message.success(`Kuota Masih tersisa ${quota} silahkan mendaftar`);
+    };
+
+    error = () => {
+        message.error(`Mohon maaf tidak bisa mendaftar karena kuota penuh`);
+    };
+
     render() { 
 
         const cardData =  this.state.event.map( data => ({
@@ -66,6 +75,7 @@ class AllEventPage extends Component {
             title: data.nama_event,
             place: data.detail_event.lokasi,
             foto : data.detail_event.image_URL,
+            quota : (data.detail_event.limit_participant)-(data.peserta_event_count),
         }))
 
         return (
@@ -77,6 +87,8 @@ class AllEventPage extends Component {
                 onStartLoadingHome={this.onStartLoadingHome}
                 onFinishLoadingHome={this.onFinishLoadingHome}
                 nextPage={this.nextPage}
+                success = {this.success}
+                error = {this.error}
             />
         );
     }

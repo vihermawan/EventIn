@@ -111,7 +111,7 @@ class EventComponent extends Component {
                                                                                 <div className="text-black semi-bold"><Moment format="DD MMMM YYYY">{data.date}</Moment></div>
                                                                             </Col>
                                                                             <Col lg={12} md={12} sm={24} xs={12}>
-                                                                                <div>
+                                                                                <div style={data.quota === 0 ? {display:"none"}:{display:"block"}}>
                                                                                     <ButtonStatus
                                                                                         text="Available"
                                                                                         height={10}
@@ -190,6 +190,30 @@ class EventComponent extends Component {
                                                                                 <div className="text-black semi-bold"><Moment format="DD MMMM YYYY">{data.date}</Moment></div>
                                                                             </Col>
                                                                             <Col lg={12} md={12} sm={24} xs={12}>
+                                                                                <div  style={data.quota === 0 ? {display:"none"}:{display:"block"}}>
+                                                                                    <ButtonStatus
+                                                                                        text="Available"
+                                                                                        height={10}
+                                                                                        borderRadius="5px"
+                                                                                        background="#070E57"
+                                                                                        onClick = {() => success(data.quota)}
+                                                                                        float = "right"
+                                                                                        fontSize = "10px"
+                                                                                    />
+                                                                                </div>
+                                                                                <div style={data.quota === 0 ? {display:"block"}:{display:"none"}}>
+                                                                                    <ButtonStatus
+                                                                                        text="Full"
+                                                                                        height={10}
+                                                                                        borderRadius="5px"
+                                                                                        background="#FF0303"
+                                                                                        onClick = {()=>error()}
+                                                                                        float = "right"
+                                                                                        fontSize = "10px"
+                                                                                    />
+                                                                                </div>
+                                                                            </Col>
+                                                                            <Col lg={24} className="mt-10">
                                                                                 <span className="text-white background-soft-blue semi-bold event-card-badge">
                                                                                     {data.price}
                                                                                 </span>
@@ -251,6 +275,30 @@ class EventComponent extends Component {
                                                                         <div className="text-black semi-bold"><Moment format="DD MMMM YYYY">{data.date}</Moment></div>
                                                                     </Col>
                                                                     <Col lg={12} md={12} sm={24} xs={12}>
+                                                                        <div  style={data.quota === 0 ? {display:"none"}:{display:"block"}}>
+                                                                            <ButtonStatus
+                                                                                text="Available"
+                                                                                height={10}
+                                                                                borderRadius="5px"
+                                                                                background="#070E57"
+                                                                                onClick = {() => success(data.quota)}
+                                                                                float = "right"
+                                                                                fontSize = "10px"
+                                                                            />
+                                                                        </div>
+                                                                        <div style={data.quota === 0 ? {display:"block"}:{display:"none"}}>
+                                                                            <ButtonStatus
+                                                                                text="Full"
+                                                                                height={10}
+                                                                                borderRadius="5px"
+                                                                                background="#FF0303"
+                                                                                onClick = {()=>error()}
+                                                                                float = "right"
+                                                                                fontSize = "10px"
+                                                                            />
+                                                                        </div>
+                                                                    </Col>
+                                                                    <Col lg={24} className="mt-10">
                                                                         <span className="text-white background-soft-blue semi-bold event-card-badge">
                                                                             {data.price}
                                                                         </span>
@@ -310,6 +358,30 @@ class EventComponent extends Component {
                                                                         <div className="text-black semi-bold"><Moment format="DD MMMM YYYY">{data.date}</Moment></div>
                                                                     </Col>
                                                                     <Col lg={12} md={12} sm={24} xs={12}>
+                                                                        <div  style={data.quota === 0 ? {display:"none"}:{display:"block"}}>
+                                                                            <ButtonStatus
+                                                                                text="Available"
+                                                                                height={10}
+                                                                                borderRadius="5px"
+                                                                                background="#070E57"
+                                                                                onClick = {() => success(data.quota)}
+                                                                                float = "right"
+                                                                                fontSize = "10px"
+                                                                            />
+                                                                        </div>
+                                                                        <div style={data.quota === 0 ? {display:"block"}:{display:"none"}}>
+                                                                            <ButtonStatus
+                                                                                text="Full"
+                                                                                height={10}
+                                                                                borderRadius="5px"
+                                                                                background="#FF0303"
+                                                                                onClick = {()=>error()}
+                                                                                float = "right"
+                                                                                fontSize = "10px"
+                                                                            />
+                                                                        </div>
+                                                                    </Col>
+                                                                    <Col lg={24} className="mt-10">
                                                                         <span className="text-white background-soft-blue semi-bold event-card-badge">
                                                                             {data.price}
                                                                         </span>

@@ -148,6 +148,7 @@ class EventPage extends Component {
             title: data.nama_event,
             place: data.detail_event.lokasi,
             foto : data.detail_event.image_URL,
+            quota : (data.detail_event.limit_participant)-(data.peserta_event_count),
         }))
 
         const cardDataEvenyWeek =  this.state.event_week.map( data => ({
@@ -157,6 +158,7 @@ class EventPage extends Component {
             title: data.nama_event,
             place: data.detail_event.lokasi,
             foto : data.detail_event.image_URL,
+            quota : (data.detail_event.limit_participant)-(data.peserta_event_count),
         }))
 
         const cardDataEventSeacrh =  this.state.event_seacrh.map( data => ({
@@ -166,6 +168,7 @@ class EventPage extends Component {
             title: data.nama_event,
             place: data.detail_event.lokasi,
             foto : data.detail_event.image_URL,
+            quota : (data.detail_event.limit_participant)-(data.peserta_event_count),
         }))
 
         return (
