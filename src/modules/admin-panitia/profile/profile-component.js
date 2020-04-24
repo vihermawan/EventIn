@@ -70,8 +70,8 @@ class ProfilePanitiaComponent extends Component {
                                     </Col>
                                     <Col lg={8} md={12} sm={12}>
                                 <div className="container-desc">
-                                    <p className="text-soft-blue desc-title">No Telefon</p>
-                                    <p className="text-black desc-profile">{data.no_telepon}</p>
+                                    <p className="text-soft-blue desc-title">Nomor Telepon</p>
+                                    <p className="text-black desc-profile">{data.telepon}</p>
                                 </div>
                                 </Col>
                                 </Row>  

@@ -125,6 +125,21 @@ class CreatePenandatanganComponent extends Component {
                                                 </Col>
                                                 <Col lg={24} md={24} sm={24}>
                                                     <div>   
+                                                        <span className="auth-input-label text-black">Nomor Telepon*</span>
+                                                    </div>
+                                                    <div>
+                                                        <InputForm
+                                                            name='telepon'
+                                                            placeholder="Masukan nomor telepon...."
+                                                            className="input-event mt-5 mb-20"
+                                                            onChange={handleChange}
+                                                            value={initialData.telepon}
+                                                            icon={faStickyNote}
+                                                        />
+                                                    </div>
+                                                </Col>
+                                                <Col lg={24} md={24} sm={24}>
+                                                    <div>   
                                                         <span className="auth-input-label text-black">Foto profil*</span>
                                                     </div>
                                                     <div>

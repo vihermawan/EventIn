@@ -119,11 +119,11 @@ class EditProfileComponent extends Component {
                                                 </div>
                                                 <div>
                                                     <InputForm
-                                                        name='no_telepon'
+                                                        name='telepon'
                                                         placeholder="Masukan nomor telefon...."
                                                         className="input-event mt-5 mb-20"
                                                         onChange={handleChange}
-                                                        value={initialData.no_telepon}
+                                                        value={initialData.telepon}
                                                         icon={faAddressBook}
                                                     />
                                                 </div>
