@@ -164,15 +164,15 @@ class EditProfilePesertaComponent extends Component {
                             </Col>
                             <Col lg={24} md={24} sm={24}>
                                 <div>   
-                                    <span className="auth-input-label text-black">No Telefon*</span>
+                                    <span className="auth-input-label text-black">Nomor Telepon*</span>
                                 </div>
                                 <div>
                                     <InputForm
-                                        name='no_telepon'
-                                        placeholder="Masukan nomor telefon...."
+                                        name='telepon'
+                                        placeholder="Masukan nomor telepon...."
                                         className="input-event mt-5 mb-20"
                                         onChange={handleChange}
-                                        value={initialData.no_telepon}
+                                        value={initialData.telepon}
                                         icon={faAddressBook}
                                     />
                                 </div>

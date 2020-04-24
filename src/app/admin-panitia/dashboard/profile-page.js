@@ -1,5 +1,4 @@
-      
-      import React, { Component } from 'react';
+import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { API } from '../../../common/api'
 import { navigate } from '../../../common/store/action'
@@ -47,7 +46,7 @@ class ProfilePage extends Component {
             nama_panitia : panitia.nama_panitia,
             organisasi : panitia.organisasi,
             instagram : panitia.instagram,
-            no_telepon : panitia.no_telepon,
+            telepon : panitia.telepon,
             picture : panitia.image_URL,
         }))
 

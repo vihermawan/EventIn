@@ -19,13 +19,14 @@ class CreateBiodataPenandatanganPage extends Component {
        loading : false,
        visible:false,
        show: false,
+       telepon : '',
        crop: {
         unit: '%',
         width: 30,
         aspect: 1 / 1,
       },
       croppedImageUrl : '',
-     }
+    }
 
     handleChange = (e) => {
         let target = e.target.name;
@@ -221,6 +222,7 @@ class CreateBiodataPenandatanganPage extends Component {
         params.set('jabatan',this.state.jabatan)
         params.set('nip',this.state.nip)
         params.set('instansi',this.state.instansi)
+        params.set('telepon',this.state.telepon)
         
         console.log('params', params)
 
@@ -239,6 +241,9 @@ class CreateBiodataPenandatanganPage extends Component {
         }else if(validation.required(this.state.instansi) != null){
             const message = validation.required(this.state.instansi)  
             this.openNotification(message, 'Instansi belum dimasukkan')
+        }else if(validation.required(this.state.telepon) != null){
+            const message = validation.required(this.state.telepon)  
+            this.openNotification(message, 'Nomor Telepon belum dimasukkan')
         }else{
             this.setState({loading: true})
             this.showModal2();

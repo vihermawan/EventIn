@@ -51,7 +51,7 @@ class ProfilePage extends Component {
             tanggal_lahir : peserta.tanggal_lahir,
             jenis_kelamin : peserta.jenis_kelamin,
             pekerjaan : peserta.pekerjaan,
-            no_telefon : peserta.no_telefon,
+            telepon : peserta.telepon,
             picture : peserta.image_URL,
         }))
 

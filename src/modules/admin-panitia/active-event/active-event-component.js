@@ -29,7 +29,6 @@ class ActiveEventComponent extends Component {
 
                 <Row style={{minHeight: '100%',marginBottom: '2%',marginTop:'2%',}} className="background">
                     <Col lg={24} md={24} sm={24}> 
-                        
                         <div className="container-active-event">
                             <Row>
                             <div className="container-title-event">
