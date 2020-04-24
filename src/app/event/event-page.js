@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { API } from '../../common/api'
 import { connect } from 'react-redux';
+import { message} from 'antd';
 import CONSTANS from '../../common/utils/Constants'
 import { navigate } from '../../common/store/action'
 import EventComponent from '../../modules/event/component/event-component';
@@ -53,6 +54,7 @@ class EventPage extends Component {
         this.setState({loading: true})
         API.get(`/peserta/event`)
         .then(res => {
+            console.log('res', res.data.data)
             if(res.status == 200){
                 this.setState({
                     event:res.data.data.event.data,
@@ -114,6 +116,14 @@ class EventPage extends Component {
         this.props.navigate(CONSTANS.ALL_KATEGORI_MENU_KEY)
     }
 
+    success = quota => {
+        message.success(`Kuota Masih tersisa ${quota} silahkan mendaftar`);
+    };
+
+    error = () => {
+        message.error(`Mohon maaf tidak bisa mendaftar karena kuota penuh`);
+    };
+
     render() { 
 
         const cardData =  this.state.event.map( data => ({
@@ -123,6 +133,7 @@ class EventPage extends Component {
             title: data.nama_event,
             place: data.detail_event.lokasi,
             foto : data.detail_event.image_URL,
+            quota : (data.detail_event.limit_participant)-(data.peserta_event_count),
         }))
 
         const kategori = this.state.kategori.map(data => ({
@@ -137,6 +148,7 @@ class EventPage extends Component {
             title: data.nama_event,
             place: data.detail_event.lokasi,
             foto : data.detail_event.image_URL,
+            quota : (data.detail_event.limit_participant)-(data.peserta_event_count),
         }))
 
         const cardDataEvenyWeek =  this.state.event_week.map( data => ({
@@ -146,6 +158,7 @@ class EventPage extends Component {
             title: data.nama_event,
             place: data.detail_event.lokasi,
             foto : data.detail_event.image_URL,
+            quota : (data.detail_event.limit_participant)-(data.peserta_event_count),
         }))
 
         const cardDataEventSeacrh =  this.state.event_seacrh.map( data => ({
@@ -155,6 +168,7 @@ class EventPage extends Component {
             title: data.nama_event,
             place: data.detail_event.lokasi,
             foto : data.detail_event.image_URL,
+            quota : (data.detail_event.limit_participant)-(data.peserta_event_count),
         }))
 
         return (
@@ -172,6 +186,8 @@ class EventPage extends Component {
                 onFinishLoadingHome={this.onFinishLoadingHome}
                 onEventKategori={this.onEventKategori}
                 onSeacrhEvent = {this.onSeacrhEvent}
+                success = {this.success}
+                error = {this.error}
             />
         );
     }

@@ -3,11 +3,11 @@ import { Button } from 'antd';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import './style.css';
 
-function ButtonEdit({
-    type, text, disabled, height = 48, borderRadius = 25,
+function ButtonStatus({
+    type, text, disabled, height = 20, borderRadius = 25,
     background = '#4D5AF2', textColor = "white", border = 'none',
     margin , marginLeft, marginRight, marginTop, marginBottom,
-    icon, onClick,paddingRight,paddingLeft,float,textAlign,fontSize
+    icon, onClick,paddingRight,paddingLeft,float,textAlign
 }) {
     return (
         <Button
@@ -28,8 +28,7 @@ function ButtonEdit({
                 marginTop: marginTop,
                 marginBottom: marginBottom,
                 float : float,
-                textAlign : textAlign,
-                fontSize : fontSize
+                textAlign : textAlign
             }}
             onClick={onClick}
         >
@@ -42,4 +41,4 @@ function ButtonEdit({
     );
 }
 
-export default ButtonEdit;
+export default ButtonStatus;

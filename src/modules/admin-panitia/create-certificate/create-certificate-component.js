@@ -58,6 +58,21 @@ class CreateCertificateComponent extends Component{
                                                 </Col>
                                                 <Col lg={24} md={24} sm={24}>
                                                     <div>   
+                                                        <span className="auth-input-label text-black">Nomor Sertifikat*</span>
+                                                    </div>
+                                                    <div>
+                                                        <InputForm
+                                                            name='no_sertifikat'
+                                                            placeholder="Masukan nomor sertifikat...."
+                                                            className="input-event mt-5 mb-20"
+                                                            onChange={handleChange}
+                                                            value={initialData.no_sertifikat}
+                                                            icon={faFile}
+                                                        />
+                                                    </div>
+                                                </Col>
+                                                <Col lg={24} md={24} sm={24}>
+                                                    <div>   
                                                         <span className="auth-input-label text-black">Pilih Event*</span>
                                                     </div>
                                                     <div>
@@ -65,7 +80,7 @@ class CreateCertificateComponent extends Component{
                                                         placeholder="Pilih Event"
                                                         optionFilterProp="children"
                                                         style={{ width: '100%' }}
-                                                        className="select-sertifikat mb-20"
+                                                        className="select-sertifikat"
                                                         onChange={(input, option)=>handleEvent(input,option)}
                                                     >
                                                         {
@@ -88,7 +103,7 @@ class CreateCertificateComponent extends Component{
                                                         mode="multiple"
                                                         optionFilterProp="children"
                                                         style={{ width: '100%' }}
-                                                        className="select-sertifikat mb-20"
+                                                        className="select-sertifikat"
                                                         placeholder="Pilih Penandatangan"
                                                         onChange={(input, option)=>handlePenandatangan(input,option)}
                                                     >

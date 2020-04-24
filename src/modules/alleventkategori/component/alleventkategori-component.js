@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
-import { Layout, BackTop, Row, Col, Button, Input, Dropdown, Menu, Icon, Tabs, Card } from 'antd';
+import { Layout, BackTop, Row, Col, Card } from 'antd';
 import Moment from 'react-moment';
 import 'moment-timezone';
 import 'moment/locale/id';
@@ -10,12 +10,12 @@ import '../../../assets/css/event.css'
 import Navbar from '../../../common/layout/navbar-landing'
 import Footer from '../../../common/layout/footer-landing'
 import ButtonDashboard from '../../../common/component/button/button-dashboard';
-
+import ButtonStatus from '../../../common/component/button/button-status';
 const { Content } = Layout;
 
 class AllEventKategoriComponent extends Component {
     render() { 
-        const {cardData,initialData,onDetailEvent,onStartLoadingHome ,onFinishLoadingHome,nextPage} = this.props
+        const {cardData,initialData,onDetailEvent,onStartLoadingHome ,onFinishLoadingHome,nextPage,success,error} = this.props
         const image1 = require(`../../../assets/images/event-image1.png`);  
         return ( 
             <Layout className="landing-container">
@@ -51,6 +51,30 @@ class AllEventKategoriComponent extends Component {
                                                             <div className="text-black semi-bold"><Moment format="DD MMMM YYYY">{data.date}</Moment></div>
                                                         </Col>
                                                         <Col lg={12} md={12} sm={24} xs={12}>
+                                                            <div  style={data.quota === 0 ? {display:"none"}:{display:"block"}}>
+                                                                <ButtonStatus
+                                                                    text="Available"
+                                                                    height={10}
+                                                                    borderRadius="5px"
+                                                                    background="#070E57"
+                                                                    onClick = {() => success(data.quota)}
+                                                                    float = "right"
+                                                                    fontSize = "10px"
+                                                                />
+                                                            </div>
+                                                            <div style={data.quota === 0 ? {display:"block"}:{display:"none"}}>
+                                                                <ButtonStatus
+                                                                    text="Full"
+                                                                    height={10}
+                                                                    borderRadius="5px"
+                                                                    background="#FF0303"
+                                                                    onClick = {()=>error()}
+                                                                    float = "right"
+                                                                    fontSize = "10px"
+                                                                />
+                                                            </div>
+                                                        </Col>
+                                                        <Col lg={24} className="mt-10">
                                                             <span className="text-white background-soft-blue semi-bold event-card-badge">
                                                                 {data.price}
                                                             </span>

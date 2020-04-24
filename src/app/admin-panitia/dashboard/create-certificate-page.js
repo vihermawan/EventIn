@@ -8,11 +8,10 @@ import CreateCertificateComponent from '../../../modules/admin-panitia/create-ce
 
 class CreateCertificatePage extends Component {
     state = { 
-        username: '',
-        password: '',
         penandatangan : [],
         activeEvent:[],
         nama_sertifikat : '',
+        no_sertifikat: '',
         id_penandatangan : '',
         id_event : '',
         visible : false,
@@ -101,12 +100,16 @@ class CreateCertificatePage extends Component {
         e.preventDefault();
         const params = new FormData()
         params.set('nama_sertifikat',this.state.nama_sertifikat)
+        params.set('no_sertifikat',this.state.no_sertifikat)
         params.set('id_event',this.state.id_event)
         params.set('id_penandatangan[]',this.state.id_penandatangan)
         params.append('sertifikat',this.state.sertifikat)
         if(validation.required(this.state.nama_sertifikat) != null ){
             const message = validation.required(this.state.nama_sertifikat);
             this.openNotification(message, 'Nama Sertifikat Harus diIsi')
+        }else if(validation.required(this.state.no_sertifikat) != null ){
+            const message = validation.required(this.state.no_sertifikat);
+            this.openNotification(message, 'Nomor Sertifikat Harus diisi')
         }else if(validation.required(this.state.id_event) != null ){
             const message = validation.required(this.state.id_event);
             this.openNotification(message, 'Event Harus diisi')
@@ -123,7 +126,9 @@ class CreateCertificatePage extends Component {
             .then(res => {
                 console.log('res',res)
                 if(res.status == 201){
+                    this.setState({ show :false,})
                     message.success('Sertifikat berhasil Ditambahkan');
+                    this.componentDidMount();
                     // this.props.navigate(CONSTANS.ACTIVE_EVENT_MENU_KEY)
                 }else{
                     this.openNotification('Data Salah', 'Silahkan isi data dengan benar')

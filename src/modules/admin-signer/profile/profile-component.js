@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Layout, Breadcrumb, Row, Table, Input, Col,Icon } from 'antd';
+import { Layout, Breadcrumb, Row, Table, Input, Col,Icon,Avatar } from 'antd';
 import { faUser, faInfoCircle } from '@fortawesome/free-solid-svg-icons'
 import '../../../assets/css/dashboard-all/dashboard.css'
 import '../../../assets/css/dashboard-all/table-style.css'
@@ -33,13 +33,9 @@ class ListParticipantComponent extends Component {
                                     <Col lg={6} md={12} sm={12}>
                                         <Row gutter={40}>
                                             <Col span={24}>
-                                            <div className="container-profile-admin">
-                                                    <img
-                                                        src={data.picture}
-                                                        alt="Event 1"
-                                                        style={{maxWidth: '95%', borderRadius: '10px'}}
-                                                    />
-                                            </div>
+                                                <div className="container-profile-admin">
+                                                    <Avatar shape="square" size={300} src={data.picture} classname="profile-picture" icon="user"/>
+                                                </div>
                                             </Col>
                                         </Row>
                                     </Col>
