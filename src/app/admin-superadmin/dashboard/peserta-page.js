@@ -103,10 +103,10 @@ class PesertaAdminPage extends Component {
         });
     }
 
-    //delete peserta
+    //delete peserta.
     deletePeserta = (id_peserta) => {   
         console.log(id_peserta)
-        API.delete(`/admin/deletepeserta/${id_peserta}`)
+        API.delete(`/admin/ban/peserta/${id_peserta}`)
         .then(res => {
             console.log('res',res)
             if(res.status == 200){
@@ -210,7 +210,7 @@ class PesertaAdminPage extends Component {
                         onClick = { () => this.onDetailPeserta(data.id_users,data.id_peserta)}
                     />,
                     <ButtonEdit
-                        text="Banned"
+                        text="Ban"
                         height={20}
                         icon={faBan}
                         borderRadius="5px"

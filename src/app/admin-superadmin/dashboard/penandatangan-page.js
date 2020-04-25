@@ -107,7 +107,7 @@ class PenandatanganAdminPage extends Component {
      //delete penandatangan
      deletePenandatangan = (id_penandatangan) => {   
         console.log(id_penandatangan)
-        API.delete(`/admin/deletepenandatangan/${id_penandatangan}`)
+        API.delete(`/admin/ban/penandatangan/${id_penandatangan}`)
         .then(res => {
             console.log('res',res)
             if(res.status == 200){
@@ -207,7 +207,7 @@ class PenandatanganAdminPage extends Component {
                     />,
                     <Divider type="vertical" />,
                     <ButtonEdit
-                        text="Banned"
+                        text="Ban"
                         height={20}
                         icon={faBan}
                         borderRadius="5px"

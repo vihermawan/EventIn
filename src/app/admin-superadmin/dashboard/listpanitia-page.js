@@ -107,7 +107,7 @@ class ListPanitiaAdminPage extends Component {
     //delete panitia
     deletePanitia = (id_panitia) => {   
         console.log(id_panitia)
-        API.delete(`/admin/deletepanitia/${id_panitia}`)
+        API.delete(`/admin/ban/panitia/${id_panitia}`)
         .then(res => {
             // console.log('res',res)
             if(res.status == 200){
@@ -210,7 +210,7 @@ class ListPanitiaAdminPage extends Component {
                     />,
                     <Divider type="vertical" />,
                     <ButtonDashboard
-                        text="Banned"
+                        text="Ban"
                         height={20}
                         icon={faBan}
                         borderRadius="5px"
