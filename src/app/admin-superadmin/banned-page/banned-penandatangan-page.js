@@ -1,21 +1,37 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { navigate } from '../../../common/store/action'
-import { Button, Input, Icon, Divider } from 'antd'
+import { Button, Input, Icon,Modal,message } from 'antd'
+import { API } from '../../../common/api'
 import  * as Highlighter from 'react-highlight-words';
 import BannedPenandatanganComponent from '../../../modules/admin-superadmin/banned-page/banned-penandatangan-component';
 
 //component
-import { faInfoCircle,faBan  } from '@fortawesome/free-solid-svg-icons'
+import { faBan  } from '@fortawesome/free-solid-svg-icons'
 import ButtonEdit from '../../../common/component/button/button-edit';
+
+const {confirm} = Modal;
 
 class BannedPenandatanganPage extends Component {
     state = {
-        
+      bannedPenandatangan : [],
+      loading : false,
     }
 
     componentDidMount(){
-      
+      this.getBannedPenandatangan();
+    }
+
+    getBannedPenandatangan=()=>{
+      this.setState({loading: true})
+      API.get(`/admin/trash/penandatangan`)
+      .then(res => {
+        console.log(res)
+        this.setState({
+          bannedPenandatangan:res.data.data.user,
+          loading: false,
+        })
+      });
     }
 
     getColumnSearchProps = dataIndex => ({
@@ -84,6 +100,36 @@ class BannedPenandatanganPage extends Component {
         this.setState({ searchText: '' });
     };
 
+     //function untuk modal
+     showUnbannedConfirm = (id,nama_penandatangan) => {
+      confirm({
+          title: `Apakah yakin untuk melakukan unban terhadap ${nama_penandatangan}?`,
+          okText: 'Yes',
+          okType: 'danger',
+          cancelText: 'No',
+          onOk: () => {
+             this.UnbannedPenandatangan(id)
+          },
+          onCancel(){
+              console.log('Cancel')
+          }
+      });
+    }
+
+    UnbannedPenandatangan = (id_penandatangan) => {   
+      console.log(id_penandatangan)
+      this.setState({loading:true})
+      API.get(`/admin/unban/penandatangan/${id_penandatangan}`)
+      .then(res => {
+          console.log('res',res)
+          if(res.status == 200){
+              message.success('Unbanned Penandatangan Berhasil');
+              this.componentDidMount(); 
+          }   
+      });
+    }
+
+
     render() { 
         
         const columns = [
@@ -125,33 +171,34 @@ class BannedPenandatanganPage extends Component {
                 render: (data) => (
                     [ 
                     <ButtonEdit
-                        text="Detail"
-                        height={20}
-                        icon={faInfoCircle}
-                        borderRadius="5px"
-                        background="#FFA903"
-                        marginRight= "20px"
-                        onClick = { () => this.onDetailPenandatangan(data.id_users)}
-                    />,
-                    <Divider type="vertical" />,
-                    <ButtonEdit
-                        text="Banned"
+                        text="Unbanned"
                         height={20}
                         icon={faBan}
                         borderRadius="5px"
                         background="#E11212"
-                        onClick = {() => this.showDeleteConfirm(data.id_penandatangan)}
+                        onClick = {() => this.showUnbannedConfirm(data.id_penandatangan,data.penandatangan)}
                     />]
               ),
             },
           ];
 
 
+          const data =  this.state.bannedPenandatangan.map(  ({id_users, penandatangan}, index) => ({
+            no : index+1,
+            id_users : id_users,
+            id_penandatangan : penandatangan.id_penandatangan,
+            penandatangan : penandatangan.nama_penandatangan,
+            instansi : penandatangan.instansi,
+            jabatan : penandatangan.jabatan,
+            nip : penandatangan.nip,
+        }))
+
         return ( 
             <BannedPenandatanganComponent
                 initialData={this.state}
                 navigate={this.props.navigate}
                 columns={columns}
+                data={data}
             />
         );
     }

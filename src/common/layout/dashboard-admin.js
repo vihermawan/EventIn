@@ -140,7 +140,7 @@ class Admin extends Component {
                   <div className="title-dashboard">
                       <span className="title-desc-dashboard">User</span>
                   </div>  
-                  <Menu.Item key="admin-peserta"  onClick={this.clickedMenu}>
+                  <Menu.Item key="list-peserta"  onClick={this.clickedMenu}>
                     <Link to="/admin/list-peserta">
                     
                       <FontAwesomeIcon

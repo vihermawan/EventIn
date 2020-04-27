@@ -106,7 +106,8 @@ class PesertaAdminPage extends Component {
     //delete peserta
     bannedPeserta = (id_peserta) => {   
         console.log(id_peserta)
-        API.delete(`/admin/deletepeserta/${id_peserta}`)
+        this.setState({loading:true})
+        API.delete(`/admin/ban/peserta/${id_peserta}`)
         .then(res => {
             console.log('res',res)
             if(res.status == 200){
