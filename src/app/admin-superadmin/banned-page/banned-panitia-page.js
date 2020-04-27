@@ -2,12 +2,14 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { API } from '../../../common/api'
 import { navigate } from '../../../common/store/action'
-import { Button, Input, Icon, Divider } from 'antd'
+import { Button, Input, Icon, message, Modal } from 'antd'
 import  * as Highlighter from 'react-highlight-words';
 import BannedPanitiaComponent from '../../../modules/admin-superadmin/banned-page/banned-panitia-component';
 //component
-import { faInfoCircle,faBan  } from '@fortawesome/free-solid-svg-icons'
+import {faBan  } from '@fortawesome/free-solid-svg-icons'
 import ButtonEdit from '../../../common/component/button/button-edit';
+
+const { confirm } = Modal;
 
 class BannedPanitiaPage extends Component {
     state = {
@@ -97,6 +99,35 @@ class BannedPanitiaPage extends Component {
         this.setState({ searchText: '' });
     };
 
+     //function untuk modal
+     showUnbannedConfirm = (id,nama_panitia) => {
+      confirm({
+          title: `Apakah yakin untuk melakukan unban terhadap ${nama_panitia}?`,
+          okText: 'Yes',
+          okType: 'danger',
+          cancelText: 'No',
+          onOk: () => {
+             this.UnbannedPanitia(id)
+          },
+          onCancel(){
+              console.log('Cancel')
+          }
+      });
+    }
+
+    UnbannedPanitia = (id_panitia) => {   
+      console.log(id_panitia)
+      this.setState({loading:true})
+      API.get(`/admin/unban/panitia/${id_panitia}`)
+      .then(res => {
+          console.log('res',res)
+          if(res.status == 200){
+              message.success('Unbanned Panitia Berhasil');
+              this.componentDidMount(); 
+          }   
+      });
+    }
+
     render() { 
         
         const columns = [
@@ -138,42 +169,33 @@ class BannedPanitiaPage extends Component {
                 render: (data) => (
                     [
                     <ButtonEdit
-                        text="Detail"
-                        height={20}
-                        icon={faInfoCircle}
-                        borderRadius="5px"
-                        background="#FFA903"
-                        onClick = { () => this.onDetailPanitia(data.id_users,data.id_panitia)}
-                    />,
-                    <Divider type="vertical" />,
-                    <ButtonEdit
-                        text="Banned"
+                        text="Unbanned"
                         height={20}
                         icon={faBan}
                         borderRadius="5px"
                         background="#FF0303"
-                        onClick = { () => this.showDeleteConfirm(data.id_panitia)}
+                        onClick = { () => this.showUnbannedConfirm(data.id_panitia,data.panitia)}
                     />]
                 ),
             },
         ];
 
-      //   const data =  this.state.bannedPanita.map( ({id_users, panitia,email}, index) => ({
-      //     no : index+1,
-      //     id_panitia : panitia.id_panitia,
-      //     id_users : id_users,
-      //     panitia : panitia.nama_panitia,
-      //     email : email,
-      //     organisasi : panitia.organisasi,
-      //     no_telepon : panitia.telepon,
-      // }))
+        const data =  this.state.bannedPanita.map( ({id_users, panitia,email}, index) => ({
+          no : index+1,
+          id_panitia : panitia.id_panitia,
+          id_users : id_users,
+          panitia : panitia.nama_panitia,
+          email : email,
+          organisasi : panitia.organisasi,
+          no_telepon : panitia.telepon,
+      }))
 
         return ( 
             <BannedPanitiaComponent
                 initialData={this.state}
                 navigate={this.props.navigate}
                 columns={columns}
-                // data = {data}
+                data = {data}
             />
         );
     }
