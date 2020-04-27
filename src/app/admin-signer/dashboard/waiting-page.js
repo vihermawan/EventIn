@@ -118,15 +118,24 @@ class WaitingListPage extends Component {
         });
     }
 
+    //button detail certificate
+    onDetailCertificate = (sertif_URL) => {
+      this.setState({
+        visible: true,
+        url : sertif_URL,
+      });
+      console.log(sertif_URL)
+    }
+
     //function untuk modal
-    showSignedConfirm = (id_sertifikat) => {
+    showSignedConfirm = (nama_sertifikat,id_sertifikat) => {
         confirm({
             title: ' Apakah anda yakin untuk menandatangani dokumen ini ?',
             okText: 'Yes',
             okType: 'danger',
             cancelText: 'No',
             onOk: () => {
-               this.assignSertifikat(id_sertifikat)
+               this.assignSertifikat(nama_sertifikat,id_sertifikat)
             },
             onCancel(){
                 console.log('Cancel')
@@ -135,9 +144,13 @@ class WaitingListPage extends Component {
     }
 
     //assign sertifikat
-    assignSertifikat = (id_sertifikat) => {
-        console.log(id_sertifikat)
-        API.post(`/penandatangan/sertifikat/assign/${id_sertifikat}`)
+    assignSertifikat = (nama_sertifikat,id_sertifikat) => {
+        console.log(nama_sertifikat,id_sertifikat)
+        const params = new FormData()
+        params.set('nama_sertifikat[]',nama_sertifikat)
+        params.set('passphrase','111268mamida')
+        params.append("_method", 'PUT')
+        API.postEdit(`/penandatangan/sertifikat/assign/${id_sertifikat}`, params)
         .then(res => {
             console.log('res',res)
             if(res.status === 200){
@@ -147,12 +160,19 @@ class WaitingListPage extends Component {
         });
     }
 
-    //button detail certificate
-    onDetailCertificate = (id) => {
-        console.log('id ini',id)
-        this.props.setIdSertifikat(id);
-        this.props.navigate(CONSTANS.DETAIL_SERTIF_SIGNER_MENU_KEY)
-    }
+    handleOk = e => {
+      console.log(e);
+      this.setState({
+        visible: false,
+      });
+    };
+  
+    handleCancel = e => {
+      console.log(e);
+      this.setState({
+        visible: false,
+      });
+    };
 
     render() { 
 
@@ -200,7 +220,7 @@ class WaitingListPage extends Component {
                         icon={faCheckCircle}
                         borderRadius="5px"
                         background="#004A03"
-                        onClick = {() => this.showSignedConfirm(data.id_sertifikat)}
+                        onClick = {() => this.showSignedConfirm(data.sertifikat,data.id_sertifikat)}
                     />,
                 </Tooltip>,
                 <Divider type="vertical" />,
@@ -210,22 +230,23 @@ class WaitingListPage extends Component {
                         icon={faInfoCircle}
                         borderRadius="5px"
                         background="#FFA903"
-                        onClick={() => this.getFile(data.id_sertifikat,data.sertifikat)}
+                        onClick = {() => this.onDetailCertificate(data.sertif_URL)}
                     />,
                 </Tooltip>,]
               ),
             },
           ];
 
-        const data =  this.state.e_certificate.map( ({id_penandatangan_sertifikat, id_sertifikat, sertifikat,tenggang_waktu}, index) => ({
+        const data =  this.state.e_certificate.map( ({id_penandatangan_sertifikat, sertif_URL, id_sertifikat, nama_sertifikat,sertifikat,tenggang_waktu}, index) => ({
             no : index+1,
             nomor : id_penandatangan_sertifikat,
             id_sertifikat : id_sertifikat,
             nama_event : sertifikat.event.nama_event,
             nama_panitia : sertifikat.event.panitia.nama_panitia,
             organisasi : sertifikat.event.organisasi,
-            sertifikat : sertifikat.sertifikat,
+            sertifikat : nama_sertifikat,
             tenggang_waktu : moment(tenggang_waktu).format("DD MMMM YYYY"),
+            sertif_URL :sertif_URL
         }))
 
         return ( 
@@ -234,6 +255,8 @@ class WaitingListPage extends Component {
                 initialData = {this.state}
                 columns={columns}
                 data={data}
+                handleCancel= {this.handleCancel}
+                handleOk = {this.handleOk}
             />
         );
     }

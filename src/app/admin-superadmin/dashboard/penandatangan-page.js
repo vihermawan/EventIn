@@ -192,7 +192,6 @@ class PenandatanganAdminPage extends Component {
                         icon={faPen}
                         borderRadius="5px"
                         background="#005568"
-                        marginRight= "20px"
                         onClick = { () => this.onEditPenandatangan(data.id_users)}
                     />,
                     <Divider type="vertical" />,
@@ -202,7 +201,6 @@ class PenandatanganAdminPage extends Component {
                         icon={faInfoCircle}
                         borderRadius="5px"
                         background="#FFA903"
-                        marginRight= "20px"
                         onClick = { () => this.onDetailPenandatangan(data.id_users)}
                     />,
                     <Divider type="vertical" />,

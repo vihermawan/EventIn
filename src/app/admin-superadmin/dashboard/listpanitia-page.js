@@ -9,7 +9,7 @@ import  * as Highlighter from 'react-highlight-words';
 //component
 import { faBan } from '@fortawesome/free-solid-svg-icons'
 import { faInfoCircle } from '@fortawesome/free-solid-svg-icons'
-import ButtonDashboard from '../../../common/component/button/button-dashboard';
+import ButtonEdit from '../../../common/component/button/button-edit';
 
 // import store
 import { setIdPanitia } from '../../../modules/admin-superadmin/user/panitia/store/panitia-action'
@@ -104,34 +104,34 @@ class ListPanitiaAdminPage extends Component {
         });
     }
 
-    //delete panitia
-    deletePanitia = (id_panitia) => {   
-        console.log(id_panitia)
-        API.delete(`/admin/deletepanitia/${id_panitia}`)
-        .then(res => {
-            // console.log('res',res)
-            if(res.status == 200){
-                message.success('This is a success message');
-                window.location.reload(); 
-            }   
-        });
-    }
-
     //function untuk modal
-    showDeleteConfirm = (id) => {
+    showBannedConfirm = (id,nama_panitia) => {
         confirm({
-            title: ' Apakah yakin untuk membanned user ?',
+            title: `Apakah yakin untuk membanned ${nama_panitia} ?`,
             okText: 'Yes',
             okType: 'danger',
             cancelText: 'No',
             onOk: () => {
                 console.log('id ini',id)
-                this.deletePanitia(id)
+                this.bannedPanitia(id,nama_panitia)
             },
             onCancel(){
                 console.log('Cancel')
             }
         });
+    }
+
+    //banned panitia
+    bannedPanitia = (id_panitia,nama_panitia) => {   
+      console.log(id_panitia)
+      API.delete(`/admin/ban/panitia/${id_panitia}`)
+      .then(res => {
+          // console.log('res',res)
+          if(res.status == 200){
+              message.success(`Berhasil Banned Panitia ${nama_panitia}`);
+              this.componentDidMount();
+          }   
+      });
     }
 
     //button detail event
@@ -145,10 +145,6 @@ class ListPanitiaAdminPage extends Component {
     onEditPanitia = (id_users) => {
         this.props.setIdUsers(id_users)
         this.props.navigate(CONSTANS.EDIT_PANITIA_ADMIN_MENU_KEY)
-    }
-
-    onChange(pagination, filters, sorter, extra) {
-        // console.log('params', pagination, filters, sorter, extra);
     }
 
     render() { 
@@ -191,16 +187,7 @@ class ListPanitiaAdminPage extends Component {
                 key: 'action',
                 render: (data) => (
                     [
-                    // <ButtonDashboard
-                    //     text="Edit"
-                    //     height={20}
-                    //     icon={faPen}
-                    //     borderRadius="5px"
-                    //     background="#005568"
-                    //     marginRight= "20px"
-                    //     onClick = { () => this.onEditPanitia(data.id_users)}
-                    // />,
-                    <ButtonDashboard
+                    <ButtonEdit
                         text="Detail"
                         height={20}
                         icon={faInfoCircle}
@@ -209,13 +196,13 @@ class ListPanitiaAdminPage extends Component {
                         onClick = { () => this.onDetailPanitia(data.id_users,data.id_panitia)}
                     />,
                     <Divider type="vertical" />,
-                    <ButtonDashboard
+                    <ButtonEdit
                         text="Banned"
                         height={20}
                         icon={faBan}
                         borderRadius="5px"
                         background="#FF0303"
-                        onClick = { () => this.showDeleteConfirm(data.id_panitia)}
+                        onClick = { () => this.showBannedConfirm(data.id_panitia, data.panitia)}
                     />]
               ),
             },
@@ -228,18 +215,15 @@ class ListPanitiaAdminPage extends Component {
             panitia : panitia.nama_panitia,
             email : email,
             organisasi : panitia.organisasi,
-            no_telepon : panitia.no_telepon,
+            no_telepon : panitia.telepon,
         }))
         
-        
-
         return ( 
             <ListPanitiaAdminComponent
                 initialData={this.state}
                 navigate={this.props.navigate}
                 columns={columns}
                 data={data}
-                onChange={this.onChange()}
             />
         );
     }

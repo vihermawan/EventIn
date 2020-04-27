@@ -104,13 +104,13 @@ class PesertaAdminPage extends Component {
     }
 
     //delete peserta
-    deletePeserta = (id_peserta) => {   
+    bannedPeserta = (id_peserta) => {   
         console.log(id_peserta)
         API.delete(`/admin/deletepeserta/${id_peserta}`)
         .then(res => {
             console.log('res',res)
             if(res.status == 200){
-                message.success('This is a success message');
+                message.success('Banned Peserta Berhasil');
                 this.componentDidMount(); 
             }   
         });
@@ -130,14 +130,14 @@ class PesertaAdminPage extends Component {
     }
 
     //function untuk modal
-    showDeleteConfirm = (id) => {
+    showBannedConfirm = (id,nama_peserta) => {
         confirm({
-            title: ' Apakah yakin untuk membanned user ?',
+            title: `Apakah yakin untuk membanned  ${nama_peserta}?`,
             okText: 'Yes',
             okType: 'danger',
             cancelText: 'No',
             onOk: () => {
-               this.deletePeserta(id)
+               this.bannedPeserta(id)
             },
             onCancel(){
                 console.log('Cancel')
@@ -191,15 +191,6 @@ class PesertaAdminPage extends Component {
                 key: 'action',
                 render: (data) => (
                     [
-                    //  <ButtonDashboard
-                    //     text="Edit"
-                    //     height={20}
-                    //     icon={faPen}
-                    //     borderRadius="5px"
-                    //     background="#005568"
-                    //     marginRight= "20px"
-                    //     onClick = { () => this.onEditPeserta(data.id_users)}
-                    // />,
                     <ButtonEdit
                         text="Detail"
                         height={20}
@@ -215,7 +206,7 @@ class PesertaAdminPage extends Component {
                         icon={faBan}
                         borderRadius="5px"
                         background="#FF0303"
-                        onClick = { () => this.showDeleteConfirm(data.id_peserta)}
+                        onClick = { () => this.showBannedConfirm(data.id_peserta, data.peserta)}
                     />]
               ),
             },

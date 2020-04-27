@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
-import { Layout, Breadcrumb, Row, Col } from 'antd';
+import { Layout, Breadcrumb, Row, Col, Avatar } from 'antd';
+import { Link } from 'react-router-dom';
 import '../../../../assets/css/dashboard-all/dashboard.css'
 import '../../../../assets/css/dashboard-all/table-style.css'
 import '../../../../assets/css/admin-superadmin/detail-user.css'
@@ -22,7 +23,7 @@ class DetailPanitiaAdminComponent extends Component {
                 }}
             >
                 <Breadcrumb separator=">">
-                    <Breadcrumb.Item>Dashboard List Panitia</Breadcrumb.Item>
+                    <Breadcrumb.Item><Link to='/admin/list-panitia'>Dashboard List Panitia</Link></Breadcrumb.Item>
                     <Breadcrumb.Item>Dashboard Detail Panitia</Breadcrumb.Item>
                 </Breadcrumb>
                 <LoadingContainer loading={initialData.loading}>
@@ -39,11 +40,9 @@ class DetailPanitiaAdminComponent extends Component {
                                         <Row>
                                             <Col lg={8} md={12} sm={12}>
                                                 <div className="avatar-panitia">
-                                                    <img
-                                                        src={initialData.detail_panitia.image_URL}
-                                                        alt="avatar 1"
-                                                        className = "avatar-panitia"
-                                                    />
+                                                    <div style={{margin:"16p auto", textAlign:"center"}}>
+                                                        <Avatar shape="square" size={200} src={initialData.detail_panitia.image_URL} icon="user"/>
+                                                    </div>
                                                 </div>
                                             </Col>
                                             <Col lg={8} md={12} sm={12}>
@@ -63,7 +62,7 @@ class DetailPanitiaAdminComponent extends Component {
                                                 <div className="desc-panitia">
                                                     <span className="text-black nama-panitia">No Telepon</span>
                                                     <br/>
-                                                    <span className="text-black desc-nama">{initialData.detail_panitia.no_telepon}</span>
+                                                    <span className="text-black desc-nama">{initialData.detail_panitia.telepon}</span>
                                                 </div>
                                                 <br/>
                                                 <div className="desc-panitia">

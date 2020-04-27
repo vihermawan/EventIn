@@ -1,15 +1,16 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { Tag } from 'antd';
+import { Tag, Button, Input, Icon } from 'antd';
 import {  faInfoCircle } from '@fortawesome/free-solid-svg-icons'
 import { API } from '../../../common/api'
 import { navigate } from '../../../common/store/action'
 import CONSTANS from '../../../common/utils/Constants'
+import  * as Highlighter from 'react-highlight-words';
 import 'moment-timezone';
 import 'moment/locale/id';
 import moment from 'moment-timezone';
 import DetailPesertaComponent from '../../../modules/admin-superadmin/user/peserta/detail-peserta-component';
-import ButtonDashboard from '../../../common/component/button/button-dashboard';
+import ButtonEdit from '../../../common/component/button/button-edit';
 
 // import store
 import { setIdEvent } from '../../../modules/admin-panitia/active-event/store/active-event-action'
@@ -27,6 +28,72 @@ class DetailPesertaPage extends Component {
         this.getDetailPeserta(this.props.idUsers);
         this.getEventbyPeserta(this.props.idPeserta);
     }
+
+    getColumnSearchProps = dataIndex => ({
+        filterDropdown: ({ setSelectedKeys, selectedKeys, confirm, clearFilters }) => (
+          <div style={{ padding: 8 }}>
+            <Input
+              ref={node => {
+                this.searchInput = node;
+              }}
+              placeholder={`Search ${dataIndex}`}
+              value={selectedKeys[0]}
+              onChange={e => setSelectedKeys(e.target.value ? [e.target.value] : [])}
+              onPressEnter={() => this.handleSearch(selectedKeys, confirm, dataIndex)}
+              style={{ width: 188, marginBottom: 8, display: 'block' }}
+            />
+            <Button
+              type="primary"
+              onClick={() => this.handleSearch(selectedKeys, confirm, dataIndex)}
+              icon="search"
+              size="small"
+              style={{ width: 90, marginRight: 8 }}
+            >
+              Search
+            </Button>
+            <Button onClick={() => this.handleReset(clearFilters)} size="small" style={{ width: 90 }}>
+              Reset
+            </Button>
+          </div>
+        ),
+        filterIcon: filtered => (
+          <Icon type="search" style={{ color: filtered ? '#1890ff' : undefined }} />
+        ),
+        onFilter: (value, record) =>
+          record[dataIndex]
+            .toString()
+            .toLowerCase()
+            .includes(value.toLowerCase()),
+        onFilterDropdownVisibleChange: visible => {
+          if (visible) {
+            setTimeout(() => this.searchInput.select());
+          }
+        },
+        render: text =>
+          this.state.searchedColumn === dataIndex ? (
+            <Highlighter
+              highlightStyle={{ backgroundColor: '#ffc069', padding: 0 }}
+              searchWords={[this.state.searchText]}
+              autoEscape
+              textToHighlight={text.toString()}
+            />
+          ) : (
+            text
+          ),
+    });
+
+    handleSearch = (selectedKeys, confirm, dataIndex) => {
+        confirm();
+        this.setState({
+          searchText: selectedKeys[0],
+          searchedColumn: dataIndex,
+        });
+    };
+    
+    handleReset = clearFilters => {
+        clearFilters();
+        this.setState({ searchText: '' });
+    };
 
     getDetailPeserta=(id_users)=>{
         this.setState({loading: true})
@@ -57,7 +124,7 @@ class DetailPesertaPage extends Component {
     onDetailEvent = (id) => {
         console.log('id ini',id)
         this.props.setIdEvent(id);
-        this.props.navigate(CONSTANS.DETAIL_EVENT_ADMIN_MENU_KEY)
+        this.props.navigate(CONSTANS.DETAIL_PESERTA_EVENT_MENU_KEY)
     }
 
     render() { 
@@ -67,28 +134,46 @@ class DetailPesertaPage extends Component {
                 dataIndex: 'no',
                 key: 'no',
                 render: text => <a>{text}</a>,
+                sorter: (a, b) => a.no - b.no,
+                sortDirections: ['ascend','descend'],
             },
             {
                 title: 'Nama Event',
                 dataIndex: 'nama_event',
                 key: 'nama_event',
-                render: text => <a>{text}</a>,
+                ...this.getColumnSearchProps('nama_event'),
             },
             {
                 title: 'Tempat',
                 dataIndex: 'lokasi',
                 key: 'lokasi',
+                ...this.getColumnSearchProps('lokasi'),
             },
             {
                 title: 'Kategori',
                 dataIndex: 'kategori',
                 key: 'kategori',
+                ...this.getColumnSearchProps('kategori'),
                 render: kategori => (
                     <span>
                       {kategori.map(tag => {
                         let color = tag.length > 5 ? 'geekblue' : 'green';
-                        if (tag === 'loser') {
-                          color = 'volcano';
+                        if (tag === 'Budaya') {
+                          color = '#0046b8';
+                        }else if(tag === 'Musik'){
+                          color ='#018f52'
+                        }else if(tag === 'Olahraga'){
+                          color ='#8f1601'
+                        }else if(tag === 'Game'){
+                          color ='#016e8f'
+                        }else if(tag === 'Seni'){
+                          color ='#8f8f01'
+                        }else if(tag === 'Teknologi'){
+                          color ='#018f52'
+                        }else if(tag === 'Pendidikan'){
+                          color ='#8f0120'
+                        }else if(tag === 'Agama'){
+                          color ='#018f77'
                         }
                         return (
                           <Tag color={color} key={tag}>
@@ -98,9 +183,6 @@ class DetailPesertaPage extends Component {
                       })}
                     </span>
                 ),
-                onFilter: (value, record) => record.nama_event.indexOf(value) === 0,
-                sorter: (a, b) => a.kategori.length - b.kategori.length,
-                sortDirections: ['descend', 'ascend'],
             },
             {
                 title : 'Status Peserta',
@@ -131,17 +213,19 @@ class DetailPesertaPage extends Component {
                 title: 'Tanggal Mulai',
                 dataIndex: 'start_event',
                 key: 'start_event',
+                ...this.getColumnSearchProps('start_event'),
             },
             {
                 title: 'Tanggal Selesai',
                 dataIndex: 'end_event',
                 key: 'end_event',
+                ...this.getColumnSearchProps('end_event'),
               },
             {
               title: 'Action',
               key: 'action',
               render: (data) => (
-                [<ButtonDashboard
+                [<ButtonEdit
                     text="Detail"
                     height={20}
                     icon={faInfoCircle}

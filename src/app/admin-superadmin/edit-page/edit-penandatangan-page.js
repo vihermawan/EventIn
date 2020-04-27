@@ -73,7 +73,7 @@ class EditProfileAdminSignerPage extends Component {
         this.setState({loading: true})
         API.get(`/admin/showeditpenandatangan/${id_users}`)
         .then(res => {
-          console.log('res',res.data.data.penandatangan)
+          console.log('res',res)
           this.setState({
             id_penandatangan : res.data.data.penandatangan.penandatangan.id_penandatangan,
             nama_penandatangan :res.data.data.penandatangan.penandatangan.nama_penandatangan ,

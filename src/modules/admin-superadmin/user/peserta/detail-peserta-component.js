@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Layout, Breadcrumb, Row, Col,Tag } from 'antd';
+import { Layout, Breadcrumb, Row, Col,Avatar } from 'antd';
 import { Link } from 'react-router-dom';
 import '../../../../assets/css/dashboard-all/dashboard.css'
 import '../../../../assets/css/dashboard-all/table-style.css'
@@ -23,7 +23,7 @@ class DetailPesertaAdminComponent extends Component {
                 }}
             >
                 <Breadcrumb separator=">">
-                    <Breadcrumb.Item><Link to='/admin/admin-peserta'>Dashboard List Peserta</Link></Breadcrumb.Item>
+                    <Breadcrumb.Item><Link to='/admin/list-peserta'>Dashboard List Peserta</Link></Breadcrumb.Item>
                     <Breadcrumb.Item>Dashboard Detail Peserta</Breadcrumb.Item>
                 </Breadcrumb>
 
@@ -40,12 +40,11 @@ class DetailPesertaAdminComponent extends Component {
                                 <div className="container-desc-panitia">
                                     <Row>
                                         <Col lg={8} md={12} sm={12}>
-                                            <img
-                                                src={initialData.detailPeserta.image_URL}
-                                                alt="avatar 1"
-                                                className = "avatar-panitia"
-                                                style={{Width: '100%'}}
-                                            />
+                                            <div classname="detail">
+                                                <div style={{margin:"16p auto", textAlign:"center"}}>
+                                                    <Avatar shape="square" size={200} src={initialData.detailPeserta.image_URL} icon="user"/>
+                                                </div>
+                                            </div>
                                         </Col>
                                         <Col lg={8} md={12} sm={12}>
                                             <div className="desc-panitia">
@@ -64,7 +63,7 @@ class DetailPesertaAdminComponent extends Component {
                                             <div className="desc-panitia">
                                                 <span className="text-black nama-panitia">No Telepon</span>
                                                 <br/>
-                                                <span className="text-black desc-nama">{initialData.detailPeserta.no_telefon}</span>
+                                                <span className="text-black desc-nama">{initialData.detailPeserta.telepon}</span>
                                             </div>
                                             <br/>
                                             <div className="desc-panitia">
