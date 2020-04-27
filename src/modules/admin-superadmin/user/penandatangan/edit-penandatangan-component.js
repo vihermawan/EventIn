@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Layout, Breadcrumb, Row, Col, Form, Select, Input,Upload, Icon, Button  } from 'antd';
+import { Layout, Breadcrumb, Row, Col, Form, Select, Input,Upload, Button  } from 'antd';
 import { Link } from 'react-router-dom';
 import '../../../../assets/css/dashboard-all/dashboard.css'
 import '../../../../assets/css/dashboard-all/table-style.css'
@@ -7,14 +7,12 @@ import '../../../../assets/css/admin-superadmin/detail-event.css'
 // component
 import LoadingContainer from '../../../../common/component/loading/loading-container'
 import InputForm from '../../../../common/component/input/input-form';
-import 'moment-timezone';
-import 'moment/locale/id';
 import ButtonDashboard from '../../../../common/component/button/button-dashboard';
-import { faBackward, faUserEdit } from '@fortawesome/free-solid-svg-icons';
+import { faUserEdit, faBackward, faUserAlt, faEnvelope, faIdCard, faAddressBook } from '@fortawesome/free-solid-svg-icons';
+
 // constant content
 const { Content } = Layout;
-const { Option } = Select;
-const { Dragger } = Upload;
+
 const uploadButton = (
     <div>
       {/* {this.state.loading ? <LoadingOutlined /> : <PlusOutlined />} */}
@@ -61,6 +59,7 @@ class EditProfileSignerAdminComponent extends Component {
                                                         className="input-event mt-5 mb-20"
                                                         onChange={handleChange}
                                                         value={initialData.nama_penandatangan}
+                                                        icon={faUserAlt}
                                                     />
                                                 </div>
                                             </Col>
@@ -75,6 +74,7 @@ class EditProfileSignerAdminComponent extends Component {
                                                         className="input-event mt-5 mb-20"
                                                         onChange={handleChange}
                                                         value={initialData.email}
+                                                        icon={faEnvelope}
                                                     />
                                                 </div>
                                             </Col>
@@ -89,6 +89,7 @@ class EditProfileSignerAdminComponent extends Component {
                                                         className="input-event mt-5 mb-20"
                                                         onChange={handleChange}
                                                         value={initialData.instansi}
+                                                        icon={faIdCard}
                                                     />
                                                 </div>
                                             </Col>
@@ -103,6 +104,7 @@ class EditProfileSignerAdminComponent extends Component {
                                                         className="input-event mt-5 mb-20"
                                                         onChange={handleChange}
                                                         value={initialData.nip}
+                                                        icon={faAddressBook}
                                                     />
                                                 </div>
                                             </Col>
@@ -117,6 +119,7 @@ class EditProfileSignerAdminComponent extends Component {
                                                         className="input-event mt-5 mb-20"
                                                         onChange={handleChange}
                                                         value={initialData.jabatan}
+                                                        icon={faIdCard}
                                                     />
                                                 </div>
                                             </Col>

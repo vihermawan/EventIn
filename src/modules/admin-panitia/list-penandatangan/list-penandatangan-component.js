@@ -38,36 +38,36 @@ class ListPenandatanganComponent extends Component {
                                 <Col lg={5} md={12} sm={12} xs={24}>
                                     <div className="button-add">
                                     <ButtonEdit
-                                            text="Tambah Penandatangan"
-                                            height={20}
-                                            icon={faUserPlus}
-                                            borderRadius="5px"
-                                            background="#00C908"
-                                            onClick={ () => onCreatePenandatangan()}
+                                        text="Tambah Penandatangan"
+                                        height={20}
+                                        icon={faUserPlus}
+                                        borderRadius="5px"
+                                        background="#00C908"
+                                        onClick={ () => onCreatePenandatangan()}
                                     />
                                     </div>
                                 </Col>
                             </Row>
                             <LoadingContainer loading={initialData.loading}>
-                            <Row gutter={24} type="flex">
-                                <TableProfile 
-                                    columns={columns} 
-                                    dataSource={data} 
-                                    className="table-active-event"
-                                />
-                                <div>
-                                <Modal
-                                    title="Proses Penerimaan Peserta"
-                                    visible={initialData.visible}
-                                    className = "modal-notif"
-                                    >
-                                    <p className="text-notif">Mohon tunggu sebentar, sistem akan mengirimkan email untuk peserta...</p>
-                                    <div >
-                                        <LoadingNotifContainer loading={initialData.loading_notif} style={{ minHeight:'20px', marginTop:'50px',}}/>
+                                <Row gutter={24} type="flex">
+                                    <TableProfile 
+                                        columns={columns} 
+                                        dataSource={data} 
+                                        className="table-active-event"
+                                    />
+                                    <div>
+                                        <Modal
+                                            title="Proses Penerimaan Peserta"
+                                            visible={initialData.visible}
+                                            className = "modal-notif"
+                                            >
+                                            <p className="text-notif">Mohon tunggu sebentar, sistem akan mengirimkan email untuk peserta...</p>
+                                            <div >
+                                                <LoadingNotifContainer loading={initialData.loading_notif} style={{ minHeight:'20px', marginTop:'50px',}}/>
+                                            </div>
+                                        </Modal>
                                     </div>
-                                    </Modal>
-                                </div>
-                            </Row>
+                                </Row>
                             </LoadingContainer>
                         </div>
                     </Col>

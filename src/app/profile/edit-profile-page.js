@@ -287,7 +287,7 @@ class EditProfilePage extends Component {
         params.set('organisasi',this.state.organisasi)
         params.set('instagram',this.state.instagram)
         params.set('tanggal_lahir',this.state.tanggal_lahir)
-        params.set('no_telepon',this.state.no_telepon)
+        params.set('telepon',this.state.telepon)
         this.setState({loading: true})
         API.postEdit(`/peserta/profile/edit/${id_peserta}`, params)
             .then(res => {

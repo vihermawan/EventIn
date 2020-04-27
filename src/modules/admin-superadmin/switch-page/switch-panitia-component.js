@@ -25,7 +25,7 @@ class SwitchPanitiaComponent extends Component {
                 }}
             >
                  <Breadcrumb separator=">">
-                    <Breadcrumb.Item><Link to='/admin/admin-peserta'>Dashboard List Peserta</Link></Breadcrumb.Item>
+                    <Breadcrumb.Item><Link to='/admin/list-panitia'>Dashboard List Panitia</Link></Breadcrumb.Item>
                 </Breadcrumb>
 
                 <Row style={{minHeight: '100%',marginBottom: '2%',marginTop:'2%',}} className="background">

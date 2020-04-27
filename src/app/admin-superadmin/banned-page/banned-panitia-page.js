@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import { API } from '../../../common/api'
 import { navigate } from '../../../common/store/action'
 import { Button, Input, Icon, Divider } from 'antd'
 import  * as Highlighter from 'react-highlight-words';
@@ -10,11 +11,24 @@ import ButtonEdit from '../../../common/component/button/button-edit';
 
 class BannedPanitiaPage extends Component {
     state = {
-        
+        bannedPanita : [],
+        loading : false,
     }
 
     componentDidMount(){
-      
+        this.getBannedPanitia();
+    }
+
+    getBannedPanitia=()=>{
+      this.setState({loading: true})
+      API.get(`/admin/trash/panitia`)
+      .then(res => {
+        console.log(res)
+        this.setState({
+          bannedPanita:res.data.data.user,
+          loading: false,
+        })
+      });
     }
 
     getColumnSearchProps = dataIndex => ({
@@ -144,12 +158,22 @@ class BannedPanitiaPage extends Component {
             },
         ];
 
-          
+      //   const data =  this.state.bannedPanita.map( ({id_users, panitia,email}, index) => ({
+      //     no : index+1,
+      //     id_panitia : panitia.id_panitia,
+      //     id_users : id_users,
+      //     panitia : panitia.nama_panitia,
+      //     email : email,
+      //     organisasi : panitia.organisasi,
+      //     no_telepon : panitia.telepon,
+      // }))
+
         return ( 
             <BannedPanitiaComponent
                 initialData={this.state}
                 navigate={this.props.navigate}
                 columns={columns}
+                // data = {data}
             />
         );
     }

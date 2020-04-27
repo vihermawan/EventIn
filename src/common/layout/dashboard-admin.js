@@ -15,10 +15,7 @@ import DashboardAdminPage from '../../app/admin-superadmin/dashboard/admin-page'
 import SwitchPesertaPage from '../../app/admin-superadmin/switch-page/switch-peserta-page'
 import SwitchPanitiaPage from '../../app/admin-superadmin/switch-page/switch-panitia-page'
 import SwitchPenandatanganPage from '../../app/admin-superadmin/switch-page/switch-penandatangan-page'
-import ListPanitiaAdminPage from '../../app/admin-superadmin/dashboard/listpanitia-page'
 import ApprovalEventPage from '../../app/admin-superadmin/dashboard/approvalevent-page'
-import PesertaAdminPage from '../../app/admin-superadmin/dashboard/peserta-page'
-import PenandatanganAdminPage from '../../app/admin-superadmin/dashboard/penandatangan-page'
 import WaitingListPage from '../../app/admin-superadmin/dashboard/waiting-page'
 import ReceivedPage from '../../app/admin-superadmin/dashboard/received-page'
 import StatusMasterPage from '../../app/admin-superadmin/dashboard/status-master-page'
@@ -29,6 +26,7 @@ import DetailPesertaAdminPage from '../../app/admin-superadmin/detail-page/detai
 import DetailPanitiaAdminPage from '../../app/admin-superadmin/detail-page/detail-panitia-page'
 import DetailPenandatanganAdminPage from '../../app/admin-superadmin/detail-page/detail-penandatangan-page'
 import DetailEventPage from '../../app/admin-superadmin/detail-page/detail-event-page'
+import DetailEventPesertaPage from '../../app/admin-superadmin/detail-page/detail-event-peserta-page'
 import EditPanitiaPage from '../../app/admin-superadmin/edit-page/edit-panitia-page'
 import EditPenandatanganPage from '../../app/admin-superadmin/edit-page/edit-penandatangan-page'
 import EditPesertaPage from '../../app/admin-superadmin/edit-page/edit-peserta-page'
@@ -143,7 +141,7 @@ class Admin extends Component {
                       <span className="title-desc-dashboard">User</span>
                   </div>  
                   <Menu.Item key="admin-peserta"  onClick={this.clickedMenu}>
-                    <Link to="/admin/admin-peserta">
+                    <Link to="/admin/list-peserta">
                     
                       <FontAwesomeIcon
                           icon={faUserTag}
@@ -246,17 +244,6 @@ class Admin extends Component {
                   <div className="title-dashboard">
                       <span className="title-desc-dashboard">Data Master</span>
                   </div>
-                  {/* <Menu.Item key="status"  >
-                    <Link to="/admin/status-master">
-                    
-                      <FontAwesomeIcon
-                          icon={faEyeDropper}
-                          style={{marginRight: 10}}
-                          className={this.state.collapsed ? 'hidden-logo' : 'block-logo'}
-                      />
-                      <span className={hidden} >Status</span>
-                    </Link>
-                  </Menu.Item> */}
                   <Menu.Item key="kategori-master" onClick={this.clickedMenu}>
                     <Link to="/admin/kategori-master">
                     
@@ -293,38 +280,33 @@ class Admin extends Component {
                     exact
                     render={ (props) => <DashboardAdminPage {...props}/> }
                 />
-                {/* <Route
-                    path='/admin/admin-peserta'
-                    exact
-                    render={ (props) => <PesertaAdminPage {...props}/> }
-                /> */}
                  <Route
-                    path='/admin/admin-peserta'
+                    path='/admin/list-peserta'
                     exact
                     render={ (props) => <SwitchPesertaPage {...props}/> }
                 />
                 <Route
-                    path='/admin/admin-detail-peserta'
+                    path='/admin/list-peserta/detail-peserta'
                     exact
                     render={ (props) => <DetailPesertaAdminPage {...props}/> }
+                />
+                 <Route
+                    path='/admin/list-peserta/detail-event'
+                    exact
+                    render={ (props) => <DetailEventPesertaPage {...props}/> }
                 />
                  <Route
                     path='/admin/edit-peserta'
                     exact
                     render={ (props) => <EditPesertaPage {...props}/> }
                 />
-                {/* <Route
-                    path='/admin/list-panitia'
-                    exact
-                    render={ (props) => <ListPanitiaAdminPage {...props}/> }
-                /> */}
                  <Route
                     path='/admin/list-panitia'
                     exact
                     render={ (props) => <SwitchPanitiaPage {...props}/> }
                 />
                 <Route
-                    path='/admin/detail-panitia'
+                    path='/admin/list-panitia/detail-panitia'
                     exact
                     render={ (props) => <DetailPanitiaAdminPage {...props}/> }
                 />
@@ -343,11 +325,6 @@ class Admin extends Component {
                     exact
                     render={ (props) => <DetailEventPage {...props}/> }
                 />
-                {/* <Route
-                    path='/admin/admin-penandatangan'
-                    exact
-                    render={ (props) => <PenandatanganAdminPage {...props}/> }
-                /> */}
                  <Route
                     path='/admin/admin-penandatangan'
                     exact
