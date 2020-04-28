@@ -12,6 +12,7 @@ import { API } from '../../common/api'
 import CONSTANS from '../utils/Constants'
 /*Import Page */
 import DashboardSignerPage from '../../app/admin-signer/dashboard/signer-page'
+import TotalWaitingListPage from '../../app/admin-signer/dashboard/total-waiting-page'
 import WaitingListPage from '../../app/admin-signer/dashboard/waiting-page'
 import EcertificatePage from '../../app/admin-signer/dashboard/ecertificate-page'
 import ProfileSignerPage from '../../app/admin-signer/dashboard/profile-page'
@@ -146,8 +147,8 @@ class signer extends Component {
                   <div className="title-dashboard">
                       <span className="title-desc-dashboard">SIGNATURED</span>
                   </div>  
-                  <Menu.Item key="waiting-list" onClick={this.clickedMenu} >
-                    <Link to="/signer/waiting-list">
+                  <Menu.Item key="total-waiting-list" onClick={this.clickedMenu} >
+                    <Link to="/signer/total-waiting-list">
                   
                       <FontAwesomeIcon
                           icon={faEnvelope}
@@ -217,7 +218,12 @@ class signer extends Component {
                       render={ (props) => <DashboardSignerPage {...props}/> }
                   />
                   <Route
-                      path='/signer/waiting-list'
+                      path='/signer/total-waiting-list'
+                      exact
+                      render={ (props) => <TotalWaitingListPage {...props}/> }
+                  />
+                  <Route
+                      path='/signer/total-waiting-list/waiting-list'
                       exact
                       render={ (props) => <WaitingListPage {...props}/> }
                   />
