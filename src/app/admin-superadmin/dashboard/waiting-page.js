@@ -184,7 +184,7 @@ class WaitingPage extends Component {
             if(res.status === 200){
                 message.success('Berhasil mengirim sertifikat');
                 this.componentDidMount(); 
-            }  
+            }
             this.setState({loading: false}) 
         });
     }

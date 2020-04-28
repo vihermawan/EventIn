@@ -24,7 +24,7 @@ class ProfilePage extends Component {
     onStartLoadingHome = () =>  this.setState({ loadingHome: true })
     onFinishLoadingHome = () =>  this.setState({ loadingHome: false })
 
-    //get data profile dari API
+    //get data profile dari API.
     getProfile=()=>{
         this.setState({loadingHome: true})
         API.get(`/peserta/profile`)
