@@ -60,12 +60,12 @@ class BiayaPage extends Component {
         if(validation.required(this.state.status_biaya) != null){
             const message = validation.required(this.state.status_biaya);
             this.openNotification(message, 'Kategori Bayar Harus Diisi')   
-        }else if(this.state.status_biaya == 10){
-            if(this.state.biaya == 0){
+        }else if(this.state.status_biaya === 10){
+            if(this.state.biaya === 0){
                 this.openNotification('Biaya Harus Diisi', 'Biaya Harus Diisi')
-            }else if(this.state.bank == '-'){
+            }else if(this.state.bank === '-'){
                 this.openNotification('Bank Belum Dipilih', 'Bank Harus Dipilih')
-            }else if(this.state.no_rekening == '-'){
+            }else if(this.state.no_rekening === '-'){
                 this.openNotification('Nomor Rekening Belum Diisi', 'Nomor Rekening Harus Diisi')
             }else{
                 this.props.next();

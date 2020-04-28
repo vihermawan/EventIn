@@ -101,6 +101,9 @@ const menu = {
     EDIT_SERTIF_PANITIA : {
         link : '/dashboard/waiting-certificate-event/edit-certificate',
     },
+    LIST_SERTIF_PANITIA : {
+        link : '/dashboard/waiting-certificate-event/list-waiting-certificate',
+    },
 
     //link admin
     ADMIN :{

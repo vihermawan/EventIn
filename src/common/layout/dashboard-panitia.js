@@ -15,7 +15,7 @@ import DashboardPanitiaPage from '../../app/admin-panitia/dashboard/panitia-page
 import CreateEventPage from '../../app/admin-panitia/dashboard/create-event-page'
 import ActiveEventPage from '../../app/admin-panitia/dashboard/active-event-page'
 import CreateCertificatepage from '../../app/admin-panitia/dashboard/create-certificate-page'
-import WaitingCertificatePage from '../../app/admin-panitia/dashboard/waiting-certificate-page'
+import ListWaitingCertificatePage from '../../app/admin-panitia/dashboard/list-waiting-certificate-page'
 import ReceivedCertificatePage from '../../app/admin-panitia/dashboard/received-certificate-page'
 import HistoryEventPage from '../../app/admin-panitia/dashboard/history-event-page'
 import CountRegistEventPage from '../../app/admin-panitia/dashboard/count-regist-event-page'
@@ -31,6 +31,7 @@ import TemplateSertifPage from '../../app/admin-panitia/dashboard/template-page'
 import ListPenandatanganPage from '../../app/admin-panitia/dashboard/list-penandatangan-page'
 import CreateBiodataPenandatanganPage from '../../app/admin-panitia/dashboard/create-biodata-penandatangan-page'
 import TabAbsentPage from '../../app/admin-panitia/dashboard/tab-absent-page'
+import SwitchWaitingCertificatePage from '../../app/admin-panitia/swtich-page/switch-waiting-certificate-page'
 import EditEventPage from '../../app/admin-panitia/edit-page/edit-event-page'
 import EditProfilePage from '../../app/admin-panitia/edit-page/edit-profile-page'
 import EditCertificatePage from '../../app/admin-panitia/edit-page/edit-certificate-page'
@@ -229,28 +230,16 @@ class dashboard extends Component {
                       >
                        <Menu.Item key="upload-sertifikat"  onClick={this.clickedMenu}>
                         <NavLink to="/dashboard/upload-sertifikat">
-                          {/* <FontAwesomeIcon
-                              icon={faEnvelope}
-                              style={{marginRight: 10}}
-                          />  */}
                           <span>Upload</span>
                         </NavLink>
                       </Menu.Item>
                       <Menu.Item key="waiting-certificate-event"  onClick={this.clickedMenu}>
                         <NavLink to="/dashboard/waiting-certificate-event">
-                          {/* <FontAwesomeIcon
-                              icon={faEnvelope}
-                              style={{marginRight: 10}}
-                          />  */}
                           <span>Waiting</span>
                         </NavLink>
                       </Menu.Item>
                       <Menu.Item key="received-certificate-event"  onClick={this.clickedMenu}>
                         <NavLink to="/dashboard/received-certificate-event">
-                          {/* <FontAwesomeIcon
-                              icon={faEnvelopeOpen}
-                              style={{marginRight: 10}}
-                          />  */}
                           <span>Received</span>
                         </NavLink>
                       </Menu.Item>
@@ -385,7 +374,12 @@ class dashboard extends Component {
                 <Route
                     path='/dashboard/waiting-certificate-event'
                     exact
-                    render={ (props) => <WaitingCertificatePage {...props}/> }
+                    render={ (props) => <SwitchWaitingCertificatePage {...props}/> }
+                />
+                <Route
+                    path='/dashboard/waiting-certificate-event/list-waiting-certificate'
+                    exact
+                    render={ (props) => <ListWaitingCertificatePage {...props}/> }
                 />
                 <Route
                     path='/dashboard/waiting-certificate-event/edit-certificate'

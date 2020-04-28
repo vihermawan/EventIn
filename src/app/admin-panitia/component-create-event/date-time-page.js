@@ -102,9 +102,9 @@ class DateTimePage extends Component {
         }else if(Date.parse(this.state.open_registration) > Date.parse(this.state.end_registration)){
             console.log('beda')
             this.openNotification('Tanggal Pendaftaran harus disesuaikan', 'Tanggal harus disi dengan benar')  
-        }else if(this.state.time_start == ''){
+        }else if(this.state.time_start === ''){
             this.openNotification('Jam Belum Disisi', 'Jam harus disi dengan benar') 
-        }else if(this.state.time_end == ''){
+        }else if(this.state.time_end === ''){
             this.openNotification('Jam Belum Disisi', 'Jam harus disi dengan benar') 
         }
         else{
