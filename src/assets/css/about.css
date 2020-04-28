@@ -22,18 +22,19 @@
     margin-top: 70px;
 }
 
-.text-section-2{
+.text-section-2-bout{
     max-width: 70%;
-    font-size: 40px;
+    font-size: 49px;
     font-weight: 700;
 }
 
-.text-description-section-2{
+.text-description-section-2-about{
     /* background-color: red; */
     font-size: 15px;
     max-width: 90%;
     float: right;
     font-weight: 600;
+    text-align: justify;
 }
 
 .picture-section-3{
@@ -43,20 +44,21 @@
 .text-section-4{
     min-height: 535.5px;
 }
-.title-section-4{
+.title-section-4-about{
     /* background-color: red; */
-    padding: 40px;
+    padding: 30px;
     font-size: 30px;
+    padding-left: 40px;
     color: white;
     font-weight: 600;
 }
 
-.title-description-4{
+.title-description-4-about{
     color: white;
-    padding-top: 10px;
     padding-left: 40px;
-    font-size: 15px;
+    font-size: 14px;
     padding-right: 40px;
+    text-align: justify;
 }
 
 .title-section-5{

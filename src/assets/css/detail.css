@@ -1,3 +1,18 @@
+.ikon-2 {
+    margin-left: 20px;
+}
+.ikon-judul {
+    font-size: 21px;
+    font-weight: 630;
+    color: #4D5AF2;
+}
+.ikon-tulisan {
+    font-size: 15px;
+}
+.judul-detail {
+    font-size: 56px;
+    font-weight: 700;
+}
 .title-container-detail {
     max-width: 480px;
     margin-top: 5px;

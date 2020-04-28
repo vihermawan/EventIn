@@ -35,10 +35,7 @@ class LoginComponent extends Component{
                                     </div>
                                 </div>
                                 <div className="text-soft-blue title-medium text-align-center mt-30">
-                                    Temukan Event di dekatmu
-                                </div>
-                                <div className="text-soft-black title-more-small text-align-center thin">
-                                    Siapkah merasakan sensasi baru?
+                                    Temukan Berbagai Event Keren
                                 </div>
                             </Row>
                         </Col>
@@ -48,12 +45,12 @@ class LoginComponent extends Component{
                                     <div className="auth-form-container">
                                         <div className="text-white text-align-center title-more-small mb-50 mt-60">
                                             <p className="title-medium semi-bold m-0">Selamat Datang!</p>
-                                            <p className="form-description">Masuk ke akun anda</p>
+                                            <p className="form-description">Bagi kamu yang telah terdaftar, silahkan masuk.</p>
                                         </div>
                                         <span className="auth-input-label text-white">Email</span>
                                         <InputAuth
                                             name='email'
-                                            placeholder="Masukkan Email Anda"
+                                            placeholder="Masukkan email anda"
                                             onChange={handleChange}
                                             value={initialData.email}
                                             className="input-auth mt-5 mb-20"
@@ -61,7 +58,7 @@ class LoginComponent extends Component{
                                         <span className="auth-input-label text-white">Kata Sandi</span>
                                         <InputAuth
                                             name='password'
-                                            placeholder="Masukkan Password Anda"
+                                            placeholder="Masukkan kata sandi anda"
                                             onChange={handleChange}
                                             value={initialData.password}
                                             className="input-auth mt-5"
@@ -71,7 +68,7 @@ class LoginComponent extends Component{
                                        <Link to="/forgot-password">  <p className="auth-reminder-label mt-10 text-white">Lupa Kata Sandi?</p></Link>
                                         <div>
                                             <ButtonAuth
-                                                text="Login"
+                                                text="Masuk"
                                                 className="auth-button-red mt-35 auth-button-login"
                                                 style={{borderRadius: '26px',backgroundColor:'#FA607E',border:'none',color:'#ffff'}}
                                                 block={true}

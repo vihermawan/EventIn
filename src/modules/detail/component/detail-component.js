@@ -140,29 +140,40 @@ class DetailComponent extends Component {
                             <Row>
                                 <Col span={24} >
                                     <div className="title-container-nama">
-                                        <span className="text-soft-blue title-big-detail">HAGE 2020 </span>
+                                        <span className="text-soft-blue judul-detail">{initialData.Event.nama_event} </span>
                                         <br/>
-                                        <span className="text-soft-blue title-small-detail">hobbies, adventure, and gears exhibition</span>
                                     </div>
                                 </Col>
                                 <Col span={24} style={{ marginTop:'1%' }}>
                                     <div>
-                                        <Tag color="blue">Gratis</Tag>
-                                        <Tag color="blue">Olahraga</Tag>
-                                        <Tag color="blue">Hobi</Tag>
+                                        <Tag color="green">{initialData.kategori.nama_kategori}</Tag>
                                     </div>
                                 </Col>
-                                <Col span={24} style={{ marginTop:'4%' }}>
+                                <Row>
+                                    <Col span={12} style={{ marginTop:'2%' }}>
+                                        <div>
+                                            <p className="ikon-judul">Pembayaran Pendaftaran : </p>
+                                            <Col span={12}>
+                                                <div className="ikon-tulisan">
+                                                    <p>Biaya          : Rp. {initialData.detailEvent.biaya}</p>
+                                                    <p>Bank           : {initialData.detailEvent.bank}</p>
+                                                    <p>Nomor Rekening : {initialData.detailEvent.nomor_rekening}</p>
+                                                </div>
+                                            </Col>
+                                        </div>
+                                    </Col>
+                                    <Col span={12} style={{ marginTop:'2%' }}>
                                     <div>
-                                        <p>More Info : </p>
-                                        <p className="text-soft-blue">
-                                            <Icon type="instagram" /> @ice_indonesia 
-                                        </p>
-                                        <p className="text-soft-blue">
-                                            <Icon type="ie" /> ice-indonesia.com 
-                                        </p>
+                                        <p className="ikon-judul">More Info : </p>
+                                        <Col span={12}>
+                                            <div className="ikon-tulisan">
+                                                <Icon type="instagram" /> @ {initialData.detailEvent.instagram}
+                                                <Icon className="ikon-2" type="phone" /> {initialData.detailEvent.telepon}
+                                            </div>
+                                        </Col>
                                     </div>
                                 </Col>
+                                </Row>
                             </Row>
                         </Col>
                     </Row>
