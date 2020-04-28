@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Modal, message, Divider, Tooltip,Button, Input, Icon } from 'antd'
-import CONSTANS from '../../../common/utils/Constants'
 import { faInfoCircle , faCheckCircle} from '@fortawesome/free-solid-svg-icons'
 import { API } from '../../../common/api'
 import { navigate } from '../../../common/store/action'
@@ -24,7 +23,7 @@ class WaitingListPage extends Component {
     }
 
     componentDidMount(){
-        this.getCertificateAdmin();
+        this.getCertificateAdmin(this.props.idEvent);
     }
 
     getColumnSearchProps = dataIndex => ({
@@ -93,9 +92,9 @@ class WaitingListPage extends Component {
         this.setState({ searchText: '' });
     };
 
-    getCertificateAdmin=()=>{
+    getCertificateAdmin=(id_event)=>{
         this.setState({loading: true})
-        API.get(`/penandatangan/sertifikat/waiting`)
+        API.get(`/penandatangan/sertifikat/waiting/${id_event}`)
         .then(res => {
           console.log('res',res.data.data.sertifikat)
             this.setState({
@@ -237,7 +236,7 @@ class WaitingListPage extends Component {
             },
           ];
 
-        const data =  this.state.e_certificate.map( ({id_penandatangan_sertifikat, sertif_URL, id_sertifikat, nama_sertifikat,sertifikat,tenggang_waktu}, index) => ({
+        const data =  this.state.e_certificate.map( ({id_penandatangan_sertifikat, sertifikat_URL, id_sertifikat, nama_sertifikat,sertifikat,tenggang_waktu}, index) => ({
             no : index+1,
             nomor : id_penandatangan_sertifikat,
             id_sertifikat : id_sertifikat,
@@ -246,7 +245,7 @@ class WaitingListPage extends Component {
             organisasi : sertifikat.event.organisasi,
             sertifikat : nama_sertifikat,
             tenggang_waktu : moment(tenggang_waktu).format("DD MMMM YYYY"),
-            sertif_URL :sertif_URL
+            sertif_URL :sertifikat_URL
         }))
 
         return ( 
@@ -263,7 +262,7 @@ class WaitingListPage extends Component {
 }
  
 const mapStateToProps = state => ({
-    
+  ...state.activeEvent,
 });
 
 const mapDispatchToProps = (dispatch => ({

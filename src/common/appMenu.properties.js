@@ -144,6 +144,9 @@ const menu = {
     SIGNER: {
         link :'/signer/dashboard-signer',
     },
+    LIST_WAITING_SERTIFIKAT_ADMIN : {
+        link : '/signer/total-waiting-list/waiting-list',
+    },
     PROFILE_SIGNER : {
         link : '/signer/profile',
     },

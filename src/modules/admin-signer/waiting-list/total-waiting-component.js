@@ -4,15 +4,13 @@ import TableProfile from '../../../common/component/table/table'
 import '../../../assets/css/dashboard-all/dashboard.css'
 import '../../../assets/css/dashboard-all/table-style.css'
 import LoadingContainer from '../../../common/component/loading/loading-container'
-import { PDFViewer,Document,Page } from '@react-pdf/renderer';
-import { Link } from 'react-router-dom';
 // constant content
 const { Content } = Layout;
 
 
-class WaitingListComponent extends Component {
+class TotalWaitingComponent extends Component {
     render() { 
-      const { initialData, columns, data,handleCancel,handleOk } = this.props
+      const { initialData, columns, data } = this.props
         return ( 
             <Content
                 style={{
@@ -23,8 +21,7 @@ class WaitingListComponent extends Component {
                 }}
             >
                 <Breadcrumb separator=">">
-                    <Breadcrumb.Item><Link to="/signer/total-waiting-list">Dashboard Total Waiting List</Link> </Breadcrumb.Item>
-                    <Breadcrumb.Item>Dashboard Waiting List</Breadcrumb.Item>
+                    <Breadcrumb.Item>Dashboard Total Waiting List</Breadcrumb.Item>
                 </Breadcrumb>
 
                 <Row style={{minHeight: '100%',marginBottom: '2%',marginTop:'2%',}} className="background">
@@ -33,7 +30,7 @@ class WaitingListComponent extends Component {
                         <div className="container-active-event">
                             <Row>
                             <div className="container-title-event">
-                                <span>Waiting List</span>
+                                <span>Total Sertifikat Waiting List</span>
                             </div>
                             </Row>
                             <LoadingContainer loading={initialData.loading}>
@@ -44,19 +41,6 @@ class WaitingListComponent extends Component {
                                         className="table-active-event"
                                     />
                                 </Row>
-                                <Modal
-                                    title="Sertifikat"
-                                    visible={initialData.visible}
-                                    onOk={handleOk}
-                                    onCancel={handleCancel}
-                                    >
-                                   <PDFViewer src={initialData.url}  style={{minWidth: '100%', minHeight: '500px',border:"none"}}>
-                                        <Document>
-                                            <Page>
-                                            </Page>
-                                        </Document> 
-                                    </PDFViewer>
-                                </Modal>
                             </LoadingContainer>
                         </div>
                     </Col>
@@ -66,4 +50,4 @@ class WaitingListComponent extends Component {
     }
 }
  
-export default WaitingListComponent;
+export default TotalWaitingComponent;
