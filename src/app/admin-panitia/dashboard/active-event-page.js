@@ -118,7 +118,7 @@ class ActiveEventPage extends Component {
         API.delete(`/panitia/deleteevent/${id}`)
         .then(res => {
             console.log('res',res)
-            if(res.status == 200){
+            if(res.status === 200){
                 message.success('This is a success message');
                 this.componentDidMount(); 
             }   
