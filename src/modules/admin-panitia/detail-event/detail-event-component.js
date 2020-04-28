@@ -92,10 +92,10 @@ class DetailEventComponent extends Component {
                                                                         <div>
                                                                             <p>More Info : </p>
                                                                             <p className="text-soft-blue">
-                                                                                <Icon type="instagram" /> @{initialData.detailEvent.instagram}
+                                                                                <Icon type="instagram" /> @ {initialData.detailEvent.instagram}
                                                                             </p>
                                                                             <p className="text-soft-blue">
-                                                                                <Icon type="ie" /> ice-indonesia.com 
+                                                                                <Icon type="ie" /> {initialData.detailEvent.telepon}
                                                                             </p>
                                                                         </div>
                                                                     </Col>

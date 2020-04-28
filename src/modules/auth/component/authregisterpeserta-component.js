@@ -38,7 +38,7 @@ class RegisterComponent extends Component{
                                       EventIn hadir untuk anda 
                                     </div>
                                     <div className="text-soft-black title-more-small text-align-center thin">
-                                       Untuk menjawab permasalahan anda dalam mencari suatu Event
+                                       Ayo temukan berbagai event keren disini!
                                     </div>
                                 </Row>
                             </Col>
@@ -48,7 +48,7 @@ class RegisterComponent extends Component{
                                         <div className="auth-register-form-container">
                                             <div className="text-white text-align-center title-more-small mb-20 mt-0">
                                                 <p className="title-medium semi-bold m-0">Selamat Datang!</p>
-                                                <p className="form-description">Silahkan daftarkan akun anda</p>
+                                                <p className="form-description">Yuk, daftar sebagai peserta di EventIn.</p>
                                             </div>
                                             <span className="auth-input-label text-white">Nama Peserta</span>
                                             <InputAuth
@@ -85,7 +85,7 @@ class RegisterComponent extends Component{
                                             <span className="auth-input-label text-white">Kata Sandi</span>
                                             <InputAuth
                                                 name='password'
-                                                placeholder="Masukkan password anda"
+                                                placeholder="Masukkan kata sandi anda"
                                                 onChange={handleChange}
                                                 value={initialData.password}
                                                 className="input-auth mt-5 mb-20"
@@ -94,12 +94,12 @@ class RegisterComponent extends Component{
                                             />
                                             <div>
                                                 <ButtonAuth
-                                                    text="Register"
+                                                    text="Daftar"
                                                     className="auth-button-red mt-20 auth-button-login"
                                                     style={{borderRadius: '26px',backgroundColor:'#FA607E',border:'none',color:'#ffff'}}
                                                     block={true}
                                                 />
-                                                <p className="auth-login-label mt-10 text-align-center text-white">Already have account? <Link to='/login' className="text-white"> Login Now </Link></p>
+                                                <p className="auth-login-label mt-10 text-align-center text-white">Sudah punya akun? <Link to='/login' className="text-white"> Masuk sekarang. </Link></p>
                                             </div>
                                         </div>
                                     </Form>

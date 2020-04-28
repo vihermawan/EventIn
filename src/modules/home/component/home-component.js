@@ -31,31 +31,31 @@ const whyData = [
     {
         image: require(`../../../assets/images/tracking.png`),
         title: 'Informatif',
-        description: 'Panitia dapat dengan mudah mengetahui jumlah peserta yang mendaftar event'
+        description: 'Informasi mengenai berbagai event keren ada disini'
     },
     {
         image: require(`../../../assets/images/certificate.png`),
-        title: 'Sertifikat',
-        description: 'Peserta akan mendapat sertifikat settelah mengikuti event'
+        title: 'Fitur keren',
+        description: 'Peserta dapat mendownload sertifikat langsung dari sistem setelah mengikuti event'
     },
     {
         image: require(`../../../assets/images/paperless.png`),
         title: 'Hemat',
-        description: 'Akan sangat menghemat kertas, karena pengelolaan dilakukan pada sistem'
+        description: 'Akan sangat menghemat kertas, karena pengelolaan dilakukan pada satu sistem'
     },
     {
         image: require(`../../../assets/images/simplifying.png`),
         title: 'Mudah',
-        description: 'Kelolah event dengan lebih mudah dan tertata'
+        description: 'Pekerjaan panitia menjadi jauh lebih mudah'
     },
     {
         image: require(`../../../assets/images/news.png`),
-        title: 'Terbaru',
-        description: 'Peserta mendapat info mengenai event terbaru'
+        title: 'Canggih',
+        description: 'Berbagai kegiatan dilakukan pada satu sistem'
     },
     {
         image: require(`../../../assets/images/both-time.png`),
-        title: 'Satu Sistem',
+        title: 'Komplet',
         description: 'Semua orang dapat dengan mudah mendaftar sebagai peserta ataupun panitia dalam satu sistem'
     }
 ]
@@ -97,7 +97,7 @@ class HomeComponent extends Component {
                                             />
                                         </div>
                                         <div className="description-container desc-medium">
-                                            Pilih event yang sesuai dengan dirimu atau mulailah untuk mengelolah event-mu sendiri.
+                                            Cari event yang kamu sukai atau mulailah untuk mengelolah event-mu sendiri.
                                         </div>
                                     </Col>
                                     <Col span={24}>
@@ -134,12 +134,12 @@ class HomeComponent extends Component {
                         <Row className="section-container">
                             <Col lg={24}>
                                 <div className="text-soft-blue title-big bold discover-container">
-                                    Temukan event-mu
+                                    EventIn
                                 </div>
                             </Col>
                             <Col lg={24}>
                                 <div className="text-black description-discover">
-                                    Mempertemukan para pencari event dengan event yang keren-keren.
+                                    Mempertemukan para pencari event dengan berbagai event keren.
                                 </div>
                             </Col>
                             <Col lg={24} className="card-container">
@@ -191,12 +191,12 @@ class HomeComponent extends Component {
                                             />
                                         </div>
                                         <div className="desc-medium description-section-3 mt-10">
-                                            Daftarkan eventmu, dan semua akan langsung terorganisir dengan baik.
+                                            Daftarkan eventmu, dan semua kegiatan pengelolaan event dapat kamu lakukan disini.
                                         </div>
                                     </Col>
                                     <Col span={24}>
                                         <ButtonRounded
-                                            text="Mulai mengelolah event"
+                                            text="Mulai mengelolah event?"
                                             className='button-organize mt-20 semi-bold'
                                         />
                                     </Col>
@@ -212,7 +212,7 @@ class HomeComponent extends Component {
                                         <div className="title-container-3 mt-20">
                                             <span className="text-soft-blue title-big bold">Event<span className="text-black">In</span></span>
                                             <br/>
-                                            <span className="text-soft-blue title-medium semi-bold">Memudahkan peserta mencari event</span>
+                                            <span className="text-soft-blue title-medium semi-bold">Mempermudah peserta dalam mencari event</span>
                                         </div>
                                     </Col>
                                     <Col span={24}>
@@ -224,7 +224,7 @@ class HomeComponent extends Component {
                                             />
                                         </div>
                                         <div className="desc-medium description-section-3 mt-10">
-                                            Cari event yang diinginkan, klik tombol 'daftar', dan selesai. Sangat mudah!
+                                            Cari event yang kamu diinginkan, klik tombol 'daftar', dan selesai. Sangat mudah!
                                         </div>
                                     </Col>
                                     <Col span={24}>
@@ -257,7 +257,7 @@ class HomeComponent extends Component {
                             </Col>
                             <Col lg={24}>
                                 <div className="text-black description-discover">
-                                    Misi kami memudahkan kegiatan peserta, dan panitia dalam mengelolah event.
+                                    Misi kami mempermudah kegiatan peserta, dan panitia dalam mengelolah event.
                                 </div>
                             </Col>
                             <Col lg={24}>
