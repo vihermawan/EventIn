@@ -9,7 +9,6 @@ import ReactCrop from 'react-image-crop';
 import 'react-image-crop/dist/ReactCrop.css';
 import LoadingContainer from '../../../common/component/loading/loading-container'
 import InputForm from '../../../common/component/input/input-form';
-import ButtonDashboard from '../../../common/component/button/button-dashboard';
 import { faUserEdit, faBackward, faUserAlt, faEnvelope, faIdCard, faAddressBook } from '@fortawesome/free-solid-svg-icons';
 import ButtonEdit from '../../../common/component/button/button-edit';
 // constant content

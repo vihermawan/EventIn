@@ -10,11 +10,10 @@ import PenandatanganAdminComponent from '../../../modules/admin-superadmin/user/
 import { faBan, faInfoCircle, faPen } from '@fortawesome/free-solid-svg-icons'
 import ButtonEdit from '../../../common/component/button/button-edit';
 
-//import store
+//import store.
 import { setIdUsers } from '../../../modules/admin-superadmin/user/store/users-action'
 
 const {confirm} = Modal;
-
 
 class PenandatanganAdminPage extends Component {
     state = { 
@@ -104,29 +103,30 @@ class PenandatanganAdminPage extends Component {
         this.setState({ searchText: '' });
     };
 
-     //delete penandatangan
-     deletePenandatangan = (id_penandatangan) => {   
+    //delete penandatangan
+    bannedPenandatangan = (id_penandatangan) => {   
         console.log(id_penandatangan)
+        this.setState({loading: true})
         API.delete(`/admin/ban/penandatangan/${id_penandatangan}`)
         .then(res => {
             console.log('res',res)
             if(res.status == 200){
-                message.success('This is a success message');
+                message.success('Berhasil Banned Penandatangan');
                 window.location.reload(); 
             }   
         });
     }
     
     //function untuk modal
-    showDeleteConfirm = (id) => {
+    showBannedConfirm = (id,nama_penandatangan) => {
         confirm({
-            title: ' Apakah yakin untuk membanned user ?',
+            title: `Apakah yakin untuk membanned ${nama_penandatangan}?`,
             okText: 'Yes',
             okType: 'danger',
             cancelText: 'No',
             onOk: () => {
                 console.log('id ini', id)
-                this.deletePenandatangan(id)
+                this.bannedPenandatangan(id)
             },
             onCancel(){
                 console.log('Cancel')
@@ -192,7 +192,6 @@ class PenandatanganAdminPage extends Component {
                         icon={faPen}
                         borderRadius="5px"
                         background="#005568"
-                        marginRight= "20px"
                         onClick = { () => this.onEditPenandatangan(data.id_users)}
                     />,
                     <Divider type="vertical" />,
@@ -202,7 +201,6 @@ class PenandatanganAdminPage extends Component {
                         icon={faInfoCircle}
                         borderRadius="5px"
                         background="#FFA903"
-                        marginRight= "20px"
                         onClick = { () => this.onDetailPenandatangan(data.id_users)}
                     />,
                     <Divider type="vertical" />,
@@ -212,7 +210,7 @@ class PenandatanganAdminPage extends Component {
                         icon={faBan}
                         borderRadius="5px"
                         background="#E11212"
-                        onClick = {() => this.showDeleteConfirm(data.id_penandatangan)}
+                        onClick = {() => this.showBannedConfirm(data.id_penandatangan,data.penandatangan)}
                     />]
               ),
             },

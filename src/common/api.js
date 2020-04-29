@@ -112,6 +112,31 @@ export const API = {
             });      
     }, 
 
+    putWord : function (endPoint, input) {
+        let headers = {
+            'Content-Type': 'multipart/form-data'
+        };
+
+        let token = localStorage.getItem("token");
+        // console.log('token', token)
+        if(token != null)
+            headers.Authorization = `Bearer ${token}`;
+        
+            // console.log(headers.Authorization)
+        let config = {
+            headers : headers,
+            params : input
+        }
+
+        return axios.put(BASE_URL+endPoint,input,config)
+            .then( ( response ) => {
+                return response;
+            })
+            .catch( ( error ) => {
+                return error
+            });      
+    }, 
+
     patch : function (endPoint, input) {
         return axios.patch(BASE_URL+endPoint)
         .then( (res) => {

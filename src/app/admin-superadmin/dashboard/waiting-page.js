@@ -99,7 +99,7 @@ class WaitingPage extends Component {
         .then(res => {
             // console.log(res)
             this.setState({loading: false})
-            console.log('res',res.data.data.sertifikat)
+            console.log('res',res)
             this.setState({waitingSertifikat:res.data.data.sertifikat})
         });
     }
@@ -173,12 +173,10 @@ class WaitingPage extends Component {
     }
 
     handleSubmit = (id_penandatangan_sertifikat) => {
-        const params = {
-            id_penandatangan_sertifikat : id_penandatangan_sertifikat, 
-        }
-        console.log('params',params)
         this.setState({loading: true})
-        API.put(`/admin/send-sertifikat/${id_penandatangan_sertifikat}`)
+        const params = new FormData()
+        params.append("_method", 'PUT')
+        API.postEdit(`/admin/send-sertifikat/${id_penandatangan_sertifikat}`,params)
         .then(res => {
             console.log('res',res)
             if(res.status === 200){
@@ -257,7 +255,7 @@ class WaitingPage extends Component {
                 />]
               ),
             },
-          ];
+        ];
 
         const data =  this.state.waitingSertifikat.map( ({id_penandatangan_sertifikat, id_sertifikat, sertifikat,penandatangan}, index) => ({
             no : index+1,
@@ -269,6 +267,7 @@ class WaitingPage extends Component {
             sertifikat : sertifikat.sertifikat,
             nama_panitia : sertifikat.event.panitia.nama_panitia
         }))
+        
         return ( 
             <WaitingComponent
                 navigate={this.props.navigate}

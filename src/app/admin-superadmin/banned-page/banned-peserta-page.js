@@ -1,21 +1,41 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { navigate } from '../../../common/store/action'
-import { Button, Input, Icon, Divider } from 'antd'
+import { Button, Input, Icon,Modal,message } from 'antd'
+import { API } from '../../../common/api'
 import  * as Highlighter from 'react-highlight-words';
 import BannedPesertaComponent from '../../../modules/admin-superadmin/banned-page/banned-peserta-component';
 
 //component
-import { faInfoCircle,faBan  } from '@fortawesome/free-solid-svg-icons'
+import { faBan  } from '@fortawesome/free-solid-svg-icons'
 import ButtonEdit from '../../../common/component/button/button-edit';
+
+// import store
+import { setIdUsers } from '../../../modules/admin-superadmin/user/store/users-action'
+import { setIdPeserta } from '../../../modules/admin-superadmin/user/peserta/store/peserta-action'
+
+const { confirm } = Modal;
 
 class BannedPesertaPage extends Component {
     state = {
-        
+        bannedPeserta : [],
+        loading : false,
     }
 
     componentDidMount(){
-      
+        this.getBannedPeserta();
+    }
+
+    getBannedPeserta=()=>{
+      this.setState({loading: true})
+      API.get(`/admin/trash/peserta`)
+      .then(res => {
+        console.log(res)
+        this.setState({
+          bannedPeserta:res.data.data.user,
+          loading: false,
+        })
+      });
     }
 
     getColumnSearchProps = dataIndex => ({
@@ -84,6 +104,35 @@ class BannedPesertaPage extends Component {
         this.setState({ searchText: '' });
     };
 
+    //function untuk modal
+    showUnbannedConfirm = (id,nama_peserta) => {
+      confirm({
+          title: `Apakah yakin untuk melakukan unban terhadap ${nama_peserta}?`,
+          okText: 'Yes',
+          okType: 'danger',
+          cancelText: 'No',
+          onOk: () => {
+             this.UnbannedPeserta(id)
+          },
+          onCancel(){
+              console.log('Cancel')
+          }
+      });
+    }
+
+    UnbannedPeserta = (id_peserta) => {   
+      console.log(id_peserta)
+      this.setState({loading:true})
+      API.get(`/admin/unban/peserta/${id_peserta}`)
+      .then(res => {
+          console.log('res',res)
+          if(res.status == 200){
+              message.success('Unbanned Peserta Berhasil');
+              this.componentDidMount(); 
+          }   
+      });
+    }
+
     render() {
         
         const columns = [
@@ -131,31 +180,34 @@ class BannedPesertaPage extends Component {
                 render: (data) => (
                     [
                     <ButtonEdit
-                        text="Detail"
-                        height={20}
-                        icon={faInfoCircle}
-                        borderRadius="5px"
-                        background="#FFA903"
-                        marginRight= "20px"
-                        onClick = { () => this.onDetailPeserta(data.id_users,data.id_peserta)}
-                    />,
-                    <ButtonEdit
-                        text="Banned"
+                        text="Unbanned"
                         height={20}
                         icon={faBan}
                         borderRadius="5px"
                         background="#FF0303"
-                        onClick = { () => this.showDeleteConfirm(data.id_peserta)}
+                        onClick = { () => this.showUnbannedConfirm(data.id_peserta,data.peserta)}
                     />]
               ),
             },
         ];
+
+        const data =  this.state.bannedPeserta.map( ({id_users, peserta,email}, index) => ({
+          no : index+1,
+          id_users : id_users,
+          id_peserta : peserta.id_peserta,
+          peserta : peserta.nama_peserta,
+          email : email,
+          organisasi : peserta.organisasi,
+          umur : peserta.umur,
+          jenis_kelamin : peserta.jenis_kelamin,
+      }))
 
         return ( 
             <BannedPesertaComponent
                 initialData={this.state}
                 navigate={this.props.navigate}
                 columns={columns}
+                data = {data}
             />
         );
     }
@@ -167,6 +219,8 @@ const mapStateToProps = state => ({
 
 const mapDispatchToProps = (dispatch => ({
     navigate,
+    setIdUsers,
+    setIdPeserta,
 }))();
 
 const page = connect(mapStateToProps, mapDispatchToProps)(BannedPesertaPage);

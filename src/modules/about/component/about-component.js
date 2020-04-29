@@ -34,38 +34,40 @@ class AboutComponent extends Component {
                       </Row>
                       <Row className="section-container">
                         <Col lg={8} md={12} sm={12}>
-                            <div className="text-section-2 text-soft-blue">
-                              <span>Semua berawal dari keresahan</span>
+                            <div className="text-section-2-bout text-soft-blue">
+                              <span>Semua bermula dari berbagai keresahan</span>
                             </div>
                         </Col>
                         <Col lg={16} md={12} sm={12}>
-                        <div className="text-description-section-2">
+                        <div className="text-description-section-2-about">
                           <span>
-                            Ya, semua berawal dari sebuah keresahan. 
-                            Pertanyaan yang pada akhirnya menjadi awal bagi sekelompok sahabat ambisius
-                            (dan juga optimis) untuk memulai perusahaan ini dari t gudang 
-                            kecil sewaan di suatu tempat di Yogyakarta pada masa pandemi Corona ini.
+                            "Bisa tidak ya pengelolaan sebuah event secara keseluruhan mulai dari pembuatan 
+                            event hingga pembagian sertifikat keikutsertaan peserta dilakukan pada satu platform ?"
+                          </span>
+                          <br/> <br/>
+                          <span>
+                           "Bisa tidak ya suatu orgaanisasi yang mempunyai banyak event mengelolah semua event mereka 
+                            cukup pada satu sistem ?"
+                          </span>
+                          <br/> <br/>
+                          <span>
+                            "Bisa tidak ya kita mendaftarkan diri pada berbagai event melalui satu sistem saja ?"
+                          </span>
+                          <br/> <br/>
+                          <span>
+                            Ya, semua bermula dari berbagai keresahan. Keresahan yang pada akhirnya 
+                            menjadi awal bagi sekelompok mahasiswa penggiat organisasi untuk menciptakan
+                            sebuah sistem sebagai wadah untuk merealisasikan ide-ide mereka.
                           </span> 
                           <br/> <br/>
                           <span>
-                            Hari ini, perusahaan itu telah bertransformasi menjadi Warung Rakyat, 
-                            sebuah perusahaan teknologi mobile di Yogyakarta yang menghubungkan jutaan
-                            pelanggan dengan ratusan mitra toko dan juga konsumen.
+                            Sistem ini diberi nama EventIn. Sebuah sistem pengelolaan event, yang mana 
+                            dapat mempermudah para organisasi dalam mengelolah event mereka. Tidak hanya 
+                            itu, EventIn juga mempermudah para peserta untuk mendaftarkan diri pada berbagai 
+                            event cukup melalui satu sistem.
                           </span> 
                           <br/> <br/>
-                          <span>
-                            EventIn ingin mengatasi masalah terbesar yang ada seperti ketimpangan akses, 
-                            ketertinggalan infrastruktur, juga kesenjangan pendapatan.
-                          </span> 
-                          <br/> <br/>
-                          <span>
-                            Sama seperti semua orang di Indonesia, kami semua masih sangat ambisius. Kami masih bertanya tentang 
-                            batasan-batasan yang ada setiap harinya, dan kami juga masih sangat optimis
-                          </span> 
                         </div>
-                     
-
-                      
                         </Col>
                       </Row>
                       <Row className="section-container">
@@ -80,58 +82,30 @@ class AboutComponent extends Component {
                         </Col>
                         <Col lg={10} md={24} sm={24}>
                           <div className="text-section-4 background-soft-blue">
-                            <div className="title-section-4">
+                            <div className="title-section-4-about">
                               <span>Kenapa harus Event ?</span>
                             </div>
-                            <div className="title-description-4">
-                              <span> Faktanya, warung adalah sektor ekonomi pertumbuhan tercepat di Indonesia. Meskipun banyak hambatan infrastruktur yang menghadang Indonesia, lebih dari 73% penduduknya tetap yakin bahwa mereka dapat mencapai mimpi terbesar mereka. Dengan semangat ini, dan juga ambisi seperti kami, kami percaya, tak ada yang bisa menghalangi kita</span>
+                            <div className="title-description-4-about">
+                              <span> 
+                                Faktanya, saat mengadakan suatu event, sebuah organisasi seringkali kewalahan dalam
+                                mengelolah event-nya. Pekerjaan-pekerjaan seperti perekapan data peserta, pengecekan 
+                                kehadiran, permohonan penandatanganan sertifikat oleh yang berwenang, hingga pembagian
+                                sertifikat keikutsertaan kepada para peserta seringkali menghabiskan banyak waktu. Dengan 
+                                adanya EventIn, panitia dapat menghemat lebih banyak waktu dan tenaga. Karena semua 
+                                kegiatan pengelolaan event dapat dilakukan diEventIn.
+                              </span>
                               <br/><br/>
-                              <span> Faktanya, warung adalah sektor ekonomi pertumbuhan tercepat di Indonesia. Meskipun banyak hambatan infrastruktur yang menghadang Indonesia, lebih dari 73% penduduknya tetap yakin bahwa mereka dapat mencapai mimpi terbesar mereka. Dengan semangat ini, dan juga ambisi seperti kami, kami percaya, tak ada yang bisa menghalangi kita</span>
+                              <span> 
+                                Faktanya lagi, para maniak event seringkali ketinggalan informasi tentang suatu event
+                                dikarenakan tidak adanya platform yang mengumpulkan informasi dari berbagai event dalam 
+                                satu wadah. Oleh karena itu, EventIn hadir menjadi wadah bagi berbagai organisasi untuk 
+                                mengiklankan event mereka. Tidak hanya itu, di EventIn peserta juga dapat langsung 
+                                mendaftarkan diri atau bahkan mendownload sertifikat keikutsertaan. Sangat membantu bukan? 
+                                Tunggu apa lagi? Ayo kelolah event mu bersama EventIn sekarang juga! Atau kamu daftarkan 
+                                dirimu sebagai peserta agar kamu tidak ketinggalan informasi mengenai event-event keren!
+                              </span>
                             </div>
                           </div>
-                        </Col>
-                      </Row>
-                      <Row className="section-container">
-                        <Col lg={24} md={24} sm={24}>
-                            <Row>
-                              <Col lg={24} md={24} sm={24}>
-                                <div className="title-section-5 text-soft-blue">
-                                    <span>Bagaimana kami mendukung kemajuan ekonomi Indonesia</span>
-                                </div>
-                              </Col>
-                            </Row>
-                            <Row>
-                              <Col lg={8} md={24} sm={24}>
-                                <div className="box-section-5">
-                                  <div className="title-box-section-5">
-                                      <span>Kota-Kota</span>
-                                  </div>
-                                  <div className="description-box-section-5">
-                                      <span>Menyediakan solusi teknologi guna meningkatkan dan membangun kota-kota cerdas yang lebih aman.</span>
-                                  </div>
-                                </div>
-                              </Col>
-                              <Col lg={8} md={24} sm={24}>
-                                <div className="box-section-5">
-                                  <div className="title-box-section-5">
-                                      <span>Kota-Kota</span>
-                                  </div>
-                                  <div className="description-box-section-5">
-                                      <span>Menyediakan solusi teknologi guna meningkatkan dan membangun kota-kota cerdas yang lebih aman.</span>
-                                  </div>
-                                </div>
-                              </Col>
-                              <Col lg={8} md={24} sm={24}>
-                                <div className="box-section-5">
-                                  <div className="title-box-section-5">
-                                      <span>Kota-Kota</span>
-                                  </div>
-                                  <div className="description-box-section-5">
-                                      <span>Menyediakan solusi teknologi guna meningkatkan dan membangun kota-kota cerdas yang lebih aman.</span>
-                                  </div>
-                                </div>
-                              </Col>
-                            </Row>
                         </Col>
                       </Row>
                       <BackTop />

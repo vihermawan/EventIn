@@ -92,7 +92,7 @@ class EventPage extends Component {
     onSeacrhEvent = (params) =>{
         API.get(`/event/search?nama=${params}`)
         .then(res => {
-            console.log(res.data.data.event.data)
+            // console.log(res.data.data.event.data)
             if(res.status == 200){
                 this.setState({
                     event_seacrh:res.data.data.event.data,

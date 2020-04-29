@@ -122,10 +122,13 @@ const menu = {
         link :'/admin/detail-penandatangan'
     },
     DETAIL_PESERTA_ADMIN :{
-        link: '/admin/admin-detail-peserta'
+        link: '/admin/list-peserta/detail-peserta'
+    },
+    DETAIL_PESERTA_EVENT : {
+        link :'/admin/list-peserta/detail-event'
     },
     DETAIL_PANITIA_ADMIN : {
-        link :'/admin/detail-panitia'
+        link :'/admin/list-panitia/detail-panitia'
     },
     EDIT_PANITIA_ADMIN : {
         link : '/admin/edit-panitia'
