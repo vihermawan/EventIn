@@ -19,11 +19,13 @@ const {confirm} = Modal;
 class WaitingListPage extends Component {
     state = {  
         e_certificate: [],
+        id_sertifikat : '', 
         loading:false
     }
 
     componentDidMount(){
         this.getCertificateAdmin(this.props.idEvent);
+        this.setState({id_sertifikat : this.props.idSertifikat});
     }
 
     getColumnSearchProps = dataIndex => ({
@@ -101,19 +103,7 @@ class WaitingListPage extends Component {
                 e_certificate:res.data.data.sertifikat,
                 loading: false,
             })
-        });
-    }
-
-    getFile=(id,sertifikat)=>{
-        API.get(`/penandatangan/detail-sertifikat/${id}`)
-        .then(res => {
-          console.log('res',res)
-          const url = window.URL.createObjectURL(new Blob([res.data]));
-          const link = document.createElement('a');
-          link.href = url;
-          link.setAttribute('download', `${sertifikat}`); 
-          document.body.appendChild(link);
-          link.click();
+            // this.allIdPenandatanganSertifikat(res.data.data.sertifikat)
         });
     }
 
@@ -127,14 +117,14 @@ class WaitingListPage extends Component {
     }
 
     //function untuk modal
-    showSignedConfirm = (nama_sertifikat,id_sertifikat) => {
+    showSignedConfirm = (id_penandatangan_sertifikat,id_sertifikat) => {
         confirm({
             title: ' Apakah anda yakin untuk menandatangani dokumen ini ?',
             okText: 'Yes',
             okType: 'danger',
             cancelText: 'No',
             onOk: () => {
-               this.assignSertifikat(nama_sertifikat,id_sertifikat)
+               this.assignSertifikat(id_penandatangan_sertifikat,id_sertifikat)
             },
             onCancel(){
                 console.log('Cancel')
@@ -142,13 +132,30 @@ class WaitingListPage extends Component {
         });
     }
 
+    //function untuk modal
+    showAllSignedConfirm = (id_penandatangan_sertifikat,id_sertifikat) => {
+      confirm({
+          title: ' Apakah anda yakin untuk menandatangani semua dokumen ?',
+          okText: 'Yes',
+          okType: 'danger',
+          cancelText: 'No',
+          onOk: () => {
+             this.assignAllSertifikat(id_penandatangan_sertifikat,id_sertifikat)
+          },
+          onCancel(){
+              console.log('Cancel')
+          }
+      });
+  }
+
+
     //assign sertifikat
-    assignSertifikat = (nama_sertifikat,id_sertifikat) => {
-        console.log(nama_sertifikat,id_sertifikat)
+    assignSertifikat = (id_penandatangan_sertifikat,id_sertifikat) => {
+        console.log(id_penandatangan_sertifikat,id_sertifikat)
         const params = new FormData()
-        params.set('nama_sertifikat[]',nama_sertifikat)
-        params.set('passphrase','111268mamida')
+        params.set('id_penandatangan_sertifikat[]',id_penandatangan_sertifikat)
         params.append("_method", 'PUT')
+        
         API.postEdit(`/penandatangan/sertifikat/assign/${id_sertifikat}`, params)
         .then(res => {
             console.log('res',res)
@@ -157,6 +164,25 @@ class WaitingListPage extends Component {
                 window.location.reload(); 
             }   
         });
+    }
+
+
+    //assign semua sertifikat
+    assignAllSertifikat = (data,id_sertifikat) => {
+        const params = new FormData()
+        params.set('id_penandatangan_sertifikat[]',data)
+        params.append("_method", 'PUT')
+        this.setState({loading:true})
+        API.postEdit(`/penandatangan/sertifikat/assign/${id_sertifikat}`, params)
+        .then(res => {
+            console.log('res',res)
+            if(res.status === 200){
+                message.success('Semua Sertifikat Berhasil ditandantangani');
+                window.location.reload(); 
+            }   
+        });
+
+        console.log(data,id_sertifikat)
     }
 
     handleOk = e => {
@@ -219,7 +245,7 @@ class WaitingListPage extends Component {
                         icon={faCheckCircle}
                         borderRadius="5px"
                         background="#004A03"
-                        onClick = {() => this.showSignedConfirm(data.sertifikat,data.id_sertifikat)}
+                        onClick = {() => this.showSignedConfirm(data.id_penandatangan_sertifikat,data.id_sertifikat)}
                     />,
                 </Tooltip>,
                 <Divider type="vertical" />,
@@ -234,11 +260,11 @@ class WaitingListPage extends Component {
                 </Tooltip>,]
               ),
             },
-          ];
+        ];
 
         const data =  this.state.e_certificate.map( ({id_penandatangan_sertifikat, sertifikat_URL, id_sertifikat, nama_sertifikat,sertifikat,tenggang_waktu}, index) => ({
             no : index+1,
-            nomor : id_penandatangan_sertifikat,
+            id_penandatangan_sertifikat : id_penandatangan_sertifikat,
             id_sertifikat : id_sertifikat,
             nama_event : sertifikat.event.nama_event,
             nama_panitia : sertifikat.event.panitia.nama_panitia,
@@ -248,14 +274,25 @@ class WaitingListPage extends Component {
             sertif_URL :sertifikat_URL
         }))
 
+        let data_id = []
+        this.state.e_certificate.map(data => {
+          data_id.push(data.id_penandatangan_sertifikat)
+        })
+        console.log(data_id)
+
+
+
         return ( 
             <WaitingListComponent
                 navigate={this.props.navigate}
                 initialData = {this.state}
                 columns={columns}
                 data={data}
+                data_id={data_id}
                 handleCancel= {this.handleCancel}
                 handleOk = {this.handleOk}
+                assignAllSertifikat = {this.assignAllSertifikat}
+                showAllSignedConfirm = {this.showAllSignedConfirm}
             />
         );
     }
@@ -263,6 +300,7 @@ class WaitingListPage extends Component {
  
 const mapStateToProps = state => ({
   ...state.activeEvent,
+  ...state.certificate,
 });
 
 const mapDispatchToProps = (dispatch => ({
