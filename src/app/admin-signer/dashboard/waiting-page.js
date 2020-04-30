@@ -182,7 +182,7 @@ class WaitingListPage extends Component {
             }   
         });
 
-        console.log(data,id_sertifikat)
+        // console.log(data,id_sertifikat)
     }
 
     handleOk = e => {
@@ -278,7 +278,7 @@ class WaitingListPage extends Component {
         this.state.e_certificate.map(data => {
           data_id.push(data.id_penandatangan_sertifikat)
         })
-        console.log(data_id)
+        // console.log(data_id)
 
 
 

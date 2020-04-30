@@ -1,16 +1,22 @@
 import React, { Component } from 'react';
-import { Modal, message, Select,Button, Input, Icon, } from 'antd';
+import { Modal, message, Select,Button, Input, Icon, Tooltip, Divider} from 'antd';
 import { connect } from 'react-redux';
 import { API } from '../../../common/api'
 import { navigate } from '../../../common/store/action'
 import  * as Highlighter from 'react-highlight-words';
-import { faPaperPlane } from '@fortawesome/free-solid-svg-icons'
+import { faPaperPlane, faTrashAlt } from '@fortawesome/free-solid-svg-icons'
 import { faInfoCircle } from '@fortawesome/free-solid-svg-icons'
 import WaitingComponent from '../../../modules/admin-superadmin/e-certificate/waiting-list/waiting-list-component';
+import ButtonDashboard from '../../../common/component/button/button-dashboard';
+import 'moment-timezone';
+import 'moment/locale/id';
+import moment from 'moment-timezone';
 import ButtonEdit from '../../../common/component/button/button-edit';
+
 
 const { confirm } = Modal;
 const { Option } = Select;
+const dateNow = moment().format('YYYY-MM-DD');
 
 class WaitingPage extends Component {
     state = { 
@@ -24,7 +30,6 @@ class WaitingPage extends Component {
 
     componentDidMount(){
         this.getCertificateAdmin();
-        this.getPenandatangan();
     }
 
     getColumnSearchProps = dataIndex => ({
@@ -97,22 +102,9 @@ class WaitingPage extends Component {
         this.setState({loading: true})
         API.get(`/admin/sertifikat-waiting`)
         .then(res => {
-            // console.log(res)
             this.setState({loading: false})
             console.log('res',res)
             this.setState({waitingSertifikat:res.data.data.sertifikat})
-        });
-    }
-
-    getPenandatangan=()=>{
-        this.setState({loading: true})
-        API.get(`/admin/showpenandatangan`)
-        .then(res => {
-          console.log('res',res.data.data.penandatangan)
-          this.setState({
-            penandatangan:res.data.data.penandatangan,
-            loading: false,
-          })
         });
     }
     
@@ -187,19 +179,6 @@ class WaitingPage extends Component {
         });
     }
 
-    getFile=(id,sertifikat)=>{
-      API.get(`/admin/cek-sertifikat/${id}`)
-      .then(res => {
-        console.log('res',res)
-        const url = window.URL.createObjectURL(new Blob([res.data]));
-        const link = document.createElement('a');
-        link.href = url;
-        link.setAttribute('download', `${sertifikat}`); 
-        document.body.appendChild(link);
-        link.click();
-      });
-    }
-
     render() { 
         const columns = [
             {
@@ -247,29 +226,51 @@ class WaitingPage extends Component {
                 ...this.getColumnSearchProps('sertifikat'),
             },
             {
+                title: 'End Registrasi',
+                dataIndex: 'end_registration',
+                key: 'end_registration',
+                ...this.getColumnSearchProps('end_registration'),
+            },  
+            {
               title: 'Action',
               key: 'action',
               render: (data) => (
-                [<ButtonEdit
-                    text="Send"
-                    height={20}
-                    icon={faPaperPlane}
-                    borderRadius="5px"
-                    background="#36FF03"
-                    marginRight= "20px"
-                    onClick = {() => this.showSendConfirm(data.id_penandatangan_sertifikat, data.nama_penandatangan, data.instansi, data.jabatan)}
-                />,
-                <a href={`${data.sertif_URL}`} download>,
-                {/* asas */}
-                <ButtonEdit
-                    text="Detail"
-                    height={20}
-                    icon={faInfoCircle}
-                    borderRadius="5px"
-                    background="#FFA903"
-                    // onClick = {() => this.getFile(data.id_sertifikat,data.sertifikat)}
-                />,
-                </a>
+                [
+                <div style={data.end_registration < dateNow ? {display:"none"}:{display:"block"}}>
+                  <Tooltip title="Detail">
+                  <ButtonEdit
+                      text="Kirim Sertif"
+                      height={20}
+                      icon={faPaperPlane}
+                      borderRadius="5px"
+                      background="#36FF03"
+                      onClick = {() => this.showSendConfirm(data.id_penandatangan_sertifikat, data.nama_penandatangan, data.instansi, data.jabatan)}
+                  />
+                  </Tooltip>
+                </div>,
+                <div style={{marginTop:"4px", textAlign:"center"}}>
+                  <Tooltip title="Detail">
+                  <a href={`${data.sertif_URL}`} download>
+                  <ButtonDashboard
+                      height={20}
+                      icon={faInfoCircle}
+                      borderRadius="5px"
+                      background="#FFA903"
+                      marginRight="4px"
+                  />
+                  </a>
+                  </Tooltip>
+                  <Divider type="vertical"/>
+                  <Tooltip title="Reject">
+                  <ButtonDashboard
+                      height={20}
+                      icon={faTrashAlt}
+                      borderRadius="5px"
+                      background="#E11212"
+                      marginLeft="4px"
+                  />
+                  </Tooltip>
+                </div>
                 ]
               ),
             },
@@ -285,6 +286,7 @@ class WaitingPage extends Component {
             instansi : penandatangan.instansi,
             jabatan : penandatangan.jabatan,
             sertifikat : sertifikat.sertifikat,
+            end_registration : moment(sertifikat.event.detail_event.end_registration).format("DD MMMM YYYY"),
             nama_panitia : sertifikat.event.panitia.nama_panitia
         }))
         

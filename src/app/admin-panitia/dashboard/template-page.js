@@ -14,27 +14,12 @@ class TemplateSertifPage extends Component {
        
     }
 
-    getTemplate=()=>{
-      this.setState({loading: true})
-      API.get(`/panitia/download/template`)
-      .then(res => {
-        console.log('res',res)
-        const url = window.URL.createObjectURL(new Blob([res.data]));
-        const link = document.createElement('a');
-        link.href = url;
-        link.setAttribute('download', 'sertifikat.rtf'); //or any other extension
-        document.body.appendChild(link);
-        link.click();
-      });
-  }
-
     render() { 
 
         return ( 
             <TemplateSertifComponent
                 initialData={this.state}
                 navigate={this.props.navigate}
-                getTemplate={this.getTemplate}
             />
         );
     }

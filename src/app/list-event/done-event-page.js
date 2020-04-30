@@ -2,8 +2,8 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { navigate } from '../../common/store/action'
 import { API } from '../../common/api'
-import { Divider, Tooltip,Button, Input, Icon } from 'antd';
-import { faInfoCircle, faDownload } from '@fortawesome/free-solid-svg-icons';
+import { Tooltip,Button, Input, Icon, Row, Col } from 'antd';
+import { faDownload } from '@fortawesome/free-solid-svg-icons';
 import DoneEventComponent from '../../modules/list-event/component/done-event-component';
 import ButtonDashboard from '../../common/component/button/button-dashboard';
 import  * as Highlighter from 'react-highlight-words';
@@ -92,7 +92,7 @@ class DoneEventPage extends Component {
         this.setState({loadingHome: true})
         API.get(`/peserta/profile/event`)
         .then(res => {
-            console.log('res',res)
+            console.log('res',res.data.data.event)
             this.setState({
                 doneEvent:res.data.data.event,
                 loadingHome: false,
@@ -100,9 +100,7 @@ class DoneEventPage extends Component {
         });
     }
 
-    downloadSertifikat = () => {
-        
-    }
+
 
     render() {  
 
@@ -133,12 +131,12 @@ class DoneEventPage extends Component {
                 key: 'lokasi',
                 ...this.getColumnSearchProps('lokasi'),
             },
-            {
-                title: 'Sertifikat',
-                dataIndex: 'sertifikat',
-                key: 'sertifikat',
-                ...this.getColumnSearchProps('sertifikat'),
-            },
+            // {
+            //     title: 'Sertifikat',
+            //     dataIndex: 'sertifikat',
+            //     key: 'sertifikat',
+            //     ...this.getColumnSearchProps('sertifikat'),
+            // },
             {
                 title: 'Tanggal Mulai',
                 dataIndex: 'start_event',
@@ -156,40 +154,47 @@ class DoneEventPage extends Component {
               key: 'action',
               render: (data) => (
                 [
-                <Tooltip title="Download">
-                <ButtonDashboard
-                    height={20}
-                    icon={faDownload}
-                    borderRadius="5px"
-                    background="#4D5AF2"
-                    onClick={ () => this.onAbsentParticipant(data.nomor)}
-                />,
-                </Tooltip>,
-                <Divider type="vertical" />,
-                <Tooltip title="Detail Event">
-                    <ButtonDashboard
-                        height={20}
-                        icon={faInfoCircle}
-                        borderRadius="5px"
-                        background="#FFA903"
-                        onClick={ () => this.onDetailEvent(data.id_event)}
-                    />,
-                </Tooltip>,
+                <Row>
+                  <Col lg={12} md={24} sm={24} style={data.sertifikat === null ? {display:"none"}:{display:"block"}}>
+                    <Tooltip title="Download Sertifikat">
+                      <a href={`${data.sertifikat_URL}`} download target="_blank">
+                        <ButtonDashboard
+                            height={20}
+                            icon={faDownload}
+                            borderRadius="5px"
+                            background="#4D5AF2"
+                        />
+                      </a>
+                    </Tooltip>
+                  </Col>
+                  <Col lg={12} md={24} sm={24} style={data.sertifikat === null ? {display:"block"}:{display:"none"}}>
+                    <Tooltip title="Sertifikat dalam proses" >
+                        <ButtonDashboard
+                            height={20}
+                            icon={faDownload}
+                            borderRadius="5px"
+                            background="#4D5AF2"
+                            disabled= {true}
+                        />
+                    </Tooltip>
+                  </Col>
+                </Row>
                 ]
               ),
             },
         ];
 
-        const data =  this.state.doneEvent.map( ({id_peserta, id_event, event}, index) => ({
+        const data =  this.state.doneEvent.map( ({id_peserta,id_peserta_event, id_event, event,nama_sertifikat,sertifikat_URL}, index) => ({
             no: index+1,
             id_peserta : id_peserta,
+            id_peserta_event :id_peserta_event,
             id_event : id_event,
             nama_event : event.nama_event,
             lokasi : event.detail_event.lokasi,
             nama_panitia : event.panitia.nama_panitia,
             organisasi : event.organisasi,
-            sertifikat : event.sertifikat.sertifikat,
-            link_sertifikat : event.sertifikat.sertif_URL,
+            sertifikat : nama_sertifikat,
+            sertifikat_URL : sertifikat_URL,
             start_event :  moment(event.detail_event.start_event).format("DD MMMM YYYY"),
             end_event : moment(event.detail_event.end_event).format("DD MMMM YYYY"),
         }))
