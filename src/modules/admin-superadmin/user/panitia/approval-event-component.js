@@ -22,7 +22,7 @@ class ApprovalEventComponent extends Component {
                 }}
             >
                 <Breadcrumb separator=">">
-                    <Breadcrumb.Item>Dashboard List Event</Breadcrumb.Item>
+                    <Breadcrumb.Item>Daftar Approval Event</Breadcrumb.Item>
                 </Breadcrumb>
 
                 <Row style={{minHeight: '100%',marginBottom: '2%',marginTop:'2%',}} className="background">
@@ -31,7 +31,7 @@ class ApprovalEventComponent extends Component {
                         <div className="container-active-event">
                             <Row>
                             <div className="container-title-event">
-                                <span>List Approval Event</span>
+                                <span>Daftar Approval Event</span>
                             </div>
                             </Row>
                             <LoadingContainer loading={initialData.loading}>

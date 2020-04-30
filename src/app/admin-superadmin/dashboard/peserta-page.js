@@ -158,7 +158,7 @@ class PesertaAdminPage extends Component {
                 sortDirections: ['ascend','descend'],
             },
             {
-                title: 'Nama Peserta',
+                title: 'Nama',
                 dataIndex: 'peserta',
                 key: 'peserta',
                 ...this.getColumnSearchProps('nama_event'),
@@ -202,7 +202,7 @@ class PesertaAdminPage extends Component {
                         onClick = { () => this.onDetailPeserta(data.id_users,data.id_peserta)}
                     />,
                     <ButtonEdit
-                        text="Banned"
+                        text="Ban"
                         height={20}
                         icon={faBan}
                         borderRadius="5px"

@@ -23,8 +23,8 @@ class DetailPanitiaAdminComponent extends Component {
                 }}
             >
                 <Breadcrumb separator=">">
-                    <Breadcrumb.Item><Link to='/admin/list-panitia'>Dashboard List Panitia</Link></Breadcrumb.Item>
-                    <Breadcrumb.Item>Dashboard Detail Panitia</Breadcrumb.Item>
+                    <Breadcrumb.Item><Link to='/admin/list-panitia'>Daftar Panitia</Link></Breadcrumb.Item>
+                    <Breadcrumb.Item>Detail Panitia</Breadcrumb.Item>
                 </Breadcrumb>
                 <LoadingContainer loading={initialData.loading}>
                     <Row style={{minHeight: '100%',marginBottom: '2%',marginTop:'2%',}} className="background">

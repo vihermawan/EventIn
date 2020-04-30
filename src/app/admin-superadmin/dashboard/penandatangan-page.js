@@ -10,7 +10,7 @@ import PenandatanganAdminComponent from '../../../modules/admin-superadmin/user/
 import { faBan, faInfoCircle, faPen } from '@fortawesome/free-solid-svg-icons'
 import ButtonEdit from '../../../common/component/button/button-edit';
 
-//import store
+//import store.
 import { setIdUsers } from '../../../modules/admin-superadmin/user/store/users-action'
 
 const {confirm} = Modal;
@@ -158,7 +158,7 @@ class PenandatanganAdminPage extends Component {
                 sortDirections: ['ascend','descend'],
             },
             {
-                title: 'Nama Penandatangan',
+                title: 'Nama',
                 dataIndex: 'penandatangan',
                 key: 'penandatangan',
                 ...this.getColumnSearchProps('penandatangan'),
@@ -205,7 +205,7 @@ class PenandatanganAdminPage extends Component {
                     />,
                     <Divider type="vertical" />,
                     <ButtonEdit
-                        text="Banned"
+                        text="Ban"
                         height={20}
                         icon={faBan}
                         borderRadius="5px"

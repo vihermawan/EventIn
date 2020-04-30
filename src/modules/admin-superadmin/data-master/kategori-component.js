@@ -26,7 +26,7 @@ class KategoriComponent extends Component {
                 }}
             >
                 <Breadcrumb separator=">">
-                    <Breadcrumb.Item>Dashboard Data Master</Breadcrumb.Item>
+                    <Breadcrumb.Item>Daftar Kategori</Breadcrumb.Item>
                 </Breadcrumb>
                 <Row style={{minHeight: '100%',marginBottom: '2%',marginTop:'2%',}} className="background">
                     <Col lg={24} md={24} sm={24}> 
@@ -34,7 +34,7 @@ class KategoriComponent extends Component {
                             <Row>
                                 <Col lg={19} md={12} sm={12} xs={24}>
                                     <div className="container-title-event">
-                                        <span>List Kategori</span>
+                                        <span>Daftar Kategori</span>
                                     </div>
                                 </Col>
                                 <Col lg={5} md={12} sm={12} xs={24}>

@@ -23,8 +23,8 @@ class DetailPesertaAdminComponent extends Component {
                 }}
             >
                 <Breadcrumb separator=">">
-                    <Breadcrumb.Item><Link to='/admin/list-peserta'>Dashboard List Peserta</Link></Breadcrumb.Item>
-                    <Breadcrumb.Item>Dashboard Detail Peserta</Breadcrumb.Item>
+                    <Breadcrumb.Item><Link to='/admin/list-peserta'>Daftar Peserta</Link></Breadcrumb.Item>
+                    <Breadcrumb.Item>Detail Peserta</Breadcrumb.Item>
                 </Breadcrumb>
 
                 <Row style={{minHeight: '100%',marginBottom: '2%',marginTop:'2%',}} className="background">
