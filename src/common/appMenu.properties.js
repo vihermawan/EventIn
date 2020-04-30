@@ -101,6 +101,9 @@ const menu = {
     EDIT_SERTIF_PANITIA : {
         link : '/dashboard/waiting-certificate-event/edit-certificate',
     },
+    LIST_SERTIF_PANITIA : {
+        link : '/dashboard/waiting-certificate-event/list-waiting-certificate',
+    },
 
     //link admin
     ADMIN :{
@@ -140,6 +143,9 @@ const menu = {
     //penandatangan
     SIGNER: {
         link :'/signer/dashboard-signer',
+    },
+    LIST_WAITING_SERTIFIKAT_ADMIN : {
+        link : '/signer/total-waiting-list/waiting-list',
     },
     PROFILE_SIGNER : {
         link : '/signer/profile',

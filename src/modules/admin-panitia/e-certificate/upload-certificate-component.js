@@ -1,16 +1,17 @@
 import React, { Component } from 'react';
-import { Layout, Breadcrumb, Row, Table, Input, Col,Tag } from 'antd';
-import TableProfile from '../../../common/component/table/table'
+import { Layout, Row, Col } from 'antd';
 import '../../../assets/css/dashboard-all/dashboard.css'
 import '../../../assets/css/dashboard-all/table-style.css'
+import TableProfile from '../../../common/component/table/table'
 import LoadingContainer from '../../../common/component/loading/loading-container'
 
 // constant content
 const { Content } = Layout;
 
-class WaitingCertificateComponent extends Component {
+
+class UploadCertificateComponent extends Component {
     render() { 
-    const { initialData, columns, data } = this.props
+        const { initialData, columns, data} = this.props
         return ( 
             <Content>
                 <Row style={{minHeight: '100%'}} >
@@ -33,4 +34,4 @@ class WaitingCertificateComponent extends Component {
     }
 }
  
-export default WaitingCertificateComponent;
+export default UploadCertificateComponent;

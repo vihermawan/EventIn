@@ -1,32 +1,32 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { Divider, Tooltip, Button, Input, Icon } from 'antd';
-import { faInfoCircle, faEdit} from '@fortawesome/free-solid-svg-icons'
+import { Tooltip, Button, Input, Icon } from 'antd';
+import { faInfoCircle, } from '@fortawesome/free-solid-svg-icons'
 import  * as Highlighter from 'react-highlight-words'
-import CONSTANS from '../../../common/utils/Constants'
 import { API } from '../../../common/api'
 import { navigate } from '../../../common/store/action'
-import WaitingCertificateComponent from '../../../modules/admin-panitia/e-certificate/waiting-certificate-component';
+import ListWaitingCertificateComponent from '../../../modules/admin-panitia/e-certificate/list-waiting-certificate-component';
 import ButtonDashboard from '../../../common/component/button/button-dashboard';
 // import store
 import { setIdSertifikat } from '../../../modules/admin-panitia/e-certificate/store/e-certificate-action'
-import { setIdEvent } from '../../../modules/admin-panitia/active-event/store/active-event-action'
 
-class WaitingCertificatePage extends Component {
+class ListWaitingCertificatePage extends Component {
     state = {  
         certificate: [],
+        url: '',
+        visible : false,
         loading: false,
     }
 
     componentDidMount(){
-        this.getCertificateWaiting();
+        this.getListCertificateWaiting(this.props.idEvent);
     }
 
-    getCertificateWaiting=()=>{
+    getListCertificateWaiting=(id_event)=>{
         this.setState({loading: true})
-        API.get(`/panitia/count-waiting`)
+        API.get(`/panitia/event-received-sertifikat/${id_event}`)
         .then(res => {
-          console.log('res',res.data.data.sertifikat.sertifikat)
+          console.log('res',res)
           this.setState({
               certificate:res.data.data.sertifikat,
               loading: false,
@@ -100,11 +100,28 @@ class WaitingCertificatePage extends Component {
         this.setState({ searchText: '' });
     };
 
-    //button detail event
-    onListCertificateWaiting = (id) => {
-      this.props.setIdEvent(id);
-      this.props.navigate(CONSTANS.LIST_SERTIF_PANITIA_MENU_KEY)
-    }
+    handleOk = e => {
+        console.log(e);
+        this.setState({
+          visible: false,
+        });
+    };
+    
+    handleCancel = e => {
+        console.log(e);
+        this.setState({
+          visible: false,
+        });
+    };
+
+    //button detail certificate
+    onDetailCertificate = (sertif_URL) => {
+        this.setState({
+          visible: true,
+          url : sertif_URL,
+        });
+        console.log(sertif_URL)
+      }
 
     render() { 
 
@@ -124,16 +141,28 @@ class WaitingCertificatePage extends Component {
             ...this.getColumnSearchProps('nama_event'),
         },
         {
-            title: 'Organisasi',
-            dataIndex: 'organisasi',
-            key: 'organisasi',
-            ...this.getColumnSearchProps('organisasi'),
+            title: 'Nama Penandatangan',
+            dataIndex: 'nama_penandatangan',
+            key: 'nama_penandatangan',
+            ...this.getColumnSearchProps('nama_penandatangan'),
         },
         {
-            title: 'Total Sertifikat',
-            dataIndex: 'total',
-            key: 'total',
-            ...this.getColumnSearchProps('total'),
+            title: 'Instansi',
+            dataIndex: 'instansi',
+            key: 'instansi',
+            ...this.getColumnSearchProps('instansi'),
+        },
+        {
+            title: 'Jabatan',
+            dataIndex: 'jabatan',
+            key: 'jabatan',
+            ...this.getColumnSearchProps('jabatan'),
+        },
+        {
+            title: 'File',
+            dataIndex: 'nama_sertifikat',
+            key: 'nama_sertifikat',
+            ...this.getColumnSearchProps('nama_sertifikat'),
         },
         {
             title: 'Action',
@@ -146,42 +175,46 @@ class WaitingCertificatePage extends Component {
                 icon={faInfoCircle}
                 borderRadius="5px"
                 background="#FFA903"
-                onClick = {() => this.onListCertificateWaiting(data.id_event)}
+                onClick = {() => this.onDetailCertificate(data.sertifikat_URL)}
             />,
             </Tooltip>]
             ),
         },
     ];
     
-    const data =  this.state.certificate.map( ({id_panitia, id_event,organisasi, nama_event,sertifikat}, index) => ({
+    const data =  this.state.certificate.map( ({id_penandatangan_sertifikat, id_sertifikat, sertifikat_URL, sertifikat,penandatangan,nama_sertifikat}, index) => ({
         no : index+1,
-        id_event : id_event,
-        organisasi : organisasi,
-        nama_event : nama_event,
-        total : sertifikat.penandatanganan_sertifkat[0].total
+        id_sertifikat:id_sertifikat,
+        id_penandatangan_sertifikat : id_penandatangan_sertifikat,
+        nama_event : sertifikat.event.nama_event,
+        nama_penandatangan : penandatangan.nama_penandatangan,
+        instansi : penandatangan.instansi,
+        jabatan : penandatangan.jabatan,
+        sertifikat : sertifikat.sertifikat,
+        nama_sertifikat : nama_sertifikat,
+        sertifikat_URL : sertifikat_URL,
     }))
-
     
         return ( 
-            <WaitingCertificateComponent
+            <ListWaitingCertificateComponent
                 navigate={this.props.navigate}
                 initialData={this.state}
                 columns={columns}
                 data={data}
+                handleCancel= {this.handleCancel}
+                handleOk = {this.handleOk}
             />
         );
     }
 }
  
 const mapStateToProps = state => ({
-    
+    ...state.activeEvent,
 });
 
 const mapDispatchToProps = (dispatch => ({
     navigate,
-    setIdSertifikat,
-    setIdEvent,
 }))();
 
-const page = connect(mapStateToProps, mapDispatchToProps)(WaitingCertificatePage);
+const page = connect(mapStateToProps, mapDispatchToProps)(ListWaitingCertificatePage);
 export default page

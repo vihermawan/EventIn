@@ -1,19 +1,20 @@
 import React, { Component } from 'react';
 import { Layout, Breadcrumb, Row, Col,Modal } from 'antd';
-import TableProfile from '../../../common/component/table/table'
+import { Link } from 'react-router-dom';
 import '../../../assets/css/dashboard-all/dashboard.css'
 import '../../../assets/css/dashboard-all/table-style.css'
+// component
+import TableProfile from '../../../common/component/table/table'
 import LoadingContainer from '../../../common/component/loading/loading-container'
-import ButtonEdit from '../../../common/component/button/button-edit';
 import { PDFViewer,Document,Page } from '@react-pdf/renderer';
-import { Link } from 'react-router-dom';
 // constant content
 const { Content } = Layout;
 
 
-class WaitingListComponent extends Component {
+
+class ListWaiitingCertificateComponent extends Component {
     render() { 
-      const { initialData, columns, data,handleCancel,handleOk,assignAllSertifikat,data_id,showAllSignedConfirm } = this.props;
+      const { initialData, columns, data,handleCancel,handleOk } = this.props
         return ( 
             <Content
                 style={{
@@ -24,31 +25,17 @@ class WaitingListComponent extends Component {
                 }}
             >
                 <Breadcrumb separator=">">
-                    <Breadcrumb.Item><Link to="/signer/total-waiting-list">Dashboard Total Waiting List</Link> </Breadcrumb.Item>
-                    <Breadcrumb.Item>Dashboard Waiting List</Breadcrumb.Item>
+                    <Breadcrumb.Item><Link to='/dashboard/waiting-certificate-event'>Dashboard Waiting Sertifikat</Link></Breadcrumb.Item>
+                    <Breadcrumb.Item>Dashboard List Waiting Sertifikat</Breadcrumb.Item>
                 </Breadcrumb>
 
                 <Row style={{minHeight: '100%',marginBottom: '2%',marginTop:'2%',}} className="background">
                     <Col lg={24} md={24} sm={24}> 
-                        
                         <div className="container-active-event">
                             <Row>
-                                <Col lg={19} md={12} sm={12} xs={24}>
-                                    <div className="container-title-event">
-                                        <span>Waiting List</span>
-                                    </div>
-                                </Col>
-                                <Col lg={5} md={12} sm={12} xs={24}>
-                                    <div className="button-add">
-                                        <ButtonEdit
-                                            text="Tanda Tangan Semua Sertifikat"
-                                            height={20}
-                                            borderRadius="5px"
-                                            background="#00C908"
-                                            onClick={() => showAllSignedConfirm(data_id,initialData.id_sertifikat)}
-                                        />
-                                    </div>
-                                </Col>
+                            <div className="container-title-event">
+                                <span>List Sertifikat</span>
+                            </div>
                             </Row>
                             <LoadingContainer loading={initialData.loading}>
                                 <Row gutter={24} type="flex">
@@ -80,4 +67,4 @@ class WaitingListComponent extends Component {
     }
 }
  
-export default WaitingListComponent;
+export default ListWaiitingCertificateComponent;

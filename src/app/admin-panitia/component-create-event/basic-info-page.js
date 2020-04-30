@@ -27,7 +27,7 @@ class BasicInfoPage extends Component {
         API.get('/peserta/kategori')
         .then(res => {
             console.log('kategori',res)
-            if(res.status == 200){
+            if(res.status === 200){
                 this.setState({
                     kategori:res.data.data.kategori,
                 })

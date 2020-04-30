@@ -6,13 +6,14 @@ import  * as Highlighter from 'react-highlight-words'
 import CONSTANS from '../../../common/utils/Constants'
 import { API } from '../../../common/api'
 import { navigate } from '../../../common/store/action'
-import WaitingCertificateComponent from '../../../modules/admin-panitia/e-certificate/waiting-certificate-component';
+import TotalWaitingCertificateComponent from '../../../modules/admin-signer/waiting-list/total-waiting-component';
 import ButtonDashboard from '../../../common/component/button/button-dashboard';
 // import store
 import { setIdSertifikat } from '../../../modules/admin-panitia/e-certificate/store/e-certificate-action'
 import { setIdEvent } from '../../../modules/admin-panitia/active-event/store/active-event-action'
 
-class WaitingCertificatePage extends Component {
+
+class TotalWaitingCertificatePage extends Component {
     state = {  
         certificate: [],
         loading: false,
@@ -24,9 +25,9 @@ class WaitingCertificatePage extends Component {
 
     getCertificateWaiting=()=>{
         this.setState({loading: true})
-        API.get(`/panitia/count-waiting`)
+        API.get(`/penandatangan/count-sertifikat-waiting`)
         .then(res => {
-          console.log('res',res.data.data.sertifikat.sertifikat)
+          console.log('res',res.data.data.sertifikat)
           this.setState({
               certificate:res.data.data.sertifikat,
               loading: false,
@@ -101,9 +102,10 @@ class WaitingCertificatePage extends Component {
     };
 
     //button detail event
-    onListCertificateWaiting = (id) => {
-      this.props.setIdEvent(id);
-      this.props.navigate(CONSTANS.LIST_SERTIF_PANITIA_MENU_KEY)
+    onListCertificateWaiting = (id_event,id_sertifikat) => {
+      this.props.setIdEvent(id_event);
+      this.props.setIdSertifikat(id_sertifikat);
+      this.props.navigate(CONSTANS.LIST_WAITING_SERTIFIKAT_ADMIN_MENU_KEY)
     }
 
     render() { 
@@ -122,6 +124,12 @@ class WaitingCertificatePage extends Component {
             dataIndex: 'nama_event',
             key: 'nama_event',
             ...this.getColumnSearchProps('nama_event'),
+        },
+        {
+            title: 'Nama Panitia',
+            dataIndex: 'nama_panitia',
+            key: 'nama_panitia',
+            ...this.getColumnSearchProps('nama_panitia'),
         },
         {
             title: 'Organisasi',
@@ -146,16 +154,18 @@ class WaitingCertificatePage extends Component {
                 icon={faInfoCircle}
                 borderRadius="5px"
                 background="#FFA903"
-                onClick = {() => this.onListCertificateWaiting(data.id_event)}
+                onClick = {() => this.onListCertificateWaiting(data.id_event,data.id_sertifikat)}
             />,
             </Tooltip>]
             ),
         },
     ];
     
-    const data =  this.state.certificate.map( ({id_panitia, id_event,organisasi, nama_event,sertifikat}, index) => ({
+    const data =  this.state.certificate.map( ({id_event,organisasi, nama_event,sertifikat,panitia}, index) => ({
         no : index+1,
         id_event : id_event,
+        id_sertifikat : sertifikat.id_sertifikat,
+        nama_panitia : panitia.nama_panitia,
         organisasi : organisasi,
         nama_event : nama_event,
         total : sertifikat.penandatanganan_sertifkat[0].total
@@ -163,7 +173,7 @@ class WaitingCertificatePage extends Component {
 
     
         return ( 
-            <WaitingCertificateComponent
+            <TotalWaitingCertificateComponent
                 navigate={this.props.navigate}
                 initialData={this.state}
                 columns={columns}
@@ -183,5 +193,5 @@ const mapDispatchToProps = (dispatch => ({
     setIdEvent,
 }))();
 
-const page = connect(mapStateToProps, mapDispatchToProps)(WaitingCertificatePage);
+const page = connect(mapStateToProps, mapDispatchToProps)(TotalWaitingCertificatePage);
 export default page
