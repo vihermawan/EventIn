@@ -165,7 +165,7 @@ class Admin extends Component {
                     >
                       <Menu.Item key="list-panitia" onClick={this.clickedMenu}>
                           <Link to="/admin/list-panitia">
-                              <span>List Panitia</span>
+                              <span>Daftar</span>
                           </Link>
                       </Menu.Item>
                       <Menu.Item key="approval-event" onClick={this.clickedMenu}>
@@ -189,12 +189,12 @@ class Admin extends Component {
                     >
                       <Menu.Item key="admin-penandatangan" onClick={this.clickedMenu}>
                           <Link to="/admin/admin-penandatangan">
-                              <span>List Penandatangan</span>
+                              <span>Daftar</span>
                           </Link>
                       </Menu.Item>
                       <Menu.Item key="biodata-penandatangan" onClick={this.clickedMenu}>
                           <Link to="/admin/biodata-penandatangan">
-                              <span>Request</span>
+                              <span>Permintaan</span>
                           </Link>
                       </Menu.Item>
                   </SubMenu>

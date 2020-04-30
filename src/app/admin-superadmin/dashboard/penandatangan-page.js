@@ -158,7 +158,7 @@ class PenandatanganAdminPage extends Component {
                 sortDirections: ['ascend','descend'],
             },
             {
-                title: 'Nama Penandatangan',
+                title: 'Nama',
                 dataIndex: 'penandatangan',
                 key: 'penandatangan',
                 ...this.getColumnSearchProps('penandatangan'),

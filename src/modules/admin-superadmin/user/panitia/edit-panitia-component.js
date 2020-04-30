@@ -34,7 +34,7 @@ class EditProfilePanitiaAdminComponent extends Component {
                 }}
             >
                 <Breadcrumb separator=">">
-                    <Breadcrumb.Item><Link to='/admin/list-panitia'>Dashboard List Panitia</Link></Breadcrumb.Item>
+                    <Breadcrumb.Item><Link to='/admin/list-panitia'>Daftar Panitia</Link></Breadcrumb.Item>
                     <Breadcrumb.Item>Dashboard Edit Profile</Breadcrumb.Item>
                 </Breadcrumb>
 

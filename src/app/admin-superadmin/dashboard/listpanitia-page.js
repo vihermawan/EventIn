@@ -159,7 +159,7 @@ class ListPanitiaAdminPage extends Component {
                 sortDirections: ['ascend','descend'],
             },
             {
-                title: 'Nama Panitia',
+                title: 'Nama',
                 dataIndex: 'panitia',
                 key: 'panitia',
                 ...this.getColumnSearchProps('panitia'),

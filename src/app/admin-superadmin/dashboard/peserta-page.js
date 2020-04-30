@@ -158,7 +158,7 @@ class PesertaAdminPage extends Component {
                 sortDirections: ['ascend','descend'],
             },
             {
-                title: 'Nama Peserta',
+                title: 'Nama',
                 dataIndex: 'peserta',
                 key: 'peserta',
                 ...this.getColumnSearchProps('nama_event'),

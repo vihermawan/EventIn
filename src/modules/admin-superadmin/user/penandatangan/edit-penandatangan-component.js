@@ -32,8 +32,8 @@ class EditProfileSignerAdminComponent extends Component {
                 }}
             >
                 <Breadcrumb separator=">">
-                    <Breadcrumb.Item><Link to='/admin/admin-penandatangan/'>Dashboard Profile Penandatangan</Link></Breadcrumb.Item>
-                    <Breadcrumb.Item>Dashboard Edit Profile</Breadcrumb.Item>
+                    <Breadcrumb.Item><Link to='/admin/admin-penandatangan/'>Daftar Penandatangan</Link></Breadcrumb.Item>
+                    <Breadcrumb.Item>Edit File p12</Breadcrumb.Item>
                 </Breadcrumb>
 
                 <Row style={{minHeight: '100%',marginBottom: '2%',marginTop:'2%',}} className="background">
@@ -41,14 +41,14 @@ class EditProfileSignerAdminComponent extends Component {
                         <div className="container-active-event">
                             <Row>
                                 <div className="container-title-event">
-                                    <span>Edit Profile</span>
+                                    <span>Edit File p12</span>
                                 </div>
                             </Row>
                             <LoadingContainer loading={initialData.loading}>
                                 <Form onSubmit={handleSubmit}>
                                     <div className="container-form">
                                         <Row>
-                                            <Col lg={24} md={24} sm={24}>
+                                            {/* <Col lg={24} md={24} sm={24}>
                                                 <div>   
                                                     <span className="auth-input-label text-black">Nama Penandatangan*</span>
                                                 </div>
@@ -176,19 +176,19 @@ class EditProfileSignerAdminComponent extends Component {
                                                         {initialData.picture ? <img src={initialData.picture} alt="avatar" style={{ width: '50%' }} /> : uploadButton}
                                                     </Upload>  
                                                  </div>  
-                                            </Col>
+                                            </Col> */}
                                             <Col lg={24} md={24} sm={24}>
                                                 <div style={{marginBottom:'5px'}}>
                                                     <Row>
                                                         <Col lg={21} md={24} sm={24}>
                                                             <div>   
-                                                                <span className="auth-input-label text-black">File P_12*</span>
+                                                                <span className="auth-input-label text-black">File p12*</span>
                                                             </div>
                                                         </Col>
                                                         <Col lg={3} md={24} sm={24}>
                                                             <div style={initialData.button_p12 === 'Edit File P_12' ? {display:"block"}:{display:"none"}}>
                                                                 <ButtonDashboard
-                                                                    text="Edit File P_12"
+                                                                    text="Edit File p12"
                                                                     height={20}
                                                                     icon={faUserEdit}
                                                                     borderRadius="5px"

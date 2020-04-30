@@ -192,7 +192,7 @@ class BiodataPenandatanganAdminPage extends Component {
                 sortDirections: ['ascend','descend'],
             },
             {
-                title: 'Nama Penandatangan',
+                title: 'Nama',
                 dataIndex: 'nama',
                 key: 'nama',
                 ...this.getColumnSearchProps('nama'),
@@ -216,10 +216,10 @@ class BiodataPenandatanganAdminPage extends Component {
                 ...this.getColumnSearchProps('jabatan'),
             },
             {
-                title: 'NIP',
-                dataIndex: 'nip',
-                key: 'nip',
-                ...this.getColumnSearchProps('nip'),
+                title: 'Telepon',
+                dataIndex: 'telepon',
+                key: 'telepon',
+                ...this.getColumnSearchProps('telepon'),
             },
             {
               title: 'Action',
@@ -232,7 +232,7 @@ class BiodataPenandatanganAdminPage extends Component {
                       icon={faInfoCircle}
                       borderRadius="5px"
                       background="#FFA903"
-                      onClick= {()=> this.showAddConfirm(data.nomor,data.nama,data.instansi,data.jabatan)}
+                      onClick= {()=> this.showAddConfirm(data.telepon,data.nama,data.instansi,data.jabatan)}
                   />,
                 </Tooltip>,
                 <Divider type="vertical"/>,
@@ -242,7 +242,7 @@ class BiodataPenandatanganAdminPage extends Component {
                       icon={faTrash}
                       borderRadius="5px"
                       background="#FF0303"
-                      onClick= {()=> this.showRejectConfirm(data.nomor,data.nama,data.instansi,data.jabatan)}
+                      onClick= {()=> this.showRejectConfirm(data.telepon,data.nama,data.instansi,data.jabatan)}
                   />,
                 </Tooltip>
                 ]
@@ -250,14 +250,14 @@ class BiodataPenandatanganAdminPage extends Component {
             },
         ];
         
-        const data =  this.state.penandatangan.map( ({id_biodata_penandatangan, nama, instansi, jabatan,email,nip}, index) => ({
+        const data =  this.state.penandatangan.map( ({id_biodata_penandatangan, nama, instansi, jabatan,email,telepon}, index) => ({
             no : index+1,
             nomor : id_biodata_penandatangan,
             nama: nama,
             email : email,
             instansi : instansi,
             jabatan : jabatan,
-            nip : nip,
+            telepon : telepon,
         }))
     
     

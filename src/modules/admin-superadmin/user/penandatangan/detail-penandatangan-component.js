@@ -23,8 +23,8 @@ class DetailPenandatanganAdminComponent extends Component {
                 }}
             >
                 <Breadcrumb separator=">">
-                    <Breadcrumb.Item><Link to='/admin/admin-penandatangan'>Dashboard List Penandatangan</Link></Breadcrumb.Item>
-                    <Breadcrumb.Item>Dashboard Detail Penandatangan</Breadcrumb.Item>
+                    <Breadcrumb.Item><Link to='/admin/admin-penandatangan'>Daftar Penandatangan</Link></Breadcrumb.Item>
+                    <Breadcrumb.Item>Detail Penandatangan</Breadcrumb.Item>
                 </Breadcrumb>
 
                 <Row style={{minHeight: '100%',marginBottom: '2%',marginTop:'2%',}} className="background">
@@ -50,7 +50,7 @@ class DetailPenandatanganAdminComponent extends Component {
                                             </Col>
                                             <Col lg={8} md={12} sm={12}>
                                                 <div className="desc-panitia">
-                                                    <span className="text-black nama-panitia">Nama Penandatangan</span>
+                                                    <span className="text-black nama-panitia">Nama</span>
                                                     <br/>
                                                     <span className="text-black desc-nama">{data.nama_penandatangan}</span>
                                                 </div>
@@ -69,7 +69,7 @@ class DetailPenandatanganAdminComponent extends Component {
                                                 </div>
                                                 <br/>
                                                 <div className="desc-panitia">
-                                                    <span className="text-black nama-panitia">Nomor Induk Pegawai</span>
+                                                    <span className="text-black nama-panitia">NIP</span>
                                                     <br/>
                                                     <span className="text-black desc-nama">{data.nip}</span>
                                                 </div>

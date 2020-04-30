@@ -24,7 +24,7 @@ class PesertaAdminComponent extends Component {
                 }}
             >
                 <Breadcrumb separator=">">
-                    <Breadcrumb.Item>Dashboard Waiting List</Breadcrumb.Item>
+                    <Breadcrumb.Item>Waiting List</Breadcrumb.Item>
                 </Breadcrumb>
 
                 <Row style={{minHeight: '100%',marginBottom: '2%',marginTop:'2%',}} className="background">

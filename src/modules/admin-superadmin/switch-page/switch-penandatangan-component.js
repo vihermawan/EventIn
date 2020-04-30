@@ -25,7 +25,7 @@ class SwitchPenandatanganComponent extends Component {
                 }}
             >
                  <Breadcrumb separator=">">
-                    <Breadcrumb.Item><Link to='/admin/admin-peserta'>Dashboard List Penandatangan</Link></Breadcrumb.Item>
+                    <Breadcrumb.Item><Link to='/admin/admin-peserta'>Daftar Penandatangan</Link></Breadcrumb.Item>
                 </Breadcrumb>
 
                 <Row style={{minHeight: '100%',marginBottom: '2%',marginTop:'2%',}} className="background">
@@ -33,7 +33,7 @@ class SwitchPenandatanganComponent extends Component {
                         <div className="container-active-event-absent">
                             <Row className="nav-absent">
                                 <div className="container-title-event">
-                                    <span>List Penandatangan</span>
+                                    <span>Daftar Penandatangan</span>
                                 </div>
                             </Row>
                             <Row className="table-absent">
@@ -60,7 +60,7 @@ class SwitchPenandatanganComponent extends Component {
                                             icon={faCheckCircle}
                                             style={{marginRight: 10}}
                                         />     
-                                        Penandatangan Banned 
+                                        Penandatangan Diblokir 
                                     </span>}
                                     key="2"
                                     onChange={{componentDidMount}}

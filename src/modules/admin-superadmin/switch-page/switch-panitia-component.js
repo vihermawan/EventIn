@@ -25,7 +25,7 @@ class SwitchPanitiaComponent extends Component {
                 }}
             >
                  <Breadcrumb separator=">">
-                    <Breadcrumb.Item><Link to='/admin/list-panitia'>Dashboard List Panitia</Link></Breadcrumb.Item>
+                    <Breadcrumb.Item><Link to='/admin/list-panitia'>Daftar Panitia</Link></Breadcrumb.Item>
                 </Breadcrumb>
 
                 <Row style={{minHeight: '100%',marginBottom: '2%',marginTop:'2%',}} className="background">
@@ -33,7 +33,7 @@ class SwitchPanitiaComponent extends Component {
                         <div className="container-active-event-absent">
                             <Row className="nav-absent">
                                 <div className="container-title-event">
-                                    <span>List Panitia</span>
+                                    <span>Daftar Panitia</span>
                                 </div>
                             </Row>
                             <Row className="table-absent">
@@ -60,7 +60,7 @@ class SwitchPanitiaComponent extends Component {
                                             icon={faCheckCircle}
                                             style={{marginRight: 10}}
                                         />     
-                                        Panitia Banned 
+                                        Panitia Diblokir 
                                     </span>}
                                     key="2"
                                     onChange={{componentDidMount}}
