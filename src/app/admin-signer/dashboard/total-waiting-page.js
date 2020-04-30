@@ -12,6 +12,7 @@ import ButtonDashboard from '../../../common/component/button/button-dashboard';
 import { setIdSertifikat } from '../../../modules/admin-panitia/e-certificate/store/e-certificate-action'
 import { setIdEvent } from '../../../modules/admin-panitia/active-event/store/active-event-action'
 
+
 class TotalWaitingCertificatePage extends Component {
     state = {  
         certificate: [],
@@ -101,8 +102,9 @@ class TotalWaitingCertificatePage extends Component {
     };
 
     //button detail event
-    onListCertificateWaiting = (id) => {
-      this.props.setIdEvent(id);
+    onListCertificateWaiting = (id_event,id_sertifikat) => {
+      this.props.setIdEvent(id_event);
+      this.props.setIdSertifikat(id_sertifikat);
       this.props.navigate(CONSTANS.LIST_WAITING_SERTIFIKAT_ADMIN_MENU_KEY)
     }
 
@@ -152,7 +154,7 @@ class TotalWaitingCertificatePage extends Component {
                 icon={faInfoCircle}
                 borderRadius="5px"
                 background="#FFA903"
-                onClick = {() => this.onListCertificateWaiting(data.id_event)}
+                onClick = {() => this.onListCertificateWaiting(data.id_event,data.id_sertifikat)}
             />,
             </Tooltip>]
             ),
@@ -162,6 +164,7 @@ class TotalWaitingCertificatePage extends Component {
     const data =  this.state.certificate.map( ({id_event,organisasi, nama_event,sertifikat,panitia}, index) => ({
         no : index+1,
         id_event : id_event,
+        id_sertifikat : sertifikat.id_sertifikat,
         nama_panitia : panitia.nama_panitia,
         organisasi : organisasi,
         nama_event : nama_event,

@@ -178,10 +178,26 @@ class WaitingPage extends Component {
         params.append("_method", 'PUT')
         API.postEdit(`/admin/send-sertifikat/${id_penandatangan_sertifikat}`,params)
         .then(res => {
-            message.success('Berhasil mengirim sertifikat');
-            this.componentDidMount();   
-            this.setState({loading: false}) 
+            console.log(res)
+            if(res.status == 200){
+              message.success('Berhasil mengirim sertifikat');
+              this.componentDidMount();   
+              this.setState({loading: false}) 
+            }
         });
+    }
+
+    getFile=(id,sertifikat)=>{
+      API.get(`/admin/cek-sertifikat/${id}`)
+      .then(res => {
+        console.log('res',res)
+        const url = window.URL.createObjectURL(new Blob([res.data]));
+        const link = document.createElement('a');
+        link.href = url;
+        link.setAttribute('download', `${sertifikat}`); 
+        document.body.appendChild(link);
+        link.click();
+      });
     }
 
     render() { 
@@ -243,13 +259,18 @@ class WaitingPage extends Component {
                     marginRight= "20px"
                     onClick = {() => this.showSendConfirm(data.id_penandatangan_sertifikat, data.nama_penandatangan, data.instansi, data.jabatan)}
                 />,
+                <a href={`${data.sertif_URL}`} download>,
+                {/* asas */}
                 <ButtonEdit
                     text="Detail"
                     height={20}
                     icon={faInfoCircle}
                     borderRadius="5px"
                     background="#FFA903"
-                />]
+                    // onClick = {() => this.getFile(data.id_sertifikat,data.sertifikat)}
+                />,
+                </a>
+                ]
               ),
             },
         ];
@@ -257,6 +278,8 @@ class WaitingPage extends Component {
         const data =  this.state.waitingSertifikat.map( ({id_penandatangan_sertifikat, id_sertifikat, sertifikat,penandatangan}, index) => ({
             no : index+1,
             id_penandatangan_sertifikat : id_penandatangan_sertifikat,
+            id_sertifikat : id_sertifikat,
+            sertif_URL : sertifikat.sertif_URL,
             nama_event : sertifikat.event.nama_event,
             nama_penandatangan : penandatangan.nama_penandatangan,
             instansi : penandatangan.instansi,

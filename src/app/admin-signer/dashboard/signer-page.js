@@ -36,7 +36,7 @@ class SignerPage extends Component {
 
     getCertificateAdmin=()=>{
         this.setState({loading: true})
-        API.get(`/penandatangan/sertifikat/waiting`)
+        API.get(`/penandatangan/count-waiting`)
         .then(res => {
           console.log('res',res)
             this.setState({
