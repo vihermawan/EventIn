@@ -7,9 +7,13 @@ import { faInfoCircle, faTrash } from '@fortawesome/free-solid-svg-icons';
 import RegisterEventComponent from '../../modules/list-event/component/register-event-component';
 import ButtonDashboard from '../../common/component/button/button-dashboard';
 import  * as Highlighter from 'react-highlight-words';
+import CONSTANS from '../../common/utils/Constants'
 import 'moment-timezone';
 import 'moment/locale/id';
 import moment from 'moment-timezone';
+
+// import store.
+import { setIdEvent } from '../../modules/admin-panitia/active-event/store/active-event-action'
 
 const { confirm } = Modal;
 
@@ -102,6 +106,13 @@ class RegisterEventPage extends Component {
         });
     }
 
+    //button detail participant
+    onDetailEvent = (id) => {
+      console.log('id ini',id)
+      this.props.setIdEvent(id);
+      this.props.navigate(CONSTANS.DETAIL_EVENT_KEY)
+  }
+
     showDeleteConfirm = (id_event) => {
         confirm({
             title: 'Apakah Yakin untuk batal mendaftar ?',
@@ -182,7 +193,7 @@ class RegisterEventPage extends Component {
                     borderRadius="5px"
                     background="#FF0303"
                     onClick={ () => this.showDeleteConfirm(data.id_event)}
-                />,
+                />
                 </Tooltip>,
                 <Divider type="vertical" />,
                 <Tooltip title="Detail Event">
@@ -192,7 +203,7 @@ class RegisterEventPage extends Component {
                         borderRadius="5px"
                         background="#FFA903"
                         onClick={ () => this.onDetailEvent(data.id_event)}
-                    />,
+                    />
                 </Tooltip>,
                 ]
               ),
@@ -228,6 +239,7 @@ const mapStateToProps = state => ({
 
 const mapDispatchToProps = (dispatch => ({
     navigate,
+    setIdEvent,
 }))();
 
 const page = connect(mapStateToProps, mapDispatchToProps)(RegisterEventPage);

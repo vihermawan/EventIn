@@ -12,6 +12,7 @@ class DetailPage extends Component {
         detailEvent : [],
         status : {},
         loading: false,
+        loadingHome : false,
         visible: false,
         confirmLoading: false,
     }
@@ -31,7 +32,7 @@ class DetailPage extends Component {
     }
 
     getDetail=(id)=>{
-        this.setState({loading: true})
+        this.setState({loadingHome: true})
         API.get(`/peserta/event/${id}`)
         .then(res => {
             console.log('res',res)
@@ -40,7 +41,7 @@ class DetailPage extends Component {
                 kategori : res.data.data.event.kategori,
                 detailEvent : res.data.data.event.detail_event,
                 status : res.data.data.event.status_biaya,
-                loading: false,
+                loadingHome: false,
             })
         });
     }
@@ -50,6 +51,9 @@ class DetailPage extends Component {
             visible: true,
         });
     };
+
+    onStartLoadingHome = () =>  this.setState({ loadingHome: true })
+    onFinishLoadingHome = () =>  this.setState({ loadingHome: false })
     
     handleOk = e => {
         e.preventDefault();
@@ -65,7 +69,7 @@ class DetailPage extends Component {
                     visible:false,
                     loading : true,
                 })
-                message.success('This is a success message');
+                message.success('Berhasil Melakukan Pendaftaran');
                 this.componentDidMount(); 
             }else if(res.data.status === "Register"){
                 this.setState({visible:false})
@@ -97,6 +101,8 @@ class DetailPage extends Component {
                 showModal = {this.showModal}
                 handleOk={this.handleOk}
                 handleCancel={this.handleCancel}
+                onStartLoadingHome ={this.onStartLoadingHome}
+                onFinishLoadingHome = {this.onFinishLoadingHome}
             />
         );
     }

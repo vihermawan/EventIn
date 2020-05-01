@@ -185,8 +185,8 @@ class BiodataPenandatanganAdminPage extends Component {
         const columns = [
             {
                 title: 'No',
-                dataIndex: 'nomor',
-                key: 'nomor',
+                dataIndex: 'no',
+                key: 'no',
                 render: text => <a>{text}</a>,
                 sorter: (a, b) => a.no - b.no,
                 sortDirections: ['ascend','descend'],
@@ -226,24 +226,24 @@ class BiodataPenandatanganAdminPage extends Component {
               key: 'action',
               render: (data) => (
                 [
-                <Tooltip title="Add">,
+                <Tooltip title="Add">
                   <ButtonDashboard
                       height={20}
                       icon={faInfoCircle}
                       borderRadius="5px"
                       background="#FFA903"
-                      onClick= {()=> this.showAddConfirm(data.telepon,data.nama,data.instansi,data.jabatan)}
-                  />,
+                      onClick= {()=> this.showAddConfirm(data.id_biodata_penandatangan,data.nama,data.instansi,data.jabatan)}
+                  />
                 </Tooltip>,
                 <Divider type="vertical"/>,
-                <Tooltip title="Reject">,
+                <Tooltip title="Reject">
                   <ButtonDashboard
                       height={20}
                       icon={faTrash}
                       borderRadius="5px"
                       background="#FF0303"
-                      onClick= {()=> this.showRejectConfirm(data.telepon,data.nama,data.instansi,data.jabatan)}
-                  />,
+                      onClick= {()=> this.showRejectConfirm(data.id_biodata_penandatangan,data.nama,data.instansi,data.jabatan)}
+                  />
                 </Tooltip>
                 ]
               ),
@@ -252,7 +252,7 @@ class BiodataPenandatanganAdminPage extends Component {
         
         const data =  this.state.penandatangan.map( ({id_biodata_penandatangan, nama, instansi, jabatan,email,telepon}, index) => ({
             no : index+1,
-            nomor : id_biodata_penandatangan,
+            id_biodata_penandatangan : id_biodata_penandatangan,
             nama: nama,
             email : email,
             instansi : instansi,
