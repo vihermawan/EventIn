@@ -164,6 +164,22 @@ class WaitingPage extends Component {
         });
     }
 
+    //function pop up notifikasi
+    showRejectConfirm = (id_penandatangan_sertifikat,nama_panitia) => {
+      confirm({
+          title: `Apakah Yakin untuk menolak sertifikat dari ${nama_panitia} ?`,
+          okText: 'Yes',
+          okType: 'danger',
+          cancelText: 'No',
+          onOk: () => {
+              this.rejectSertifikat(id_penandatangan_sertifikat)
+          },
+          onCancel(){
+              console.log('Cancel')
+          }
+      });
+  }
+
     handleSubmit = (id_penandatangan_sertifikat) => {
         this.setState({loading: true})
         const params = new FormData()
@@ -173,6 +189,19 @@ class WaitingPage extends Component {
             console.log(res)
             if(res.status == 200){
               message.success('Berhasil mengirim sertifikat');
+              this.componentDidMount();   
+              this.setState({loading: false}) 
+            }
+        });
+    }
+
+    rejectSertifikat = (id_penandatangan_sertifikat) => {
+        this.setState({loading: true})
+        API.delete(`/admin/reject-sertifikat/${id_penandatangan_sertifikat}`)
+        .then(res => {
+            console.log(res)
+            if(res.status == 200){
+              message.success('Berhasil menolak sertifikat');
               this.componentDidMount();   
               this.setState({loading: false}) 
             }
@@ -268,6 +297,7 @@ class WaitingPage extends Component {
                       borderRadius="5px"
                       background="#E11212"
                       marginLeft="4px"
+                      onClick = { () => this.showRejectConfirm(data.id_penandatangan_sertifikat,data.nama_panitia)}
                   />
                   </Tooltip>
                 </div>
