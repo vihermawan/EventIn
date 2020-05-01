@@ -28,12 +28,11 @@ class PanitiaPage extends Component {
     }
 
      //get data dari API
-     getRegistEvent=()=>{
+    getRegistEvent=()=>{
         this.setState({loading: true})
         API.get(`/panitia/countRegister`)
         .then(res => {
             console.log('res',res.data)
-            // this.reportChart(res.data.data.event)
             this.setState({
                 registEvent:res.data.data.event,
                 loading: false,

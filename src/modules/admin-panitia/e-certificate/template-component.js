@@ -64,14 +64,15 @@ class TemplateCertificateComponent extends Component {
                                                                 <Row>
                                                                     <Col span={24} style={{ marginTop:'1%' }}>
                                                                         <div>
+                                                                            <a href="http://localhost:8000/download/template.docx" download>
                                                                             <ButtonEdit
                                                                                 text="Download"
                                                                                 height={20}
                                                                                 icon={faInfoCircle}
                                                                                 borderRadius="5px"
                                                                                 background="#4D5AF2"
-                                                                                onClick={getTemplate}
                                                                             />
+                                                                            </a>
                                                                         </div>
                                                                     </Col>
                                                                     <Col span={24} style={{ marginTop:'4%' }}>

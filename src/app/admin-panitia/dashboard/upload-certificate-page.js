@@ -166,15 +166,16 @@ class UploadCertificatePage extends Component {
             render: (data) => (
             [
             <Tooltip title="Detail">
-            <ButtonDashboard
-                height={20}
-                icon={faInfoCircle}
-                borderRadius="5px"
-                background="#FFA903"
-                onClick = {() => this.getFile(data.id_sertifikat,data.sertifikat)}
-            />,
+              <a href={`${data.sertif_URL}`} download>
+                <ButtonDashboard
+                    height={20}
+                    icon={faInfoCircle}
+                    borderRadius="5px"
+                    background="#FFA903"
+                />,
+              </a>
             </Tooltip>,
-            <Divider type="vertical" />,
+            <Divider type="vertical"/>,
             <Tooltip title="Edit">
             <ButtonDashboard
                 height={20}
@@ -197,6 +198,7 @@ class UploadCertificatePage extends Component {
         instansi : penandatangan.instansi,
         jabatan : penandatangan.jabatan,
         sertifikat : sertifikat.sertifikat,
+        sertif_URL : sertifikat.sertif_URL,
         // nama_sertifikat : sertifikat.nama_sertifikat
     }))
     
