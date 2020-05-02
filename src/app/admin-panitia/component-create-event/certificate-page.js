@@ -255,6 +255,8 @@ class CertificatePage extends Component {
 
         params.set('lokasi',venue.lokasi)
         params.set('venue',venue.venue)
+        params.set('id_provinsi'.venue.id_provinsi)
+        params.set('id_kabupaten', venue.id_kabupaten)
 
         params.set('start_event',datetime.start_event)
         params.set('end_event',datetime.end_event)

@@ -21,3 +21,6 @@
     margin-top: -5px;
     /* background-color: red; */
 }
+.select-sertifikat .ant-select-search--inline{
+    margin-top: 5px;
+}

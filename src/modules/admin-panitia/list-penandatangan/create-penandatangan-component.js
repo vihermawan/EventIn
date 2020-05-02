@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Layout, Breadcrumb, Row, Col, Form, Upload,Button, Input, Modal  } from 'antd';
+import { Layout, Breadcrumb, Row, Col, Form, Upload,Button, Input, Modal,Select  } from 'antd';
 import { Link } from 'react-router-dom';
 import '../../../assets/css/dashboard-all/table-style.css'
 import '../../../assets/css/admin-superadmin/detail-event.css'
@@ -11,6 +11,8 @@ import { faUserTie, faEnvelope, faAddressCard, faAddressBook, faStickyNote } fro
 import LoadingNotifContainer from '../../../common/component/loading/loading-notif';
 // constant content
 const { Content } = Layout;
+const { Option } = Select;
+
 const uploadButton = (
     <div>
       {/* {this.state.loading ? <LoadingOutlined /> : <PlusOutlined />} */}
@@ -19,7 +21,7 @@ const uploadButton = (
 );
 class CreatePenandatanganComponent extends Component {
     render() { 
-      const {initialData,handleChange,handleSubmit,uploadGambar,onImageLoaded,onCropComplete,onCropChange,handleOk,handleCancel} = this.props  
+      const {initialData,handleChange,handleSubmit,uploadGambar,onImageLoaded,onCropComplete,onCropChange,handleOk,handleCancel,handleProvinsi,handleKabupaten} = this.props  
       return ( 
         <Content
             style={{
@@ -136,6 +138,56 @@ class CreatePenandatanganComponent extends Component {
                                                             value={initialData.telepon}
                                                             icon={faStickyNote}
                                                         />
+                                                    </div>
+                                                </Col> 
+                                                <Col lg={24} md={24} sm={24}>
+                                                    <div>   
+                                                        <span className="auth-input-label text-black">Provinsi*</span>
+                                                    </div>
+                                                    <div>
+                                                        <Select
+                                                            showSearch
+                                                            placeholder="Pilih Provinsi"
+                                                            optionFilterProp="children"
+                                                            style={{ width: '100%' }}
+                                                            className="select-sertifikat mb-20"
+                                                            onChange={(input, option)=>handleProvinsi(input,option)}
+                                                        >
+                                                            <Option value="">Pilih Provinsi</Option>
+                                                            {
+                                                                initialData.provinsi.map( data =>     
+                                                                    <Option
+                                                                    key={data.provinsi.toString()}
+                                                                    value={data.id_provinsi}
+                                                                    >{data.provinsi}</Option>
+                                                                )
+                                                            }
+                                                        </Select>
+                                                    </div>
+                                                </Col>
+                                                <Col lg={24} md={24} sm={24}>
+                                                    <div>   
+                                                        <span className="auth-input-label text-black">Kabupaten*</span>
+                                                    </div>
+                                                    <div>
+                                                        <Select
+                                                            showSearch
+                                                            placeholder="Pilih Kabupaten"
+                                                            optionFilterProp="children"
+                                                            style={{ width: '100%' }}
+                                                            className="select-sertifikat mb-20"
+                                                            onChange={(input, option)=>handleKabupaten(input,option)}
+                                                        >
+                                                            <Option value="">Pilih Kabupaten</Option>
+                                                            {
+                                                                initialData.kabupaten.map( data =>     
+                                                                    <Option
+                                                                    key={data.kabupaten_kota.toString()}
+                                                                    value={data.id_kabupaten}
+                                                                    >{data.kabupaten_kota}</Option>
+                                                                )
+                                                            }
+                                                        </Select>
                                                     </div>
                                                 </Col>
                                                 <Col lg={24} md={24} sm={24}>

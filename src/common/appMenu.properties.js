@@ -133,6 +133,9 @@ const menu = {
     DETAIL_PANITIA_ADMIN : {
         link :'/admin/list-panitia/detail-panitia'
     },
+    DETAIL_WAITING_SERTIFIKAT_EVENT : {
+        link : '/admin/waiting-list/detail-waiting-list'
+    },
     EDIT_PANITIA_ADMIN : {
         link : '/admin/edit-panitia'
     },
