@@ -155,7 +155,7 @@ class BiodataPenandatanganAdminPage extends Component {
         });
     }
 
-    //add penandatangan
+    //add penandatangan.
     rejectPenandatangan = (id) => {
       const params = {
           id_biodata_penandatangan: id,  
