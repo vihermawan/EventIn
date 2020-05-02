@@ -16,7 +16,7 @@ class DetailComponent extends Component {
     };
 
     render() { 
-        const {initialData,handleCancel,handleOk,showModal} = this.props
+        const {initialData,handleCancel,handleOk,showModal,onStartLoadingHome,onFinishLoadingHome} = this.props
         const datebeginevent = moment(initialData.detailEvent.start_event).format("DD MMMM")
         const dateEndEvent = moment(initialData.detailEvent.end_event).format("DD MMMM YYYY")
         const regisbeginevent = moment(initialData.detailEvent.open_registration).format("DD MMMM")
@@ -51,8 +51,10 @@ class DetailComponent extends Component {
             <Layout className="landing-container">
                 <Navbar
                     navigate={this.props.navigate}
+                    onStartLoadingHome={onStartLoadingHome}
+                    onFinishLoadingHome={onFinishLoadingHome}
                 />
-                <LoadingContainer loading={initialData.loading}>
+                <LoadingContainer loading={initialData.loadingHome}>
                 <Content style={{ overflow: "hidden" }}>
                     <Row style={{minHeight: '100%',marginBottom: '2%',marginTop:'2%'}}>
                         <Col lg={12} md={12} sm={12}>
@@ -65,7 +67,7 @@ class DetailComponent extends Component {
                                     </div>
                                 </Col>
                                 <Col span={24} style={{ marginTop: 2 }}>
-                                    <Countdown className="text-soft-blue title-small title-container-detail" title="Will be held on" value={initialData.detailEvent.start_event} format="M bulan D hari, H-m-s hour" />
+                                    <Countdown className="text-soft-blue title-small title-container-detail" title="Akan diselenggarakan pada" value={initialData.detailEvent.start_event} format="M bulan D hari, H-m-s hour" />
                                 </Col>
                                 <Col span={24}>
                                     <div className="button-detail-1-container">
