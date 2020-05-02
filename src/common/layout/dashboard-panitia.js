@@ -35,6 +35,7 @@ import SwitchWaitingCertificatePage from '../../app/admin-panitia/swtich-page/sw
 import EditEventPage from '../../app/admin-panitia/edit-page/edit-event-page'
 import EditProfilePage from '../../app/admin-panitia/edit-page/edit-profile-page'
 import EditCertificatePage from '../../app/admin-panitia/edit-page/edit-certificate-page'
+import Axios from 'axios';
 
 const { Header, Sider } = Layout;
 const { SubMenu } = Menu;
@@ -83,10 +84,39 @@ class dashboard extends Component {
 
   setTimeOut = () => {
 		setTimeout(function(){localStorage.clear();}, 1000 * 60 * 60 * 24);
-	}
+  }
+  
+  // handleLogout = e => {
+  //     this.setState({loading: true})
+
+  //     let headers = {};
+
+  //     let token = localStorage.getItem("token");
+  //     // console.log('token', token)
+  //     if(token != null)
+  //         headers.Authorization = `Bearer ${token}`;
+      
+  //         // console.log(headers.Authorization)
+  //     let config = {
+  //         headers : headers,
+  //     }
+      
+  //     Axios.get(`http://178.128.208.144/API-EventIn/public/api/auth/logout`, config)
+  //     .then(res => {
+  //         console.log('res',res)
+  //         if(res.status == 200){
+  //             localStorage.clear();
+  //             this.setState({
+  //               loading: false,
+  //             })
+  //             this.props.navigate(CONSTANS.LOGIN_MENU_KEY)
+  //         }
+  //     });
+  // }
   
   handleLogout = e => {
      this.setState({loading: true})
+
       API.get(`/auth/logout`)
       .then(res => {
           console.log('res',res)
@@ -123,7 +153,7 @@ class dashboard extends Component {
                 className="auth-button-logout"
                 style={{borderRadius: '10px',color:'black'}}
                 block={true}
-                onClick={this.handleLogout}
+                onClick={ () => this.handleLogout()}
             />
         </Menu.Item>
       </Menu>

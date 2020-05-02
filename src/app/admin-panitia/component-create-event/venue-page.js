@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import { API } from '../../../common/api'
 import { notification } from 'antd';
 import { navigate } from '../../../common/store/action'
 import * as validation from '../../../common/utils/validation'
@@ -9,10 +10,63 @@ class VenuePage extends Component {
     state = {
        venue:'',
        lokasi : '',
+       provinsi : [],
+       kabupaten : [],
+       kabupten_data :'',
+       id_kabupaten : '',
+       id_provinsi: '',
     }
 
     componentDidMount(){
-        
+        this.getProvinsi();
+        if(this.state.id_kabupaten !== ''){
+            this.getKabupatenData(this.state.id_kabupaten);
+        }
+    }
+
+    getProvinsi = () => {
+        this.setState({loading: true})
+        API.get(`/provinsi`)
+        .then(res => {
+            this.setState({
+                provinsi:res.data.data.provinsi,
+                loading: false,
+            })
+        });
+    }
+
+    getKabupatenData = (id_kabupaten) => {
+        this.setState({loading: true})
+        API.get(`/kabupaten-data/${id_kabupaten}`)
+        .then(res => {
+            console.log('res',res)
+            this.setState({
+                kabupaten:res.data.data.kabupaten,
+                loading: false,
+            })
+        });
+    }
+
+    getKabupaten = (id_provinsi) => {
+        this.setState({loading: true})
+        API.get(`/kabupaten/${id_provinsi}`)
+        .then(res => {
+            this.setState({
+                kabupaten:res.data.data.kabupaten,
+                loading: false,
+            })
+        });
+    }
+    
+    handleProvinsi = (input, option) => {
+        console.log('input', input, 'option', option);
+        this.setState({ id_provinsi: input })  
+        this.getKabupaten(input)
+    }
+
+    handleKabupaten = (input, option) => {
+        console.log('input', input, 'option', option);
+        this.setState({ id_kabupaten: input })  
     }
 
     componentWillMount(){
@@ -22,11 +76,12 @@ class VenuePage extends Component {
             this.setState({
                 venue: data.venue,
                 lokasi: data.lokasi,
+                id_provinsi : data.id_provinsi,
+                id_kabupaten : data.id_kabupaten,
             })
         }
     }
     
-
     handleChange = (e) => {
         let target = e.target.name;
         let value = e.target.value;
@@ -48,27 +103,31 @@ class VenuePage extends Component {
     };
 
     onNext = () => {
-
         if(validation.required(this.state.venue) != null){
             const message = validation.required(this.state.venue);
             this.openNotification(message, 'Tempat Harus Diisi')   
         }else if(validation.required(this.state.lokasi) != null){
             const message = validation.required(this.state.lokasi);
             this.openNotification(message, 'Lokasi Harus Diisi')
+        }else if(validation.required(this.state.id_provinsi) != null){
+            const message = validation.required(this.state.id_provinsi);
+            this.openNotification(message, 'Provinsi Harus Diisi')
+        }else if(validation.required(this.state.id_kabupaten) != null){
+            const message = validation.required(this.state.id_kabupaten);
+            this.openNotification(message, 'Kabupaten Harus Diisi')
         }
         else{
             this.props.next();
             localStorage.setItem('step-3', JSON.stringify(this.state));
         }
-        
     }
+
     onPrev = () => {
         this.props.prev();
         localStorage.setItem('step-3', JSON.stringify(this.state));
     }
   
     render() {
-        
         return ( 
             <VenueComponent
                 initialData={this.state}
@@ -77,6 +136,8 @@ class VenuePage extends Component {
                 handleTempat = {this.handleTempat}
                 onNext={this.onNext}
                 onPrev={this.onPrev}
+                handleProvinsi = {this.handleProvinsi}
+                handleKabupaten = {this.handleKabupaten}
             />
         );
     }

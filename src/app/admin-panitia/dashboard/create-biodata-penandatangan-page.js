@@ -14,6 +14,10 @@ class CreateBiodataPenandatanganPage extends Component {
        jabatan: '',
        instansi : '',
        nip : '',
+       id_provinsi: '',
+       id_kabupaten : '',
+       provinsi : [],
+       kabupaten : [],
        profile_picture: null,
        picture: null,
        loading : false,
@@ -26,6 +30,45 @@ class CreateBiodataPenandatanganPage extends Component {
         aspect: 1 / 1,
       },
       croppedImageUrl : '',
+    }
+
+    componentDidMount(){
+        this.getProvinsi();
+    }
+
+    getProvinsi = () => {
+        this.setState({loading: true})
+        API.get(`/provinsi`)
+        .then(res => {
+            console.log('res',res.data.data.provinsi)
+            this.setState({
+                provinsi:res.data.data.provinsi,
+                loading: false,
+            })
+        });
+    }
+
+    getKabupaten = (id_provinsi) => {
+        this.setState({loading: true})
+        API.get(`/kabupaten/${id_provinsi}`)
+        .then(res => {
+            console.log('res',res)
+            this.setState({
+                kabupaten:res.data.data.kabupaten,
+                loading: false,
+            })
+        });
+    }
+
+    handleProvinsi = (input, option) => {
+        console.log('input', input, 'option', option);
+        this.setState({ id_provinsi: input })  
+        this.getKabupaten(input)
+    }
+
+    handleKabupaten = (input, option) => {
+        console.log('input', input, 'option', option);
+        this.setState({ id_kabupaten: input })  
     }
 
     handleChange = (e) => {
@@ -223,7 +266,9 @@ class CreateBiodataPenandatanganPage extends Component {
         params.set('nip',this.state.nip)
         params.set('instansi',this.state.instansi)
         params.set('telepon',this.state.telepon)
-        
+        params.set('id_provinsi',this.state.id_provinsi)
+        params.set('id_kabupaten', this.state.id_kabupaten)
+
         console.log('params', params)
 
         if(validation.required(this.state.nama) != null){
@@ -244,6 +289,12 @@ class CreateBiodataPenandatanganPage extends Component {
         }else if(validation.required(this.state.telepon) != null){
             const message = validation.required(this.state.telepon)  
             this.openNotification(message, 'Nomor Telepon belum dimasukkan')
+        }else if(validation.required(this.state.id_provinsi) != null){
+            const message = validation.required(this.state.id_provinsi)  
+            this.openNotification(message, 'Provinsi belum dimasukkan')
+        }else if(validation.required(this.state.id_kabupaten) != null){
+            const message = validation.required(this.state.id_kabupaten)  
+            this.openNotification(message, 'Kabupaten belum dimasukkan')
         }else{
             this.setState({loading: true})
             this.showModal2();
@@ -275,6 +326,8 @@ class CreateBiodataPenandatanganPage extends Component {
                 onImageLoaded={this.onImageLoaded}
                 onCropComplete={this.onCropComplete}
                 onCropChange={this.onCropChange}
+                handleProvinsi = {this.handleProvinsi}
+                handleKabupaten = {this.handleKabupaten}
             />
         );
     }
