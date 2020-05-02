@@ -203,7 +203,7 @@ class dashboard extends Component {
                               icon={faPen}
                               style={{marginRight: 10}}
                           /> 
-                          <span className={hidden}>Create Event</span>
+                          <span className={hidden}>Buat Event</span>
                         </NavLink>
                       </Menu.Item>
                       <Menu.Item key="active-event" onClick={this.clickedMenu}>
@@ -212,7 +212,7 @@ class dashboard extends Component {
                               icon={faCalendarCheck}
                               style={{marginRight: 10}}
                           /> 
-                          <span className={hidden}>Active Event</span>
+                          <span className={hidden}>Event Berjalan</span>
                         </NavLink>
                       </Menu.Item>
                       <Menu.Item key="history-event" onClick={this.clickedMenu}>
@@ -243,7 +243,7 @@ class dashboard extends Component {
                               icon={faUserTie}
                               style={{marginRight: 10}}
                           /> 
-                          <span className={hidden}>List Signer</span>
+                          <span className={hidden}> Penandatangan</span>
                         </NavLink>
                       </Menu.Item>
                       <SubMenu
@@ -265,12 +265,12 @@ class dashboard extends Component {
                       </Menu.Item>
                       <Menu.Item key="waiting-certificate-event"  onClick={this.clickedMenu}>
                         <NavLink to="/dashboard/waiting-certificate-event">
-                          <span>Waiting</span>
+                          <span>Menunggu</span>
                         </NavLink>
                       </Menu.Item>
                       <Menu.Item key="received-certificate-event"  onClick={this.clickedMenu}>
                         <NavLink to="/dashboard/received-certificate-event">
-                          <span>Received</span>
+                          <span>Selesai</span>
                         </NavLink>
                       </Menu.Item>
                     </SubMenu>
@@ -301,7 +301,7 @@ class dashboard extends Component {
                               icon={faUserFriends}
                               style={{marginRight: 10}}
                           /> 
-                          <span className={hidden}>List Participant</span>
+                          <span className={hidden}>Daftar Pendaftar</span>
                         </NavLink>
                       </Menu.Item>
                       <div className="title-dashboard">

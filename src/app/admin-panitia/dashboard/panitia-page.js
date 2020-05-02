@@ -17,6 +17,7 @@ class PanitiaPage extends Component {
         instagram : '',
         total_event : '',
         total_certificate : '',
+        total_regis : '',
         registEvent: [],
     }
 
@@ -25,6 +26,7 @@ class PanitiaPage extends Component {
         this.getCertificate();
         this.getEventPast();
         this.getRegistEvent();
+        this.getEventRegistbyToday();
     }
 
      //get data dari API
@@ -118,6 +120,18 @@ class PanitiaPage extends Component {
         .then(res => {
           this.setState({
             total_event:res.data.size,
+            loading: false,
+          })
+        });
+    }
+
+    getEventRegistbyToday = () =>{
+        this.setState({loading: true})
+        API.get(`/panitia/count-regis-byToday`)
+        .then(res => {
+        console.log(res)
+          this.setState({
+            total_regis:res.data.data.peserta,
             loading: false,
           })
         });

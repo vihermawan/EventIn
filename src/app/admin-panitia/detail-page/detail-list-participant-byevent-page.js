@@ -2,7 +2,8 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { API } from '../../../common/api'
 import { navigate } from '../../../common/store/action'
-import { Modal, message, Tag, Divider, Tooltip } from 'antd'
+import  * as Highlighter from 'react-highlight-words';
+import { Tooltip,Button, Input, Icon  } from 'antd'
 import { faInfoCircle } from '@fortawesome/free-solid-svg-icons' 
 import ButtonDashboard from '../../../common/component/button/button-dashboard';
 import DetailListParticipantbyEvent from '../../../modules/admin-panitia/detail-list-participant-byEvent/detail-list-participant-byEvent-cpmponent';
@@ -16,6 +17,72 @@ class DetailListParticipantbyEventPage extends Component {
     componentDidMount(){
         this.getListPesertabyEvent(this.props.idEvent)
     }
+
+    getColumnSearchProps = dataIndex => ({
+        filterDropdown: ({ setSelectedKeys, selectedKeys, confirm, clearFilters }) => (
+          <div style={{ padding: 8 }}>
+            <Input
+              ref={node => {
+                this.searchInput = node;
+              }}
+              placeholder={`Search ${dataIndex}`}
+              value={selectedKeys[0]}
+              onChange={e => setSelectedKeys(e.target.value ? [e.target.value] : [])}
+              onPressEnter={() => this.handleSearch(selectedKeys, confirm, dataIndex)}
+              style={{ width: 188, marginBottom: 8, display: 'block' }}
+            />
+            <Button
+              type="primary"
+              onClick={() => this.handleSearch(selectedKeys, confirm, dataIndex)}
+              icon="search"
+              size="small"
+              style={{ width: 90, marginRight: 8 }}
+            >
+              Search
+            </Button>
+            <Button onClick={() => this.handleReset(clearFilters)} size="small" style={{ width: 90 }}>
+              Reset
+            </Button>
+          </div>
+        ),
+        filterIcon: filtered => (
+          <Icon type="search" style={{ color: filtered ? '#1890ff' : undefined }} />
+        ),
+        onFilter: (value, record) =>
+          record[dataIndex]
+            .toString()
+            .toLowerCase()
+            .includes(value.toLowerCase()),
+        onFilterDropdownVisibleChange: visible => {
+          if (visible) {
+            setTimeout(() => this.searchInput.select());
+          }
+        },
+        render: text =>
+          this.state.searchedColumn === dataIndex ? (
+            <Highlighter
+              highlightStyle={{ backgroundColor: '#ffc069', padding: 0 }}
+              searchWords={[this.state.searchText]}
+              autoEscape
+              textToHighlight={text.toString()}
+            />
+          ) : (
+            text
+          ),
+    });
+
+    handleSearch = (selectedKeys, confirm, dataIndex) => {
+        confirm();
+        this.setState({
+          searchText: selectedKeys[0],
+          searchedColumn: dataIndex,
+        });
+    };
+    
+    handleReset = clearFilters => {
+        clearFilters();
+        this.setState({ searchText: '' });
+    };
 
     //get data dari API
     getListPesertabyEvent=(id_event)=>{
@@ -38,51 +105,50 @@ class DetailListParticipantbyEventPage extends Component {
                 dataIndex: 'no',
                 key: 'no',
                 render: text => <a>{text}</a>,
+                sorter: (a, b) => a.no - b.no,
+                sortDirections: ['ascend','descend'],
             },
             {
                 title: 'Nama Peserta',
                 dataIndex: 'nama_peserta',
                 key: 'nama_peserta',
-                render: text => <a>{text}</a>,
-                onFilter: (value, record) => record.nama_event.indexOf(value) === 0,
-                sorter: (a, b) => a.nama_event.length - b.nama_event.length,
-                sortDirections: ['descend'],
+                ...this.getColumnSearchProps('nama_event'),
             },
             {
                 title: 'Organisasi',
                 dataIndex: 'organisasi',
                 key: 'organisasi',
+                ...this.getColumnSearchProps('organisasi'),
             },
             {
                 title: 'Email',
                 dataIndex: 'email',
                 key: 'email',
+                ...this.getColumnSearchProps('email'),
             },
             {
                 title: 'Jenis Kelamin',
                 dataIndex: 'jenis_kelamin',
                 key: 'jenis_kelamin',
+                ...this.getColumnSearchProps('jenis_kelamin'),
             },
             {
                 title: 'Pekerjaan',
                 dataIndex: 'pekerjaan',
                 key: 'pekerjaan',
-              },
+                ...this.getColumnSearchProps('pekerjaan'),
+            },
             {
-              title: 'Action',
-              key: 'action',
-              render: (data) => (
-                [
-                <Tooltip title="Detail">
-                <ButtonDashboard
-                    height={20}
-                    icon={faInfoCircle}
-                    borderRadius="5px"
-                    background="#FFA903"
-                    onClick={ () => this.onAbsentParticipant(data.nomor)}
-                />,
-                </Tooltip>,]
-              ),
+                title: 'Umur',
+                dataIndex: 'umur',
+                key: 'umur',
+                ...this.getColumnSearchProps('umur'),
+            },
+            {
+                title: 'Nomor Telepon',
+                dataIndex: 'telepon',
+                key: 'telepon',
+                ...this.getColumnSearchProps('telepon'),
             },
           ];
 
@@ -96,7 +162,8 @@ class DetailListParticipantbyEventPage extends Component {
             umur : peserta.umur,
             nama_event : event.nama_event,
             email : peserta.users.email,
-            no_telefon : peserta.no_telefon
+            umur : peserta.umur,
+            telepon : peserta.telepon
         }))
         
 

@@ -7,10 +7,8 @@ import '../../../assets/css/dashboard-all/table-style.css'
 // component
 import TableProfile from '../../../common/component/table/table'
 import LoadingContainer from '../../../common/component/loading/loading-container'
-import ButtonDashboard from '../../../common/component/button/button-dashboard';
-import { faUserPlus, faDownload } from '@fortawesome/free-solid-svg-icons';
-
-
+import { faDownload } from '@fortawesome/free-solid-svg-icons';
+import ButtonEdit from '../../../common/component/button/button-edit';
 
 // constant content
 const { Content } = Layout;
@@ -32,8 +30,8 @@ class DetailListParticipantbyEventComponent extends Component {
                 }}
             >
                 <Breadcrumb separator=">">
-                    <Breadcrumb.Item><Link to='/dashboard/active-event'>Dashboard Active Event</Link></Breadcrumb.Item>
-                    <Breadcrumb.Item>Dashboard List Participant by Event</Breadcrumb.Item>
+                    <Breadcrumb.Item><Link to='/dashboard/active-event'>Dashboard Event Berjalan</Link></Breadcrumb.Item>
+                    <Breadcrumb.Item>Dashboard Daftar Peserta Sesuai Event</Breadcrumb.Item>
                 </Breadcrumb>
 
                 <Row style={{minHeight: '100%',marginBottom: '2%',marginTop:'2%',}} className="background">
@@ -43,13 +41,13 @@ class DetailListParticipantbyEventComponent extends Component {
                             <Row>
                                 <Col lg={19} md={12} sm={12} xs={24}>
                                     <div className="container-title-event">
-                                        <span>List Participant by Event</span>
+                                        <span>Daftar Peserta Sesuai Event</span>
                                     </div>
                                 </Col>
                                 <Col lg={5} md={12} sm={12} xs={24}>
                                     <div className="button-add">
                                         <ExcelFile filename="List Peserta Event" element={
-                                            <ButtonDashboard
+                                            <ButtonEdit
                                                     text="Download List Peserta"
                                                     height={20}
                                                     icon={faDownload}
