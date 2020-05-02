@@ -24,7 +24,7 @@ class ActiveEventComponent extends Component {
                 }}
             >
                 <Breadcrumb separator=">">
-                    <Breadcrumb.Item><Link to='/dashboard/active-event'>Dashboard Active Event</Link></Breadcrumb.Item>
+                    <Breadcrumb.Item><Link to='/dashboard/active-event'>Dashboard Event Berjalan</Link></Breadcrumb.Item>
                 </Breadcrumb>
 
                 <Row style={{minHeight: '100%',marginBottom: '2%',marginTop:'2%',}} className="background">
@@ -32,7 +32,7 @@ class ActiveEventComponent extends Component {
                         <div className="container-active-event">
                             <Row>
                             <div className="container-title-event">
-                                <span>Active Event</span>
+                                <span>Event Berjalan</span>
                             </div>
                             </Row>
                             <LoadingContainer loading={initialData.loading}>

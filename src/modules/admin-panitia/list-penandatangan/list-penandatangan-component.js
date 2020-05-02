@@ -23,7 +23,7 @@ class ListPenandatanganComponent extends Component {
                 }}
             >
                 <Breadcrumb separator=">">
-                    <Breadcrumb.Item>Dashboard List Penandatangan</Breadcrumb.Item>
+                    <Breadcrumb.Item>Dashboard Daftar Penandatangan Sertifikat</Breadcrumb.Item>
                 </Breadcrumb>
                 <Row style={{minHeight: '100%',marginBottom: '2%',marginTop:'2%',}} className="background">
                     <Col lg={24} md={24} sm={24}> 
@@ -32,7 +32,7 @@ class ListPenandatanganComponent extends Component {
                             <Row>
                                 <Col lg={19} md={12} sm={12} xs={24}>
                                     <div className="container-title-event">
-                                        <span>List Penandatangan</span>
+                                        <span>Daftar Penandatangan Sertifikat</span>
                                     </div>
                                 </Col>
                                 <Col lg={5} md={12} sm={12} xs={24}>

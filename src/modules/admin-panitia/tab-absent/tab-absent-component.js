@@ -26,8 +26,8 @@ class TabAbsentComponent extends Component {
                 }}
             >
                  <Breadcrumb separator=">">
-                    <Breadcrumb.Item><Link to='/dashboard/active-event'>Dashboard Active Event</Link></Breadcrumb.Item>
-                    <Breadcrumb.Item>Dashboard Participant Event</Breadcrumb.Item>
+                    <Breadcrumb.Item><Link to='/dashboard/active-event'>Dashboard Event Berjalan</Link></Breadcrumb.Item>
+                    <Breadcrumb.Item>Dashboard Daftar Peserta Event</Breadcrumb.Item>
                 </Breadcrumb>
 
                 <Row style={{minHeight: '100%',marginBottom: '2%',marginTop:'2%',}} className="background">
@@ -35,7 +35,7 @@ class TabAbsentComponent extends Component {
                         <div className="container-active-event-absent">
                             <Row className="nav-absent">
                                 <div className="container-title-event">
-                                    <span>Absent Participant</span>
+                                    <span>Absen Peserta</span>
                                 </div>
                             </Row>
                             <Row className="table-absent">
@@ -48,10 +48,9 @@ class TabAbsentComponent extends Component {
                                                 icon={faHourglass}
                                                 style={{marginRight: 10}}
                                             /> 
-                                            Before Absent 
+                                            Belum Absen
                                         </span>}
                                         key="1"
-                                        style={{backgroundColor:'yellow'}}
                                         onChange={{componentDidMount}}
                                     >
                                         <AbsentParticipant/> 
@@ -63,7 +62,7 @@ class TabAbsentComponent extends Component {
                                             icon={faCheckCircle}
                                             style={{marginRight: 10}}
                                         />     
-                                        Done Absent 
+                                        Sudah Absen
                                     </span>}
                                     key="2"
                                     onChange={{componentDidMount}}

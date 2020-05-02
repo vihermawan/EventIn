@@ -12,7 +12,6 @@ class VenuePage extends Component {
        lokasi : '',
        provinsi : [],
        kabupaten : [],
-       kabupten_data :'',
        id_kabupaten : '',
        id_provinsi: '',
     }
