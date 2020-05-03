@@ -21,6 +21,7 @@ import AboutPage from '../../app/about/about-page'
 import SwitchPage from '../../app/list-event/switch-event-page'
 import DashboardAdminPage from '../../common/layout/dashboard-admin'
 import DashboardPenandatanganPage from '../../common/layout/dashboard-penandatangan'
+import EditPasswordPage from '../../app/profile/edit-password-page'
 import SetPasswordPage from '../../app/set-password/set-password-page'
 import ForgotPasswordPage from '../../app/forgot-password/forgot-password-page'
 
@@ -43,6 +44,7 @@ const routeSources = [
     { component: EditProfilePage, path: `${baseUrl}/edit-profile`, exact: true ,private: true, role: 3},
     { component: SwitchPage, path: `${baseUrl}/list-event`, exact: true ,private: true, role: 3},
     { component: AboutPage, path: `${baseUrl}/about`, exact: false,private: true, role: 3},
+    { component: EditPasswordPage, path: `${baseUrl}/edit-password`, exact: false,private: true, role: 3},
     //panitia
     { component: DashboardPanitiaPage, path: `${baseUrl}/dashboard`, exact: false ,private: true, role: 2},
     //penandatangan

@@ -31,6 +31,9 @@ const menu = {
     EDIT_PROFILE : {
         link : '/edit-profile'
     },
+    EDIT_PASSWORD : {
+        link : '/edit-password'
+    },
     REGISTER_PESERTA : {
         link : '/register-peserta'
     },
@@ -85,7 +88,10 @@ const menu = {
         link : '/dashboard/create-biodata-penandatangan',
     },
     EDIT_PROFILE_PANITIA : {
-        link : '/dashboard/edit-profile',
+        link : '/dashboard/profile/edit-profile',
+    },
+    EDIT_PASSWORD_PANITIA : {
+        link : '/dashboard/profile/edit-password'
     },
    
     DETAIL_EVENT_PARTICIPANT_PANITIA : {
@@ -114,9 +120,6 @@ const menu = {
     },  
     EDIT_PROFILE_PESERTA: {
         link : '/admin/edit-peserta',
-    },
-    EDIT_PROFILE_SIGNER : {
-        link : '/signer/edit-profile'
     },
     DETAIL_EVENT_ADMIN: {
         link:'/admin/detail-event'
@@ -156,6 +159,12 @@ const menu = {
     DETAIL_SERTIF_SIGNER: {
         link : '/signer/detail/e-certificate'
     },
+    EDIT_PROFILE_SIGNER : {
+        link : '/signer/profile/edit-profile'
+    },
+    EDIT_PASSWORD_SIGNER : {
+        link : '/signer/profile/edit-password'
+    }
    
 };
 

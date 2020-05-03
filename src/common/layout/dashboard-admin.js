@@ -66,7 +66,7 @@ class Admin extends Component {
 
   handleLogout = () => {
     this.setState({loading: true})
-     API.get(`/auth/logout`)
+     API.post(`/auth/logout`)
      .then(res => {
          console.log('res',res)
          if(res.status == 200){

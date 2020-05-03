@@ -42,6 +42,11 @@ class ProfilePage extends Component {
       this.props.navigate(CONSTANS.EDIT_PROFILE_MENU_KEY)
     }
 
+    onEditPassword = (id_users) => {
+        this.props.setIdUsers(id_users)
+        this.props.navigate(CONSTANS.EDIT_PASSWORD_MENU_KEY)
+    }
+
     render() { 
 
         const dataProfile =  this.state.user.map( ({id_users, email, peserta}, index) => ({
@@ -63,6 +68,7 @@ class ProfilePage extends Component {
                 onEditPeserta = {this.onEditPeserta}
                 onStartLoadingHome={this.onStartLoadingHome}
                 onFinishLoadingHome={this.onFinishLoadingHome}
+                onEditPassword = {this.onEditPassword}
             />
         );
     }
