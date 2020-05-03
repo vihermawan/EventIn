@@ -102,7 +102,7 @@ class PanitiaComponent extends Component {
                                             </div>
                                             </LoadingContainer>
                                             <div className="title-info-card">
-                                                <span>Sertfiikat</span>
+                                                <span>Sertfiikat Selesai</span>
                                             </div>
                                         </div>
                                     </Col>

@@ -19,6 +19,7 @@ import ProfileSignerPage from '../../app/admin-signer/dashboard/profile-page'
 import LoadingContainer from '../../common/component/loading/loading-container'
 import DetailSertifPage from '../../app/admin-signer/detail-page/detail-sertif-page'
 import EditProfilePage from '../../app/admin-signer/edit-page/edit-profile-page'
+import EditPasswordSignerPage from '../../app/admin-signer/edit-page/edit-password-penandatangan-page'
 
 const { Header, Sider, Content } = Layout;
 
@@ -67,7 +68,7 @@ class signer extends Component {
 
   handleLogout = e => {
     this.setState({loading: true})
-    API.get(`/auth/logout`)
+    API.post(`/auth/logout`)
     .then(res => {
         console.log('res',res)
         if(res.status == 200){
@@ -243,9 +244,14 @@ class signer extends Component {
                       render={ (props) => <ProfileSignerPage {...props}/> }
                   />
                    <Route
-                      path='/signer/edit-profile'
+                      path='/signer/profile/edit-profile'
                       exact
                       render={ (props) => <EditProfilePage {...props}/> }
+                  />
+                  <Route
+                      path='/signer/profile/edit-password'
+                      exact
+                      render={ (props) => <EditPasswordSignerPage {...props}/> }
                   />
                 </Layout>
         </Layout>

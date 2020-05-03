@@ -231,7 +231,6 @@ class KategoriMasterPage extends Component {
         });
     };
 
-
     render() { 
         const columns = [
             {

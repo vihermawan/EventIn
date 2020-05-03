@@ -12,18 +12,63 @@ am4core.useTheme(am4themes_animated);
 class AdminPage extends Component {
     state = {  
         januari : [],
+        total_peserta: '',
+        total_panitia: '',
+        total_sertifikat : '',
+        total_event :'',
+        loading: false,
     }
 
     componentDidMount () {
         this.getEventbyMonth();
+        this.getAllPeserta();
+        this.getAllPanitia();
+        this.getAllSertifikat();
+        this.getAllEvent();
     }
 
     getEventbyMonth = () => {
         this.setState({loading: true})
         API.get(`/admin/count-event`)
         .then(res => {
-            console.log('res',res.data.data)
+            // console.log('res',res.data.data)
             this.reportChart(res.data.data)
+        });
+    }
+
+    getAllPeserta = () => {
+        this.setState({loading: true})
+        API.get(`/admin/count-peserta`)
+        .then(res => {
+            console.log('res',res.data.data.user)
+            this.setState({total_peserta : res.data.data.user})
+        });
+    }
+
+    getAllPanitia = () => {
+        this.setState({loading: true})
+        API.get(`/admin/count-panitia`)
+        .then(res => {
+            console.log('res',res.data.data.user)
+            this.setState({total_panitia : res.data.data.user})
+        });
+    }
+
+    getAllSertifikat = () => {
+        this.setState({loading: true})
+        API.get(`/admin/count-sertifikat`)
+        .then(res => {
+            console.log('res',res.data.data.sertifikat)
+            this.setState({total_sertifikat : res.data.data.sertifikat})
+        });
+    }
+
+    getAllEvent = () => {
+        this.setState({loading: true})
+        API.get(`/admin/count-all-event`)
+        .then(res => {
+            console.log('res',res.data.data.event)
+            this.setState({total_event : res.data.data.event})
         });
     }
 
@@ -64,6 +109,7 @@ class AdminPage extends Component {
         return ( 
             <AdminComponent
                 navigate={this.props.navigate}
+                initialData = {this.state}
             />
         );
     }

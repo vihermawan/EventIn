@@ -7,27 +7,6 @@ const initialState = {
 };
 
 const handler = (currentState) => {
-    const getDataParticipant = {
-        startGetDataParticipant: () => ({
-            ...currentState,
-        }),
-        finishGetDataParticipant: () => ({
-            ...currentState,
-        }),
-        setDataParticipant: data => ({
-            ...currentState,
-            data: data
-        }),
-    };
-
-
-
-    // const setNamaUser = {
-    //     setNamaDataUser : data => ({
-    //         ...currentState,
-    //         namaUser: data
-    //     })
-    // }
 
     const getNamaUser = {
         getNamaDataUser : data => ({

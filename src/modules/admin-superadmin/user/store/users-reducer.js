@@ -7,20 +7,6 @@ const initialState = {
 };
 
 const handler = (currentState) => {
-    const getDataParticipant = {
-        startGetDataParticipant: () => ({
-            ...currentState,
-            loading: true,
-        }),
-        finishGetDataParticipant: () => ({
-            ...currentState,
-            loading: false,
-        }),
-        setDataParticipant: data => ({
-            ...currentState,
-            data: data
-        }),
-    };
     const setIdUsers = {
         setIdDataUsers : data => ({
             ...currentState,
