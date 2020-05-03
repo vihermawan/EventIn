@@ -238,7 +238,6 @@ class CertificatePage extends Component {
         const biaya = JSON.parse(localStorage.getItem('step-2'));
         const venue = JSON.parse(localStorage.getItem('step-3'));
         const datetime = JSON.parse(localStorage.getItem('step-4'));
-
         params.set('nama_event',basic_info.nama)
         params.set('deskripsi_event',basic_info.description)
         params.set('organisasi',basic_info.organisasi)
@@ -255,6 +254,8 @@ class CertificatePage extends Component {
 
         params.set('lokasi',venue.lokasi)
         params.set('venue',venue.venue)
+        params.set('id_provinsi',venue.id_provinsi)
+        params.set('id_kabupaten', venue.id_kabupaten)
 
         params.set('start_event',datetime.start_event)
         params.set('end_event',datetime.end_event)

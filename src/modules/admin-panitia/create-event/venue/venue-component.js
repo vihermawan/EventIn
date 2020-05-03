@@ -7,13 +7,11 @@ import { faMapMarker } from '@fortawesome/free-solid-svg-icons';
 
 const { Content } = Layout;
 const { Option } = Select;
-const AnyReactComponent = ({ text }) => <div>{text}</div>;
-const Balloon = () => <img width="25" src='http://speedwaymiracletournament.com/Images/cmnh-logo-no-text.png'/>;
+
 class VenueComponent extends Component{
     render(){
-        const {initialData, handleChange,handleTempat, onNext, onPrev } = this.props;
-        return (
-            
+        const {initialData, handleChange,handleTempat, onNext, onPrev, handleProvinsi, handleKabupaten } = this.props;
+        return (  
             <Layout className="login-container">
                  <Content style={{ overflow: "hidden", backgroundColor :"white" }}>
                     <div>
@@ -23,25 +21,79 @@ class VenueComponent extends Component{
                                     <Col lg={24} md={24} sm={24}>
                                         <div className="form-section-5">
                                             <div>   
-                                                <span className="auth-input-label text-black">Tempat*</span>
+                                                <span className="auth-input-label text-black">Ruangan*</span>
                                             </div>
                                             <div>
                                                 <Select
                                                     labelInValue
                                                     defaultValue={{ key: String(initialData.venue) }}
                                                     style={{ width: '103%' }}
-                                                    className="select-kategori"
+                                                    className="select-kategori mb-20"
                                                     onChange={handleTempat}
                                                 >
-                                                    <Option value="">Pilih Tempat</Option>
+                                                    <Option value="">Pilih Ruangan</Option>
                                                     <Option value="Terbuka">Terbuka</Option>
                                                     <Option value="Tertutup">Tertutup</Option>
-                                                </Select>,
+                                                </Select>
                                             </div>
                                         </div>
                                     </Col>
-                                </Row>
-                                <Row style={{marginTop:'20px'}}>
+                                    <Col lg={24} md={24} sm={24}>
+                                        <div className="form-section-5">
+                                            <div>   
+                                                <span className="auth-input-label text-black">Provinsi*</span>
+                                            </div>
+                                            <div>
+                                            <Select
+                                                showSearch
+                                                placeholder="Pilih Provinsi"
+                                                optionFilterProp="children"
+                                                style={{ width: '103%' }}
+                                                className="select-sertifikat mb-20"
+                                                value={initialData.id_provinsi}
+                                                onChange={(input, option)=>handleProvinsi(input,option)}
+                                            >
+                                                <Option value="">Pilih Provinsi</Option>
+                                                {
+                                                    initialData.provinsi.map( data =>     
+                                                        <Option
+                                                        key={data.provinsi.toString()}
+                                                        value={data.id_provinsi}
+                                                        >{data.provinsi}</Option>
+                                                    )
+                                                }
+                                            </Select>
+                                            </div>
+                                        </div>
+                                    </Col>
+                                    <Col lg={24} md={24} sm={24}>
+                                        <div className="form-section-5" style={initialData.id_provinsi === '' ? {display:"none"}:{display:"block"}}>
+                                            <div>   
+                                                <span className="auth-input-label text-black">Kabupaten*</span>
+                                            </div>
+                                            <div>
+                                            <Select
+                                                showSearch
+                                                placeholder="Pilih Kabupaten"
+                                                optionFilterProp="children"
+                                                style={{ width: '103%' }}
+                                                className="select-sertifikat mb-20"
+                                                value={initialData.id_kabupaten}
+                                                onChange={(input, option)=>handleKabupaten(input,option)}
+                                            >
+                                                <Option value="">Pilih Kabupaten</Option>
+                                                {
+                                                    initialData.kabupaten.map( data =>     
+                                                        <Option
+                                                        key={data.kabupaten_kota.toString()}
+                                                        value={data.id_kabupaten}
+                                                        >{data.kabupaten_kota}</Option>
+                                                    )
+                                                }
+                                            </Select>
+                                            </div>
+                                        </div>
+                                    </Col>
                                     <Col lg={24} md={24} sm={24}>
                                         <div>   
                                             <span className="auth-input-label text-black">Tempat Event*</span>
@@ -50,7 +102,7 @@ class VenueComponent extends Component{
                                             <InputForm
                                                 name='lokasi'
                                                 placeholder="Masukan lokasi event...."
-                                                className="input-location-event mt-5 mb-20"
+                                                className="input-location-event mb-20"
                                                 iconType="lock"
                                                 onChange={handleChange}
                                                 value={initialData.lokasi}
@@ -59,7 +111,6 @@ class VenueComponent extends Component{
                                         </div>
                                     </Col>
                                 </Row>
-                              
                             </div>
                             <div className="steps-action">
                                 <Button

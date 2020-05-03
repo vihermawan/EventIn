@@ -7,17 +7,14 @@ import '../../../assets/css/dashboard-all/table-style.css'
 // component
 import TableProfile from '../../../common/component/table/table'
 import LoadingContainer from '../../../common/component/loading/loading-container'
-import ButtonDashboard from '../../../common/component/button/button-dashboard';
-import { faUserPlus, faDownload } from '@fortawesome/free-solid-svg-icons';
-
-
+import { faDownload } from '@fortawesome/free-solid-svg-icons';
+import ButtonEdit from '../../../common/component/button/button-edit';
 
 // constant content
 const { Content } = Layout;
 const ExcelFile = ReactExport.ExcelFile;
 const ExcelSheet = ReactExport.ExcelFile.ExcelSheet;
 const ExcelColumn = ReactExport.ExcelFile.ExcelColumn;
-
 
 class DetailListParticipantbyHistoryEventComponent extends Component {
     render() { 
@@ -49,7 +46,7 @@ class DetailListParticipantbyHistoryEventComponent extends Component {
                                 <Col lg={5} md={12} sm={12} xs={24}>
                                     <div className="button-add">
                                         <ExcelFile filename="List Peserta Event" element={
-                                            <ButtonDashboard
+                                            <ButtonEdit
                                                     text="Download List Peserta"
                                                     height={20}
                                                     icon={faDownload}

@@ -52,7 +52,7 @@ class DetailEventComponent extends Component {
                 }}
             >
                 <Breadcrumb separator=">">
-                    <Breadcrumb.Item><Link to='/dashboard/active-event'>Dashboard Active Event</Link></Breadcrumb.Item>
+                    <Breadcrumb.Item><Link to='/dashboard/active-event'>Dashboard Event Berjalan</Link></Breadcrumb.Item>
                     <Breadcrumb.Item>Dashboard Detail Event</Breadcrumb.Item>
                 </Breadcrumb>
 
