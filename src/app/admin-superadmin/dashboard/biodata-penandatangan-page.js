@@ -118,7 +118,7 @@ class BiodataPenandatanganAdminPage extends Component {
         });
     }
 
-     //function untuk modal
+     //function untuk modal..
      showRejectConfirm = (id,nama,jabatan,instansi) => {
       confirm({
           title: `Yakin untuk menolak ${nama} ${jabatan} ${instansi} sebagai penandatangan ?`,
