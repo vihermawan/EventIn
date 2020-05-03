@@ -21,7 +21,7 @@ class AdminComponent extends Component {
                 }}
             >
                 <Breadcrumb separator=">">
-                    <Breadcrumb.Item>Dashboard Panitia</Breadcrumb.Item>
+                    <Breadcrumb.Item>Dashboard Admin</Breadcrumb.Item>
                 </Breadcrumb>
                 <Row style={{minHeight: '100%',marginBottom: '2%',marginTop:'2%',}} className="background">
                     <Col lg={24}>
@@ -41,7 +41,7 @@ class AdminComponent extends Component {
                                             <Col lg={16} md={12} sm={12}>
                                                 <div className="desc-card-dashboard-admin">
                                                     <LoadingContainer loading={initialData.loading}>
-                                                        <div className="title-total-card-admin">
+                                                        <div className="title-total-card-admin"  style={{minHeight:"105px"}}>
                                                             <span>{initialData.total_peserta}</span>
                                                         </div>
                                                     </LoadingContainer>
@@ -74,7 +74,7 @@ class AdminComponent extends Component {
                                             <Col lg={16} md={12} sm={12}>
                                                 <div className="desc-card-dashboard-admin">
                                                     <LoadingContainer loading={initialData.loading}>
-                                                        <div className="title-total-card-admin">
+                                                        <div className="title-total-card-admin"  style={{minHeight:"105px"}}>
                                                             <span>{initialData.total_panitia}</span>
                                                         </div>
                                                     </LoadingContainer>
@@ -107,7 +107,7 @@ class AdminComponent extends Component {
                                             <Col lg={16} md={12} sm={12}>
                                                 <div className="desc-card-dashboard-admin">
                                                     <LoadingContainer loading={initialData.loading}>
-                                                        <div className="title-total-card-admin">
+                                                        <div className="title-total-card-admin"  style={{minHeight:"105px"}}>
                                                             <span>{initialData.total_sertifikat}</span>
                                                         </div>
                                                     </LoadingContainer>
@@ -140,7 +140,7 @@ class AdminComponent extends Component {
                                             <Col lg={16} md={12} sm={12}>
                                                 <div className="desc-card-dashboard-admin">
                                                     <LoadingContainer loading={initialData.loading}>
-                                                        <div className="title-total-card-admin">
+                                                        <div className="title-total-card-admin"  style={{minHeight:"105px"}}>
                                                             <span>{initialData.total_event}</span>
                                                         </div>
                                                     </LoadingContainer>
@@ -163,8 +163,10 @@ class AdminComponent extends Component {
                             <Row>
                                 <Col lg={24} md={24} sm={24}>
                                     <div className="card-graphic">
-                                        <div style={{textAlign:"center",fontWeight:"bold"}}><span>Grafik Total Event Selama Setahun</span></div>
-                                        <div id="chartdiv" style={{ width: "100%", height: "500px" }}></div>
+                                        <LoadingContainer loading={initialData.loading}>
+                                            <div style={{textAlign:"center",fontWeight:"bold"}}><span>Grafik Total Event Selama Setahun</span></div>
+                                            <div id="chartdiv" style={{ width: "100%", height: "500px" }}></div>
+                                        </LoadingContainer>
                                     </div>
                                 </Col>  
                             </Row>

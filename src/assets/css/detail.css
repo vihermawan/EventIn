@@ -109,8 +109,16 @@
 }
 .back-regis{
     background: #4d5af2;
-
 }
+
+.button-regis-closed{
+    border-radius: 25px;
+    border: none;
+    background: red;
+    margin: 0px;
+    width: 160px;
+}
+
 .text-merah{
     color: red;
 }
