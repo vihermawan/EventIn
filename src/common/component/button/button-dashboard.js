@@ -7,7 +7,7 @@ function ButtonDashboard({
     type, text, disabled, height = 48, borderRadius = 25,
     background = '#4D5AF2', textColor = "white", border = 'none',
     margin , marginLeft, marginRight, marginTop, marginBottom,
-    navigate, target, icon, onClick,paddingRight,paddingLeft,float,textAlign, display
+    width, icon, onClick,paddingRight,paddingLeft,float,textAlign, display
 }) {
     return (
         <Button
@@ -23,6 +23,7 @@ function ButtonDashboard({
                 paddingRight: paddingRight,
                 border: border,
                 margin: margin,
+                width : width,
                 marginLeft: marginLeft,
                 marginRight: marginRight,
                 marginTop: marginTop,

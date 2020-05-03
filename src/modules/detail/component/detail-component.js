@@ -16,11 +16,13 @@ class DetailComponent extends Component {
     };
 
     render() { 
-        const {initialData,handleCancel,handleOk,showModal,onStartLoadingHome,onFinishLoadingHome} = this.props
+        const {initialData,handleCancel,handleOk,showModal,onStartLoadingHome,onFinishLoadingHome,showModalClose,handleOkClose} = this.props
         const datebeginevent = moment(initialData.detailEvent.start_event).format("DD MMMM")
         const dateEndEvent = moment(initialData.detailEvent.end_event).format("DD MMMM YYYY")
         const regisbeginevent = moment(initialData.detailEvent.open_registration).format("DD MMMM")
         const regisendevent = moment(initialData.detailEvent.end_registration).format("DD MMMM YYYY")
+        const dateNow =  moment().format('YYYY-MM-DD')
+        const endregist = Date.parse(initialData.detailEvent.end_registration)
         const benefitData = [
             {
                 image: require(`../../../assets/images/Day.png`),
@@ -71,9 +73,16 @@ class DetailComponent extends Component {
                                 </Col>
                                 <Col span={24}>
                                     <div className="button-detail-1-container">
-                                        <Button className="button-participate button-regis" style={{marginTop:'2%'}} type="primary" onClick={showModal}>
-                                            Daftar!
-                                        </Button>
+                                        <div style={endregist < Date.parse(dateNow) ? {display:"none"}:{display:"block"}}>
+                                            <Button className="button-participate button-regis" style={{marginTop:'2%'}} type="primary" onClick={showModal}>
+                                                Daftar!
+                                            </Button>
+                                        </div>
+                                        <div style={endregist < Date.parse(dateNow) ? {display:"block"}:{display:"none"}}>
+                                            <Button className="button-participate button-regis-closed" style={{marginTop:'2%'}} type="danger" onClick={showModalClose}>
+                                                Pendaftaran Tutup!
+                                            </Button>
+                                        </div>
                                         <Modal
                                             title={"Kamu akan mendaftar di "+initialData.Event.nama_event}
                                             visible={initialData.visible}
@@ -90,6 +99,18 @@ class DetailComponent extends Component {
                                                 </p>
                                                 
                                                 <p className="text-merah">*Setelah melakukan registrasi, jangan lupa untuk melakukan pembayaaran sesuai nominal yang tertera diatas.</p>
+                                            </LoadingContainer> 
+                                        </Modal>
+                                        <Modal
+                                            title={"Pendaftaran event "+initialData.Event.nama_event}
+                                            visible={initialData.visible_close}
+                                            onOk={handleOkClose}
+                                            confirmLoading={initialData.confirmLoading}
+                                            onCancel={handleCancel}
+                                        >
+                                            <LoadingContainer loading={initialData.loading}>   
+                                                <p className="bold">Mohon maaf pendaftaran event {initialData.Event.nama_event} yang akan dilaksanakan pada {datebeginevent + ' - ' + dateEndEvent} telah ditutup</p>
+                                                <p>Silahkan mendaftar pada event yang lain</p>
                                             </LoadingContainer> 
                                         </Modal>
                                     </div>
