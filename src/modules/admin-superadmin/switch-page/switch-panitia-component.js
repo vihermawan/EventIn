@@ -14,7 +14,7 @@ const { TabPane } = Tabs;
 
 class SwitchPanitiaComponent extends Component {
     render() { 
-        const {componentDidMount} = this.props;
+        const { initialData, changeKey } = this.props;
         return ( 
             <Content
                 style={{
@@ -38,7 +38,7 @@ class SwitchPanitiaComponent extends Component {
                             </Row>
                             <Row className="table-absent">
                             <Col lg={24} md={24} sm={24}> 
-                                <Tabs defaultActiveKey="1">
+                                <Tabs defaultActiveKey="1" onTabClick={(key) => changeKey(key)}>
                                     <TabPane
                                         tab={ 
                                         <span> 
@@ -49,9 +49,10 @@ class SwitchPanitiaComponent extends Component {
                                             Panitia Aktif
                                         </span>}
                                         key="1"
-                                        onChange={{componentDidMount}}
                                     >
-                                       <ListPanitiaAdminPage/>
+                                       <ListPanitiaAdminPage
+                                        activeKey={initialData.activeKey}
+                                       />
                                     </TabPane>
                                     <TabPane
                                     tab={ 
@@ -63,9 +64,10 @@ class SwitchPanitiaComponent extends Component {
                                         Panitia Diblokir 
                                     </span>}
                                     key="2"
-                                    onChange={{componentDidMount}}
                                     > 
-                                       <ListBannedPanitiaPage/>
+                                       <ListBannedPanitiaPage
+                                        key={initialData.activeKey}
+                                       />
                                     </TabPane>
                                 </Tabs>,
                                 </Col>

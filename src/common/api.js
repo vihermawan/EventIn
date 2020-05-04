@@ -50,7 +50,7 @@ export const API = {
                 return response;
             })
             .catch( ( error ) => {
-                return error
+                return error.response
             });      
     },
 
@@ -66,8 +66,8 @@ export const API = {
                 return response;
             })
             .catch( ( error ) => {
-                console.log(error.message)
-                return error;
+                // console.log(error.message)
+                return error.response;
             });
     },
 
@@ -85,7 +85,7 @@ export const API = {
                 return response;
             })
             .catch( ( error ) => {
-                return error;
+                return error.response;
             });
     },
 
@@ -108,7 +108,7 @@ export const API = {
                 return response;
             })
             .catch( ( error ) => {
-                return error
+                return error.response
             });      
     }, 
 
@@ -166,7 +166,7 @@ export const API = {
                 return response;
             })
             .catch( ( error ) => {
-                return error
+                return error.response
             });      
     },
 }

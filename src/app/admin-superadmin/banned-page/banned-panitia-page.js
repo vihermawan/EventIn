@@ -21,6 +21,14 @@ class BannedPanitiaPage extends Component {
         this.getBannedPanitia();
     }
 
+    componentWillReceiveProps(props){
+      console.log('props',props)
+      console.log('this props',this.props)
+      if(props.activeKey !== this.props.activeKey){
+        this.getBannedPanitia();
+      }
+    }
+
     getBannedPanitia=()=>{
       this.setState({loading: true})
       API.get(`/admin/trash/panitia`)

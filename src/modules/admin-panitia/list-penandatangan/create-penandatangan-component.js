@@ -32,8 +32,8 @@ class CreatePenandatanganComponent extends Component {
             }}
         >
             <Breadcrumb separator=">">
-                <Breadcrumb.Item><Link to='/dashboard/list-penandatangan/'>Dashboard List Penandatangan</Link></Breadcrumb.Item>
-                <Breadcrumb.Item>Dashboard Create Biodata Penandatangan</Breadcrumb.Item>
+                <Breadcrumb.Item><Link to='/dashboard/list-penandatangan/'>Dashboard Daftar Penandatangan Sertifikat</Link></Breadcrumb.Item>
+                <Breadcrumb.Item>Dashboard Buat Biodata Penandatangan</Breadcrumb.Item>
             </Breadcrumb>
 
             <Row style={{minHeight: '100%',marginBottom: '2%',marginTop:'2%',}} className="background">
@@ -41,7 +41,7 @@ class CreatePenandatanganComponent extends Component {
                     <div className="container-active-event">
                         <Row>
                             <div className="container-title-event">
-                                <span>Create Signer</span>
+                                <span>Buat Biodata Penandatangan</span>
                             </div>
                         </Row>       
                      

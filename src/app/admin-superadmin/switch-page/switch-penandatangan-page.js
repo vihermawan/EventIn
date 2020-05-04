@@ -5,11 +5,16 @@ import SwitchPenandatanganComponent from '../../../modules/admin-superadmin/swit
 
 class SwitchPenandatanganPage extends Component {
     state = {
-        
+        activeKey: '1',
     }
 
     componentDidMount(){
-      
+        console.log('tabchange')
+    }
+
+    changeKey = (key) => {
+        console.log(key)
+        this.setState({activeKey: key})
     }
 
     render() {  
@@ -17,6 +22,7 @@ class SwitchPenandatanganPage extends Component {
             <SwitchPenandatanganComponent
                 initialData={this.state}
                 navigate={this.props.navigate}
+                changeKey={this.changeKey}
             />
         );
     }

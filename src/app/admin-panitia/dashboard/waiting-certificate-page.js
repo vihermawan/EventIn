@@ -22,6 +22,14 @@ class WaitingCertificatePage extends Component {
         this.getCertificateWaiting();
     }
 
+    componentWillReceiveProps(props){
+      console.log('props',props)
+      console.log('this props',this.props)
+      if(props.activeKey !== this.props.activeKey){
+        this.getCertificateWaiting();
+      }
+    }
+
     getCertificateWaiting=()=>{
         this.setState({loading: true})
         API.get(`/panitia/count-waiting`)
@@ -147,7 +155,7 @@ class WaitingCertificatePage extends Component {
                 borderRadius="5px"
                 background="#FFA903"
                 onClick = {() => this.onListCertificateWaiting(data.id_event)}
-            />,
+            />
             </Tooltip>]
             ),
         },

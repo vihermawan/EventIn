@@ -21,6 +21,14 @@ class UploadCertificatePage extends Component {
         this.getCertificate();
     }
 
+    componentWillReceiveProps(props){
+      console.log('props',props)
+      console.log('this props',this.props)
+      if(props.activeKey !== this.props.activeKey){
+        this.getCertificate();
+      }
+    }
+
     getCertificate=()=>{
         this.setState({loading: true})
         API.get(`/panitia/event-upload-sertifikat`)
@@ -32,6 +40,7 @@ class UploadCertificatePage extends Component {
             })
         });
     }
+    
 
     getFile=(id,sertifikat)=>{
         API.get(`/panitia/detail-sertifikat/${id}`)
@@ -172,7 +181,7 @@ class UploadCertificatePage extends Component {
                     icon={faInfoCircle}
                     borderRadius="5px"
                     background="#FFA903"
-                />,
+                />
               </a>
             </Tooltip>,
             <Divider type="vertical"/>,
@@ -183,7 +192,7 @@ class UploadCertificatePage extends Component {
                 borderRadius="5px"
                 background="#088C0D"
                 onClick = {() => this.onEditCertificate(data.id_sertifikat)}
-            />,
+            />
             </Tooltip>]
             ),
         },

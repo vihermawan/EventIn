@@ -37,6 +37,14 @@ class PenandatanganAdminPage extends Component {
         });
     }
 
+    componentWillReceiveProps(props){
+      console.log('props',props)
+      console.log('this props',this.props)
+      if(props.activeKey !== this.props.activeKey){
+        this.getPenandatangan();
+      }
+    }
+
     getColumnSearchProps = dataIndex => ({
         filterDropdown: ({ setSelectedKeys, selectedKeys, confirm, clearFilters }) => (
           <div style={{ padding: 8 }}>

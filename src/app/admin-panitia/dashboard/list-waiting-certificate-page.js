@@ -176,7 +176,7 @@ class ListWaitingCertificatePage extends Component {
                 borderRadius="5px"
                 background="#FFA903"
                 onClick = {() => this.onDetailCertificate(data.sertifikat_URL)}
-            />,
+            />
             </Tooltip>]
             ),
         },
