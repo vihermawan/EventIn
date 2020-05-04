@@ -61,7 +61,7 @@ class ProfileComponent extends Component {
                                                     height={20}
                                                     icon={faLock}
                                                     borderRadius="5px"
-                                                    background="#070E57"
+                                                    background="#00a8ba"
                                                     onClick = { () => onEditPassword(data.id_users)}
                                                 />
                                             </div>

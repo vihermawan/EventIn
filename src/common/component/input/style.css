@@ -8,6 +8,10 @@
     color: white;
 }
 
+.input-auth .ant-input-password-icon{
+    color: white;
+}
+
 /* .input-auth input::placeholder {
     color: #D7D7D7 !important;
 } */

@@ -6,6 +6,7 @@ import InputAuth from '../../../common/component/input/input-auth'
 import ButtonAuth from '../../../common/component/button/button-auth'
 import { Link } from 'react-router-dom';
 import LoadingContainer from '../../../common/component/loading/loading-container'
+import InputPassword from '../../../common/component/input/input-password';
 const { Content } = Layout;
 const logo = require(`../../../assets/images/logo.png`);
 const login = require(`../../../assets/images/panitia.png`);
@@ -74,7 +75,7 @@ class RegisterComponent extends Component{
                                                     iconType="user"
                                                 />
                                                 <span className="auth-input-label text-white">Kata Sandi</span>
-                                                <InputAuth
+                                                <InputPassword
                                                     name='password'
                                                     placeholder="Masukan kata sandi anda"
                                                     onChange={handleChange}
@@ -83,16 +84,6 @@ class RegisterComponent extends Component{
                                                     iconType="lock"
                                                     type="password"
                                                 />
-                                                {/* <span className="auth-input-label text-white">Confirm Password</span>
-                                                <InputAuth
-                                                    name='password_confirmation'
-                                                    placeholder="Masukkan Password Konfirmasi"
-                                                    onChange={handleChange}
-                                                    value={initialData.password_confirmation}
-                                                    className="input-auth mt-5"
-                                                    iconType="lock"
-                                                    type="password"
-                                                /> */}
                                                 <div>
                                                     <ButtonAuth
                                                         text="Daftar"

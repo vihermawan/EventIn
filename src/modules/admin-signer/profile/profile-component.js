@@ -62,7 +62,7 @@ class ListParticipantComponent extends Component {
                                                     height={20}
                                                     icon={faInfoCircle}
                                                     borderRadius="5px"
-                                                    background="#070E57"
+                                                    background="#00a8ba"
                                                     onClick={ () => onEditPassword(data.id_users)}
                                                 />
                                             </div>

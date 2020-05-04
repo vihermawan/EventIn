@@ -9,6 +9,7 @@ import '../../../assets/css/admin-superadmin/detail-event.css'
 import LoadingContainer from '../../../common/component/loading/loading-container'
 import InputForm from '../../../common/component/input/input-form';
 import {  faUserLock, faLock } from '@fortawesome/free-solid-svg-icons';
+import InputFormPassword from '../../../common/component/input/input-form-password';
 // constant content
 const { Content } = Layout;
 const { Option } = Select;
@@ -44,7 +45,7 @@ class EditProfilePesertaComponent extends Component {
                                     <span className="auth-input-label text-black">Password Lama*</span>
                                 </div>
                                 <div>
-                                    <InputForm
+                                    <InputFormPassword
                                         name='old_password'
                                         placeholder="Masukan password lama...."
                                         className="input-event mt-5 mb-20"
@@ -60,7 +61,7 @@ class EditProfilePesertaComponent extends Component {
                                     <span className="auth-input-label text-black">Password Baru*</span>
                                 </div>
                                 <div>
-                                    <InputForm
+                                    <InputFormPassword
                                         name='password'
                                         placeholder="Masukan password lama...."
                                         className="input-event mt-5"

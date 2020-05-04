@@ -11,6 +11,7 @@ import { faUserLock, faLock } from '@fortawesome/free-solid-svg-icons';
 import 'moment-timezone';
 import 'moment/locale/id';
 import 'react-image-crop/dist/ReactCrop.css';
+import InputFormPassword from '../../../common/component/input/input-form-password';
 
 // constant content
 const { Content } = Layout;
@@ -51,7 +52,7 @@ class EditProfileComponent extends Component {
                                                     <span className="auth-input-label text-black">Password Lama*</span>
                                                 </div>
                                                 <div>
-                                                    <InputForm
+                                                    <InputFormPassword
                                                         name='old_password'
                                                         placeholder="Masukan password lama...."
                                                         className="input-event mt-5 mb-20"
@@ -67,7 +68,7 @@ class EditProfileComponent extends Component {
                                                     <span className="auth-input-label text-black">Password Baru*</span>
                                                 </div>
                                                 <div>
-                                                    <InputForm
+                                                    <InputFormPassword
                                                         name='password'
                                                         placeholder="Masukan password lama...."
                                                         className="input-event mt-5 mb-20"
