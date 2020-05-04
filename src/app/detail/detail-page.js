@@ -101,7 +101,6 @@ class DetailPage extends Component {
     }
 
     render() { 
-
         return (
             <DetailComponent
                 navigate={this.props.navigate}
