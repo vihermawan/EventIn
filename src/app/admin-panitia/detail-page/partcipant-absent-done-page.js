@@ -119,19 +119,6 @@ class DetailParticipantPage extends Component {
         this.props.navigate(CONSTANS.DETAIL_EVENT_PESERTA_MENU_KEY)
     }
 
-    //approve peserta
-    AbsentPeserta = (id_pesertaevent) => {
-        console.log(id_pesertaevent)
-        API.put(`/panitia/ubahAbsensi/${id_pesertaevent}`)
-        .then(res => {
-            console.log('res',res)
-            if(res.status == 200){
-                message.success('This is a success message');
-                this.componentDidMount();
-            }   
-        });
-    }
-
     //function untuk modal
     showAbsenConfirm = (id) => {
         confirm({
@@ -207,23 +194,7 @@ class DetailParticipantPage extends Component {
                       })}
                     </span>
                 ),
-            },
-            
-            {
-              title: 'Action',
-              key: 'action',
-              render: (data) => (
-                [<ButtonDashboard
-                    text="Absen"
-                    height={20}
-                    icon={faUsers}
-                    borderRadius="5px"
-                    background="#070E57"
-                    marginRight= "20px"
-                    onClick = {() => this.showAbsenConfirm(data.id_peserta_event)}
-                />]
-              ),
-            },
+            }
           ];
 
         const data =  this.state.listParticipant.map( ({id_event, peserta, status, id_peserta_event}, index) => ({

@@ -47,7 +47,7 @@ class ListParticipantPage extends Component {
         API.put(`/panitia/approvepeserta/${id_pesertaevent}`)
         .then(res => {
             console.log('res',res)
-            if(res.status == 200){
+            if(res.status === 200){
                 this.setState({visible:false})
                 message.success('Peserta telah diterima');
                 this.componentDidMount();

@@ -66,7 +66,7 @@ class HistoryEventPage extends Component {
       API.delete(`/panitia/deleteevent/${id}`)
       .then(res => {
           console.log('res',res)
-          if(res.status == 200){
+          if(res.status === 200){
               message.success('Data Berhasil dihapus');
               window.location.reload(); 
           }   

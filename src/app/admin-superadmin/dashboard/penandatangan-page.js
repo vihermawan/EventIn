@@ -118,7 +118,7 @@ class PenandatanganAdminPage extends Component {
         API.delete(`/admin/ban/penandatangan/${id_penandatangan}`)
         .then(res => {
             console.log('res',res)
-            if(res.status == 200){
+            if(res.status === 200){
                 message.success('Berhasil Banned Penandatangan');
                 window.location.reload(); 
             }   

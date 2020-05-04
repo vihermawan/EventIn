@@ -1,5 +1,5 @@
 import React , { Component } from 'react'
-import { Layout, Row, Col, Button, Form,Icon, Modal, Input, } from 'antd';
+import { Layout, Row, Col } from 'antd';
 import '../../assets/css/error.css'
 const { Content } = Layout;
 class ErrorPage extends Component {

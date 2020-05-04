@@ -59,7 +59,7 @@ class dashboard extends Component {
       .then(res => {
         let username_panitia = localStorage.getItem("username");
         let profile_panitia = localStorage.getItem("profile_picture");
-        if ((res.data.data.user.panitia.nama_panitia != username_panitia) || (res.data.data.user.panitia.image_URL != profile_panitia)){
+        if ((res.data.data.user.panitia.nama_panitia !== username_panitia) || (res.data.data.user.panitia.image_URL !== profile_panitia)){
             localStorage.setItem('username', res.data.data.user.panitia.nama_panitia)
             localStorage.setItem('profile_picture', res.data.data.user.panitia.image_URL)
             let username_panitia = localStorage.getItem("username");
@@ -78,7 +78,7 @@ class dashboard extends Component {
     let profile_panitia = localStorage.getItem("profile_picture");
     this.setState({username : username_panitia, profile_picture : profile_panitia })
     let token = localStorage.getItem("token");
-    if (token != null){
+    if (token !== null){
 			this.setTimeOut();
 		}
   }
@@ -94,7 +94,7 @@ class dashboard extends Component {
       API.post(`/auth/logout`)
       .then(res => {
           console.log('res',res)
-          if(res.status == 200){
+          if(res.status === 200){
               localStorage.clear();
               this.setState({
                 loading: false,

@@ -68,7 +68,7 @@ class EditProfilePage extends Component {
     }
   
     uploadGambar = (event) => {
-        if(event.target.files[0].type != 'image/jpeg' ){
+        if(event.target.files[0].type !== 'image/jpeg' ){
             console.log('harusnya')
             this.openNotification('Format Gambar Salah', 'Silahkan Upload Kembali dengan format JPG')
         }
@@ -251,7 +251,7 @@ class EditProfilePage extends Component {
         API.postEdit(`/panitia/editprofile/${id_panitia}`, params)
             .then(res => {
                 console.log('res',res)
-                if(res.status == 200){
+                if(res.status === 200){
                     this.props.navigate(CONSTANS.PROFILE_ADMIN_PANITIA_MENU_KEY)
                     window.location.reload();
                     message.success('Data Berhasil di Ubah');

@@ -17,7 +17,7 @@ export const API = {
         let servicePoint = "/service/guest";
         let headers = {};
         let token = localStorage.getItem("token");
-        if(token != null)
+        if(token !== null)
             headers.token =  token;
         servicePoint = "/service";
             
@@ -36,7 +36,7 @@ export const API = {
 
         let token = localStorage.getItem("token");
         // console.log('token', token)
-        if(token != null)
+        if(token !== null)
             headers.Authorization = `Bearer ${token}`;
         
             // console.log(headers.Authorization)
@@ -58,7 +58,7 @@ export const API = {
         let headers = {};
         let token = localStorage.getItem("token");
         // console.log(token)
-        if(token != null)
+        if(token !== null)
             headers.Authorization = `Bearer ${token}`;
 
         return  axios.post(BASE_URL+endPoint, input, {headers : headers})
@@ -77,7 +77,7 @@ export const API = {
         };
         let token = localStorage.getItem("token");
         // console.log(token)
-        if(token != null)
+        if(token !== null)
             headers.Authorization = `Bearer ${token}`;
 
         return  axios.post(BASE_URL+endPoint, input, {headers : headers})
@@ -94,7 +94,7 @@ export const API = {
 
         let token = localStorage.getItem("token");
         // console.log('token', token)
-        if(token != null)
+        if(token !== null)
             headers.Authorization = `Bearer ${token}`;
         
             // console.log(headers.Authorization)
@@ -119,7 +119,7 @@ export const API = {
 
         let token = localStorage.getItem("token");
         // console.log('token', token)
-        if(token != null)
+        if(token !== null)
             headers.Authorization = `Bearer ${token}`;
         
             // console.log(headers.Authorization)
@@ -152,7 +152,7 @@ export const API = {
 
         let token = localStorage.getItem("token");
         // console.log('token', token)
-        if(token != null)
+        if(token !== null)
             headers.Authorization = `Bearer ${token}`;
         
             // console.log(headers.Authorization)

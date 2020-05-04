@@ -134,7 +134,7 @@ class ListPanitiaAdminPage extends Component {
       API.delete(`/admin/ban/panitia/${id_panitia}`)
       .then(res => {
           // console.log('res',res)
-          if(res.status == 200){
+          if(res.status === 200){
               message.success(`Berhasil Banned Panitia ${nama_panitia}`);
               this.componentDidMount();
           }   

@@ -57,7 +57,7 @@ class BiayaPage extends Component {
 
 
     onNext = () => {       
-        if(validation.required(this.state.status_biaya) != null){
+        if(validation.required(this.state.status_biaya) !== null){
             const message = validation.required(this.state.status_biaya);
             this.openNotification(message, 'Kategori Bayar Harus Diisi')   
         }else if(this.state.status_biaya === 10){

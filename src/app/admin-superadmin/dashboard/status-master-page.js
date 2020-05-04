@@ -68,7 +68,7 @@ class StatusMasterPage extends Component {
         API.delete(`/admin/deletestatus/${id}`)
         .then(res => {
             console.log('res',res)
-            if(res.status == 200){
+            if(res.status === 200){
                 message.success('This is a success message');
                 window.location.reload(); 
             }   

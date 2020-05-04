@@ -88,7 +88,7 @@ class AdminPage extends Component {
             })
         })
         
-        // console.log(data_event)
+        console.log(data)
 
         chart.data = data_event;
         let categoryAxis = chart.xAxes.push(new am4charts.CategoryAxis());

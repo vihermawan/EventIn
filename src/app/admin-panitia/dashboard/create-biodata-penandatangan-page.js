@@ -86,7 +86,7 @@ class CreateBiodataPenandatanganPage extends Component {
     }
 
     uploadGambar = (event) => {
-        if(event.target.files[0].type != 'image/jpeg' ){
+        if(event.target.files[0].type !== 'image/jpeg' ){
             console.log('harusnya')
             this.openNotification('Format Gambar Salah', 'Silahkan Upload Kembali dengan format JPG')
         }
@@ -271,28 +271,28 @@ class CreateBiodataPenandatanganPage extends Component {
 
         console.log('params', params)
 
-        if(validation.required(this.state.nama) != null){
+        if(validation.required(this.state.nama) !== null){
             const message = validation.required(this.state.nama)  
             this.openNotification(message, 'Nama belum dimasukkan')
-        }else if(validation.emailRequired(this.state.email) != null){
+        }else if(validation.emailRequired(this.state.email) !== null){
             const message = validation.emailRequired(this.state.email);
             this.openNotification(message, 'Harap memasukkan email dengan benar')
-        }else if(validation.required(this.state.jabatan) != null){
+        }else if(validation.required(this.state.jabatan) !== null){
             const message = validation.required(this.state.jabatan)  
             this.openNotification(message, 'Jabatan belum dimasukkan')
-        }else if(validation.required(this.state.nip) != null){
+        }else if(validation.required(this.state.nip) !== null){
             const message = validation.required(this.state.nip)  
             this.openNotification(message, 'Nomor Induk Pegawai belum dimasukkan')
-        }else if(validation.required(this.state.instansi) != null){
+        }else if(validation.required(this.state.instansi) !== null){
             const message = validation.required(this.state.instansi)  
             this.openNotification(message, 'Instansi belum dimasukkan')
-        }else if(validation.required(this.state.telepon) != null){
+        }else if(validation.required(this.state.telepon) !== null){
             const message = validation.required(this.state.telepon)  
             this.openNotification(message, 'Nomor Telepon belum dimasukkan')
-        }else if(validation.required(this.state.id_provinsi) != null){
+        }else if(validation.required(this.state.id_provinsi) !== null){
             const message = validation.required(this.state.id_provinsi)  
             this.openNotification(message, 'Provinsi belum dimasukkan')
-        }else if(validation.required(this.state.id_kabupaten) != null){
+        }else if(validation.required(this.state.id_kabupaten) !== null){
             const message = validation.required(this.state.id_kabupaten)  
             this.openNotification(message, 'Kabupaten belum dimasukkan')
         }else{
@@ -301,7 +301,7 @@ class CreateBiodataPenandatanganPage extends Component {
             API.post(`/panitia/create/biodata-penandatangan`, params)
             .then(res => {
                 console.log('res',res)
-                if(res.status == 201){
+                if(res.status === 201){
                     this.props.navigate(CONSTANS.LIST_BIODATA_PENANDATANGAN_PANITIA_MENU_KEY)
                     message.success('Biodata Penandatangan Berhasil Ditambahkan');
                     this.successNotification('Sukses menambah data penandatangan', 'Tunggu 1 x 24 jam di email anda untuk mendapat pemberitahuan apakah penandatangan ditolak atau diterima')

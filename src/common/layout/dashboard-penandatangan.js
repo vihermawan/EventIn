@@ -41,7 +41,7 @@ class signer extends Component {
     this.setState({username : username_penandatangan, profile_picture : profile_picture })
     this.getProfile();
     let token = localStorage.getItem("token");
-    if (token != null){
+    if (token !== null){
 			this.setTimeOut();
 		}
   }
@@ -56,7 +56,7 @@ class signer extends Component {
       .then(res => {
           let username_penandatangan = localStorage.getItem("username");
           let profile_picture = localStorage.getItem("profile_picture");
-          if ((res.data.data.penandatangan.penandatangan.nama_penandatangan != username_penandatangan) || (res.data.data.penandatangan.penandatangan.image_URL != profile_picture)){
+          if ((res.data.data.penandatangan.penandatangan.nama_penandatangan !== username_penandatangan) || (res.data.data.penandatangan.penandatangan.image_URL !== profile_picture)){
               localStorage.setItem('username', res.data.data.penandatangan.penandatangan.nama_penandatangan)
               localStorage.setItem('profile_picture', res.data.data.penandatangan.penandatangan.image_URL)
               let username_penandatangan = localStorage.getItem("username");

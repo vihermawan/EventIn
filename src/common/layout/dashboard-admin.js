@@ -55,7 +55,7 @@ class Admin extends Component {
     let pathName = pathArray[2];
     pathName === '' ? this.setState({current: '/admin'}) : this.setState({current: pathName});
     let token = localStorage.getItem("token");
-    if (token != null){
+    if (token !== null){
 			this.setTimeOut();
 		}
   }
@@ -69,7 +69,7 @@ class Admin extends Component {
      API.post(`/auth/logout`)
      .then(res => {
          console.log('res',res)
-         if(res.status == 200){
+         if(res.status === 200){
              localStorage.clear();
              this.setState({
                loading: false,
