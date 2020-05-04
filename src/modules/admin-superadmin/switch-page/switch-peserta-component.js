@@ -14,7 +14,7 @@ const { TabPane } = Tabs;
 
 class SwitchPesertaComponent extends Component {
     render() { 
-        const {componentDidMount} = this.props;
+        const {initialData,changeKey} = this.props;
         return ( 
             <Content
                 style={{
@@ -38,7 +38,7 @@ class SwitchPesertaComponent extends Component {
                             </Row>
                             <Row className="table-absent">
                             <Col lg={24} md={24} sm={24}> 
-                                <Tabs defaultActiveKey="1" >
+                                <Tabs defaultActiveKey="1" onTabClick={(key) => changeKey(key)}>
                                     <TabPane 
                                         tab={ 
                                         <span> 
@@ -49,9 +49,8 @@ class SwitchPesertaComponent extends Component {
                                             Peserta Aktif
                                         </span>}
                                         key="1"
-                                        onChange={{componentDidMount}}
                                     >
-                                       <ListPesertaAdminPage/>
+                                       <ListPesertaAdminPage activeKey={initialData.activeKey}/>
                                     </TabPane>
                                     <TabPane
                                     tab={ 
@@ -63,9 +62,8 @@ class SwitchPesertaComponent extends Component {
                                         Peserta Diblokir 
                                     </span>}
                                     key="2"
-                                    onChange={{componentDidMount}}
                                     > 
-                                       <ListBannedPesertaPage/>
+                                       <ListBannedPesertaPage activeKey={initialData.activeKey}/>
                                     </TabPane>
                                 </Tabs>,
                                 </Col>

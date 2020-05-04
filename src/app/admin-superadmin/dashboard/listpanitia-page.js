@@ -26,6 +26,13 @@ class ListPanitiaAdminPage extends Component {
     componentDidMount(){
         this.getPanitia();
     }
+    componentWillReceiveProps(props){
+      console.log('props',props)
+      console.log('this props',this.props)
+      if(props.activeKey !== this.props.activeKey){
+        this.getPanitia();
+      }
+    }
 
     getColumnSearchProps = dataIndex => ({
         filterDropdown: ({ setSelectedKeys, selectedKeys, confirm, clearFilters }) => (

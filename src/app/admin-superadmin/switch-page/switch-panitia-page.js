@@ -5,11 +5,16 @@ import SwitchPanitiaComponent from '../../../modules/admin-superadmin/switch-pag
 
 class SwitchPanitiaPage extends Component {
     state = {
-        
+        activeKey: '1',
     }
 
     componentDidMount(){
-      
+      console.log('tabchange')
+    }
+
+    changeKey = (key) => {
+        console.log(key)
+        this.setState({activeKey: key})
     }
 
     render() {  
@@ -17,6 +22,7 @@ class SwitchPanitiaPage extends Component {
             <SwitchPanitiaComponent
                 initialData={this.state}
                 navigate={this.props.navigate}
+                changeKey={this.changeKey}
             />
         );
     }

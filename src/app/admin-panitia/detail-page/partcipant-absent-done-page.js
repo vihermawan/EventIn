@@ -24,6 +24,14 @@ class DetailParticipantPage extends Component {
         this.getParticipantEvent(this.props.idEvent)
     }
 
+    componentWillReceiveProps(props){
+      console.log('props',props)
+      console.log('this props',this.props)
+      if(props.activeKey !== this.props.activeKey){
+        this.getParticipantEvent(this.props.idEvent);
+      }
+    }
+
     getColumnSearchProps = dataIndex => ({
         filterDropdown: ({ setSelectedKeys, selectedKeys, confirm, clearFilters }) => (
           <div style={{ padding: 8 }}>

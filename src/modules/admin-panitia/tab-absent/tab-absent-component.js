@@ -15,7 +15,7 @@ const { TabPane } = Tabs;
 
 class TabAbsentComponent extends Component {
     render() { 
-        const {componentDidMount} = this.props;
+        const {initialData, changeKey} = this.props;
         return ( 
             <Content
                 style={{
@@ -40,7 +40,7 @@ class TabAbsentComponent extends Component {
                             </Row>
                             <Row className="table-absent">
                             <Col lg={24} md={24} sm={24}> 
-                                <Tabs defaultActiveKey="1">
+                                <Tabs defaultActiveKey="1" onTabClick={(key) => changeKey(key)}>
                                     <TabPane
                                         tab={ 
                                         <span> 
@@ -51,9 +51,8 @@ class TabAbsentComponent extends Component {
                                             Belum Absen
                                         </span>}
                                         key="1"
-                                        onChange={{componentDidMount}}
                                     >
-                                        <AbsentParticipant/> 
+                                        <AbsentParticipant activeKey={initialData.activeKey}/> 
                                     </TabPane>
                                     <TabPane
                                     tab={ 
@@ -65,9 +64,8 @@ class TabAbsentComponent extends Component {
                                         Sudah Absen
                                     </span>}
                                     key="2"
-                                    onChange={{componentDidMount}}
                                     > 
-                                        <AbsentParticipantDone/> 
+                                        <AbsentParticipantDone activeKey={initialData.activeKey}/> 
                                     </TabPane>
                                 </Tabs>,
                                 </Col>

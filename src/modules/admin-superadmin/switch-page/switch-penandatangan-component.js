@@ -14,7 +14,7 @@ const { TabPane } = Tabs;
 
 class SwitchPenandatanganComponent extends Component {
     render() { 
-        const {componentDidMount} = this.props;
+        const {initialData,changeKey} = this.props;
         return ( 
             <Content
                 style={{
@@ -38,7 +38,7 @@ class SwitchPenandatanganComponent extends Component {
                             </Row>
                             <Row className="table-absent">
                             <Col lg={24} md={24} sm={24}> 
-                                <Tabs defaultActiveKey="1">
+                                <Tabs defaultActiveKey="1" onTabClick={(key) => changeKey(key)}>
                                     <TabPane
                                         tab={ 
                                         <span> 
@@ -49,9 +49,8 @@ class SwitchPenandatanganComponent extends Component {
                                             Penandatangan Aktif
                                         </span>}
                                         key="1"
-                                        onChange={{componentDidMount}}
                                     >
-                                       <ListPenandatanganAdminPage/>
+                                       <ListPenandatanganAdminPage  activeKey={initialData.activeKey}/>
                                     </TabPane>
                                     <TabPane
                                     tab={ 
@@ -63,9 +62,8 @@ class SwitchPenandatanganComponent extends Component {
                                         Penandatangan Diblokir 
                                     </span>}
                                     key="2"
-                                    onChange={{componentDidMount}}
                                     > 
-                                       <ListBannedPenandatanganPage/>
+                                       <ListBannedPenandatanganPage  activeKey={initialData.activeKey}/>
                                     </TabPane>
                                 </Tabs>,
                                 </Col>

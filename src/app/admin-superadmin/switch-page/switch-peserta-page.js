@@ -5,11 +5,16 @@ import SwitchPesertaComponent from '../../../modules/admin-superadmin/switch-pag
 
 class SwitchPesertaPage extends Component {
     state = {
-        
+        activeKey: '1',
     }
 
     componentDidMount(){
-      
+        console.log('tabchange')
+    }
+
+    changeKey = (key) => {
+        console.log(key)
+        this.setState({activeKey: key})
     }
 
     render() {  
@@ -17,6 +22,7 @@ class SwitchPesertaPage extends Component {
             <SwitchPesertaComponent
                 initialData={this.state}
                 navigate={this.props.navigate}
+                changeKey={this.changeKey}
             />
         );
     }
