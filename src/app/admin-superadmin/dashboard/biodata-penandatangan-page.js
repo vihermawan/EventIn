@@ -146,7 +146,7 @@ class BiodataPenandatanganAdminPage extends Component {
         API.post(`/admin/addpenandatangan`,params)
         .then(res => {
             console.log('res',res)
-            if(res.status == 200){
+            if(res.status === 200){
                 message.success('Berhasil menambahkan penandatangan');
                 // this.componentDidMount(); 
                 this.props.navigate(CONSTANS.BIODATA_PENANDATANGAN_ADMIN_KEY)
@@ -166,7 +166,7 @@ class BiodataPenandatanganAdminPage extends Component {
       API.post(`/admin/reject-penandatangan`,params)
       .then(res => {
           console.log('res',res)
-          if(res.status == 200){
+          if(res.status === 200){
               message.success('Berhasil menolak penandatangan');
               this.props.navigate(CONSTANS.BIODATA_PENANDATANGAN_ADMIN_KEY)
           }  

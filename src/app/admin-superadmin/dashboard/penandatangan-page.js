@@ -37,6 +37,14 @@ class PenandatanganAdminPage extends Component {
         });
     }
 
+    componentWillReceiveProps(props){
+      console.log('props',props)
+      console.log('this props',this.props)
+      if(props.activeKey !== this.props.activeKey){
+        this.getPenandatangan();
+      }
+    }
+
     getColumnSearchProps = dataIndex => ({
         filterDropdown: ({ setSelectedKeys, selectedKeys, confirm, clearFilters }) => (
           <div style={{ padding: 8 }}>
@@ -110,7 +118,7 @@ class PenandatanganAdminPage extends Component {
         API.delete(`/admin/ban/penandatangan/${id_penandatangan}`)
         .then(res => {
             console.log('res',res)
-            if(res.status == 200){
+            if(res.status === 200){
                 message.success('Berhasil Banned Penandatangan');
                 window.location.reload(); 
             }   

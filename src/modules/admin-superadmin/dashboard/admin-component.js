@@ -1,16 +1,16 @@
 import React, { Component } from 'react';
-import { Layout, Breadcrumb, Row, Table, Input, Col } from 'antd';
+import { Layout, Breadcrumb, Row, Col } from 'antd';
 import '../../../assets/css/dashboard-all/dashboard.css'
 import '../../../assets/css/admin-superadmin/superadmin.css'
 import '../../../assets/css/dashboard-all/table-style.css'
+import LoadingContainer from '../../../common/component/loading/loading-container'
 // constant content
 const { Content } = Layout;
 
 class AdminComponent extends Component {
     render() { 
         const image1 = require(`../../../assets/images/participant-dashboard.png`);
-        const image2 = require(`../../../assets/images/event-dashboard.png`);
-        const image3 = require(`../../../assets/images/certificate-dashboard.png`);
+        const { initialData } = this.props
         return ( 
             <Content
                 style={{
@@ -21,7 +21,7 @@ class AdminComponent extends Component {
                 }}
             >
                 <Breadcrumb separator=">">
-                    <Breadcrumb.Item>Dashboard Panitia</Breadcrumb.Item>
+                    <Breadcrumb.Item>Dashboard Admin</Breadcrumb.Item>
                 </Breadcrumb>
                 <Row style={{minHeight: '100%',marginBottom: '2%',marginTop:'2%',}} className="background">
                     <Col lg={24}>
@@ -40,9 +40,11 @@ class AdminComponent extends Component {
                                         <Row>
                                             <Col lg={16} md={12} sm={12}>
                                                 <div className="desc-card-dashboard-admin">
-                                                    <div className="title-total-card-admin">
-                                                        <span>10</span>
-                                                    </div>
+                                                    <LoadingContainer loading={initialData.loading}>
+                                                        <div className="title-total-card-admin"  style={{minHeight:"105px"}}>
+                                                            <span>{initialData.total_peserta}</span>
+                                                        </div>
+                                                    </LoadingContainer>
                                                 </div>
                                             </Col>
                                             <Col lg={8} md={12} sm={12}>
@@ -71,9 +73,11 @@ class AdminComponent extends Component {
                                         <Row>
                                             <Col lg={16} md={12} sm={12}>
                                                 <div className="desc-card-dashboard-admin">
-                                                    <div className="title-total-card-admin">
-                                                        <span>10</span>
-                                                    </div>
+                                                    <LoadingContainer loading={initialData.loading}>
+                                                        <div className="title-total-card-admin"  style={{minHeight:"105px"}}>
+                                                            <span>{initialData.total_panitia}</span>
+                                                        </div>
+                                                    </LoadingContainer>
                                                 </div>
                                             </Col>
                                             <Col lg={8} md={12} sm={12}>
@@ -102,9 +106,11 @@ class AdminComponent extends Component {
                                         <Row>
                                             <Col lg={16} md={12} sm={12}>
                                                 <div className="desc-card-dashboard-admin">
-                                                    <div className="title-total-card-admin">
-                                                        <span>10</span>
-                                                    </div>
+                                                    <LoadingContainer loading={initialData.loading}>
+                                                        <div className="title-total-card-admin"  style={{minHeight:"105px"}}>
+                                                            <span>{initialData.total_sertifikat}</span>
+                                                        </div>
+                                                    </LoadingContainer>
                                                 </div>
                                             </Col>
                                             <Col lg={8} md={12} sm={12}>
@@ -133,9 +139,11 @@ class AdminComponent extends Component {
                                         <Row>
                                             <Col lg={16} md={12} sm={12}>
                                                 <div className="desc-card-dashboard-admin">
-                                                    <div className="title-total-card-admin">
-                                                        <span>10</span>
-                                                    </div>
+                                                    <LoadingContainer loading={initialData.loading}>
+                                                        <div className="title-total-card-admin"  style={{minHeight:"105px"}}>
+                                                            <span>{initialData.total_event}</span>
+                                                        </div>
+                                                    </LoadingContainer>
                                                 </div>
                                             </Col>
                                             <Col lg={8} md={12} sm={12}>
@@ -155,8 +163,10 @@ class AdminComponent extends Component {
                             <Row>
                                 <Col lg={24} md={24} sm={24}>
                                     <div className="card-graphic">
-                                        <div style={{textAlign:"center",fontWeight:"bold"}}><span>Grafik Total Event Selama Setahun</span></div>
-                                        <div id="chartdiv" style={{ width: "100%", height: "500px" }}></div>
+                                        <LoadingContainer loading={initialData.loading}>
+                                            <div style={{textAlign:"center",fontWeight:"bold"}}><span>Grafik Total Event Selama Setahun</span></div>
+                                            <div id="chartdiv" style={{ width: "100%", height: "500px" }}></div>
+                                        </LoadingContainer>
                                     </div>
                                 </Col>  
                             </Row>

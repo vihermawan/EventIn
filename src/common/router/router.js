@@ -128,7 +128,7 @@ function PrivateRoute({ children, ...rest}) {
 
 function PrivatePanitiiaRoute({ children, ...rest }) {
   let isAuthenticated = false;
-  if(localStorage.getItem("token") != null && localStorage.getItem("id_role" == 2)) isAuthenticated = true;
+  if(localStorage.getItem("token") !== null && localStorage.getItem("id_role" === 2)) isAuthenticated = true;
   return (
     <Route
       {...rest}

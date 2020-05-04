@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
-import { Layout, Breadcrumb, Row, Col,Icon,Avatar } from 'antd';
-import { faInfoCircle } from '@fortawesome/free-solid-svg-icons'
+import { Layout, Breadcrumb, Row, Col,Icon,Avatar,Divider } from 'antd';
+import { faInfoCircle, faLock } from '@fortawesome/free-solid-svg-icons'
 import '../../../assets/css/dashboard-all/dashboard.css'
 import '../../../assets/css/dashboard-all/table-style.css'
 import LoadingContainer from '../../../common/component/loading/loading-container'
@@ -10,7 +10,7 @@ const { Content } = Layout;
 
 class ProfilePanitiaComponent extends Component {
     render() {
-        const {initialData, dataProfile,onEditPanitia} = this.props;
+        const {initialData, dataProfile,onEditPanitia,onEditPassword} = this.props;
         return ( 
             <Content
                 style={{
@@ -53,6 +53,15 @@ class ProfilePanitiaComponent extends Component {
                                             borderRadius="5px"
                                             background="#070E57"
                                             onClick={ () => onEditPanitia(data.id_panitia)}
+                                        />
+                                        <Divider type="vertical" />
+                                        <ButtonEdit
+                                            text="Edit Password"
+                                            height={20}
+                                            icon={faLock}
+                                            borderRadius="5px"
+                                            background="#00a8ba"
+                                            onClick={ () => onEditPassword(data.id_panitia)}
                                         />
                                     </div>
                                     </Col> 

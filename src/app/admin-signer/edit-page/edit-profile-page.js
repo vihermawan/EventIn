@@ -67,7 +67,7 @@ class EditProfilePage extends Component {
     }
   
     uploadGambar = (event) => {
-        if(event.target.files[0].type != 'image/jpeg' ){
+        if(event.target.files[0].type !== 'image/jpeg' ){
             console.log('harusnya')
             this.openNotification('Format Gambar Salah', 'Silahkan Upload Kembali dengan format JPG')
         }
@@ -252,7 +252,7 @@ class EditProfilePage extends Component {
         API.postEdit(`/penandatangan/profile/edit/${id_penandatangan}`, params)
             .then(res => {
                 console.log('res',res)
-                if(res.status == 200){
+                if(res.status === 200){
                     this.props.navigate(CONSTANS.PROFILE_SIGNER_MENU_KEY)
                     window.location.reload();
                     message.success('Data Berhasil di Ubah');

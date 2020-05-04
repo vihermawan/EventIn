@@ -26,6 +26,13 @@ class ListPanitiaAdminPage extends Component {
     componentDidMount(){
         this.getPanitia();
     }
+    componentWillReceiveProps(props){
+      console.log('props',props)
+      console.log('this props',this.props)
+      if(props.activeKey !== this.props.activeKey){
+        this.getPanitia();
+      }
+    }
 
     getColumnSearchProps = dataIndex => ({
         filterDropdown: ({ setSelectedKeys, selectedKeys, confirm, clearFilters }) => (
@@ -127,7 +134,7 @@ class ListPanitiaAdminPage extends Component {
       API.delete(`/admin/ban/panitia/${id_panitia}`)
       .then(res => {
           // console.log('res',res)
-          if(res.status == 200){
+          if(res.status === 200){
               message.success(`Berhasil Banned Panitia ${nama_panitia}`);
               this.componentDidMount();
           }   

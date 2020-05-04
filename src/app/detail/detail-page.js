@@ -10,11 +10,12 @@ class DetailPage extends Component {
         Event: [],
         kategori : [],
         detailEvent : [],
-        status : {},
+        status : [],
         loading: false,
         loadingHome : false,
         visible: false,
         confirmLoading: false,
+        visible_close : false,
     }
 
     openNotification = (message, description) => {
@@ -52,6 +53,12 @@ class DetailPage extends Component {
         });
     };
 
+    showModalClose = () => {
+        this.setState({
+            visible_close: true,
+        });
+    };
+
     onStartLoadingHome = () =>  this.setState({ loadingHome: true })
     onFinishLoadingHome = () =>  this.setState({ loadingHome: false })
     
@@ -75,7 +82,6 @@ class DetailPage extends Component {
                 this.setState({visible:false})
                 this.openNotification('Anda Telah Terdaftar', res.data.messages)
             }   
-            // this.setState({loading:false})
         });
     };
     
@@ -83,22 +89,25 @@ class DetailPage extends Component {
         console.log('Clicked cancel button');
         this.setState({
             visible: false,
+            visible_close: false,
         });
     };
 
     //daftar event
-    registerEvent = (id) => {
-        console.log(id)
-       
+    handleOkClose = () => {
+        this.setState({
+            visible_close: false,
+        });
     }
 
     render() { 
-
         return (
             <DetailComponent
                 navigate={this.props.navigate}
                 initialData = {this.state}
                 showModal = {this.showModal}
+                showModalClose = {this.showModalClose}
+                handleOkClose = {this.handleOkClose}
                 handleOk={this.handleOk}
                 handleCancel={this.handleCancel}
                 onStartLoadingHome ={this.onStartLoadingHome}

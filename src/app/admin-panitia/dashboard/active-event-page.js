@@ -285,7 +285,7 @@ class ActiveEventPage extends Component {
                 ]
               ),
             },
-          ];
+        ];
         
         const data =  this.state.activeEvent.map( ({id_event, nama_event, detail_event, kategori}, index) => ({
             no: index+1,

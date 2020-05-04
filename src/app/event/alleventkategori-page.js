@@ -34,7 +34,7 @@ class AllEventKategoriPage extends Component {
         .then(res => {
             console.log('kategori',id_kategori,'page',page)
             console.log(res)
-            if(res.status == 200){
+            if(res.status === 200){
                 const allData = this.state.event.concat(res.data.data.event.data);
                 this.setState({
                     event:allData,

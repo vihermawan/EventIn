@@ -6,6 +6,7 @@ import InputAuth from '../../../common/component/input/input-auth'
 import ButtonAuth from '../../../common/component/button/button-auth'
 import { Link } from 'react-router-dom';
 import LoadingContainer from '../../../common/component/loading/loading-container'
+import InputPassword from '../../../common/component/input/input-password';
 
 const { Content } = Layout;
 const { Option } = Select;
@@ -83,7 +84,7 @@ class RegisterComponent extends Component{
                                             </div>
                                             
                                             <span className="auth-input-label text-white">Kata Sandi</span>
-                                            <InputAuth
+                                            <InputPassword
                                                 name='password'
                                                 placeholder="Masukkan kata sandi anda"
                                                 onChange={handleChange}

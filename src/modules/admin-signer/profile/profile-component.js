@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Layout, Breadcrumb, Row, Table, Input, Col,Icon,Avatar } from 'antd';
+import { Layout, Breadcrumb, Row, Divider, Col,Icon,Avatar } from 'antd';
 import { faUser, faInfoCircle } from '@fortawesome/free-solid-svg-icons'
 import '../../../assets/css/dashboard-all/dashboard.css'
 import '../../../assets/css/dashboard-all/table-style.css'
@@ -11,7 +11,7 @@ const { Content } = Layout;
 
 class ListParticipantComponent extends Component {
     render() { 
-        const {initialData, onEditSigner, dataProfile} = this.props;
+        const {initialData, onEditSigner, dataProfile,onEditPassword} = this.props;
         return ( 
             <Content
                 style={{
@@ -22,7 +22,7 @@ class ListParticipantComponent extends Component {
                 }}
             >
                 <Breadcrumb separator=">">
-                    <Breadcrumb.Item>Dashboard Profile Signer</Breadcrumb.Item>
+                    <Breadcrumb.Item>Dashboard Profile Penandatangan</Breadcrumb.Item>
                 </Breadcrumb>
                 <LoadingContainer loading={initialData.loading}>
                     <div style={{minHeight:"70vh"}}>
@@ -55,6 +55,15 @@ class ListParticipantComponent extends Component {
                                                     borderRadius="5px"
                                                     background="#070E57"
                                                     onClick={ () => onEditSigner(data.id_users)}
+                                                />
+                                                <Divider type="vertical" />
+                                                <ButtonEdit
+                                                    text="Edit Password"
+                                                    height={20}
+                                                    icon={faInfoCircle}
+                                                    borderRadius="5px"
+                                                    background="#00a8ba"
+                                                    onClick={ () => onEditPassword(data.id_users)}
                                                 />
                                             </div>
                                             </Col> 

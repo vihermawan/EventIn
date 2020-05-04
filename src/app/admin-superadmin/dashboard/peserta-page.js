@@ -25,6 +25,14 @@ class PesertaAdminPage extends Component {
         this.getPeserta();
     }
 
+    componentWillReceiveProps(props){
+      console.log('props',props)
+      console.log('this props',this.props)
+      if(props.activeKey !== this.props.activeKey){
+        this.getPeserta();
+      }
+    }
+
     getColumnSearchProps = dataIndex => ({
         filterDropdown: ({ setSelectedKeys, selectedKeys, confirm, clearFilters }) => (
           <div style={{ padding: 8 }}>
@@ -110,7 +118,7 @@ class PesertaAdminPage extends Component {
         API.delete(`/admin/ban/peserta/${id_peserta}`)
         .then(res => {
             console.log('res',res)
-            if(res.status == 200){
+            if(res.status === 200){
                 message.success('Banned Peserta Berhasil');
                 this.componentDidMount(); 
             }   

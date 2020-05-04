@@ -21,6 +21,14 @@ class BannedPanitiaPage extends Component {
         this.getBannedPanitia();
     }
 
+    componentWillReceiveProps(props){
+      console.log('props',props)
+      console.log('this props',this.props)
+      if(props.activeKey !== this.props.activeKey){
+        this.getBannedPanitia();
+      }
+    }
+
     getBannedPanitia=()=>{
       this.setState({loading: true})
       API.get(`/admin/trash/panitia`)
@@ -121,7 +129,7 @@ class BannedPanitiaPage extends Component {
       API.get(`/admin/unban/panitia/${id_panitia}`)
       .then(res => {
           console.log('res',res)
-          if(res.status == 200){
+          if(res.status === 200){
               message.success('Unbanned Panitia Berhasil');
               this.componentDidMount(); 
           }   

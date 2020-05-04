@@ -12,18 +12,65 @@ am4core.useTheme(am4themes_animated);
 class AdminPage extends Component {
     state = {  
         januari : [],
+        total_peserta: '',
+        total_panitia: '',
+        total_sertifikat : '',
+        total_event :'',
+        loading: false,
     }
 
     componentDidMount () {
         this.getEventbyMonth();
+        this.getAllPeserta();
+        this.getAllPanitia();
+        this.getAllSertifikat();
+        this.getAllEvent();
     }
 
     getEventbyMonth = () => {
         this.setState({loading: true})
         API.get(`/admin/count-event`)
         .then(res => {
-            console.log('res',res.data.data)
+            // console.log('res',res.data.data)
+            this.setState({loading:false})
             this.reportChart(res.data.data)
+        });
+        
+    }
+
+    getAllPeserta = () => {
+        this.setState({loading: true})
+        API.get(`/admin/count-peserta`)
+        .then(res => {
+            console.log('res',res.data.data.user)
+            this.setState({total_peserta : res.data.data.user,loading : false})
+        });
+    }
+
+    getAllPanitia = () => {
+        this.setState({loading: true})
+        API.get(`/admin/count-panitia`)
+        .then(res => {
+            console.log('res',res.data.data.user)
+            this.setState({total_panitia : res.data.data.user,loading : false})
+        });
+    }
+
+    getAllSertifikat = () => {
+        this.setState({loading: true})
+        API.get(`/admin/count-sertifikat`)
+        .then(res => {
+            console.log('res',res.data.data.sertifikat)
+            this.setState({total_sertifikat : res.data.data.sertifikat,loading : false})
+        });
+    }
+
+    getAllEvent = () => {
+        this.setState({loading: true})
+        API.get(`/admin/count-all-event`)
+        .then(res => {
+            console.log('res',res.data.data.event)
+            this.setState({total_event : res.data.data.event,loading : false})
         });
     }
 
@@ -41,7 +88,7 @@ class AdminPage extends Component {
             })
         })
         
-        // console.log(data_event)
+        console.log(data)
 
         chart.data = data_event;
         let categoryAxis = chart.xAxes.push(new am4charts.CategoryAxis());
@@ -64,6 +111,7 @@ class AdminPage extends Component {
         return ( 
             <AdminComponent
                 navigate={this.props.navigate}
+                initialData = {this.state}
             />
         );
     }

@@ -156,7 +156,7 @@ class EditEventPage extends Component {
     }
   
     uploadGambar = (event) => {
-        if(event.target.files[0].type != 'image/jpeg' ){
+        if(event.target.files[0].type !== 'image/jpeg' ){
             console.log('harusnya')
             this.openNotification('Format Gambar Salah', 'Silahkan Upload Kembali dengan format JPG')
         }
@@ -358,7 +358,7 @@ class EditEventPage extends Component {
         API.postEdit(`/panitia/editevent/${id_panitia}`, params)
         .then(res => {
             console.log('res',res)
-            if(res.status == 200){
+            if(res.status === 200){
                 message.success('Data Berhasil di Ubah');
                 this.props.navigate(CONSTANS. ACTIVE_EVENT_MENU_KEY)                
             }else{

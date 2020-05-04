@@ -56,7 +56,7 @@ class AuthLogin extends Component {
             password: this.state.password   
         }
 
-        if(validation.emailRequired(this.state.email) != null){
+        if(validation.emailRequired(this.state.email) !== null){
             const message = validation.emailRequired(this.state.email);
             this.openNotification(message, 'harus diisi email')
         }else if(validation.minPassword(this.state.password)){
@@ -67,8 +67,8 @@ class AuthLogin extends Component {
             API.post(`/auth/login`, params)
             .then(res => {
                 console.log('res',res )
-                if(res.status == 200){
-                    if(res.data.id_role == 2){
+                if(res.status === 200){
+                    if(res.data.id_role === 2){
                         localStorage.setItem('token', res.data.token)
                         localStorage.setItem('username', res.data.nama)
                         localStorage.setItem('id_role', res.data.id_role)
@@ -77,7 +77,7 @@ class AuthLogin extends Component {
                         this.successNotification('Sukses', 'Berhasil Login')
                       
                     }
-                    else if(res.data.id_role == 1) {
+                    else if(res.data.id_role === 1) {
                         localStorage.setItem('token', res.data.token)
                         localStorage.setItem('username', res.data.nama)
                         localStorage.setItem('profile_picture', res.data.profile_picture)
@@ -86,7 +86,7 @@ class AuthLogin extends Component {
                         this.successNotification('Sukses', 'Berhasil Login')
                        
                     }
-                    else if(res.data.id_role == 3) {
+                    else if(res.data.id_role === 3) {
                         localStorage.setItem('token', res.data.token)
                         localStorage.setItem('username', res.data.nama)
                         localStorage.setItem('profile_picture', res.data.profile_picture)
@@ -95,7 +95,7 @@ class AuthLogin extends Component {
                         this.successNotification('Sukses', 'Berhasil Login')
                         
                     }
-                    else if(res.data.id_role == 4) {
+                    else if(res.data.id_role === 4) {
                         localStorage.setItem('token', res.data.token)
                         localStorage.setItem('username', res.data.nama)
                         localStorage.setItem('profile_picture', res.data.profile_picture)

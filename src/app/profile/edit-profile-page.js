@@ -106,7 +106,7 @@ class EditProfilePage extends Component {
     }
   
     uploadGambar = (event) => {
-        if(event.target.files[0].type != 'image/jpeg' ){
+        if(event.target.files[0].type !== 'image/jpeg' ){
             console.log('harusnya')
             this.openNotification('Format Gambar Salah', 'Silahkan Upload Kembali dengan format JPG')
         }
@@ -286,16 +286,13 @@ class EditProfilePage extends Component {
         params.set('jenis_kelamin',this.state.jenis_kelamin)
         params.set('organisasi',this.state.organisasi)
         params.set('instagram',this.state.instagram)
-        //params.set('no_telefon',this.state.no_telepon)
-        //params.set('tanggal_lahir',this.state.tanggal_lahir)
-        //params.set('no_telepon',this.state.no_telepon)
         params.set('tanggal_lahir',this.state.tanggal_lahir)
         params.set('telepon',this.state.telepon)
         this.setState({loading: true})
         API.postEdit(`/peserta/profile/edit/${id_peserta}`, params)
             .then(res => {
                 console.log('res',res)
-                if(res.status == 200){
+                if(res.status === 200){
                     message.success('Data Berhasil di Ubah');
                     this.props.navigate(CONSTANS.PROFILE_MENU_KEY)
                     window.location.reload();

@@ -4,6 +4,7 @@ import '../../../assets/css/auth-login.css'
 import { Link } from 'react-router-dom';
 // component
 import InputAuth from '../../../common/component/input/input-auth'
+import InputPassword from '../../../common/component/input/input-password'
 import ButtonAuth from '../../../common/component/button/button-auth'
 import LoadingContainer from '../../../common/component/loading/loading-container'
 const { Content } = Layout;
@@ -56,7 +57,7 @@ class LoginComponent extends Component{
                                             className="input-auth mt-5 mb-20"
                                         />
                                         <span className="auth-input-label text-white">Kata Sandi</span>
-                                        <InputAuth
+                                        <InputPassword
                                             name='password'
                                             placeholder="Masukkan kata sandi anda"
                                             onChange={handleChange}
@@ -65,7 +66,7 @@ class LoginComponent extends Component{
                                             iconType="lock"
                                             type="password"
                                            />
-                                       <Link to="/forgot-password">  <p className="auth-reminder-label mt-10 text-white">Lupa Kata Sandi?</p></Link>
+                                       <Link to="/forgot-password"> <p className="auth-reminder-label mt-10 text-white">Lupa Kata Sandi?</p></Link>
                                         <div>
                                             <ButtonAuth
                                                 text="Masuk"

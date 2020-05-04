@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
-import { Layout, BackTop, Row, Col,Icon, Avatar } from 'antd';
-import {  faInfoCircle } from '@fortawesome/free-solid-svg-icons'
+import { Layout, BackTop, Row, Col,Icon, Avatar,Divider } from 'antd';
+import {  faInfoCircle, faLock } from '@fortawesome/free-solid-svg-icons'
 import '../../../assets/css/profile.css'
 
 // component
@@ -15,7 +15,7 @@ const { Content } = Layout;
 
 class ProfileComponent extends Component {
     render() { 
-        const {initialData,dataProfile,onEditPeserta,onStartLoadingHome,onFinishLoadingHome} =this.props;
+        const {initialData,dataProfile,onEditPeserta,onStartLoadingHome,onFinishLoadingHome,onEditPassword} =this.props;
         return ( 
             <Layout className="landing-container" style={{minHeight: "100vh"}} >
                 <Navbar
@@ -25,7 +25,7 @@ class ProfileComponent extends Component {
                 />
                 <Content style={{ overflow: "hidden" }}>
                 <LoadingContainer loading={initialData.loadingHome}>
-                    <div style={{minHeight:"500px"}}>
+                    <div style={{minHeight:"500px", backgroundColor:"whitesmoke"}}>
                     {
                         dataProfile.map( data =>
                             <Row className="section-container">
@@ -54,6 +54,15 @@ class ProfileComponent extends Component {
                                                     borderRadius="5px"
                                                     background="#070E57"
                                                     onClick = { () => onEditPeserta(data.id_users)}
+                                                />
+                                                <Divider type="vertical" />
+                                                <ButtonEdit
+                                                    text="Edit Password"
+                                                    height={20}
+                                                    icon={faLock}
+                                                    borderRadius="5px"
+                                                    background="#00a8ba"
+                                                    onClick = { () => onEditPassword(data.id_users)}
                                                 />
                                             </div>
                                         </Col> 

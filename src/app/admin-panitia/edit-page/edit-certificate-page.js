@@ -64,7 +64,7 @@ class EditCertificatePage extends Component {
 
     
     uploadFile = (event) => {
-        if(event.target.files[0].type != 'application/msword'){
+        if(event.target.files[0].type !== 'application/msword'){
             console.log('harusnya')
             this.openNotification('Format Sertifikat Salah', 'Silahkan Upload Kembali dengan format RTF')
         }
@@ -93,7 +93,7 @@ class EditCertificatePage extends Component {
         API.postEdit(`/panitia/edit-sertifikat-event/${this.props.idSertifikat}`, params)
             .then(res => {
                 console.log('res',res)
-                if(res.status == 200){
+                if(res.status === 200){
                     message.success('Data Sertifikat Berhasil diUbah');
                     this.props.navigate(CONSTANS.WAITING_SERTIF_PANITIA_MENU_KEY)
                     window.location.reload();

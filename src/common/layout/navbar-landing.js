@@ -30,16 +30,12 @@ class Navbar extends Component {
 		let token = localStorage.getItem("token");
 		let username_peserta = localStorage.getItem("username");
 		let profile_picture = localStorage.getItem("profile_picture");
-		if (token != null){
+		if (token !== null){
 			this.setState({username : username_peserta, profile_picture : profile_picture, isLogin: true })
 			this.getProfile();
 			this.setTimeOut();
 		}
 		
-		// window.onunload = () => {
-		// 	// Clear the local storage
-		// 	localStorage.clear();
-		// }
 		
 	}
 
@@ -54,7 +50,7 @@ class Navbar extends Component {
         .then(res => {
 			let username_peserta = localStorage.getItem("username");
 			let profile_picture = localStorage.getItem("profile_picture");
-			if ((res.data.data.user.peserta.nama_peserta != username_peserta) || (res.data.data.user.peserta.image_URL != profile_picture)){
+			if ((res.data.data.user.peserta.nama_peserta !== username_peserta) || (res.data.data.user.peserta.image_URL !== profile_picture)){
 				localStorage.setItem('username', res.data.data.user.peserta.nama_peserta)
 				localStorage.setItem('profile_picture', res.data.data.user.peserta.image_URL)
 				let username_peserta = localStorage.getItem("username");
@@ -77,10 +73,10 @@ class Navbar extends Component {
 	handleLogout = e => {
 		this.props.onStartLoadingHome();
 		this.setState({loading: true})
-		 API.get(`/auth/logout`)
+		 API.post(`/auth/logout`)
 		 .then(res => {
 			 console.log('res',res)
-			 if(res.status == 200){
+			 if(res.status === 200){
 				 localStorage.clear();
 				 this.setState({
 				   loading: false,

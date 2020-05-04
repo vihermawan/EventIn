@@ -34,6 +34,14 @@ class BannedPenandatanganPage extends Component {
       });
     }
 
+    componentWillReceiveProps(props){
+      console.log('props',props)
+      console.log('this props',this.props)
+      if(props.activeKey !== this.props.activeKey){
+        this.getBannedPenandatangan();
+      }
+    }
+
     getColumnSearchProps = dataIndex => ({
         filterDropdown: ({ setSelectedKeys, selectedKeys, confirm, clearFilters }) => (
           <div style={{ padding: 8 }}>
@@ -122,7 +130,7 @@ class BannedPenandatanganPage extends Component {
       API.get(`/admin/unban/penandatangan/${id_penandatangan}`)
       .then(res => {
           console.log('res',res)
-          if(res.status == 200){
+          if(res.status === 200){
               message.success('Unbanned Penandatangan Berhasil');
               this.componentDidMount(); 
           }   

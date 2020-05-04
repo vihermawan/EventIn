@@ -26,6 +26,15 @@ class BannedPesertaPage extends Component {
         this.getBannedPeserta();
     }
 
+    
+    componentWillReceiveProps(props){
+      console.log('props',props)
+      console.log('this props',this.props)
+      if(props.activeKey !== this.props.activeKey){
+        this.getBannedPeserta();
+      }
+    }
+
     getBannedPeserta=()=>{
       this.setState({loading: true})
       API.get(`/admin/trash/peserta`)
@@ -126,7 +135,7 @@ class BannedPesertaPage extends Component {
       API.get(`/admin/unban/peserta/${id_peserta}`)
       .then(res => {
           console.log('res',res)
-          if(res.status == 200){
+          if(res.status === 200){
               message.success('Unbanned Peserta Berhasil');
               this.componentDidMount(); 
           }   

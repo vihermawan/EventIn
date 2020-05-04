@@ -195,7 +195,7 @@ class WaitingPage extends Component {
         API.postEdit(`/admin/send-sertifikat/${id_penandatangan_sertifikat}`,params)
         .then(res => {
             console.log(res)
-            if(res.status == 200){
+            if(res.status === 200){
               message.success('Berhasil mengirim sertifikat');
               this.componentDidMount();   
               this.setState({loading: false}) 
@@ -208,7 +208,7 @@ class WaitingPage extends Component {
         API.delete(`/admin/reject-sertifikat/${id_penandatangan_sertifikat}`)
         .then(res => {
             console.log(res)
-            if(res.status == 200){
+            if(res.status === 200){
               message.success('Berhasil menolak sertifikat');
               this.componentDidMount();   
               this.setState({loading: false}) 
@@ -294,42 +294,71 @@ class WaitingPage extends Component {
               render: (data) => (
                 [
                 <Row>
-                    <Col lg={8} md={24} sm={24} style={data.end_registration < dateNow ? {display:"none"}:{display:"block"}}>
-                      <Tooltip title="Kirim">
-                          <ButtonDashboard
-                              height={20}
-                              icon={faPaperPlane}
-                              borderRadius="5px"
-                              background="#36FF03"
-                              onClick = {() => this.showSendConfirm(data.id_penandatangan_sertifikat, data.nama_penandatangan, data.instansi, data.jabatan)}
-                          />
-                      </Tooltip>
-                    </Col>
-                    <Col lg={8} md={24} sm={24}>
-                        <Tooltip title="Detail">
-                          {/* <a href={`${data.sertif_URL}`} download> */}
-                            <ButtonDashboard
-                                height={20}
-                                icon={faInfoCircle}
-                                borderRadius="5px"
-                                background="#FFA903"
-                                marginRight="4px"
-                                onClick={() => this.onDetailSertifikat(data.sertif_URL,data.end_registration,data.start_event,data.end_event,data.nama_event)}
-                            />
-                          {/* </a> */}
-                        </Tooltip>
-                    </Col>
-                    <Col lg={8} md={24} sm={24}>
-                        <Tooltip title="Reject">
-                          <ButtonDashboard
-                              height={20}
-                              icon={faTrashAlt}
-                              borderRadius="5px"
-                              background="#E11212"
-                              onClick = { () => this.showRejectConfirm(data.id_penandatangan_sertifikat,data.nama_panitia)}
-                          />
-                        </Tooltip>
-                    </Col>
+                    <div style={data.close < Date.parse(dateNow) ? {display:"none"}:{display:"block"}}>
+                      <div style={{textAlign:"center"}}>
+                        <Col lg={12} md={24} sm={24}>
+                            <Tooltip title="Detail">
+                                <ButtonDashboard
+                                    height={20}
+                                    icon={faInfoCircle}
+                                    borderRadius="5px"
+                                    background="#FFA903"
+                                    width = {80}
+                                    onClick={() => this.onDetailSertifikat(data.sertif_URL,data.end_registration,data.start_event,data.end_event,data.nama_event)}
+                                />
+                            </Tooltip>
+                        </Col>
+                        <Col lg={12} md={24} sm={24}>
+                            <Tooltip title="Reject">
+                              <ButtonDashboard
+                                  height={20}
+                                  width = {80}
+                                  icon={faTrashAlt}
+                                  borderRadius="5px"
+                                  background="#E11212"
+                                  onClick = { () => this.showRejectConfirm(data.id_penandatangan_sertifikat,data.nama_panitia)}
+                              />
+                            </Tooltip>
+                        </Col>
+                      </div> 
+                    </div>
+                    <div style={data.close < Date.parse(dateNow) ? {display:"block"}:{display:"none"}}> 
+                      <div style={{textAlign:"center"}}>
+                        <Col lg={8} md={24} sm={24} >
+                          <Tooltip title="Kirim">
+                              <ButtonDashboard
+                                  height={20}
+                                  icon={faPaperPlane}
+                                  borderRadius="5px"
+                                  background="#36FF03"
+                                  onClick = {() => this.showSendConfirm(data.id_penandatangan_sertifikat, data.nama_penandatangan, data.instansi, data.jabatan)}
+                              />
+                          </Tooltip>
+                        </Col>
+                        <Col lg={8} md={24} sm={24}>
+                            <Tooltip title="Detail">
+                                <ButtonDashboard
+                                    height={20}
+                                    icon={faInfoCircle}
+                                    borderRadius="5px"
+                                    background="#FFA903"
+                                    onClick={() => this.onDetailSertifikat(data.sertif_URL,data.end_registration,data.start_event,data.end_event,data.nama_event)}
+                                />
+                            </Tooltip>
+                        </Col>
+                        <Col lg={8} md={24} sm={24}>
+                            <Tooltip title="Reject">
+                              <ButtonDashboard
+                                  height={20}
+                                  icon={faTrashAlt}
+                                  borderRadius="5px"
+                                  background="#E11212"
+                                  onClick = { () => this.showRejectConfirm(data.id_penandatangan_sertifikat,data.nama_panitia)}
+                              />
+                            </Tooltip>
+                        </Col>
+                      </div>
+                    </div>
                   </Row>
                 ]
               ),
@@ -349,7 +378,9 @@ class WaitingPage extends Component {
             start_event : moment(sertifikat.event.detail_event.start_event).format("DD MMMM YYYY"),
             end_event : moment(sertifikat.event.detail_event.end_event).format("DD MMMM YYYY"),
             end_registration : moment(sertifikat.event.detail_event.end_registration).format("DD MMMM YYYY"),
-            nama_panitia : sertifikat.event.panitia.nama_panitia
+            nama_panitia : sertifikat.event.panitia.nama_panitia,
+            dateNow : moment().format('YYYY-MM-DD'),
+            close : Date.parse(sertifikat.event.detail_event.end_registration),
         }))
         
         return ( 

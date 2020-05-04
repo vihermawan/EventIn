@@ -133,7 +133,7 @@ class KategoriMasterPage extends Component {
         const params = new FormData()
         params.set('nama_kategori', this.state.nama_kategori)
 
-        if(validation.required(this.state.nama_kategori) != null ){
+        if(validation.required(this.state.nama_kategori) !== null ){
             const message = validation.required(this.state.nama_kategori);
             this.openNotification(message, 'Nama Kategori harus ditulis')
         }else{
@@ -141,7 +141,7 @@ class KategoriMasterPage extends Component {
             API.post(`/admin/addkategori`, params)
         .then(res => {
             console.log('res',res)
-            if(res.status == 201){
+            if(res.status === 201){
                 message.success('Kategori Berhasil Ditambahkan');
                 this.setState({
                     visible: false,
@@ -163,7 +163,7 @@ class KategoriMasterPage extends Component {
             params.append('_method','PUT')
             params.set('nama_kategori', this.state.edit_kategori)
 
-            if(validation.required(this.state.edit_kategori) != null ){
+            if(validation.required(this.state.edit_kategori) !== null ){
                 const message = validation.required(this.state.edit_kategori);
                 this.openNotification(message, 'Nama Kategori harus ditulis')
             }else{
@@ -171,7 +171,7 @@ class KategoriMasterPage extends Component {
                 API.postEdit(`/admin/editkategori/${this.state.id_kategori}`, params)
             .then(res => {
                 console.log('res',res)
-                if(res.status == 200){
+                if(res.status === 200){
                     message.success('Kategori Berhasil Diubah');
                     this.setState({
                         show: false,
@@ -201,7 +201,7 @@ class KategoriMasterPage extends Component {
         API.delete(`/admin/deletekategori/${id}`)
         .then(res => {
             console.log('res',res)
-            if(res.status == 200){
+            if(res.status === 200){
                 message.success('Berhasil Menghapus Kategori');
                 this.componentDidMount();
             }   
@@ -230,7 +230,6 @@ class KategoriMasterPage extends Component {
             description,
         });
     };
-
 
     render() { 
         const columns = [

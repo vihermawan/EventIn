@@ -77,6 +77,7 @@ class CreateCertificateComponent extends Component{
                                                     </div>
                                                     <div>
                                                     <Select
+                                                        showSearch
                                                         placeholder="Pilih Event"
                                                         optionFilterProp="children"
                                                         style={{ width: '100%' }}

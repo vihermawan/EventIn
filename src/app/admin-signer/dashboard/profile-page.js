@@ -38,6 +38,11 @@ class ProfilePage extends Component {
         this.props.navigate(CONSTANS.EDIT_PROFILE_SIGNER_MENU_KEY)
     }
 
+    onEditPassword = (id_users) => {
+        this.props.setIdUsers(id_users)
+        this.props.navigate(CONSTANS.EDIT_PASSWORD_SIGNER_MENU_KEY)
+    }
+
     render() { 
 
         const dataProfile =  this.state.user.map( ({id_users, email, penandatangan}, index) => ({
@@ -57,6 +62,7 @@ class ProfilePage extends Component {
                 initialData = {this.state}
                 dataProfile = {dataProfile}
                 onEditSigner = {this.onEditSigner}
+                onEditPassword = {this.onEditPassword}
             />
         );
     }

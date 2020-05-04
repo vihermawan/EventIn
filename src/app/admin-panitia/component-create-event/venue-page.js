@@ -102,16 +102,16 @@ class VenuePage extends Component {
     };
 
     onNext = () => {
-        if(validation.required(this.state.venue) != null){
+        if(validation.required(this.state.venue) !== null){
             const message = validation.required(this.state.venue);
             this.openNotification(message, 'Tempat Harus Diisi')   
-        }else if(validation.required(this.state.lokasi) != null){
+        }else if(validation.required(this.state.lokasi) !== null){
             const message = validation.required(this.state.lokasi);
             this.openNotification(message, 'Lokasi Harus Diisi')
-        }else if(validation.required(this.state.id_provinsi) != null){
+        }else if(validation.required(this.state.id_provinsi) !== null){
             const message = validation.required(this.state.id_provinsi);
             this.openNotification(message, 'Provinsi Harus Diisi')
-        }else if(validation.required(this.state.id_kabupaten) != null){
+        }else if(validation.required(this.state.id_kabupaten) !== null){
             const message = validation.required(this.state.id_kabupaten);
             this.openNotification(message, 'Kabupaten Harus Diisi')
         }

@@ -66,7 +66,7 @@ class HistoryEventPage extends Component {
       API.delete(`/panitia/deleteevent/${id}`)
       .then(res => {
           console.log('res',res)
-          if(res.status == 200){
+          if(res.status === 200){
               message.success('Data Berhasil dihapus');
               window.location.reload(); 
           }   
@@ -205,7 +205,7 @@ class HistoryEventPage extends Component {
                 ...this.getColumnSearchProps('nama_event'),
             },
             {
-                title: 'Peserta',
+                title: 'Total Peserta',
                 dataIndex: 'peserta',
                 key: 'peserta',
             },
@@ -221,7 +221,7 @@ class HistoryEventPage extends Component {
                       borderRadius="5px"
                       background="#070E57"
                       onClick={() =>this.onDetailParticipant(data.nomor)}
-                  />,
+                  />
                 </Tooltip>,
                 <Divider type="vertical" />,
                 <Tooltip title="Delete">
@@ -231,7 +231,7 @@ class HistoryEventPage extends Component {
                       borderRadius="5px"
                       background="#FF0303"
                       onClick={ () => this.showDeleteConfirm(data.nomor)}
-                  />,
+                  />
                 </Tooltip>,
                 <Divider type="vertical" />,
                 <Tooltip title="Detail">
@@ -241,21 +241,21 @@ class HistoryEventPage extends Component {
                       borderRadius="5px"
                       background="#FFA903"
                       onClick={ () => this.onDetailEvent(data.nomor)}
-                  />,
+                  />
                  </Tooltip>,
                 ]
               ),
             },
           ];
 
-          const data =  this.state.eventPast.map( ({id_event, nama_event, detail_event, kategori}, index) => ({
+          const data =  this.state.eventPast.map( ({id_event, nama_event, detail_event, kategori, peserta_event_count}, index) => ({
                     no : index+1,
                     nomor : id_event,
                     nama_event: nama_event,
                     start_event :detail_event.start_event,
                     lokasi : detail_event.lokasi,
                     kategori : [kategori.nama_kategori],
-                    peserta : detail_event.limit_participant,
+                    peserta : peserta_event_count,
         }))
 
         return ( 

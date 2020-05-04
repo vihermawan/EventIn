@@ -66,7 +66,7 @@ class CreateCertificatePage extends Component {
     }
 
     uploadFile = (event) => {
-        if(event.target.files[0].type != 'application/msword'){
+        if(event.target.files[0].type !== 'application/msword'){
             console.log('harusnya')
             this.openNotification('Format Sertifikat Salah', 'Silahkan Upload Kembali dengan format RTF')
         }
@@ -104,19 +104,19 @@ class CreateCertificatePage extends Component {
         params.set('id_event',this.state.id_event)
         params.set('id_penandatangan[]',this.state.id_penandatangan)
         params.append('sertifikat',this.state.sertifikat)
-        if(validation.required(this.state.nama_sertifikat) != null ){
+        if(validation.required(this.state.nama_sertifikat) !== null ){
             const message = validation.required(this.state.nama_sertifikat);
             this.openNotification(message, 'Nama Sertifikat Harus diIsi')
-        }else if(validation.required(this.state.no_sertifikat) != null ){
+        }else if(validation.required(this.state.no_sertifikat) !== null ){
             const message = validation.required(this.state.no_sertifikat);
             this.openNotification(message, 'Nomor Sertifikat Harus diisi')
-        }else if(validation.required(this.state.id_event) != null ){
+        }else if(validation.required(this.state.id_event) !== null ){
             const message = validation.required(this.state.id_event);
             this.openNotification(message, 'Event Harus diisi')
-        }else if(validation.required(this.state.id_penandatangan) != null ){
+        }else if(validation.required(this.state.id_penandatangan) !== null ){
             const message = validation.required(this.state.id_penandatangan);
             this.openNotification(message, 'Penandatangan harus dipilih')
-        }else if(validation.required(this.state.sertifikat) != null ){
+        }else if(validation.required(this.state.sertifikat) !== null ){
             const message = validation.required(this.state.sertifikat);
             this.openNotification(message, 'Sertifikat Harus Diupload')
         }else{
@@ -125,7 +125,7 @@ class CreateCertificatePage extends Component {
             API.postEdit(`/panitia/create-sertifikat`, params)
             .then(res => {
                 console.log('res',res)
-                if(res.status == 201){
+                if(res.status === 201){
                     this.setState({ show :false,})
                     message.success('Sertifikat berhasil Ditambahkan');
                     this.componentDidMount();
