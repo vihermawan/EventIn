@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Layout, Row, Col, Form, Input,Upload, Button,Select,DatePicker,Modal  } from 'antd';
+import { Layout, Row, Col, Form, Button,Select  } from 'antd';
 import Navbar from '../../../common/layout/navbar-landing'
 import Footer from '../../../common/layout/footer-landing'
 import '../../../assets/css/dashboard-all/dashboard.css'
@@ -8,10 +8,7 @@ import '../../../assets/css/admin-superadmin/detail-event.css'
 // component
 import LoadingContainer from '../../../common/component/loading/loading-container'
 import InputForm from '../../../common/component/input/input-form';
-import ButtonDashboard from '../../../common/component/button/button-dashboard';
-import { faUserEdit, faBackward, faIdCard, faAddressBook, faUserAlt, faEnvelope, faUserLock, faLock } from '@fortawesome/free-solid-svg-icons';
-import ReactCrop from 'react-image-crop';
-import moment from 'moment';
+import {  faUserLock, faLock } from '@fortawesome/free-solid-svg-icons';
 // constant content
 const { Content } = Layout;
 const { Option } = Select;
@@ -22,10 +19,7 @@ const uploadButton = (
 );
 class EditProfilePesertaComponent extends Component {
     render() { 
-      const {initialData,handleChange,handleSubmit,
-            uploadGambar,handleJenisKelamin,handleButtonEdit,
-            handleButtonGambar,onChangeBirthDate,
-            onImageLoaded,onCropComplete,onCropChange,handleOk,handleCancel,onStartLoadingHome,onFinishLoadingHome
+      const {initialData,handleChange,handleSubmit,onStartLoadingHome,onFinishLoadingHome
       } = this.props  
       const dateFormat = 'YYYY-MM-DD';
       return ( 

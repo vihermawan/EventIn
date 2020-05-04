@@ -130,7 +130,7 @@ class BannedPenandatanganPage extends Component {
       API.get(`/admin/unban/penandatangan/${id_penandatangan}`)
       .then(res => {
           console.log('res',res)
-          if(res.status == 200){
+          if(res.status === 200){
               message.success('Unbanned Penandatangan Berhasil');
               this.componentDidMount(); 
           }   

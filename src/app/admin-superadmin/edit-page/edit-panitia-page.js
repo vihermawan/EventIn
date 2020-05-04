@@ -114,7 +114,7 @@ class EditProfilePanitiaAdminPage extends Component {
         API.postEdit(`/admin/panitia/edit/${id_panitia}`, params)
             .then(res => {
                 console.log('res',res)
-                if(res.status == 200){
+                if(res.status === 200){
                     message.success('Data Berhasil di Ubah');
                     this.componentDidMount();
                 }else{

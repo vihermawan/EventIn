@@ -65,10 +65,10 @@ class AuthRegister extends Component {
             jenis_kelamin : this.state.jenis_kelamin 
         }
         
-        if(validation.required(this.state.nama_peserta) != null){
+        if(validation.required(this.state.nama_peserta) !== null){
             const message = validation.required(this.state.nama_peserta)  
             this.openNotification(message, 'Nama belum dimasukkan') 
-        }else if(validation.emailRequired(this.state.email) != null){
+        }else if(validation.emailRequired(this.state.email) !== null){
             const message = validation.emailRequired(this.state.email);
             this.openNotification(message, 'Harap memasukkan email dengan benar')
         }else if(this.state.jenis_kelamin === '-'){
@@ -85,6 +85,8 @@ class AuthRegister extends Component {
                 if(res.status === 201){
                     this.props.navigate(CONSTANS.LOGIN_MENU_KEY)
                     this.successNotification('Sukses', 'Register Berhasil')
+                }else if(res.data.errors.email[0] === 'The email has already been taken.'){
+                    this.openNotification('Email telah terdaftar', 'Silahkan daftar dengan email lain')
                 }else{
                     this.openNotification('Register Salah', 'Silahkan isi data dengan benar')
                 }

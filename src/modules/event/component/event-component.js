@@ -233,7 +233,7 @@ class EventComponent extends Component {
                                                     </Row>
                                                     <Row>
                                                         <Col span={24}>
-                                                            <div className="tombol-tengah button-section-1-container" style={initialData.countEvent < 1 && initialData.loading == true ? {display:"none"}:{display:"block"}}>
+                                                            <div className="tombol-tengah button-section-1-container" style={initialData.countEvent < 1 && initialData.loading === true ? {display:"none"}:{display:"block"}}>
                                                                 <ButtonDashboard
                                                                     text="Semua Event"
                                                                     className='button-participate'

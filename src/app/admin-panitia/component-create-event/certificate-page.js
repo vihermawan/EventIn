@@ -57,7 +57,7 @@ class CertificatePage extends Component {
     }
   
     uploadGambar = (event) => {
-        if(event.target.files[0].type != 'image/jpeg' ){
+        if(event.target.files[0].type !== 'image/jpeg' ){
             console.log('harusnya')
             this.openNotification('Format Gambar Salah', 'Silahkan Upload Kembali dengan format JPG')
         }
@@ -189,7 +189,7 @@ class CertificatePage extends Component {
     }
 
     uploadFile = (event) => {
-        if(event.target.files[0].type != 'application/msword'){
+        if(event.target.files[0].type !== 'application/msword'){
             console.log('harusnya')
             this.openNotification('Format Sertifikat Salah', 'Silahkan Upload Kembali dengan format RTF')
         }
@@ -268,7 +268,7 @@ class CertificatePage extends Component {
         
         console.log('params', params)
 
-    if(validation.required(this.state.picture_event) != null ){
+    if(validation.required(this.state.picture_event) !== null ){
         const message = validation.required(this.state.picture_event);
         this.openNotification(message, 'Gambar Event Harus di upload')
     }else{
@@ -276,7 +276,7 @@ class CertificatePage extends Component {
         API.postEdit(`/panitia/create/event`, params)
         .then(res => {
             console.log('res',res)
-            if(res.status == 201){
+            if(res.status === 201){
                 message.success('Event Berhasil Ditambahkan');
                 this.props.navigate(CONSTANS.ACTIVE_EVENT_MENU_KEY)
                 this.successNotification('Sukses membuat event', 'Tunggu 1x24 jam di email anda untuk mendapat pemberitahuan apakah event anda ditolak atau diterima')

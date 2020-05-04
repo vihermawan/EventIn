@@ -82,28 +82,28 @@ class BasicInfoPage extends Component {
     };
 
     onNext = () => {
-        if(validation.required(this.state.nama) != null){
+        if(validation.required(this.state.nama) !== null){
             const message = validation.required(this.state.nama);
             this.openNotification(message, 'Nama Event Harus Diisi')
-        }else if(validation.required(this.state.description) != null){
+        }else if(validation.required(this.state.description) !== null){
             const message = validation.required(this.state.description);
             this.openNotification(message, 'Deskripsi Event Harus Diisi')
-        }else if(validation.required(this.state.organisasi) != null){
+        }else if(validation.required(this.state.organisasi) !== null){
             const message = validation.required(this.state.organisasi);
             this.openNotification(message, 'Organisasi Harus Diisi')
-        }else if(validation.numberRequired(this.state.batas_peserta) != null){
+        }else if(validation.numberRequired(this.state.batas_peserta) !== null){
             const message = validation.numberRequired(this.state.batas_peserta);
             this.openNotification(message, 'Batas Peserta Event Harus Diisi')
-        }else if(validation.numberRequired(this.state.no_telepon) != null){
+        }else if(validation.numberRequired(this.state.no_telepon) !== null){
             const message = validation.numberRequired(this.state.no_telepon);
             this.openNotification(message, 'Nomor Telefon Harus Diisi')
-        }else if(validation.emailRequired(this.state.email_event) != null){
+        }else if(validation.emailRequired(this.state.email_event) !== null){
             const message = validation.emailRequired(this.state.email_event);
             this.openNotification(message, 'Email Event Harus Diisi')
-        }else if(validation.required(this.state.kategori_input) != null){
+        }else if(validation.required(this.state.kategori_input) !== null){
             const message = validation.required(this.state.kategori_input);
             this.openNotification(message, 'Kategori Event Harus Dipilih')
-        }else if(validation.required(this.state.instagram) != null){
+        }else if(validation.required(this.state.instagram) !== null){
             const message = validation.required(this.state.instagram);
             this.openNotification(message, 'Akun Instagram Event Harus Diisi')
         }else{

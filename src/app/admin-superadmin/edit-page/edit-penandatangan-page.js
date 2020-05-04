@@ -113,7 +113,7 @@ class EditProfileAdminSignerPage extends Component {
         API.postEdit(`/admin/penandatangan/edit/${id_penandatangan}`, params)
             .then(res => {
                 console.log('res',res)
-                if(res.status == 200){
+                if(res.status === 200){
                     message.success('Data Berhasil di Ubah');
                     this.componentDidMount();
                 }else{

@@ -45,7 +45,7 @@ class ForgotPasswordPage extends Component {
         const params = {
             email: this.state.email,
         }
-        if(validation.emailRequired(this.state.email) != null){
+        if(validation.emailRequired(this.state.email) !== null){
             const message = validation.emailRequired(this.state.email);
             this.openNotification(message, 'harus diisi email')
         }else{

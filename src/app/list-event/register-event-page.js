@@ -133,7 +133,7 @@ class RegisterEventPage extends Component {
         API.delete(`/peserta/profile/event/${id_event}/delete`)
         .then(res => {
             console.log('res',res)
-            if(res.status == 200){
+            if(res.status === 200){
                 message.success('Berhasil membatalkan pendaftaran');
                 this.componentDidMount();
             } 

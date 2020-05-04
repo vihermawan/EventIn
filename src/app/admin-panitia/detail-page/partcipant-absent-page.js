@@ -7,7 +7,7 @@ import  * as Highlighter from 'react-highlight-words';
 import { API } from '../../../common/api'
 import { navigate } from '../../../common/store/action'
 import DetailParticipantComponent from '../../../modules/admin-panitia/active-event/participant-absent-component';
-import ButtonDashboard from '../../../common/component/button/button-dashboard';
+import ButtonEdit from '../../../common/component/button/button-edit';
 
 // import store
 import { setIdPeserta } from '../../../modules/admin-superadmin/user/peserta/store/peserta-action'
@@ -126,7 +126,7 @@ class DetailParticipantPage extends Component {
         API.put(`/panitia/ubahAbsensi/${id_pesertaevent}`)
         .then(res => {
             console.log('res',res)
-            if(res.status == 200){
+            if(res.status === 200){
                 message.success('Peserta berhasil absent');
                 this.componentDidMount();
             }   
@@ -209,12 +209,11 @@ class DetailParticipantPage extends Component {
                     </span>
                 ),
             },
-            
             {
               title: 'Action',
               key: 'action',
               render: (data) => (
-                [<ButtonDashboard
+                [<ButtonEdit
                     text="Absen"
                     height={20}
                     icon={faUsers}

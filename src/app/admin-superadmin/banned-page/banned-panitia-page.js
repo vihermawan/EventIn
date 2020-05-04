@@ -129,7 +129,7 @@ class BannedPanitiaPage extends Component {
       API.get(`/admin/unban/panitia/${id_panitia}`)
       .then(res => {
           console.log('res',res)
-          if(res.status == 200){
+          if(res.status === 200){
               message.success('Unbanned Panitia Berhasil');
               this.componentDidMount(); 
           }   

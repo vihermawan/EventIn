@@ -32,7 +32,7 @@ class AllEventPage extends Component {
         API.get(`/peserta/Allevent?page=${page}`)
         .then(res => {
             console.log(res.data.data.event)
-            if(res.status == 200){
+            if(res.status === 200){
                 const allData = this.state.event.concat(res.data.data.event.data);
                 this.setState({
                     event:allData,

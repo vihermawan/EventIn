@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
-import { Layout, BackTop } from 'antd';
-import { Route } from 'react-router-dom';
+import { Layout} from 'antd';
 
 import './style/auth-style.css'
 

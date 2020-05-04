@@ -40,7 +40,7 @@ class EventPage extends Component {
         API.get(`/peserta/event/kategori/${id_kategori}`)
         .then(res => {
             // console.log('res',res)
-            if(res.status == 200){
+            if(res.status === 200){
                 this.setState({
                     eventbyKategori:res.data.data.event,
                     countEvent :res.data.size,
@@ -55,7 +55,7 @@ class EventPage extends Component {
         API.get(`/peserta/event`)
         .then(res => {
             console.log('res', res.data.data)
-            if(res.status == 200){
+            if(res.status === 200){
                 this.setState({
                     event:res.data.data.event.data,
                 })
@@ -69,7 +69,7 @@ class EventPage extends Component {
         API.get(`/peserta/eventbyWeek`)
         .then(res => {
             console.log(res.data.data)
-            if(res.status == 200){
+            if(res.status === 200){
                 this.setState({
                     event_week:res.data.data.event.data,
                 })
@@ -81,7 +81,7 @@ class EventPage extends Component {
     getKategori=()=>{
         API.get('/peserta/kategori')
         .then(res => {
-            if(res.status == 200){
+            if(res.status === 200){
                 this.setState({
                     kategori:res.data.data.kategori,
                 })
@@ -93,7 +93,7 @@ class EventPage extends Component {
         API.get(`/event/search?nama=${params}`)
         .then(res => {
             // console.log(res.data.data.event.data)
-            if(res.status == 200){
+            if(res.status === 200){
                 this.setState({
                     event_seacrh:res.data.data.event.data,
                     size_event_seacrh : res.data.data.event.total,

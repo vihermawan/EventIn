@@ -121,7 +121,7 @@ class EditProfilePesertaAdminPage extends Component {
         API.postEdit(`/admin/peserta/edit/${id_peserta}`, params)
             .then(res => {
                 console.log('res',res)
-                if(res.status == 200){
+                if(res.status === 200){
                     message.success('Data Berhasil di Ubah');
                     this.componentDidMount();
                 }else{

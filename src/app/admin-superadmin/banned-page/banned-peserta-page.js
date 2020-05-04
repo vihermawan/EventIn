@@ -135,7 +135,7 @@ class BannedPesertaPage extends Component {
       API.get(`/admin/unban/peserta/${id_peserta}`)
       .then(res => {
           console.log('res',res)
-          if(res.status == 200){
+          if(res.status === 200){
               message.success('Unbanned Peserta Berhasil');
               this.componentDidMount(); 
           }   

@@ -195,7 +195,7 @@ class WaitingPage extends Component {
         API.postEdit(`/admin/send-sertifikat/${id_penandatangan_sertifikat}`,params)
         .then(res => {
             console.log(res)
-            if(res.status == 200){
+            if(res.status === 200){
               message.success('Berhasil mengirim sertifikat');
               this.componentDidMount();   
               this.setState({loading: false}) 
@@ -208,7 +208,7 @@ class WaitingPage extends Component {
         API.delete(`/admin/reject-sertifikat/${id_penandatangan_sertifikat}`)
         .then(res => {
             console.log(res)
-            if(res.status == 200){
+            if(res.status === 200){
               message.success('Berhasil menolak sertifikat');
               this.componentDidMount();   
               this.setState({loading: false}) 

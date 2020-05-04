@@ -120,7 +120,7 @@ class ApprovalEventPage extends Component {
         API.put(`/admin/approvalevent/${id_event}/acc`)
         .then(res => {
             console.log('res',res)
-            if(res.status == 200){
+            if(res.status === 200){
                 message.success('Event berhasil di approve');
                 this.componentDidMount(); 
             }   
@@ -134,7 +134,7 @@ class ApprovalEventPage extends Component {
       API.put(`/admin/approvalevent/${id_event}/reject`)
       .then(res => {
           console.log('res',res)
-          if(res.status == 200){
+          if(res.status === 200){
               message.success('Event berhasil di tolak');
               this.componentDidMount(); 
           }   
