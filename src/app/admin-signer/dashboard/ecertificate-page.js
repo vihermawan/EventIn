@@ -196,16 +196,16 @@ class ECertificatePage extends Component {
             },
           ];
         
-        const data =  this.state.signed_e_certificate.map( ({id_penandatangan_sertifikat, id_sertifikat,sertifikat,tenggang_waktu,status}, index) => ({
+        const data =  this.state.signed_e_certificate.map( ({id_penandatangan_sertifikat, id_sertifikat,sertifikat,nama_sertifikat,status,sertifikat_URL}, index) => ({
             no : index+1,
             nomor : id_penandatangan_sertifikat,
             id_sertif : id_sertifikat,
             nama_event : sertifikat.event.nama_event,
             nama_panitia : sertifikat.event.panitia.nama_panitia,
             organisasi : sertifikat.event.organisasi,
-            sertifikat : sertifikat.sertifikat,
+            sertifikat : nama_sertifikat,
             status : [status.nama_status],
-            sertif_URL :sertifikat.sertif_URL
+            sertif_URL :sertifikat_URL
         }))
 
         return ( 
