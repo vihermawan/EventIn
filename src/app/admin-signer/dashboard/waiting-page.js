@@ -153,7 +153,8 @@ class WaitingListPage extends Component {
     assignSertifikat = (id_penandatangan_sertifikat,id_sertifikat) => {
         console.log(id_penandatangan_sertifikat,id_sertifikat)
         const params = new FormData()
-        params.set('id_penandatangan_sertifikat[]',id_penandatangan_sertifikat)
+        params.set('passphrase','password')
+        params.set('id_penandatangan_sertifikat',id_penandatangan_sertifikat)
         params.append("_method", 'PUT')
         
         API.postEdit(`/penandatangan/sertifikat/assign/${id_sertifikat}`, params)
