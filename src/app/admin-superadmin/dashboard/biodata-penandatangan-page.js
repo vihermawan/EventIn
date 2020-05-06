@@ -118,7 +118,7 @@ class BiodataPenandatanganAdminPage extends Component {
         });
     }
 
-     //function untuk modal
+     //function untuk modal.
      showRejectConfirm = (id,nama,jabatan,instansi) => {
       confirm({
           title: `Yakin untuk menolak ${nama} ${jabatan} ${instansi} sebagai penandatangan ?`,
@@ -155,7 +155,7 @@ class BiodataPenandatanganAdminPage extends Component {
         });
     }
 
-    //add penandatangan
+    //add penandatangan.
     rejectPenandatangan = (id) => {
       const params = {
           id_biodata_penandatangan: id,  
@@ -226,7 +226,7 @@ class BiodataPenandatanganAdminPage extends Component {
               key: 'action',
               render: (data) => (
                 [
-                <Tooltip title="Add">
+                <Tooltip title="Terima">
                   <ButtonDashboard
                       height={20}
                       icon={faInfoCircle}
@@ -236,7 +236,7 @@ class BiodataPenandatanganAdminPage extends Component {
                   />
                 </Tooltip>,
                 <Divider type="vertical"/>,
-                <Tooltip title="Reject">
+                <Tooltip title="Tolak">
                   <ButtonDashboard
                       height={20}
                       icon={faTrash}

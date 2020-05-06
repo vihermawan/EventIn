@@ -210,7 +210,7 @@ class PesertaAdminPage extends Component {
                         onClick = { () => this.onDetailPeserta(data.id_users,data.id_peserta)}
                     />,
                     <ButtonEdit
-                        text="Ban"
+                        text="Blokir"
                         height={20}
                         icon={faBan}
                         borderRadius="5px"
