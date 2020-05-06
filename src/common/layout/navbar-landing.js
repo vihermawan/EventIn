@@ -43,7 +43,7 @@ class Navbar extends Component {
 		setTimeout(function(){localStorage.clear();}, 1000 * 60 * 60 * 24);
 	}
 		
-    //get data profile dari API
+    //get data profile dari API.
     getProfile=()=>{
         this.setState({loading: true})
         API.get(`/peserta/edit-profile`)
