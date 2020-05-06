@@ -56,16 +56,16 @@ class SetPasswordPage extends Component {
         }else{
             this.setState({loading: true})
             this.showModal2();
-            API.post(`/password/reset/${this.state.current}`, params)
+            API.post(`/password/reset/penandatangan/${this.state.current}`, params)
             .then(res => {
                 console.log('res',res)
                 if( res.status === 200){
                     this.props.navigate(CONSTANS.LOGIN_MENU_KEY)
-                    message.success('Berhasil Mengubah Password');
+                    message.success('Berhasil Membuat Password');
                 }else {
                     this.setState({show :false})
                     this.props.navigate(CONSTANS.FORGET_PASSWORD_MENU_KEY)
-                    this.openNotification('Token Invalid','Silahkan kirim masukkan email kembali')
+                    this.openNotification('Token Invalid','Silahkan klik atur ulang kata sandi di halaman login')
                 }
             });
         }

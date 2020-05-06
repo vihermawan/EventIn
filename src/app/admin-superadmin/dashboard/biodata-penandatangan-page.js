@@ -226,7 +226,7 @@ class BiodataPenandatanganAdminPage extends Component {
               key: 'action',
               render: (data) => (
                 [
-                <Tooltip title="Add">
+                <Tooltip title="Terima">
                   <ButtonDashboard
                       height={20}
                       icon={faInfoCircle}
@@ -236,7 +236,7 @@ class BiodataPenandatanganAdminPage extends Component {
                   />
                 </Tooltip>,
                 <Divider type="vertical"/>,
-                <Tooltip title="Reject">
+                <Tooltip title="Tolak">
                   <ButtonDashboard
                       height={20}
                       icon={faTrash}
