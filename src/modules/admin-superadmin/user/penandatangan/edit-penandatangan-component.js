@@ -8,7 +8,7 @@ import '../../../../assets/css/admin-superadmin/detail-event.css'
 import LoadingContainer from '../../../../common/component/loading/loading-container'
 import InputForm from '../../../../common/component/input/input-form';
 import ButtonDashboard from '../../../../common/component/button/button-dashboard';
-import { faUserEdit, faBackward, faUserAlt, faEnvelope, faIdCard, faAddressBook } from '@fortawesome/free-solid-svg-icons';
+import { faUserEdit, faBackward, faMapMarker, faUserAlt, faEnvelope, faIdCard, faAddressBook } from '@fortawesome/free-solid-svg-icons';
 
 // constant content
 const { Content } = Layout;
@@ -231,6 +231,36 @@ class EditProfileSignerAdminComponent extends Component {
                                                         // value={initialData.name_photo}
                                                         className="input-picture"
                                                         style={{marginBottom : '30px',padding: '4px 11px 11px 11px', minHeight:'40px',borderColor:'#2C37BA'}}
+                                                    />
+                                                </div>
+                                            </Col>
+                                            <Col lg={24} md={24} sm={24}>
+                                                <div>   
+                                                    <span className="auth-input-label text-black">Kabupaten / Kota</span>
+                                                </div>
+                                                <div>
+                                                    <InputForm
+                                                        name='kabupaten'
+                                                        className="input-event mt-5 mb-20"
+                                                        onChange={handleChange}
+                                                        value={initialData.kabupaten}
+                                                        icon={faMapMarker}
+                                                        disabled
+                                                    />
+                                                </div>
+                                            </Col>
+                                            <Col lg={24} md={24} sm={24}>
+                                                <div>   
+                                                    <span className="auth-input-label text-black">Provinsi</span>
+                                                </div>
+                                                <div>
+                                                    <InputForm
+                                                        name='provinsi'
+                                                        className="input-event mt-5 mb-20"
+                                                        onChange={handleChange}
+                                                        value={initialData.provinsi}
+                                                        icon={faMapMarker}
+                                                        disabled
                                                     />
                                                 </div>
                                             </Col>
