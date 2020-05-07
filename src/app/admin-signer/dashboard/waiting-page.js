@@ -15,17 +15,21 @@ import moment from 'moment-timezone';
 import { setIdSertifikat } from '../../../modules/admin-panitia/e-certificate/store/e-certificate-action'
 
 const {confirm} = Modal;
+let data_id = [];
 
 class WaitingListPage extends Component {
     state = {  
         e_certificate: [],
         id_sertifikat : '', 
-        loading:false
+        loading:false,
+        visible: false,
+        visible_loading : false,
     }
 
     componentDidMount(){
         this.getCertificateAdmin(this.props.idEvent);
         this.setState({id_sertifikat : this.props.idSertifikat});
+        data_id = [];
     }
 
     getColumnSearchProps = dataIndex => ({
@@ -133,57 +137,107 @@ class WaitingListPage extends Component {
     }
 
     //function untuk modal
-    showAllSignedConfirm = (id_penandatangan_sertifikat,id_sertifikat) => {
+    showAllSignedConfirm = () => {
       confirm({
           title: ' Apakah anda yakin untuk menandatangani semua dokumen ?',
           okText: 'Yes',
           okType: 'danger',
           cancelText: 'No',
           onOk: () => {
-             this.assignAllSertifikat(id_penandatangan_sertifikat,id_sertifikat)
+             this.assignAllSertifikat()
           },
           onCancel(){
               console.log('Cancel')
           }
       });
-  }
-
+    }
 
     //assign sertifikat
     assignSertifikat = (id_penandatangan_sertifikat,id_sertifikat) => {
         console.log(id_penandatangan_sertifikat,id_sertifikat)
         const params = new FormData()
         params.set('passphrase','password')
-        params.set('id_penandatangan_sertifikat',id_penandatangan_sertifikat)
         params.append("_method", 'PUT')
-        
-        API.postEdit(`/penandatangan/sertifikat/assign/${id_sertifikat}`, params)
+        this.setState({
+          visible_loading :true,
+        })
+        API.postEdit(`/penandatangan/sertifikat/assign/${id_penandatangan_sertifikat}`, params)
         .then(res => {
             console.log('res',res)
             if(res.status === 200){
+                this.setState({
+                  visible_loading :false,
+                })
                 message.success('Sertifikat Berhasil ditandantangani');
-                window.location.reload(); 
+                this.componentDidMount();
+            }else{
+              this.setState({
+                visible_loading :false,
+              })
             }   
         });
     }
 
-
     //assign semua sertifikat
-    assignAllSertifikat = (data,id_sertifikat) => {
+    assignAllFunction = (id) => {
+      const params = new FormData()
+      params.set('passphrase','password')
+      params.append("_method", 'PUT')
+      
+      API.postEdit(`/penandatangan/sertifikat/assign/${id}`, params)
+      .then(res => {
+          console.log('res',res)
+          if(res.status === 200){
+            return '1';
+          }else{
+            return '0';
+          }   
+      });
+    }
+    assignAllSertifikat = async () => {
+      console.log('print all', data_id)
+      const total_data = data_id.length
+      var success = 0;
+      this.setState({
+        visible_loading :true,
+      })
+      for(let i=0; i<total_data; i++){
+        const id = data_id[i];
         const params = new FormData()
-        params.set('id_penandatangan_sertifikat[]',data)
+        params.set('passphrase','password')
         params.append("_method", 'PUT')
-        this.setState({loading:true})
-        API.postEdit(`/penandatangan/sertifikat/assign/${id_sertifikat}`, params)
+        
+        let response = await API.postEdit(`/penandatangan/sertifikat/assign/${id}`, params)
         .then(res => {
             console.log('res',res)
             if(res.status === 200){
-                message.success('Semua Sertifikat Berhasil ditandantangani');
-                window.location.reload(); 
-            }   
+              return 1;
+            }else{
+              this.setState({
+                visible_loading :false,
+              })
+              return 0;
+            }
         });
+        success += response;
 
-        // console.log(data,id_sertifikat)
+        if(i==total_data-1){
+          console.log('total success',success, total_data)
+          if(total_data === success){
+            this.setState({ visible_loading :false })
+            message.success('Semua Sertifikat Berhasil ditandantangani');
+          } else {
+            message.success('Tidak semua sertifikat berhasil ditandantangani');
+          }
+        }
+      }
+      this.componentDidMount();
+    }
+
+    showModal2 = () => {
+      this.setState({
+        visible_loading :true,
+      })
     }
 
     handleOk = e => {
@@ -275,9 +329,8 @@ class WaitingListPage extends Component {
             sertif_URL :sertifikat_URL
         }))
 
-        let data_id = []
         this.state.e_certificate.map(data => {
-          data_id.push(data.id_penandatangan_sertifikat)
+          data_id.push(data.id_penandatangan_sertifikat);
         })
         // console.log(data_id)
 
@@ -294,6 +347,7 @@ class WaitingListPage extends Component {
                 handleOk = {this.handleOk}
                 assignAllSertifikat = {this.assignAllSertifikat}
                 showAllSignedConfirm = {this.showAllSignedConfirm}
+                showModal2 ={this.showModal2}
             />
         );
     }

@@ -4,6 +4,7 @@ import TableProfile from '../../../common/component/table/table'
 import '../../../assets/css/dashboard-all/dashboard.css'
 import '../../../assets/css/dashboard-all/table-style.css'
 import LoadingContainer from '../../../common/component/loading/loading-container'
+import LoadingNotifContainer from '../../../common/component/loading/loading-notif';
 import ButtonEdit from '../../../common/component/button/button-edit';
 import { PDFViewer,Document,Page } from '@react-pdf/renderer';
 import { Link } from 'react-router-dom';
@@ -13,7 +14,7 @@ const { Content } = Layout;
 
 class WaitingListComponent extends Component {
     render() { 
-      const { initialData, columns, data,handleCancel,handleOk,assignAllSertifikat,data_id,showAllSignedConfirm } = this.props;
+      const { initialData, columns, data,handleCancel,handleOk,assignAllSertifikat,data_id,showAllSignedConfirm,showModal2 } = this.props;
         return ( 
             <Content
                 style={{
@@ -45,7 +46,7 @@ class WaitingListComponent extends Component {
                                             height={20}
                                             borderRadius="5px"
                                             background="#00C908"
-                                            onClick={() => showAllSignedConfirm(data_id,initialData.id_sertifikat)}
+                                            onClick={() => showAllSignedConfirm()}
                                         />
                                     </div>
                                 </Col>
@@ -70,6 +71,16 @@ class WaitingListComponent extends Component {
                                             </Page>
                                         </Document> 
                                     </PDFViewer>
+                                </Modal>
+                                <Modal
+                                    title="Proses Tanda tangan Sertifikat"
+                                    visible={initialData.visible_loading}
+                                    className = "modal-notif"
+                                    >
+                                    <p className="text-notif">Silahkan tunggu sertifikat sedang ditandatangani</p>
+                                    <div >
+                                        <LoadingNotifContainer loading={initialData.loading_notif} style={{ minHeight:'20px', marginTop:'50px',}}/>
+                                    </div>
                                 </Modal>
                             </LoadingContainer>
                         </div>

@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Route, Link } from 'react-router-dom'
+import { Route, Link, NavLink} from 'react-router-dom'
 import './style/dashboard-style.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { Layout, Menu, Icon, Avatar, Dropdown } from 'antd';
@@ -57,7 +57,8 @@ class Admin extends Component {
     let token = localStorage.getItem("token");
     if (token !== null){
 			this.setTimeOut();
-		}
+    }
+    console.log(this.state.current)
   }
 
   setTimeOut = () => {
@@ -188,14 +189,14 @@ class Admin extends Component {
                       }
                     >
                       <Menu.Item key="admin-penandatangan" onClick={this.clickedMenu}>
-                          <Link to="/admin/admin-penandatangan">
+                          <NavLink to="/admin/admin-penandatangan">
                               <span>Daftar</span>
-                          </Link>
+                          </NavLink>
                       </Menu.Item>
                       <Menu.Item key="biodata-penandatangan" onClick={this.clickedMenu}>
-                          <Link to="/admin/biodata-penandatangan">
+                          <NavLink to="/admin/biodata-penandatangan">
                               <span>Permintaan</span>
-                          </Link>
+                          </NavLink>
                       </Menu.Item>
                   </SubMenu>
                   <div className="title-dashboard">
@@ -328,7 +329,7 @@ class Admin extends Component {
                  <Route
                     path='/admin/admin-penandatangan'
                     exact
-                    render={ (props) => <SwitchPenandatanganPage {...props}/> }
+                    render={ (props) => <SwitchPenandatanganPage reload={this.componentDidMount.bind(this)} {...props}/> }
                 />
                  <Route
                     path='/admin/detail-penandatangan'
