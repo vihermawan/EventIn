@@ -3,9 +3,7 @@ import { connect } from 'react-redux';
 import { API } from '../../../common/api'
 import { navigate } from '../../../common/store/action'
 import  * as Highlighter from 'react-highlight-words';
-import { Tooltip,Button, Input, Icon  } from 'antd'
-import { faInfoCircle } from '@fortawesome/free-solid-svg-icons' 
-import ButtonDashboard from '../../../common/component/button/button-dashboard';
+import { Button, Input, Icon  } from 'antd'
 import DetailListParticipantbyEvent from '../../../modules/admin-panitia/detail-list-participant-byEvent/detail-list-participant-byEvent-cpmponent';
 
 class DetailListParticipantbyEventPage extends Component {
