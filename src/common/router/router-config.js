@@ -22,6 +22,7 @@ import DashboardPenandatanganPage from '../../common/layout/dashboard-penandatan
 import EditPasswordPage from '../../app/profile/edit-password-page'
 import SetPasswordPage from '../../app/set-password/set-password-page'
 import ForgotPasswordPage from '../../app/forgot-password/forgot-password-page'
+import SetPasswordPenandatanganPage from '../../app/admin-signer/dashboard/set-password-penandatangan-page'
 
 const baseUrl = process.env.PUBLIC_URL;
 
@@ -47,7 +48,7 @@ const routeSources = [
     { component: DashboardPanitiaPage, path: `${baseUrl}/dashboard`, exact: false ,private: true, role: 2},
     //penandatangan
     { component: DashboardPenandatanganPage, path: `${baseUrl}/signer`, exact: false ,private: true, role: 4},
-    
+    { component: SetPasswordPenandatanganPage, path: `${baseUrl}/set-password-signer`, exact: false },
     //admin
     { component: DashboardAdminPage, path:`${baseUrl}/admin`, exact:false ,private: true, role: 1},
     { component: ErrorPage },
