@@ -334,7 +334,7 @@ class Admin extends Component {
                     render={ (props) => <ApprovalEventPage {...props}/> }
                 />
                 <Route
-                    path='/admin/detail-approval-event'
+                    path='/admin/approval-event/detail-approval-event'
                     exact
                     render={ (props) => <DetailApprovalEventPage {...props}/> }
                 />

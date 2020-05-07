@@ -4,6 +4,7 @@ import '../../../assets/css/dashboard-all/dashboard.css'
 import '../../../assets/css/admin-superadmin/superadmin.css'
 import '../../../assets/css/dashboard-all/table-style.css'
 import LoadingContainer from '../../../common/component/loading/loading-container'
+import { Link } from 'react-router-dom';
 // constant content
 const { Content } = Layout;
 
@@ -42,7 +43,7 @@ class AdminComponent extends Component {
                                                 <div className="desc-card-dashboard-admin">
                                                     <LoadingContainer loading={initialData.loading}>
                                                         <div className="title-total-card-admin"  style={{minHeight:"105px"}}>
-                                                            <span>{initialData.total_peserta}</span>
+                                                            <Link to="/admin/list-peserta"><span>{initialData.total_peserta}</span></Link> 
                                                         </div>
                                                     </LoadingContainer>
                                                 </div>
@@ -75,7 +76,7 @@ class AdminComponent extends Component {
                                                 <div className="desc-card-dashboard-admin">
                                                     <LoadingContainer loading={initialData.loading}>
                                                         <div className="title-total-card-admin"  style={{minHeight:"105px"}}>
-                                                            <span>{initialData.total_panitia}</span>
+                                                            <Link to="/admin/list-panitia"><span>{initialData.total_panitia}</span></Link>
                                                         </div>
                                                     </LoadingContainer>
                                                 </div>
@@ -108,7 +109,7 @@ class AdminComponent extends Component {
                                                 <div className="desc-card-dashboard-admin">
                                                     <LoadingContainer loading={initialData.loading}>
                                                         <div className="title-total-card-admin"  style={{minHeight:"105px"}}>
-                                                            <span>{initialData.total_sertifikat}</span>
+                                                            <Link to="/admin/waiting-list"><span>{initialData.total_sertifikat}</span></Link>
                                                         </div>
                                                     </LoadingContainer>
                                                 </div>
@@ -141,7 +142,7 @@ class AdminComponent extends Component {
                                                 <div className="desc-card-dashboard-admin">
                                                     <LoadingContainer loading={initialData.loading}>
                                                         <div className="title-total-card-admin"  style={{minHeight:"105px"}}>
-                                                            <span>{initialData.total_event}</span>
+                                                            <Link to="/admin/list-all-event"><span>{initialData.total_event}</span></Link>
                                                         </div>
                                                     </LoadingContainer>
                                                 </div>
