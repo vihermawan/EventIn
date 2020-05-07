@@ -189,7 +189,7 @@ class BannedPesertaPage extends Component {
                 render: (data) => (
                     [
                     <ButtonEdit
-                        text="Unbanned"
+                        text="Kembalikan"
                         height={20}
                         icon={faBan}
                         borderRadius="5px"
