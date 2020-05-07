@@ -1,13 +1,13 @@
 import React, { Component } from 'react';
 import { notification, message } from 'antd';
 import { connect } from 'react-redux';
-import { API } from '../../common/api'
-import { navigate } from '../../common/store/action'
-import CONSTANS from '../../common/utils/Constants'
-import * as validation from '../../common/utils/validation'
-import SetPasswordComponent from '../../modules/set-password/set-password-component.js';
+import { API } from '../../../common/api'
+import { navigate } from '../../../common/store/action'
+import CONSTANS from '../../../common/utils/Constants'
+import * as validation from '../../../common/utils/validation'
+import SetPasswordComponent from '../../../modules/admin-signer/set-password/set-password-penandatangan-component';
 
-class SetPasswordPage extends Component {
+class SetPasswordPenandatanganPage extends Component {
     state = {  
         current: '',
         password : '',
@@ -18,7 +18,7 @@ class SetPasswordPage extends Component {
     componentDidMount(){
         let pathArray = window.location.pathname.split('/');
         let pathName = pathArray[2];
-        pathName === '' ? this.setState({current: '/set-password'}) : this.setState({current: pathName});
+        pathName === '' ? this.setState({current: '/set-password-signer'}) : this.setState({current: pathName});
         console.log('path',pathName)
     }
 
@@ -56,16 +56,16 @@ class SetPasswordPage extends Component {
         }else{
             this.setState({loading: true})
             this.showModal2();
-            API.post(`/password/reset/${this.state.current}`, params)
+            API.post(`/password/reset/penandatangan/${this.state.current}`, params)
             .then(res => {
                 console.log('res',res)
                 if( res.status === 200){
                     this.props.navigate(CONSTANS.LOGIN_MENU_KEY)
-                    message.success('Berhasil Merubah Password');
+                    message.success('Berhasil Membuat Password');
                 }else {
                     this.setState({show :false})
                     this.props.navigate(CONSTANS.FORGET_PASSWORD_MENU_KEY)
-                    this.openNotification('Token Invalid','Silahkan Masukan Email Anda Lagi')
+                    this.openNotification('Token Invalid','Silahkan klik atur ulang kata sandi di halaman login')
                 }
             });
         }
@@ -93,5 +93,5 @@ const mapDispatchToProps = (dispatch => ({
     navigate,
 }))();
 
-const page = connect(mapStateToProps, mapDispatchToProps)(SetPasswordPage);
+const page = connect(mapStateToProps, mapDispatchToProps)(SetPasswordPenandatanganPage);
 export default page
