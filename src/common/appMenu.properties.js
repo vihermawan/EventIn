@@ -121,6 +121,9 @@ const menu = {
     EDIT_PROFILE_PESERTA: {
         link : '/admin/edit-peserta',
     },
+    DETAIL_LIST_ALL_EVENT : {
+        link : '/admin/detail-list-all-event'
+    },
     DETAIL_EVENT_ADMIN: {
         link:'/admin/detail-event'
     },

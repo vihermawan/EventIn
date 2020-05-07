@@ -4,7 +4,7 @@ import './style/dashboard-style.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { Layout, Menu, Icon, Avatar, Dropdown } from 'antd';
 /*Import Icon */
-import { faDesktop, faEnvelope, faUserTag, faUserTie, faUserFriends,  faBookOpen } from '@fortawesome/free-solid-svg-icons'
+import { faDesktop, faEnvelope, faUserTag, faUserTie, faUserFriends,  faBookOpen, faNewspaper, faCalendarCheck } from '@fortawesome/free-solid-svg-icons'
 import { API } from '../../common/api'
 import CONSTANS from '../utils/Constants'
 import ButtonAuth from '../component/button/button-auth'
@@ -22,6 +22,8 @@ import StatusMasterPage from '../../app/admin-superadmin/dashboard/status-master
 import KategoriMasterPage from '../../app/admin-superadmin/dashboard/kategori-master-page'
 import LoadingContainer from '../../common/component/loading/loading-container'
 import BiodataPenandatanganPage from '../../app/admin-superadmin/dashboard/biodata-penandatangan-page'
+import ListAllEventPage from '../../app/admin-superadmin/dashboard/list-all-event-page'
+import DetailListAllEventPage from '../../app/admin-superadmin/detail-page/detail-all-event-page'
 import DetailPesertaAdminPage from '../../app/admin-superadmin/detail-page/detail-peserta-page'
 import DetailPanitiaAdminPage from '../../app/admin-superadmin/detail-page/detail-panitia-page'
 import DetailPenandatanganAdminPage from '../../app/admin-superadmin/detail-page/detail-penandatangan-page'
@@ -152,31 +154,18 @@ class Admin extends Component {
                       <span className={hidden} >Peserta</span>
                     </Link>
                   </Menu.Item>
+                  <Menu.Item key="list-panitia" onClick={this.clickedMenu}>
+                    <Link to="/admin/list-panitia">
+                      <FontAwesomeIcon
+                          icon={faUserFriends} 
+                          style={{marginRight: 10}}
+                          className={this.state.collapsed ? 'hidden-logo' : 'block-logo'}
+                      />
+                      <span className={hidden} >Panitia</span>
+                    </Link>
+                  </Menu.Item>
                   <SubMenu
                       key="sub1"
-                      title={
-                      <span>
-                          <FontAwesomeIcon
-                              icon={faUserFriends}
-                              style={{marginRight: 10}}
-                          />
-                          <span className={hidden}>Panitia</span>
-                      </span>
-                      }
-                    >
-                      <Menu.Item key="list-panitia" onClick={this.clickedMenu}>
-                          <Link to="/admin/list-panitia">
-                              <span>Daftar</span>
-                          </Link>
-                      </Menu.Item>
-                      <Menu.Item key="approval-event" onClick={this.clickedMenu}>
-                          <Link to="/admin/approval-event">
-                              <span>Approval Event</span>
-                          </Link>
-                      </Menu.Item>
-                  </SubMenu>
-                  <SubMenu
-                      key="sub2"
                       title={
                       <span>
                           <FontAwesomeIcon
@@ -209,6 +198,39 @@ class Admin extends Component {
                       }}/>
                   </div>
                   <div className="title-dashboard">
+                      <span className="title-desc-dashboard">Event</span>
+                  </div>
+                  <Menu.Item key="approval-event" onClick={this.clickedMenu}>
+                    <Link to="/admin/approval-event">
+                      <FontAwesomeIcon
+                          icon={faNewspaper} 
+                          style={{marginRight: 10}}
+                          className={this.state.collapsed ? 'hidden-logo' : 'block-logo'}
+                      />
+                      <span className={hidden} >Approval Event</span>
+                    </Link>
+                  </Menu.Item> 
+                  <Menu.Item key="list-all-event" onClick={this.clickedMenu}>
+                    <Link to="/admin/list-all-event">
+                    
+                      <FontAwesomeIcon
+                          icon={faCalendarCheck} 
+                          style={{marginRight: 10}}
+                          className={this.state.collapsed ? 'hidden-logo' : 'block-logo'}
+                      />
+                      <span className={hidden} >List Event</span>
+                    </Link>
+                  </Menu.Item> 
+                  <div className="title-dashboard">
+                      <hr style={{
+                          minHeight: 1,
+                          backgroundColor: '#D7D7D7',
+                          border: 'none',
+                          maxWidth: 200,
+                          marginBottom:'10px',
+                      }}/>
+                  </div>
+                  <div className="title-dashboard">
                       <span className="title-desc-dashboard">Certificate</span>
                   </div>  
                   <Menu.Item key="waiting-list"  onClick={this.clickedMenu}>
@@ -222,17 +244,6 @@ class Admin extends Component {
                       <span className={hidden} >Waiting List</span>
                     </Link>
                   </Menu.Item>
-                  {/* <Menu.Item key="received"  onClick={this.clickedMenu}>
-                    <Link to="/admin/received">
-                    
-                      <FontAwesomeIcon
-                          icon={faEnvelopeOpen}
-                          style={{marginRight: 10}}
-                          className={this.state.collapsed ? 'hidden-logo' : 'block-logo'}
-                      />
-                      <span className={hidden} >Received</span>
-                    </Link>
-                  </Menu.Item> */}
                   <div className="title-dashboard">
                       <hr style={{
                           minHeight: 1,
@@ -320,6 +331,16 @@ class Admin extends Component {
                     path='/admin/approval-event'
                     exact
                     render={ (props) => <ApprovalEventPage {...props}/> }
+                />
+                <Route
+                    path='/admin/list-all-event'
+                    exact
+                    render={ (props) => <ListAllEventPage {...props}/> }
+                />
+                 <Route
+                    path='/admin/detail-list-all-event'
+                    exact
+                    render={ (props) => <DetailListAllEventPage {...props}/> }
                 />
                  <Route
                     path='/admin/detail-event'
