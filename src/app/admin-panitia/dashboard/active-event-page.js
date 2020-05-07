@@ -119,7 +119,7 @@ class ActiveEventPage extends Component {
         .then(res => {
             console.log('res',res)
             if(res.status === 200){
-                message.success('This is a success message');
+                message.success('Berhasil Menghapus Event');
                 this.componentDidMount(); 
             }   
         });
