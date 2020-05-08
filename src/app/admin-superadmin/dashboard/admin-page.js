@@ -14,6 +14,7 @@ class AdminPage extends Component {
         januari : [],
         total_peserta: '',
         total_panitia: '',
+        total_penandatangan: '',
         total_sertifikat : '',
         total_event :'',
         loading: false,
@@ -23,6 +24,7 @@ class AdminPage extends Component {
         this.getEventbyMonth();
         this.getAllPeserta();
         this.getAllPanitia();
+        this.getAllPenandatangan();
         this.getAllSertifikat();
         this.getAllEvent();
     }
@@ -53,6 +55,15 @@ class AdminPage extends Component {
         .then(res => {
             console.log('res',res.data.data.user)
             this.setState({total_panitia : res.data.data.user,loading : false})
+        });
+    }
+
+    getAllPenandatangan = () => {
+        this.setState({loading: true})
+        API.get(`/admin/count-penandatangan`)
+        .then(res => {
+            console.log('res',res.data.data.user)
+            this.setState({total_penandatangan : res.data.data.user,loading : false})
         });
     }
 

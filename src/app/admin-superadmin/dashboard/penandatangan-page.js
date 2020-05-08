@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { Modal, message, Button, Input, Icon, Divider  } from 'antd'
+import { Modal, message, Button, Input, Icon, Divider, Tooltip  } from 'antd'
 import { API } from '../../../common/api'
 import { navigate } from '../../../common/store/action'
 import CONSTANS from '../../../common/utils/Constants'
@@ -8,8 +8,7 @@ import  * as Highlighter from 'react-highlight-words';
 //component
 import PenandatanganAdminComponent from '../../../modules/admin-superadmin/user/penandatangan/penandatangan-component';
 import { faBan, faInfoCircle, faPen } from '@fortawesome/free-solid-svg-icons'
-import ButtonEdit from '../../../common/component/button/button-edit';
-
+import ButtonDashboard from '../../../common/component/button/button-dashboard';
 //import store.
 import { setIdUsers } from '../../../modules/admin-superadmin/user/store/users-action'
 import { setIdPenandatangan } from '../../../modules/admin-superadmin/user/penandatangan/store/penandatangan-action'
@@ -192,41 +191,51 @@ class PenandatanganAdminPage extends Component {
                 ...this.getColumnSearchProps('jabatan'),
             },
             {
+              title: 'Email',
+              dataIndex: 'email',
+              key: 'email',
+              ...this.getColumnSearchProps('email'),
+            },
+            {
                 title: 'Action',
                 key: 'action',
                 render: (data) => (
                     [ 
-                    <ButtonEdit
-                        text="Edit"
+                    <Tooltip title="Edit">,
+                    <ButtonDashboard
                         height={20}
                         icon={faPen}
                         borderRadius="5px"
                         background="#005568"
                         onClick = { () => this.onEditPenandatangan(data.id_users)}
                     />,
+                    </Tooltip>,
                     <Divider type="vertical" />,
-                    <ButtonEdit
-                        text="Detail"
+                    <Tooltip title="Detail">,
+                    <ButtonDashboard
                         height={20}
                         icon={faInfoCircle}
                         borderRadius="5px"
                         background="#FFA903"
                         onClick = { () => this.onDetailPenandatangan(data.id_users,data.id_penandatangan)}
                     />,
+                    </Tooltip>,
                     <Divider type="vertical" />,
-                    <ButtonEdit
-                        text="Ban"
+                    <Tooltip title="Blokir">,
+                    <ButtonDashboard
                         height={20}
                         icon={faBan}
                         borderRadius="5px"
                         background="#E11212"
                         onClick = {() => this.showBannedConfirm(data.id_penandatangan,data.penandatangan)}
-                    />]
+                    />
+                    </Tooltip>,
+                    ]
               ),
             },
           ];
 
-        const data =  this.state.penandatangan.map(  ({id_users, penandatangan}, index) => ({
+        const data =  this.state.penandatangan.map(  ({id_users, penandatangan,email}, index) => ({
             no : index+1,
             id_users : id_users,
             id_penandatangan : penandatangan.id_penandatangan,
@@ -234,6 +243,8 @@ class PenandatanganAdminPage extends Component {
             instansi : penandatangan.instansi,
             jabatan : penandatangan.jabatan,
             nip : penandatangan.nip,
+            email: email,
+
         }))
 
         return ( 

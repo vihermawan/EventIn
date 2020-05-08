@@ -7,7 +7,7 @@ import  * as Highlighter from 'react-highlight-words';
 import BannedPesertaComponent from '../../../modules/admin-superadmin/banned-page/banned-peserta-component';
 
 //component
-import { faBan  } from '@fortawesome/free-solid-svg-icons'
+import { faTrashRestore  } from '@fortawesome/free-solid-svg-icons'
 import ButtonEdit from '../../../common/component/button/button-edit';
 
 // import store
@@ -113,7 +113,7 @@ class BannedPesertaPage extends Component {
         this.setState({ searchText: '' });
     };
 
-    //function untuk modal
+    //function untuk modal.
     showUnbannedConfirm = (id,nama_peserta) => {
       confirm({
           title: `Apakah yakin untuk melakukan unban terhadap ${nama_peserta}?`,
@@ -191,9 +191,9 @@ class BannedPesertaPage extends Component {
                     <ButtonEdit
                         text="Kembalikan"
                         height={20}
-                        icon={faBan}
+                        icon={faTrashRestore}
                         borderRadius="5px"
-                        background="#FF0303"
+                        background="#32852a"
                         onClick = { () => this.showUnbannedConfirm(data.id_peserta,data.peserta)}
                     />]
               ),

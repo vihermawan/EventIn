@@ -6,7 +6,7 @@ import { Button, Input, Icon, message, Modal } from 'antd'
 import  * as Highlighter from 'react-highlight-words';
 import BannedPanitiaComponent from '../../../modules/admin-superadmin/banned-page/banned-panitia-component';
 //component
-import {faBan  } from '@fortawesome/free-solid-svg-icons'
+import {faTrashRestore  } from '@fortawesome/free-solid-svg-icons'
 import ButtonEdit from '../../../common/component/button/button-edit';
 
 const { confirm } = Modal;
@@ -177,12 +177,12 @@ class BannedPanitiaPage extends Component {
                 render: (data) => (
                     [
                     <ButtonEdit
-                        text="Unbanned"
-                        height={20}
-                        icon={faBan}
-                        borderRadius="5px"
-                        background="#FF0303"
-                        onClick = { () => this.showUnbannedConfirm(data.id_panitia,data.panitia)}
+                      text="Kembalikan"
+                      height={20}
+                      icon={faTrashRestore}
+                      borderRadius="5px"
+                      background="#32852a"
+                      onClick = { () => this.showUnbannedConfirm(data.id_peserta,data.peserta)}
                     />]
                 ),
             },

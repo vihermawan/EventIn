@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 import '../../../assets/css/dashboard-all/dashboard.css'
 import '../../../assets/css/dashboard-all/table-style.css'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faCheckCircle, faHourglass } from '@fortawesome/free-solid-svg-icons'
+import { faCheckCircle, faBan } from '@fortawesome/free-solid-svg-icons'
 //import page
 import ListPanitiaAdminPage from '../../../app/admin-superadmin/dashboard/listpanitia-page'
 import ListBannedPanitiaPage from '../../../app/admin-superadmin/banned-page/banned-panitia-page'
@@ -43,7 +43,7 @@ class SwitchPanitiaComponent extends Component {
                                         tab={ 
                                         <span> 
                                            <FontAwesomeIcon
-                                                icon={faHourglass}
+                                                icon={faCheckCircle}
                                                 style={{marginRight: 10}}
                                             /> 
                                             Panitia Aktif
@@ -58,7 +58,7 @@ class SwitchPanitiaComponent extends Component {
                                     tab={ 
                                     <span> 
                                         <FontAwesomeIcon
-                                            icon={faCheckCircle}
+                                            icon={faBan}
                                             style={{marginRight: 10}}
                                         />     
                                         Panitia Diblokir 

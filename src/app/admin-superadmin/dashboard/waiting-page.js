@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 import { API } from '../../../common/api'
 import { navigate } from '../../../common/store/action'
 import  * as Highlighter from 'react-highlight-words';
-import { faPaperPlane, faTrashAlt } from '@fortawesome/free-solid-svg-icons'
+import { faPaperPlane,faWindowClose } from '@fortawesome/free-solid-svg-icons'
 import { faInfoCircle } from '@fortawesome/free-solid-svg-icons'
 import WaitingComponent from '../../../modules/admin-superadmin/e-certificate/waiting-list/waiting-list-component';
 import ButtonDashboard from '../../../common/component/button/button-dashboard';
@@ -155,7 +155,7 @@ class WaitingPage extends Component {
         });
     }
 
-    //function pop up notifikasi.
+    //function pop up notifikasi
     showSendConfirm = (id_penandatangan_sertifikat,nama_penandatangan,instansi,jabatan) => {
         confirm({
             title: `Apakah Yakin untuk mengirim sertifikat ke ${nama_penandatangan} ${jabatan} ${instansi} ?`,
@@ -297,7 +297,7 @@ class WaitingPage extends Component {
                     <div style={data.close < Date.parse(dateNow) ? {display:"none"}:{display:"block"}}>
                       <div style={{textAlign:"center"}}>
                         <Col lg={12} md={24} sm={24}>
-                            <Tooltip title="Detail">
+                            <Tooltip title="Detail">,
                                 <ButtonDashboard
                                     height={20}
                                     icon={faInfoCircle}
@@ -309,11 +309,11 @@ class WaitingPage extends Component {
                             </Tooltip>
                         </Col>
                         <Col lg={12} md={24} sm={24}>
-                            <Tooltip title="Reject">
+                            <Tooltip title="Tolak">,
                               <ButtonDashboard
                                   height={20}
                                   width = {80}
-                                  icon={faTrashAlt}
+                                  icon={faWindowClose}
                                   borderRadius="5px"
                                   background="#E11212"
                                   onClick = { () => this.showRejectConfirm(data.id_penandatangan_sertifikat,data.nama_panitia)}
@@ -325,18 +325,18 @@ class WaitingPage extends Component {
                     <div style={data.close < Date.parse(dateNow) ? {display:"block"}:{display:"none"}}> 
                       <div style={{textAlign:"center"}}>
                         <Col lg={8} md={24} sm={24} >
-                          <Tooltip title="Kirim">
+                          <Tooltip title="Kirim">,
                               <ButtonDashboard
                                   height={20}
                                   icon={faPaperPlane}
                                   borderRadius="5px"
-                                  background="#36FF03"
+                                  background="#32852a"
                                   onClick = {() => this.showSendConfirm(data.id_penandatangan_sertifikat, data.nama_penandatangan, data.instansi, data.jabatan)}
                               />
                           </Tooltip>
                         </Col>
                         <Col lg={8} md={24} sm={24}>
-                            <Tooltip title="Detail">
+                            <Tooltip title="Detail">,
                                 <ButtonDashboard
                                     height={20}
                                     icon={faInfoCircle}
@@ -347,10 +347,10 @@ class WaitingPage extends Component {
                             </Tooltip>
                         </Col>
                         <Col lg={8} md={24} sm={24}>
-                            <Tooltip title="Reject">
+                            <Tooltip title="Tolak">,
                               <ButtonDashboard
                                   height={20}
-                                  icon={faTrashAlt}
+                                  icon={faWindowClose}
                                   borderRadius="5px"
                                   background="#E11212"
                                   onClick = { () => this.showRejectConfirm(data.id_penandatangan_sertifikat,data.nama_panitia)}

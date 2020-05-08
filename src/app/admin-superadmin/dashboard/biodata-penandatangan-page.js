@@ -4,7 +4,7 @@ import { Modal, message, Button, Input, Icon, Divider, Tooltip} from 'antd'
 import CONSTANS from '../../../common/utils/Constants'
 import { API } from '../../../common/api'
 import  * as Highlighter from 'react-highlight-words';
-import { faInfoCircle, faTrash } from '@fortawesome/free-solid-svg-icons'
+import { faCheckCircle, faTrash, faWindowClose } from '@fortawesome/free-solid-svg-icons'
 import { navigate } from '../../../common/store/action'
 import BiodataPenandatanganAdminComponent from '../../../modules/admin-superadmin/user/penandatangan/biodata-penandatangan-component';
 import ButtonDashboard from '../../../common/component/button/button-dashboard';
@@ -226,20 +226,20 @@ class BiodataPenandatanganAdminPage extends Component {
               key: 'action',
               render: (data) => (
                 [
-                <Tooltip title="Terima">
+                <Tooltip title="Terima">,
                   <ButtonDashboard
                       height={20}
-                      icon={faInfoCircle}
+                      icon={faCheckCircle}
                       borderRadius="5px"
-                      background="#FFA903"
-                      onClick= {()=> this.showAddConfirm(data.id_biodata_penandatangan,data.nama,data.instansi,data.jabatan)}
+                      background="#32852a"
+                      onClick = { () => this.showAcceptConfirm(data.nomor,data.nama_event,data.panitia)}
                   />
                 </Tooltip>,
                 <Divider type="vertical"/>,
-                <Tooltip title="Tolak">
+                <Tooltip title="Tolak">,
                   <ButtonDashboard
                       height={20}
-                      icon={faTrash}
+                      icon={faWindowClose}
                       borderRadius="5px"
                       background="#FF0303"
                       onClick= {()=> this.showRejectConfirm(data.id_biodata_penandatangan,data.nama,data.instansi,data.jabatan)}
