@@ -24,7 +24,7 @@ class CountRegistEventComponent extends Component {
                 }}
             >
                 <Breadcrumb separator=">">
-                    <Breadcrumb.Item><Link to='/dashboard/list-count-regist'>Dashboard List Register</Link></Breadcrumb.Item>
+                    <Breadcrumb.Item><Link to='/dashboard/list-count-regist'>Dashboard Data Pendaftar</Link></Breadcrumb.Item>
                 </Breadcrumb>
 
                 <Row style={{minHeight: '100%',marginBottom: '2%',marginTop:'2%',}} className="background">
@@ -33,7 +33,7 @@ class CountRegistEventComponent extends Component {
                         <div className="container-active-event">
                             <Row>
                             <div className="container-title-event">
-                                <span>Data Regist Event</span>
+                                <span>Data Pendaftar Event</span>
                             </div>
                             </Row>
                             <LoadingContainer loading={initialData.loading}>

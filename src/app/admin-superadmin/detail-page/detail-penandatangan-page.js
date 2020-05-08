@@ -1,15 +1,19 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { API } from '../../../common/api'
-import {Button, Input, Icon,Tag} from 'antd'
+import {Button, Input, Icon,Tag,Tooltip} from 'antd'
 import  * as Highlighter from 'react-highlight-words';
 import { navigate } from '../../../common/store/action'
 import DetailPenandatanganComponent from '../../../modules/admin-superadmin/user/penandatangan/detail-penandatangan-component';
+import ButtonDashboard from '../../../common/component/button/button-dashboard';
+import { faInfoCircle } from '@fortawesome/free-solid-svg-icons';
 
 class DetailPenandatanganPage extends Component {
     state = {
         detail_penandatangan : [],
         sertifikat :[],
+        url : '',
+        visible : false,
     }
 
     componentDidMount(){
@@ -108,6 +112,31 @@ class DetailPenandatanganPage extends Component {
         });
     }
 
+
+    handleOk = e => {
+      console.log(e);
+      this.setState({
+        visible: false,
+      });
+    };
+  
+    handleCancel = e => {
+      console.log(e);
+      this.setState({
+        visible: false,
+      });
+    };
+
+     //button detail certificate
+     onDetailCertificate = (sertif_URL) => {
+      this.setState({
+        visible: true,
+        url : sertif_URL,
+      });
+      console.log(sertif_URL)
+    }
+
+
     render() { 
           const columns = [
             {
@@ -156,9 +185,20 @@ class DetailPenandatanganPage extends Component {
                 ),
             },
             {
-                title: 'Gambar Sertifikat',
-                dataIndex: 'gambar',
-                key: 'gambar',
+              title: 'Action',
+              key: 'action',
+              render: (data) => (
+                [
+                <Tooltip title="Detail">
+                    <ButtonDashboard
+                        height={20}
+                        icon={faInfoCircle}
+                        borderRadius="5px"
+                        background="#FFA903"
+                        onClick = {() => this.onDetailCertificate(data.sertif_URL)}
+                    />
+                </Tooltip>,]
+              ),
             },
           ];
 
@@ -170,12 +210,13 @@ class DetailPenandatanganPage extends Component {
            picture : penandatangan.image_URL,
         }))
 
-        const data = this.state.sertifikat.map ( ({nama_event, nama_sertifikat,id_status,sertifikat,status}, index) => ({
+        const data = this.state.sertifikat.map ( ({nama_event, nama_sertifikat,sertifikat_URL,sertifikat,status}, index) => ({
             nomor : index+1,
             nama_sertifikat : nama_sertifikat,
             nama_event : nama_event,
             status :[status.nama_status],
             nama_panitia : sertifikat.event.panitia.nama_panitia,
+            sertif_URL : sertifikat_URL,
          }))
 
         return ( 
@@ -185,6 +226,8 @@ class DetailPenandatanganPage extends Component {
                 columns={columns}
                 dataPenandatangan={dataPenandatangan}
                 data ={data}
+                handleOk = {this.handleOk}
+                handleCancel = {this.handleCancel}
             />
         );
     }

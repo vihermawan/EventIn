@@ -168,7 +168,7 @@ class TotalWaitingCertificatePage extends Component {
         nama_panitia : panitia.nama_panitia,
         organisasi : organisasi,
         nama_event : nama_event,
-        // total : sertifikat.penandatanganan_sertifkat[0].total
+        total : sertifikat.penandatanganan_sertifkat[0].total
     }))
 
     

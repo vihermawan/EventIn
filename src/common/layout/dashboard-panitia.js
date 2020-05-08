@@ -275,7 +275,7 @@ class dashboard extends Component {
                               icon={faUserFriends}
                               style={{marginRight: 10}}
                           /> 
-                          <span className={hidden}>Daftar Pendaftar</span>
+                          <span className={hidden}>Data Pendaftar</span>
                         </NavLink>
                       </Menu.Item>
                       <div className="title-dashboard">

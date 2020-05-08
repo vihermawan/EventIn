@@ -170,15 +170,15 @@ class CountRegistEventPage extends Component {
             },
           ];
 
-          const data =  this.state.registEvent.map( ({id_event, terdaftar, diterima, event}, index) => ({
+          const data =  this.state.registEvent.map( ({id_event, terdaftar, diterima, detail_event,nama_event,organisasi}, index) => ({
             no: index+1,
             id_event : id_event,
-            nama_event : event.nama_event,
-            organisasi : event.organisasi,
+            nama_event : nama_event,
+            organisasi : organisasi,
             pendaftar : terdaftar,
             diterima : diterima,
-            kuota : event.detail_event.limit_participant,
-            sisa : (event.detail_event.limit_participant) - (diterima)
+            kuota : detail_event.limit_participant,
+            sisa : (detail_event.limit_participant) - (diterima)
         }))
         
         return ( 

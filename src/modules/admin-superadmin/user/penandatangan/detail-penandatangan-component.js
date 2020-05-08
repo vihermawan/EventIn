@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
-import { Layout, Breadcrumb, Row, Col } from 'antd';
+import { Layout, Breadcrumb, Row, Col,Modal,Avatar } from 'antd';
 import { Link } from 'react-router-dom';
+import { PDFViewer,Document,Page } from '@react-pdf/renderer';
 import '../../../../assets/css/dashboard-all/dashboard.css'
 import '../../../../assets/css/dashboard-all/table-style.css'
 import '../../../../assets/css/admin-superadmin/detail-user.css'
@@ -12,7 +13,7 @@ const { Content } = Layout;
 
 class DetailPenandatanganAdminComponent extends Component {
     render() { 
-      const { initialData, columns, dataPenandatangan,data } = this.props
+      const { initialData, columns, dataPenandatangan,data,handleOk,handleCancel } = this.props
         return ( 
             <Content
                 style={{
@@ -41,12 +42,11 @@ class DetailPenandatanganAdminComponent extends Component {
                                     <div className="container-desc-panitia">
                                         <Row>
                                             <Col lg={8} md={12} sm={12}>
-                                                <img
-                                                    src={data.picture}
-                                                    alt="avatar 1"
-                                                    className = "avatar-panitia"
-                                                    style={{Width: '10%'}}
-                                                />
+                                                <div classname="detail">
+                                                    <div style={{margin:"16p auto", textAlign:"center"}}>
+                                                        <Avatar shape="square" size={200} src={data.picture} icon="user"/>
+                                                    </div>
+                                                </div>
                                             </Col>
                                             <Col lg={8} md={12} sm={12}>
                                                 <div className="desc-panitia">
@@ -78,16 +78,26 @@ class DetailPenandatanganAdminComponent extends Component {
                                     </div>
                                 )}
                             </Row>
-                           
-                                <Row gutter={24} type="flex">
-                            
-                                    <TableProfile 
-                                        columns={columns} 
-                                        dataSource={data} 
-                                        className="table-panitia"
-                                    />
-                                </Row>
-                           
+                            <Row gutter={24} type="flex">
+                                <TableProfile 
+                                    columns={columns} 
+                                    dataSource={data} 
+                                    className="table-panitia"
+                                />
+                            </Row>
+                            <Modal
+                                title="Sertifikat"
+                                visible={initialData.visible}
+                                onOk={handleOk}
+                                onCancel={handleCancel}
+                                >
+                                <PDFViewer src={initialData.url}  style={{minWidth: '100%', minHeight: '500px',border:"none"}}>
+                                    <Document>
+                                        <Page>
+                                        </Page>
+                                    </Document> 
+                                </PDFViewer>
+                            </Modal>
                         </div>
                         </LoadingContainer>
                     </Col>
