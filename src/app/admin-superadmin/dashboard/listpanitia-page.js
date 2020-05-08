@@ -204,7 +204,7 @@ class ListPanitiaAdminPage extends Component {
                     />,
                     <Divider type="vertical" />,
                     <ButtonEdit
-                        text="Banned"
+                        text="Blokir"
                         height={20}
                         icon={faBan}
                         borderRadius="5px"

@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 import '../../../assets/css/dashboard-all/dashboard.css'
 import '../../../assets/css/dashboard-all/table-style.css'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faCheckCircle, faHourglass } from '@fortawesome/free-solid-svg-icons'
+import { faCheckCircle, faBan } from '@fortawesome/free-solid-svg-icons'
 //import page
 import ListPenandatanganAdminPage from '../../../app/admin-superadmin/dashboard/penandatangan-page'
 import ListBannedPenandatanganPage from '../../../app/admin-superadmin/banned-page/banned-penandatangan-page'
@@ -43,7 +43,7 @@ class SwitchPenandatanganComponent extends Component {
                                         tab={ 
                                         <span> 
                                            <FontAwesomeIcon
-                                                icon={faHourglass}
+                                                icon={faCheckCircle}
                                                 style={{marginRight: 10}}
                                             /> 
                                             Penandatangan Aktif
@@ -56,7 +56,7 @@ class SwitchPenandatanganComponent extends Component {
                                     tab={ 
                                     <span> 
                                         <FontAwesomeIcon
-                                            icon={faCheckCircle}
+                                            icon={faBan}
                                             style={{marginRight: 10}}
                                         />     
                                         Penandatangan Diblokir 

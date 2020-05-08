@@ -33,7 +33,7 @@ class AdminComponent extends Component {
                                             <Col lg={24} md={24} sm={24}>
                                                 <div className="desc-card-dashboard-admin">
                                                     <div className="title-desc-card-admin">
-                                                        <span>Semua Peserta</span>
+                                                        <span>Jumlah Peserta</span>
                                                     </div>
                                                 </div>
                                             </Col>
@@ -43,7 +43,9 @@ class AdminComponent extends Component {
                                                 <div className="desc-card-dashboard-admin">
                                                     <LoadingContainer loading={initialData.loading}>
                                                         <div className="title-total-card-admin"  style={{minHeight:"105px"}}>
-                                                            <Link to="/admin/list-peserta"><span>{initialData.total_peserta}</span></Link> 
+                                                            {/* <Link to="/admin/list-peserta"><span> */}
+                                                                {initialData.total_peserta}
+                                                            {/* </span></Link>  */}
                                                         </div>
                                                     </LoadingContainer>
                                                 </div>
@@ -66,7 +68,7 @@ class AdminComponent extends Component {
                                             <Col lg={24} md={24} sm={24}>
                                                 <div className="desc-card-dashboard-admin">
                                                     <div className="title-desc-card-admin">
-                                                        <span>Semua Panitia</span>
+                                                        <span>Jumlah Panitia</span>
                                                     </div>
                                                 </div>
                                             </Col>
@@ -76,7 +78,9 @@ class AdminComponent extends Component {
                                                 <div className="desc-card-dashboard-admin">
                                                     <LoadingContainer loading={initialData.loading}>
                                                         <div className="title-total-card-admin"  style={{minHeight:"105px"}}>
-                                                            <Link to="/admin/list-panitia"><span>{initialData.total_panitia}</span></Link>
+                                                            {/* <Link to="/admin/list-panitia"><span> */}
+                                                                {initialData.total_panitia}
+                                                            {/* </span></Link> */}
                                                         </div>
                                                     </LoadingContainer>
                                                 </div>
@@ -99,7 +103,7 @@ class AdminComponent extends Component {
                                             <Col lg={24} md={24} sm={24}>
                                                 <div className="desc-card-dashboard-admin">
                                                     <div className="title-desc-card-admin">
-                                                        <span>Semua Sertifikat</span>
+                                                        <span>Jumlah Penandatangan</span>
                                                     </div>
                                                 </div>
                                             </Col>
@@ -109,7 +113,9 @@ class AdminComponent extends Component {
                                                 <div className="desc-card-dashboard-admin">
                                                     <LoadingContainer loading={initialData.loading}>
                                                         <div className="title-total-card-admin"  style={{minHeight:"105px"}}>
-                                                            <Link to="/admin/waiting-list"><span>{initialData.total_sertifikat}</span></Link>
+                                                            {/* <Link to="/admin/waiting-list"><span> */}
+                                                                {initialData.total_penandatangan}
+                                                            {/* </span></Link> */}
                                                         </div>
                                                     </LoadingContainer>
                                                 </div>
@@ -132,7 +138,7 @@ class AdminComponent extends Component {
                                             <Col lg={24} md={24} sm={24}>
                                                 <div className="desc-card-dashboard-admin">
                                                     <div className="title-desc-card-admin">
-                                                        <span>Semua Event</span>
+                                                        <span>Jumlah Event</span>
                                                     </div>
                                                 </div>
                                             </Col>
@@ -142,7 +148,9 @@ class AdminComponent extends Component {
                                                 <div className="desc-card-dashboard-admin">
                                                     <LoadingContainer loading={initialData.loading}>
                                                         <div className="title-total-card-admin"  style={{minHeight:"105px"}}>
-                                                            <Link to="/admin/list-all-event"><span>{initialData.total_event}</span></Link>
+                                                            {/* <Link to="/admin/list-all-event"><span> */}
+                                                                {initialData.total_event}
+                                                            {/* </span></Link> */}
                                                         </div>
                                                     </LoadingContainer>
                                                 </div>
@@ -165,7 +173,7 @@ class AdminComponent extends Component {
                                 <Col lg={24} md={24} sm={24}>
                                     <div className="card-graphic">
                                         <LoadingContainer loading={initialData.loading}>
-                                            <div style={{textAlign:"center",fontWeight:"bold"}}><span>Grafik Total Event Selama Setahun</span></div>
+                                            <div style={{textAlign:"center",fontWeight:"bold"}}><span>Grafik Jumlah Event Dibuat Selama Setahun</span></div>
                                             <div id="chartdiv" style={{ width: "100%", height: "500px" }}></div>
                                         </LoadingContainer>
                                     </div>

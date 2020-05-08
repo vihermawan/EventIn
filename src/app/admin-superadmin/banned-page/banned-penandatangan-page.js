@@ -7,7 +7,7 @@ import  * as Highlighter from 'react-highlight-words';
 import BannedPenandatanganComponent from '../../../modules/admin-superadmin/banned-page/banned-penandatangan-component';
 
 //component
-import { faBan  } from '@fortawesome/free-solid-svg-icons'
+import { faTrashRestore  } from '@fortawesome/free-solid-svg-icons'
 import ButtonEdit from '../../../common/component/button/button-edit';
 
 const {confirm} = Modal;
@@ -179,11 +179,11 @@ class BannedPenandatanganPage extends Component {
                 render: (data) => (
                     [ 
                     <ButtonEdit
-                        text="Unbanned"
+                        text="Kembalikan"
                         height={20}
-                        icon={faBan}
+                        icon={faTrashRestore}
                         borderRadius="5px"
-                        background="#E11212"
+                        background="#32852a"
                         onClick = {() => this.showUnbannedConfirm(data.id_penandatangan,data.penandatangan)}
                     />]
               ),

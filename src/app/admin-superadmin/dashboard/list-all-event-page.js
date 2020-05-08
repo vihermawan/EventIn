@@ -194,7 +194,7 @@ class ListAllEventPage extends Component {
               key: 'action',
               render: (data) => (
                 [
-                <Tooltip title="Detail">
+                <Tooltip title="Detail">,
                     <ButtonDashboard
                         height={20}
                         icon={faInfoCircle}

@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 import '../../../assets/css/dashboard-all/dashboard.css'
 import '../../../assets/css/dashboard-all/table-style.css'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faCheckCircle, faHourglass } from '@fortawesome/free-solid-svg-icons'
+import { faCheckCircle, faBan } from '@fortawesome/free-solid-svg-icons'
 //import page
 import ListPesertaAdminPage from '../../../app/admin-superadmin/dashboard/peserta-page'
 import ListBannedPesertaPage from '../../../app/admin-superadmin/banned-page/banned-peserta-page'
@@ -43,7 +43,7 @@ class SwitchPesertaComponent extends Component {
                                         tab={ 
                                         <span> 
                                            <FontAwesomeIcon
-                                                icon={faHourglass}
+                                                icon={faCheckCircle}
                                                 style={{marginRight: 10}}
                                             /> 
                                             Peserta Aktif
@@ -56,7 +56,7 @@ class SwitchPesertaComponent extends Component {
                                     tab={ 
                                     <span> 
                                         <FontAwesomeIcon
-                                            icon={faCheckCircle}
+                                            icon={faBan}
                                             style={{marginRight: 10}}
                                         />     
                                         Peserta Diblokir 

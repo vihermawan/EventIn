@@ -254,17 +254,17 @@ class ApprovalEventPage extends Component {
               key: 'action',
               render: (data) => (
                 [
-                <Tooltip title="Approve">
+                <Tooltip title="Terima">,
                     <ButtonDashboard
                         height={20}
                         icon={faCheckCircle}
                         borderRadius="5px"
-                        background="#00C908"
+                        background="#32852a"
                         onClick = { () => this.showAcceptConfirm(data.nomor,data.nama_event,data.panitia)}
                     />
                  </Tooltip>,
                 <Divider type="vertical" />,
-                <Tooltip title="Reject">
+                <Tooltip title="Tolak">,
                     <ButtonDashboard
                         height={20}
                         icon={faWindowClose}
