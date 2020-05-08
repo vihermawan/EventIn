@@ -22,8 +22,8 @@ class ListParticipantComponent extends Component {
                 }}
             >
                 <Breadcrumb separator=">">
-                    <Breadcrumb.Item><Link to='/dashboard/list-count-regist'>Dashboard List Register</Link></Breadcrumb.Item>
-                    <Breadcrumb.Item>Dashboard List Participant</Breadcrumb.Item>
+                    <Breadcrumb.Item><Link to='/dashboard/list-count-regist'>Dashboard Data Pendaftar</Link></Breadcrumb.Item>
+                    <Breadcrumb.Item>Dashboard Pendaftar Event </Breadcrumb.Item>
                 </Breadcrumb>
                 <Row style={{minHeight: '100%',marginBottom: '2%',marginTop:'2%',}} className="background">
                     <Col lg={24} md={24} sm={24}> 
@@ -31,7 +31,7 @@ class ListParticipantComponent extends Component {
                         <div className="container-active-event">
                             <Row>
                             <div className="container-title-event">
-                                <span>List Participant</span>
+                                <span>Pendaftar Event</span>
                             </div>
                             </Row>
                             <LoadingContainer loading={initialData.loading}>

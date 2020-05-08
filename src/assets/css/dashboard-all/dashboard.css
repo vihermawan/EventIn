@@ -162,3 +162,9 @@
     color : white !important;
     background: #4D5AF2 !important;
 }
+
+.container-profile-penandatangan{
+    max-height: 300px;
+    margin-left: 20%;
+    margin-top: 10px;
+}

@@ -54,10 +54,8 @@ class PanitiaPage extends Component {
         console.log(data_event_ac)
         for(let i=0; i<data_event_ac.size; i++){
             data_event.push({
-                nama_event: data_event_ac.data.event[i].event.nama_event,
+                nama_event: data_event_ac.data.event[i].nama_event,
                 diterima : data_event_ac.data.event[i].diterima,
-                litres: 501.9,
-                units: 250
             })
         }
         
