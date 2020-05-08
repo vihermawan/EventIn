@@ -155,7 +155,7 @@ class WaitingPage extends Component {
         });
     }
 
-    //function pop up notifikasi.
+    //function pop up notifikasi
     showSendConfirm = (id_penandatangan_sertifikat,nama_penandatangan,instansi,jabatan) => {
         confirm({
             title: `Apakah Yakin untuk mengirim sertifikat ke ${nama_penandatangan} ${jabatan} ${instansi} ?`,
