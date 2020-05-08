@@ -113,7 +113,7 @@ class BannedPesertaPage extends Component {
         this.setState({ searchText: '' });
     };
 
-    //function untuk modal
+    //function untuk modal.
     showUnbannedConfirm = (id,nama_peserta) => {
       confirm({
           title: `Apakah yakin untuk melakukan unban terhadap ${nama_peserta}?`,

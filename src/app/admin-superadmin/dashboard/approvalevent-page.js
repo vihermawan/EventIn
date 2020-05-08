@@ -110,7 +110,7 @@ class ApprovalEventPage extends Component {
     onDetailEvent = (id) => {
         console.log('id ini',id)
         this.props.setIdEvent(id);
-        this.props.navigate(CONSTANS.APPROVAL_EVENT_MENU_KEY)
+        this.props.navigate(CONSTANS.DETAIL_APPROVAL_EVENT_MENU_KEY)
     }
 
     //approve event

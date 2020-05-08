@@ -125,7 +125,7 @@ const menu = {
         link : '/admin/detail-list-all-event'
     },
     DETAIL_APPROVAL_EVENT : {
-        link : '/admin/detail-list-approval-event'
+        link : '/admin/detail-approval-event'
     },
     DETAIL_EVENT_ADMIN: {
         link:'/admin/detail-event'

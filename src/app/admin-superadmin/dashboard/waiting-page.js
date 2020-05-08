@@ -309,7 +309,7 @@ class WaitingPage extends Component {
                             </Tooltip>
                         </Col>
                         <Col lg={12} md={24} sm={24}>
-                            <Tooltip title="Reject">
+                            <Tooltip title="Tolak">
                               <ButtonDashboard
                                   height={20}
                                   width = {80}
