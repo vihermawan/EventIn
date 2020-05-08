@@ -12,6 +12,7 @@ import ButtonEdit from '../../../common/component/button/button-edit';
 
 //import store.
 import { setIdUsers } from '../../../modules/admin-superadmin/user/store/users-action'
+import { setIdPenandatangan } from '../../../modules/admin-superadmin/user/penandatangan/store/penandatangan-action'
 
 const {confirm} = Modal;
 
@@ -143,8 +144,9 @@ class PenandatanganAdminPage extends Component {
     }
 
     //detail Penandatangan
-    onDetailPenandatangan = (id_users) => {
+    onDetailPenandatangan = (id_users,id_penandatangan) => {
         this.props.setIdUsers(id_users)
+        this.props.setIdPenandatangan(id_penandatangan)
         console.log('id users',id_users)
         this.props.navigate(CONSTANS.DETAIL_PENANDATANGAN_ADMIN_MENU_KEY)
     }
@@ -209,7 +211,7 @@ class PenandatanganAdminPage extends Component {
                         icon={faInfoCircle}
                         borderRadius="5px"
                         background="#FFA903"
-                        onClick = { () => this.onDetailPenandatangan(data.id_users)}
+                        onClick = { () => this.onDetailPenandatangan(data.id_users,data.id_penandatangan)}
                     />,
                     <Divider type="vertical" />,
                     <ButtonEdit
@@ -252,6 +254,7 @@ const mapStateToProps = state => ({
 const mapDispatchToProps = (dispatch => ({
     navigate,
     setIdUsers,
+    setIdPenandatangan,
 }))();
 
 const page = connect(mapStateToProps, mapDispatchToProps)(PenandatanganAdminPage);

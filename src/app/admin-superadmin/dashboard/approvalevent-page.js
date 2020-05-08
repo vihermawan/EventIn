@@ -261,7 +261,7 @@ class ApprovalEventPage extends Component {
                         borderRadius="5px"
                         background="#00C908"
                         onClick = { () => this.showAcceptConfirm(data.nomor,data.nama_event,data.panitia)}
-                    />,
+                    />
                  </Tooltip>,
                 <Divider type="vertical" />,
                 <Tooltip title="Reject">
@@ -271,7 +271,7 @@ class ApprovalEventPage extends Component {
                         borderRadius="5px"
                         background="#FF0303"
                         onClick = { () => this.showRejectConfirm(data.nomor,data.nama_event,data.panitia)}
-                    />, 
+                    />
                 </Tooltip>,
                 <Divider type="vertical" />,
                 <Tooltip title="Detail">,
@@ -281,7 +281,7 @@ class ApprovalEventPage extends Component {
                         borderRadius="5px"
                         background="#FFA903"
                         onClick = { () => this.onDetailEvent(data.nomor)}
-                    />,
+                    />
                 </Tooltip>,]
               ),
             },
