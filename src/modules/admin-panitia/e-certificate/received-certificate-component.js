@@ -21,7 +21,7 @@ class WaitingCertificateComponent extends Component {
                 }}
             >
                 <Breadcrumb separator=">">
-                    <Breadcrumb.Item>Dashboard Received E-Certificate</Breadcrumb.Item>
+                    <Breadcrumb.Item>Dashboard Sertifikat Selesai</Breadcrumb.Item>
                 </Breadcrumb>
                 <Row style={{minHeight: '100%',marginBottom: '2%',marginTop:'2%',}} className="background">
                     <Col lg={24} md={24} sm={24}> 
@@ -29,7 +29,7 @@ class WaitingCertificateComponent extends Component {
                         <div className="container-active-event">
                             <Row>
                             <div className="container-title-event">
-                                <span>Received E Certificate</span>
+                                <span>Daftar Sertifikat Selesai</span>
                             </div>
                             </Row>
                             <LoadingContainer loading={initialData.loading}>

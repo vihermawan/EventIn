@@ -22,6 +22,8 @@ class EditEventPage extends Component {
         biaya: '0',
         bank: '-',
         no_rekening: '-',
+        id_kabupaten : '',
+        id_provinsi : '',
         start_event :moment().format('YYYY-MM-DD'),
         end_event : moment().format('YYYY-MM-DD'),
         time_start : '',
@@ -31,6 +33,8 @@ class EditEventPage extends Component {
         venue:'',
         lokasi : '',
         picture_event : '',
+        provinsi :[],
+        kabupaten: [],
         picture : '',
         visible:false,
         button_edit : 'Edit Foto Profil',
@@ -45,13 +49,52 @@ class EditEventPage extends Component {
 
     componentDidMount(){
         this.getDetailEvent(this.props.idEvent);
+        this.getProvinsi();
+        // if(this.state.id_kabupaten !== ''){
+        //     this.getKabupatenData(this.state.id_kabupaten);
+        // }
+    }
+
+    getProvinsi = () => {
+        this.setState({loading: true})
+        API.get(`/provinsi`)
+        .then(res => {
+            this.setState({
+                provinsi:res.data.data.provinsi,
+                loading: false,
+            })
+        });
+    }
+
+    getKabupatenData = (id_kabupaten) => {
+        this.setState({loading: true})
+        API.get(`/kabupaten-data/${id_kabupaten}`)
+        .then(res => {
+            console.log('res',res)
+            this.setState({
+                kabupaten:res.data.data.kabupaten,
+                loading: false,
+            })
+        });
+    }
+
+    getKabupaten = (id_provinsi) => {
+        this.setState({loading: true})
+        API.get(`/kabupaten/${id_provinsi}`)
+        .then(res => {
+            console.log(res.data)
+            this.setState({
+                kabupaten:res.data.data.kabupaten,
+                loading: false,
+            })
+        });
     }
 
     getDetailEvent=(id)=>{
         this.setState({loading: true})
         API.get(`/panitia/event/${id}`)
         .then(res => {
-            console.log('res',res)
+            // console.log('res',res)
                 this.setState({
                     id_event : res.data.data.event.id_event,
                     nama : res.data.data.event.nama_event,
@@ -59,7 +102,9 @@ class EditEventPage extends Component {
                     organisasi: res.data.data.event.organisasi,
                     batas_peserta: res.data.data.event.detail_event.limit_participant,
                     kategori_input : res.data.data.event.id_kategori,
-                    no_telepon : res.data.data.event.detail_event.no_telepon,
+                    id_kabupaten : res.data.data.event.detail_event.id_kabupaten,
+                    id_provinsi : res.data.data.event.detail_event.id_provinsi,
+                    no_telepon : res.data.data.event.detail_event.telepon,
                     email_event : res.data.data.event.detail_event.email_event,
                     instagram : res.data.data.event.detail_event.instagram,
                     status_biaya : res.data.data.event.status_biaya.id_status,
@@ -75,6 +120,7 @@ class EditEventPage extends Component {
                     croppedImageUrl: res.data.data.event.detail_event.image_URL,
                     loading: false,
                 })
+                this.getKabupatenData(res.data.data.event.detail_event.id_kabupaten)
         });
     }
 
@@ -147,6 +193,17 @@ class EditEventPage extends Component {
             end_registration: dateString,
         })
         console.log(date, dateString);
+    }
+
+    handleProvinsi = (input, option) => {
+        console.log('input', input, 'option', option);
+        this.setState({ id_provinsi: input })  
+        this.getKabupaten(input)
+    }
+
+    handleKabupaten = (input, option) => {
+        console.log('input', input, 'option', option);
+        this.setState({ id_kabupaten: input })  
     }
 
     getBase64 = (img, callback)  =>{
@@ -343,6 +400,8 @@ class EditEventPage extends Component {
 
         params.set('lokasi',this.state.lokasi)
         params.set('venue',this.state.venue)
+        params.set('id_provinsi',this.state.id_provinsi)
+        params.set('id_kabupaten',this.state.id_kabupaten)
 
         params.set('start_event',this.state.start_event)
         params.set('end_event',this.state.end_event)
@@ -396,6 +455,8 @@ class EditEventPage extends Component {
                 handleOk={this.handleOk}
                 handleCancel={this.handleCancel}
                 handleSubmit = {this.handleSubmit}
+                handleKabupaten ={this.handleKabupaten}
+                handleProvinsi = {this.handleProvinsi}
             />
         );
     }

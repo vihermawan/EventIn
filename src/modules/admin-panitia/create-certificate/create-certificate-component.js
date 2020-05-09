@@ -3,7 +3,7 @@ import { Layout, Row, Col, Form, Breadcrumb, Input, Button,Select, Modal} from '
 import '../../../assets/css/admin-panitia/create-certificate.css'
 // component
 import InputForm from '../../../common/component/input/input-form';
-import { faFile} from '@fortawesome/free-solid-svg-icons';
+import { faFile, faClipboard} from '@fortawesome/free-solid-svg-icons';
 import LoadingNotifContainer from '../../../common/component/loading/loading-notif';
 import LoadingContainer from '../../../common/component/loading/loading-container'
 const { Content } = Layout;
@@ -47,12 +47,12 @@ class CreateCertificateComponent extends Component{
                                                     </div>
                                                     <div>
                                                         <InputForm
-                                                            name='nama_sertifikat'
+                                                            name='nama'
                                                             placeholder="Masukan nama sertifikat...."
                                                             className="input-event mt-5 mb-20"
                                                             onChange={handleChange}
-                                                            value={initialData.nama_sertifikat}
-                                                            icon={faFile}
+                                                            value={initialData.nama}
+                                                            icon={faClipboard}
                                                         />
                                                     </div>
                                                 </Col>

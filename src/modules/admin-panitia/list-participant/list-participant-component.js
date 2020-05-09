@@ -31,7 +31,7 @@ class ListParticipantComponent extends Component {
                         <div className="container-active-event">
                             <Row>
                             <div className="container-title-event">
-                                <span>Pendaftar Event</span>
+                                <span>Daftar Pendaftar Event</span>
                             </div>
                             </Row>
                             <LoadingContainer loading={initialData.loading}>

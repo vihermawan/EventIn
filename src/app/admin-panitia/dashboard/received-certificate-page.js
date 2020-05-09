@@ -158,29 +158,29 @@ class ReceivedCertificatePage extends Component {
             key: 'sertifikat',
             ...this.getColumnSearchProps('sertifikat'),
         },
-        {
-            title: 'Status Sertifikat',
-            key: 'status',
-            dataIndex: 'status',
-            render: sertifikat => (
-            <span>
-                {sertifikat.map(tag => {
-                let color = tag.length > 5 ? 'geekblue' : '#87d068';
-                if (tag === 'reject') {
-                    color = 'volcano';
-                }
-                return (
-                    <Tag color={color} key={tag}>
-                    {tag.toUpperCase()}
-                    </Tag>
-                );
-                })}
-            </span>
-            ),
-            onFilter: (value, record) => record.status.indexOf(value) === 0,
-            sorter: (a, b) => a.status.length - b.status.length,
-            sortDirections: ['descend'],
-        },
+        // {
+        //     title: 'Status Sertifikat',
+        //     key: 'status',
+        //     dataIndex: 'status',
+        //     render: sertifikat => (
+        //     <span>
+        //         {sertifikat.map(tag => {
+        //         let color = tag.length > 5 ? 'geekblue' : '#87d068';
+        //         if (tag === 'reject') {
+        //             color = 'volcano';
+        //         }
+        //         return (
+        //             <Tag color={color} key={tag}>
+        //             {tag.toUpperCase()}
+        //             </Tag>
+        //         );
+        //         })}
+        //     </span>
+        //     ),
+        //     onFilter: (value, record) => record.status.indexOf(value) === 0,
+        //     sorter: (a, b) => a.status.length - b.status.length,
+        //     sortDirections: ['descend'],
+        // },
         {
             title: 'Action',
             key: 'action',

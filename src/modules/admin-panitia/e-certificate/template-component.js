@@ -5,7 +5,7 @@ import '../../../assets/css/dashboard-all/table-style.css'
 // component
 import LoadingContainer from '../../../common/component/loading/loading-container'
 import ButtonEdit from '../../../common/component/button/button-edit';
-import { faInfoCircle } from '@fortawesome/free-solid-svg-icons';
+import { faInfoCircle, faDownload } from '@fortawesome/free-solid-svg-icons';
 // constant content
 const { Content } = Layout;
 
@@ -23,7 +23,7 @@ class TemplateCertificateComponent extends Component {
                 }}
             >
                 <Breadcrumb separator=">">
-                    <Breadcrumb.Item>Template E-Certificate</Breadcrumb.Item>
+                    <Breadcrumb.Item>Dashboard Template Sertifikat</Breadcrumb.Item>
                 </Breadcrumb>
 
                 <Row style={{minHeight: '100%',marginBottom: '2%',marginTop:'2%',}} className="background">
@@ -68,7 +68,7 @@ class TemplateCertificateComponent extends Component {
                                                                             <ButtonEdit
                                                                                 text="Download"
                                                                                 height={20}
-                                                                                icon={faInfoCircle}
+                                                                                icon={faDownload}
                                                                                 borderRadius="5px"
                                                                                 background="#4D5AF2"
                                                                             />

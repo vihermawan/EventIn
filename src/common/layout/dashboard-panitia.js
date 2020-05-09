@@ -209,7 +209,7 @@ class dashboard extends Component {
                       </div>
 
                       <div className="title-dashboard">
-                          <span className="title-desc-dashboard">CERTIFICATE</span>
+                          <span className="title-desc-dashboard">SERTIFIKAT</span>
                       </div>  
                       <Menu.Item key="list-penandatangan" onClick={this.clickedMenu}>
                         <NavLink to="/dashboard/list-penandatangan">
@@ -267,7 +267,7 @@ class dashboard extends Component {
                           }}/>
                       </div>
                       <div className="title-dashboard">
-                          <span className="title-desc-dashboard">PARTICIPANT</span>
+                          <span className="title-desc-dashboard">PENDAFTAR</span>
                       </div>  
                       <Menu.Item key="list-count-regist" onClick={this.clickedMenu}>
                         <NavLink to="/dashboard/list-count-regist">
@@ -287,7 +287,7 @@ class dashboard extends Component {
                           }}/>
                       </div>
                       <div className="title-dashboard">
-                          <span className="title-desc-dashboard">PROFILE</span>
+                          <span className="title-desc-dashboard">PROFIL</span>
                       </div> 
                       <Menu.Item key="profile" onClick={this.clickedMenu}>
                         <NavLink to="/dashboard/profile">
@@ -295,7 +295,7 @@ class dashboard extends Component {
                               icon={faUserCircle}
                               style={{marginRight: 10}}
                           /> 
-                          <span className={hidden}>Profile</span>
+                          <span className={hidden}>Profil</span>
                         </NavLink>
                       </Menu.Item>
                   </Menu>

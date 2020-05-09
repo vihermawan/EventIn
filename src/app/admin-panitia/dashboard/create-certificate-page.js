@@ -10,7 +10,7 @@ class CreateCertificatePage extends Component {
     state = { 
         penandatangan : [],
         activeEvent:[],
-        nama_sertifikat : '',
+        nama : '',
         no_sertifikat: '',
         id_penandatangan : '',
         id_event : '',
@@ -99,13 +99,13 @@ class CreateCertificatePage extends Component {
     handleSubmit = e => {
         e.preventDefault();
         const params = new FormData()
-        params.set('nama_sertifikat',this.state.nama_sertifikat)
+        params.set('nama',this.state.nama)
         params.set('no_sertifikat',this.state.no_sertifikat)
         params.set('id_event',this.state.id_event)
         params.set('id_penandatangan[]',this.state.id_penandatangan)
         params.append('sertifikat',this.state.sertifikat)
-        if(validation.required(this.state.nama_sertifikat) !== null ){
-            const message = validation.required(this.state.nama_sertifikat);
+        if(validation.required(this.state.nama) !== null ){
+            const message = validation.required(this.state.nama);
             this.openNotification(message, 'Nama Sertifikat Harus diIsi')
         }else if(validation.required(this.state.no_sertifikat) !== null ){
             const message = validation.required(this.state.no_sertifikat);
