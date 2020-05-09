@@ -21,7 +21,7 @@ class ProfilePanitiaComponent extends Component {
                 }}
             >
                 <Breadcrumb separator=">">
-                    <Breadcrumb.Item>Dashboard Profile Panitia</Breadcrumb.Item>
+                    <Breadcrumb.Item>Dashboard Profil Panitia</Breadcrumb.Item>
                 </Breadcrumb>
                 <LoadingContainer loading={initialData.loading}>
                     <div style={{minHeight:"70vh"}}>

@@ -9,7 +9,7 @@ import ReactCrop from 'react-image-crop';
 import LoadingContainer from '../../../common/component/loading/loading-container'
 import InputForm from '../../../common/component/input/input-form';
 import ButtonDashboard from '../../../common/component/button/button-dashboard';
-import { faUserEdit, faBackward, faIdCard, faEnvelope, faAddressBook, faUserAlt, faEnvelopeOpenText } from '@fortawesome/free-solid-svg-icons';
+import { faUserEdit, faBackward, faIdCard, faAddressBook, faUserAlt, faEnvelopeOpenText } from '@fortawesome/free-solid-svg-icons';
 import { faInstagram } from '@fortawesome/free-brands-svg-icons'
 import 'moment-timezone';
 import 'moment/locale/id';
@@ -30,8 +30,8 @@ class EditProfileComponent extends Component {
                 }}
             >
                 <Breadcrumb separator=">">
-                    <Breadcrumb.Item><Link to='/dashboard/profile/'>Dashboard Profile Panitia</Link></Breadcrumb.Item>
-                    <Breadcrumb.Item>Dashboard Edit Profile</Breadcrumb.Item>
+                    <Breadcrumb.Item><Link to='/dashboard/profile/'>Dashboard Profil Panitia</Link></Breadcrumb.Item>
+                    <Breadcrumb.Item>Dashboard Edit Profil</Breadcrumb.Item>
                 </Breadcrumb>
 
                 <Row style={{minHeight: '100%',marginBottom: '2%',marginTop:'2%',}} className="background">
@@ -39,7 +39,7 @@ class EditProfileComponent extends Component {
                         <div className="container-active-event">
                             <Row>
                                 <div className="container-title-event">
-                                    <span>Edit Profile</span>
+                                    <span>Edit Profil</span>
                                 </div>
                             </Row>
                      

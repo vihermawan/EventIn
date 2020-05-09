@@ -52,7 +52,7 @@ class EditProfilePage extends Component {
                 instansi :res.data.data.penandatangan.penandatangan.instansi ,
                 nip :res.data.data.penandatangan.penandatangan.nip,
                 file_p12 : res.data.data.penandatangan.penandatangan.file_p12,
-                picture : res.data.data.penandatangan.penandatangan.image_URL,
+                croppedImageUrl : res.data.data.penandatangan.penandatangan.image_URL,
                 jabatan : res.data.data.penandatangan.penandatangan.jabatan,
                 profile_picture :res.data.data.penandatangan.penandatangan.profile_picture,
                 loading: false,
