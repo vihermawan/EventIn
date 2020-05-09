@@ -25,14 +25,14 @@ class PesertaAdminComponent extends Component {
                 }}
             >
                 <Breadcrumb separator=">">
-                    <Breadcrumb.Item>Dashboard Waiting List</Breadcrumb.Item>
+                    <Breadcrumb.Item>Daftar Sertifikat yang dikirim</Breadcrumb.Item>
                 </Breadcrumb>
                 <Row style={{minHeight: '100%',marginBottom: '2%',marginTop:'2%',}} className="background">
                     <Col lg={24} md={24} sm={24}> 
                         <div className="container-active-event">
                             <Row>
                             <div className="container-title-event">
-                                <span>Waiting List</span>
+                                <span>Daftar Sertifikat yang dikirim</span>
                             </div>
                             </Row>
                             <LoadingContainer loading={initialData.loading}>
@@ -50,7 +50,7 @@ class PesertaAdminComponent extends Component {
                                     onOk={handleOk}
                                     onCancel={handleCancel}
                                     >
-                                    <p>Registrasi Event terakhir : {initialData.end_regis}</p>
+                                    {/* <p>Registrasi Event terakhir : {initialData.end_regis}</p> */}
                                     <p>Mulai Event : {initialData.start_event}</p>
                                     <p>Selesai Event : {initialData.end_event}</p>
                                     <div>
