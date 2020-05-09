@@ -4,10 +4,14 @@ import '../../../assets/css/dashboard-all/dashboard.css'
 import '../../../assets/css/admin-superadmin/superadmin.css'
 import '../../../assets/css/dashboard-all/table-style.css'
 import LoadingContainer from '../../../common/component/loading/loading-container'
+import 'moment-timezone';
+import 'moment/locale/id';
+import moment from 'moment-timezone';
+
 import { Link } from 'react-router-dom';
 // constant content
 const { Content } = Layout;
-
+const year = moment().format('YYYY');
 class AdminComponent extends Component {
     render() { 
         const image1 = require(`../../../assets/images/participant-dashboard.png`);
@@ -173,7 +177,7 @@ class AdminComponent extends Component {
                                 <Col lg={18} md={24} sm={24}>
                                     <div className="card-graphic">
                                         <LoadingContainer loading={initialData.loading}>
-                                            <div style={{textAlign:"center",fontWeight:"bold"}}><span>Grafik Jumlah Event Dibuat Selama Setahun</span></div>
+                                            <div style={{textAlign:"center",fontWeight:"bold"}}><span>Grafik Jumlah Event Dibuat Tahun {year}</span></div>
                                             <div id="chartdiv" style={{ width: "100%", height: "500px" }}></div>
                                         </LoadingContainer>
                                     </div>
