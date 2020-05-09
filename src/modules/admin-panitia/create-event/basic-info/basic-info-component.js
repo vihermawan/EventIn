@@ -3,7 +3,8 @@ import { Layout, Row, Col, Button, Form, Select, Input } from 'antd';
 import '../../../../assets/css/admin-panitia/create-event.css'
 // component
 import InputForm from '../../../../common/component/input/input-form';
-import { faUserTie, faStickyNote, faIdCard, faUserFriends, faAddressBook, faEnvelope, faInfoCircle } from '@fortawesome/free-solid-svg-icons';
+import { faUserTie, faStickyNote, faIdCard, faUserFriends, faAddressBook, faEnvelope, faInfoCircle, faEnvelopeOpenText } from '@fortawesome/free-solid-svg-icons';
+import { faInstagram } from '@fortawesome/free-brands-svg-icons';
 const { Content } = Layout;
 const { Option } = Select;
 const { TextArea } = Input;
@@ -141,7 +142,7 @@ class BasicInfoComponent extends Component{
                                                     className="input-event mt-5 mb-20"
                                                     onChange={handleChange}
                                                     value={initialData.email_event}
-                                                    icon={faEnvelope}
+                                                    icon={faEnvelopeOpenText}
                                                 />
                                             </div>
                                         </div>
@@ -158,7 +159,7 @@ class BasicInfoComponent extends Component{
                                                     className="input-event mt-5 mb-20"
                                                     onChange={handleChange}
                                                     value={initialData.instagram}
-                                                    icon={faInfoCircle}
+                                                    icon={faInstagram}
                                                 />
                                             </div>
                                         {/* </div> */}

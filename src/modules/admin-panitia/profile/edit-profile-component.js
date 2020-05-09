@@ -9,19 +9,14 @@ import ReactCrop from 'react-image-crop';
 import LoadingContainer from '../../../common/component/loading/loading-container'
 import InputForm from '../../../common/component/input/input-form';
 import ButtonDashboard from '../../../common/component/button/button-dashboard';
-import { faUserEdit, faBackward, faIdCard, faInfoCircle, faEnvelope, faAddressBook, faUserAlt } from '@fortawesome/free-solid-svg-icons';
+import { faUserEdit, faBackward, faIdCard, faEnvelope, faAddressBook, faUserAlt, faEnvelopeOpenText } from '@fortawesome/free-solid-svg-icons';
+import { faInstagram } from '@fortawesome/free-brands-svg-icons'
 import 'moment-timezone';
 import 'moment/locale/id';
 import 'react-image-crop/dist/ReactCrop.css';
 
 // constant content
 const { Content } = Layout;
-const uploadButton = (
-    <div>
-      {/* {this.state.loading ? <LoadingOutlined /> : <PlusOutlined />} */}
-      <div className="ant-upload-text">Upload Foto Eventmu</div>
-    </div>
-);
 class EditProfileComponent extends Component {
     render() { 
       const {initialData,handleChange,uploadButton,handleButtonEdit,handleButtonGambar,uploadGambar,handleSubmit, onImageLoaded,onCropComplete,onCropChange,handleOk,handleCancel} = this.props  
@@ -79,7 +74,7 @@ class EditProfileComponent extends Component {
                                                         className="input-event mt-5 mb-20"
                                                         onChange={handleChange}
                                                         value={initialData.email}
-                                                        icon={faEnvelope}
+                                                        icon={faEnvelopeOpenText}
                                                     />
                                                 </div>
                                             </Col>
@@ -109,7 +104,7 @@ class EditProfileComponent extends Component {
                                                         className="input-event mt-5 mb-20"
                                                         onChange={handleChange}
                                                         value={initialData.instagram}
-                                                        icon={faInfoCircle}
+                                                        icon={faInstagram}
                                                     />
                                                 </div>
                                             </Col>

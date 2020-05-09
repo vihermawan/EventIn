@@ -25,8 +25,8 @@ class WaitingListComponent extends Component {
                 }}
             >
                 <Breadcrumb separator=">">
-                    <Breadcrumb.Item><Link to="/signer/total-waiting-list">Dashboard Total Waiting List</Link> </Breadcrumb.Item>
-                    <Breadcrumb.Item>Dashboard Waiting List</Breadcrumb.Item>
+                    <Breadcrumb.Item><Link to="/signer/total-waiting-list">Dashboard Total Sertfikat Menunggu</Link> </Breadcrumb.Item>
+                    <Breadcrumb.Item>Dashboard Sertifikat Menunggu</Breadcrumb.Item>
                 </Breadcrumb>
 
                 <Row style={{minHeight: '100%',marginBottom: '2%',marginTop:'2%',}} className="background">
@@ -36,7 +36,7 @@ class WaitingListComponent extends Component {
                             <Row>
                                 <Col lg={19} md={12} sm={12} xs={24}>
                                     <div className="container-title-event">
-                                        <span>Waiting List</span>
+                                        <span>Daftar Sertifikat</span>
                                     </div>
                                 </Col>
                                 <Col lg={5} md={12} sm={12} xs={24}>
