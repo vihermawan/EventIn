@@ -182,7 +182,7 @@ class BannedPanitiaPage extends Component {
                       icon={faTrashRestore}
                       borderRadius="5px"
                       background="#32852a"
-                      onClick = { () => this.showUnbannedConfirm(data.id_peserta,data.peserta)}
+                      onClick = { () => this.showUnbannedConfirm(data.id_panitia,data.panitia)}
                     />]
                 ),
             },
