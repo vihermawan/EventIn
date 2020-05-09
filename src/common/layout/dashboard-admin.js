@@ -242,7 +242,7 @@ class Admin extends Component {
                           style={{marginRight: 10}}
                           className={this.state.collapsed ? 'hidden-logo' : 'block-logo'}
                       />
-                      <span className={hidden} >Waiting List</span>
+                      <span className={hidden} >Menunggu</span>
                     </Link>
                   </Menu.Item>
                   <div className="title-dashboard">

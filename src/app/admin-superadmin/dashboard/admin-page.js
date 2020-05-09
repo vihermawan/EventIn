@@ -85,6 +85,31 @@ class AdminPage extends Component {
         });
     }
 
+    pieChart = (data_users_ac) => {
+        var chart = am4core.create("pieChart", am4charts.PieChart);
+
+        var data_users = [];
+        console.log(data_users_ac)
+       
+        const data = data_users_ac.map( data => {
+            data_users.push({
+                user : data.bulan,
+                jumlah: data.total,
+            })
+        })
+
+        // Add data
+        chart.data = data_users;
+
+        // Add and configure Series
+        var pieSeries = chart.series.push(new am4charts.PieSeries());
+        pieSeries.dataFields.value = "jumlah";
+        pieSeries.dataFields.category = "users";
+
+        pieSeries.labels.template.maxWidth = 130;
+        pieSeries.labels.template.wrap = true;
+    }
+    
     reportChart = (data_event_ac) => {
         let chart = am4core.create("chartdiv", am4charts.XYChart);
         chart.scrollbarX = new am4core.Scrollbar();
