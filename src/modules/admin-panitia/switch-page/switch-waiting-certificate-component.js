@@ -27,7 +27,7 @@ class SwitchWaitingCertificateComponent extends Component {
                 }}
             >
                  <Breadcrumb separator=">">
-                    <Breadcrumb.Item><Link to=''>Dashboard Waiting Sertifikat</Link></Breadcrumb.Item>
+                    <Breadcrumb.Item><Link to=''>Dashboard Sertifikat Menunggu</Link></Breadcrumb.Item>
                 </Breadcrumb>
 
                 <Row style={{minHeight: '100%',marginBottom: '2%',marginTop:'2%',}} className="background">
@@ -35,7 +35,7 @@ class SwitchWaitingCertificateComponent extends Component {
                         <div className="container-active-event-absent">
                             <Row className="nav-absent">
                                 <div className="container-title-event">
-                                    <span>List Sertifikat</span>
+                                    <span>Daftar Sertifikat</span>
                                 </div>
                             </Row>
                             <Row className="table-absent">

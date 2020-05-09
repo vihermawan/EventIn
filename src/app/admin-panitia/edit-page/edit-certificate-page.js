@@ -9,15 +9,21 @@ import EditCertificateComponent from '../../../modules/admin-panitia/e-certifica
 class EditCertificatePage extends Component {
     state = {
         nama_sertifikat: '',
-        deskripsi :'',
+        no_sertifikat :'',
         size_sertifikat :'',
         sertifikat :'',
+        id_event: '',
+        id_penandatangan :'',
         loading: false,
+        activeEvent : [],
+        penandatangan : [],
         button_edit : 'Edit Foto Profil',
     }
 
     componentDidMount(){
         this.getCertificate(this.props.idSertifikat);
+        this.getPenandatangan();
+        this.getEvent();
     }
 
     handleChange = (e) => {
@@ -28,6 +34,42 @@ class EditCertificatePage extends Component {
         })
     }
 
+     //get data dari APIsertifikat
+     getEvent=()=>{
+        this.setState({loading: true})
+        API.get(`/panitia/event`)
+        .then(res => {
+            console.log('res',res.data.data.event)
+            this.setState({
+                activeEvent:res.data.data.event,
+                loading: false,
+            })
+        });
+    }
+
+    getPenandatangan=()=>{
+        this.setState({loading: true})
+        API.get(`/panitia/list-penandatangan`)
+        .then(res => {
+          console.log('res',res.data.data.penandatangan)
+          this.setState({
+            penandatangan:res.data.data.penandatangan,
+            loading: false,
+          })
+        });
+    }
+
+    handlePenandatangan = (input, option) => {
+        console.log('input', input, 'option', option);
+        this.setState({ id_penandatangan: input })  
+    }
+
+    handleEvent = (input, option) => {
+        console.log('input', input, 'option', option);
+        this.setState({ id_event: input })  
+    }
+
+
     //get data profile dari API
     getCertificate=(id_sertifikat)=>{
         this.setState({loading: true})
@@ -35,9 +77,11 @@ class EditCertificatePage extends Component {
         .then(res => {
             console.log('res',res)
             this.setState({
-                nama_sertifikat : res.data.data.sertifikat.nama_sertifikat,
-                deskripsi : res.data.data.sertifikat.description,
-                sertifikat : res.data.data.sertifikat.sertifikat,
+                nama_sertifikat : res.data.data.sertifikat.sertifikat.nama_sertifikat,
+                no_sertifikat : res.data.data.sertifikat.sertifikat.no_sertifikat,
+                sertifikat : res.data.data.sertifikat.sertifikat.sertifikat,
+                id_event : res.data.data.sertifikat.sertifikat.id_event,
+                id_penandatangan : res.data.data.sertifikat.id_penandatangan,
                 loading: false,
             })
         });
@@ -116,6 +160,8 @@ class EditCertificatePage extends Component {
                 handleButtonEdit = {this.handleButtonEdit}
                 handleButtonGambar = {this.handleButtonGambar}
                 uploadFile = {this.uploadFile}
+                handleEvent = {this.handleEvent}
+                handlePenandatangan = {this.handlePenandatangan}
             />
         );
     }

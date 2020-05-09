@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
-import { Layout, Breadcrumb, Row, Col, Form, Modal, Input,Upload, Button  } from 'antd';
+import { Layout, Breadcrumb, Row, Col, Form, Button,Select,Input  } from 'antd';
 import { Link } from 'react-router-dom';
+import { faFile} from '@fortawesome/free-solid-svg-icons';
 import '../../../assets/css/dashboard-all/dashboard.css'
 import '../../../assets/css/dashboard-all/table-style.css'
 import '../../../assets/css/admin-superadmin/detail-event.css'
@@ -12,9 +13,10 @@ import { faUserEdit, faBackward , faEnvelope, faUserAlt } from '@fortawesome/fre
 
 // constant content
 const { Content } = Layout;
+const { Option } = Select;
 class EditCertificateComponent extends Component {
     render() { 
-      const {initialData,handleChange,handleButtonEdit,handleButtonGambar,handleSubmit,uploadFile} = this.props  
+      const {initialData,handleChange,handleButtonEdit,handleButtonGambar,handleEvent,handlePenandatangan,handleSubmit,uploadFile} = this.props  
       return ( 
             <Content
                 style={{
@@ -25,8 +27,8 @@ class EditCertificateComponent extends Component {
                 }}
             >
                 <Breadcrumb separator=">">
-                    <Breadcrumb.Item><Link to='/dashboard/waiting-certificate-event/'>Dashboard Waiting E-Certificate</Link></Breadcrumb.Item>
-                    <Breadcrumb.Item>Dashboard Edit Certificate</Breadcrumb.Item>
+                    <Breadcrumb.Item><Link to='/dashboard/waiting-certificate-event/'>Dashboard Sertifikat Menunggu</Link></Breadcrumb.Item>
+                    <Breadcrumb.Item>Dashboard Edit Sertifikat</Breadcrumb.Item>
                 </Breadcrumb>
 
                 <Row style={{minHeight: '100%',marginBottom: '2%',marginTop:'2%',}} className="background">
@@ -34,7 +36,7 @@ class EditCertificateComponent extends Component {
                         <div className="container-active-event">
                             <Row>
                                 <div className="container-title-event">
-                                    <span>Edit Certificate</span>
+                                    <span>Edit Sertifikat</span>
                                 </div>
                             </Row>
                      
@@ -60,17 +62,67 @@ class EditCertificateComponent extends Component {
                                             </Col>
                                             <Col lg={24} md={24} sm={24}>
                                                 <div>   
-                                                    <span className="auth-input-label text-black">Deskripsi*</span>
+                                                    <span className="auth-input-label text-black">Nomor Sertifikat*</span>
                                                 </div>
                                                 <div>
                                                     <InputForm
-                                                        name='deskripsi'
-                                                        placeholder="Masukan nama deskripsi...."
+                                                        name='no_sertifikat'
+                                                        placeholder="Masukan nomor sertifikat...."
                                                         className="input-event mt-5 mb-20"
                                                         onChange={handleChange}
-                                                        value={initialData.deskripsi}
-                                                        icon={faEnvelope}
+                                                        value={initialData.no_sertifikat}
+                                                        icon={faFile}
                                                     />
+                                                </div>
+                                            </Col>
+                                            <Col lg={24} md={24} sm={24}>
+                                                <div>   
+                                                    <span className="auth-input-label text-black">Pilih Event*</span>
+                                                </div>
+                                                <div>
+                                                <Select
+                                                    showSearch
+                                                    placeholder="Pilih Event"
+                                                    optionFilterProp="children"
+                                                    style={{ width: '100%' }}
+                                                    value={initialData.id_event}
+                                                    className="select-sertifikat"
+                                                    onChange={(input, option)=>handleEvent(input,option)}
+                                                >
+                                                    {
+                                                        initialData.activeEvent.map( data =>     
+                                                            <Option
+                                                            key={data.nama_event.toString()}
+                                                            value={data.id_event}
+                                                            >{data.nama_event}</Option>
+                                                        )
+                                                    }
+                                                </Select>,
+                                                </div>
+                                            </Col>
+                                            <Col lg={24} md={24} sm={24}>
+                                                <div>   
+                                                    <span className="auth-input-label text-black">Pilih Penandatangan*</span>
+                                                </div>
+                                                <div>
+                                                <Select
+                                                    mode="multiple"
+                                                    optionFilterProp="children"
+                                                    style={{ width: '100%' }}
+                                                    className="select-sertifikat"
+                                                    placeholder="Pilih Penandatangan"
+                                                    value={initialData.id_penandatangan}
+                                                    onChange={(input, option)=>handlePenandatangan(input,option)}
+                                                >
+                                                        {
+                                                        initialData.penandatangan.map( data =>     
+                                                            <Option
+                                                            key={data.penandatangan.nama_penandatangan.toString()}
+                                                            value={data.penandatangan.id_penandatangan}
+                                                            >{data.penandatangan.nama_penandatangan}</Option>
+                                                        )
+                                                    }
+                                                </Select>,
                                                 </div>
                                             </Col>
                                             <Col lg={24} md={24} sm={24}>
