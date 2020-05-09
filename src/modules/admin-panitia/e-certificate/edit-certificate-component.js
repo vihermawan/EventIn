@@ -51,11 +51,11 @@ class EditCertificateComponent extends Component {
                                                 </div>
                                                 <div>
                                                     <InputForm
-                                                        name='nama_sertifikat'
+                                                        name='nama'
                                                         placeholder="Masukan nama sertifikat...."
                                                         className="input-event mt-5 mb-20"
                                                         onChange={handleChange}
-                                                        value={initialData.nama_sertifikat}
+                                                        value={initialData.nama}
                                                         icon={faUserAlt}
                                                     />
                                                 </div>

@@ -13,6 +13,7 @@ class EditCertificatePage extends Component {
         size_sertifikat :'',
         sertifikat :'',
         id_event: '',
+        id_sertifikat : '',
         id_penandatangan :'',
         loading: false,
         activeEvent : [],
@@ -35,7 +36,7 @@ class EditCertificatePage extends Component {
     }
 
      //get data dari APIsertifikat
-     getEvent=()=>{
+    getEvent=()=>{
         this.setState({loading: true})
         API.get(`/panitia/event`)
         .then(res => {
@@ -69,7 +70,6 @@ class EditCertificatePage extends Component {
         this.setState({ id_event: input })  
     }
 
-
     //get data profile dari API
     getCertificate=(id_sertifikat)=>{
         this.setState({loading: true})
@@ -77,11 +77,12 @@ class EditCertificatePage extends Component {
         .then(res => {
             console.log('res',res)
             this.setState({
-                nama_sertifikat : res.data.data.sertifikat.sertifikat.nama_sertifikat,
+                nama : res.data.data.sertifikat.sertifikat.nama,
                 no_sertifikat : res.data.data.sertifikat.sertifikat.no_sertifikat,
                 sertifikat : res.data.data.sertifikat.sertifikat.sertifikat,
                 id_event : res.data.data.sertifikat.sertifikat.id_event,
                 id_penandatangan : res.data.data.sertifikat.id_penandatangan,
+                id_sertifikat : res.data.data.sertifikat.id_sertifikat,
                 loading: false,
             })
         });
@@ -105,8 +106,7 @@ class EditCertificatePage extends Component {
             description,
         });
     };
-
-    
+   
     uploadFile = (event) => {
         if(event.target.files[0].type !== 'application/msword'){
             console.log('harusnya')
@@ -130,11 +130,13 @@ class EditCertificatePage extends Component {
         const params = new FormData()
         params.append('sertifikat',this.state.sertifikat)
         params.append("_method", 'PUT')
-        params.set('nama_sertifikat',this.state.nama_sertifikat)
-        params.set('description',this.state.deskripsi)
+        params.set('nama',this.state.nama)
+        params.set('no_sertifikat',this.state.no_sertifikat)
+        params.set('id_penandatangan',this.state.id_penandatangan)
+        params.set('id_event',this.state.id_event)
         this.setState({loading: true})
         
-        API.postEdit(`/panitia/edit-sertifikat-event/${this.props.idSertifikat}`, params)
+        API.postEdit(`/panitia/edit-sertifikat-event/${this.state.id_sertifikat}`, params)
             .then(res => {
                 console.log('res',res)
                 if(res.status === 200){

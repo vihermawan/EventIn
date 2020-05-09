@@ -22,12 +22,12 @@ class DetailEventComponent extends Component {
       const benefitData = [
         {
             image: require(`../../../assets/images/Day.png`),
-            title: 'The Day',
+            title: 'Pelaksanaan',
             description: datebeginevent + ' - ' + dateEndEvent,
         },
         {
             image: require(`../../../assets/images/Location.png`),
-            title: 'Venue',
+            title: 'Tempat',
             description: initialData.detailEvent.lokasi ,
         },
         {
@@ -37,7 +37,7 @@ class DetailEventComponent extends Component {
         },
         {
             image: require(`../../../assets/images/Quota.png`),
-            title: 'Quota',
+            title: 'Kuota',
             description: initialData.detailEvent.limit_participant + ' orang'
         },
         
