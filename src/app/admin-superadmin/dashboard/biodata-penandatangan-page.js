@@ -232,7 +232,7 @@ class BiodataPenandatanganAdminPage extends Component {
                       icon={faCheckCircle}
                       borderRadius="5px"
                       background="#32852a"
-                      onClick = { () => this.showAcceptConfirm(data.nomor,data.nama_event,data.panitia)}
+                      onClick = { () => this.showAddConfirm(data.id_biodata_penandatangan,data.nama,data.instansi,data.jabatan)}
                   />
                 </Tooltip>,
                 <Divider type="vertical"/>,
