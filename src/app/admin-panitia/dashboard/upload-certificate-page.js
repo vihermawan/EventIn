@@ -191,7 +191,7 @@ class UploadCertificatePage extends Component {
                 icon={faEdit}
                 borderRadius="5px"
                 background="#088C0D"
-                onClick = {() => this.onEditCertificate(data.id_sertifikat)}
+                onClick = {() => this.onEditCertificate(data.id_penandatangan_sertifikat)}
             />
             </Tooltip>]
             ),
