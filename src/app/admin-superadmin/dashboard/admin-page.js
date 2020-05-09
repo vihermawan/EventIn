@@ -33,7 +33,7 @@ class AdminPage extends Component {
         this.setState({loading: true})
         API.get(`/admin/count-event`)
         .then(res => {
-            // console.log('res',res.data.data)
+            console.log('res',res.data.data)
             this.setState({loading:false})
             this.reportChart(res.data.data)
         });
