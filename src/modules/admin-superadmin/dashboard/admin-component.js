@@ -170,7 +170,7 @@ class AdminComponent extends Component {
                             </Row>
                             
                             <Row>
-                                <Col lg={24} md={24} sm={24}>
+                                <Col lg={18} md={24} sm={24}>
                                     <div className="card-graphic">
                                         <LoadingContainer loading={initialData.loading}>
                                             <div style={{textAlign:"center",fontWeight:"bold"}}><span>Grafik Jumlah Event Dibuat Selama Setahun</span></div>
@@ -178,14 +178,11 @@ class AdminComponent extends Component {
                                         </LoadingContainer>
                                     </div>
                                 </Col>  
-                            </Row>
-
-                            <Row>
-                                <Col lg={24} md={24} sm={24}>
+                                <Col lg={6} md={24} sm={24}>
                                     <div className="card-graphic">
                                         <LoadingContainer loading={initialData.loading}>
-                                            <div style={{textAlign:"center",fontWeight:"bold"}}><span>Grafik Jumlah Event Dibuat Selama Setahun</span></div>
-                                            <div id="pieChart" style={{ width: "100%", height: "500px" }}></div>
+                                            <div style={{textAlign:"center",fontWeight:"bold"}}><span>Grafik Jumlah User</span></div>
+                                            <div id="chartpiediv" style={{ width: "100%", height: "500px" }}></div>
                                         </LoadingContainer>
                                     </div>
                                 </Col>  

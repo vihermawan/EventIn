@@ -22,6 +22,7 @@ class AdminPage extends Component {
 
     componentDidMount () {
         this.getEventbyMonth();
+        this.getAllUser();
         this.getAllPeserta();
         this.getAllPanitia();
         this.getAllPenandatangan();
@@ -33,9 +34,20 @@ class AdminPage extends Component {
         this.setState({loading: true})
         API.get(`/admin/count-event`)
         .then(res => {
-            console.log('res',res.data.data)
+            console.log('res',res.data)
             this.setState({loading:false})
-            this.reportChart(res.data.data)
+            this.reportChart(res.data)
+        });
+        
+    }
+
+    getAllUser = () => {
+        this.setState({loading: true})
+        API.get(`/admin/count-user`)
+        .then(res => {
+            console.log('res',res.data)
+            this.setState({loading:false})
+            this.pieChart(res.data)
         });
         
     }
@@ -44,7 +56,7 @@ class AdminPage extends Component {
         this.setState({loading: true})
         API.get(`/admin/count-peserta`)
         .then(res => {
-            console.log('res',res.data.data.user)
+            // console.log('res',res.data.data.user)
             this.setState({total_peserta : res.data.data.user,loading : false})
         });
     }
@@ -53,7 +65,7 @@ class AdminPage extends Component {
         this.setState({loading: true})
         API.get(`/admin/count-panitia`)
         .then(res => {
-            console.log('res',res.data.data.user)
+            // console.log('res',res.data.data.user)
             this.setState({total_panitia : res.data.data.user,loading : false})
         });
     }
@@ -62,7 +74,7 @@ class AdminPage extends Component {
         this.setState({loading: true})
         API.get(`/admin/count-penandatangan`)
         .then(res => {
-            console.log('res',res.data.data.user)
+            // console.log('res',res.data.data.user)
             this.setState({total_penandatangan : res.data.data.user,loading : false})
         });
     }
@@ -71,7 +83,7 @@ class AdminPage extends Component {
         this.setState({loading: true})
         API.get(`/admin/count-sertifikat`)
         .then(res => {
-            console.log('res',res.data.data.sertifikat)
+            // console.log('res',res.data.data.sertifikat)
             this.setState({total_sertifikat : res.data.data.sertifikat,loading : false})
         });
     }
@@ -80,34 +92,31 @@ class AdminPage extends Component {
         this.setState({loading: true})
         API.get(`/admin/count-all-event`)
         .then(res => {
-            console.log('res',res.data.data.event)
+            // console.log('res',res.data.data.event)
             this.setState({total_event : res.data.data.event,loading : false})
         });
     }
 
-    pieChart = (data_users_ac) => {
-        var chart = am4core.create("pieChart", am4charts.PieChart);
-
-        var data_users = [];
-        console.log(data_users_ac)
-       
-        const data = data_users_ac.map( data => {
-            data_users.push({
-                user : data.bulan,
-                jumlah: data.total,
+    pieChart = (data_users) => {
+    
+        let chart = am4core.create("chartpiediv", am4charts.PieChart);
+        let data_user = [];
+        for(let i=0; i<data_users.size; i++){
+            data_user.push({
+                user: data_users.data.user[i],
+                total : data_users.data.data[i]
             })
-        })
-
-        // Add data
-        chart.data = data_users;
-
+        }
+        chart.data = data_user;
+        chart.innerRadius = am4core.percent(40);
+        
         // Add and configure Series
-        var pieSeries = chart.series.push(new am4charts.PieSeries());
-        pieSeries.dataFields.value = "jumlah";
-        pieSeries.dataFields.category = "users";
-
-        pieSeries.labels.template.maxWidth = 130;
-        pieSeries.labels.template.wrap = true;
+        let pieSeries = chart.series.push(new am4charts.PieSeries());
+        pieSeries.labels.template.disabled = true;
+        pieSeries.ticks.template.disabled = true;
+        chart.legend = new am4charts.Legend();
+        pieSeries.dataFields.value = "total";
+        pieSeries.dataFields.category = "user";
     }
     
     reportChart = (data_event_ac) => {
@@ -117,14 +126,12 @@ class AdminPage extends Component {
         let data_event = [];
         console.log(data_event_ac)
        
-        const data = data_event_ac.map( data => {
+        for(let i=0; i<data_event_ac.size; i++){
             data_event.push({
-                bulan : data.bulan,
-                jumlah: data.total,
+                bulan: data_event_ac.data.bulan[i],
+                jumlah : data_event_ac.data.data[i]
             })
-        })
-        
-        console.log(data)
+        }
 
         chart.data = data_event;
         let categoryAxis = chart.xAxes.push(new am4charts.CategoryAxis());
