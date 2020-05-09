@@ -180,7 +180,7 @@ class signer extends Component {
                       }}/>
                   </div>
                   <div className="title-dashboard">
-                      <span className="title-desc-dashboard">SETTINGS</span>
+                      <span className="title-desc-dashboard">PROFIL</span>
                   </div>  
                   <Menu.Item key="profile"  onClick={this.clickedMenu}>
                     <Link to="/signer/profile">
@@ -190,7 +190,7 @@ class signer extends Component {
                           style={{marginRight: 10}}
                           className={this.state.collapsed ? 'hidden-logo' : 'block-logo'}
                       />
-                      <span className={hidden} >Profile</span>
+                      <span className={hidden} >Profil</span>
                     </Link>
                   </Menu.Item>
                 </Menu>
