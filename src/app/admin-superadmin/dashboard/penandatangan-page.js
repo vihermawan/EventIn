@@ -120,7 +120,7 @@ class PenandatanganAdminPage extends Component {
             console.log('res',res)
             if(res.status === 200){
                 message.success('Berhasil Banned Penandatangan');
-                window.location.reload(); 
+                this.componentDidMount();
             }   
         });
     }
