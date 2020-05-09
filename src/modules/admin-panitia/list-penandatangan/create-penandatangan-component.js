@@ -7,7 +7,7 @@ import '../../../assets/css/admin-superadmin/detail-event.css'
 import ReactCrop from 'react-image-crop';
 import 'react-image-crop/dist/ReactCrop.css';
 import InputForm from '../../../common/component/input/input-form';
-import { faUserTie, faEnvelope, faAddressCard, faAddressBook, faStickyNote } from '@fortawesome/free-solid-svg-icons'
+import { faUserTie, faAddressCard, faAddressBook, faStickyNote, faEnvelopeOpenText } from '@fortawesome/free-solid-svg-icons'
 import LoadingNotifContainer from '../../../common/component/loading/loading-notif';
 // constant content
 const { Content } = Layout;
@@ -76,7 +76,7 @@ class CreatePenandatanganComponent extends Component {
                                                             className="input-event mt-5 mb-20"
                                                             onChange={handleChange}
                                                             value={initialData.email}
-                                                            icon={faEnvelope}
+                                                            icon={faEnvelopeOpenText}
                                                         />
                                                     </div>
                                                 </Col>
