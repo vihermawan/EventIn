@@ -9,7 +9,7 @@ import ReactCrop from 'react-image-crop';
 import 'react-image-crop/dist/ReactCrop.css';
 import LoadingContainer from '../../../common/component/loading/loading-container'
 import InputForm from '../../../common/component/input/input-form';
-import { faUserEdit, faBackward, faUserAlt, faEnvelope, faIdCard, faAddressBook } from '@fortawesome/free-solid-svg-icons';
+import { faUserEdit, faBackward, faUserAlt, faEnvelope, faIdCard, faAddressBook, faIdCardAlt } from '@fortawesome/free-solid-svg-icons';
 import ButtonEdit from '../../../common/component/button/button-edit';
 // constant content
 const { Content } = Layout;
@@ -27,8 +27,8 @@ class EditProfileSignerComponent extends Component {
                 }}
             >
                 <Breadcrumb separator=">">
-                    <Breadcrumb.Item><Link to='/signer/profile/'>Dashboard Profile Penandatangan</Link></Breadcrumb.Item>
-                    <Breadcrumb.Item>Dashboard Edit Profile</Breadcrumb.Item>
+                    <Breadcrumb.Item><Link to='/signer/profile/'>Dashboard Profil Penandatangan</Link></Breadcrumb.Item>
+                    <Breadcrumb.Item>Dashboard Edit Profil</Breadcrumb.Item>
                 </Breadcrumb>
 
                 <Row style={{minHeight: '100%',marginBottom: '2%',marginTop:'2%',}} className="background">
@@ -38,7 +38,7 @@ class EditProfileSignerComponent extends Component {
                         <div className="container-active-event">
                             <Row>
                                 <div className="container-title-event">
-                                    <span>Edit Profile</span>
+                                    <span>Edit Profil</span>
                                 </div>
                             </Row>
                             <LoadingContainer loading={initialData.loading}>
@@ -116,7 +116,7 @@ class EditProfileSignerComponent extends Component {
                                                         className="input-event mt-5 mb-20"
                                                         onChange={handleChange}
                                                         value={initialData.jabatan}
-                                                        icon={faIdCard}
+                                                        icon={faIdCardAlt}
                                                     />
                                                 </div>
                                             </Col>

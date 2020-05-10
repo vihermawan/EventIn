@@ -146,7 +146,7 @@ class signer extends Component {
                       }}/>
                   </div>
                   <div className="title-dashboard">
-                      <span className="title-desc-dashboard">SIGNATURED</span>
+                      <span className="title-desc-dashboard">SERTIFIKAT</span>
                   </div>  
                   <Menu.Item key="total-waiting-list" onClick={this.clickedMenu} >
                     <Link to="/signer/total-waiting-list">
@@ -156,7 +156,7 @@ class signer extends Component {
                           style={{marginRight: 10}}
                           className={this.state.collapsed ? 'hidden-logo' : 'block-logo'}
                       />
-                      <span className={hidden} >Waiting List</span>
+                      <span className={hidden} >Menunggu</span>
                     </Link>
                   </Menu.Item>
                   <Menu.Item key="e-certificate" onClick={this.clickedMenu} >
@@ -167,7 +167,7 @@ class signer extends Component {
                           style={{marginRight: 10}}
                           className={this.state.collapsed ? 'hidden-logo' : 'block-logo'}
                       />
-                    <span className={hidden} >Sertifikat Selesai</span>
+                    <span className={hidden} >Selesai</span>
                     </Link>
                   </Menu.Item>
                   <div className="title-dashboard">
@@ -180,7 +180,7 @@ class signer extends Component {
                       }}/>
                   </div>
                   <div className="title-dashboard">
-                      <span className="title-desc-dashboard">SETTINGS</span>
+                      <span className="title-desc-dashboard">PROFIL</span>
                   </div>  
                   <Menu.Item key="profile"  onClick={this.clickedMenu}>
                     <Link to="/signer/profile">
@@ -190,7 +190,7 @@ class signer extends Component {
                           style={{marginRight: 10}}
                           className={this.state.collapsed ? 'hidden-logo' : 'block-logo'}
                       />
-                      <span className={hidden} >Profile</span>
+                      <span className={hidden} >Profil</span>
                     </Link>
                   </Menu.Item>
                 </Menu>

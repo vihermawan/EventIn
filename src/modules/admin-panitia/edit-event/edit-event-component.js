@@ -12,7 +12,8 @@ import LoadingContainer from '../../../common/component/loading/loading-containe
 import InputForm from '../../../common/component/input/input-form';
 import moment from 'moment';
 import ButtonDashboard from '../../../common/component/button/button-dashboard';
-import { faBackward, faUserEdit, faStickyNote, faIdCard, faUserFriends, faAddressBook, faEnvelope, faInfoCircle, faWallet, faMapMarker } from '@fortawesome/free-solid-svg-icons';
+import { faBackward, faUserEdit, faStickyNote, faIdCard, faUserFriends, faAddressBook, faEnvelope, faInfoCircle, faWallet, faMapMarker, faEnvelopeOpenText } from '@fortawesome/free-solid-svg-icons';
+import { faInstagram } from '@fortawesome/free-brands-svg-icons';
 // constant content
 const { Content } = Layout;
 const { Option } = Select;
@@ -178,7 +179,7 @@ class EditEventComponent extends Component {
                                                             className="input-event mt-5 mb-20"
                                                             onChange={handleChange}
                                                             value={initialData.email_event}
-                                                            icon={faEnvelope}
+                                                            icon={faEnvelopeOpenText}
                                                         />
                                                     </div>
                                                 </div>
@@ -194,7 +195,7 @@ class EditEventComponent extends Component {
                                                             className="input-event mt-5 mb-20"
                                                             onChange={handleChange}
                                                             value={initialData.instagram}
-                                                            icon={faInfoCircle}
+                                                            icon={faInstagram}
                                                         />
                                                     </div>
                                             </Col>

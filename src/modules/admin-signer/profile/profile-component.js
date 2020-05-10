@@ -22,7 +22,7 @@ class ListParticipantComponent extends Component {
                 }}
             >
                 <Breadcrumb separator=">">
-                    <Breadcrumb.Item>Dashboard Profile Penandatangan</Breadcrumb.Item>
+                    <Breadcrumb.Item>Dashboard Profil Penandatangan</Breadcrumb.Item>
                 </Breadcrumb>
                 <LoadingContainer loading={initialData.loading}>
                     <div style={{minHeight:"70vh"}}>
