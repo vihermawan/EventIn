@@ -108,13 +108,17 @@ class AdminPage extends Component {
             })
         }
         chart.data = data_user;
-        chart.innerRadius = am4core.percent(40);
+        //chart.innerRadius = am4core.percent(40);
         
-        // Add and configure Series.
+        // Add and configure Series
         let pieSeries = chart.series.push(new am4charts.PieSeries());
         pieSeries.labels.template.disabled = true;
         pieSeries.ticks.template.disabled = true;
         chart.legend = new am4charts.Legend();
+        chart.legend.maxWidth = undefined;
+        chart.legend.position = "absolute";
+        chart.legend.valueLabels.template.align = "right"
+        chart.legend.valueLabels.template.textAlign = "end"
         pieSeries.dataFields.value = "total";
         pieSeries.dataFields.category = "user";
     }
