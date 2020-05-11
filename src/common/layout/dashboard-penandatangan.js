@@ -156,7 +156,7 @@ class signer extends Component {
                           style={{marginRight: 10}}
                           className={this.state.collapsed ? 'hidden-logo' : 'block-logo'}
                       />
-                      <span className={hidden} >Menunggu</span>
+                      <span className={hidden} >Pengajuan</span>
                     </Link>
                   </Menu.Item>
                   <Menu.Item key="e-certificate" onClick={this.clickedMenu} >

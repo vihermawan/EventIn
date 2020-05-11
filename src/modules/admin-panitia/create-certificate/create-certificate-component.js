@@ -23,7 +23,7 @@ class CreateCertificateComponent extends Component{
                 }}
             >
                 <Breadcrumb separator=">">
-                    <Breadcrumb.Item>Dashboard Upload Sertifikat</Breadcrumb.Item>
+                    <Breadcrumb.Item>Dashboard Pengajuan Sertifikat</Breadcrumb.Item>
                 </Breadcrumb>
 
                 <Row style={{minHeight: '100%',marginBottom: '2%',marginTop:'2%',}} className="background">
@@ -32,7 +32,7 @@ class CreateCertificateComponent extends Component{
                         <div className="container-active-event">
                             <Row>
                             <div className="container-title-event">
-                                <span>Upload Sertifikat</span>
+                                <span>Pengajuan Sertifikat</span>
                             </div>
                             </Row>
                             <div>
