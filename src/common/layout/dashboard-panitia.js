@@ -234,7 +234,7 @@ class dashboard extends Component {
                       >
                        <Menu.Item key="upload-sertifikat"  onClick={this.clickedMenu}>
                         <NavLink to="/dashboard/upload-sertifikat">
-                          <span>Upload</span>
+                          <span>Pengajuan</span>
                         </NavLink>
                       </Menu.Item>
                       <Menu.Item key="waiting-certificate-event"  onClick={this.clickedMenu}>
