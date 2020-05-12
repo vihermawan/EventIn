@@ -98,6 +98,11 @@
 .modal-notif .ant-modal-title{
     text-align: center;
 }
+
+.modal-regis .ant-modal-title{
+    text-align: center;
+}
+
 .modal-notif .ant-modal-content{
     margin-top: 40px;
 }

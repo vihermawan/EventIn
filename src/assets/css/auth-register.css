@@ -7,7 +7,9 @@
     padding-bottom: 0px;;
 }
 .auth-register-form-container {
-    padding: 80px;
+    padding-top: 45px;
+    padding-left: 80px;
+    padding-right: 80px;
 }
 
 .auth-input-label {

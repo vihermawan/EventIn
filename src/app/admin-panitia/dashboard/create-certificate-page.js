@@ -67,7 +67,7 @@ class CreateCertificatePage extends Component {
     }
 
     uploadFile = (event) => {
-        if(event.target.files[0].type !== 'application/vnd.openxmlformats-officedocument.wordprocessingml.document'){
+        if(event.target.files[0].type !== 'panitia'){
             console.log('harusnya')
             this.openNotification('Format Sertifikat Salah', 'Silahkan Upload Kembali dengan format Docx')
         }
