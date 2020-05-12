@@ -4,6 +4,7 @@ const initialState = {
     data: [],
     // namaUser : null,
     getNama : null,
+    dataUser: {}
 };
 
 const handler = (currentState) => {
@@ -12,12 +13,19 @@ const handler = (currentState) => {
         getNamaDataUser : data => ({
             ...currentState,
             getNama: data
+        }),
+    }
+    const getDataUser = {
+        setDataUser: data => ({
+            ...currentState,
+            dataUser: data
         })
     }
 
     return {
         // ...setNamaUser,
         ...getNamaUser,
+        ...getDataUser
     };
 };
 
@@ -37,6 +45,9 @@ export default (state = initialState, action) => {
 
         case actionType.GET_NAMA_USER:
                 return handler(state).getNamaDataUser(payload);
+
+        case actionType.SET_DATA_USER:
+                return handler(state).setDataUser(payload);
 
         default:
             return state;

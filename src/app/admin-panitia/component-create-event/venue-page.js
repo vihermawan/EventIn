@@ -27,6 +27,7 @@ class VenuePage extends Component {
         this.setState({loading: true})
         API.get(`/provinsi`)
         .then(res => {
+            console.log('res',res)
             this.setState({
                 provinsi:res.data.data.provinsi,
                 loading: false,

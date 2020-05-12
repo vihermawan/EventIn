@@ -19,7 +19,7 @@ class CreateEventComponent extends Component {
     constructor(props) {
         super(props);
         this.state = {
-          current: 2,
+          current: 0,
         };
       }
     

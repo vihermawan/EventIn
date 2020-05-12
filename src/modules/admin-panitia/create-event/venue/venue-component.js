@@ -67,7 +67,7 @@ class VenueComponent extends Component{
                                         </div>
                                     </Col>
                                     <Col lg={24} md={24} sm={24}>
-                                        <div className="form-section-5" style={initialData.id_provinsi === '' ? {display:"none"}:{display:"block"}}>
+                                        <div className="form-section-5">
                                             <div>   
                                                 <span className="auth-input-label text-black">Kabupaten*</span>
                                             </div>

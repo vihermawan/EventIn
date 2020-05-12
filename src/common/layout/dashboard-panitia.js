@@ -378,7 +378,7 @@ class dashboard extends Component {
                 <Route
                     path='/dashboard/waiting-certificate-event'
                     exact
-                    render={ (props) => <SwitchWaitingCertificatePage {...props}/> }
+                    render={ (props) => <SwitchWaitingCertificatePage reload={this.componentDidMount.bind(this)} {...props}/> }
                 />
                 <Route
                     path='/dashboard/waiting-certificate-event/list-waiting-certificate'

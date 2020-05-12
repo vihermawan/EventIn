@@ -165,7 +165,7 @@ class EditCertificateComponent extends Component {
                                                         placeholder="Masukan nama sertifikat...."
                                                         className="input-event mt-5 mb-20"
                                                         onChange={handleChange}
-                                                        value={initialData.sertifikat}
+                                                        value={initialData.nama_display}
                                                         icon={faEnvelope}
                                                         disabled={true}
                                                     />
