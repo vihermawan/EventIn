@@ -104,6 +104,9 @@ const menu = {
     WAITING_SERTIF_PANITIA : {
         link : '/dashboard/waiting-certificate-event/',
     },
+    PENGAJUAN_SERTIF_PANITIA : {
+        link : '/dashboard/upload-sertifikat',
+    },
     EDIT_SERTIF_PANITIA : {
         link : '/dashboard/waiting-certificate-event/edit-certificate',
     },

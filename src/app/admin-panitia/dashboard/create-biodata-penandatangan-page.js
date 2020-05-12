@@ -306,6 +306,7 @@ class CreateBiodataPenandatanganPage extends Component {
                     message.success('Biodata Penandatangan Berhasil Ditambahkan');
                     this.successNotification('Sukses menambah data penandatangan', 'Tunggu 1 x 24 jam di email anda untuk mendapat pemberitahuan apakah penandatangan ditolak atau diterima')
                 }else{
+                    this.setState({show :false})
                     this.openNotification('Data Salah', 'Silahkan isi data dengan benar')
                 }
                 this.setState({loading: false})

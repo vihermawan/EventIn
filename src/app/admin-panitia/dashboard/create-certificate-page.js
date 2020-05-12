@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { API } from '../../../common/api'
-import { notification,message } from 'antd';
+import { notification,message } from 'antd'
+import CONSTANS from '../../../common/utils/Constants';
 import { navigate } from '../../../common/store/action'
 import * as validation from '../../../common/utils/validation'
 import CreateCertificateComponent from '../../../modules/admin-panitia/create-certificate/create-certificate-component';
@@ -66,9 +67,9 @@ class CreateCertificatePage extends Component {
     }
 
     uploadFile = (event) => {
-        if(event.target.files[0].type !== 'application/msword'){
+        if(event.target.files[0].type !== 'application/vnd.openxmlformats-officedocument.wordprocessingml.document'){
             console.log('harusnya')
-            this.openNotification('Format Sertifikat Salah', 'Silahkan Upload Kembali dengan format RTF')
+            this.openNotification('Format Sertifikat Salah', 'Silahkan Upload Kembali dengan format Docx')
         }
         else if(event.target.files[0].size / 1024 / 1024 > 2){
             console.log('ukuran', this.state.size_sertifikat)
@@ -128,8 +129,7 @@ class CreateCertificatePage extends Component {
                 if(res.status === 201){
                     this.setState({ show :false,})
                     message.success('Sertifikat berhasil Ditambahkan');
-                    this.componentDidMount();
-                    // this.props.navigate(CONSTANS.ACTIVE_EVENT_MENU_KEY)
+                    this.props.navigate(CONSTANS.WAITING_SERTIF_PANITIA_MENU_KEY)
                 }else{
                     this.openNotification('Data Salah', 'Silahkan isi data dengan benar')
                 }

@@ -9,7 +9,7 @@ import '../../assets/css/auth-login.css'
 import * as validation from '../../common/utils/validation'
 
 // import store
-import { setNamaUser } from '../../modules/auth/store/login-action'
+import { setNamaUser, onLogin } from '../../modules/auth/store/login-action'
 
 class AuthLogin extends Component {
     state = {
@@ -55,7 +55,6 @@ class AuthLogin extends Component {
             email: this.state.email,
             password: this.state.password   
         }
-
         if(validation.emailRequired(this.state.email) !== null){
             const message = validation.emailRequired(this.state.email);
             this.openNotification(message, 'harus diisi email')
@@ -63,6 +62,7 @@ class AuthLogin extends Component {
             const message = validation.minPassword(this.state.password);
             this.openNotification(message, 'harus diisi email')
         }else {
+            // this.props.onLogin(params);
             this.setState({loading: true})
             API.post(`/auth/login`, params)
             .then(res => {
@@ -116,6 +116,7 @@ class AuthLogin extends Component {
     }
 
     render() {
+        // console.log(this.props.dataLogin)
         return (
         <LoginComponent
             initialData={this.state}
@@ -130,12 +131,13 @@ class AuthLogin extends Component {
  
 
 const mapStateToProps = state => ({
-    
+    // dataLogin: state.login.dataUser
 });
 
 const mapDispatchToProps = (dispatch => ({
     navigate,
     setNamaUser,
+    // onLogin,
 }))();
 
 const page = connect(mapStateToProps, mapDispatchToProps)(AuthLogin);

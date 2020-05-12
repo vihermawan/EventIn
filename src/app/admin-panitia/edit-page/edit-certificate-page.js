@@ -12,6 +12,7 @@ class EditCertificatePage extends Component {
         no_sertifikat :'',
         size_sertifikat :'',
         sertifikat :'',
+        nama_display: '',
         id_event: '',
         id_sertifikat : '',
         id_penandatangan :'',
@@ -80,6 +81,7 @@ class EditCertificatePage extends Component {
                 nama : res.data.data.sertifikat.sertifikat.nama,
                 no_sertifikat : res.data.data.sertifikat.sertifikat.no_sertifikat,
                 sertifikat : res.data.data.sertifikat.sertifikat.sertifikat,
+                nama_display : res.data.data.sertifikat.sertifikat.sertifikat,
                 id_event : res.data.data.sertifikat.sertifikat.id_event,
                 id_penandatangan : res.data.data.sertifikat.id_penandatangan,
                 id_sertifikat : res.data.data.sertifikat.id_sertifikat,
@@ -108,9 +110,9 @@ class EditCertificatePage extends Component {
     };
    
     uploadFile = (event) => {
-        if(event.target.files[0].type !== 'application/msword'){
+        if(event.target.files[0].type !== 'application/vnd.openxmlformats-officedocument.wordprocessingml.document'){
             console.log('harusnya')
-            this.openNotification('Format Sertifikat Salah', 'Silahkan Upload Kembali dengan format RTF')
+            this.openNotification('Format Sertifikat Salah', 'Silahkan Upload Kembali dengan format Docx')
         }
         else if(event.target.files[0].size / 1024 / 1024 > 2){
             console.log('ukuran', this.state.size_sertifikat)
@@ -118,6 +120,7 @@ class EditCertificatePage extends Component {
         }else{ 
             this.setState({ 
                 sertifikat:event.target.files[0],
+                nama_display : event.target.files[0].name,
                 size_sertifikat : event.target.files[0].size / 1024 / 1024,
             })
         }
@@ -142,8 +145,6 @@ class EditCertificatePage extends Component {
                 if(res.status === 200){
                     message.success('Data Sertifikat Berhasil diUbah');
                     this.props.navigate(CONSTANS.WAITING_SERTIF_PANITIA_MENU_KEY)
-                    window.location.reload();
-                   
                 }else{
                     this.openNotification('Data Salah', 'Silahkan isi data dengan benar')
                 }

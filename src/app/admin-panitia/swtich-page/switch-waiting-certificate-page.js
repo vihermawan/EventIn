@@ -9,6 +9,7 @@ class SwitchWaitingCertificatePage extends Component {
     }
 
     componentDidMount(){
+        this.props.reload()
         console.log('tabchange')
     }
 

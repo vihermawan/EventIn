@@ -242,7 +242,7 @@ class CertificatePage extends Component {
         params.set('deskripsi_event',basic_info.description)
         params.set('organisasi',basic_info.organisasi)
         params.set('email_event',basic_info.email_event)
-        params.set('no_telepon',basic_info.no_telepon)
+        params.set('telepon',basic_info.no_telepon)
         params.set('instagram',basic_info.instagram)
         params.set('id_kategori',basic_info.kategori_input)
         params.set('limit_participant',basic_info.batas_peserta)
