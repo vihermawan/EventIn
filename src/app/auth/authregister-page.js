@@ -17,11 +17,13 @@ class AuthRegister extends Component {
         organisasi: 'Silahkan diisi',
         pekerjaan : 'Silahkan diisi',
         umur : '-',
-        no_telefon : 'Silahkan diisi',
+        telepon : 'Silahkan diisi',
         tanggal_lahir : moment().format('YYYY-MM-DD'),
         password: '',
         password_confirmation: '',
         loading: false,
+        is_aggreed : false,
+        show : false,
     }
     componentDidMount(){
         
@@ -54,6 +56,26 @@ class AuthRegister extends Component {
         });
     };
 
+    handleOk = e => {
+        console.log(e);
+        if(this.state.is_aggreed === false){
+            this.openNotification('Silahkan Check List', 'Syarat dan Ketentuan harap di klik')
+        }else{
+            this.handleSubmit();
+        }
+    };
+
+    handleCancel = e => {
+        console.log(e);
+        this.setState({
+            show: false,
+        });
+    };
+
+    onChange = (e) => {
+        console.log(`checked = ${e.target.checked}`);
+        this.setState({is_aggreed : e.target.checked })
+    }
     
     handleSubmit = e => {
         e.preventDefault();
@@ -85,8 +107,10 @@ class AuthRegister extends Component {
                 if(res.status === 201){
                     this.props.navigate(CONSTANS.LOGIN_MENU_KEY)
                     this.successNotification('Sukses', 'Register Berhasil')
-                }else if(res.data.errors.email[0] === 'The email has already been taken.'){
-                    this.openNotification('Email telah terdaftar', 'Silahkan daftar dengan email lain')
+                }else if(res.status === 422){
+                    if(res.data.errors.email[0] === 'The email has already been taken.'){
+                        this.openNotification('Email telah terdaftar', 'Silahkan daftar dengan email lain')
+                    }
                 }else{
                     this.openNotification('Register Salah', 'Silahkan isi data dengan benar')
                 }
@@ -105,6 +129,10 @@ class AuthRegister extends Component {
             handleJenisKelamin={this.handleJenisKelamin}
             handleChange={this.handleChange}
             handleSubmit={this.handleSubmit}
+            onRegister = {this.onRegister}
+            handleOk = {this.handleOk}
+            handleCancel = {this.handleCancel}
+            onChange ={this.onChange}
         />
         );
     }

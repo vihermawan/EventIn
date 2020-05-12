@@ -49,14 +49,18 @@ class dashboard extends Component {
       loading : false,
       username: '',
       profile_picture:'',
-      no_telepon :'',
+      telepon :'',
       instagram : '',
   };
     
   getProfile=()=>{
-      // this.setState({loading: true})
       API.get(`/panitia/profile-edit`)
       .then(res => {
+        console.log(res.data)
+        this.setState({
+          telepon : res.data.data.user.panitia.telepon,
+          instagram : res.data.data.user.panitia.instagram
+        })
         let username_panitia = localStorage.getItem("username");
         let profile_panitia = localStorage.getItem("profile_picture");
         if ((res.data.data.user.panitia.nama_panitia !== username_panitia) || (res.data.data.user.panitia.image_URL !== profile_panitia)){
@@ -90,7 +94,6 @@ class dashboard extends Component {
 
   handleLogout = e => {
      this.setState({loading: true})
-
       API.post(`/auth/logout`)
       .then(res => {
           console.log('res',res)
@@ -171,7 +174,7 @@ class dashboard extends Component {
                       <div className="title-dashboard">
                           <span className="title-desc-dashboard">EVENT</span>
                       </div>  
-                      <Menu.Item key="create-event" onClick={this.clickedMenu} style={this.state.no_telepon === 'Silahkan isi' || this.state.instagram === 'Silahkan isi'  ? {display:"none"}:{display:"block"}}>
+                      <Menu.Item key="create-event" onClick={this.clickedMenu} style={this.state.telepon === 'Silahkan isi' || this.state.instagram === 'Silahkan isi'  ? {display:"none"}:{display:"block"}}>
                         <NavLink to="/dashboard/create-event">
                           <FontAwesomeIcon
                               icon={faPen}
