@@ -4,7 +4,7 @@ import './style/dashboard-style.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { Layout, Menu, Icon, Avatar, Dropdown } from 'antd';
 /*Import Icon */
-import { faDesktop, faEnvelope, faUserTag, faUserTie, faUserFriends,  faBookOpen, faNewspaper, faCalendarCheck } from '@fortawesome/free-solid-svg-icons'
+import { faDesktop, faEnvelope, faUserTag, faUserTie, faUserFriends,  faBookOpen, faNewspaper, faListAlt, faCalendarCheck } from '@fortawesome/free-solid-svg-icons'
 import { API } from '../../common/api'
 import CONSTANS from '../utils/Constants'
 import ButtonAuth from '../component/button/button-auth'
@@ -205,7 +205,7 @@ class Admin extends Component {
                     <Link to="/admin/list-all-event">
                     
                       <FontAwesomeIcon
-                          icon={faCalendarCheck} 
+                          icon={faListAlt} 
                           style={{marginRight: 10}}
                           className={this.state.collapsed ? 'hidden-logo' : 'block-logo'}
                       />

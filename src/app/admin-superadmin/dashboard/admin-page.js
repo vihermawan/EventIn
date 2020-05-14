@@ -22,12 +22,13 @@ class AdminPage extends Component {
 
     componentDidMount () {
         this.getEventbyMonth();
-        this.getAllUser();
-        this.getAllPeserta();
-        this.getAllPanitia();
-        this.getAllPenandatangan();
+        this.getUserbyRole();
+        this.getBiodataPenandatangan();
+        this.getApprovalEvent();
+        this.getWaitingSertifikat();
         this.getAllSertifikat();
         this.getAllEvent();
+        this.getAllUser();
     }
 
     getEventbyMonth = () => {
@@ -41,7 +42,7 @@ class AdminPage extends Component {
         
     }
 
-    getAllUser = () => {
+    getUserbyRole = () => {
         this.setState({loading: true})
         API.get(`/admin/count-user`)
         .then(res => {
@@ -52,39 +53,39 @@ class AdminPage extends Component {
         
     }
 
-    getAllPeserta = () => {
+    getBiodataPenandatangan = () => {
         this.setState({loading: true})
-        API.get(`/admin/count-peserta`)
+        API.get(`/admin/showbiodatapenandatangan`)
         .then(res => {
             // console.log('res',res.data.data.user)
-            this.setState({total_peserta : res.data.data.user,loading : false})
+            this.setState({total_biodata : res.data.size,loading : false})
         });
     }
 
-    getAllPanitia = () => {
+    getApprovalEvent = () => {
         this.setState({loading: true})
-        API.get(`/admin/count-panitia`)
+        API.get(`/admin/approve/event`)
         .then(res => {
             // console.log('res',res.data.data.user)
-            this.setState({total_panitia : res.data.data.user,loading : false})
+            this.setState({total_approval : res.data.size,loading : false})
         });
     }
 
-    getAllPenandatangan = () => {
+    getWaitingSertifikat = () => {
         this.setState({loading: true})
-        API.get(`/admin/count-penandatangan`)
+        API.get(`/admin/sertifikat-waiting`)
         .then(res => {
             // console.log('res',res.data.data.user)
-            this.setState({total_penandatangan : res.data.data.user,loading : false})
+            this.setState({total_waitingSertifikat : res.data.size,loading : false})
         });
     }
 
     getAllSertifikat = () => {
         this.setState({loading: true})
-        API.get(`/admin/count-sertifikat`)
+        API.get(`/admin/count-all-sertifikat`)
         .then(res => {
             // console.log('res',res.data.data.sertifikat)
-            this.setState({total_sertifikat : res.data.data.sertifikat,loading : false})
+            this.setState({total_certificate : res.data.data.sertifikat,loading : false})
         });
     }
 
@@ -94,6 +95,15 @@ class AdminPage extends Component {
         .then(res => {
             // console.log('res',res.data.data.event)
             this.setState({total_event : res.data.data.event,loading : false})
+        });
+    }
+
+    getAllUser = () => {
+        this.setState({loading: true})
+        API.get(`/admin/count-all-user`)
+        .then(res => {
+            // console.log('res',res.data.data.event)
+            this.setState({total_user : res.data.data.user,loading : false})
         });
     }
 

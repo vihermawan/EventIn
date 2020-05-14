@@ -125,7 +125,7 @@ class PenandatanganAdminPage extends Component {
         });
     }
     
-    //function untuk modal
+    //function untuk modal.
     showBannedConfirm = (id,nama_penandatangan) => {
         confirm({
             title: `Apakah yakin untuk membanned ${nama_penandatangan}?`,
