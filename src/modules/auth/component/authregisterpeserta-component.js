@@ -45,7 +45,7 @@ class RegisterComponent extends Component{
                             </Col>
                             <Col lg={9} md={12} sm={12} className="background-soft-blue container-full" syule={{maxHeight:"100vh"}}>
                                 <Row > 
-                                    <Form onSubmit={handleSubmit}>
+                                    <Form>
                                         <div className="auth-register-form-container">
                                             <div className="text-white text-align-center title-more-small mb-20 mt-0">
                                                 <p className="title-medium semi-bold m-0">Selamat Datang!</p>
@@ -74,7 +74,7 @@ class RegisterComponent extends Component{
                                                     labelInValue 
                                                     defaultValue = {{ key: '-' }}
                                                     style={{ width: '100%' }}
-                                                    className="select-jenis-kelamin mb-20"
+                                                    className="select-jenis-kelamin"
                                                     onChange={handleJenisKelamin}
                                                 >   
                                                     <Option value = '-'>Pilih Jenis Kelamin</Option>
@@ -99,7 +99,7 @@ class RegisterComponent extends Component{
                                                     className="auth-button-red mt-20 auth-button-login"
                                                     style={{borderRadius: '26px',backgroundColor:'#FA607E',border:'none',color:'#ffff'}}
                                                     block={true}
-                                                    onClick={onRegister}
+                                                    onClick={() => onRegister()}
                                                 />
                                                 <p className="auth-login-label mt-10 text-align-center text-white">Sudah punya akun? <Link to='/login' className="text-white"> Masuk sekarang. </Link></p>
                                             </div>
