@@ -264,6 +264,16 @@ class ApprovalEventPage extends Component {
                     />
                  </Tooltip>,
                 <Divider type="vertical" />,
+                <Tooltip title="Detail">,
+                    <ButtonDashboard
+                        height={20}
+                        icon={faInfoCircle}
+                        borderRadius="5px"
+                        background="#FFA903"
+                        onClick = { () => this.onDetailEvent(data.nomor)}
+                    />
+                </Tooltip>,
+                <Divider type="vertical" />,
                 <Tooltip title="Tolak">,
                     <ButtonDashboard
                         height={20}
@@ -273,16 +283,7 @@ class ApprovalEventPage extends Component {
                         onClick = { () => this.showRejectConfirm(data.nomor,data.nama_event,data.panitia)}
                     />
                 </Tooltip>,
-                <Divider type="vertical" />,
-                <Tooltip title="Detail">,
-                    <ButtonDashboard
-                        height={20}
-                        icon={faInfoCircle}
-                        borderRadius="5px"
-                        background="#FFA903"
-                        onClick = { () => this.onDetailEvent(data.nomor)}
-                    />
-                </Tooltip>,]
+                ]
               ),
             },
         ];

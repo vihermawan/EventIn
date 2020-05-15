@@ -56,6 +56,10 @@ class AuthRegister extends Component {
         });
     };
 
+    onRegister = () => {
+        this.setState({show : true})
+    }
+
     handleOk = e => {
         console.log(e);
         if(this.state.is_aggreed === false){
@@ -77,15 +81,16 @@ class AuthRegister extends Component {
         this.setState({is_aggreed : e.target.checked })
     }
     
-    handleSubmit = e => {
-        e.preventDefault();
-        const params = {
-            nama_peserta: this.state.nama_peserta,
-            email: this.state.email,
-            password: this.state.password,
-            password_confirmation: this.state.password,  
-            jenis_kelamin : this.state.jenis_kelamin 
-        }
+    handleSubmit = () => {
+        const params = new FormData()
+        params.set('nama_peserta',this.state.nama_peserta)
+        params.set('password',this.state.password)
+        params.set('email',this.state.email)
+        params.set('password_confirmation',this.state.password)
+        params.set('telepon',this.state.telepon)
+        params.set('jenis_kelamin',this.state.jenis_kelamin)
+        params.set('organisasi',this.state.organisasi)
+        params.set('pekerjaan',this.state.pekerjaan)
         
         if(validation.required(this.state.nama_peserta) !== null){
             const message = validation.required(this.state.nama_peserta)  
@@ -100,7 +105,7 @@ class AuthRegister extends Component {
             this.openNotification(message, 'Password minimal 8 karakter')
         }else{
             console.log('params',params)
-            this.setState({loading: true})
+            this.setState({loading: true,show : false})
             API.post(`/auth/register/peserta`, params)
             .then(res => {
                 console.log('res',res)

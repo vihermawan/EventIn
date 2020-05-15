@@ -121,40 +121,6 @@ class WaitingPage extends Component {
         this.setState({ id_penandatangan: input })  
     }
 
-    //function untuk modal
-    showAcceptConfirm = (id_sertifikat) => {
-        confirm({
-            title: 'Apakah yakin untuk mengirim sertifikat ?',
-            okText: 'Yes',
-            okType: 'success',
-            content: 
-            <Select
-            mode="multiple"
-            optionFilterProp="children"
-            style={{ width: '100%' }}
-            placeholder="Please select"
-            onChange={(input, option)=>this.handlePenandatangan(input,option)}
-          >
-            {
-                this.state.penandatangan.map( data =>     
-                    <Option
-                    key={data.penandatangan.nama_penandatangan.toString()}
-                    value={data.penandatangan.id_penandatangan}
-                    >{data.penandatangan.nama_penandatangan}</Option>
-                )
-            }
-          </Select>
-            ,
-            cancelText: 'No',
-            onOk: () => {
-               this.handleSubmit(id_sertifikat,this.state.id_penandatangan)
-            },
-            onCancel(){
-                console.log('Cancel')
-            }
-        });
-    }
-
     //function pop up notifikasi
     showSendConfirm = (id_penandatangan_sertifikat,nama_penandatangan,instansi,jabatan) => {
         confirm({
@@ -197,9 +163,9 @@ class WaitingPage extends Component {
             console.log(res)
             if(res.status === 200){
               if(res.data.status === 'Success'){
-              message.success('Berhasil mengirim sertifikat');
-              this.componentDidMount();   
-              this.setState({loading: false}) 
+                message.success('Berhasil mengirim sertifikat');
+                this.componentDidMount();   
+                this.setState({loading: false}) 
               }else{
                 message.error(res.data.status);
                 this.setState({loading: false});
@@ -214,9 +180,11 @@ class WaitingPage extends Component {
         .then(res => {
             console.log(res)
             if(res.status === 200){
-              message.success('Berhasil menolak sertifikat');
-              this.componentDidMount();   
-              this.setState({loading: false}) 
+              if(res.data.status === 'Success'){
+                message.success('Berhasil menolak sertifikat');
+                this.componentDidMount();   
+                this.setState({loading: false}) 
+              }
             }
         });
     }
@@ -299,7 +267,7 @@ class WaitingPage extends Component {
               render: (data) => (
                 [
                 <Row>
-                    <div style={data.close < Date.parse(dateNow) ? {display:"none"}:{display:"block"}}>
+                    <div style={data.start <= Date.parse(dateNow) ? {display:"none"}:{display:"block"}}>
                       <div style={{textAlign:"center"}}>
                         <Col lg={12} md={24} sm={24}>
                             <Tooltip title="Detail">,
@@ -327,7 +295,7 @@ class WaitingPage extends Component {
                         </Col>
                       </div> 
                     </div>
-                    <div style={data.close < Date.parse(dateNow) ? {display:"block"}:{display:"none"}}> 
+                    <div style={data.start <= Date.parse(dateNow) ? {display:"block"}:{display:"none"}}> 
                       <div style={{textAlign:"center"}}>
                         <Col lg={8} md={24} sm={24} >
                           <Tooltip title="Kirim">,
@@ -385,7 +353,8 @@ class WaitingPage extends Component {
             end_registration : moment(sertifikat.event.detail_event.end_registration).format("DD MMMM YYYY"),
             nama_panitia : sertifikat.event.panitia.nama_panitia,
             dateNow : moment().format('YYYY-MM-DD'),
-            close : Date.parse(sertifikat.event.detail_event.start_event),
+            start : Date.parse(sertifikat.event.detail_event.start_event),
+            close : Date.parse(sertifikat.event.detail_event.end_registration),
         }))
         
         return ( 
