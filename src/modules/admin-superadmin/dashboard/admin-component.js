@@ -301,7 +301,7 @@ class AdminComponent extends Component {
                                         </LoadingContainer>
                                     </div>
                                 </Col>  
-                                <Col lg={8} md={24} sm={24}>
+                                <Col lg={7} md={24} sm={24}>
                                     <div className="card-graphic">
                                         <LoadingContainer loading={initialData.loading}>
                                             <div style={{textAlign:"center",fontWeight:"bold"}}><span>Grafik Jumlah User</span></div>
