@@ -196,7 +196,7 @@ class WaitingPage extends Component {
         .then(res => {
             console.log(res)
             if(res.status === 200){
-              if(res.status === 'success'){
+              if(res.data.status === 'Success'){
               message.success('Berhasil mengirim sertifikat');
               this.componentDidMount();   
               this.setState({loading: false}) 
@@ -214,11 +214,9 @@ class WaitingPage extends Component {
         .then(res => {
             console.log(res)
             if(res.status === 200){
-              if(res.status === 'success'){
               message.success('Berhasil menolak sertifikat');
               this.componentDidMount();   
               this.setState({loading: false}) 
-              }
             }
         });
     }
@@ -387,7 +385,7 @@ class WaitingPage extends Component {
             end_registration : moment(sertifikat.event.detail_event.end_registration).format("DD MMMM YYYY"),
             nama_panitia : sertifikat.event.panitia.nama_panitia,
             dateNow : moment().format('YYYY-MM-DD'),
-            close : Date.parse(sertifikat.event.detail_event.end_registration),
+            close : Date.parse(sertifikat.event.detail_event.start_event),
         }))
         
         return ( 
