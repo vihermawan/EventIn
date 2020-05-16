@@ -197,7 +197,8 @@ class DetailPenandatanganPage extends Component {
                         background="#FFA903"
                         onClick = {() => this.onDetailCertificate(data.sertif_URL)}
                     />
-                </Tooltip>,]
+                </Tooltip>,
+                ]
               ),
             },
           ];
