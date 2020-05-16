@@ -116,7 +116,7 @@ class BannedPesertaPage extends Component {
     //function untuk modal.
     showUnbannedConfirm = (id,nama_peserta) => {
       confirm({
-          title: `Apakah yakin untuk melakukan unban terhadap ${nama_peserta}?`,
+          title: `Apakah yakin untuk mengaktifkan kembali akun peserta ${nama_peserta}?`,
           okText: 'Yes',
           okType: 'danger',
           cancelText: 'No',
@@ -136,7 +136,7 @@ class BannedPesertaPage extends Component {
       .then(res => {
           console.log('res',res)
           if(res.status === 200){
-              message.success('Unbanned Peserta Berhasil');
+              message.success('Akun Peserta Berhasil diaktifkan kembali');
               this.componentDidMount(); 
           }   
       });
@@ -178,10 +178,10 @@ class BannedPesertaPage extends Component {
                 ...this.getColumnSearchProps('organisasi'),
             },
             {
-                title: 'Umur',
-                dataIndex: 'umur',
-                key: 'umur',
-                ...this.getColumnSearchProps('umur'),
+                title: 'Pekerjaan',
+                dataIndex: 'pekerjaan',
+                key: 'pekerjaan',
+                ...this.getColumnSearchProps('pekerjaan'),
             },
             {
                 title: 'Action',
@@ -207,7 +207,7 @@ class BannedPesertaPage extends Component {
           peserta : peserta.nama_peserta,
           email : email,
           organisasi : peserta.organisasi,
-          umur : peserta.umur,
+          pekerjaan : peserta.pekerjaan,
           jenis_kelamin : peserta.jenis_kelamin,
       }))
 

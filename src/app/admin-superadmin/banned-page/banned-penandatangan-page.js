@@ -111,7 +111,7 @@ class BannedPenandatanganPage extends Component {
      //function untuk modal
      showUnbannedConfirm = (id,nama_penandatangan) => {
       confirm({
-          title: `Apakah yakin untuk melakukan unban terhadap ${nama_penandatangan}?`,
+          title: `Apakah yakin untuk mengaktifkan kembali akun ${nama_penandatangan}?`,
           okText: 'Yes',
           okType: 'danger',
           cancelText: 'No',
@@ -131,7 +131,7 @@ class BannedPenandatanganPage extends Component {
       .then(res => {
           console.log('res',res)
           if(res.status === 200){
-              message.success('Unbanned Penandatangan Berhasil');
+              message.success('Akun Penandatangan Berhasil diaktifkan kembali');
               this.componentDidMount(); 
           }   
       });

@@ -119,7 +119,7 @@ class PenandatanganAdminPage extends Component {
         .then(res => {
             console.log('res',res)
             if(res.status === 200){
-                message.success('Berhasil Banned Penandatangan');
+                message.success('Blokir Penandatangan Berhasil');
                 this.componentDidMount();
             }   
         });
@@ -128,7 +128,7 @@ class PenandatanganAdminPage extends Component {
     //function untuk modal.
     showBannedConfirm = (id,nama_penandatangan) => {
         confirm({
-            title: `Apakah yakin untuk membanned ${nama_penandatangan}?`,
+            title: `Apakah yakin untuk memblokir ${nama_penandatangan}?`,
             okText: 'Yes',
             okType: 'danger',
             cancelText: 'No',

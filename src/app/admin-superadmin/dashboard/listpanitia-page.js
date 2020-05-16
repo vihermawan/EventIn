@@ -114,7 +114,7 @@ class ListPanitiaAdminPage extends Component {
     //function untuk modal
     showBannedConfirm = (id,nama_panitia) => {
         confirm({
-            title: `Apakah yakin untuk membanned ${nama_panitia} ?`,
+            title: `Apakah yakin untuk memblokir ${nama_panitia} ?`,
             okText: 'Yes',
             okType: 'danger',
             cancelText: 'No',
@@ -135,7 +135,7 @@ class ListPanitiaAdminPage extends Component {
       .then(res => {
           // console.log('res',res)
           if(res.status === 200){
-              message.success(`Berhasil Banned Panitia ${nama_panitia}`);
+              message.success(`Berhasil Blokir Panitia ${nama_panitia}`);
               this.componentDidMount();
           }   
       });
@@ -172,16 +172,16 @@ class ListPanitiaAdminPage extends Component {
                 ...this.getColumnSearchProps('panitia'),
             },
             {
+              title: 'Email',
+              dataIndex: 'email',
+              key: 'email',
+              ...this.getColumnSearchProps('email'),
+            },
+            {
                 title: 'Organisasi',
                 dataIndex: 'organisasi',
                 key: 'organisasi',
                 ...this.getColumnSearchProps('organisasi'),
-            },
-            {
-                title: 'Email',
-                dataIndex: 'email',
-                key: 'email',
-                ...this.getColumnSearchProps('email'),
             },
             {
                 title: 'No Telepon',

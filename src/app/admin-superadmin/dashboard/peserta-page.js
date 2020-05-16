@@ -119,7 +119,7 @@ class PesertaAdminPage extends Component {
         .then(res => {
             console.log('res',res)
             if(res.status === 200){
-                message.success('Banned Peserta Berhasil');
+                message.success('Blokir Peserta Berhasil');
                 this.componentDidMount(); 
             }   
         });
@@ -141,7 +141,7 @@ class PesertaAdminPage extends Component {
     //function untuk modal
     showBannedConfirm = (id,nama_peserta) => {
         confirm({
-            title: `Apakah yakin untuk membanned  ${nama_peserta}?`,
+            title: `Apakah yakin untuk memblokir  ${nama_peserta}?`,
             okText: 'Yes',
             okType: 'danger',
             cancelText: 'No',
@@ -190,10 +190,10 @@ class PesertaAdminPage extends Component {
                 ...this.getColumnSearchProps('organisasi'),
             },
             {
-                title: 'Umur',
-                dataIndex: 'umur',
-                key: 'umur',
-                ...this.getColumnSearchProps('umur'),
+                title: 'Pekerjaan',
+                dataIndex: 'pekerjaan',
+                key: 'pekerjaan',
+                ...this.getColumnSearchProps('pekerjaan'),
             },
             {
                 title: 'Action',
@@ -228,7 +228,7 @@ class PesertaAdminPage extends Component {
             peserta : peserta.nama_peserta,
             email : email,
             organisasi : peserta.organisasi,
-            umur : peserta.umur,
+            pekerjaan : peserta.pekerjaan,
             jenis_kelamin : peserta.jenis_kelamin,
         }))
                 

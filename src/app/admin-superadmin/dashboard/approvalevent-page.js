@@ -121,7 +121,7 @@ class ApprovalEventPage extends Component {
         .then(res => {
             console.log('res',res)
             if(res.status === 200){
-                message.success('Event berhasil di approve');
+                message.success('Event berhasil di terima');
                 this.componentDidMount(); 
             }   
         });
@@ -144,7 +144,7 @@ class ApprovalEventPage extends Component {
     //function untuk modal
     showAcceptConfirm = (id,nama,panitia) => {
         confirm({
-            title: `Apakah yakin untuk approve event ${nama} dari ${panitia} ?`,
+            title: `Apakah yakin untuk menerima event ${nama} dari ${panitia} ?`,
             okText: 'Yes',
             okType: 'danger',
             cancelText: 'No',

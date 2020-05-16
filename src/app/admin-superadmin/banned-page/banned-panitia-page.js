@@ -110,7 +110,7 @@ class BannedPanitiaPage extends Component {
      //function untuk modal
      showUnbannedConfirm = (id,nama_panitia) => {
       confirm({
-          title: `Apakah yakin untuk melakukan unban terhadap ${nama_panitia}?`,
+          title: `Apakah yakin untuk mengaktifkan kembali akun panitia ${nama_panitia}?`,
           okText: 'Yes',
           okType: 'danger',
           cancelText: 'No',
@@ -123,14 +123,14 @@ class BannedPanitiaPage extends Component {
       });
     }
 
-    UnbannedPanitia = (id_panitia) => {   
+    UnbannedPanitia = (id_panitia, nama_panitia) => {   
       console.log(id_panitia)
       this.setState({loading:true})
       API.get(`/admin/unban/panitia/${id_panitia}`)
       .then(res => {
           console.log('res',res)
           if(res.status === 200){
-              message.success('Unbanned Panitia Berhasil');
+              message.success(`Akun Panitia berhasil diaktifkan kembali`);
               this.componentDidMount(); 
           }   
       });
@@ -154,16 +154,16 @@ class BannedPanitiaPage extends Component {
                 ...this.getColumnSearchProps('panitia'),
             },
             {
+              title: 'Email',
+              dataIndex: 'email',
+              key: 'email',
+              ...this.getColumnSearchProps('email'),
+            },
+            {
                 title: 'Organisasi',
                 dataIndex: 'organisasi',
                 key: 'organisasi',
                 ...this.getColumnSearchProps('organisasi'),
-            },
-            {
-                title: 'Email',
-                dataIndex: 'email',
-                key: 'email',
-                ...this.getColumnSearchProps('email'),
             },
             {
                 title: 'No Telepon',
