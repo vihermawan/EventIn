@@ -216,7 +216,7 @@ class EditProfileSignerAdminComponent extends Component {
                                                 <div style={initialData.button_p12 === 'Upload File' ? {display:"none"}:{display:"block"}}>
                                                     <InputForm
                                                         name='file_p12'
-                                                        placeholder="Masukan jabatan...."
+                                                        placeholder="File p12 belum ada...."
                                                         className="input-event mt-5 mb-20"
                                                         onChange={handleChange}
                                                         value={initialData.file_p12}
@@ -234,7 +234,7 @@ class EditProfileSignerAdminComponent extends Component {
                                                     />
                                                 </div>
                                             </Col>
-                                            <Col lg={24} md={24} sm={24}>
+                                            {/* <Col lg={24} md={24} sm={24}>
                                                 <div>   
                                                     <span className="auth-input-label text-black">Kabupaten / Kota</span>
                                                 </div>
@@ -263,7 +263,7 @@ class EditProfileSignerAdminComponent extends Component {
                                                         disabled
                                                     />
                                                 </div>
-                                            </Col>
+                                            </Col> */}
                                         </Row>
                                     </div>
                                     <div className="steps-action">
