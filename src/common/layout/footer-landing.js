@@ -22,9 +22,9 @@ function Footer({
                 </Col>
                 <Col lg={12} md={12} sm={12}>
                     <p className="footer-title semi-bold">Social Media</p>
-                    <p> <a className="text-white">Facebook </a></p>
-                    <p> <a className="text-white">Twitter </a></p>
-                    <p> <a className="text-white">Instagram </a></p>
+                    <p> <a href="https://www.facebook.com/eventin.eventin.357" className="text-white">Facebook </a></p>
+                    <p> <a href="https://twitter.com/EventIn4" className="text-white">Twitter </a></p>
+                    <p> <a href="https://instagram.com/service.eventin" className="text-white">Instagram </a></p>
                 </Col>
                 </Row>
             </Col>
