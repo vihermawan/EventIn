@@ -106,6 +106,7 @@ class HomeComponent extends Component {
                                                 text="Daftar event"
                                                 className='button-participate'
                                                 onClick = {onLoginHome}
+                                                
                                             />
                                             <ButtonHome
                                                 text="Kelolah event"
@@ -114,7 +115,7 @@ class HomeComponent extends Component {
                                                 border="1px solid #4D5AF2"
                                                 marginLeft={16}
                                                 className='button-participate'
-                                                onClick = {onRegisterHome}
+                                                onClick = {onLoginHome}
                                             />
                                         </div>
                                     </Col>
@@ -198,6 +199,7 @@ class HomeComponent extends Component {
                                         <ButtonRounded
                                             text="Mulai mengelolah event?"
                                             className='button-organize mt-20 semi-bold'
+                                            disabled={true}
                                         />
                                     </Col>
                                 </Row>
@@ -233,7 +235,7 @@ class HomeComponent extends Component {
                                             background="white"
                                             textColor="#4D5AF2"
                                             border="1px solid #4D5AF2"
-                                            className='button-participate mt-20 semi-bold'
+                                            className='button-participate mt-20 semi-bold' disabled={true}
                                         />
                                     </Col>
                                 </Row>

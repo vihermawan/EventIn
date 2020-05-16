@@ -39,15 +39,16 @@
 
 .picture-section-3{
     /* background-color: red; */
+    min-height: 470px;
 }
 
 .text-section-4{
-    min-height: 535.5px;
+    min-height: 470px;
 }
 .title-section-4-about{
     /* background-color: red; */
-    padding: 30px;
-    font-size: 30px;
+    padding: 22px;
+    font-size: 27px;
     padding-left: 40px;
     color: white;
     font-weight: 600;
@@ -56,7 +57,7 @@
 .title-description-4-about{
     color: white;
     padding-left: 40px;
-    font-size: 14px;
+    font-size: 13px;
     padding-right: 40px;
     text-align: justify;
 }
