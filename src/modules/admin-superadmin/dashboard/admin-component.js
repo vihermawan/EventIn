@@ -214,7 +214,7 @@ class AdminComponent extends Component {
                                                 </div>
                                             </LoadingContainer>
                                             <div className="title-info-card">
-                                                <span>Yang Terselenggara</span>
+                                                <span>Yang Diselenggarakan</span>
                                             </div>
                                         </div>
                                     </Col>
