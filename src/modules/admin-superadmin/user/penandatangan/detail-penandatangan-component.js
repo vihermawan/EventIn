@@ -50,26 +50,26 @@ class DetailPenandatanganAdminComponent extends Component {
                                             </Col>
                                             <Col lg={8} md={12} sm={12}>
                                                 <div className="desc-panitia">
-                                                    <span className="text-black nama-panitia">Nama</span>
+                                                    <span className="text-blue nama-panitia">Nama</span>
                                                     <br/>
                                                     <span className="text-black desc-nama">{data.nama_penandatangan}</span>
                                                 </div>
                                                 <br/>
                                                 <div className="desc-panitia">
-                                                    <span className="text-black nama-panitia">Instansi</span>
+                                                    <span className="text-blue nama-panitia">Instansi</span>
                                                     <br/>
                                                     <span className="text-black desc-nama">{data.instansi}</span>
                                                 </div>
                                             </Col>
                                             <Col lg={8} md={12} sm={12}>
                                                 <div className="desc-panitia">
-                                                    <span className="text-black nama-panitia">Jabatan</span>
+                                                    <span className="text-blue nama-panitia">Jabatan</span>
                                                     <br/>
                                                     <span className="text-black desc-nama">{data.jabatan}</span>
                                                 </div>
                                                 <br/>
                                                 <div className="desc-panitia">
-                                                    <span className="text-black nama-panitia">NIP</span>
+                                                    <span className="text-blue nama-panitia">NIP</span>
                                                     <br/>
                                                     <span className="text-black desc-nama">{data.nip}</span>
                                                 </div>
