@@ -9,12 +9,10 @@ class SwitchPenandatanganPage extends Component {
     }
 
     componentDidMount(){
-        console.log('tabchange')
         this.props.reload()
     }
 
     changeKey = (key) => {
-        console.log(key)
         this.setState({activeKey: key})
     }
 

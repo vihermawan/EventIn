@@ -66,7 +66,6 @@ class AuthLogin extends Component {
             this.setState({loading: true})
             API.post(`/auth/login`, params)
             .then(res => {
-                console.log('res',res )
                 if(res.status === 200){
                     if(res.data.id_role === 2){
                         localStorage.setItem('token', res.data.token)
@@ -116,7 +115,6 @@ class AuthLogin extends Component {
     }
 
     render() {
-        // console.log(this.props.dataLogin)
         return (
         <LoginComponent
             initialData={this.state}

@@ -61,7 +61,6 @@ class Admin extends Component {
     if (token !== null){
 			this.setTimeOut();
     }
-    console.log(this.state.current)
   }
 
   setTimeOut = () => {
@@ -72,7 +71,6 @@ class Admin extends Component {
     this.setState({loading: true})
      API.post(`/auth/logout`)
      .then(res => {
-         console.log('res',res)
          if(res.status === 200){
              localStorage.clear();
              this.setState({
@@ -84,7 +82,6 @@ class Admin extends Component {
   }
 
   clickedMenu = e => {
-    console.log(e.key)
     this.setState({ current: e.key });
   }
 

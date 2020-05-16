@@ -94,20 +94,17 @@ class ECertificatePage extends Component {
         API.get(`/penandatangan/sertifikat/signed`)
         .then(res => {
           this.setState({loading: false})
-          console.log('res',res.data.data.sertifikat)
           this.setState({signed_e_certificate:res.data.data.sertifikat})
         });
     }
  
     handleOk = e => {
-      console.log(e);
       this.setState({
         visible: false,
       });
     };
   
     handleCancel = e => {
-      console.log(e);
       this.setState({
         visible: false,
       });
@@ -119,7 +116,6 @@ class ECertificatePage extends Component {
         visible: true,
         url : sertif_URL,
       });
-      console.log(sertif_URL)
     }
 
     render() { 

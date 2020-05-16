@@ -111,13 +111,11 @@ class WaitingPage extends Component {
         API.get(`/admin/sertifikat-waiting`)
         .then(res => {
             this.setState({loading: false})
-            console.log('res',res)
             this.setState({waitingSertifikat:res.data.data.sertifikat})
         });
     }
     
     handlePenandatangan = (input, option) => {
-        console.log('input', input, 'option', option);
         this.setState({ id_penandatangan: input })  
     }
 
@@ -129,11 +127,10 @@ class WaitingPage extends Component {
             okType: 'danger',
             cancelText: 'No',
             onOk: () => {
-                console.log(id_penandatangan_sertifikat,nama_penandatangan,instansi,jabatan)
                 this.handleSubmit(id_penandatangan_sertifikat)
             },
             onCancel(){
-                console.log('Cancel')
+             
             }
         });
     }
@@ -149,7 +146,7 @@ class WaitingPage extends Component {
               this.rejectSertifikat(id_penandatangan_sertifikat)
           },
           onCancel(){
-              console.log('Cancel')
+
           }
       });
     }
@@ -160,7 +157,6 @@ class WaitingPage extends Component {
         params.append("_method", 'PUT')
         API.postEdit(`/admin/send-sertifikat/${id_penandatangan_sertifikat}`,params)
         .then(res => {
-            console.log(res)
             if(res.status === 200){
               if(res.data.status === 'Success'){
                 message.success('Berhasil mengirim sertifikat');
@@ -178,7 +174,6 @@ class WaitingPage extends Component {
         this.setState({loading: true})
         API.delete(`/admin/reject-sertifikat/${id_penandatangan_sertifikat}`)
         .then(res => {
-            console.log(res)
             if(res.status === 200){
               if(res.data.status === 'Success'){
                 message.success('Berhasil menolak sertifikat');
@@ -190,7 +185,6 @@ class WaitingPage extends Component {
     }
 
     onDetailSertifikat = (link,end_regis,start_event,end_event,nama_event) => {
-      console.log(link,end_regis,start_event,end_event)
       this.setState({
         visible: true,
         link_sertif : link,
@@ -202,14 +196,12 @@ class WaitingPage extends Component {
     }
   
     handleOk = e => {
-      console.log(e);
       this.setState({
         visible: false,
       });
     };
   
     handleCancel = e => {
-      console.log(e);
       this.setState({
         visible: false,
       });

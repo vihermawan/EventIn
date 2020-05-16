@@ -33,7 +33,6 @@ class CertificatePage extends Component {
 
     componentWillMount(){
       const data = JSON.parse(localStorage.getItem('step-5'));
-      console.log(data)
       if(data !== null){
           this.setState({
               nama_sertifikat: data.nama_sertifikat,
@@ -58,14 +57,12 @@ class CertificatePage extends Component {
   
     uploadGambar = (event) => {
         if(event.target.files[0].type !== 'image/jpeg' ){
-            console.log('harusnya')
             this.openNotification('Format Gambar Salah', 'Silahkan Upload Kembali dengan format JPG')
         }
         else if(event.target.files[0].size / 1024 / 1024 > 2){
             this.openNotification('Ukuran file Melebihi 2Mb', 'Silahkan Upload Kembali')
         }
         else{
-            console.log('cek', event.currentTarget.value)
             this.getBase64(event.target.files[0], imageUrl => {
                 this.setState({ picture: imageUrl,croppedImageUrl :imageUrl,picture_event:imageUrl,visible:true })
             })
@@ -100,7 +97,6 @@ class CertificatePage extends Component {
             'newFile.jpeg'
           );
           this.setState({ picture_event,croppedImageUrl });
-          console.log('croping',this.state.croppedImageUrl)
         }
     }
     
@@ -180,7 +176,6 @@ class CertificatePage extends Component {
         }
         let croppedImage = new File([u8arr], filename, {type:mime});
         this.setState({picture_event: croppedImage}) 
-        console.log('ini lo', this.state.picture_event)
     }
    
     onPrev = () => {
@@ -190,11 +185,9 @@ class CertificatePage extends Component {
 
     uploadFile = (event) => {
         if(event.target.files[0].type !== 'application/msword'){
-            console.log('harusnya')
             this.openNotification('Format Sertifikat Salah', 'Silahkan Upload Kembali dengan format RTF')
         }
         else if(event.target.files[0].size / 1024 / 1024 > 2){
-            console.log('ukuran', this.state.size_sertifikat)
             this.openNotification('Ukuran file Melebihi 2Mb', 'Silahkan Upload Kembali')
         }else{ 
             this.setState({ 
@@ -202,8 +195,6 @@ class CertificatePage extends Component {
                 size_sertifikat : event.target.files[0].size / 1024 / 1024,
             })
         }
-       
-        console.log('sertif',event.target.files[0])
     }    
 
     handleButtonEdit = () => {
@@ -265,8 +256,6 @@ class CertificatePage extends Component {
         params.set('time_end',datetime.time_end)
     
         params.append('picture',this.state.picture_event)
-        
-        console.log('params', params)
 
     if(validation.required(this.state.picture_event) !== null ){
         const message = validation.required(this.state.picture_event);
@@ -275,7 +264,6 @@ class CertificatePage extends Component {
         this.setState({loading: true})
         API.postEdit(`/panitia/create/event`, params)
         .then(res => {
-            console.log('res',res)
             if(res.status === 201){
                 message.success('Event Berhasil Ditambahkan');
                 this.props.navigate(CONSTANS.ACTIVE_EVENT_MENU_KEY)
@@ -300,14 +288,12 @@ class CertificatePage extends Component {
     };
     
     handleOk = e => {
-        console.log(e);
         this.setState({
             visible: false,
         });
     };
     
     handleCancel = e => {
-        console.log(e);
         this.setState({
             visible: false,
             picture_event : null,

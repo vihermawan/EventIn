@@ -26,7 +26,6 @@ class StatusMasterPage extends Component {
 
         API.get(`/admin/status`)
         .then(res => {
-            console.log('res',res)
             this.setState({
                 status:res.data.data.status,
                 loading: false,
@@ -49,14 +48,12 @@ class StatusMasterPage extends Component {
     }
     
     handleOk = e => {
-    console.log(e);
     this.setState({
         visible: false,
     });
     };
 
     handleCancel = e => {
-    console.log(e);
     this.setState({
         visible: false,
     });
@@ -64,10 +61,8 @@ class StatusMasterPage extends Component {
 
     //delete status
     deleteStatus = (id) => {   
-        console.log(id)
         API.delete(`/admin/deletestatus/${id}`)
         .then(res => {
-            console.log('res',res)
             if(res.status === 200){
                 message.success('This is a success message');
                 window.location.reload(); 
@@ -89,7 +84,7 @@ class StatusMasterPage extends Component {
                this.deleteStatus(id)
             },
             onCancel(){
-                console.log('Cancel')
+             
             }
         });
     }

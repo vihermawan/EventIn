@@ -21,8 +21,6 @@ class CreateEventPage extends Component {
 
     handleSubmit = e => {
         e.preventDefault();
-        console.log('username : ', this.state.username)
-        console.log('password : ', this.state.password)
     }
 
     

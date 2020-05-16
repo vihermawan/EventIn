@@ -92,7 +92,6 @@ class DoneEventPage extends Component {
         this.setState({loadingHome: true})
         API.get(`/peserta/profile/event`)
         .then(res => {
-            console.log('res',res.data.data.event)
             this.setState({
                 doneEvent:res.data.data.event,
                 loadingHome: false,

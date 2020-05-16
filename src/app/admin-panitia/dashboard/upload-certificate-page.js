@@ -22,8 +22,6 @@ class UploadCertificatePage extends Component {
     }
 
     componentWillReceiveProps(props){
-      console.log('props',props)
-      console.log('this props',this.props)
       if(props.activeKey !== this.props.activeKey){
         this.getCertificate();
       }
@@ -33,7 +31,6 @@ class UploadCertificatePage extends Component {
         this.setState({loading: true})
         API.get(`/panitia/event-upload-sertifikat`)
         .then(res => {
-          console.log('res',res)
           this.setState({
               certificate:res.data.data.sertifikat,
               loading: false,
@@ -45,7 +42,6 @@ class UploadCertificatePage extends Component {
     getFile=(id,sertifikat)=>{
         API.get(`/panitia/detail-sertifikat/${id}`)
         .then(res => {
-          console.log('res',res)
           const url = window.URL.createObjectURL(new Blob([res.data]));
           const link = document.createElement('a');
           link.href = url;
@@ -57,7 +53,6 @@ class UploadCertificatePage extends Component {
 
     //button edit sertifikat
     onEditCertificate = (id) => {
-        console.log('id ini',id)
         this.props.setIdSertifikat(id);
         this.props.navigate(CONSTANS.EDIT_SERTIF_PANITIA_MENU_KEY)
     }

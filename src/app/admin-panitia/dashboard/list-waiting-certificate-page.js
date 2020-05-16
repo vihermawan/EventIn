@@ -26,7 +26,6 @@ class ListWaitingCertificatePage extends Component {
         this.setState({loading: true})
         API.get(`/panitia/event-received-sertifikat/${id_event}`)
         .then(res => {
-          console.log('res',res)
           this.setState({
               certificate:res.data.data.sertifikat,
               loading: false,
@@ -101,14 +100,12 @@ class ListWaitingCertificatePage extends Component {
     };
 
     handleOk = e => {
-        console.log(e);
         this.setState({
           visible: false,
         });
     };
     
     handleCancel = e => {
-        console.log(e);
         this.setState({
           visible: false,
         });
@@ -120,7 +117,6 @@ class ListWaitingCertificatePage extends Component {
           visible: true,
           url : sertif_URL,
         });
-        console.log(sertif_URL)
       }
 
     render() { 

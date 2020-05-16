@@ -18,7 +18,6 @@ class DetailComponent extends Component {
     render() { 
       
         const {initialData,handleCancel,handleOk,showModal,onStartLoadingHome,onFinishLoadingHome,showModalClose,handleOkClose} = this.props
-        console.log(initialData.Event.peserta_event_count)
         const datebeginevent = moment(initialData.detailEvent.start_event).format("DD MMMM")
         const dateEndEvent = moment(initialData.detailEvent.end_event).format("DD MMMM YYYY")
         const regisbeginevent = moment(initialData.detailEvent.open_registration).format("DD MMMM")
@@ -50,7 +49,6 @@ class DetailComponent extends Component {
         ]
         let hidden = this.state.isPaid ? 'hidden-objek' : 'block-objek'
 
-        console.log('status',initialData.status)
         return ( 
             <Layout className="landing-container">
                 <Navbar

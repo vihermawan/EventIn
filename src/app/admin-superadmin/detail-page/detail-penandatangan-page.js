@@ -19,7 +19,6 @@ class DetailPenandatanganPage extends Component {
     componentDidMount(){
         this.getDetailPenandatangan(this.props.idUsers);
         this.getDetailSertifikat(this.props.idPenandatangan)
-        console.log('id users', this.props.idUsers)
     }
 
     getColumnSearchProps = dataIndex => ({
@@ -92,7 +91,6 @@ class DetailPenandatanganPage extends Component {
         this.setState({loading: true})
         API.get(`/admin/showpenandatangan/${id_users}`)
         .then(res => {
-        //   console.log('res',res)
           this.setState({
             detail_penandatangan:res.data.data.penandatangan,
             loading: false,
@@ -104,7 +102,6 @@ class DetailPenandatanganPage extends Component {
         this.setState({loading: true})
         API.get(`/admin/show-sertifikat-penandatanan/${id_penandatangan}`)
         .then(res => {
-          console.log('res',res)
           this.setState({
             sertifikat:res.data.data.sertifikat,
             loading: false,
@@ -114,14 +111,12 @@ class DetailPenandatanganPage extends Component {
 
 
     handleOk = e => {
-      console.log(e);
       this.setState({
         visible: false,
       });
     };
   
     handleCancel = e => {
-      console.log(e);
       this.setState({
         visible: false,
       });
@@ -133,7 +128,6 @@ class DetailPenandatanganPage extends Component {
         visible: true,
         url : sertif_URL,
       });
-      console.log(sertif_URL)
     }
 
 

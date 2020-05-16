@@ -29,7 +29,6 @@ class PenandatanganAdminPage extends Component {
         this.setState({loading: true})
         API.get(`/admin/showpenandatangan`)
         .then(res => {
-          console.log('res',res.data.data.penandatangan)
           this.setState({
             penandatangan:res.data.data.penandatangan,
             loading: false,
@@ -38,8 +37,6 @@ class PenandatanganAdminPage extends Component {
     }
 
     componentWillReceiveProps(props){
-      console.log('props',props)
-      console.log('this props',this.props)
       if(props.activeKey !== this.props.activeKey){
         this.getPenandatangan();
       }
@@ -113,11 +110,9 @@ class PenandatanganAdminPage extends Component {
 
     //delete penandatangan
     bannedPenandatangan = (id_penandatangan) => {   
-        console.log(id_penandatangan)
         this.setState({loading: true})
         API.delete(`/admin/ban/penandatangan/${id_penandatangan}`)
         .then(res => {
-            console.log('res',res)
             if(res.status === 200){
                 message.success('Berhasil Banned Penandatangan');
                 this.componentDidMount();
@@ -133,11 +128,10 @@ class PenandatanganAdminPage extends Component {
             okType: 'danger',
             cancelText: 'No',
             onOk: () => {
-                console.log('id ini', id)
                 this.bannedPenandatangan(id)
             },
             onCancel(){
-                console.log('Cancel')
+            
             }
         });
     }
@@ -146,7 +140,6 @@ class PenandatanganAdminPage extends Component {
     onDetailPenandatangan = (id_users,id_penandatangan) => {
         this.props.setIdUsers(id_users)
         this.props.setIdPenandatangan(id_penandatangan)
-        console.log('id users',id_users)
         this.props.navigate(CONSTANS.DETAIL_PENANDATANGAN_ADMIN_MENU_KEY)
     }
 

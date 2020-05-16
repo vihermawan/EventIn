@@ -28,7 +28,6 @@ class CreateCertificatePage extends Component {
         this.setState({loading: true})
         API.get(`/panitia/event`)
         .then(res => {
-            console.log('res',res.data.data.event)
             this.setState({
                 activeEvent:res.data.data.event,
                 loading: false,
@@ -40,7 +39,6 @@ class CreateCertificatePage extends Component {
         this.setState({loading: true})
         API.get(`/panitia/list-penandatangan`)
         .then(res => {
-          console.log('res',res.data.data.penandatangan)
           this.setState({
             penandatangan:res.data.data.penandatangan,
             loading: false,
@@ -49,12 +47,12 @@ class CreateCertificatePage extends Component {
     }
 
     handlePenandatangan = (input, option) => {
-        console.log('input', input, 'option', option);
+      
         this.setState({ id_penandatangan: input })  
     }
 
     handleEvent = (input, option) => {
-        console.log('input', input, 'option', option);
+      
         this.setState({ id_event: input })  
     }
 
@@ -68,11 +66,9 @@ class CreateCertificatePage extends Component {
 
     uploadFile = (event) => {
         if(event.target.files[0].type !== 'application/vnd.openxmlformats-officedocument.wordprocessingml.document'){
-            console.log('harusnya')
             this.openNotification('Format Sertifikat Salah', 'Silahkan Upload Kembali dengan format Docx')
         }
         else if(event.target.files[0].size / 1024 / 1024 > 2){
-            console.log('ukuran', this.state.size_sertifikat)
             this.openNotification('Ukuran file Melebihi 2Mb', 'Silahkan Upload Kembali')
         }else{ 
             this.setState({ 
@@ -80,8 +76,6 @@ class CreateCertificatePage extends Component {
                 size_sertifikat : event.target.files[0].size / 1024 / 1024,
             })
         }
-       
-        console.log('sertif',event.target.files[0])
     }    
 
     openNotification = (message, description) => {
@@ -125,7 +119,6 @@ class CreateCertificatePage extends Component {
             this.showModal2();
             API.postEdit(`/panitia/create-sertifikat`, params)
             .then(res => {
-                console.log('res',res)
                 if(res.status === 201){
                     this.setState({ show :false,})
                     message.success('Sertifikat berhasil Ditambahkan');

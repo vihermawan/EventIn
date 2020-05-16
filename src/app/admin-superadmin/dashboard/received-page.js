@@ -25,7 +25,6 @@ class ReceivedPage extends Component {
         API.get(`/admin/sertifikat-signed`)
         .then(res => {
           this.setState({loading: false})
-          console.log('res',res.data.data.sertifikat)
           this.setState({received:res.data.data.sertifikat})
         });
     }
@@ -41,7 +40,6 @@ class ReceivedPage extends Component {
                // this.deleteEvent(id)
             },
             onCancel(){
-                console.log('Cancel')
             }
         });
     }

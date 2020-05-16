@@ -14,7 +14,6 @@ class PesertaAdminComponent extends Component {
     render() {
         
       const {initialData, data, columns, handleOk,handleCancel} = this.props;
-    //    console.log(`selected`, initialData.id_penandatangan);
         return ( 
             <Content
                 style={{

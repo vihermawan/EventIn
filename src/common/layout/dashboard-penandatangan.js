@@ -70,7 +70,6 @@ class signer extends Component {
     this.setState({loading: true})
     API.post(`/auth/logout`)
     .then(res => {
-        console.log('res',res)
         if(res.status == 200){
             localStorage.clear();
             this.setState({
@@ -88,7 +87,6 @@ class signer extends Component {
   };
 
   clickedMenu = e => {
-    console.log(e.key)
     this.setState({ current: e.key });
   }
 

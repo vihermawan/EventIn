@@ -16,13 +16,6 @@ class DetailSertifPage extends Component {
       this.getDetailSertifikat(this.props.idSertifikat);
     }
 
-    getDetailSertifikat=(id)=>{
-        this.setState({loading: true})
-        API.get(`/penandatangan/sertifikat-detail/${id}`)
-        .then(res => {
-          console.log('res',res)
-        });
-    }
 
     render() { 
           const columns = [

@@ -45,24 +45,20 @@ class AuthRegisterPanitia extends Component {
 
     
     handleOk = e => {
-        console.log(e);
         if(this.state.is_aggreed === false){
             this.openNotification('Silahkan Check List', 'Syarat dan Ketentuan harap di klik')
         }else{
-            console.log(this.state)
             this.handleSubmit();
         }
     };
 
     handleCancel = e => {
-        console.log(e);
         this.setState({
             show: false,
         });
     };
 
     onChange = (e) => {
-        console.log(`checked = ${e.target.checked}`);
         this.setState({is_aggreed : e.target.checked })
     }
 
@@ -90,11 +86,9 @@ class AuthRegisterPanitia extends Component {
             const message = validation.emailRequired(this.state.email);
             this.openNotification(message, 'Harap memasukkan email dengan benar')
         }else{
-            console.log('params',params)
             this.setState({loading: true,show : false})
             API.post(`/auth/register/panitia`, params)
             .then(res => {
-                console.log('res',res)
                 if(res.status === 201){
                     this.props.navigate(CONSTANS.LOGIN_MENU_KEY)
                     message.success('Berhasil Melakukan Registrasi');

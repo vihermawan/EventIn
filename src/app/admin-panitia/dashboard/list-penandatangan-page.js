@@ -23,7 +23,6 @@ class ListPenandatanganPage extends Component {
         this.setState({loading: true})
         API.get(`/panitia/list-penandatangan`)
         .then(res => {
-          console.log('res',res.data.data)
           this.setState({
               penandatangan:res.data.data.penandatangan,
               loading: false,

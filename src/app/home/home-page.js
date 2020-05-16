@@ -23,7 +23,6 @@ class HomePage extends Component {
 
     onRegisterHome = () => {
         this.props.navigate(CONSTANS.CHOOSE_MENU_KEY)
-        console.log('pindah')
     }
 
     render() { 

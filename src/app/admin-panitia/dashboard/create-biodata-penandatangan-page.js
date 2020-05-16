@@ -40,7 +40,6 @@ class CreateBiodataPenandatanganPage extends Component {
         this.setState({loading: true})
         API.get(`/provinsi`)
         .then(res => {
-            console.log('res',res.data.data.provinsi)
             this.setState({
                 provinsi:res.data.data.provinsi,
                 loading: false,
@@ -52,7 +51,6 @@ class CreateBiodataPenandatanganPage extends Component {
         this.setState({loading: true})
         API.get(`/kabupaten/${id_provinsi}`)
         .then(res => {
-            console.log('res',res)
             this.setState({
                 kabupaten:res.data.data.kabupaten,
                 loading: false,
@@ -61,13 +59,11 @@ class CreateBiodataPenandatanganPage extends Component {
     }
 
     handleProvinsi = (input, option) => {
-        console.log('input', input, 'option', option);
         this.setState({ id_provinsi: input })  
         this.getKabupaten(input)
     }
 
     handleKabupaten = (input, option) => {
-        console.log('input', input, 'option', option);
         this.setState({ id_kabupaten: input })  
     }
 
@@ -87,18 +83,15 @@ class CreateBiodataPenandatanganPage extends Component {
 
     uploadGambar = (event) => {
         if(event.target.files[0].type !== 'image/jpeg' ){
-            console.log('harusnya')
             this.openNotification('Format Gambar Salah', 'Silahkan Upload Kembali dengan format JPG')
         }
         else if(event.target.files[0].size / 1024 / 1024 > 2){
             this.openNotification('Ukuran file Melebihi 2Mb', 'Silahkan Upload Kembali')
         }
         else{
-            console.log('cek', event.currentTarget.value)
             this.getBase64(event.target.files[0], imageUrl => {
                 this.setState({ picture: imageUrl,croppedImageUrl :imageUrl,profile_picture:imageUrl,visible:true })
             })
-            // this.setState({ profile_picture:event.target.files[0] })
         }
     } 
     
@@ -129,7 +122,6 @@ class CreateBiodataPenandatanganPage extends Component {
             'newFile.jpeg'
           );
           this.setState({ profile_picture,croppedImageUrl });
-          console.log('croping',this.state.croppedImageUrl)
         }
     }
     
@@ -209,7 +201,6 @@ class CreateBiodataPenandatanganPage extends Component {
         }
         let croppedImage = new File([u8arr], filename, {type:mime});
         this.setState({profile_picture: croppedImage}) 
-        console.log('ini lo', this.state.profile_picture)
     }
   
     showModal = () => {
@@ -233,14 +224,12 @@ class CreateBiodataPenandatanganPage extends Component {
     };
 
     handleOk = e => {
-        console.log(e);
         this.setState({
             visible: false,
         });
     };
     
     handleCancel = e => {
-        console.log(e);
         this.setState({
             visible: false,
             picture_event : null,
@@ -268,8 +257,6 @@ class CreateBiodataPenandatanganPage extends Component {
         params.set('telepon',this.state.telepon)
         params.set('id_provinsi',this.state.id_provinsi)
         params.set('id_kabupaten', this.state.id_kabupaten)
-
-        console.log('params', params)
 
         if(validation.required(this.state.nama) !== null){
             const message = validation.required(this.state.nama)  
@@ -300,7 +287,6 @@ class CreateBiodataPenandatanganPage extends Component {
             this.showModal2();
             API.post(`/panitia/create/biodata-penandatangan`, params)
             .then(res => {
-                console.log('res',res)
                 if(res.status === 201){
                     this.props.navigate(CONSTANS.LIST_BIODATA_PENANDATANGAN_PANITIA_MENU_KEY)
                     message.success('Biodata Penandatangan Berhasil Ditambahkan');

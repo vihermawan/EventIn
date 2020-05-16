@@ -27,7 +27,6 @@ class VenuePage extends Component {
         this.setState({loading: true})
         API.get(`/provinsi`)
         .then(res => {
-            console.log('res',res)
             this.setState({
                 provinsi:res.data.data.provinsi,
                 loading: false,
@@ -39,7 +38,6 @@ class VenuePage extends Component {
         this.setState({loading: true})
         API.get(`/kabupaten-data/${id_kabupaten}`)
         .then(res => {
-            console.log('res',res)
             this.setState({
                 kabupaten:res.data.data.kabupaten,
                 loading: false,
@@ -59,19 +57,16 @@ class VenuePage extends Component {
     }
     
     handleProvinsi = (input, option) => {
-        console.log('input', input, 'option', option);
         this.setState({ id_provinsi: input })  
         this.getKabupaten(input)
     }
 
     handleKabupaten = (input, option) => {
-        console.log('input', input, 'option', option);
         this.setState({ id_kabupaten: input })  
     }
 
     componentWillMount(){
         const data = JSON.parse(localStorage.getItem('step-3'));
-        console.log(data)
         if(data !== null){
             this.setState({
                 venue: data.venue,
@@ -92,7 +87,6 @@ class VenuePage extends Component {
 
     handleTempat = (value) => {
         this.setState({ venue: value.key })
-        console.log('venue', value.key);
     }
 
     openNotification = (message, description) => {

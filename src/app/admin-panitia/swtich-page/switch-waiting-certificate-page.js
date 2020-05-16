@@ -10,11 +10,9 @@ class SwitchWaitingCertificatePage extends Component {
 
     componentDidMount(){
         this.props.reload()
-        console.log('tabchange')
     }
 
     changeKey = (key) => {
-        console.log(key)
         this.setState({activeKey: key})
     }
 

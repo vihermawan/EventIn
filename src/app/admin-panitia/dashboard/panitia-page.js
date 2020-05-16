@@ -34,7 +34,6 @@ class PanitiaPage extends Component {
         this.setState({loading: true})
         API.get(`/panitia/countRegister`)
         .then(res => {
-            console.log('res',res.data)
             this.setState({
                 registEvent:res.data.data.event,
                 loading: false,
@@ -46,12 +45,9 @@ class PanitiaPage extends Component {
     reportChart = (data_event_ac) => {
         let chart = am4core.create("chartdiv", am4charts.XYChart);
         chart.scrollbarX = new am4core.Scrollbar();
-        // chart.scrollbarY = new am4core.Scrollbar(); 
         chart.legend = new am4charts.Legend();
-        // chart.cursor = new am4charts.XYCursor();
-        
+
         let data_event = [];
-        console.log(data_event_ac)
         for(let i=0; i<data_event_ac.size; i++){
             data_event.push({
                 nama_event: data_event_ac.data.event[i].nama_event,
@@ -59,8 +55,6 @@ class PanitiaPage extends Component {
             })
         }
         
-        console.log(data_event)
-
         chart.data = data_event;
         let categoryAxis = chart.xAxes.push(new am4charts.CategoryAxis());
         categoryAxis.dataFields.category = "nama_event";
@@ -107,7 +101,6 @@ class PanitiaPage extends Component {
         this.setState({loading: true})
         API.get(`/panitia/event-sertifikat`)
         .then(res => {
-          console.log('res',res.data.size)
             this.setState({total_certificate : res.data.size})
         });
     }
@@ -127,7 +120,6 @@ class PanitiaPage extends Component {
         this.setState({loading: true})
         API.get(`/panitia/count-regis-byToday`)
         .then(res => {
-        console.log(res)
           this.setState({
             total_regis:res.data.data.peserta,
             loading: false,

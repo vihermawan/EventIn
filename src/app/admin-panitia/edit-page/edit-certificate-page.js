@@ -41,7 +41,6 @@ class EditCertificatePage extends Component {
         this.setState({loading: true})
         API.get(`/panitia/event`)
         .then(res => {
-            console.log('res',res.data.data.event)
             this.setState({
                 activeEvent:res.data.data.event,
                 loading: false,
@@ -53,7 +52,6 @@ class EditCertificatePage extends Component {
         this.setState({loading: true})
         API.get(`/panitia/list-penandatangan`)
         .then(res => {
-          console.log('res',res.data.data.penandatangan)
           this.setState({
             penandatangan:res.data.data.penandatangan,
             loading: false,
@@ -62,12 +60,10 @@ class EditCertificatePage extends Component {
     }
 
     handlePenandatangan = (input, option) => {
-        console.log('input', input, 'option', option);
         this.setState({ id_penandatangan: input })  
     }
 
     handleEvent = (input, option) => {
-        console.log('input', input, 'option', option);
         this.setState({ id_event: input })  
     }
 
@@ -76,7 +72,6 @@ class EditCertificatePage extends Component {
         this.setState({loading: true})
         API.get(`/panitia/event-sertifikat/${id_sertifikat}`)
         .then(res => {
-            console.log('res',res)
             this.setState({
                 nama : res.data.data.sertifikat.sertifikat.nama,
                 no_sertifikat : res.data.data.sertifikat.sertifikat.no_sertifikat,
@@ -111,11 +106,9 @@ class EditCertificatePage extends Component {
    
     uploadFile = (event) => {
         if(event.target.files[0].type !== 'application/vnd.openxmlformats-officedocument.wordprocessingml.document'){
-            console.log('harusnya')
             this.openNotification('Format Sertifikat Salah', 'Silahkan Upload Kembali dengan format Docx')
         }
         else if(event.target.files[0].size / 1024 / 1024 > 2){
-            console.log('ukuran', this.state.size_sertifikat)
             this.openNotification('Ukuran file Melebihi 2Mb', 'Silahkan Upload Kembali')
         }else{ 
             this.setState({ 
@@ -124,8 +117,6 @@ class EditCertificatePage extends Component {
                 size_sertifikat : event.target.files[0].size / 1024 / 1024,
             })
         }
-       
-        console.log('sertif',event.target.files[0])
     } 
 
     handleSubmit = e => {
@@ -141,7 +132,6 @@ class EditCertificatePage extends Component {
         
         API.postEdit(`/panitia/edit-sertifikat-event/${this.state.id_sertifikat}`, params)
             .then(res => {
-                console.log('res',res)
                 if(res.status === 200){
                     message.success('Data Sertifikat Berhasil diUbah');
                     this.props.navigate(CONSTANS.WAITING_SERTIF_PANITIA_MENU_KEY)

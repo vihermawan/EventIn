@@ -42,13 +42,11 @@ function RouteWithSubRoutes(route) {
 function PrivateRoute({ children, ...rest}) {
     let isAuthenticated = false;
     let role = parseInt(localStorage.getItem("id_role"), 10);
-    // console.log(rest.path)
     if(localStorage.getItem("token") !== null &&
     role === rest.role
     ){
       isAuthenticated = true;
     }
-    // console.log(rest.role)
     return (
       <Route
         {...rest}

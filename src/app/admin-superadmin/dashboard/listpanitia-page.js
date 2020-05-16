@@ -27,8 +27,6 @@ class ListPanitiaAdminPage extends Component {
         this.getPanitia();
     }
     componentWillReceiveProps(props){
-      console.log('props',props)
-      console.log('this props',this.props)
       if(props.activeKey !== this.props.activeKey){
         this.getPanitia();
       }
@@ -119,21 +117,18 @@ class ListPanitiaAdminPage extends Component {
             okType: 'danger',
             cancelText: 'No',
             onOk: () => {
-                console.log('id ini',id)
                 this.bannedPanitia(id,nama_panitia)
             },
             onCancel(){
-                console.log('Cancel')
+              
             }
         });
     }
 
     //banned panitia
-    bannedPanitia = (id_panitia,nama_panitia) => {   
-      console.log(id_panitia)
+    bannedPanitia = (id_panitia,nama_panitia) => { 
       API.delete(`/admin/ban/panitia/${id_panitia}`)
       .then(res => {
-          // console.log('res',res)
           if(res.status === 200){
               message.success(`Berhasil Banned Panitia ${nama_panitia}`);
               this.componentDidMount();
@@ -143,7 +138,6 @@ class ListPanitiaAdminPage extends Component {
 
     //button detail event
     onDetailPanitia = (id_users,id_panitia) => {
-        console.log('id ini',id_users,id_panitia)
         this.props.setIdUsers(id_users)
         this.props.setIdPanitia(id_panitia)
         this.props.navigate(CONSTANS.DETAIL_PANITIA_ADMIN_MENU_KEY)

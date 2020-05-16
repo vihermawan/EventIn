@@ -25,8 +25,6 @@ class DetailParticipantPage extends Component {
     }
 
     componentWillReceiveProps(props){
-      console.log('props',props)
-      console.log('this props',this.props)
       if(props.activeKey !== this.props.activeKey){
         this.getParticipantEvent(this.props.idEvent);
       }
@@ -103,7 +101,6 @@ class DetailParticipantPage extends Component {
         this.setState({loading: true})
         API.get(`/panitia/event/${id}/peserta`)
         .then(res => {
-            console.log('res',res)
             if(res.status === 200){
                 this.setState({
                     listParticipant:res.data.data.peserta,
@@ -115,17 +112,14 @@ class DetailParticipantPage extends Component {
 
     //button detail peserta
     onDetailPeserta = (id) => {
-        console.log('id ini',id)
         this.props.setIdPeserta(id);
         this.props.navigate(CONSTANS.DETAIL_EVENT_PESERTA_MENU_KEY)
     }
 
     //approve peserta
     AbsentPeserta = (id_pesertaevent) => {
-        console.log(id_pesertaevent)
         API.put(`/panitia/ubahAbsensi/${id_pesertaevent}`)
         .then(res => {
-            console.log('res',res)
             if(res.status === 200){
                 message.success('Peserta berhasil absent');
                 this.componentDidMount();
@@ -144,7 +138,7 @@ class DetailParticipantPage extends Component {
                 this.AbsentPeserta(id);
             },
             onCancel(){
-                console.log('Cancel')
+             
             }
         });
     }

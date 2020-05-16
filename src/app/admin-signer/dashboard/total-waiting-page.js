@@ -27,7 +27,6 @@ class TotalWaitingCertificatePage extends Component {
         this.setState({loading: true})
         API.get(`/penandatangan/count-sertifikat-waiting`)
         .then(res => {
-          console.log('res',res.data.data.sertifikat)
           this.setState({
               certificate:res.data.data.sertifikat,
               loading: false,

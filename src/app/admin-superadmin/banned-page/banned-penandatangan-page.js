@@ -26,7 +26,6 @@ class BannedPenandatanganPage extends Component {
       this.setState({loading: true})
       API.get(`/admin/trash/penandatangan`)
       .then(res => {
-        console.log(res)
         this.setState({
           bannedPenandatangan:res.data.data.user,
           loading: false,
@@ -35,8 +34,6 @@ class BannedPenandatanganPage extends Component {
     }
 
     componentWillReceiveProps(props){
-      console.log('props',props)
-      console.log('this props',this.props)
       if(props.activeKey !== this.props.activeKey){
         this.getBannedPenandatangan();
       }
@@ -119,17 +116,14 @@ class BannedPenandatanganPage extends Component {
              this.UnbannedPenandatangan(id)
           },
           onCancel(){
-              console.log('Cancel')
           }
       });
     }
 
-    UnbannedPenandatangan = (id_penandatangan) => {   
-      console.log(id_penandatangan)
+    UnbannedPenandatangan = (id_penandatangan) => {  
       this.setState({loading:true})
       API.get(`/admin/unban/penandatangan/${id_penandatangan}`)
       .then(res => {
-          console.log('res',res)
           if(res.status === 200){
               message.success('Unbanned Penandatangan Berhasil');
               this.componentDidMount(); 

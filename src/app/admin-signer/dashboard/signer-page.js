@@ -24,7 +24,6 @@ class SignerPage extends Component {
         this.setState({loading: true})
         API.get(`/penandatangan/profile-edit`)
         .then(res => {
-            console.log('res',res)
             this.setState({
                 nama_penandatangan :res.data.data.penandatangan.penandatangan.nama_penandatangan,
                 jabatan : res.data.data.penandatangan.penandatangan.jabatan,
@@ -38,7 +37,6 @@ class SignerPage extends Component {
         this.setState({loading: true})
         API.get(`/penandatangan/count-waiting`)
         .then(res => {
-          console.log('res',res)
             this.setState({
                 total_waiting:res.data.size,
                 loading: false,

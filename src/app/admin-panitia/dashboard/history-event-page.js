@@ -29,7 +29,6 @@ class HistoryEventPage extends Component {
         this.setState({loading: true})
         API.get(`/panitia/eventPast`)
         .then(res => {
-          console.log('res',res.data.data.event)
           this.setState({
             eventPast:res.data.data.event,
             loading: false,
@@ -48,14 +47,12 @@ class HistoryEventPage extends Component {
               this.deleteEvent(id)
           },
           onCancel(){
-              console.log('Cancel')
           }
       });
     }
 
     //button detail participant
     onDetailParticipant = (id) => {
-      console.log('id ini',id)
       this.props.setIdEvent(id);
       this.props.navigate(CONSTANS.DETAIL_LIST_PARTICIPANT_HISTORY_EVENT_MENU_KEY)
     }
@@ -63,10 +60,8 @@ class HistoryEventPage extends Component {
     //delete event
     deleteEvent = (id) => {
       this.setState({loading:true})
-      console.log(id)
       API.delete(`/panitia/deleteevent/${id}`)
       .then(res => {
-          console.log('res',res)
           if(res.status === 200){
               message.success('Data Berhasil dihapus');
               this.componentDidMount(); 
@@ -76,7 +71,6 @@ class HistoryEventPage extends Component {
 
     //button detail event
     onDetailEvent = (id) => {
-      console.log('id ini',id)
       this.props.setIdEvent(id);
       this.props.navigate(CONSTANS.DETAIL_HISTORY_EVENT_PANITIA_MENU_KEY)
     }

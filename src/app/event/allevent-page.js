@@ -31,7 +31,6 @@ class AllEventPage extends Component {
         this.setState({loading: true})
         API.get(`/peserta/Allevent?page=${page}`)
         .then(res => {
-            console.log(res.data.data.event)
             if(res.status === 200){
                 const allData = this.state.event.concat(res.data.data.event.data);
                 this.setState({
@@ -46,7 +45,6 @@ class AllEventPage extends Component {
 
     //button detail participant
     onDetailEvent = (id) => {
-        console.log('id ini',id)
         this.props.setIdEvent(id);
         this.props.navigate(CONSTANS.DETAIL_EVENT_KEY)
     }

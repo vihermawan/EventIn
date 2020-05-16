@@ -21,7 +21,6 @@ class AllEventKategoriPage extends Component {
 
      componentDidMount(){
         this.getAllEvent(this.props.idKategori,this.state.page);
-        console.log(this.props.idKategori)
     }
 
     onStartLoadingHome = () =>  this.setState({ loadingHome: true })
@@ -32,8 +31,6 @@ class AllEventKategoriPage extends Component {
         this.setState({loading: true})
         API.get(`/peserta/Allevent/Kategori/${id_kategori}/?page=${page}`)
         .then(res => {
-            console.log('kategori',id_kategori,'page',page)
-            console.log(res)
             if(res.status === 200){
                 const allData = this.state.event.concat(res.data.data.event.data);
                 this.setState({
@@ -48,7 +45,6 @@ class AllEventKategoriPage extends Component {
 
     //button detail participant
     onDetailEvent = (id) => {
-        console.log('id ini',id)
         this.props.setIdEvent(id);
         this.props.navigate(CONSTANS.DETAIL_EVENT_KEY)
     }

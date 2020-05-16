@@ -93,7 +93,6 @@ class BiodataPenandatanganAdminPage extends Component {
         this.setState({loading: true})
         API.get(`/admin/showbiodatapenandatangan`)
         .then(res => {
-            console.log('res',res)
             this.setState({
                 penandatangan:res.data.data.biodata,
                 loading: false,
@@ -109,11 +108,9 @@ class BiodataPenandatanganAdminPage extends Component {
             okType: 'danger',
             cancelText: 'No',
             onOk: () => {
-                console.log("ini id", id)
                 this.addPenandatangan(id)
             },
             onCancel(){
-                console.log('Cancel')
             }
         });
     }
@@ -126,11 +123,10 @@ class BiodataPenandatanganAdminPage extends Component {
           okType: 'danger',
           cancelText: 'No',
           onOk: () => {
-              console.log("ini id", id)
               this.rejectPenandatangan(id)
           },
           onCancel(){
-              console.log('Cancel')
+           
           }
       });
   }
@@ -140,12 +136,10 @@ class BiodataPenandatanganAdminPage extends Component {
         const params = {
             id_biodata_penandatangan: id,  
         }
-        console.log('params',params)
         this.setState({loading: true})
         this.showModal2();
         API.post(`/admin/addpenandatangan`,params)
         .then(res => {
-            console.log('res',res)
             if(res.status === 200){
                 message.success('Berhasil menambahkan penandatangan');
                 // this.componentDidMount(); 
@@ -160,12 +154,10 @@ class BiodataPenandatanganAdminPage extends Component {
       const params = {
           id_biodata_penandatangan: id,  
       }
-      console.log('params',params)
       this.setState({loading: true})
       this.showModal2();
       API.post(`/admin/reject-penandatangan`,params)
       .then(res => {
-          console.log('res',res)
           if(res.status === 200){
               message.success('Berhasil menolak penandatangan');
               this.props.navigate(CONSTANS.BIODATA_PENANDATANGAN_ADMIN_KEY)

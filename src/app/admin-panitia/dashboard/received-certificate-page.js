@@ -26,7 +26,6 @@ class ReceivedCertificatePage extends Component {
         this.setState({loading: true})
         API.get(`/panitia/event-sertifikat`)
         .then(res => {
-          console.log('res',res)
           this.setState({
               certificate:res.data.data.sertifikat,
               loading: false,
@@ -43,14 +42,12 @@ class ReceivedCertificatePage extends Component {
     }
 
     handleOk = e => {
-        console.log(e);
         this.setState({
           visible: false,
         });
     };
     
       handleCancel = e => {
-        console.log(e);
         this.setState({
           visible: false,
         });

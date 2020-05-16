@@ -22,8 +22,6 @@ class BannedPanitiaPage extends Component {
     }
 
     componentWillReceiveProps(props){
-      console.log('props',props)
-      console.log('this props',this.props)
       if(props.activeKey !== this.props.activeKey){
         this.getBannedPanitia();
       }
@@ -33,7 +31,6 @@ class BannedPanitiaPage extends Component {
       this.setState({loading: true})
       API.get(`/admin/trash/panitia`)
       .then(res => {
-        console.log(res)
         this.setState({
           bannedPanita:res.data.data.user,
           loading: false,
@@ -118,17 +115,14 @@ class BannedPanitiaPage extends Component {
              this.UnbannedPanitia(id)
           },
           onCancel(){
-              console.log('Cancel')
           }
       });
     }
 
-    UnbannedPanitia = (id_panitia) => {   
-      console.log(id_panitia)
+    UnbannedPanitia = (id_panitia) => { 
       this.setState({loading:true})
       API.get(`/admin/unban/panitia/${id_panitia}`)
       .then(res => {
-          console.log('res',res)
           if(res.status === 200){
               message.success('Unbanned Panitia Berhasil');
               this.componentDidMount(); 

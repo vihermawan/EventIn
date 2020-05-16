@@ -87,7 +87,6 @@ class DetailListParticipantbyEventPage extends Component {
         this.setState({loading: true})
         API.get(`/panitia/pesertabyEvent/${id_event}`)
         .then(res => {
-            console.log('res',res.data.data.peserta)
             this.setState({
                 listParticipant:res.data.data.peserta,
                 loading: false,

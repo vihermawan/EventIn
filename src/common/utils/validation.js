@@ -29,13 +29,11 @@ export const numberRequired = (value) => {
     const numberPattern = /^(\(?\+?[0-9]*\)?)?[0-9_\- \(\)]*$/g;
     if (value) {
         if (!numberPattern.test(value)) {
-            // return console.log('format number');
             return 'Isi Dalam format Angka';
         }
         return null;
     }
     return 'Harus diisi';
-    return console.log('Harus diisi');
 };
 
 export const emailRequired = (value) => {

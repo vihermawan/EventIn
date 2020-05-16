@@ -75,7 +75,6 @@ class Navbar extends Component {
 		this.setState({loading: true})
 		 API.post(`/auth/logout`)
 		 .then(res => {
-			 console.log('res',res)
 			 if(res.status === 200){
 				 localStorage.clear();
 				 this.setState({

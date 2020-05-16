@@ -70,7 +70,6 @@ class EditEventPage extends Component {
         this.setState({loading: true})
         API.get(`/kabupaten-data/${id_kabupaten}`)
         .then(res => {
-            console.log('res',res)
             this.setState({
                 kabupaten:res.data.data.kabupaten,
                 loading: false,
@@ -82,7 +81,6 @@ class EditEventPage extends Component {
         this.setState({loading: true})
         API.get(`/kabupaten/${id_provinsi}`)
         .then(res => {
-            console.log(res.data)
             this.setState({
                 kabupaten:res.data.data.kabupaten,
                 loading: false,
@@ -94,7 +92,6 @@ class EditEventPage extends Component {
         this.setState({loading: true})
         API.get(`/panitia/event/${id}`)
         .then(res => {
-            // console.log('res',res)
                 this.setState({
                     id_event : res.data.data.event.id_event,
                     nama : res.data.data.event.nama_event,
@@ -134,12 +131,10 @@ class EditEventPage extends Component {
 
     handleKategori = (value) => {
         this.setState({ kategori_input: value })
-        console.log('kategori', value);
     }
 
     handleStatus = (value) => {
         this.setState({ status_biaya: value })
-        console.log('status', value);
     }
 
     handleBank = (value) => {
@@ -148,7 +143,6 @@ class EditEventPage extends Component {
 
     handleTempat = (value) => {
         this.setState({ venue: value })
-        console.log('venue', value);
     }
 
     disabledDate(current) {
@@ -171,38 +165,32 @@ class EditEventPage extends Component {
         this.setState({ 
             start_event: dateString,
         })
-        console.log(date, dateString);
     }
 
     onChangeDateEnd = (date, dateString) => {
         this.setState({ 
             end_event: dateString,
         })
-        console.log(date, dateString);
     }
 
     onChangeDateRegisStart = (date, dateString) => {
         this.setState({ 
             open_registration: dateString,
         })
-        console.log(date, dateString);
     }
 
     onChangeDateRegistEnd = (date, dateString) => {
         this.setState({ 
             end_registration: dateString,
         })
-        console.log(date, dateString);
     }
 
     handleProvinsi = (input, option) => {
-        console.log('input', input, 'option', option);
         this.setState({ id_provinsi: input })  
         this.getKabupaten(input)
     }
 
     handleKabupaten = (input, option) => {
-        console.log('input', input, 'option', option);
         this.setState({ id_kabupaten: input })  
     }
 
@@ -214,18 +202,15 @@ class EditEventPage extends Component {
   
     uploadGambar = (event) => {
         if(event.target.files[0].type !== 'image/jpeg' ){
-            console.log('harusnya')
             this.openNotification('Format Gambar Salah', 'Silahkan Upload Kembali dengan format JPG')
         }
         else if(event.target.files[0].size / 1024 / 1024 > 2){
             this.openNotification('Ukuran file Melebihi 2Mb', 'Silahkan Upload Kembali')
         }
         else{
-            console.log('cek', event.currentTarget.value)
             this.getBase64(event.target.files[0], imageUrl => {
                 this.setState({ picture: imageUrl,croppedImageUrl :imageUrl,picture_event:imageUrl,visible:true })
             })
-            // this.setState({ picture_event:event.target.files[0] })
         }
         
     }
@@ -257,7 +242,6 @@ class EditEventPage extends Component {
             'newFile.jpeg'
           );
           this.setState({ picture_event,croppedImageUrl });
-          console.log('croping',this.state.croppedImageUrl)
         }
     }
     
@@ -336,7 +320,6 @@ class EditEventPage extends Component {
         }
         let croppedImage = new File([u8arr], filename, {type:mime});
         this.setState({picture_event: croppedImage}) 
-        console.log('ini lo', this.state.picture_event)
     }
 
     showModal = () => {
@@ -346,14 +329,12 @@ class EditEventPage extends Component {
     };
     
     handleOk = e => {
-        console.log(e);
         this.setState({
             visible: false,
         });
     };
     
     handleCancel = e => {
-        console.log(e);
         this.setState({
             visible: false,
             picture_event : null,
@@ -416,7 +397,6 @@ class EditEventPage extends Component {
         this.setState({loading: true})
         API.postEdit(`/panitia/editevent/${id_panitia}`, params)
         .then(res => {
-            console.log('res',res)
             if(res.status === 200){
                 message.success('Data Berhasil di Ubah');
                 this.props.navigate(CONSTANS. ACTIVE_EVENT_MENU_KEY)                

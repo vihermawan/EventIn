@@ -11,7 +11,6 @@ const { Content } = Layout;
 class ActiveEventComponent extends Component {
     render() { 
         const { initialData, columns, data,handleOk,handleCancel } = this.props
-        console.log(initialData.url)
         return ( 
             <Content
                 style={{

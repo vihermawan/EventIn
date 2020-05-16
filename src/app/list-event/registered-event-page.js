@@ -91,7 +91,6 @@ class RegisteredEventPage extends Component {
         this.setState({loadingHome: true})
         API.get(`/peserta/registered-event`)
         .then(res => {
-            console.log('res',res)
             this.setState({
                 registeredEvent:res.data.data.event,
                 loadingHome: false,

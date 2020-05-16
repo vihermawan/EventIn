@@ -29,7 +29,6 @@ class ProfilePage extends Component {
         this.setState({loadingHome: true})
         API.get(`/peserta/profile`)
         .then(res => {
-            console.log('res',res.data.data.user)
             this.setState({
                 user:res.data.data.user,
                 loadingHome: false,

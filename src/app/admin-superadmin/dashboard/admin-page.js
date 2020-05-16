@@ -35,7 +35,6 @@ class AdminPage extends Component {
         this.setState({loading: true})
         API.get(`/admin/count-event`)
         .then(res => {
-            console.log('res',res.data)
             this.setState({loading:false})
             this.reportChart(res.data)
         });
@@ -46,7 +45,6 @@ class AdminPage extends Component {
         this.setState({loading: true})
         API.get(`/admin/count-user`)
         .then(res => {
-            console.log('res',res.data)
             this.setState({loading:false})
             this.pieChart(res.data)
         });
@@ -57,7 +55,6 @@ class AdminPage extends Component {
         this.setState({loading: true})
         API.get(`/admin/showbiodatapenandatangan`)
         .then(res => {
-            // console.log('res',res.data.data.user)
             this.setState({total_biodata : res.data.size,loading : false})
         });
     }
@@ -66,7 +63,6 @@ class AdminPage extends Component {
         this.setState({loading: true})
         API.get(`/admin/approve/event`)
         .then(res => {
-            // console.log('res',res.data.data.user)
             this.setState({total_approval : res.data.size,loading : false})
         });
     }
@@ -75,7 +71,6 @@ class AdminPage extends Component {
         this.setState({loading: true})
         API.get(`/admin/sertifikat-waiting`)
         .then(res => {
-            // console.log('res',res.data.data.user)
             this.setState({total_waitingSertifikat : res.data.size,loading : false})
         });
     }
@@ -84,7 +79,6 @@ class AdminPage extends Component {
         this.setState({loading: true})
         API.get(`/admin/count-all-sertifikat`)
         .then(res => {
-            // console.log('res',res.data.data.sertifikat)
             this.setState({total_certificate : res.data.data.sertifikat,loading : false})
         });
     }
@@ -93,7 +87,6 @@ class AdminPage extends Component {
         this.setState({loading: true})
         API.get(`/admin/count-all-event`)
         .then(res => {
-            // console.log('res',res.data.data.event)
             this.setState({total_event : res.data.data.event,loading : false})
         });
     }
@@ -102,7 +95,6 @@ class AdminPage extends Component {
         this.setState({loading: true})
         API.get(`/admin/count-all-user`)
         .then(res => {
-            // console.log('res',res.data.data.event)
             this.setState({total_user : res.data.data.user,loading : false})
         });
     }
@@ -118,7 +110,6 @@ class AdminPage extends Component {
             })
         }
         chart.data = data_user;
-        //chart.innerRadius = am4core.percent(40);
         
         // Add and configure Series
         let pieSeries = chart.series.push(new am4charts.PieSeries());
@@ -138,7 +129,6 @@ class AdminPage extends Component {
         chart.scrollbarX = new am4core.Scrollbar();
         chart.legend = new am4charts.Legend();
         let data_event = [];
-        console.log(data_event_ac)
        
         for(let i=0; i<data_event_ac.size; i++){
             data_event.push({

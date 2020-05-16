@@ -9,11 +9,9 @@ class TabAbsentPage extends Component {
     }
 
     componentDidMount(){
-        console.log('tabchange')
     }
 
     changeKey = (key) => {
-        console.log(key)
         this.setState({activeKey: key})
     }
 
