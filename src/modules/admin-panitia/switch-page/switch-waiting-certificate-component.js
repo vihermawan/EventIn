@@ -48,7 +48,7 @@ class SwitchWaitingCertificateComponent extends Component {
                                                 icon={faHourglass}
                                                 style={{marginRight: 10}}
                                             /> 
-                                            Upload Sertifikat
+                                            Pengajuan Sertifikat
                                         </span>}
                                         key="1"
                                     >
@@ -61,7 +61,7 @@ class SwitchWaitingCertificateComponent extends Component {
                                             icon={faCheckCircle}
                                             style={{marginRight: 10}}
                                         />     
-                                        Waiting Sertifikat
+                                        Sertifikat Menunggu
                                     </span>}
                                     key="2"
                                     > 

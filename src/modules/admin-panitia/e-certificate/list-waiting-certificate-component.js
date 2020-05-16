@@ -25,8 +25,8 @@ class ListWaiitingCertificateComponent extends Component {
                 }}
             >
                 <Breadcrumb separator=">">
-                    <Breadcrumb.Item><Link to='/dashboard/waiting-certificate-event'>Dashboard Waiting Sertifikat</Link></Breadcrumb.Item>
-                    <Breadcrumb.Item>Dashboard List Waiting Sertifikat</Breadcrumb.Item>
+                    <Breadcrumb.Item><Link to='/dashboard/waiting-certificate-event'>Dashboard Sertifikat Menunggu</Link></Breadcrumb.Item>
+                    <Breadcrumb.Item>Dashboard Daftar Sertifikat Menunggu</Breadcrumb.Item>
                 </Breadcrumb>
 
                 <Row style={{minHeight: '100%',marginBottom: '2%',marginTop:'2%',}} className="background">
@@ -34,7 +34,7 @@ class ListWaiitingCertificateComponent extends Component {
                         <div className="container-active-event">
                             <Row>
                             <div className="container-title-event">
-                                <span>List Sertifikat</span>
+                                <span>Daftar Sertifikat</span>
                             </div>
                             </Row>
                             <LoadingContainer loading={initialData.loading}>
