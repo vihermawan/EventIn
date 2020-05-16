@@ -173,6 +173,12 @@ class PenandatanganAdminPage extends Component {
                 ...this.getColumnSearchProps('penandatangan'),
             },
             {
+              title: 'Email',
+              dataIndex: 'email',
+              key: 'email',
+              ...this.getColumnSearchProps('email'),
+            },
+            {
                 title: 'NIP',
                 dataIndex: 'nip',
                 key: 'nip',
@@ -189,12 +195,6 @@ class PenandatanganAdminPage extends Component {
                 dataIndex: 'jabatan',
                 key: 'jabatan',
                 ...this.getColumnSearchProps('jabatan'),
-            },
-            {
-              title: 'Email',
-              dataIndex: 'email',
-              key: 'email',
-              ...this.getColumnSearchProps('email'),
             },
             {
                 title: 'Action',

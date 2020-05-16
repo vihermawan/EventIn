@@ -84,8 +84,8 @@ class EditProfileAdminSignerPage extends Component {
             picture : res.data.data.penandatangan.penandatangan.image_URL,
             jabatan : res.data.data.penandatangan.penandatangan.jabatan,
             profile_picture :res.data.data.penandatangan.penandatangan.profile_picture,
-            kabupaten : res.data.data.penandatangan.penandatangan.kabupaten.kabupaten_kota,
-            provinsi : res.data.data.penandatangan.penandatangan.provinsi.provinsi,
+            // kabupaten : res.data.data.penandatangan.penandatangan.kabupaten.kabupaten_kota,
+            // provinsi : res.data.data.penandatangan.penandatangan.provinsi.provinsi,
             loading: false,
           })
         });

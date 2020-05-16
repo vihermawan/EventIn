@@ -150,10 +150,16 @@ class BannedPenandatanganPage extends Component {
                 sortDirections: ['ascend','descend'],
             },
             {
-                title: 'Nama Penandatangan',
+                title: 'Nama',
                 dataIndex: 'penandatangan',
                 key: 'penandatangan',
                 ...this.getColumnSearchProps('penandatangan'),
+            },
+            {
+              title: 'Email',
+              dataIndex: 'email',
+              key: 'email',
+              ...this.getColumnSearchProps('email'),
             },
             {
                 title: 'NIP',
@@ -191,7 +197,7 @@ class BannedPenandatanganPage extends Component {
           ];
 
 
-          const data =  this.state.bannedPenandatangan.map(  ({id_users, penandatangan}, index) => ({
+          const data =  this.state.bannedPenandatangan.map(  ({id_users, penandatangan,email}, index) => ({
             no : index+1,
             id_users : id_users,
             id_penandatangan : penandatangan.id_penandatangan,
@@ -199,6 +205,7 @@ class BannedPenandatanganPage extends Component {
             instansi : penandatangan.instansi,
             jabatan : penandatangan.jabatan,
             nip : penandatangan.nip,
+            email:email,
         }))
 
         return ( 
