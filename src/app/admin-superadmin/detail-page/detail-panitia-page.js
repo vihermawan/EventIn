@@ -184,6 +184,7 @@ class DetailPanitiaPage extends Component {
                 title : 'Status Event',
                 dataIndex : 'status',
                 key : 'status',
+                ...this.getColumnSearchProps('status'),
                 render: status => (
                     <span>
                         {status.map(tag => {
@@ -201,9 +202,6 @@ class DetailPanitiaPage extends Component {
                         })}
                   </span>
                 ),
-                onFilter: (value, record) => record.status.indexOf(value) === 0,
-                sorter: (a, b) => a.status.length - b.status.length,
-                sortDirections: ['descend', 'ascend'],
             },
             {
                 title: 'Tanggal Mulai',

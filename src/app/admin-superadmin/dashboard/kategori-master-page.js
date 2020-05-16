@@ -135,9 +135,10 @@ class KategoriMasterPage extends Component {
             const message = validation.required(this.state.nama_kategori);
             this.openNotification(message, 'Nama Kategori harus ditulis')
         }else{
-            this.setState({loading: true})
+            this.setState({loading: true,show: false,})
             API.post(`/admin/addkategori`, params)
-        .then(res => {
+            .then(res => {
+            console.log(res)
             if(res.status === 201){
                 message.success('Kategori Berhasil Ditambahkan');
                 this.setState({
@@ -145,6 +146,9 @@ class KategoriMasterPage extends Component {
                 });
                 this.setState({loading: false})
                 this.componentDidMount();
+            }else if(res.status === 500){
+                this.openNotification('Data Duplikat', 'Silahkan isi data dengan benar')
+                this.setState({loading: false,show: false,})
             }else{
                 this.openNotification('Data Salah', 'Silahkan isi data dengan benar')
                 this.setState({loading: false})
@@ -163,7 +167,7 @@ class KategoriMasterPage extends Component {
                 const message = validation.required(this.state.edit_kategori);
                 this.openNotification(message, 'Nama Kategori harus ditulis')
             }else{
-                this.setState({loading: true})
+                this.setState({loading: true,show: false,})
                 API.postEdit(`/admin/editkategori/${this.state.id_kategori}`, params)
             .then(res => {
                 if(res.status === 200){
@@ -173,7 +177,10 @@ class KategoriMasterPage extends Component {
                     });
                     this.setState({loading: false})
                     this.componentDidMount();
-                }else{
+                }else if(res.status === 500){
+                    this.openNotification('Data Duplikat', 'Silahkan isi data dengan benar')
+                    this.setState({loading: false,show: false,})
+                } else{
                     this.openNotification('Data Salah', 'Silahkan isi data dengan benar')
                     this.setState({loading: false})
                 }
@@ -231,14 +238,14 @@ class KategoriMasterPage extends Component {
                 render: text => <a>{text}</a>,
                 sorter: (a, b) => a.no - b.no,
                 sortDirections: ['ascend','descend'],
-                width:'8%',
+                width:'10%',
             },
             {
                 title: 'Nama Kategori',
                 dataIndex: 'nama_kategori',
                 key: 'nama_kategori',
                 ...this.getColumnSearchProps('nama_kategori'),
-                width:'70%',
+                width:'60%',
             },
             {
               title: 'Action',

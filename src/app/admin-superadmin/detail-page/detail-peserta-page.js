@@ -185,6 +185,7 @@ class DetailPesertaPage extends Component {
                 title : 'Status Peserta',
                 dataIndex : 'status',
                 key : 'status',
+                ...this.getColumnSearchProps('status'),
                 render: status => (
                     <span>
                         {status.map(tag => {
@@ -202,9 +203,6 @@ class DetailPesertaPage extends Component {
                         })}
                   </span>
                 ),
-                onFilter: (value, record) => record.status.indexOf(value) === 0,
-                sorter: (a, b) => a.status.length - b.status.length,
-                sortDirections: ['descend', 'ascend'],
             },
             {
                 title: 'Tanggal Mulai',

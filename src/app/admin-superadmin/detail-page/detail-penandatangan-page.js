@@ -10,7 +10,15 @@ import { faInfoCircle } from '@fortawesome/free-solid-svg-icons';
 
 class DetailPenandatanganPage extends Component {
     state = {
-        detail_penandatangan : [],
+        nama_penandatangan : '',
+        instansi : '',
+        nip : '',
+        picture : '',
+        telepon : '',
+        email : '',
+        kabupaten : '',
+        provinsi : '',
+        jabatan : '',
         sertifikat :[],
         url : '',
         visible : false,
@@ -89,10 +97,18 @@ class DetailPenandatanganPage extends Component {
 
     getDetailPenandatangan=(id_users)=>{
         this.setState({loading: true})
-        API.get(`/admin/showpenandatangan/${id_users}`)
+        API.get(`/admin/showeditpenandatangan/${id_users}`)
         .then(res => {
           this.setState({
-            detail_penandatangan:res.data.data.penandatangan,
+            nama_penandatangan :res.data.data.penandatangan.penandatangan.nama_penandatangan,
+            instansi : res.data.data.penandatangan.penandatangan.instansi,
+            nip : res.data.data.penandatangan.penandatangan.nip,
+            picture : res.data.data.penandatangan.penandatangan.image_URL,
+            telepon : res.data.data.penandatangan.penandatangan.telepon,
+            email : res.data.data.penandatangan.email,
+            jabatan : res.data.data.penandatangan.penandatangan.jabatan,
+            kabupaten : res.data.data.penandatangan.penandatangan.kabupaten.kabupaten_kota,
+            provinsi : res.data.data.penandatangan.penandatangan.provinsi.provinsi,
             loading: false,
           })
         });
@@ -183,31 +199,19 @@ class DetailPenandatanganPage extends Component {
               key: 'action',
               render: (data) => (
                 [
-                <Tooltip title="Detail">
+                <Tooltip title="Detail">,
                     <ButtonDashboard
                         height={20}
                         icon={faInfoCircle}
                         borderRadius="5px"
                         background="#FFA903"
                         onClick = {() => this.onDetailCertificate(data.sertif_URL)}
-                    />
+                    />,
                 </Tooltip>,
                 ]
               ),
             },
           ];
-
-        const dataPenandatangan =  this.state.detail_penandatangan.map( ({id_users, penandatangan,email,kabupaten,provinsi}, index) => ({
-           nama_penandatangan : penandatangan.nama_penandatangan,
-           instansi : penandatangan.instansi,
-           nip : penandatangan.nip,
-           jabatan : penandatangan.jabatan,
-           picture : penandatangan.image_URL,
-           telepon: penandatangan.telepon,
-           email:email,
-           kabupaten: penandatangan.kabupaten,
-           provinsi: penandatangan.provinsi,
-        }))
 
         const data = this.state.sertifikat.map ( ({nama_event, nama_sertifikat,sertifikat_URL,sertifikat,status}, index) => ({
             nomor : index+1,
@@ -223,7 +227,6 @@ class DetailPenandatanganPage extends Component {
                 initialData={this.state}
                 navigate={this.props.navigate}
                 columns={columns}
-                dataPenandatangan={dataPenandatangan}
                 data ={data}
                 handleOk = {this.handleOk}
                 handleCancel = {this.handleCancel}

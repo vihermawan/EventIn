@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { message,notification } from 'antd';
 import { connect } from 'react-redux';
+import CONSTANS from '../../../common/utils/Constants'
 import { API } from '../../../common/api'
 import { navigate } from '../../../common/store/action'
 import EditProfileSignerComponent from '../../../modules/admin-superadmin/user/penandatangan/edit-penandatangan-component';
@@ -63,9 +64,16 @@ class EditProfileAdminSignerPage extends Component {
     }
 
     uploadP12 = (event) => {
-        this.setState({
-            file_p12:event.target.files[0]
-        })
+        if(event.target.files[0].type !== 'application/x-pkcs12'){
+            this.openNotification('Format P12 Salah', 'Silahkan Upload Kembali dengan format yang benar')
+        }
+        else if(event.target.files[0].size / 1024 / 1024 > 2){
+            this.openNotification('Ukuran file Melebihi 2Mb', 'Silahkan Upload Kembali')
+        }else{
+            this.setState({
+                file_p12:event.target.files[0]
+            })
+        }
     }
     
     //get data profile dari API 
@@ -115,7 +123,7 @@ class EditProfileAdminSignerPage extends Component {
             .then(res => {
                 if(res.status === 200){
                     message.success('Data Berhasil di Ubah');
-                    this.componentDidMount();
+                    this.props.navigate(CONSTANS.DAFTAR_PENANDATANGAN_MENU_KEY)
                 }else{
                     this.openNotification('Data Salah', 'Silahkan isi data dengan benar')
                 }

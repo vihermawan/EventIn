@@ -8,10 +8,14 @@ import HomeComponent from '../../modules/home/component/home-component';
 class HomePage extends Component {
     state = { 
         loadingHome: false,
+        token : '',
     }
 
     componentDidMount(){
-    
+        let token = localStorage.getItem("token");
+        if (token !== null){
+            this.setState({token : token})
+        }
     }
 
     onStartLoadingHome = () =>  this.setState({ loadingHome: true })

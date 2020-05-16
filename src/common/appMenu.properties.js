@@ -154,6 +154,9 @@ const menu = {
     EDIT_PENANDATANGAN_ADMIN : {
         link : '/admin/edit-penandatangan'
     },
+    DAFTAR_PENANDATANGAN : {
+        link : '/admin/admin-penandatangan/'
+    },
 
     //penandatangan
     SIGNER: {
