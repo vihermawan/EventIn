@@ -41,34 +41,40 @@ class DetailPanitiaAdminComponent extends Component {
                                             <Col lg={8} md={12} sm={12}>
                                                 <div className="avatar-panitia">
                                                     <div style={{margin:"16p auto", textAlign:"center"}}>
-                                                        <Avatar shape="square" size={200} src={initialData.detail_panitia.image_URL} icon="user"/>
+                                                        <Avatar shape="square" size={300} src={initialData.detail_panitia.image_URL} icon="user"/>
                                                     </div>
                                                 </div>
                                             </Col>
                                             <Col lg={8} md={12} sm={12}>
                                                 <div className="desc-panitia">
-                                                    <span className="text-black nama-panitia">Nama Panitia</span>
+                                                    <span className="text-blue nama-panitia">Nama Panitia</span>
                                                     <br/>
                                                     <span className="text-black desc-nama">{initialData.detail_panitia.nama_panitia}</span>
                                                 </div>
                                                 <br/>
                                                 <div className="desc-panitia">
-                                                    <span className="text-black nama-panitia">Organisasi</span>
+                                                    <span className="text-blue nama-panitia">Organisasi</span>
                                                     <br/>
                                                     <span className="text-black desc-nama">{initialData.detail_panitia.organisasi}</span>
+                                                </div>
+                                                <br/>
+                                                <div className="desc-panitia">
+                                                    <span className="text-blue nama-panitia">Instagram</span>
+                                                    <br/>
+                                                    <span className="text-black desc-nama">{initialData.detail_panitia.instagram}</span>
                                                 </div>
                                             </Col>
                                             <Col lg={8} md={12} sm={12}>
                                                 <div className="desc-panitia">
-                                                    <span className="text-black nama-panitia">No Telepon</span>
+                                                    <span className="text-blue nama-panitia">Email</span>
                                                     <br/>
-                                                    <span className="text-black desc-nama">{initialData.detail_panitia.telepon}</span>
+                                                    <span className="text-black desc-nama">{initialData.panitia.email}</span>
                                                 </div>
                                                 <br/>
                                                 <div className="desc-panitia">
-                                                    <span className="text-black nama-panitia">Instagram</span>
+                                                    <span className="text-blue nama-panitia">No Telepon</span>
                                                     <br/>
-                                                    <span className="text-black desc-nama">{initialData.detail_panitia.instagram}</span>
+                                                    <span className="text-black desc-nama">{initialData.detail_panitia.telepon}</span>
                                                 </div>
                                             </Col>
                                         </Row>

@@ -114,7 +114,7 @@ class PenandatanganAdminPage extends Component {
         API.delete(`/admin/ban/penandatangan/${id_penandatangan}`)
         .then(res => {
             if(res.status === 200){
-                message.success('Berhasil Banned Penandatangan');
+                message.success('Blokir Penandatangan Berhasil');
                 this.componentDidMount();
             }   
         });
@@ -123,7 +123,7 @@ class PenandatanganAdminPage extends Component {
     //function untuk modal.
     showBannedConfirm = (id,nama_penandatangan) => {
         confirm({
-            title: `Apakah yakin untuk membanned ${nama_penandatangan}?`,
+            title: `Apakah yakin untuk memblokir ${nama_penandatangan}?`,
             okText: 'Yes',
             okType: 'danger',
             cancelText: 'No',
@@ -166,6 +166,12 @@ class PenandatanganAdminPage extends Component {
                 ...this.getColumnSearchProps('penandatangan'),
             },
             {
+              title: 'Email',
+              dataIndex: 'email',
+              key: 'email',
+              ...this.getColumnSearchProps('email'),
+            },
+            {
                 title: 'NIP',
                 dataIndex: 'nip',
                 key: 'nip',
@@ -182,12 +188,6 @@ class PenandatanganAdminPage extends Component {
                 dataIndex: 'jabatan',
                 key: 'jabatan',
                 ...this.getColumnSearchProps('jabatan'),
-            },
-            {
-              title: 'Email',
-              dataIndex: 'email',
-              key: 'email',
-              ...this.getColumnSearchProps('email'),
             },
             {
                 title: 'Action',

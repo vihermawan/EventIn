@@ -108,7 +108,7 @@ class BannedPenandatanganPage extends Component {
      //function untuk modal
      showUnbannedConfirm = (id,nama_penandatangan) => {
       confirm({
-          title: `Apakah yakin untuk melakukan unban terhadap ${nama_penandatangan}?`,
+          title: `Apakah yakin untuk mengaktifkan kembali akun ${nama_penandatangan}?`,
           okText: 'Yes',
           okType: 'danger',
           cancelText: 'No',
@@ -125,7 +125,7 @@ class BannedPenandatanganPage extends Component {
       API.get(`/admin/unban/penandatangan/${id_penandatangan}`)
       .then(res => {
           if(res.status === 200){
-              message.success('Unbanned Penandatangan Berhasil');
+              message.success('Akun Penandatangan Berhasil diaktifkan kembali');
               this.componentDidMount(); 
           }   
       });
@@ -144,10 +144,16 @@ class BannedPenandatanganPage extends Component {
                 sortDirections: ['ascend','descend'],
             },
             {
-                title: 'Nama Penandatangan',
+                title: 'Nama',
                 dataIndex: 'penandatangan',
                 key: 'penandatangan',
                 ...this.getColumnSearchProps('penandatangan'),
+            },
+            {
+              title: 'Email',
+              dataIndex: 'email',
+              key: 'email',
+              ...this.getColumnSearchProps('email'),
             },
             {
                 title: 'NIP',
@@ -185,7 +191,7 @@ class BannedPenandatanganPage extends Component {
           ];
 
 
-          const data =  this.state.bannedPenandatangan.map(  ({id_users, penandatangan}, index) => ({
+          const data =  this.state.bannedPenandatangan.map(  ({id_users, penandatangan,email}, index) => ({
             no : index+1,
             id_users : id_users,
             id_penandatangan : penandatangan.id_penandatangan,
@@ -193,6 +199,7 @@ class BannedPenandatanganPage extends Component {
             instansi : penandatangan.instansi,
             jabatan : penandatangan.jabatan,
             nip : penandatangan.nip,
+            email:email,
         }))
 
         return ( 

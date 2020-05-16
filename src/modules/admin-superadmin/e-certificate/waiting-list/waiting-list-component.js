@@ -49,7 +49,7 @@ class PesertaAdminComponent extends Component {
                                     onOk={handleOk}
                                     onCancel={handleCancel}
                                     >
-                                    {/* <p>Registrasi Event terakhir : {initialData.end_regis}</p> */}
+                                    <p>Registrasi Event terakhir : {initialData.end_regis}</p>
                                     <p>Mulai Event : {initialData.start_event}</p>
                                     <p>Selesai Event : {initialData.end_event}</p>
                                     <div>

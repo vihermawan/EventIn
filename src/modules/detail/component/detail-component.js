@@ -134,7 +134,7 @@ class DetailComponent extends Component {
                                     {
                                         benefitData.map( data =>
                                             <Col lg={6} className="text-align">
-                                                    <div className="detail-content" style={{marginLeft:'5%'}}>
+                                                    <div className="detail-content" style={{marginLeft:'20%', marginBottom:'20%'}}>
                                                         <img src={data.image} alt="organizer" className="detail-image"/>
                                                         <div className="text-soft-blue bold detail-title">
 
@@ -160,7 +160,7 @@ class DetailComponent extends Component {
                             </Row>
                         </Col>
                         <Col lg={12} md={12} sm={12}>
-                            <Row>
+                            <Row style={{marginLeft:'5%'}}>
                                 <Col span={24} >
                                     <div className="title-container-nama">
                                         <span className="text-soft-blue judul-detail">{initialData.Event.nama_event} </span>
@@ -190,8 +190,8 @@ class DetailComponent extends Component {
                                         <p className="ikon-judul">More Info : </p>
                                         <Col span={12}>
                                             <div className="ikon-tulisan">
-                                                <Icon type="instagram" /> @ {initialData.detailEvent.instagram}
-                                                <Icon className="ikon-2" type="phone" /> {initialData.detailEvent.telepon}
+                                                <p><Icon type="instagram" /> @ {initialData.detailEvent.instagram}</p>
+                                                <p><Icon className="ikon-2" type="phone" /> {initialData.detailEvent.telepon}</p>
                                             </div>
                                         </Col>
                                     </div>

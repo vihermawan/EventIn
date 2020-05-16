@@ -175,14 +175,14 @@ class Admin extends Component {
                       </span>
                       }
                     >
-                      <Menu.Item key="admin-penandatangan" onClick={this.clickedMenu}>
-                          <NavLink to="/admin/admin-penandatangan">
-                              <span>Daftar</span>
-                          </NavLink>
-                      </Menu.Item>
                       <Menu.Item key="biodata-penandatangan" onClick={this.clickedMenu}>
                           <NavLink to="/admin/biodata-penandatangan">
                               <span>Permintaan</span>
+                          </NavLink>
+                      </Menu.Item>
+                      <Menu.Item key="admin-penandatangan" onClick={this.clickedMenu}>
+                          <NavLink to="/admin/admin-penandatangan">
+                              <span>Data</span>
                           </NavLink>
                       </Menu.Item>
                   </SubMenu>
@@ -198,17 +198,6 @@ class Admin extends Component {
                   <div className="title-dashboard">
                       <span className="title-desc-dashboard">Event</span>
                   </div>
-                  <Menu.Item key="list-all-event" onClick={this.clickedMenu}>
-                    <Link to="/admin/list-all-event">
-                    
-                      <FontAwesomeIcon
-                          icon={faListAlt} 
-                          style={{marginRight: 10}}
-                          className={this.state.collapsed ? 'hidden-logo' : 'block-logo'}
-                      />
-                      <span className={hidden} >Daftar Event</span>
-                    </Link>
-                  </Menu.Item>
                   <Menu.Item key="approval-event" onClick={this.clickedMenu}>
                     <Link to="/admin/approval-event">
                       <FontAwesomeIcon
@@ -219,6 +208,17 @@ class Admin extends Component {
                       <span className={hidden} >Persetujuan</span>
                     </Link>
                   </Menu.Item>  
+                  <Menu.Item key="list-all-event" onClick={this.clickedMenu}>
+                    <Link to="/admin/list-all-event">
+                    
+                      <FontAwesomeIcon
+                          icon={faListAlt} 
+                          style={{marginRight: 10}}
+                          className={this.state.collapsed ? 'hidden-logo' : 'block-logo'}
+                      />
+                      <span className={hidden} >Data Event</span>
+                    </Link>
+                  </Menu.Item>
                   <div className="title-dashboard">
                       <hr style={{
                           minHeight: 1,

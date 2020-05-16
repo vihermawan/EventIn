@@ -259,7 +259,7 @@ class WaitingPage extends Component {
               render: (data) => (
                 [
                 <Row>
-                    <div style={data.start === Date.parse(dateNow) ? {display:"none"}:{display:"block"}}>
+                    <div style={data.start <= Date.parse(dateNow) ? {display:"none"}:{display:"block"}}>
                       <div style={{textAlign:"center"}}>
                         <Col lg={12} md={24} sm={24}>
                             <Tooltip title="Detail">,
@@ -287,7 +287,7 @@ class WaitingPage extends Component {
                         </Col>
                       </div> 
                     </div>
-                    <div style={data.start === Date.parse(dateNow) ? {display:"block"}:{display:"none"}}> 
+                    <div style={data.start <= Date.parse(dateNow) ? {display:"block"}:{display:"none"}}> 
                       <div style={{textAlign:"center"}}>
                         <Col lg={8} md={24} sm={24} >
                           <Tooltip title="Kirim">,

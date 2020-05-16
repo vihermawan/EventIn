@@ -117,7 +117,7 @@ class ApprovalEventPage extends Component {
         API.put(`/admin/approvalevent/${id_event}/acc`)
         .then(res => {
             if(res.status === 200){
-                message.success('Event berhasil di approve');
+                message.success('Event berhasil di terima');
                 this.componentDidMount(); 
             }   
         });
@@ -138,7 +138,7 @@ class ApprovalEventPage extends Component {
     //function untuk modal
     showAcceptConfirm = (id,nama,panitia) => {
         confirm({
-            title: `Apakah yakin untuk approve event ${nama} dari ${panitia} ?`,
+            title: `Apakah yakin untuk menerima event ${nama} dari ${panitia} ?`,
             okText: 'Yes',
             okType: 'danger',
             cancelText: 'No',
@@ -256,6 +256,16 @@ class ApprovalEventPage extends Component {
                     />
                  </Tooltip>,
                 <Divider type="vertical" />,
+                <Tooltip title="Detail">,
+                    <ButtonDashboard
+                        height={20}
+                        icon={faInfoCircle}
+                        borderRadius="5px"
+                        background="#FFA903"
+                        onClick = { () => this.onDetailEvent(data.nomor)}
+                    />
+                </Tooltip>,
+                <Divider type="vertical" />,
                 <Tooltip title="Tolak">,
                     <ButtonDashboard
                         height={20}
@@ -265,16 +275,7 @@ class ApprovalEventPage extends Component {
                         onClick = { () => this.showRejectConfirm(data.nomor,data.nama_event,data.panitia)}
                     />
                 </Tooltip>,
-                <Divider type="vertical" />,
-                <Tooltip title="Detail">,
-                    <ButtonDashboard
-                        height={20}
-                        icon={faInfoCircle}
-                        borderRadius="5px"
-                        background="#FFA903"
-                        onClick = { () => this.onDetailEvent(data.nomor)}
-                    />
-                </Tooltip>,]
+                ]
               ),
             },
         ];

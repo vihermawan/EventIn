@@ -76,7 +76,8 @@ class AboutComponent extends Component {
                               <img
                                   src={image1}
                                   alt="Home 1"
-                                  style={{maxWidth: '100%'}}
+                                  height="470px"
+                                  style={{minWidth: '100%'}}
                               />
                           </div>
                         </Col>

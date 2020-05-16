@@ -6,6 +6,7 @@ import '../../../../assets/css/dashboard-all/table-style.css'
 import '../../../../assets/css/admin-superadmin/detail-user.css'
 import TableProfile from '../../../../common/component/table/table'
 import LoadingContainer from '../../../../common/component/loading/loading-container'
+import moment from 'moment'
 // constant content
 const { Content } = Layout;
 
@@ -42,34 +43,58 @@ class DetailPesertaAdminComponent extends Component {
                                         <Col lg={8} md={12} sm={12}>
                                             <div classname="detail">
                                                 <div style={{margin:"16p auto", textAlign:"center"}}>
-                                                    <Avatar shape="square" size={200} src={initialData.detailPeserta.image_URL} icon="user"/>
+                                                    <Avatar shape="square" size={300} src={initialData.detailPeserta.image_URL} icon="user"/>
                                                 </div>
                                             </div>
                                         </Col>
                                         <Col lg={8} md={12} sm={12}>
                                             <div className="desc-panitia">
-                                                <span className="text-black nama-panitia">Nama Peserta</span>
+                                                <span className="text-blue nama-panitia">Nama Peserta</span>
                                                 <br/>
                                                 <span className="text-black desc-nama">{initialData.detailPeserta.nama_peserta}</span>
                                             </div>
                                             <br/>
                                             <div className="desc-panitia">
-                                                <span className="text-black nama-panitia">Organisasi</span>
+                                                <span className="text-blue nama-panitia">Jenis Kelamin</span>
+                                                <br/>
+                                                <span className="text-black desc-nama">{initialData.detailPeserta.jenis_kelamin}</span>
+                                            </div>
+                                            <br/>
+                                            <div className="desc-panitia">
+                                                <span className="text-blue nama-panitia">Organisasi</span>
                                                 <br/>
                                                 <span className="text-black desc-nama">{initialData.detailPeserta.organisasi}</span>
+                                            </div>
+                                            <br/>
+                                            <div className="desc-panitia">
+                                                <span className="text-blue nama-panitia">Tanggal Lahir</span>
+                                                <br/>
+                                                <span className="text-black desc-nama">{moment(initialData.detailPeserta.tanggal_lahir).format("DD MMMM YYYY")}</span>
                                             </div>
                                         </Col>
                                         <Col lg={8} md={12} sm={12}>
                                             <div className="desc-panitia">
-                                                <span className="text-black nama-panitia">No Telepon</span>
+                                                <span className="text-blue nama-panitia">Email</span>
+                                                <br/>
+                                                <span className="text-black desc-nama">{initialData.peserta.email}</span>
+                                            </div>
+                                            <br/>
+                                            <div className="desc-panitia">
+                                                <span className="text-blue nama-panitia">No. Telepon</span>
                                                 <br/>
                                                 <span className="text-black desc-nama">{initialData.detailPeserta.telepon}</span>
                                             </div>
                                             <br/>
                                             <div className="desc-panitia">
-                                                <span className="text-black nama-panitia">Pekerjaan</span>
+                                                <span className="text-blue nama-panitia">Pekerjaan</span>
                                                 <br/>
                                                 <span className="text-black desc-nama">{initialData.detailPeserta.pekerjaan}</span>
+                                            </div>
+                                            <br/>
+                                            <div className="desc-panitia">
+                                                <span className="text-blue nama-panitia">Umur</span>
+                                                <br/>
+                                                <span className="text-black desc-nama">{initialData.detailPeserta.umur} tahun</span>
                                             </div>
                                         </Col>
                                     </Row>

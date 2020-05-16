@@ -44,35 +44,61 @@ class DetailPenandatanganAdminComponent extends Component {
                                             <Col lg={8} md={12} sm={12}>
                                                 <div classname="detail">
                                                     <div style={{margin:"16p auto", textAlign:"center"}}>
-                                                        <Avatar shape="square" size={200} src={data.picture} icon="user"/>
+                                                        <Avatar shape="square" size={300} src={data.picture} icon="user"/>
                                                     </div>
                                                 </div>
                                             </Col>
                                             <Col lg={8} md={12} sm={12}>
                                                 <div className="desc-panitia">
-                                                    <span className="text-black nama-panitia">Nama</span>
+                                                    <span className="text-blue nama-panitia">Nama Penandatangan</span>
                                                     <br/>
                                                     <span className="text-black desc-nama">{data.nama_penandatangan}</span>
                                                 </div>
                                                 <br/>
                                                 <div className="desc-panitia">
-                                                    <span className="text-black nama-panitia">Instansi</span>
+                                                    <span className="text-blue nama-panitia">Nomor Induk Pegawai</span>
                                                     <br/>
-                                                    <span className="text-black desc-nama">{data.instansi}</span>
+                                                    <span className="text-black desc-nama">{data.nip}</span>
                                                 </div>
-                                            </Col>
-                                            <Col lg={8} md={12} sm={12}>
+                                                <br/>
                                                 <div className="desc-panitia">
-                                                    <span className="text-black nama-panitia">Jabatan</span>
+                                                    <span className="text-blue nama-panitia">Jabatan</span>
                                                     <br/>
                                                     <span className="text-black desc-nama">{data.jabatan}</span>
                                                 </div>
                                                 <br/>
                                                 <div className="desc-panitia">
-                                                    <span className="text-black nama-panitia">NIP</span>
+                                                    <span className="text-blue nama-panitia">Instansi</span>
                                                     <br/>
-                                                    <span className="text-black desc-nama">{data.nip}</span>
+                                                    <span className="text-black desc-nama">{data.instansi}</span>
                                                 </div>
+                                                <br/>
+                                            </Col>
+                                            <Col lg={8} md={12} sm={12}>
+                                                <div className="desc-panitia">
+                                                    <span className="text-blue nama-panitia">Email</span>
+                                                    <br/>
+                                                    <span className="text-black desc-nama">{data.email}</span>
+                                                </div>
+                                                <br/>
+                                                <div className="desc-panitia">
+                                                    <span className="text-blue nama-panitia">No. Telepon</span>
+                                                    <br/>
+                                                    <span className="text-black desc-nama">{data.telepon}</span>
+                                                </div>
+                                                <br/>
+                                                <div className="desc-panitia">
+                                                    <span className="text-blue nama-panitia">Kabupaten/Kota</span>
+                                                    <br/>
+                                                    <span className="text-black desc-nama">{data.kabupaten}</span>
+                                                </div>
+                                                <br/>
+                                                <div className="desc-panitia">
+                                                    <span className="text-blue nama-panitia">Provinsi</span>
+                                                    <br/>
+                                                    <span className="text-black desc-nama">{data.provinsi}</span>
+                                                </div>
+                                                <br/>
                                             </Col>
                                         </Row>
                                     </div>

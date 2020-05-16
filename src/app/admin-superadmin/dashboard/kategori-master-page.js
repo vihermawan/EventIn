@@ -231,12 +231,14 @@ class KategoriMasterPage extends Component {
                 render: text => <a>{text}</a>,
                 sorter: (a, b) => a.no - b.no,
                 sortDirections: ['ascend','descend'],
+                width:'8%',
             },
             {
                 title: 'Nama Kategori',
                 dataIndex: 'nama_kategori',
                 key: 'nama_kategori',
                 ...this.getColumnSearchProps('nama_kategori'),
+                width:'70%',
             },
             {
               title: 'Action',

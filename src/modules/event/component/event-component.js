@@ -85,7 +85,7 @@ class EventComponent extends Component {
                             <Row className="section-container" style={{marginBottom: 50}}>
                             {/* Populer Event */}
                                 <Col lg={24}>
-                                    <span style={{marginLeft:'2%'}} className="text-soft-blue title-big-event bold">Populer</span>
+                                    <span style={{marginLeft:'2%'}} className="text-soft-blue title-big-event bold">Semua Event</span>
                                 </Col>
                                 <Col lg={24} className="card-container">
                                     <Tabs style={{marginLeft:'2%', marginRight:'2%'}} defaultActiveKey="1" onChange={onTabChange}>
