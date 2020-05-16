@@ -202,12 +202,16 @@ class DetailPenandatanganPage extends Component {
             },
           ];
 
-        const dataPenandatangan =  this.state.detail_penandatangan.map( ({id_users, penandatangan}, index) => ({
+        const dataPenandatangan =  this.state.detail_penandatangan.map( ({id_users, penandatangan,email,kabupaten,provinsi}, index) => ({
            nama_penandatangan : penandatangan.nama_penandatangan,
            instansi : penandatangan.instansi,
            nip : penandatangan.nip,
            jabatan : penandatangan.jabatan,
            picture : penandatangan.image_URL,
+           telepon: penandatangan.telepon,
+           email:email,
+           kabupaten: penandatangan.kabupaten,
+           provinsi: penandatangan.provinsi,
         }))
 
         const data = this.state.sertifikat.map ( ({nama_event, nama_sertifikat,sertifikat_URL,sertifikat,status}, index) => ({
