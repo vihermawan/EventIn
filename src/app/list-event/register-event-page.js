@@ -98,7 +98,6 @@ class RegisterEventPage extends Component {
         this.setState({loadingHome: true})
         API.get(`/peserta/register-event`)
         .then(res => {
-            console.log('res',res)
             this.setState({
                 registerEvent:res.data.data.event,
                 loadingHome: false,
@@ -108,7 +107,6 @@ class RegisterEventPage extends Component {
 
     //button detail participant
     onDetailEvent = (id) => {
-      console.log('id ini',id)
       this.props.setIdEvent(id);
       this.props.navigate(CONSTANS.DETAIL_EVENT_KEY)
   }
@@ -123,7 +121,7 @@ class RegisterEventPage extends Component {
                 this.onCancelRegister(id_event)
             },
             onCancel(){
-                console.log('Cancel')
+              
             }
         });
     }
@@ -132,7 +130,6 @@ class RegisterEventPage extends Component {
         this.setState({loadingHome: true})
         API.delete(`/peserta/profile/event/${id_event}/delete`)
         .then(res => {
-            console.log('res',res)
             if(res.status === 200){
                 message.success('Berhasil membatalkan pendaftaran');
                 this.componentDidMount();

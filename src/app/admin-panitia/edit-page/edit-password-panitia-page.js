@@ -36,7 +36,6 @@ class EditPasswordPage extends Component {
         
         API.post(`/panitia/change-password`, params)
             .then(res => {
-                console.log('res',res)
                 if(res.status === 200){
                     this.props.navigate(CONSTANS.PROFILE_ADMIN_PANITIA_MENU_KEY)
                     message.success('Passwword Berhasil di Ubah');

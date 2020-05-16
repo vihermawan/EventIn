@@ -18,17 +18,7 @@ class DetailSertifPage extends Component {
         // this.getEventPast();
     }
 
-    getDetailCertificate=(id)=>{
-        // this.setState({loading: true})
-        API.get(`/event-sertifikat/${id}`)
-        .then(res => {
-          console.log('res',res)
-          // this.setState({
-          //   eventPast:res.data.data.event,
-          //   loading: false,
-          // })
-        });
-    }
+   
 
     render() { 
           const columns = [

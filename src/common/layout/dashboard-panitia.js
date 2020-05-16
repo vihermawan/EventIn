@@ -56,7 +56,6 @@ class dashboard extends Component {
   getProfile=()=>{
       API.get(`/panitia/profile-edit`)
       .then(res => {
-        console.log(res.data)
         this.setState({
           telepon : res.data.data.user.panitia.telepon,
           instagram : res.data.data.user.panitia.instagram
@@ -96,7 +95,6 @@ class dashboard extends Component {
      this.setState({loading: true})
       API.post(`/auth/logout`)
       .then(res => {
-          console.log('res',res)
           if(res.status === 200){
               localStorage.clear();
               this.setState({
@@ -114,7 +112,6 @@ class dashboard extends Component {
   };
   
   clickedMenu = e => {
-    console.log(e.key)
     this.setState({ current: e.key });
   }
 

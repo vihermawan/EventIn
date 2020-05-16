@@ -73,7 +73,6 @@ class EditProfileAdminSignerPage extends Component {
         this.setState({loading: true})
         API.get(`/admin/showeditpenandatangan/${id_users}`)
         .then(res => {
-          console.log('res',res)
           this.setState({
             id_penandatangan : res.data.data.penandatangan.penandatangan.id_penandatangan,
             nama_penandatangan :res.data.data.penandatangan.penandatangan.nama_penandatangan ,
@@ -114,7 +113,6 @@ class EditProfileAdminSignerPage extends Component {
         this.setState({loading: true})
         API.postEdit(`/admin/penandatangan/edit/${id_penandatangan}`, params)
             .then(res => {
-                console.log('res',res)
                 if(res.status === 200){
                     message.success('Data Berhasil di Ubah');
                     this.componentDidMount();

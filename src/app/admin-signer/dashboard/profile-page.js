@@ -25,7 +25,6 @@ class ProfilePage extends Component {
         this.setState({loading: true})
         API.get(`/penandatangan/profile`)
         .then(res => {
-            console.log('res',res)
             this.setState({
                 user:res.data.data.penandatangan,
                 loading: false,

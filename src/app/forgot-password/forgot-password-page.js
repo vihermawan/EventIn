@@ -9,7 +9,6 @@ import * as validation from '../../common/utils/validation'
 
 class ForgotPasswordPage extends Component {
     state = {  
-        current: '',
         email : '',
         loading : false,
         show : false,
@@ -53,7 +52,6 @@ class ForgotPasswordPage extends Component {
             this.showModal2();
             API.post(`/password/create`, params)
             .then(res => {
-                console.log('res',res)
                 if( res.status === 200){
                     this.props.navigate(CONSTANS.LOGIN_MENU_KEY)
                     message.success('Silahkan cek email');

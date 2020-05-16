@@ -28,7 +28,6 @@ class CountRegistEventPage extends Component {
         this.setState({loading: true})
         API.get(`/panitia/countRegister`)
         .then(res => {
-            console.log('res',res)
             this.setState({
                 registEvent:res.data.data.event,
                 loading: false,
@@ -38,7 +37,6 @@ class CountRegistEventPage extends Component {
 
     //button detail participant
     onListParticipant = (id_event) => {
-        console.log('id ini',id_event)
         this.props.setIdEvent(id_event);
         this.props.navigate(CONSTANS.LIST_PARTICIPANT_EVENT_MENU_KEY)
     }

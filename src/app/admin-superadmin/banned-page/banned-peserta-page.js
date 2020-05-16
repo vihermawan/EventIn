@@ -28,8 +28,6 @@ class BannedPesertaPage extends Component {
 
     
     componentWillReceiveProps(props){
-      console.log('props',props)
-      console.log('this props',this.props)
       if(props.activeKey !== this.props.activeKey){
         this.getBannedPeserta();
       }
@@ -39,7 +37,6 @@ class BannedPesertaPage extends Component {
       this.setState({loading: true})
       API.get(`/admin/trash/peserta`)
       .then(res => {
-        console.log(res)
         this.setState({
           bannedPeserta:res.data.data.user,
           loading: false,
@@ -124,17 +121,14 @@ class BannedPesertaPage extends Component {
              this.UnbannedPeserta(id)
           },
           onCancel(){
-              console.log('Cancel')
           }
       });
     }
 
-    UnbannedPeserta = (id_peserta) => {   
-      console.log(id_peserta)
+    UnbannedPeserta = (id_peserta) => { 
       this.setState({loading:true})
       API.get(`/admin/unban/peserta/${id_peserta}`)
       .then(res => {
-          console.log('res',res)
           if(res.status === 200){
               message.success('Akun Peserta Berhasil diaktifkan kembali');
               this.componentDidMount(); 

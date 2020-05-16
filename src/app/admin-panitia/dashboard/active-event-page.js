@@ -104,7 +104,6 @@ class ActiveEventPage extends Component {
         this.setState({loading: true})
         API.get(`/panitia/event`)
         .then(res => {
-            // console.log('res',res)
             this.setState({
                 activeEvent:res.data.data.event,
                 loading: false,
@@ -114,10 +113,8 @@ class ActiveEventPage extends Component {
 
     //delete event
     deleteEvent = (id) => {
-        console.log(id)
         API.delete(`/panitia/deleteevent/${id}`)
         .then(res => {
-            console.log('res',res)
             if(res.status === 200){
                 message.success('Berhasil Menghapus Event');
                 this.componentDidMount(); 
@@ -136,28 +133,24 @@ class ActiveEventPage extends Component {
                 this.deleteEvent(id)
             },
             onCancel(){
-                console.log('Cancel')
             }
         });
     }
 
     //button absent participant
     onAbsentParticipant = (id) => {
-        console.log('id ini',id)
         this.props.setIdEvent(id);
         this.props.navigate(CONSTANS.PARTICIPANT_EVENT_MENU_KEY)
     }
 
     //button detail participant
     onDetailParticipant = (id) => {
-        console.log('id ini',id)
         this.props.setIdEvent(id);
         this.props.navigate(CONSTANS.DETAIL_LIST_PARTICIPANT_EVENT_MENU_KEY)
     }
 
     //button detail event
     onDetailEvent = (id) => {
-        console.log('id ini',id)
         this.props.setIdEvent(id);
         this.props.navigate(CONSTANS.DETAIL_EVENT_PANITIA_MENU_KEY)
     }

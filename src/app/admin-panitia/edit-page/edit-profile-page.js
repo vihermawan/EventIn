@@ -46,7 +46,6 @@ class EditProfilePage extends Component {
         this.setState({loading: true})
         API.get(`/panitia/profile-edit`)
         .then(res => {
-            console.log('res',res)
             this.setState({
                 id_panitia : res.data.data.user.panitia.id_panitia,
                 nama_panitia : res.data.data.user.panitia.nama_panitia,
@@ -69,18 +68,15 @@ class EditProfilePage extends Component {
   
     uploadGambar = (event) => {
         if(event.target.files[0].type !== 'image/jpeg' ){
-            console.log('harusnya')
             this.openNotification('Format Gambar Salah', 'Silahkan Upload Kembali dengan format JPG')
         }
         else if(event.target.files[0].size / 1024 / 1024 > 2){
             this.openNotification('Ukuran file Melebihi 2Mb', 'Silahkan Upload Kembali')
         }
         else{
-            console.log('cek', event.currentTarget.value)
             this.getBase64(event.target.files[0], imageUrl => {
                 this.setState({ picture: imageUrl,croppedImageUrl :imageUrl,foto_panitia:imageUrl,visible:true })
             })
-            // this.setState({ picture_event:event.target.files[0] })
         }
         
     }
@@ -112,7 +108,6 @@ class EditProfilePage extends Component {
             'newFile.jpeg'
           );
           this.setState({ foto_panitia,croppedImageUrl });
-          console.log('croping',this.state.croppedImageUrl)
         }
     }
     
@@ -191,7 +186,6 @@ class EditProfilePage extends Component {
         }
         let croppedImage = new File([u8arr], filename, {type:mime});
         this.setState({foto_panitia: croppedImage}) 
-        console.log('ini lo', this.state.foto_panitia)
     }
 
     showModal = () => {
@@ -201,14 +195,12 @@ class EditProfilePage extends Component {
     };
     
     handleOk = e => {
-        console.log(e);
         this.setState({
             visible: false,
         });
     };
     
     handleCancel = e => {
-        console.log(e);
         this.setState({
             visible: false,
             foto_panitia : null,
@@ -250,7 +242,6 @@ class EditProfilePage extends Component {
         
         API.postEdit(`/panitia/editprofile/${id_panitia}`, params)
             .then(res => {
-                console.log('res',res)
                 if(res.status === 200){
                     this.props.navigate(CONSTANS.PROFILE_ADMIN_PANITIA_MENU_KEY)
                     window.location.reload();

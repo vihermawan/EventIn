@@ -19,7 +19,6 @@ class SetPasswordPage extends Component {
         let pathArray = window.location.pathname.split('/');
         let pathName = pathArray[2];
         pathName === '' ? this.setState({current: '/set-password'}) : this.setState({current: pathName});
-        console.log('path',pathName)
     }
 
     handleChange = (e) => {
@@ -44,7 +43,6 @@ class SetPasswordPage extends Component {
     }
 
     handleSubmit = e => {
-        console.log('path',this.state.current)
         e.preventDefault();
         const params = {
             password: this.state.password,
@@ -58,7 +56,6 @@ class SetPasswordPage extends Component {
             this.showModal2();
             API.post(`/password/reset/${this.state.current}`, params)
             .then(res => {
-                console.log('res',res)
                 if( res.status === 200){
                     this.props.navigate(CONSTANS.LOGIN_MENU_KEY)
                     message.success('Berhasil Merubah Password');
@@ -69,7 +66,6 @@ class SetPasswordPage extends Component {
                 }
             });
         }
-        
     }
 
 

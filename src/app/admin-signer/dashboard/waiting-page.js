@@ -102,12 +102,10 @@ class WaitingListPage extends Component {
         this.setState({loading: true})
         API.get(`/penandatangan/sertifikat/waiting/${id_event}`)
         .then(res => {
-          console.log('res',res.data.data.sertifikat)
             this.setState({
                 e_certificate:res.data.data.sertifikat,
                 loading: false,
             })
-            // this.allIdPenandatanganSertifikat(res.data.data.sertifikat)
         });
     }
 
@@ -117,7 +115,6 @@ class WaitingListPage extends Component {
         visible: true,
         url : sertif_URL,
       });
-      console.log(sertif_URL)
     }
 
     //function untuk modal
@@ -131,7 +128,6 @@ class WaitingListPage extends Component {
                this.assignSertifikat(id_penandatangan_sertifikat,id_sertifikat)
             },
             onCancel(){
-                console.log('Cancel')
             }
         });
     }
@@ -147,14 +143,12 @@ class WaitingListPage extends Component {
              this.assignAllSertifikat()
           },
           onCancel(){
-              console.log('Cancel')
           }
       });
     }
 
     //assign sertifikat
     assignSertifikat = (id_penandatangan_sertifikat,id_sertifikat) => {
-        console.log(id_penandatangan_sertifikat,id_sertifikat)
         const params = new FormData()
         params.set('passphrase','password')
         params.append("_method", 'PUT')
@@ -163,7 +157,6 @@ class WaitingListPage extends Component {
         })
         API.postEdit(`/penandatangan/sertifikat/assign/${id_penandatangan_sertifikat}`, params)
         .then(res => {
-            console.log('res',res)
             if(res.status === 200){
                 this.setState({
                   visible_loading :false,
@@ -186,7 +179,6 @@ class WaitingListPage extends Component {
       
       API.postEdit(`/penandatangan/sertifikat/assign/${id}`, params)
       .then(res => {
-          console.log('res',res)
           if(res.status === 200){
             return '1';
           }else{
@@ -195,7 +187,6 @@ class WaitingListPage extends Component {
       });
     }
     assignAllSertifikat = async () => {
-      console.log('print all', data_id)
       const total_data = data_id.length
       var success = 0;
       this.setState({
@@ -209,7 +200,6 @@ class WaitingListPage extends Component {
         
         let response = await API.postEdit(`/penandatangan/sertifikat/assign/${id}`, params)
         .then(res => {
-            console.log('res',res)
             if(res.status === 200){
               return 1;
             }else{
@@ -222,7 +212,6 @@ class WaitingListPage extends Component {
         success += response;
 
         if(i==total_data-1){
-          console.log('total success',success, total_data)
           if(total_data === success){
             this.setState({ visible_loading :false })
             message.success('Semua Sertifikat Berhasil ditandantangani');
@@ -241,14 +230,12 @@ class WaitingListPage extends Component {
     }
 
     handleOk = e => {
-      console.log(e);
       this.setState({
         visible: false,
       });
     };
   
     handleCancel = e => {
-      console.log(e);
       this.setState({
         visible: false,
       });
@@ -332,9 +319,6 @@ class WaitingListPage extends Component {
         this.state.e_certificate.map(data => {
           data_id.push(data.id_penandatangan_sertifikat);
         })
-        // console.log(data_id)
-
-
 
         return ( 
             <WaitingListComponent

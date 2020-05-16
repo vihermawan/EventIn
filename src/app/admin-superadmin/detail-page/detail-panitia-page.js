@@ -25,8 +25,6 @@ class DetailPanitiaPage extends Component {
 
     componentDidMount(){
         this.getDetailPanitia(this.props.idUsers);
-        console.log('id users', this.props.idUsers)
-        console.log('id users', this.props.idPanitia)
         this.getEventPanitia(this.props.idPanitia);
     }
 
@@ -100,7 +98,6 @@ class DetailPanitiaPage extends Component {
         this.setState({loading: true})
         API.get(`/admin/detail-panitia/admin/${id_users}`)
         .then(res => {
-          console.log('res',res)
           this.setState({
             panitia:res.data.data.panitia,
             detail_panitia: res.data.data.panitia.panitia,
@@ -113,7 +110,6 @@ class DetailPanitiaPage extends Component {
         this.setState({loading:true})
         API.get(`/admin/event-panitia/${id_panitia}`)
         .then(res => {
-          console.log('res',res.data.data.event)
           this.setState({
             event_panitia : res.data.data.event,
             loading: false,
@@ -123,7 +119,6 @@ class DetailPanitiaPage extends Component {
 
     //button detail event
     onDetailEvent = (id) => {
-        console.log('id ini',id)
         this.props.setIdEvent(id);
         this.props.navigate(CONSTANS.DETAIL_EVENT_ADMIN_MENU_KEY)
     }

@@ -26,7 +26,6 @@ class BasicInfoPage extends Component {
     getKategori=()=>{
         API.get('/peserta/kategori')
         .then(res => {
-            console.log('kategori',res)
             if(res.status === 200){
                 this.setState({
                     kategori:res.data.data.kategori,
@@ -37,7 +36,6 @@ class BasicInfoPage extends Component {
 
     componentWillMount(){
         const data = JSON.parse(localStorage.getItem('step-1'));
-        console.log(data)
         if(data !== null){
             this.setState({
                 nama: data.nama,
@@ -66,12 +64,10 @@ class BasicInfoPage extends Component {
 
     handleButtonClick(e) {
         message.info('Click on left button.');
-        console.log('click left button', e);
       }
       
     handleMenuClick(e) {
         message.info('Click on menu item.');
-        console.log('click', e);
     }
 
     openNotification = (message, description) => {

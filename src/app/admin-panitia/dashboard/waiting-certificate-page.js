@@ -23,8 +23,6 @@ class WaitingCertificatePage extends Component {
     }
 
     componentWillReceiveProps(props){
-      console.log('props',props)
-      console.log('this props',this.props)
       if(props.activeKey !== this.props.activeKey){
         this.getCertificateWaiting();
       }
@@ -34,7 +32,6 @@ class WaitingCertificatePage extends Component {
         this.setState({loading: true})
         API.get(`/panitia/count-waiting`)
         .then(res => {
-          console.log('res',res.data.data.sertifikat.sertifikat)
           this.setState({
               certificate:res.data.data.sertifikat,
               loading: false,

@@ -98,7 +98,6 @@ class ListAllEventPage extends Component {
          this.setState({loading: true})
          API.get(`/admin/showevent`)
          .then(res => {
-           console.log('res',res)
            this.setState({
              listevent:res.data.data.event,
              loading: false,
@@ -108,7 +107,6 @@ class ListAllEventPage extends Component {
 
     //button detail event
     onDetailEvent = (id) => {
-        console.log('id ini',id)
         this.props.setIdEvent(id);
         this.props.navigate(CONSTANS.DETAIL_LIST_ALL_EVENT_MENU_KEY)
     }

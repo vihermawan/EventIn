@@ -46,7 +46,6 @@ class AuthRegister extends Component {
 
     handleJenisKelamin = (value) => {
         this.setState({ jenis_kelamin: value.key })
-        console.log('jenis_kelamin', value.key);
     }
 
     successNotification = (message, description) => {
@@ -61,7 +60,6 @@ class AuthRegister extends Component {
     }
 
     handleOk = e => {
-        console.log(e);
         if(this.state.is_aggreed === false){
             this.openNotification('Silahkan Check List', 'Syarat dan Ketentuan harap di klik')
         }else{
@@ -70,14 +68,12 @@ class AuthRegister extends Component {
     };
 
     handleCancel = e => {
-        console.log(e);
         this.setState({
             show: false,
         });
     };
 
     onChange = (e) => {
-        console.log(`checked = ${e.target.checked}`);
         this.setState({is_aggreed : e.target.checked })
     }
     
@@ -104,11 +100,9 @@ class AuthRegister extends Component {
             const message = validation.minPassword(this.state.password);
             this.openNotification(message, 'Password minimal 8 karakter')
         }else{
-            console.log('params',params)
             this.setState({loading: true,show : false})
             API.post(`/auth/register/peserta`, params)
             .then(res => {
-                console.log('res',res)
                 if(res.status === 201){
                     this.props.navigate(CONSTANS.LOGIN_MENU_KEY)
                     this.successNotification('Sukses', 'Register Berhasil')

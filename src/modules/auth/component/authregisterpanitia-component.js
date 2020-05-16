@@ -104,12 +104,36 @@ class RegisterComponent extends Component{
                                         onCancel={handleCancel}
                                         className = "modal-regis"
                                         >
-                                        <p className="text-regis">1. Anda wajib memberikan nama lengkap dan jelas, alamat email yang valid dan informasi lain yang dibutuhkan dalam pendaftaran layanan EventIn</p>
-                                        <p className="text-regis">2. Anda berkewajiban untuk menjaga kemanan password Anda, EventIn tidak akan bertanggung jawab pada kerugian dan kerusakan yang timbul akibat ketidak mampuan Anda dalam menjaga keamanan password Anda.</p>
-                                        <p className="text-regis">3. Anda tidak diijinkan menggunakan EventIn untuk aktifitas ilegal dan melanggar hukum/undang-undang (termasuk undang-undang hak cipta) di wilayah Anda dan/ataupun wilayah hukum Indonesia.</p>
-                                        <p className="text-regis">4. Anda bertanggung jawab atas semua aktivitas dan konten (data, text, foto, gambar, link) yang Anda unggah melalui akun Anda di EventIn.</p>
-                                        <p className="text-regis">5. Anda dilarang mengirimkan segalam macam worm, virus, kode yang bersifat merusak.</p>
-                                        <p className="text-regis">6. Pelanggaran akan ketentuan ini akan mengakibatkan dihentikannya akun Anda.</p>
+                                        <p className="text-regis">
+                                            1. Anda wajib memberikan nama lengkap dan jelas, 
+                                            alamat email yang valid dan informasi lain yang dibutuhkan 
+                                            dalam pendaftaran layanan EventIn
+                                        </p>
+                                        <p className="text-regis">
+                                            2. Anda berkewajiban untuk menjaga kemanan password Anda, 
+                                            EventIn tidak akan bertanggung jawab pada kerugian dan 
+                                            kerusakan yang timbul akibat ketidak mampuan 
+                                            Anda dalam menjaga keamanan password Anda.
+                                        </p>
+                                        <p className="text-regis">
+                                            3. Anda tidak diijinkan menggunakan EventIn 
+                                            untuk aktifitas ilegal dan melanggar hukum/undang-undang
+                                            (termasuk undang-undang hak cipta) di wilayah Anda 
+                                            dan/ataupun wilayah hukum Indonesia.
+                                        </p>
+                                        <p className="text-regis">
+                                            4. Anda bertanggung jawab atas semua aktivitas 
+                                            dan konten (data, text, foto, gambar, link) 
+                                            yang Anda unggah melalui akun Anda di EventIn.
+                                        </p>
+                                        <p className="text-regis">
+                                            5. Anda dilarang mengirimkan segalam macam worm, 
+                                            virus, kode yang bersifat merusak.
+                                        </p>
+                                        <p className="text-regis">
+                                            6. Pelanggaran akan ketentuan ini akan 
+                                            mengakibatkan dihentikannya akun Anda.
+                                        </p>
                                         <Checkbox onChange={onChange}>*Saya Menyetujui Syarat dan Ketentuan</Checkbox>
                                     </Modal>
                                 </Col>

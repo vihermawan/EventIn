@@ -67,7 +67,6 @@ class EditProfilePesertaAdminPage extends Component {
         this.setState({loading: true})
         API.get(`/admin/showpeserta/${id_users}`)
         .then(res => {
-            console.log('res',res.data.data)
             this.setState({
                 id_peserta : res.data.data.peserta.peserta.id_peserta,
                 nama_peserta :res.data.data.peserta.peserta.nama_peserta,
@@ -93,7 +92,6 @@ class EditProfilePesertaAdminPage extends Component {
 
     handleJenisKelamin = (value) => {
         this.setState({ jenis_kelamin: value.key })
-        console.log('jenis_kelamin', value.key);
     }
 
     
@@ -120,7 +118,6 @@ class EditProfilePesertaAdminPage extends Component {
         this.setState({loading: true})
         API.postEdit(`/admin/peserta/edit/${id_peserta}`, params)
             .then(res => {
-                console.log('res',res)
                 if(res.status === 200){
                     message.success('Data Berhasil di Ubah');
                     this.componentDidMount();

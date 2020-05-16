@@ -42,7 +42,6 @@ class EditProfilePage extends Component {
         this.setState({loading: true})
         API.get(`/peserta/edit-profile`)
         .then(res => {
-            console.log('res',res.data.data.user)
             this.setState({
                 id_peserta : res.data.data.user.peserta.id_peserta,
                 nama_peserta : res.data.data.user.peserta.nama_peserta,
@@ -107,14 +106,12 @@ class EditProfilePage extends Component {
   
     uploadGambar = (event) => {
         if(event.target.files[0].type !== 'image/jpeg' ){
-            console.log('harusnya')
             this.openNotification('Format Gambar Salah', 'Silahkan Upload Kembali dengan format JPG')
         }
         else if(event.target.files[0].size / 1024 / 1024 > 2){
             this.openNotification('Ukuran file Melebihi 2Mb', 'Silahkan Upload Kembali')
         }
         else{
-            console.log('cek', event.currentTarget.value)
             this.getBase64(event.target.files[0], imageUrl => {
                 this.setState({ picture: imageUrl,croppedImageUrl :imageUrl,foto_peserta:imageUrl,visible:true })
             })
@@ -149,7 +146,6 @@ class EditProfilePage extends Component {
             'newFile.jpeg'
           );
           this.setState({ foto_peserta,croppedImageUrl });
-          console.log('croping',this.state.croppedImageUrl)
         }
     }
     
@@ -228,7 +224,6 @@ class EditProfilePage extends Component {
         }
         let croppedImage = new File([u8arr], filename, {type:mime});
         this.setState({foto_peserta: croppedImage}) 
-        console.log('ini lo', this.state.foto_peserta)
     }
   
     showModal = () => {
@@ -238,14 +233,12 @@ class EditProfilePage extends Component {
     };
     
     handleOk = e => {
-        console.log(e);
         this.setState({
             visible: false,
         });
     };
     
     handleCancel = e => {
-        console.log(e);
         this.setState({
             visible: false,
             foto_peserta : null,
@@ -255,14 +248,12 @@ class EditProfilePage extends Component {
 
     handleJenisKelamin = (value) => {
         this.setState({ jenis_kelamin: value })
-        console.log('jenis_kelamin', value);
     }
 
     onChangeBirthDate = (date, dateString) => {
         this.setState({ 
             tanggal_lahir: dateString,
         })
-        console.log(date, dateString);
     }
 
     openNotification = (message, description) => {
@@ -291,7 +282,6 @@ class EditProfilePage extends Component {
         this.setState({loading: true})
         API.postEdit(`/peserta/profile/edit/${id_peserta}`, params)
             .then(res => {
-                console.log('res',res)
                 if(res.status === 200){
                     message.success('Data Berhasil di Ubah');
                     this.props.navigate(CONSTANS.PROFILE_MENU_KEY)

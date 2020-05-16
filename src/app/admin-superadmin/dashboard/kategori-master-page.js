@@ -97,7 +97,6 @@ class KategoriMasterPage extends Component {
         this.setState({loading: true})
         API.get(`/admin/kategori`)
         .then(res => {
-            console.log('res',res)
             this.setState({
                 kategori:res.data.data.kategori,
                 loading: false,
@@ -112,7 +111,6 @@ class KategoriMasterPage extends Component {
     };
 
     showModal2 = (id,nama) => {
-        console.log(id,nama)
         this.setState({
           show: true,
           edit_kategori : nama,
@@ -140,7 +138,6 @@ class KategoriMasterPage extends Component {
             this.setState({loading: true})
             API.post(`/admin/addkategori`, params)
         .then(res => {
-            console.log('res',res)
             if(res.status === 201){
                 message.success('Kategori Berhasil Ditambahkan');
                 this.setState({
@@ -158,7 +155,6 @@ class KategoriMasterPage extends Component {
     };
 
     handleEdit = () => {
-        console.log(this.state.id_kategori)
             const params = new FormData()
             params.append('_method','PUT')
             params.set('nama_kategori', this.state.edit_kategori)
@@ -170,7 +166,6 @@ class KategoriMasterPage extends Component {
                 this.setState({loading: true})
                 API.postEdit(`/admin/editkategori/${this.state.id_kategori}`, params)
             .then(res => {
-                console.log('res',res)
                 if(res.status === 200){
                     message.success('Kategori Berhasil Diubah');
                     this.setState({
@@ -187,7 +182,6 @@ class KategoriMasterPage extends Component {
     }
 
     handleCancel = e => {
-        console.log(e);
         this.setState({
             visible: false,
             show:false,
@@ -196,11 +190,9 @@ class KategoriMasterPage extends Component {
     
     //delete kategori
     deleteKategori = (id) => {   
-        console.log(id)
         this.setState({loading:true})
         API.delete(`/admin/deletekategori/${id}`)
         .then(res => {
-            console.log('res',res)
             if(res.status === 200){
                 message.success('Berhasil Menghapus Kategori');
                 this.componentDidMount();
@@ -219,7 +211,6 @@ class KategoriMasterPage extends Component {
                this.deleteKategori(id)
             },
             onCancel(){
-                console.log('Cancel')
             }
         });
     }

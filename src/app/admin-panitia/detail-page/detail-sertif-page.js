@@ -14,19 +14,7 @@ class DetailSertifPage extends Component {
     componentDidMount(){
         this.getDetailSertifikat(this.props.idSertifikat);
     }
-
-    getDetailSertifikat=(id)=>{
-        // this.setState({loading: true})
-        API.get(`/panitia/event-sertifikat/${id}`)
-        .then(res => {
-          console.log('res',res)
-          // this.setState({
-          //   detailsertifikat:res.data.data,
-          //   loading: false,
-          // })
-        });
-    }
-
+    
     render() { 
           const columns = [
             {

@@ -26,7 +26,6 @@ class ListParticipantPage extends Component {
         this.setState({loading: true})
         API.get(`/panitia/regist-peserta/${id_event}`)
         .then(res => {
-          console.log('res',res.data.data)
           this.setState({
               participant:res.data.data.peserta,
               loading: false,
@@ -43,10 +42,8 @@ class ListParticipantPage extends Component {
     //approve peserta
     ApprovePeserta = (id_pesertaevent) => {
         this.setState({loading: true,visible:true})
-        console.log(id_pesertaevent)
         API.put(`/panitia/approvepeserta/${id_pesertaevent}`)
         .then(res => {
-            console.log('res',res)
             if(res.status === 200){
                 this.setState({visible:false})
                 message.success('Peserta telah diterima');
@@ -133,7 +130,6 @@ class ListParticipantPage extends Component {
                this.ApprovePeserta(id)
             },
             onCancel(){
-                console.log('Cancel')
             }
         });
     }
@@ -149,7 +145,6 @@ class ListParticipantPage extends Component {
                // this.deleteEvent(id)
             },
             onCancel(){
-                console.log('Cancel')
             }
         });
     }

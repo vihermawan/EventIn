@@ -39,7 +39,6 @@ class EventPage extends Component {
         this.setState({loading: true})
         API.get(`/peserta/event/kategori/${id_kategori}`)
         .then(res => {
-            // console.log('res',res)
             if(res.status === 200){
                 this.setState({
                     eventbyKategori:res.data.data.event,
@@ -54,7 +53,6 @@ class EventPage extends Component {
         this.setState({loading: true})
         API.get(`/peserta/event`)
         .then(res => {
-            console.log('res', res.data.data)
             if(res.status === 200){
                 this.setState({
                     event:res.data.data.event.data,
@@ -68,7 +66,6 @@ class EventPage extends Component {
         this.setState({loadingWeek: true})
         API.get(`/peserta/eventbyWeek`)
         .then(res => {
-            console.log(res.data.data)
             if(res.status === 200){
                 this.setState({
                     event_week:res.data.data.event.data,
@@ -92,7 +89,6 @@ class EventPage extends Component {
     onSeacrhEvent = (params) =>{
         API.get(`/event/search?nama=${params}`)
         .then(res => {
-            // console.log(res.data.data.event.data)
             if(res.status === 200){
                 this.setState({
                     event_seacrh:res.data.data.event.data,
@@ -105,13 +101,11 @@ class EventPage extends Component {
 
     //button detail participant
     onDetailEvent = (id) => {
-        console.log('id ini',id)
         this.props.setIdEvent(id);
         this.props.navigate(CONSTANS.DETAIL_EVENT_KEY)
     }
 
     onEventKategori = (id_kategori) => {
-        console.log('ini id', id_kategori)
         this.props.setIdKategori(id_kategori)
         this.props.navigate(CONSTANS.ALL_KATEGORI_MENU_KEY)
     }

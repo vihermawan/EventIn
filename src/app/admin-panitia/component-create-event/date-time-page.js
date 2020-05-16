@@ -41,33 +41,28 @@ class DateTimePage extends Component {
         this.setState({ 
             start_event: dateString,
         })
-        console.log(date, dateString);
     }
 
     onChangeDateEnd = (date, dateString) => {
         this.setState({ 
             end_event: dateString,
         })
-        console.log(date, dateString);
     }
 
     onChangeDateRegisStart = (date, dateString) => {
         this.setState({ 
             open_registration: dateString,
         })
-        console.log(date, dateString);
     }
 
     onChangeDateRegistEnd = (date, dateString) => {
         this.setState({ 
             end_registration: dateString,
         })
-        console.log(date, dateString);
     }
 
     componentWillMount(){
         const data = JSON.parse(localStorage.getItem('step-4'));
-        console.log(data)
         if(data !== null){
             this.setState({
                 start_event: data.start_event,
@@ -100,7 +95,6 @@ class DateTimePage extends Component {
         if(Date.parse(this.state.start_event) > Date.parse(this.state.end_event)){
             this.openNotification('Tanggal Mulai Event harus disesuaikan', 'Tanggal harus disi dengan benar') 
         }else if(Date.parse(this.state.open_registration) > Date.parse(this.state.end_registration)){
-            console.log('beda')
             this.openNotification('Tanggal Pendaftaran harus disesuaikan', 'Tanggal harus disi dengan benar')  
         }else if(this.state.time_start === ''){
             this.openNotification('Jam Belum Disisi', 'Jam harus disi dengan benar') 

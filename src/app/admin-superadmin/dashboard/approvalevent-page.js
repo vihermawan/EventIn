@@ -98,7 +98,6 @@ class ApprovalEventPage extends Component {
          this.setState({loading: true})
          API.get(`/admin/approve/event`)
          .then(res => {
-           console.log('res',res)
            this.setState({
              approvalevent:res.data.data.event,
              loading: false,
@@ -108,18 +107,15 @@ class ApprovalEventPage extends Component {
 
     //button detail event
     onDetailEvent = (id) => {
-        console.log('id ini',id)
         this.props.setIdEvent(id);
         this.props.navigate(CONSTANS.DETAIL_APPROVAL_EVENT_MENU_KEY)
     }
 
     //approve event
     approveEvent = (id_event) => {
-        console.log(id_event)
         this.setState({loading: true})
         API.put(`/admin/approvalevent/${id_event}/acc`)
         .then(res => {
-            console.log('res',res)
             if(res.status === 200){
                 message.success('Event berhasil di terima');
                 this.componentDidMount(); 
@@ -129,11 +125,9 @@ class ApprovalEventPage extends Component {
 
     //reject event
     rejectEvent = (id_event) => {
-      console.log(id_event)
       this.setState({loading: true})
       API.put(`/admin/approvalevent/${id_event}/reject`)
       .then(res => {
-          console.log('res',res)
           if(res.status === 200){
               message.success('Event berhasil di tolak');
               this.componentDidMount(); 
@@ -152,7 +146,6 @@ class ApprovalEventPage extends Component {
                this.approveEvent(id)
             },
             onCancel(){
-                console.log('Cancel')
             }
         });
     }
@@ -168,7 +161,6 @@ class ApprovalEventPage extends Component {
                this.rejectEvent(id)
             },
             onCancel(){
-                console.log('Cancel')
             }
         });
     }

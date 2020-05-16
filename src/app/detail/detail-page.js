@@ -26,17 +26,14 @@ class DetailPage extends Component {
     };
 
     componentDidMount(){
-        console.log('window', window.history)
         window.scrollTo(0, 0);
         this.getDetail(this.props.idEvent);
-        console.log('id event',this.props.idEvent)
     }
 
     getDetail=(id)=>{
         this.setState({loadingHome: true})
         API.get(`/peserta/event/${id}`)
         .then(res => {
-            console.log('res',res)
             this.setState({
                 Event:res.data.data.event,
                 kategori : res.data.data.event.kategori,
@@ -67,10 +64,8 @@ class DetailPage extends Component {
         const params = {
             id_event: this.props.idEvent,  
         }
-        console.log('params',params)
         API.post(`/peserta/pesertaevent`,params)
         .then(res => {
-            console.log('res',res)
             if(res.status === 201){
                 this.setState({
                     visible:false,
@@ -86,7 +81,6 @@ class DetailPage extends Component {
     };
     
     handleCancel = () => {
-        console.log('Clicked cancel button');
         this.setState({
             visible: false,
             visible_close: false,

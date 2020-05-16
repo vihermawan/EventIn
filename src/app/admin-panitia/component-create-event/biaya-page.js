@@ -19,7 +19,6 @@ class BiayaPage extends Component {
 
     componentWillMount(){
         const data = JSON.parse(localStorage.getItem('step-2'));
-        console.log(data)
         if(data !== null){
             this.setState({
                 status_biaya: data.status_biaya,
@@ -40,7 +39,6 @@ class BiayaPage extends Component {
 
     handleStatus = (value) => {
         this.setState({ status_biaya: value.key })
-        console.log('status', value.key);
     }
 
 

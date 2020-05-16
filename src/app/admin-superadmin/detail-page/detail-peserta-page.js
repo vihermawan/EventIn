@@ -99,7 +99,6 @@ class DetailPesertaPage extends Component {
         this.setState({loading: true})
         API.get(`/admin/showpeserta/${id_users}`)
         .then(res => {
-          console.log('res',res)
           this.setState({
             peserta : res.data.data.peserta,
             detailPeserta:res.data.data.peserta.peserta,
@@ -112,7 +111,6 @@ class DetailPesertaPage extends Component {
         this.setState({loading: true})
         API.get(`/admin/showpeserta-event/${id_peserta}`)
         .then(res => {
-          console.log('res',res)
           this.setState({
             eventbyPeserta : res.data.data.peserta,
             loading: false,
@@ -122,7 +120,6 @@ class DetailPesertaPage extends Component {
 
     //button detail event
     onDetailEvent = (id) => {
-        console.log('id ini',id)
         this.props.setIdEvent(id);
         this.props.navigate(CONSTANS.DETAIL_PESERTA_EVENT_MENU_KEY)
     }

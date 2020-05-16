@@ -14,7 +14,6 @@ class DetailHistoryEventPage extends Component {
     }
 
     componentDidMount(){
-        console.log('props',this.props)
         this.getDetailEvent(this.props.idEvent);
     }
 
@@ -22,7 +21,6 @@ class DetailHistoryEventPage extends Component {
         this.setState({loading: true})
         API.get(`/panitia/event/${id}`)
         .then(res => {
-          console.log('res',res.data.data.event)
           this.setState({
             Event:res.data.data.event,
             kategori : res.data.data.event.kategori,

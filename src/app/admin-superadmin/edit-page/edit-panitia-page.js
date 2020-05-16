@@ -63,7 +63,6 @@ class EditProfilePanitiaAdminPage extends Component {
         this.setState({loading: true})
         API.get(`/admin/detail-panitia/admin/${id_users}`)
         .then(res => {
-            console.log('res',res.data.data)
             this.setState({
                 id_panitia : res.data.data.panitia.panitia.id_panitia,
                 nama_panitia :res.data.data.panitia.panitia.nama_panitia,
@@ -113,7 +112,6 @@ class EditProfilePanitiaAdminPage extends Component {
         this.setState({loading: true})
         API.postEdit(`/admin/panitia/edit/${id_panitia}`, params)
             .then(res => {
-                console.log('res',res)
                 if(res.status === 200){
                     message.success('Data Berhasil di Ubah');
                     this.componentDidMount();

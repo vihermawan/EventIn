@@ -24,7 +24,6 @@ class ProfilePage extends Component {
         this.setState({loading: true})
         API.get(`/panitia/profile`)
         .then(res => {
-            console.log('res',res.data.data.user)
             this.setState({
                 user:res.data.data.user,
                 loading: false,
