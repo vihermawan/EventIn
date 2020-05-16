@@ -100,7 +100,7 @@ class HomeComponent extends Component {
                                             Cari event yang kamu sukai atau mulailah untuk mengelolah event-mu sendiri.
                                         </div>
                                     </Col>
-                                    <Col span={24}>
+                                    <Col span={24} style={initialData.token === '' || null ? {display:"block"}:{display:"none"}}>
                                         <div className="button-section-1-container">
                                             <ButtonHome
                                                 text="Daftar event"
@@ -195,11 +195,11 @@ class HomeComponent extends Component {
                                             Daftarkan eventmu, dan semua kegiatan pengelolaan event dapat kamu lakukan disini.
                                         </div>
                                     </Col>
-                                    <Col span={24}>
-                                        <ButtonRounded
+                                    <Col span={24} style={initialData.token === '' || null ? {display:"block"}:{display:"none"}}>
+                                        <ButtonHome
                                             text="Mulai mengelolah event?"
                                             className='button-organize mt-20 semi-bold'
-                                            disabled={true}
+                                            onClick = {onLoginHome}
                                         />
                                     </Col>
                                 </Row>
@@ -229,13 +229,14 @@ class HomeComponent extends Component {
                                             Cari event yang kamu diinginkan, klik tombol 'daftar', dan selesai. Sangat mudah!
                                         </div>
                                     </Col>
-                                    <Col span={24}>
-                                        <ButtonRounded
+                                    <Col span={24} style={initialData.token === '' || null ? {display:"block"}:{display:"none"}}>
+                                        <ButtonHome
                                             text="Mulai mencari event ?"
                                             background="white"
                                             textColor="#4D5AF2"
                                             border="1px solid #4D5AF2"
-                                            className='button-participate mt-20 semi-bold' disabled={true}
+                                            className='button-participate mt-20 semi-bold'
+                                            onClick = {onLoginHome}
                                         />
                                     </Col>
                                 </Row>

@@ -38,71 +38,69 @@ class DetailPenandatanganAdminComponent extends Component {
                             </div>
                             </Row>
                             <Row>
-                                {dataPenandatangan.map(data =>
-                                    <div className="container-desc-panitia">
-                                        <Row>
-                                            <Col lg={8} md={12} sm={12}>
-                                                <div classname="detail">
-                                                    <div style={{margin:"16p auto", textAlign:"center"}}>
-                                                        <Avatar shape="square" size={300} src={data.picture} icon="user"/>
-                                                    </div>
+                                <div className="container-desc-panitia">
+                                    <Row>
+                                        <Col lg={8} md={12} sm={12}>
+                                            <div classname="detail">
+                                                <div style={{margin:"16p auto", textAlign:"center"}}>
+                                                    <Avatar shape="square" size={300} src={initialData.picture} icon="user"/>
                                                 </div>
-                                            </Col>
-                                            <Col lg={8} md={12} sm={12}>
-                                                <div className="desc-panitia">
-                                                    <span className="text-blue nama-panitia">Nama Penandatangan</span>
-                                                    <br/>
-                                                    <span className="text-black desc-nama">{data.nama_penandatangan}</span>
-                                                </div>
+                                            </div>
+                                        </Col>
+                                        <Col lg={8} md={12} sm={12}>
+                                            <div className="desc-panitia">
+                                                <span className="text-blue nama-panitia">Nama Penandatangan</span>
                                                 <br/>
-                                                <div className="desc-panitia">
-                                                    <span className="text-blue nama-panitia">Nomor Induk Pegawai</span>
-                                                    <br/>
-                                                    <span className="text-black desc-nama">{data.nip}</span>
-                                                </div>
+                                                <span className="text-black desc-nama">{initialData.nama_penandatangan}</span>
+                                            </div>
+                                            <br/>
+                                            <div className="desc-panitia">
+                                                <span className="text-blue nama-panitia">Nomor Induk Pegawai</span>
                                                 <br/>
-                                                <div className="desc-panitia">
-                                                    <span className="text-blue nama-panitia">Jabatan</span>
-                                                    <br/>
-                                                    <span className="text-black desc-nama">{data.jabatan}</span>
-                                                </div>
+                                                <span className="text-black desc-nama">{initialData.nip}</span>
+                                            </div>
+                                            <br/>
+                                            <div className="desc-panitia">
+                                                <span className="text-blue nama-panitia">Jabatan</span>
                                                 <br/>
-                                                <div className="desc-panitia">
-                                                    <span className="text-blue nama-panitia">Instansi</span>
-                                                    <br/>
-                                                    <span className="text-black desc-nama">{data.instansi}</span>
-                                                </div>
+                                                <span className="text-black desc-nama">{initialData.jabatan}</span>
+                                            </div>
+                                            <br/>
+                                            <div className="desc-panitia">
+                                                <span className="text-blue nama-panitia">Instansi</span>
                                                 <br/>
-                                            </Col>
-                                            <Col lg={8} md={12} sm={12}>
-                                                <div className="desc-panitia">
-                                                    <span className="text-blue nama-panitia">Email</span>
-                                                    <br/>
-                                                    <span className="text-black desc-nama">{data.email}</span>
-                                                </div>
+                                                <span className="text-black desc-nama">{initialData.instansi}</span>
+                                            </div>
+                                            <br/>
+                                        </Col>
+                                        <Col lg={8} md={12} sm={12}>
+                                            <div className="desc-panitia">
+                                                <span className="text-blue nama-panitia">Email</span>
                                                 <br/>
-                                                <div className="desc-panitia">
-                                                    <span className="text-blue nama-panitia">No. Telepon</span>
-                                                    <br/>
-                                                    <span className="text-black desc-nama">{data.telepon}</span>
-                                                </div>
+                                                <span className="text-black desc-nama">{initialData.email}</span>
+                                            </div>
+                                            <br/>
+                                            <div className="desc-panitia">
+                                                <span className="text-blue nama-panitia">No. Telepon</span>
                                                 <br/>
-                                                <div className="desc-panitia">
-                                                    <span className="text-blue nama-panitia">Kabupaten/Kota</span>
-                                                    <br/>
-                                                    <span className="text-black desc-nama">{data.kabupaten}</span>
-                                                </div>
+                                                <span className="text-black desc-nama">{initialData.telepon}</span>
+                                            </div>
+                                            <br/>
+                                            <div className="desc-panitia">
+                                                <span className="text-blue nama-panitia">Kabupaten/Kota</span>
                                                 <br/>
-                                                <div className="desc-panitia">
-                                                    <span className="text-blue nama-panitia">Provinsi</span>
-                                                    <br/>
-                                                    <span className="text-black desc-nama">{data.provinsi}</span>
-                                                </div>
+                                                <span className="text-black desc-nama">{initialData.kabupaten}</span>
+                                            </div>
+                                            <br/>
+                                            <div className="desc-panitia">
+                                                <span className="text-blue nama-panitia">Provinsi</span>
                                                 <br/>
-                                            </Col>
-                                        </Row>
-                                    </div>
-                                )}
+                                                <span className="text-black desc-nama">{initialData.provinsi}</span>
+                                            </div>
+                                            <br/>
+                                        </Col>
+                                    </Row>
+                                </div>
                             </Row>
                             <Row gutter={24} type="flex">
                                 <TableProfile 
