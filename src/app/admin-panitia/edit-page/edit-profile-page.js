@@ -21,6 +21,7 @@ class EditProfilePage extends Component {
         loading: false,
         visible:false,
         button_edit : 'Edit Foto Profil',
+        file_type : '',
         crop: {
             unit: '%',
             width: 30,
@@ -75,7 +76,7 @@ class EditProfilePage extends Component {
         }
         else{
             this.getBase64(event.target.files[0], imageUrl => {
-                this.setState({ picture: imageUrl,croppedImageUrl :imageUrl,foto_panitia:imageUrl,visible:true })
+                this.setState({ picture: imageUrl,croppedImageUrl :imageUrl,foto_panitia:imageUrl,visible:true,file_type :event.target.files[0].type })
             })
         }
         
@@ -238,9 +239,13 @@ class EditProfilePage extends Component {
         params.set('organisasi',this.state.organisasi)
         params.set('instagram',this.state.instagram)
         params.set('no_telepon',this.state.no_telepon)
-        this.setState({loading: true})
-        
-        API.postEdit(`/panitia/editprofile/${id_panitia}`, params)
+        if(this.state !== null){
+            this.openNotification('Data Wajib di Isi', 'Silahkan isi data dengan benar')
+        }else if(this.state.file_type !== 'image/jpeg'){
+            this.openNotification('Format Gambar Salah', 'Silahkan Upload Kembali dengan format JPG')
+        }else{
+            this.setState({loading: true})
+            API.postEdit(`/panitia/editprofile/${id_panitia}`, params)
             .then(res => {
                 if(res.status === 200){
                     this.props.navigate(CONSTANS.PROFILE_ADMIN_PANITIA_MENU_KEY)
@@ -251,6 +256,8 @@ class EditProfilePage extends Component {
                 }
                 this.setState({loading: false})
             });
+        }
+        
     }
 
     render() { 

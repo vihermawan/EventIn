@@ -19,6 +19,7 @@ class CertificatePage extends Component {
       loading:false,
       visible:false,
       button_edit : 'Edit Foto Profil',
+      type_file : '',
       crop: {
         unit: '%',
         width: 30,
@@ -64,7 +65,7 @@ class CertificatePage extends Component {
         }
         else{
             this.getBase64(event.target.files[0], imageUrl => {
-                this.setState({ picture: imageUrl,croppedImageUrl :imageUrl,picture_event:imageUrl,visible:true })
+                this.setState({ picture: imageUrl,croppedImageUrl :imageUrl,picture_event:imageUrl,visible:true,type_file :event.target.files[0].type  })
             })
         }
         
@@ -182,20 +183,7 @@ class CertificatePage extends Component {
         this.props.prev();
         localStorage.setItem('step-5', JSON.stringify(this.state));
     }
-
-    uploadFile = (event) => {
-        if(event.target.files[0].type !== 'application/msword'){
-            this.openNotification('Format Sertifikat Salah', 'Silahkan Upload Kembali dengan format RTF')
-        }
-        else if(event.target.files[0].size / 1024 / 1024 > 2){
-            this.openNotification('Ukuran file Melebihi 2Mb', 'Silahkan Upload Kembali')
-        }else{ 
-            this.setState({ 
-                sertifikat:event.target.files[0],
-                size_sertifikat : event.target.files[0].size / 1024 / 1024,
-            })
-        }
-    }    
+   
 
     handleButtonEdit = () => {
         this.setState({
@@ -260,6 +248,8 @@ class CertificatePage extends Component {
     if(validation.required(this.state.picture_event) !== null ){
         const message = validation.required(this.state.picture_event);
         this.openNotification(message, 'Gambar Event Harus di upload')
+    }else if(this.state.type_file !== 'image/jpeg'){
+        this.openNotification('Format Gambar Salah', 'Silahkan Upload Kembali dengan format JPG')
     }else{
         this.setState({loading: true})
         API.postEdit(`/panitia/create/event`, params)
