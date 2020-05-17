@@ -91,7 +91,7 @@ class BasicInfoComponent extends Component{
                                                 <span className="auth-input-label text-black">Kategori*</span>
                                             </div>
                                             <div className="select-kategori">
-                                                 <Select
+                                                <Select
                                                     labelInValue
                                                     defaultValue={{ key: String(initialData.kategori_input) }}
                                                     style={{ width: '100%' }}
@@ -147,8 +147,7 @@ class BasicInfoComponent extends Component{
                                             </div>
                                         </div>
                                     </Col>
-                                    <Col lg={8} md={24} sm={24}>
-                                        {/* <div className="form-section-3"> */}
+                                    <Col lg={8} md={24} sm={24}>=
                                             <div>   
                                                 <span className="auth-input-label text-black">Instagram*</span>
                                             </div>
@@ -162,7 +161,6 @@ class BasicInfoComponent extends Component{
                                                     icon={faInstagram}
                                                 />
                                             </div>
-                                        {/* </div> */}
                                     </Col>
                                 </Row>
                             </div>

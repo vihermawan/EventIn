@@ -175,11 +175,8 @@ class WaitingPage extends Component {
         API.delete(`/admin/reject-sertifikat/${id_penandatangan_sertifikat}`)
         .then(res => {
             if(res.status === 200){
-              if(res.data.status === 'Success'){
                 message.success('Berhasil menolak sertifikat');
-                this.componentDidMount();   
-                this.setState({loading: false}) 
-              }
+                this.componentDidMount(); 
             }
         });
     }
