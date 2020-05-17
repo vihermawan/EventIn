@@ -37,6 +37,7 @@ class EditEventPage extends Component {
         kabupaten: [],
         picture : '',
         visible:false,
+        type_file : '',
         button_edit : 'Edit Foto Profil',
         crop: {
           unit: '%',
@@ -50,9 +51,6 @@ class EditEventPage extends Component {
     componentDidMount(){
         this.getDetailEvent(this.props.idEvent);
         this.getProvinsi();
-        // if(this.state.id_kabupaten !== ''){
-        //     this.getKabupatenData(this.state.id_kabupaten);
-        // }
     }
 
     getProvinsi = () => {
@@ -209,7 +207,7 @@ class EditEventPage extends Component {
         }
         else{
             this.getBase64(event.target.files[0], imageUrl => {
-                this.setState({ picture: imageUrl,croppedImageUrl :imageUrl,picture_event:imageUrl,visible:true })
+                this.setState({ picture: imageUrl,croppedImageUrl :imageUrl,picture_event:imageUrl,visible:true,type_file :event.target.files[0].type })
             })
         }
         
@@ -394,18 +392,23 @@ class EditEventPage extends Component {
         params.append('picture',this.state.picture_event)
         params.append("_method", 'PUT')
 
-        this.setState({loading: true})
-        API.postEdit(`/panitia/editevent/${id_panitia}`, params)
-        .then(res => {
-            if(res.status === 200){
-                message.success('Data Berhasil di Ubah');
-                this.props.navigate(CONSTANS. ACTIVE_EVENT_MENU_KEY)                
-            }else{
-                this.openNotification('Data Salah', 'Silahkan isi data dengan benar')
-            }
-            this.setState({loading: false})
-        });
-
+        if(this.state !== null){
+            this.openNotification('Data Wajib di Isi', 'Silahkan isi data dengan benar')
+        }else if(this.state.type_file !== 'image/jpeg'){
+            this.openNotification('Format Gambar Salah', 'Silahkan Upload Kembali dengan format JPG')
+        }else{
+            this.setState({loading: true})
+            API.postEdit(`/panitia/editevent/${id_panitia}`, params)
+            .then(res => {
+                if(res.status === 200){
+                    message.success('Data Berhasil di Ubah');
+                    this.props.navigate(CONSTANS. ACTIVE_EVENT_MENU_KEY)                
+                }else{
+                    this.openNotification('Data Salah', 'Silahkan isi data dengan benar')
+                }
+                this.setState({loading: false})
+            });
+        }
     }
     
     render() { 

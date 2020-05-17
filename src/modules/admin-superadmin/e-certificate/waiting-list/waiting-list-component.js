@@ -24,7 +24,7 @@ class PesertaAdminComponent extends Component {
                 }}
             >
                 <Breadcrumb separator=">">
-                    <Breadcrumb.Item>Daftar Sertifikat yang dikirim</Breadcrumb.Item>
+                    <Breadcrumb.Item>Data Pengiriman Sertifikat </Breadcrumb.Item>
                 </Breadcrumb>
                 <Row style={{minHeight: '100%',marginBottom: '2%',marginTop:'2%',}} className="background">
                     <Col lg={24} md={24} sm={24}> 

@@ -21,6 +21,7 @@ class EditProfileAdminSignerPage extends Component {
         name_photo : '',
         profile_picture: null,
         loading: false,
+        type_file : '',
         button_edit : 'Edit Foto Profil',
         button_p12 : 'Edit File P_12',
     }
@@ -71,7 +72,8 @@ class EditProfileAdminSignerPage extends Component {
             this.openNotification('Ukuran file Melebihi 2Mb', 'Silahkan Upload Kembali')
         }else{
             this.setState({
-                file_p12:event.target.files[0]
+                file_p12:event.target.files[0],
+                type_file : event.target.files[0].type,
             })
         }
     }
@@ -91,8 +93,6 @@ class EditProfileAdminSignerPage extends Component {
             picture : res.data.data.penandatangan.penandatangan.image_URL,
             jabatan : res.data.data.penandatangan.penandatangan.jabatan,
             profile_picture :res.data.data.penandatangan.penandatangan.profile_picture,
-            // kabupaten : res.data.data.penandatangan.penandatangan.kabupaten.kabupaten_kota,
-            // provinsi : res.data.data.penandatangan.penandatangan.provinsi.provinsi,
             loading: false,
           })
         });
@@ -118,6 +118,9 @@ class EditProfileAdminSignerPage extends Component {
         params.set('jabatan',this.state.jabatan)
         params.set('nip',this.state.nip)
         params.set('instansi',this.state.instansi)
+        if(this.state.type_file !== 'application/x-pkcs12'){
+            this.openNotification('Format P12 Salah', 'Silahkan Upload Kembali dengan format yang benar')
+        }else{
         this.setState({loading: true})
         API.postEdit(`/admin/penandatangan/edit/${id_penandatangan}`, params)
             .then(res => {
@@ -127,9 +130,9 @@ class EditProfileAdminSignerPage extends Component {
                 }else{
                     this.openNotification('Data Salah', 'Silahkan isi data dengan benar')
                 }
-               
             });
-
+        }
+        
     }
 
     handleButtonEdit = () => {

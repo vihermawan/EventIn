@@ -4,6 +4,7 @@ import CONSTANS from '../../../common/utils/Constants'
 import { connect } from 'react-redux';
 import { API } from '../../../common/api'
 import { navigate } from '../../../common/store/action'
+import * as validation from '../../../common/utils/validation'
 import EditCertificateComponent from '../../../modules/admin-panitia/e-certificate/edit-certificate-component';
 
 class EditCertificatePage extends Component {
@@ -17,6 +18,7 @@ class EditCertificatePage extends Component {
         id_sertifikat : '',
         id_penandatangan :'',
         loading: false,
+        type_file : '',
         activeEvent : [],
         penandatangan : [],
         button_edit : 'Edit Foto Profil',
@@ -115,6 +117,7 @@ class EditCertificatePage extends Component {
                 sertifikat:event.target.files[0],
                 nama_display : event.target.files[0].name,
                 size_sertifikat : event.target.files[0].size / 1024 / 1024,
+                type_file :event.target.files[0].type,
             })
         }
     } 
@@ -128,9 +131,27 @@ class EditCertificatePage extends Component {
         params.set('no_sertifikat',this.state.no_sertifikat)
         params.set('id_penandatangan',this.state.id_penandatangan)
         params.set('id_event',this.state.id_event)
-        this.setState({loading: true})
-        
-        API.postEdit(`/panitia/edit-sertifikat-event/${this.state.id_sertifikat}`, params)
+
+        if(validation.required(this.state.nama) !== null ){
+            const message = validation.required(this.state.nama);
+            this.openNotification(message, 'Nama Sertifikat Harus diIsi')
+        }else if(validation.required(this.state.no_sertifikat) !== null ){
+            const message = validation.required(this.state.no_sertifikat);
+            this.openNotification(message, 'Nomor Sertifikat Harus diisi')
+        }else if(validation.required(this.state.id_event) !== null ){
+            const message = validation.required(this.state.id_event);
+            this.openNotification(message, 'Event Harus diisi')
+        }else if(validation.required(this.state.id_penandatangan) !== null ){
+            const message = validation.required(this.state.id_penandatangan);
+            this.openNotification(message, 'Penandatangan harus dipilih')
+        }else if(validation.required(this.state.sertifikat) !== null ){
+            const message = validation.required(this.state.sertifikat);
+            this.openNotification(message, 'Sertifikat Harus Diupload')
+        }else if(this.state.type_file !== 'application/vnd.openxmlformats-officedocument.wordprocessingml.document'){
+            this.openNotification('Format Sertifikat Salah', 'Silahkan Upload Kembali dengan format Docx')
+        }else{
+            this.setState({loading: true})
+            API.postEdit(`/panitia/edit-sertifikat-event/${this.state.id_sertifikat}`, params)
             .then(res => {
                 if(res.status === 200){
                     message.success('Data Sertifikat Berhasil diUbah');
@@ -140,6 +161,8 @@ class EditCertificatePage extends Component {
                 }
                 this.setState({loading: false})
             });
+        }
+       
     }
 
     render() { 
