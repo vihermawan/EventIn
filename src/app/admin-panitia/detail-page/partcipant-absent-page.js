@@ -118,6 +118,7 @@ class DetailParticipantPage extends Component {
 
     //approve peserta
     AbsentPeserta = (id_pesertaevent) => {
+        this.setState({loading: true})
         API.put(`/panitia/ubahAbsensi/${id_pesertaevent}`)
         .then(res => {
             if(res.status === 200){
