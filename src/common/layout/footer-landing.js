@@ -21,7 +21,7 @@ function Footer({
                     <p>Organizer</p>
                 </Col>
                 <Col lg={12} md={12} sm={12}>
-                    <p className="footer-title semi-bold">Social Media</p>
+                    <p className="footer-title semi-bold">Media Sosial</p>
                     <p> <a href="https://www.facebook.com/eventin.eventin.357" className="text-white">Facebook </a></p>
                     <p> <a href="https://twitter.com/EventIn4" className="text-white">Twitter </a></p>
                     <p> <a href="https://instagram.com/service.eventin" className="text-white">Instagram </a></p>
@@ -29,7 +29,7 @@ function Footer({
                 </Row>
             </Col>
             <Col lg={7} md={6} sm={6} xs={13} className="mt-30">
-                <p className="footer-title semi-bold">Contact Person</p>
+                <p className="footer-title semi-bold">Kontak</p>
                 <p>Place : Yogyakarta Indonesia</p>
                 <p>Phone : 083849971010</p>
                 <p>Email : eventin@mail.com</p>

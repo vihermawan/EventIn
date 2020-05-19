@@ -28,7 +28,7 @@ class DoneEventPage extends Component {
               ref={node => {
                 this.searchInput = node;
               }}
-              placeholder={`Search ${dataIndex}`}
+              placeholder={`Cari ${dataIndex}`}
               value={selectedKeys[0]}
               onChange={e => setSelectedKeys(e.target.value ? [e.target.value] : [])}
               onPressEnter={() => this.handleSearch(selectedKeys, confirm, dataIndex)}
@@ -41,10 +41,10 @@ class DoneEventPage extends Component {
               size="small"
               style={{ width: 90, marginRight: 8 }}
             >
-              Search
+              Cari
             </Button>
             <Button onClick={() => this.handleReset(clearFilters)} size="small" style={{ width: 90 }}>
-              Reset
+              Batal
             </Button>
           </div>
         ),

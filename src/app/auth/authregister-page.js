@@ -95,23 +95,23 @@ class AuthRegister extends Component {
             const message = validation.emailRequired(this.state.email);
             this.openNotification(message, 'Harap memasukkan email dengan benar')
         }else if(this.state.jenis_kelamin === '-'){
-            this.openNotification('Harus diisi', 'Jenis Kelamin belum dimasukkan')
+            this.openNotification('Harus diisi', 'Harap isi data jenis kelamin')
         }else if(validation.minPassword(this.state.password)){
             const message = validation.minPassword(this.state.password);
-            this.openNotification(message, 'Password minimal 8 karakter')
+            this.openNotification(message, 'Harap masukkan kata sandi minimal 8 karakter')
         }else{
             this.setState({loading: true,show : false})
             API.post(`/auth/register/peserta`, params)
             .then(res => {
                 if(res.status === 201){
                     this.props.navigate(CONSTANS.LOGIN_MENU_KEY)
-                    this.successNotification('Sukses', 'Register Berhasil')
+                    this.successNotification('Sukses', 'Pendaftaran Berhasil')
                 }else if(res.status === 422){
                     if(res.data.errors.email[0] === 'The email has already been taken.'){
                         this.openNotification('Email telah terdaftar', 'Silahkan daftar dengan email lain')
                     }
                 }else{
-                    this.openNotification('Register Salah', 'Silahkan isi data dengan benar')
+                    this.openNotification('Pendaftaran Salah', 'Silahkan isi data dengan benar')
                 }
                 this.setState({loading: false})
             }); 
