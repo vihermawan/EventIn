@@ -182,7 +182,7 @@ class Admin extends Component {
                       </Menu.Item>
                       <Menu.Item key="admin-penandatangan" onClick={this.clickedMenu}>
                           <NavLink to="/admin/admin-penandatangan">
-                              <span>Data</span>
+                              <span>Daftar</span>
                           </NavLink>
                       </Menu.Item>
                   </SubMenu>
@@ -216,7 +216,7 @@ class Admin extends Component {
                           style={{marginRight: 10}}
                           className={this.state.collapsed ? 'hidden-logo' : 'block-logo'}
                       />
-                      <span className={hidden} >Data Event</span>
+                      <span className={hidden} >Daftar Event</span>
                     </Link>
                   </Menu.Item>
                   <div className="title-dashboard">
