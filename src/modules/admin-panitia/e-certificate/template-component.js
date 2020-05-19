@@ -55,7 +55,7 @@ class TemplateCertificateComponent extends Component {
                                                                    Panitia yang sudah mengunduh template sertifikat, dapat mengubah desain yang ada di dalamnya. Namun tidak bisa
                                                                    melakukan perubahan pada tata letak yang sudah ditentukan dari pihak EventIn. Sertifikat yang sudah selesai
                                                                    di edit dapat diupload kembali yang nantinya akan dilakukan tanda tangan secara digital serta membuat nama secara
-                                                                   otomatis.Aturan Penggunaan template bisa diakses di <a href="bit.ly/panduanTemplate">bit.ly/panduanTemplate</a> Template Sertifikat dapat di unduh dengan menekan tombol unduh pada tombol di bawah ini !
+                                                                   otomatis.Aturan Penggunaan template bisa diakses di <a href="https://bit.ly/panduanTemplate" target="_blank">bit.ly/panduanTemplate</a> Template Sertifikat dapat di unduh dengan menekan tombol unduh pada tombol di bawah ini !
                                                                 </span>
                                                             </div>
                                                         </Col>
@@ -64,7 +64,7 @@ class TemplateCertificateComponent extends Component {
                                                                 <Row>
                                                                     <Col span={24} style={{ marginTop:'1%' }}>
                                                                         <div>
-                                                                            <a href="http://localhost:8000/download/template.docx" download>
+                                                                            <a href="http://178.128.208.144/API-EventIn/public/download/template.docx" download>
                                                                             <ButtonEdit
                                                                                 text="Download"
                                                                                 height={20}
