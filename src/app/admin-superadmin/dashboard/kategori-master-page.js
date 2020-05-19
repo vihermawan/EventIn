@@ -147,7 +147,7 @@ class KategoriMasterPage extends Component {
                 this.setState({loading: false})
                 this.componentDidMount();
             }else if(res.status === 500){
-                this.openNotification('Data Duplikat', 'Silahkan isi data dengan benar')
+                this.openNotification('Data Duplikat', 'Kategori sudah ada')
                 this.setState({loading: false,show: false,})
             }else{
                 this.openNotification('Data Salah', 'Silahkan isi data dengan benar')
@@ -178,7 +178,7 @@ class KategoriMasterPage extends Component {
                     this.setState({loading: false})
                     this.componentDidMount();
                 }else if(res.status === 500){
-                    this.openNotification('Data Duplikat', 'Silahkan isi data dengan benar')
+                    this.openNotification('Data Duplikat', 'Kategori sudah ada')
                     this.setState({loading: false,show: false,})
                 } else{
                     this.openNotification('Data Salah', 'Silahkan isi data dengan benar')
@@ -205,7 +205,7 @@ class KategoriMasterPage extends Component {
                     message.success('Berhasil Menghapus Kategori');
                     this.componentDidMount();
                 }else if(res.data.status === 'Failed'){
-                    message.error('Tidak dapat menghapus kategori. Kategori sudah dipakai event');
+                    this.openNotification('Gagal dihapus', 'Kategori sudah digunakan oleh event')
                     this.componentDidMount();
                 }
             }   
