@@ -50,7 +50,7 @@ class SetPasswordPage extends Component {
         }
         if(validation.minPassword(this.state.password)){
             const message = validation.minPassword(this.state.password);
-            this.openNotification(message, 'Password minimal 8 karakter')
+            this.openNotification(message, 'Kata Sandi minimal 8 karakter')
         }else{
             this.setState({loading: true})
             this.showModal2();
@@ -58,11 +58,11 @@ class SetPasswordPage extends Component {
             .then(res => {
                 if( res.status === 200){
                     this.props.navigate(CONSTANS.LOGIN_MENU_KEY)
-                    message.success('Berhasil Merubah Password');
+                    message.success('Berhasil Merubah Kata Sandi');
                 }else {
                     this.setState({show :false})
                     this.props.navigate(CONSTANS.FORGET_PASSWORD_MENU_KEY)
-                    this.openNotification('Token Invalid','Silahkan Masukan Email Anda Lagi')
+                    this.openNotification('Token Tidak Valid','Silahkan Masukan Email Anda Lagi')
                 }
             });
         }

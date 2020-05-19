@@ -89,7 +89,7 @@ class EditProfilePesertaComponent extends Component {
                                         >   
                                             <Option value = 'Laki-Laki'>Laki-Laki</Option>
                                             <Option value = 'Perempuan'>Perempuan</Option>
-                                        </Select>,
+                                        </Select>
                                     </div>
                                 </div>
                             </Col>

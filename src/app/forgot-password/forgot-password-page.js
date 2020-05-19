@@ -46,7 +46,7 @@ class ForgotPasswordPage extends Component {
         }
         if(validation.emailRequired(this.state.email) !== null){
             const message = validation.emailRequired(this.state.email);
-            this.openNotification(message, 'harus diisi email')
+            this.openNotification(message, 'Email harus diisi')
         }else{
             this.setState({loading: true})
             this.showModal2();

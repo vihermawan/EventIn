@@ -38,7 +38,7 @@ class EditPasswordPage extends Component {
             .then(res => {
                 if(res.status === 200){
                     this.props.navigate(CONSTANS.PROFILE_MENU_KEY)
-                    message.success('Passwword Berhasil di Ubah');
+                    message.success('Kata Sandi Berhasil di Ubah');
                 }else{
                     this.openNotification('Data Salah', 'Silahkan isi data dengan benar')
                 }
