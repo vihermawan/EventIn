@@ -113,7 +113,7 @@ class Navbar extends Component {
 			  </Menu.Item>
 			  <Menu.Item key="2">
 			  	<ButtonAuth
-					  text="History Event"
+					  text="Riwayat Event"
 					  className="auth-button-logout"
 					  style={{borderRadius: '10px',color:'black'}}
 					  block={true}

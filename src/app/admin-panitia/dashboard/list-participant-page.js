@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { Modal, Tag,Divider, message,Button, Input, Icon, Tooltip } from 'antd'
+import { Modal, Tag,Row,Col, message,Button, Input, Icon, Tooltip } from 'antd'
 import { faCheckCircle, faWindowClose} from '@fortawesome/free-solid-svg-icons'
 import  * as Highlighter from 'react-highlight-words'
 import { API } from '../../../common/api'
@@ -14,6 +14,7 @@ const { confirm } = Modal;
 class ListParticipantPage extends Component {
     state = { 
         participant: [],
+        totalparticipant : [],
         visible:false,
         loading : false,
     }
@@ -29,6 +30,10 @@ class ListParticipantPage extends Component {
           console.log(res)
           this.setState({
               participant:res.data.data.peserta,
+              totalparticipant : res.data.data.total_regis,
+              sisa: Number(res.data.data.total_regis[0].detail_event.limit_participant) - res.data.data.total_regis[0].diterima,
+            //   diterima : res.data.data.total_regis[0].diterima,
+            //   kuota : res.data.data.total_regis[0].detail_event.limit_participant,
               loading: false,
             })
         });
@@ -236,25 +241,49 @@ class ListParticipantPage extends Component {
             key: 'action',
             render: (data) => (
             [
-            <Tooltip title="Accept">
-                <ButtonDashboard
-                    height={20}
-                    icon={faCheckCircle}
-                    borderRadius="5px"
-                    background="#00C908"
-                    onClick={ () => this.showAcceptConfirm(data.nomor)}
-                />,
-            </Tooltip>,
-            <Divider type="vertical" />,
-            <Tooltip title="Reject">,
-                <ButtonDashboard
-                    height={20}
-                    icon={faWindowClose}
-                    borderRadius="5px"
-                    background="#FF0303"
-                    onClick={ () => this.showRejectConfirm(data.nomor)}
-                />
-            </Tooltip>,]
+            <Row>
+                <div style={this.state.sisa === 0 ? {display:"none"}:{display:"block"}}>
+                    <div style={{textAlign:"center"}}>
+                        <Col lg={12} md={24} sm={24}>
+                            <Tooltip title="Accept">
+                                <ButtonDashboard
+                                    height={20}
+                                    icon={faCheckCircle}
+                                    borderRadius="5px"
+                                    background="#00C908"
+                                    onClick={ () => this.showAcceptConfirm(data.nomor)}
+                                />
+                            </Tooltip>,
+                        </Col>
+                        <Col lg={12} md={24} sm={24}>
+                            <Tooltip title="Reject">
+                                <ButtonDashboard
+                                    height={20}
+                                    icon={faWindowClose}
+                                    borderRadius="5px"
+                                    background="#FF0303"
+                                    onClick={ () => this.showRejectConfirm(data.nomor)}
+                                />
+                            </Tooltip>
+                        </Col>
+                    </div>
+                </div>
+                <div style={this.state.sisa === 0 ? {display:"block"}:{display:"none"}}>
+                    <div style={{textAlign:"center"}}>
+                        <Col lg={12} md={24} sm={24}>
+                            <Tooltip title="Reject">
+                                <ButtonDashboard
+                                    height={20}
+                                    icon={faWindowClose}
+                                    borderRadius="5px"
+                                    background="#FF0303"
+                                    onClick={ () => this.showRejectConfirm(data.nomor)}
+                                />
+                            </Tooltip>
+                        </Col>
+                    </div>
+                </div>
+            </Row>]
             ),
         },
     ];
@@ -269,7 +298,7 @@ class ListParticipantPage extends Component {
         email : peserta.users.email,
         status : [status.nama_status],
     }))
-    
+
         return ( 
             <ListParticipantComponent
                 initialData={this.state}

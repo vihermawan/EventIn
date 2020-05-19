@@ -57,10 +57,10 @@ class AuthLogin extends Component {
         }
         if(validation.emailRequired(this.state.email) !== null){
             const message = validation.emailRequired(this.state.email);
-            this.openNotification(message, 'harus diisi email')
+            this.openNotification(message, 'Harap isi data dengan benar')
         }else if(validation.minPassword(this.state.password)){
             const message = validation.minPassword(this.state.password);
-            this.openNotification(message, 'harus diisi email')
+            this.openNotification(message, 'Harap isi data dengan benar')
         }else {
             // this.props.onLogin(params);
             this.setState({loading: true})
@@ -73,7 +73,7 @@ class AuthLogin extends Component {
                         localStorage.setItem('id_role', res.data.id_role)
                         localStorage.setItem('profile_picture', res.data.profile_picture)
                         this.props.navigate(CONSTANS.PANITIA_MENU_KEY)
-                        this.successNotification('Sukses', 'Berhasil Login')
+                        this.successNotification('Sukses', 'Berhasil Masuk')
                       
                     }
                     else if(res.data.id_role === 1) {
@@ -82,7 +82,7 @@ class AuthLogin extends Component {
                         localStorage.setItem('profile_picture', res.data.profile_picture)
                         localStorage.setItem('id_role', res.data.id_role)
                         this.props.navigate(CONSTANS.ADMIN_MENU_KEY)
-                        this.successNotification('Sukses', 'Berhasil Login')
+                        this.successNotification('Sukses', 'Berhasil Masuk')
                        
                     }
                     else if(res.data.id_role === 3) {
@@ -91,7 +91,7 @@ class AuthLogin extends Component {
                         localStorage.setItem('profile_picture', res.data.profile_picture)
                         localStorage.setItem('id_role', res.data.id_role)
                         this.props.navigate(CONSTANS.HOME_MENU_KEY)
-                        this.successNotification('Sukses', 'Berhasil Login')
+                        this.successNotification('Sukses', 'Berhasil Masuk')
                         
                     }
                     else if(res.data.id_role === 4) {
@@ -100,7 +100,7 @@ class AuthLogin extends Component {
                         localStorage.setItem('profile_picture', res.data.profile_picture)
                         localStorage.setItem('id_role', res.data.id_role)
                         this.props.navigate(CONSTANS.SIGNER_MENU_KEY)
-                        this.successNotification('Sukses', 'Berhasil Login')
+                        this.successNotification('Sukses', 'Berhasil Masuk')
                     }
                 }else if(res.data.status === 'Banned'){
                     alert('Login salah')
