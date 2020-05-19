@@ -201,8 +201,13 @@ class KategoriMasterPage extends Component {
         API.delete(`/admin/deletekategori/${id}`)
         .then(res => {
             if(res.status === 200){
-                message.success('Berhasil Menghapus Kategori');
-                this.componentDidMount();
+                if(res.data.status === 'Success'){
+                    message.success('Berhasil Menghapus Kategori');
+                    this.componentDidMount();
+                }else if(res.data.status === 'Failed'){
+                    message.error('Tidak dapat menghapus kategori. Kategori sudah dipakai event');
+                    this.componentDidMount();
+                }
             }   
         });
     }

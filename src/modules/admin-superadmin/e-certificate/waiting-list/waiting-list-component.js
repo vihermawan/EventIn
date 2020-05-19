@@ -24,14 +24,14 @@ class PesertaAdminComponent extends Component {
                 }}
             >
                 <Breadcrumb separator=">">
-                    <Breadcrumb.Item>Data Pengiriman Sertifikat </Breadcrumb.Item>
+                    <Breadcrumb.Item>Daftar Pengiriman Sertifikat </Breadcrumb.Item>
                 </Breadcrumb>
                 <Row style={{minHeight: '100%',marginBottom: '2%',marginTop:'2%',}} className="background">
                     <Col lg={24} md={24} sm={24}> 
                         <div className="container-active-event">
                             <Row>
                             <div className="container-title-event">
-                                <span>Daftar Sertifikat yang dikirim</span>
+                                <span>Daftar Pengiriman Sertifikat</span>
                             </div>
                             </Row>
                             <LoadingContainer loading={initialData.loading}>
