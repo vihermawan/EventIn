@@ -304,7 +304,7 @@ class WaitingListPage extends Component {
             },
         ];
 
-        const data =  this.state.e_certificate.map( ({id_penandatangan_sertifikat, sertifikat_URL, id_sertifikat, nama_sertifikat,sertifikat,tenggang_waktu}, index) => ({
+        const data =  this.state.e_certificate.map( ({id_penandatangan_sertifikat, sertifikat_URL, id_sertifikat, nama_sertifikat,sertifikat}, index) => ({
             no : index+1,
             id_penandatangan_sertifikat : id_penandatangan_sertifikat,
             id_sertifikat : id_sertifikat,
@@ -312,7 +312,6 @@ class WaitingListPage extends Component {
             nama_panitia : sertifikat.event.panitia.nama_panitia,
             organisasi : sertifikat.event.organisasi,
             sertifikat : nama_sertifikat,
-            tenggang_waktu : moment(tenggang_waktu).format("DD MMMM YYYY"),
             sertif_URL :sertifikat_URL
         }))
 
