@@ -65,8 +65,9 @@ class CertificatePage extends Component {
         }
         else{
             this.getBase64(event.target.files[0], imageUrl => {
-                this.setState({ picture: imageUrl,croppedImageUrl :imageUrl,picture_event:imageUrl,visible:true,type_file :event.target.files[0].type  })
+                this.setState({ picture: imageUrl,croppedImageUrl :imageUrl,picture_event:imageUrl,visible:true })
             })
+            this.setState({type_file :event.target.files[0].type })
         }
         
     }
