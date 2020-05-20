@@ -62,7 +62,7 @@ class SetPasswordPenandatanganPage extends Component {
                 }else {
                     this.setState({show :false})
                     this.props.navigate(CONSTANS.FORGET_PASSWORD_MENU_KEY)
-                    this.openNotification('Token Invalid','Silahkan klik atur ulang kata sandi di halaman login')
+                    this.openNotification('Token Invalid','Silahkan masukkan email kembali untuk mendapat link ubah password')
                 }
             });
         }
