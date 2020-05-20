@@ -36,30 +36,6 @@ class CertificateComponent extends Component{
                                                 <Col lg={21} md={24} sm={24}>
                                                     <span className="auth-input-label text-black">Upload Poster*</span>
                                                 </Col>
-                                                <Col lg={3} md={24} sm={24} style={initialData.picture === null ? {display:"none"}:{display:"block"}}>
-                                                    <div style={initialData.button_edit === 'Edit Foto Profil' ? {display:"block"}:{display:"none"}}>
-                                                        <ButtonDashboard
-                                                            text="Upload Foto Event"
-                                                            height={20}
-                                                            icon={faUserEdit}
-                                                            borderRadius="5px"
-                                                            float = 'Right'
-                                                            background="#00C908"
-                                                            onClick={handleButtonEdit}
-                                                        />
-                                                    </div>
-                                                    <div style={initialData.button_edit === 'Upload Gambar' ? {display:"block"}:{display:"none"}}>
-                                                        <ButtonDashboard
-                                                            text="Kembali Lagi"
-                                                            height={20}
-                                                            icon={faBackward}
-                                                            borderRadius="5px"
-                                                            float = 'Right'
-                                                            background="#00C908"
-                                                            onClick={handleButtonGambar}
-                                                        />
-                                                    </div>
-                                                </Col>
                                             </Row>  
                                         </div>
                                     </Col>
