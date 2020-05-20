@@ -95,7 +95,7 @@ class DetailHistoryEventComponent extends Component {
                                                                                 <Icon type="instagram" /> @{initialData.detailEvent.instagram}
                                                                             </p>
                                                                             <p className="text-soft-blue">
-                                                                                <Icon type="ie" /> ice-indonesia.com 
+                                                                                <Icon type="phone" /> ice-indonesia.com 
                                                                             </p>
                                                                         </div>
                                                                     </Col>
