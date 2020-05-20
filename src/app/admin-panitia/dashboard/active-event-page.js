@@ -240,7 +240,7 @@ class ActiveEventPage extends Component {
                     height={20}
                     icon={faUserCheck}
                     borderRadius="5px"
-                    background="#4D5AF2"
+                    background="#02005C"
                     onClick={ () => this.onAbsentParticipant(data.nomor)}
                 />
                 </Tooltip>,
