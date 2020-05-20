@@ -1,7 +1,7 @@
 {
   "name": "base_project",
   "version": "0.1.0",
-  "private": true,
+  "private": false,
   "dependencies": {
     "@amcharts/amcharts4": "^4.9.19",
     "@fortawesome/fontawesome-svg-core": "^1.2.28",
