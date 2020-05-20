@@ -68,7 +68,7 @@ class CertificatePage extends Component {
                 this.setState({ picture: imageUrl,croppedImageUrl :imageUrl,picture_event:imageUrl,visible:true })
             })
             this.setState({type_file :event.target.files[0].type })
-        }
+        }//cek
         
     }
       
