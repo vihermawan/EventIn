@@ -91,8 +91,9 @@ class CreateBiodataPenandatanganPage extends Component {
         }
         else{
             this.getBase64(event.target.files[0], imageUrl => {
-                this.setState({ picture: imageUrl,croppedImageUrl :imageUrl,profile_picture:imageUrl,visible:true,file_type:event.target.files[0].type })
+                this.setState({ picture: imageUrl,croppedImageUrl :imageUrl,profile_picture:imageUrl,visible:true})
             })
+            this.setState({file_type:event.target.files[0].type})
         }
     } 
     

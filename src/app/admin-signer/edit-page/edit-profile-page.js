@@ -25,6 +25,7 @@ class EditProfilePage extends Component {
             aspect: 1 / 1,
           },
         croppedImageUrl : '',
+        file_type : '',
     }
 
     componentDidMount(){
@@ -76,6 +77,7 @@ class EditProfilePage extends Component {
             this.getBase64(event.target.files[0], imageUrl => {
                 this.setState({ picture: imageUrl,croppedImageUrl :imageUrl,profile_picture:imageUrl,visible:true })
             })
+            this.setState({file_type:event.target.files[0].type})
         }
         
     }
@@ -240,6 +242,11 @@ class EditProfilePage extends Component {
         params.set('jabatan',this.state.jabatan)
         params.set('nip',this.state.nip)
         params.set('instansi',this.state.instansi)
+        if(this.state !== null){
+            this.openNotification('Data Wajib di Isi', 'Silahkan isi data dengan benar')
+        }else if(this.state.file_type !== 'image/jpeg'){
+            this.openNotification('Format Gambar Salah', 'Silahkan Upload Kembali dengan format JPG')
+        }else{
         this.setState({loading: true})
         API.postEdit(`/penandatangan/profile/edit/${id_penandatangan}`, params)
             .then(res => {
@@ -247,12 +254,12 @@ class EditProfilePage extends Component {
                     this.props.navigate(CONSTANS.PROFILE_SIGNER_MENU_KEY)
                     window.location.reload();
                     message.success('Data Berhasil di Ubah');
-                    // this.componentDidMount();
                 }else{
                     this.openNotification('Data Salah', 'Silahkan isi data dengan benar')
                 }
                
             });
+        }
 
     }
 
