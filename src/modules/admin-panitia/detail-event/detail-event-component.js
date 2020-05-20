@@ -95,7 +95,7 @@ class DetailEventComponent extends Component {
                                                                                 <Icon type="instagram" /> @ {initialData.detailEvent.instagram}
                                                                             </p>
                                                                             <p className="text-soft-blue">
-                                                                                <Icon type="ie" /> {initialData.detailEvent.telepon}
+                                                                                <Icon type="phone" /> {initialData.detailEvent.telepon}
                                                                             </p>
                                                                         </div>
                                                                     </Col>
