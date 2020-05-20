@@ -107,7 +107,7 @@ class BasicInfoComponent extends Component{
                                                     <Option value="6">Teknologi</Option>
                                                     <Option value="7">Pendidikan</Option>
                                                     <Option value="8">Agama</Option>
-                                                </Select>,
+                                                </Select>
                                             </div>
                                         </div>
                                     </Col>
@@ -147,7 +147,7 @@ class BasicInfoComponent extends Component{
                                             </div>
                                         </div>
                                     </Col>
-                                    <Col lg={8} md={24} sm={24}>=
+                                    <Col lg={8} md={24} sm={24}>
                                             <div>   
                                                 <span className="auth-input-label text-black">Instagram*</span>
                                             </div>
