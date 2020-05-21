@@ -266,6 +266,7 @@ class CertificatePage extends Component {
                 localStorage.removeItem('step-4');
             }else{
                 this.openNotification('Data Salah', 'Silahkan isi data dengan benar')
+                this.setState({loading: false, show : false})
             }
         });
      }
