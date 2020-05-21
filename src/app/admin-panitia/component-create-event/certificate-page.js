@@ -26,6 +26,7 @@ class CertificatePage extends Component {
         aspect: 16 / 9,
       },
       croppedImageUrl : '',
+      show : false,
     }
 
     componentDidMount(){
@@ -252,7 +253,7 @@ class CertificatePage extends Component {
     }else if(this.state.type_file !== 'image/jpeg'){
         this.openNotification('Format Gambar Salah', 'Silahkan Upload Kembali dengan format JPG')
     }else{
-        this.setState({loading: true})
+        this.setState({loading: true, show : true})
         API.postEdit(`/panitia/create/event`, params)
         .then(res => {
             if(res.status === 201){

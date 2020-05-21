@@ -1,11 +1,10 @@
 import React, { Component } from 'react';
-import { Layout, Row, Col, Upload, Form,Modal, Button, Input} from 'antd';
+import { Layout, Row, Col, Upload, Form, Modal, Button, Input} from 'antd';
 import ReactCrop from 'react-image-crop';
 import 'react-image-crop/dist/ReactCrop.css';
 // component
-import ButtonDashboard from '../../../../common/component/button/button-dashboard';
-import { faBackward, faUserEdit} from '@fortawesome/free-solid-svg-icons';
 import LoadingContainer from '../../../../common/component/loading/loading-container';
+import LoadingNotifContainer from '../../../../common/component/loading/loading-notif';
 const { Content } = Layout;
 
 class CertificateComponent extends Component{
@@ -13,7 +12,6 @@ class CertificateComponent extends Component{
         const { initialData, 
                 onPrev,
                 handleSubmit,uploadGambar,
-                handleButtonEdit,handleButtonGambar,
                 onImageLoaded,onCropComplete,onCropChange,handleOk,handleCancel
             } = this.props;
         const uploadButton = (
@@ -84,6 +82,16 @@ class CertificateComponent extends Component{
                             </div>
                         </Form>
                         </LoadingContainer>
+                        <Modal
+                            title="Proses Pembuatan Event"
+                            visible={initialData.show}
+                            className = "modal-notif"
+                            >
+                            <p className="text-notif">Silahkan tunggu 1x24 jam di email anda apakah event anda disetujui atau tidak</p>
+                            <div >
+                                <LoadingNotifContainer loading={initialData.loading_notif} style={{ minHeight:'20px', marginTop:'50px',}}/>
+                            </div>
+                        </Modal>
                     </div>
                     <Button
                         type="primary"

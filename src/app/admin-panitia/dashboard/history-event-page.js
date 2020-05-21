@@ -216,7 +216,7 @@ class HistoryEventPage extends Component {
                       borderRadius="5px"
                       background="#070E57"
                       onClick={() =>this.onDetailParticipant(data.nomor)}
-                  />
+                  />,
                 </Tooltip>,
                 <Divider type="vertical" />,
                 <Tooltip title="Delete">
@@ -226,7 +226,7 @@ class HistoryEventPage extends Component {
                       borderRadius="5px"
                       background="#FF0303"
                       onClick={ () => this.showDeleteConfirm(data.nomor)}
-                  />
+                  />,
                 </Tooltip>,
                 <Divider type="vertical" />,
                 <Tooltip title="Detail">
@@ -236,7 +236,7 @@ class HistoryEventPage extends Component {
                       borderRadius="5px"
                       background="#FFA903"
                       onClick={ () => this.onDetailEvent(data.nomor)}
-                  />
+                  />,
                  </Tooltip>,
                 ]
               ),

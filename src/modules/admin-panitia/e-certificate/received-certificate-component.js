@@ -46,7 +46,7 @@ class WaitingCertificateComponent extends Component {
                                     onOk={handleOk}
                                     onCancel={handleCancel}
                                     >
-                                   <PDFViewer src={initialData.url}  style={{minWidth: '100%', minHeight: '500px',border:"none"}}>
+                                   <PDFViewer src={initialData.url}  style={{minWidth: '100%', minHeight: '500px'}}>
                                         <Document>
                                             <Page>
                                             </Page>
