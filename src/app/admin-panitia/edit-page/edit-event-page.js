@@ -4,6 +4,7 @@ import { API } from '../../../common/api'
 import CONSTANS from '../../../common/utils/Constants'
 import {message, notification } from 'antd';
 import { navigate } from '../../../common/store/action'
+import * as validation from '../../../common/utils/validation'
 import EditEventComponent from '../../../modules/admin-panitia/edit-event/edit-event-component';
 import moment from 'moment';
 
@@ -392,14 +393,34 @@ class EditEventPage extends Component {
         params.append('picture',this.state.picture_event)
         params.append("_method", 'PUT')
 
-        if(this.state !== null){
+        if(this.state === null){
             this.openNotification('Data Wajib di Isi', 'Silahkan isi data dengan benar')
-        }else if(this.state.type_file !== 'image/jpeg'){
-            this.openNotification('Format Gambar Salah', 'Silahkan Upload Kembali dengan format JPG')
+        }else if(validation.emailRequired(this.state.email_event) !== null){
+            const message = validation.emailRequired(this.state.email_event);
+            this.openNotification(message, 'Harap memasukkan email dengan benar')
+        }
+        else if(this.state.button_edit !== 'Edit Foto Profil'){
+            if(this.state.file_type !== 'image/jpeg'){
+                this.openNotification('Format Gambar Salah', 'Silahkan Upload Kembali dengan format JPG')
+            }else{
+                this.setState({loading: true})
+                API.postEdit(`/panitia/editevent/${id_panitia}`, params)
+                .then(res => {
+                    console.log(res)
+                    if(res.status === 200){
+                        message.success('Data Berhasil di Ubah');
+                        this.props.navigate(CONSTANS. ACTIVE_EVENT_MENU_KEY)                
+                    }else{
+                        this.openNotification('Data Salah', 'Silahkan isi data dengan benar')
+                    }
+                    this.setState({loading: false})
+                });
+            }
         }else{
             this.setState({loading: true})
             API.postEdit(`/panitia/editevent/${id_panitia}`, params)
             .then(res => {
+                console.log(res)
                 if(res.status === 200){
                     message.success('Data Berhasil di Ubah');
                     this.props.navigate(CONSTANS. ACTIVE_EVENT_MENU_KEY)                

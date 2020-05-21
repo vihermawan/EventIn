@@ -4,6 +4,7 @@ import { connect } from 'react-redux';
 import { API } from '../../../common/api'
 import CONSTANS from '../../../common/utils/Constants'
 import { navigate } from '../../../common/store/action'
+import * as validation from '../../../common/utils/validation'
 import EditProfileSignerComponent from '../../../modules/admin-signer/profile/edit-profile-component';
 
 
@@ -26,6 +27,7 @@ class EditProfilePage extends Component {
           },
         croppedImageUrl : '',
         file_type : '',
+        loading : false
     }
 
     componentDidMount(){
@@ -236,16 +238,33 @@ class EditProfilePage extends Component {
         const params = new FormData()
         params.append('profile_picture',this.state.profile_picture)
         params.append("_method", 'PUT')
-        // params.append('file_p12',this.state.file_p12)
         params.set('nama_penandatangan',this.state.nama_penandatangan)
         params.set('email',this.state.email)
         params.set('jabatan',this.state.jabatan)
         params.set('nip',this.state.nip)
         params.set('instansi',this.state.instansi)
-        if(this.state !== null){
+        if(this.state === null){
             this.openNotification('Data Wajib di Isi', 'Silahkan isi data dengan benar')
-        }else if(this.state.file_type !== 'image/jpeg'){
-            this.openNotification('Format Gambar Salah', 'Silahkan Upload Kembali dengan format JPG')
+        }else if(validation.emailRequired(this.state.email) !== null){
+            const message = validation.emailRequired(this.state.email);
+            this.openNotification(message, 'Harap memasukkan email dengan benar')
+        }else if(this.state.button_edit !== 'Edit Foto Profil'){
+            if(this.state.file_type !== 'image/jpeg'){
+                this.openNotification('Format Gambar Salah', 'Silahkan Upload Kembali dengan format JPG')
+            }else{
+                this.setState({loading: true})
+                API.postEdit(`/penandatangan/profile/edit/${id_penandatangan}`, params)
+                .then(res => {
+                    if(res.status === 200){
+                        this.props.navigate(CONSTANS.PROFILE_SIGNER_MENU_KEY)
+                        window.location.reload();
+                        message.success('Data Berhasil di Ubah');
+                    }else{
+                        this.openNotification('Data Salah', 'Silahkan isi data dengan benar')
+                    }
+                   
+                });
+            }
         }else{
         this.setState({loading: true})
         API.postEdit(`/penandatangan/profile/edit/${id_penandatangan}`, params)
