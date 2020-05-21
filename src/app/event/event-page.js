@@ -16,6 +16,7 @@ class EventPage extends Component {
         event_seacrh : [],
         event_week : [],
         size_event_seacrh: '',
+        size : '',
         kategori : [],
         eventbyKategori : [],
         loading : false,
@@ -78,9 +79,11 @@ class EventPage extends Component {
     getKategori=()=>{
         API.get('/peserta/kategori')
         .then(res => {
+            console.log(res)
             if(res.status === 200){
                 this.setState({
                     kategori:res.data.data.kategori,
+                    size : res.data.size,
                 })
             }
         })

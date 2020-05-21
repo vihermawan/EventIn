@@ -31,6 +31,7 @@ class ActiveEventPage extends Component {
     
     componentDidMount(){
         this.getEvent();
+        this.props.reload();
     }
 
     getColumnSearchProps = dataIndex => ({
@@ -242,7 +243,7 @@ class ActiveEventPage extends Component {
                     borderRadius="5px"
                     background="#02005C"
                     onClick={ () => this.onAbsentParticipant(data.nomor)}
-                />
+                />,
                 </Tooltip>,
                 <Divider type="vertical" />,
                 <Tooltip title="Participant">
@@ -253,7 +254,7 @@ class ActiveEventPage extends Component {
                         textAlign="center"
                         background="#4D5AF2"
                         onClick={ () => this.onDetailParticipant(data.nomor)}
-                    />
+                    />,
                 </Tooltip>,
                 <Divider type="vertical" />,
                 <Tooltip title="Detail">
@@ -263,7 +264,7 @@ class ActiveEventPage extends Component {
                         borderRadius="5px"
                         background="#FFA903"
                         onClick={ () => this.onDetailEvent(data.nomor)}
-                    />
+                    />,
                 </Tooltip>,
                 <Divider type="vertical" />,
                 <Tooltip title="Edit">
@@ -273,7 +274,7 @@ class ActiveEventPage extends Component {
                         borderRadius="5px"
                         background="#088C0D"
                         onClick={ () => this.onEditEvent(data.nomor)}
-                    />
+                    />,
                 </Tooltip>
                 ]
               ),

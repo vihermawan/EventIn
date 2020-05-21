@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
-import { Layout, BackTop, Row, Col, Input, Tabs, Card } from 'antd';
+import { Layout, BackTop, Row, Col, Input, Tabs, Card, Result } from 'antd';
 import Moment from 'react-moment';
 import 'moment-timezone';
 import 'moment/locale/id';
@@ -172,10 +172,10 @@ class EventComponent extends Component {
                                         {/* Kategori Event */}
                                             <LoadingContainer loading={initialData.loading}>
                                                 <Col lg={24} style={{minHeight: "300px"}}>
-                                                    <Row gutter={[16,16]}>
+                                                    <Row gutter={[16,16]} type="flex">
                                                         {
                                                             cardDataEventKategori.map( data =>
-                                                                <Col lg={6} md={12} sm={12} xs={24} className="mt-30">
+                                                                <Col lg={6} md={12} sm={12} xs={24} style={initialData.size > 0 ? {display:"block"}:{display:"none"}}>
                                                                     <Card
                                                                         hoverable
                                                                         className="event-card-container"
@@ -190,7 +190,7 @@ class EventComponent extends Component {
                                                                                 <div className="text-black semi-bold"><Moment format="DD MMMM YYYY">{data.date}</Moment></div>
                                                                             </Col>
                                                                             <Col lg={12} md={12} sm={24} xs={12}>
-                                                                                <div  style={data.quota === 0 ? {display:"none"}:{display:"block"}}>
+                                                                                <div style={data.quota === 0 ? {display:"none"}:{display:"block"}}>
                                                                                     <ButtonStatus
                                                                                         text="Available"
                                                                                         height={10}
@@ -230,10 +230,17 @@ class EventComponent extends Component {
                                                             )
             
                                                         }
+                                                        <Col lg={24} md={24} sm={24} xs={24} style={initialData.size === 0 ? {display:"block"}:{display:"none"}}>
+                                                            <Result
+                                                                status="404"
+                                                                title="Event Belum Ada"
+                                                                subTitle="Mohon maaf belum ada event yang dibuat"
+                                                            />,
+                                                        </Col>
                                                     </Row>
                                                     <Row>
                                                         <Col span={24}>
-                                                            <div className="tombol-tengah button-section-1-container" style={initialData.countEvent < 1 && initialData.loading === true ? {display:"none"}:{display:"block"}}>
+                                                            <div className="tombol-tengah button-section-1-container" style={initialData.countEvent < 17 ? {display:"none"}:{display:"block"}}>
                                                                 <ButtonDashboard
                                                                     text="Semua Event"
                                                                     className='button-participate'
@@ -304,7 +311,7 @@ class EventComponent extends Component {
                                                                         </span>
                                                                     </Col>
                                                                     <Col lg={24} className="mt-10">
-                                                                        <Link to='/detail'><h2 className="text-soft-blue semi-bold"><EllipsisText text={data.title} length={"20"} tooltip={data.title}/></h2></Link>
+                                                                        <Link onClick={() => onDetailEvent(data.id)}><h2 className="text-soft-blue semi-bold"><EllipsisText text={data.title} length={"20"} tooltip={data.title}/></h2></Link>
                                                                     </Col>
                                                                     <Col lg={24}>
                                                                         {data.place}
