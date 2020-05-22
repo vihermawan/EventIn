@@ -254,7 +254,6 @@ class EditProfilePage extends Component {
                 this.setState({loading: true})
                 API.postEdit(`/panitia/editprofile/${id_panitia}`, params)
                 .then(res => {
-                    console.log(res)
                     if(res.status === 200){
                         this.props.navigate(CONSTANS.PROFILE_ADMIN_PANITIA_MENU_KEY)
                         window.location.reload();
@@ -269,7 +268,6 @@ class EditProfilePage extends Component {
             this.setState({loading: true})
             API.postEdit(`/panitia/editprofile/${id_panitia}`, params)
             .then(res => {
-                console.log(res)
                 if(res.status === 200){
                     this.props.navigate(CONSTANS.PROFILE_ADMIN_PANITIA_MENU_KEY)
                     window.location.reload();

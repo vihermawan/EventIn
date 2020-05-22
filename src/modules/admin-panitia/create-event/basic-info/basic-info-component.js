@@ -154,7 +154,7 @@ class BasicInfoComponent extends Component{
                                             <div>
                                                 <InputForm
                                                     name='instagram'
-                                                    placeholder="Masukkan akun instagram...."
+                                                    placeholder="Masukkan akun instagram tanpa @...."
                                                     className="input-event mt-5 mb-20"
                                                     onChange={handleChange}
                                                     value={initialData.instagram}

@@ -393,11 +393,51 @@ class EditEventPage extends Component {
         params.append('picture',this.state.picture_event)
         params.append("_method", 'PUT')
 
-        if(this.state === null){
-            this.openNotification('Data Wajib di Isi', 'Silahkan isi data dengan benar')
+        if(validation.required(this.state.nama) !== null){
+            const message = validation.required(this.state.nama);
+            this.openNotification(message, 'Nama Event Harus Diisi')
+        }else if(validation.required(this.state.description) !== null){
+            const message = validation.required(this.state.description);
+            this.openNotification(message, 'Deskripsi Event Harus Diisi')
+        }else if(validation.required(this.state.organisasi) !== null){
+            const message = validation.required(this.state.organisasi);
+            this.openNotification(message, 'Organisasi Harus Diisi')
+        }else if(validation.numberRequired(this.state.batas_peserta) !== null){
+            const message = validation.numberRequired(this.state.batas_peserta);
+            this.openNotification(message, 'Batas Peserta Event Harus Diisi')
+        }else if(validation.numberRequired(this.state.no_telepon) !== null){
+            const message = validation.numberRequired(this.state.no_telepon);
+            this.openNotification(message, 'Nomor Telefon Harus Diisi')
         }else if(validation.emailRequired(this.state.email_event) !== null){
             const message = validation.emailRequired(this.state.email_event);
-            this.openNotification(message, 'Harap memasukkan email dengan benar')
+            this.openNotification(message, 'Email Event Harus Diisi')
+        }else if(validation.required(this.state.kategori_input) !== null){
+            const message = validation.required(this.state.kategori_input);
+            this.openNotification(message, 'Kategori Event Harus Dipilih')
+        }else if(validation.required(this.state.instagram) !== null){
+            const message = validation.required(this.state.instagram);
+            this.openNotification(message, 'Akun Instagram Event Harus Diisi')
+        }else if(validation.required(this.state.lokasi) !== null){
+            const message = validation.required(this.state.lokasi);
+            this.openNotification(message, 'Lokasi Harus Diisi')
+        }else if(validation.required(this.state.id_provinsi) !== null){
+            const message = validation.required(this.state.id_provinsi);
+            this.openNotification(message, 'Provinsi Harus Diisi')
+        }else if(validation.required(this.state.id_kabupaten) !== null){
+            const message = validation.required(this.state.id_kabupaten);
+            this.openNotification(message, 'Kabupaten Harus Diisi')
+        }else if(Date.parse(this.state.start_event) > Date.parse(this.state.end_event)){
+            this.openNotification('Tanggal Mulai Event harus disesuaikan', 'Tanggal harus disi dengan benar') 
+        }else if(Date.parse(this.state.open_registration) > Date.parse(this.state.end_registration)){
+            this.openNotification('Tanggal Pendaftaran harus disesuaikan', 'Tanggal harus disi dengan benar')  
+        }else if(Date.parse(this.state.start_event) < Date.parse(this.state.open_registration)){
+            this.openNotification('Tanggal Pendaftaran harus disesuaikan', 'Tanggal Registrasi harus lebih dulu')
+        }else if(Date.parse(this.state.end_event) < Date.parse(this.state.end_registration)){
+            this.openNotification('Tanggal Pendaftaran harus disesuaikan', 'Tanggal Registrasi harus lebih dulu')
+        }else if(this.state.time_start === ''){
+            this.openNotification('Jam Belum Disisi', 'Jam harus disi dengan benar') 
+        }else if(this.state.time_end === ''){
+            this.openNotification('Jam Belum Disisi', 'Jam harus disi dengan benar') 
         }
         else if(this.state.button_edit !== 'Edit Foto Profil'){
             if(this.state.file_type !== 'image/jpeg'){
@@ -406,7 +446,6 @@ class EditEventPage extends Component {
                 this.setState({loading: true})
                 API.postEdit(`/panitia/editevent/${id_panitia}`, params)
                 .then(res => {
-                    console.log(res)
                     if(res.status === 200){
                         message.success('Data Berhasil di Ubah');
                         this.props.navigate(CONSTANS. ACTIVE_EVENT_MENU_KEY)                
@@ -420,7 +459,6 @@ class EditEventPage extends Component {
             this.setState({loading: true})
             API.postEdit(`/panitia/editevent/${id_panitia}`, params)
             .then(res => {
-                console.log(res)
                 if(res.status === 200){
                     message.success('Data Berhasil di Ubah');
                     this.props.navigate(CONSTANS. ACTIVE_EVENT_MENU_KEY)                

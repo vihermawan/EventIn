@@ -10,6 +10,8 @@ class DetailHistoryEventPage extends Component {
         kategori : [],
         detailEvent : [],
         status : [],
+        provinsi : '',
+        kabupaten : '',
         loading: false,
     }
 
@@ -26,6 +28,8 @@ class DetailHistoryEventPage extends Component {
             kategori : res.data.data.event.kategori,
             detailEvent : res.data.data.event.detail_event,
             status : res.data.data.event.status_biaya,
+            provinsi : res.data.data.event.detail_event.provinsi.provinsi,
+            kabupaten : res.data.data.event.detail_event.kabupaten.ibu_kota,
             loading: false,
           })
          

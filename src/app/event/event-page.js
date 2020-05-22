@@ -54,6 +54,7 @@ class EventPage extends Component {
         this.setState({loading: true})
         API.get(`/peserta/event`)
         .then(res => {
+            console.log(res)
             if(res.status === 200){
                 this.setState({
                     event:res.data.data.event.data,
@@ -79,7 +80,6 @@ class EventPage extends Component {
     getKategori=()=>{
         API.get('/peserta/kategori')
         .then(res => {
-            console.log(res)
             if(res.status === 200){
                 this.setState({
                     kategori:res.data.data.kategori,
@@ -117,6 +117,15 @@ class EventPage extends Component {
         message.success(`Kuota Masih tersisa ${quota} silahkan mendaftar`);
     };
 
+
+    closed = () => {
+        message.error(`Mohon maaf tidak bisa jadwal registrasi telah ditutup`);
+    }
+
+    see = event => {
+        message.success(`Kuota full dan registrasi telah selesai, sampai jumpa di ${event}!`);
+    }
+
     error = () => {
         message.error(`Mohon maaf tidak bisa mendaftar karena kuota penuh`);
     };
@@ -131,6 +140,7 @@ class EventPage extends Component {
             place: data.detail_event.lokasi,
             foto : data.detail_event.image_URL,
             quota : (data.detail_event.limit_participant)-(data.peserta_event_count),
+            endregist : data.detail_event.end_registration,
         }))
 
         const kategori = this.state.kategori.map(data => ({
@@ -146,6 +156,7 @@ class EventPage extends Component {
             place: data.detail_event.lokasi,
             foto : data.detail_event.image_URL,
             quota : (data.detail_event.limit_participant)-(data.peserta_event_count),
+            endregist : data.detail_event.end_registration,
         }))
 
         const cardDataEvenyWeek =  this.state.event_week.map( data => ({
@@ -156,6 +167,7 @@ class EventPage extends Component {
             place: data.detail_event.lokasi,
             foto : data.detail_event.image_URL,
             quota : (data.detail_event.limit_participant)-(data.peserta_event_count),
+            endregist : data.detail_event.end_registration,
         }))
 
         const cardDataEventSeacrh =  this.state.event_seacrh.map( data => ({
@@ -166,6 +178,7 @@ class EventPage extends Component {
             place: data.detail_event.lokasi,
             foto : data.detail_event.image_URL,
             quota : (data.detail_event.limit_participant)-(data.peserta_event_count),
+            endregist : data.detail_event.end_registration,
         }))
 
         return (
@@ -185,6 +198,8 @@ class EventPage extends Component {
                 onSeacrhEvent = {this.onSeacrhEvent}
                 success = {this.success}
                 error = {this.error}
+                closed = {this.closed}
+                see = {this.see}
             />
         );
     }

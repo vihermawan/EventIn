@@ -26,7 +26,6 @@ class ReceivedCertificatePage extends Component {
         this.setState({loading: true})
         API.get(`/panitia/event-sertifikat`)
         .then(res => {
-          console.log(res)
           this.setState({
               certificate:res.data.data.sertifikat,
               loading: false,
@@ -36,7 +35,6 @@ class ReceivedCertificatePage extends Component {
 
     //button detail event
     onDetailCertificate = (sertif_URL) => {
-        console.log(sertif_URL)
         this.setState({
             visible: true,
             url : sertif_URL,

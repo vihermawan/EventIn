@@ -73,12 +73,12 @@ class DetailComponent extends Component {
                                 </Col>
                                 <Col span={24}>
                                     <div className="button-detail-1-container">
-                                        <div style={endregist < Date.parse(dateNow) || initialData.Event.peserta_event_count !== initialData.detailEvent.limit_participant ? {display:"none"}:{display:"block"}}>
+                                        <div style={endregist > Date.parse(dateNow) && initialData.Event.peserta_event_count !== initialData.detailEvent.limit_participant ? {display:"block"}:{display:"none"}}>
                                             <Button className="button-participate button-regis" style={{marginTop:'2%'}} type="primary" onClick={showModal}>
                                                 Daftar!
                                             </Button>
                                         </div>
-                                        <div style={ endregist < Date.parse(dateNow) || initialData.Event.peserta_event_count !== initialData.detailEvent.limit_participant ? {display:"block"}:{display:"none"}}>
+                                        <div style={ endregist > Date.parse(dateNow) && initialData.Event.peserta_event_count !== initialData.detailEvent.limit_participant ? {display:"none"}:{display:"block"}}>
                                             <Button className="button-participate button-regis-closed" style={{marginTop:'2%'}} type="danger" onClick={showModalClose}>
                                                 Pendaftaran Tutup!
                                             </Button>
