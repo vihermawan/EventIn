@@ -27,13 +27,10 @@ class ListParticipantPage extends Component {
         this.setState({loading: true})
         API.get(`/panitia/regist-peserta/${id_event}`)
         .then(res => {
-          console.log(res)
           this.setState({
               participant:res.data.data.peserta,
               totalparticipant : res.data.data.total_regis,
               sisa: Number(res.data.data.total_regis[0].detail_event.limit_participant) - res.data.data.total_regis[0].diterima,
-            //   diterima : res.data.data.total_regis[0].diterima,
-            //   kuota : res.data.data.total_regis[0].detail_event.limit_participant,
               loading: false,
             })
         });

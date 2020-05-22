@@ -138,7 +138,6 @@ class KategoriMasterPage extends Component {
             this.setState({loading: true,show: false,})
             API.post(`/admin/addkategori`, params)
             .then(res => {
-            console.log(res)
             if(res.status === 201){
                 message.success('Kategori Berhasil Ditambahkan');
                 this.setState({

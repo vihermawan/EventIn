@@ -1,6 +1,5 @@
 import React from 'react';
 import { Button } from 'antd';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import './style.css';
 
 function ButtonStatus({
@@ -32,10 +31,6 @@ function ButtonStatus({
             }}
             onClick={onClick}
         >
-            <FontAwesomeIcon
-                icon={icon}
-                style={{marginRight: 10}}
-            /> 
             {text}
         </Button>
     );

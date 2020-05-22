@@ -61,7 +61,7 @@ class DetailListParticipantbyHistoryEventComponent extends Component {
                                                 <ExcelColumn label="Jenis Kelamin" value="jenis_kelamin" />
                                                 <ExcelColumn label="Pekerjaan" value="pekerjaan" />
                                                 <ExcelColumn label="Umur" value="umur" />
-                                                <ExcelColumn label="Nomor Handphone" value="no_telefon" />
+                                                <ExcelColumn label="Nomor Handphone" value="telepon" />
                                             </ExcelSheet>
                                         </ExcelFile>
                                     </div>

@@ -15,20 +15,23 @@ const { Content } = Layout;
 class DetailEventComponent extends Component {
     render() { 
       const {initialData} = this.props
+      console.log( initialData.provinsi)
       const datebeginevent = moment(initialData.detailEvent.start_event).format("DD MMMM")
       const dateEndEvent = moment(initialData.detailEvent.end_event).format("DD MMMM YYYY")
       const regisbeginevent = moment(initialData.detailEvent.open_registration).format("DD MMMM")
       const regisendevent = moment(initialData.detailEvent.end_registration).format("DD MMMM YYYY")
+      const timestart = initialData.detailEvent.time_start
+      const timeend = initialData.detailEvent.time_end
       const benefitData = [
         {
             image: require(`../../../assets/images/Day.png`),
             title: 'Pelaksanaan',
-            description: datebeginevent + ' - ' + dateEndEvent,
+            description: datebeginevent + ' - ' + dateEndEvent+' '+timestart+ ' - '+timeend, 
         },
         {
             image: require(`../../../assets/images/Location.png`),
             title: 'Tempat',
-            description: initialData.detailEvent.lokasi ,
+            description: initialData.provinsi+' '+initialData.kabupaten+' '+initialData.detailEvent.lokasi ,
         },
         {
             image: require(`../../../assets/images/Regis.png`),
@@ -80,7 +83,7 @@ class DetailEventComponent extends Component {
                                                             </div>
                                                         </Col>
                                                         <Col span={24}>
-                                                            <div className="category-event">
+                                                            <div className="category-event-panitia">
                                                                 <Row>
                                                                     <Col span={24} style={{ marginTop:'1%' }}>
                                                                         <div>
@@ -88,14 +91,29 @@ class DetailEventComponent extends Component {
                                                                             <Tag color="blue">{initialData.kategori.nama_kategori}</Tag>
                                                                         </div>
                                                                     </Col>
-                                                                    <Col span={24} style={{ marginTop:'4%' }}>
+                                                                    <Col span={14} style={{ marginTop:'4%' }}>
                                                                         <div>
-                                                                            <p>More Info : </p>
+                                                                            <p className="ikon-judul">Pembayaran : </p>
+                                                                            <Col span={12}>
+                                                                                <div className="text-soft-blue">
+                                                                                    <p>Biaya          : Rp. {initialData.detailEvent.biaya}</p>
+                                                                                    <p>Bank           : {initialData.detailEvent.bank}</p>
+                                                                                    <p>Nomor Rekening : {initialData.detailEvent.nomor_rekening}</p>
+                                                                                </div>
+                                                                            </Col>
+                                                                        </div>
+                                                                    </Col>
+                                                                    <Col span={10} style={{ marginTop:'4%' }}>
+                                                                        <div>
+                                                                            <p className="ikon-judul">More Info : </p>
                                                                             <p className="text-soft-blue">
-                                                                                <Icon type="instagram" /> @ {initialData.detailEvent.instagram}
+                                                                                <a href= {`https://instagram.com/${initialData.detailEvent.instagram}`} target="_blank"><Icon type="instagram" /> @{initialData.detailEvent.instagram}</a>
                                                                             </p>
                                                                             <p className="text-soft-blue">
                                                                                 <Icon type="phone" /> {initialData.detailEvent.telepon}
+                                                                            </p>
+                                                                            <p className="text-soft-blue" style={{width:"700px"}}>
+                                                                                <Icon type="mail" /> {initialData.detailEvent.email_event}
                                                                             </p>
                                                                         </div>
                                                                     </Col>
@@ -123,7 +141,7 @@ class DetailEventComponent extends Component {
                                                     </div>
                                                 </Col>
                                                 <Col lg={12} md={24} sm={24}>
-                                                    <Card className="card-content-detail-event">
+                                                    <Card className="card-content-detail-event-panitia">
                                                         <Row gutter={24} type="flex" justify="center">
                                                             {
                                                                 benefitData.map( data =>
@@ -143,6 +161,9 @@ class DetailEventComponent extends Component {
                                                         </Row>
                                                     </Card>
                                                 </Col>
+                                            </Row>
+                                            <Row>
+                                                
                                             </Row>
                                         </Content>
                                     </Layout>

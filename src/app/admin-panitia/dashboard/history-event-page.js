@@ -127,20 +127,20 @@ class HistoryEventPage extends Component {
         ) : (
           text
         ),
-  });
+    });
 
-  handleSearch = (selectedKeys, confirm, dataIndex) => {
-      confirm();
-      this.setState({
-        searchText: selectedKeys[0],
-        searchedColumn: dataIndex,
-      });
-  };
-  
-  handleReset = clearFilters => {
-      clearFilters();
-      this.setState({ searchText: '' });
-  };
+    handleSearch = (selectedKeys, confirm, dataIndex) => {
+        confirm();
+        this.setState({
+          searchText: selectedKeys[0],
+          searchedColumn: dataIndex,
+        });
+    };
+    
+    handleReset = clearFilters => {
+        clearFilters();
+        this.setState({ searchText: '' });
+    };
 
     render() { 
           const columns = [
