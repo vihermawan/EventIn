@@ -53,9 +53,9 @@ class DetailEventComponent extends Component {
                   }}
               >
                   <Breadcrumb separator=">">
-                        <Breadcrumb.Item><Link to='/admin/list-panitia'>Dashboard List Panitia</Link></Breadcrumb.Item>
-                        <Breadcrumb.Item><Link to='/admin/detail-panitia'>Dashboard Detail Panitia</Link></Breadcrumb.Item>
-                        <Breadcrumb.Item>Dashboard Detail Event</Breadcrumb.Item>
+                        <Breadcrumb.Item><Link to='/admin/list-panitia'>Daftar Panitia</Link></Breadcrumb.Item>
+                        <Breadcrumb.Item><Link to='/admin/detail-panitia'>Detail Panitia</Link></Breadcrumb.Item>
+                        <Breadcrumb.Item>Detail Event</Breadcrumb.Item>
                   </Breadcrumb>
   
                   <Row style={{minHeight: '100%',marginBottom: '2%',marginTop:'2%',}} className="background">

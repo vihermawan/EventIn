@@ -16,6 +16,7 @@ import SwitchPesertaPage from '../../app/admin-superadmin/switch-page/switch-pes
 import SwitchPanitiaPage from '../../app/admin-superadmin/switch-page/switch-panitia-page'
 import SwitchPenandatanganPage from '../../app/admin-superadmin/switch-page/switch-penandatangan-page'
 import ApprovalEventPage from '../../app/admin-superadmin/dashboard/approvalevent-page'
+import DetailApprovalEventPage from '../../app/admin-superadmin/detail-page/detail-approval-event-page'
 import WaitingListPage from '../../app/admin-superadmin/dashboard/waiting-page'
 import ReceivedPage from '../../app/admin-superadmin/dashboard/received-page'
 import StatusMasterPage from '../../app/admin-superadmin/dashboard/status-master-page'
@@ -200,16 +201,6 @@ class Admin extends Component {
                   <div className="title-dashboard">
                       <span className="title-desc-dashboard">Event</span>
                   </div>
-                  <Menu.Item key="approval-event" onClick={this.clickedMenu}>
-                    <Link to="/admin/approval-event">
-                      <FontAwesomeIcon
-                          icon={faNewspaper} 
-                          style={{marginRight: 10}}
-                          className={this.state.collapsed ? 'hidden-logo' : 'block-logo'}
-                      />
-                      <span className={hidden} >Approval Event</span>
-                    </Link>
-                  </Menu.Item> 
                   <Menu.Item key="list-all-event" onClick={this.clickedMenu}>
                     <Link to="/admin/list-all-event">
                     
@@ -218,9 +209,19 @@ class Admin extends Component {
                           style={{marginRight: 10}}
                           className={this.state.collapsed ? 'hidden-logo' : 'block-logo'}
                       />
-                      <span className={hidden} >List Event</span>
+                      <span className={hidden} >Daftar Event</span>
                     </Link>
-                  </Menu.Item> 
+                  </Menu.Item>
+                  <Menu.Item key="approval-event" onClick={this.clickedMenu}>
+                    <Link to="/admin/approval-event">
+                      <FontAwesomeIcon
+                          icon={faNewspaper} 
+                          style={{marginRight: 10}}
+                          className={this.state.collapsed ? 'hidden-logo' : 'block-logo'}
+                      />
+                      <span className={hidden} >Persetujuan</span>
+                    </Link>
+                  </Menu.Item>  
                   <div className="title-dashboard">
                       <hr style={{
                           minHeight: 1,
@@ -331,6 +332,11 @@ class Admin extends Component {
                     path='/admin/approval-event'
                     exact
                     render={ (props) => <ApprovalEventPage {...props}/> }
+                />
+                <Route
+                    path='/admin/detail-approval-event'
+                    exact
+                    render={ (props) => <DetailApprovalEventPage {...props}/> }
                 />
                 <Route
                     path='/admin/list-all-event'

@@ -13,7 +13,7 @@ const { Content } = Layout;
 
 
 
-class DetailAllEventComponent extends Component {
+class DetailApprovalEventComponent extends Component {
     render() { 
         const { initialData} = this.props
         const datebeginevent = moment(initialData.detailEvent.start_event).format("DD MMMM")
@@ -53,7 +53,7 @@ class DetailAllEventComponent extends Component {
                   }}
               >
                   <Breadcrumb separator=">">
-                        <Breadcrumb.Item><Link to='/admin/list-all-event'>Daftar Semua Event</Link></Breadcrumb.Item>
+                        <Breadcrumb.Item><Link to='/admin/list-all-event'>Daftar Persetujuan Event</Link></Breadcrumb.Item>
                         <Breadcrumb.Item>Detail Event</Breadcrumb.Item>
                   </Breadcrumb>
   
@@ -156,4 +156,4 @@ class DetailAllEventComponent extends Component {
       }
   }
  
-export default DetailAllEventComponent;
+export default DetailApprovalEventComponent;
