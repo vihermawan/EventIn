@@ -262,21 +262,21 @@ class CreateBiodataPenandatanganPage extends Component {
 
         if(validation.required(this.state.nama) !== null){
             const message = validation.required(this.state.nama)  
-            this.openNotification(message, 'Nama belum dimasukkan')
+            this.openNotification(message, 'Nama Penandatangan belum dimasukkan')
         }else if(validation.emailRequired(this.state.email) !== null){
             const message = validation.emailRequired(this.state.email);
             this.openNotification(message, 'Harap memasukkan email dengan benar')
+        }else if(validation.numberRequired(this.state.nip) !== null){
+            const message = validation.numberRequired(this.state.nip)  
+            this.openNotification(message, 'Nomor Induk Pegawai belum dimasukkan')
         }else if(validation.required(this.state.jabatan) !== null){
             const message = validation.required(this.state.jabatan)  
             this.openNotification(message, 'Jabatan belum dimasukkan')
-        }else if(validation.required(this.state.nip) !== null){
-            const message = validation.required(this.state.nip)  
-            this.openNotification(message, 'Nomor Induk Pegawai belum dimasukkan')
         }else if(validation.required(this.state.instansi) !== null){
             const message = validation.required(this.state.instansi)  
             this.openNotification(message, 'Instansi belum dimasukkan')
-        }else if(validation.required(this.state.telepon) !== null){
-            const message = validation.required(this.state.telepon)  
+        }else if(validation.numberRequired(this.state.telepon) !== null){
+            const message = validation.numberRequired(this.state.telepon)  
             this.openNotification(message, 'Nomor Telepon belum dimasukkan')
         }else if(validation.required(this.state.id_provinsi) !== null){
             const message = validation.required(this.state.id_provinsi)  

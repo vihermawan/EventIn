@@ -401,7 +401,7 @@ class dashboard extends Component {
                     render={ (props) => <ListPenandatanganPage {...props}/> }
                 />
                 <Route
-                    path='/dashboard/create-biodata-penandatangan'
+                    path='/dashboard/list-penandatangan/create-biodata-penandatangan'
                     exact
                     render={ (props) => <CreateBiodataPenandatanganPage {...props}/> }
                 />

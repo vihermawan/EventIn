@@ -85,7 +85,7 @@ const menu = {
         link : '/dashboard/list-penandatangan/',
     },
     CREATE_BIODATA_PENANDATNAGAN: {
-        link : '/dashboard/create-biodata-penandatangan',
+        link : '/dashboard/list-penandatangan/create-biodata-penandatangan',
     },
     EDIT_PROFILE_PANITIA : {
         link : '/dashboard/profile/edit-profile',
