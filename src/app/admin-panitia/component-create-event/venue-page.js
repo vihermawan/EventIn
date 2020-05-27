@@ -99,18 +99,17 @@ class VenuePage extends Component {
     onNext = () => {
         if(validation.required(this.state.venue) !== null){
             const message = validation.required(this.state.venue);
-            this.openNotification(message, 'Tempat Harus Diisi')   
+            this.openNotification('Harus dipilih', 'Ruangan Harus Dipilih')   
+        }else if(validation.required(this.state.id_provinsi) !== null){
+            const message = validation.required(this.state.id_provinsi);
+            this.openNotification('Harus dipilih', 'Provinsi Harus Dipilih')
+        }else if(validation.required(this.state.id_kabupaten) !== null){
+            const message = validation.required(this.state.id_kabupaten);
+            this.openNotification('Harus dipilih', 'Kabupaten Harus Dipilih')
         }else if(validation.required(this.state.lokasi) !== null){
             const message = validation.required(this.state.lokasi);
             this.openNotification(message, 'Lokasi Harus Diisi')
-        }else if(validation.required(this.state.id_provinsi) !== null){
-            const message = validation.required(this.state.id_provinsi);
-            this.openNotification(message, 'Provinsi Harus Diisi')
-        }else if(validation.required(this.state.id_kabupaten) !== null){
-            const message = validation.required(this.state.id_kabupaten);
-            this.openNotification(message, 'Kabupaten Harus Diisi')
-        }
-        else{
+        }else{
             this.props.next();
             localStorage.setItem('step-3', JSON.stringify(this.state));
         }
