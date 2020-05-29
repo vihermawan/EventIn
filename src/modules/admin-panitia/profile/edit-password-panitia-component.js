@@ -28,7 +28,7 @@ class EditProfileComponent extends Component {
                 }}
             >
                 <Breadcrumb separator=">">
-                    <Breadcrumb.Item><Link to='/dashboard/profile/'>Dashboard Profile Panitia</Link></Breadcrumb.Item>
+                    <Breadcrumb.Item><Link to='/dashboard/profile/'>Dashboard Profil Panitia</Link></Breadcrumb.Item>
                     <Breadcrumb.Item>Dashboard Edit Password</Breadcrumb.Item>
                 </Breadcrumb>
 

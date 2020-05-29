@@ -78,7 +78,7 @@ const menu = {
     },
 
     LIST_PARTICIPANT_EVENT: {
-        link : '/dashboard/list-participant',
+        link : '/dashboard/list-count-regist/list-participant',
     },
    
     LIST_BIODATA_PENANDATANGAN : {
