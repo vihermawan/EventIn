@@ -272,7 +272,7 @@ class EditProfileSignerAdminComponent extends Component {
                                             htmlType="submit"
                                             // onClick={() => onNext()}
                                         >
-                                            Done
+                                            Simpan
                                         </Button>
                                     </div>
                                 </Form>

@@ -53,7 +53,7 @@ class DetailAllEventComponent extends Component {
                   }}
               >
                   <Breadcrumb separator=">">
-                        <Breadcrumb.Item><Link to='/admin/list-all-event'>Daftar Semua Event</Link></Breadcrumb.Item>
+                        <Breadcrumb.Item><Link to='/admin/list-all-event'>Daftar Event</Link></Breadcrumb.Item>
                         <Breadcrumb.Item>Detail Event</Breadcrumb.Item>
                   </Breadcrumb>
   
