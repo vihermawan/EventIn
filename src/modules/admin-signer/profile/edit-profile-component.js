@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Layout, Breadcrumb, Row, Col, Form, Modal, Input ,Upload, Button  } from 'antd';
+import { Layout, Breadcrumb, Row, Col, Form, Modal, Input ,Upload, Button } from 'antd';
 import { Link } from 'react-router-dom';
 import '../../../assets/css/dashboard-all/dashboard.css'
 import '../../../assets/css/dashboard-all/table-style.css'
@@ -8,6 +8,7 @@ import '../../../assets/css/admin-superadmin/detail-event.css'
 import ReactCrop from 'react-image-crop';
 import 'react-image-crop/dist/ReactCrop.css';
 import LoadingContainer from '../../../common/component/loading/loading-container'
+import LoadingNotifContainer from '../../../common/component/loading/loading-notif'
 import InputForm from '../../../common/component/input/input-form';
 import { faUserEdit, faBackward, faUserAlt, faEnvelope, faIdCard, faAddressBook, faIdCardAlt } from '@fortawesome/free-solid-svg-icons';
 import ButtonEdit from '../../../common/component/button/button-edit';
@@ -203,6 +204,16 @@ class EditProfileSignerComponent extends Component {
                                     </div>
                                 </Form>
                             </LoadingContainer>
+                            <Modal
+                                title="Proses Perubahan Data Profil"
+                                visible={initialData.show}
+                                className = "modal-notif"
+                                >
+                                <p className="text-notif">Proses perubahan data profil sedang dilakukan, silahkan tunggu</p>
+                                <div >
+                                    <LoadingNotifContainer loading={initialData.loading_notif} style={{ minHeight:'20px', marginTop:'50px',}}/>
+                                </div>
+                            </Modal>
                         </div>
                     </Col>
                 {/* )} */}

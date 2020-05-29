@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Layout, Breadcrumb, Row, Col, Form, Button,Select,Input  } from 'antd';
+import { Layout, Breadcrumb, Row, Col, Form, Button,Select,Input,Modal  } from 'antd';
 import { Link } from 'react-router-dom';
 import { faFile} from '@fortawesome/free-solid-svg-icons';
 import '../../../assets/css/dashboard-all/dashboard.css'
@@ -7,6 +7,7 @@ import '../../../assets/css/dashboard-all/table-style.css'
 import '../../../assets/css/admin-superadmin/detail-event.css'
 // component
 import LoadingContainer from '../../../common/component/loading/loading-container'
+import LoadingNotifContainer from '../../../common/component/loading/loading-notif';
 import InputForm from '../../../common/component/input/input-form';
 import ButtonDashboard from '../../../common/component/button/button-dashboard';
 import { faUserEdit, faBackward , faEnvelope, faUserAlt } from '@fortawesome/free-solid-svg-icons';
@@ -192,7 +193,16 @@ class EditCertificateComponent extends Component {
                                     </LoadingContainer>
                                     </div>
                                 </Form>
-                           
+                                <Modal
+                                    title="Proses Ubah Data Sertifikat"
+                                    visible={initialData.show}
+                                    className = "modal-notif"
+                                    >
+                                    <p className="text-notif">Silahkan tunggu proses perubahan data sertifikat sedang dilakukan</p>
+                                    <div >
+                                        <LoadingNotifContainer loading={initialData.loading_notif} style={{ minHeight:'20px', marginTop:'50px',}}/>
+                                    </div>
+                                </Modal>
                         </div>
                     </Col>
                 </Row>
