@@ -20,29 +20,31 @@ class DetailApprovalEventComponent extends Component {
         const dateEndEvent = moment(initialData.detailEvent.end_event).format("DD MMMM YYYY")
         const regisbeginevent = moment(initialData.detailEvent.open_registration).format("DD MMMM")
         const regisendevent = moment(initialData.detailEvent.end_registration).format("DD MMMM YYYY")
+        const timestart = initialData.detailEvent.time_start
+        const timeend = initialData.detailEvent.time_end
         const benefitData = [
-          {
-              image: require(`../../../assets/images/Day.png`),
-              title: 'The Day',
-              description: datebeginevent + ' - ' + dateEndEvent,
-          },
-          {
-              image: require(`../../../assets/images/Location.png`),
-              title: 'Venue',
-              description: initialData.detailEvent.lokasi ,
-          },
-          {
-              image: require(`../../../assets/images/Regis.png`),
-              title: 'Registrasi',
-              description: regisbeginevent + ' - ' + regisendevent,
-          },
-          {
-              image: require(`../../../assets/images/Quota.png`),
-              title: 'Quota',
-              description: initialData.detailEvent.limit_participant + ' orang'
-          },
-          
-          ]
+            {
+                image: require(`../../../assets/images/Day.png`),
+                title: 'Pelaksanaan',
+                description: datebeginevent + ' - ' + dateEndEvent+' '+timestart+ ' - '+timeend, 
+            },
+            {
+                image: require(`../../../assets/images/Location.png`),
+                title: 'Tempat',
+                description: initialData.provinsi+' '+initialData.kabupaten+' '+initialData.detailEvent.lokasi ,
+            },
+            {
+                image: require(`../../../assets/images/Regis.png`),
+                title: 'Registrasi',
+                description: regisbeginevent + ' - ' + regisendevent,
+            },
+            {
+                image: require(`../../../assets/images/Quota.png`),
+                title: 'Kuota',
+                description: initialData.detailEvent.limit_participant + ' orang'
+            },
+            
+         ]
           return ( 
               <Content
                   style={{
@@ -80,28 +82,43 @@ class DetailApprovalEventComponent extends Component {
                                                               </div>
                                                           </Col>
                                                           <Col span={24}>
-                                                              <div className="category-event">
-                                                                  <Row>
-                                                                      <Col span={24} style={{ marginTop:'1%' }}>
-                                                                          <div>
-                                                                              <Tag color="blue">{initialData.status.nama_status}</Tag>
-                                                                              <Tag color="blue">{initialData.kategori.nama_kategori}</Tag>
-                                                                          </div>
-                                                                      </Col>
-                                                                      <Col span={24} style={{ marginTop:'4%' }}>
-                                                                          <div>
-                                                                              <p>More Info : </p>
-                                                                              <p className="text-soft-blue">
-                                                                                  <Icon type="instagram" /> @{initialData.detailEvent.instagram}
-                                                                              </p>
-                                                                              <p className="text-soft-blue">
-                                                                                  <Icon type="ie" /> ice-indonesia.com 
-                                                                              </p>
-                                                                          </div>
-                                                                      </Col>
-                                                                  </Row>
-                                                              </div>
-                                                          </Col>
+                                                            <div className="category-event-panitia">
+                                                                <Row>
+                                                                    <Col span={24} style={{ marginTop:'1%' }}>
+                                                                        <div>
+                                                                            <Tag color="blue">{initialData.status.nama_status}</Tag>
+                                                                            <Tag color="blue">{initialData.kategori.nama_kategori}</Tag>
+                                                                        </div>
+                                                                    </Col>
+                                                                    <Col span={14} style={{ marginTop:'4%' }}>
+                                                                        <div>
+                                                                            <p className="ikon-judul">Pembayaran : </p>
+                                                                            <Col span={12}>
+                                                                                <div className="text-soft-blue">
+                                                                                    <p>Biaya          : Rp. {initialData.detailEvent.biaya}</p>
+                                                                                    <p>Bank           : {initialData.detailEvent.bank}</p>
+                                                                                    <p>Nomor Rekening : {initialData.detailEvent.nomor_rekening}</p>
+                                                                                </div>
+                                                                            </Col>
+                                                                        </div>
+                                                                    </Col>
+                                                                    <Col span={10} style={{ marginTop:'4%' }}>
+                                                                        <div>
+                                                                            <p className="ikon-judul">More Info : </p>
+                                                                            <p className="text-soft-blue">
+                                                                                <a href= {`https://instagram.com/${initialData.detailEvent.instagram}`} target="_blank"><Icon type="instagram" /> @{initialData.detailEvent.instagram}</a>
+                                                                            </p>
+                                                                            <p className="text-soft-blue">
+                                                                                <Icon type="phone" /> {initialData.detailEvent.telepon}
+                                                                            </p>
+                                                                            <p className="text-soft-blue" style={{width:"700px"}}>
+                                                                                <Icon type="mail" /> {initialData.detailEvent.email_event}
+                                                                            </p>
+                                                                        </div>
+                                                                    </Col>
+                                                                </Row>
+                                                            </div>
+                                                        </Col>
                                                       </Row>
                                                   </Col>
                                                   <Col lg={12} md={12} sm={12}>

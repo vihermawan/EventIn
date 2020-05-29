@@ -32,8 +32,12 @@ class EditPasswordPage extends Component {
         params.set('old_password',this.state.old_password)
         params.set('password',this.state.password)
         params.set('password_confirmation',this.state.password)
+        if(this.state.old_password === null){
+            this.openNotification('Harus diisi', 'Password Lama harus diisi')
+        }else if(this.state.password === null){
+            this.openNotification('Harus diisi', 'Password Baru harus diisi')
+        }else{
         this.setState({loading: true})
-        
         API.post(`/penandatangan/change-password`, params)
             .then(res => {
                 if(res.status === 200){
@@ -44,6 +48,7 @@ class EditPasswordPage extends Component {
                 }
                 this.setState({loading: false})
             });
+        }
     }
 
     render() { 

@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { Tag, Divider, Tooltip,Button, Input, Icon  } from 'antd';
-import { faInfoCircle ,faDownload} from '@fortawesome/free-solid-svg-icons'
+import { Tooltip,Button, Input, Icon  } from 'antd';
+import { faInfoCircle } from '@fortawesome/free-solid-svg-icons'
 import  * as Highlighter from 'react-highlight-words'
 import { API } from '../../../common/api'
 import { navigate } from '../../../common/store/action'
@@ -52,6 +52,7 @@ class ReceivedCertificatePage extends Component {
           visible: false,
         });
     };
+    
 
     getColumnSearchProps = dataIndex => ({
         filterDropdown: ({ setSelectedKeys, selectedKeys, confirm, clearFilters }) => (
@@ -155,65 +156,33 @@ class ReceivedCertificatePage extends Component {
             key: 'sertifikat',
             ...this.getColumnSearchProps('sertifikat'),
         },
-        // {
-        //     title: 'Status Sertifikat',
-        //     key: 'status',
-        //     dataIndex: 'status',
-        //     render: sertifikat => (
-        //     <span>
-        //         {sertifikat.map(tag => {
-        //         let color = tag.length > 5 ? 'geekblue' : '#87d068';
-        //         if (tag === 'reject') {
-        //             color = 'volcano';
-        //         }
-        //         return (
-        //             <Tag color={color} key={tag}>
-        //             {tag.toUpperCase()}
-        //             </Tag>
-        //         );
-        //         })}
-        //     </span>
-        //     ),
-        //     onFilter: (value, record) => record.status.indexOf(value) === 0,
-        //     sorter: (a, b) => a.status.length - b.status.length,
-        //     sortDirections: ['descend'],
-        // },
         {
             title: 'Action',
             key: 'action',
             render: (data) => (
             [
-            <Tooltip title="Download">
-                <ButtonDashboard
-                    height={20}
-                    icon={faDownload}
-                    borderRadius="5px"
-                    background="#070E57"
-                />,
-            </Tooltip>,
-            <Divider type="vertical" />,
             <Tooltip title="Detail">
                 <ButtonDashboard
                     height={20}
                     icon={faInfoCircle}
                     borderRadius="5px"
                     background="#FFA903"
-                    onClick = {() => this.onDetailCertificate(data.sertif_URL)}
+                    onClick = {() => this.onDetailCertificate(data.sertifikat_URL)}
                 />,
             </Tooltip>]
             ),
         },
     ];
     
-    const data =  this.state.certificate.map( ({id_sertifikat, sertifikat, penandatangan, status}, index) => ({
+    const data =  this.state.certificate.map( ({id_sertifikat, sertifikat, penandatangan, status,nama_sertifikat,sertifikat_URL}, index) => ({
         no : index+1,
         nomor : id_sertifikat,
         nama_event: sertifikat.event.nama_event,
         penandatangan : penandatangan.nama_penandatangan,
         nip : penandatangan.nip,
-        sertifikat :sertifikat.sertifikat,
+        sertifikat :nama_sertifikat,
         status : [status.nama_status],    
-        sertif_URL :sertifikat.sertif_URL,    
+        sertifikat_URL : sertifikat_URL,  
     }))
     
         return ( 

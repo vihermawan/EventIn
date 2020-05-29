@@ -96,6 +96,12 @@ class DateTimePage extends Component {
             this.openNotification('Tanggal Mulai Event harus disesuaikan', 'Tanggal harus disi dengan benar') 
         }else if(Date.parse(this.state.open_registration) > Date.parse(this.state.end_registration)){
             this.openNotification('Tanggal Pendaftaran harus disesuaikan', 'Tanggal harus disi dengan benar')  
+        }else if(Date.parse(this.state.start_event) < Date.parse(this.state.end_registration)){
+            this.openNotification('Tanggal Pendaftaran harus disesuaikan', 'Tanggal Registrasi harus lebih dulu')
+        }else if(Date.parse(this.state.start_event) < Date.parse(this.state.open_registration)){
+            this.openNotification('Tanggal Pendaftaran harus disesuaikan', 'Tanggal Registrasi harus lebih dulu')
+        }else if(Date.parse(this.state.end_event) < Date.parse(this.state.end_registration)){
+            this.openNotification('Tanggal Pendaftaran harus disesuaikan', 'Tanggal Registrasi harus lebih dulu')
         }else if(this.state.time_start === ''){
             this.openNotification('Jam Belum Disisi', 'Jam harus disi dengan benar') 
         }else if(this.state.time_end === ''){

@@ -129,6 +129,7 @@ class CreateCertificatePage extends Component {
                     message.success('Sertifikat berhasil Ditambahkan');
                     this.props.navigate(CONSTANS.WAITING_SERTIF_PANITIA_MENU_KEY)
                 }else{
+                    this.setState({ show :false,})
                     this.openNotification('Data Salah', 'Silahkan isi data dengan benar')
                 }
             });

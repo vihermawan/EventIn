@@ -61,6 +61,14 @@ class AllEventKategoriPage extends Component {
         message.success(`Kuota Masih tersisa ${quota} silahkan mendaftar`);
     };
 
+    closed = () => {
+        message.error(`Mohon maaf tidak bisa jadwal registrasi telah ditutup`);
+    }
+
+    see = event => {
+        message.success(`Kuota full dan registrasi telah selesai, sampai jumpa di ${event}!`);
+    }
+
     error = () => {
         message.error(`Mohon maaf tidak bisa mendaftar karena kuota penuh`);
     };
@@ -75,6 +83,7 @@ class AllEventKategoriPage extends Component {
             place: data.detail_event.lokasi,
             foto : data.detail_event.image_URL,
             quota : (data.detail_event.limit_participant)-(data.peserta_event_count),
+            endregist : data.detail_event.end_registration,
         }))
 
         return (
@@ -88,6 +97,8 @@ class AllEventKategoriPage extends Component {
                 nextPage={this.nextPage}
                 success = {this.success}
                 error = {this.error}
+                closed = {this.closed}
+                see = {this.see}
             />
         );
     }
