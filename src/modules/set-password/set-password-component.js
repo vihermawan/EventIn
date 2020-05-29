@@ -3,13 +3,13 @@ import { Layout, Row, Col, Modal, Form } from 'antd';
 import '../../assets/css/admin-signer/set-password.css'
 import { Link } from 'react-router-dom';
 // component
-import InputAuth from '../../common/component/input/input-auth'
+import InputPassword from '../../common/component/input/input-password'
 import ButtonAuth from '../../common/component/button/button-auth'
 import LoadingNotifContainer from '../../common/component/loading/loading-notif';
 
 const { Content } = Layout;
 const logo = require(`../../assets/images/logo.png`);
-const login = require(`../../assets/images/login-image.png`);
+const login = require(`../../assets/images/set-password.svg`);
 
 
 class SetPasswordComponent extends Component{
@@ -27,18 +27,18 @@ class SetPasswordComponent extends Component{
                                         <img src={logo} alt="EventIn logo" width="100"/>
                                     </Link>
                                     
-                                    <div className="auth-image-container float-ease text-align-center">
+                                    <div className="auth-image-container float-ease text-align-center mt-30">
                                     <img
                                         src={login}
                                         alt="EventIn login"
-                                        style={{maxWidth: '40%'}}
+                                        style={{maxWidth: '100%'}}
                                     />
                                     </div>
                                     <div className="form-set-password text-align-center">
                                         <Form onSubmit={handleSubmit}>
                                             <div className="set-password-form-container">
                                                 <span className="auth-input-label text-set-password">Masukkan kata sandi baru</span>
-                                                <InputAuth
+                                                <InputPassword
                                                     name='password'
                                                     placeholder="Masukkan Password Anda"
                                                     onChange={handleChange}

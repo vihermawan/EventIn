@@ -9,6 +9,7 @@ import '../../../assets/css/admin-panitia/edit-event.css'
 import ReactCrop from 'react-image-crop';
 import 'react-image-crop/dist/ReactCrop.css';
 import LoadingContainer from '../../../common/component/loading/loading-container'
+import LoadingNotifContainer from '../../../common/component/loading/loading-notif';
 import InputForm from '../../../common/component/input/input-form';
 import moment from 'moment';
 import ButtonDashboard from '../../../common/component/button/button-dashboard';
@@ -584,6 +585,16 @@ class EditEventComponent extends Component {
                                     </div>
                                 </Form>
                             </LoadingContainer>
+                            <Modal
+                                title="Proses Perubahan Data Event"
+                                visible={initialData.show}
+                                className = "modal-notif"
+                                >
+                                <p className="text-notif">Proses perubahan event sedang dilakukan, silahkan tunggu</p>
+                                <div >
+                                    <LoadingNotifContainer loading={initialData.loading_notif} style={{ minHeight:'20px', marginTop:'50px',}}/>
+                                </div>
+                            </Modal>
                         </div>
                     </Col>
                 </Row>

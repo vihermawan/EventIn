@@ -9,7 +9,7 @@ import LoadingNotifContainer from '../../common/component/loading/loading-notif'
 
 const { Content } = Layout;
 const logo = require(`../../assets/images/logo.png`);
-const login = require(`../../assets/images/login-image.png`);
+const login = require(`../../assets/images/forgot.svg`);
 
 
 class ForgotPasswordComponent extends Component{

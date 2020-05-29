@@ -7,6 +7,7 @@ import '../../../assets/css/admin-superadmin/detail-event.css'
 // component
 import ReactCrop from 'react-image-crop';
 import LoadingContainer from '../../../common/component/loading/loading-container'
+import LoadingNotifContainer from '../../../common/component/loading/loading-notif';
 import InputForm from '../../../common/component/input/input-form';
 import ButtonDashboard from '../../../common/component/button/button-dashboard';
 import { faUserEdit, faBackward, faIdCard, faAddressBook, faUserAlt, faEnvelopeOpenText } from '@fortawesome/free-solid-svg-icons';
@@ -207,7 +208,16 @@ class EditProfileComponent extends Component {
                                     </LoadingContainer>
                                     </div>
                                 </Form>
-                           
+                                <Modal
+                                    title="Proses Perubahan Data Profil"
+                                    visible={initialData.show}
+                                    className = "modal-notif"
+                                    >
+                                    <p className="text-notif">Proses perubahan data profil sedang dilakukan, silahkan tunggu</p>
+                                    <div >
+                                        <LoadingNotifContainer loading={initialData.loading_notif} style={{ minHeight:'20px', marginTop:'50px',}}/>
+                                    </div>
+                                </Modal>
                         </div>
                     </Col>
                 </Row>

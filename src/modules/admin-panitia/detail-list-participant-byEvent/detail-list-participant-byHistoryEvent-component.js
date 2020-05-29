@@ -45,7 +45,7 @@ class DetailListParticipantbyHistoryEventComponent extends Component {
                                 </Col>
                                 <Col lg={5} md={12} sm={12} xs={24}>
                                     <div className="button-add">
-                                        <ExcelFile filename="List Peserta Event" element={
+                                        <ExcelFile filename="List Peserta History Event" element={
                                             <ButtonEdit
                                                     text="Download List Peserta"
                                                     height={20}

@@ -4,6 +4,7 @@ import CONSTANS from '../../common/utils/Constants'
 import { connect } from 'react-redux';
 import { API } from '../../common/api'
 import { navigate } from '../../common/store/action'
+import * as validation from '../../common/utils/validation'
 import EditPasswordComponent from '../../modules/profile/component/edit-password-component';
 
 
@@ -26,24 +27,43 @@ class EditPasswordPage extends Component {
         })
     }
 
+    openNotification = (message, description) => {
+        notification.error({
+            message,
+            description,
+        });
+    };
+
     handleSubmit = e => {
         e.preventDefault();
         const params = new FormData()
         params.set('old_password',this.state.old_password)
         params.set('password',this.state.password)
         params.set('password_confirmation',this.state.password)
-        this.setState({loading: true})
-        
-        API.post(`/peserta/change-password`, params)
-            .then(res => {
-                if(res.status === 200){
-                    this.props.navigate(CONSTANS.PROFILE_MENU_KEY)
-                    message.success('Kata Sandi Berhasil di Ubah');
-                }else{
-                    this.openNotification('Data Salah', 'Silahkan isi data dengan benar')
-                }
-                this.setState({loading: false})
-            });
+        if(validation.minPassword(this.state.old_password)){
+            const message = validation.minPassword(this.state.old_password);
+            this.openNotification(message, 'Password Lama harus diisi')
+        }else if(validation.minPassword(this.state.password)){
+            const message = validation.minPassword(this.state.password);
+            this.openNotification(message, 'Password Baru harus diisi')
+        }else{
+            this.setState({loading: true})
+            API.post(`/peserta/change-password`, params)
+                .then(res => {
+                    if(res.status === 200){
+                        if(res.data.status === 'Error'){
+                            this.openNotification(res.data.message, 'Silahkan isi password dengan benar')
+                            this.setState({loading: false})
+                        }else{
+                            this.props.navigate(CONSTANS.PROFILE_MENU_KEY)
+                            message.success('Kata Sandi Berhasil di Ubah');
+                        }
+                    }else{
+                        this.openNotification('Data Salah', 'Silahkan isi data dengan benar')
+                    }
+                    this.setState({loading: false})
+                });
+        }
     }
 
     render() { 

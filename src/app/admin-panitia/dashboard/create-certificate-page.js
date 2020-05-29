@@ -87,6 +87,13 @@ class CreateCertificatePage extends Component {
         });
     };
 
+    successNotification = (message, description) => {
+        notification.success({
+            message,
+            description,
+        });
+    };
+
     showModal2 = () => {
         this.setState({
             show :true,
@@ -126,7 +133,8 @@ class CreateCertificatePage extends Component {
             .then(res => {
                 if(res.status === 201){
                     this.setState({ show :false,})
-                    message.success('Sertifikat berhasil Ditambahkan');
+                    message.success('Sertifikat berhasil Diajukan');
+                    this.successNotification('Sukses mengajukan sertifikat', 'Tunggu 1 x 24 jam di email anda untuk mendapat pemberitahuan apakah sertifikat disetujui atau tidak')
                     this.props.navigate(CONSTANS.WAITING_SERTIF_PANITIA_MENU_KEY)
                 }else{
                     this.setState({ show :false,})

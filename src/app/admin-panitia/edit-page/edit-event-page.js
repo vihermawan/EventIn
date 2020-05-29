@@ -47,6 +47,7 @@ class EditEventPage extends Component {
         },
         croppedImageUrl : '',
         loading: false,
+        show : false,
     }
 
     componentDidMount(){
@@ -443,7 +444,7 @@ class EditEventPage extends Component {
             if(this.state.file_type !== 'image/jpeg'){
                 this.openNotification('Format Gambar Salah', 'Silahkan Upload Kembali dengan format JPG')
             }else{
-                this.setState({loading: true})
+                this.setState({show: true})
                 API.postEdit(`/panitia/editevent/${id_panitia}`, params)
                 .then(res => {
                     if(res.status === 200){
@@ -452,11 +453,11 @@ class EditEventPage extends Component {
                     }else{
                         this.openNotification('Data Salah', 'Silahkan isi data dengan benar')
                     }
-                    this.setState({loading: false})
+                    this.setState({loading: false, show: false})
                 });
             }
         }else{
-            this.setState({loading: true})
+            this.setState({ show: true})
             API.postEdit(`/panitia/editevent/${id_panitia}`, params)
             .then(res => {
                 if(res.status === 200){
@@ -465,7 +466,7 @@ class EditEventPage extends Component {
                 }else{
                     this.openNotification('Data Salah', 'Silahkan isi data dengan benar')
                 }
-                this.setState({loading: false})
+                this.setState({loading: false, show : false})
             });
         }
     }
