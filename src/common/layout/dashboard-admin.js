@@ -229,7 +229,7 @@ class Admin extends Component {
                       }}/>
                   </div>
                   <div className="title-dashboard">
-                      <span className="title-desc-dashboard">Certificate</span>
+                      <span className="title-desc-dashboard">Sertifikat</span>
                   </div>  
                   <Menu.Item key="waiting-list"  onClick={this.clickedMenu}>
                     <Link to="/admin/waiting-list">

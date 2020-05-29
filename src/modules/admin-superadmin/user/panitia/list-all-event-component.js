@@ -22,7 +22,7 @@ class ListAllEventComponent extends Component {
                 }}
             >
                 <Breadcrumb separator=">">
-                    <Breadcrumb.Item>Daftar Semua Event</Breadcrumb.Item>
+                    <Breadcrumb.Item>Daftar Event</Breadcrumb.Item>
                 </Breadcrumb>
 
                 <Row style={{minHeight: '100%',marginBottom: '2%',marginTop:'2%',}} className="background">
@@ -31,7 +31,7 @@ class ListAllEventComponent extends Component {
                         <div className="container-active-event">
                             <Row>
                             <div className="container-title-event">
-                                <span>Daftar Semua Event</span>
+                                <span>Daftar Event</span>
                             </div>
                             </Row>
                             <LoadingContainer loading={initialData.loading}>

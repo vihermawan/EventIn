@@ -215,9 +215,9 @@ class KategoriMasterPage extends Component {
     showDeleteConfirm = (id) => {
         confirm({
             title: ' Apakah yakin untuk menghapus data ?',
-            okText: 'Yes',
+            okText: 'Ok',
             okType: 'danger',
-            cancelText: 'No',
+            cancelText: 'Batal',
             onOk: () => {
                this.deleteKategori(id)
             },
@@ -265,7 +265,7 @@ class KategoriMasterPage extends Component {
                 />,
                 <Divider type="vertical" />,
                 <ButtonEdit
-                    text="Delete"
+                    text="Hapus"
                     height={20}
                     icon={faTrash}
                     borderRadius="5px"
