@@ -71,7 +71,7 @@ class BiayaComponent extends Component{
                                                     <Option value="BNI">BNI</Option>
                                                     <Option value="BCA">BCA</Option>
                                                     <Option value="BRI">BRI</Option>
-                                                </Select>,
+                                                </Select>
                                             </div>
                                         </div>
                                     </Col>

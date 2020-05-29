@@ -26,6 +26,7 @@ class CertificatePage extends Component {
         aspect: 16 / 9,
       },
       croppedImageUrl : '',
+      show : false,
     }
 
     componentDidMount(){
@@ -65,9 +66,10 @@ class CertificatePage extends Component {
         }
         else{
             this.getBase64(event.target.files[0], imageUrl => {
-                this.setState({ picture: imageUrl,croppedImageUrl :imageUrl,picture_event:imageUrl,visible:true,type_file :event.target.files[0].type  })
+                this.setState({ picture: imageUrl,croppedImageUrl :imageUrl,picture_event:imageUrl,visible:true })
             })
-        }
+            this.setState({type_file :event.target.files[0].type })
+        }//cek
         
     }
       
@@ -251,7 +253,7 @@ class CertificatePage extends Component {
     }else if(this.state.type_file !== 'image/jpeg'){
         this.openNotification('Format Gambar Salah', 'Silahkan Upload Kembali dengan format JPG')
     }else{
-        this.setState({loading: true})
+        this.setState({loading: true, show : true})
         API.postEdit(`/panitia/create/event`, params)
         .then(res => {
             if(res.status === 201){
@@ -264,6 +266,7 @@ class CertificatePage extends Component {
                 localStorage.removeItem('step-4');
             }else{
                 this.openNotification('Data Salah', 'Silahkan isi data dengan benar')
+                this.setState({loading: false, show : false})
             }
         });
      }

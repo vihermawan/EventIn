@@ -21,7 +21,7 @@ class TotalWaitingComponent extends Component {
                 }}
             >
                 <Breadcrumb separator=">">
-                    <Breadcrumb.Item>Dashboard Total Sertfikat Menunggu</Breadcrumb.Item>
+                    <Breadcrumb.Item>Dashboard Total Pengajuan Sertifikat</Breadcrumb.Item>
                 </Breadcrumb>
 
                 <Row style={{minHeight: '100%',marginBottom: '2%',marginTop:'2%',}} className="background">

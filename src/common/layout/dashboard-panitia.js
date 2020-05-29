@@ -333,7 +333,7 @@ class dashboard extends Component {
                 <Route
                     path='/dashboard/active-event'
                     exact
-                    render={ (props) => <ActiveEventPage {...props}/> }
+                    render={ (props) => <ActiveEventPage reload={this.componentDidMount.bind(this)} {...props}/> }
                 />
                 <Route
                     path='/dashboard/active-event/detail-list-participant'
@@ -401,7 +401,7 @@ class dashboard extends Component {
                     render={ (props) => <ListPenandatanganPage {...props}/> }
                 />
                 <Route
-                    path='/dashboard/create-biodata-penandatangan'
+                    path='/dashboard/list-penandatangan/create-biodata-penandatangan'
                     exact
                     render={ (props) => <CreateBiodataPenandatanganPage {...props}/> }
                 />

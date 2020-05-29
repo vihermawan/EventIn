@@ -4,6 +4,7 @@ import CONSTANS from '../../../common/utils/Constants'
 import { connect } from 'react-redux';
 import { API } from '../../../common/api'
 import { navigate } from '../../../common/store/action'
+import * as validation from '../../../common/utils/validation'
 import EditProfileComponent from '../../../modules/admin-panitia/profile/edit-profile-component';
 
 
@@ -76,8 +77,9 @@ class EditProfilePage extends Component {
         }
         else{
             this.getBase64(event.target.files[0], imageUrl => {
-                this.setState({ picture: imageUrl,croppedImageUrl :imageUrl,foto_panitia:imageUrl,visible:true,file_type :event.target.files[0].type })
+                this.setState({ picture: imageUrl,croppedImageUrl :imageUrl,foto_panitia:imageUrl,visible:true })
             })
+            this.setState({file_type:event.target.files[0].type})
         }
         
     }
@@ -238,11 +240,30 @@ class EditProfilePage extends Component {
         params.set('email',this.state.email)
         params.set('organisasi',this.state.organisasi)
         params.set('instagram',this.state.instagram)
-        params.set('no_telepon',this.state.no_telepon)
-        if(this.state !== null){
+        params.set('telepon',this.state.no_telepon)
+        if(this.state === null){
             this.openNotification('Data Wajib di Isi', 'Silahkan isi data dengan benar')
-        }else if(this.state.file_type !== 'image/jpeg'){
-            this.openNotification('Format Gambar Salah', 'Silahkan Upload Kembali dengan format JPG')
+        }else if(validation.emailRequired(this.state.email) !== null){
+            const message = validation.emailRequired(this.state.email);
+            this.openNotification(message, 'Harap memasukkan email dengan benar')
+        }
+        else if(this.state.button_edit !== 'Edit Foto Profil'){
+            if(this.state.file_type !== 'image/jpeg'){
+                this.openNotification('Format Gambar Salah', 'Silahkan Upload Kembali dengan format JPG')
+            }else{
+                this.setState({loading: true})
+                API.postEdit(`/panitia/editprofile/${id_panitia}`, params)
+                .then(res => {
+                    if(res.status === 200){
+                        this.props.navigate(CONSTANS.PROFILE_ADMIN_PANITIA_MENU_KEY)
+                        window.location.reload();
+                        message.success('Data Berhasil di Ubah');
+                    }else{
+                        this.openNotification('Data Salah', 'Silahkan isi data dengan benar')
+                    }
+                    this.setState({loading: false})
+                });
+            }
         }else{
             this.setState({loading: true})
             API.postEdit(`/panitia/editprofile/${id_panitia}`, params)

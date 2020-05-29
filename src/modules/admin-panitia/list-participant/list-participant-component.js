@@ -47,7 +47,7 @@ class ListParticipantComponent extends Component {
                                         visible={initialData.visible}
                                         className = "modal-notif"
                                         >
-                                        <p className="text-notif">Mohon tunggu sebentar, sistem akan mengirimkan data biodata...</p>
+                                        <p className="text-notif">Mohon tunggu sebentar, sistem akan memproses permintaan anda...</p>
                                         <div >
                                             <LoadingNotifContainer loading={initialData.loading_notif} style={{ minHeight:'20px', marginTop:'50px',}}/>
                                         </div>

@@ -60,7 +60,7 @@ class TemplateCertificateComponent extends Component {
                                                             </div>
                                                         </Col>
                                                         <Col span={24}>
-                                                            <div className="category-event">
+                                                            <div className="category-event-panitia">
                                                                 <Row>
                                                                     <Col span={24} style={{ marginTop:'1%' }}>
                                                                         <div>
