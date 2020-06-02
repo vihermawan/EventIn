@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Divider, Tooltip, Button, Input, Icon } from 'antd';
-import { faInfoCircle, faEdit} from '@fortawesome/free-solid-svg-icons'
+import { faInfoCircle, faEdit, faListAlt} from '@fortawesome/free-solid-svg-icons'
 import  * as Highlighter from 'react-highlight-words'
 import CONSTANS from '../../../common/utils/Constants'
 import { API } from '../../../common/api'
@@ -145,12 +145,12 @@ class WaitingCertificatePage extends Component {
             key: 'action',
             render: (data) => (
             [
-            <Tooltip title="Detail">
+            <Tooltip title="Daftar Sertifikat">,
             <ButtonDashboard
                 height={20}
-                icon={faInfoCircle}
+                icon={faListAlt}
                 borderRadius="5px"
-                background="#FFA903"
+                background="#0030b5"
                 onClick = {() => this.onListCertificateWaiting(data.id_event)}
             />
             </Tooltip>]
