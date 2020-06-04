@@ -157,6 +157,7 @@ class WaitingPage extends Component {
         params.append("_method", 'PUT')
         API.postEdit(`/admin/send-sertifikat/${id_penandatangan_sertifikat}`,params)
         .then(res => {
+          // console.log(res)
             if(res.status === 200){
               if(res.data.status === 'Success'){
                 message.success('Berhasil mengirim sertifikat');

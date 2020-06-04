@@ -9,8 +9,8 @@ class BiayaPage extends Component {
     state = {
         status_biaya : '',
         bank : '-',
-        no_rekening : '-',
-        biaya : '0',
+        no_rekening : '',
+        biaya : '',
     }
 
     componentDidMount(){
@@ -59,12 +59,15 @@ class BiayaPage extends Component {
             const message = validation.required(this.state.status_biaya);
             this.openNotification(message, 'Kategori Bayar Harus Diisi')   
         }else if(this.state.status_biaya == 10){
-            if(this.state.biaya === '0'){
-                this.openNotification('Biaya Harus Diisi', 'Biaya Harus Diisi')
-            }else if(this.state.bank === '-'){
+            if(validation.numberRequired(this.state.biaya) !== null){
+                const message = validation.numberRequired(this.state.biaya);
+                this.openNotification(message, 'Biaya Harus Diisi')
+            }
+            else if(this.state.bank === '-'){
                 this.openNotification('Bank Belum Dipilih', 'Bank Harus Dipilih')
-            }else if(this.state.no_rekening === '-'){
-                this.openNotification('Nomor Rekening Belum Diisi', 'Nomor Rekening Harus Diisi')
+            }else if(validation.numberRequired(this.state.no_rekening) !== null){
+                const message = validation.numberRequired(this.state.no_rekening);
+                this.openNotification(message, 'Nomor Rekening Harus Diisi')
             }else{
                 this.props.next();
                 localStorage.setItem('step-2', JSON.stringify(this.state));
