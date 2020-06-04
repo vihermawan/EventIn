@@ -48,7 +48,7 @@ class ProfileComponent extends Component {
                                             </div>
                                             <div>
                                                 <ButtonEdit
-                                                    text="Edit Profile"
+                                                    text="Edit Profil"
                                                     height={20}
                                                     icon={faInfoCircle}
                                                     borderRadius="5px"
@@ -57,7 +57,7 @@ class ProfileComponent extends Component {
                                                 />
                                                 <Divider type="vertical" />
                                                 <ButtonEdit
-                                                    text="Edit Password"
+                                                    text="Ubah Kata Sandi"
                                                     height={20}
                                                     icon={faLock}
                                                     borderRadius="5px"

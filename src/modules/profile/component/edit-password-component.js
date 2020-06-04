@@ -79,7 +79,7 @@ class EditProfilePesertaComponent extends Component {
                             type="primary"
                             htmlType="submit"
                         >
-                            Done
+                            Selesai
                         </Button>
                     </div>
                 </Form>
