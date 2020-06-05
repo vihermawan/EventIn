@@ -204,17 +204,11 @@ class DetailPanitiaPage extends Component {
                 ),
             },
             {
-                title: 'Tanggal Mulai',
+                title: 'Tanggal Pengajuan',
                 dataIndex: 'start_event',
                 key: 'start_event',
                 ...this.getColumnSearchProps('start_event'),
             },
-            {
-                title: 'Tanggal Selesai',
-                dataIndex: 'end_event',
-                key: 'end_event',
-                ...this.getColumnSearchProps('end_event'),
-              },
             {
               title: 'Action',
               key: 'action',
@@ -231,12 +225,11 @@ class DetailPanitiaPage extends Component {
             },
           ];
     
-        const data =  this.state.event_panitia.map( ({id_event, nama_event, detail_event, kategori,status_event}, index) => ({
+        const data =  this.state.event_panitia.map( ({id_event, nama_event, detail_event, kategori,status_event,created_at}, index) => ({
             no : index+1,
             nomor : id_event,
             nama_event: nama_event,
-            start_event : moment(detail_event.start_event).format("DD MMMM YYYY"),
-            end_event : moment(detail_event.end_event).format("DD MMMM YYYY"),
+            start_event : moment(created_at).format("DD MMMM YYYY"),
             status : [status_event.nama_status],
             lokasi : detail_event.lokasi,
             kategori : [kategori.nama_kategori],

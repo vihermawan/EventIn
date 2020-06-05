@@ -111,6 +111,7 @@ class DetailPesertaPage extends Component {
         this.setState({loading: true})
         API.get(`/admin/showpeserta-event/${id_peserta}`)
         .then(res => {
+          console.log(res)
           this.setState({
             eventbyPeserta : res.data.data.peserta,
             loading: false,
@@ -205,17 +206,11 @@ class DetailPesertaPage extends Component {
                 ),
             },
             {
-                title: 'Tanggal Mulai',
+                title: 'Tanggal Pendaftaran',
                 dataIndex: 'start_event',
                 key: 'start_event',
                 ...this.getColumnSearchProps('start_event'),
             },
-            {
-                title: 'Tanggal Selesai',
-                dataIndex: 'end_event',
-                key: 'end_event',
-                ...this.getColumnSearchProps('end_event'),
-              },
             {
               title: 'Action',
               key: 'action',
@@ -232,12 +227,11 @@ class DetailPesertaPage extends Component {
             },
           ];
 
-     const data =  this.state.eventbyPeserta.map( ({id_event, event, status,kategori}, index) => ({
+     const data =  this.state.eventbyPeserta.map( ({id_event, event, status,kategori,created_at}, index) => ({
             no : index+1,
             id_event : id_event,
             nama_event: event.nama_event,
-            start_event : moment(event.detail_event.start_event).format("DD MMMM YYYY"),
-            end_event : moment(event.detail_event.end_event).format("DD MMMM YYYY"),
+            start_event : moment(created_at).format("DD MMMM YYYY"),
             status : [status.nama_status],
             lokasi : event.detail_event.lokasi,
             kategori : [event.kategori.nama_kategori],
