@@ -48,8 +48,7 @@ class ForgotPasswordPage extends Component {
             const message = validation.emailRequired(this.state.email);
             this.openNotification(message, 'Email harus diisi')
         }else{
-            this.setState({loading: true})
-            this.showModal2();
+            this.setState({show :true})
             API.post(`/password/create`, params)
             .then(res => {
                 if( res.status === 200){
@@ -57,6 +56,7 @@ class ForgotPasswordPage extends Component {
                     message.success('Silahkan cek email');
                 }else{
                     this.openNotification('Email Salah','Silahkan masukkan email kembali')
+                    this.setState({show : false})
                 }
             });
         }

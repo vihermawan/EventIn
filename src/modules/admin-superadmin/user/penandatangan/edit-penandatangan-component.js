@@ -182,7 +182,7 @@ class EditProfileSignerAdminComponent extends Component {
                                                     <Row>
                                                         <Col lg={21} md={24} sm={24}>
                                                             <div>   
-                                                                <span className="auth-input-label text-black">File p12*</span>
+                                                                <span className="auth-input-label text-black">File p12 {initialData.nama_penandatangan}* </span>
                                                             </div>
                                                         </Col>
                                                         <Col lg={3} md={24} sm={24}>

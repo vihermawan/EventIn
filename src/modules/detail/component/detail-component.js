@@ -92,13 +92,13 @@ class DetailComponent extends Component {
                                         >
                                             <LoadingContainer loading={initialData.loading}>   
                                                 <p className="bold">Apakah anda yakin akan mendaftar pada acara {initialData.Event.nama_event} yang akan dilaksanakan pada {datebeginevent + ' - ' + dateEndEvent} ?</p>
-                                                <p className="text-soft-blue">Total yang harus dibayar: Rp. {initialData.detailEvent.biaya},-</p>
-                            
+                                                <p className="text-soft-blue" style={initialData.status.nama_status === 'Free' ? {display:"block"}:{display:"none"}}>Biaya pendaftaran {initialData.Event.nama_event} gratis !</p>
+                                                <p className="text-soft-blue" style={initialData.status.nama_status === 'Free' ? {display:"none"}:{display:"block"}}>Total yang harus dibayar: Rp. {initialData.detailEvent.biaya},-</p>
                                                 <p className="text-soft-blue mb-50" style={initialData.status.nama_status === 'Free' ? {display:"none"}:{display:"block"}}>
                                                     Anda harus melakukan transfer ke rekening : {initialData.detailEvent.nomor_rekening} dari bank {initialData.detailEvent.bank}
                                                 </p>
-                                                
-                                                <p className="text-merah">*Setelah melakukan registrasi, jangan lupa untuk melakukan pembayaaran sesuai nominal yang tertera diatas.</p>
+                                                <p className="text-merah" style={initialData.status.nama_status === 'Free' ? {display:"block"}:{display:"none"}}>*Silahkan melakukan pendaftaran.</p>
+                                                <p className="text-merah" style={initialData.status.nama_status === 'Free' ? {display:"none"}:{display:"block"}}>*Setelah melakukan registrasi, jangan lupa untuk melakukan pembayaaran sesuai nominal yang tertera diatas.</p>
                                             </LoadingContainer> 
                                         </Modal>
                                         <Modal
@@ -178,7 +178,8 @@ class DetailComponent extends Component {
                                             <p className="ikon-judul">Pembayaran Pendaftaran : </p>
                                             <Col span={12}>
                                                 <div className="ikon-tulisan">
-                                                    <p>Biaya          : Rp. {initialData.detailEvent.biaya}</p>
+                                                    <p style={initialData.status.nama_status === 'Free' ? {display:"block"}:{display:"none"}}>Biaya          : Gratis</p>
+                                                    <p style={initialData.status.nama_status === 'Free' ? {display:"none"}:{display:"block"}}>Biaya          : Rp. {initialData.detailEvent.biaya}</p>
                                                     <p>Bank           : {initialData.detailEvent.bank}</p>
                                                     <p>Nomor Rekening : {initialData.detailEvent.nomor_rekening}</p>
                                                 </div>
@@ -190,7 +191,7 @@ class DetailComponent extends Component {
                                         <p className="ikon-judul">More Info : </p>
                                         <Col span={12}>
                                             <div className="ikon-tulisan">
-                                                <p><Icon type="instagram" /> @ {initialData.detailEvent.instagram}</p>
+                                                <a href= {`https://instagram.com/${initialData.detailEvent.instagram}`} target="_blank"> <p><Icon type="instagram" /> @ {initialData.detailEvent.instagram}</p></a>
                                                 <p><Icon className="ikon-2" type="phone" /> {initialData.detailEvent.telepon}</p>
                                             </div>
                                         </Col>

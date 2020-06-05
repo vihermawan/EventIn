@@ -34,6 +34,7 @@ class DetailPage extends Component {
         this.setState({loadingHome: true})
         API.get(`/peserta/event/${id}`)
         .then(res => {
+            console.log(res)
             this.setState({
                 Event:res.data.data.event,
                 kategori : res.data.data.event.kategori,

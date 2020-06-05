@@ -20,13 +20,14 @@ class BasicInfoPage extends Component {
     }
 
     componentDidMount(){
-       
+       this.getKategori();
     }
 
     getKategori=()=>{
-        API.get('/peserta/kategori')
+        API.get('/panitia/kategori')
         .then(res => {
             if(res.status === 200){
+                console.log(res.data.data.kategori)
                 this.setState({
                     kategori:res.data.data.kategori,
                 })
@@ -58,9 +59,12 @@ class BasicInfoPage extends Component {
         })
     }
 
-    handleKategori = (value) => {
-        this.setState({ kategori_input: value.key })
+    handleKategori = (input, option) => {
+        console.log(input.key)
+        this.setState({ kategori_input: input.key})
     }
+
+
 
     handleButtonClick(e) {
         message.info('Click on left button.');
