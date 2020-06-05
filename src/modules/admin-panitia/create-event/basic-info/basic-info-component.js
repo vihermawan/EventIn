@@ -92,21 +92,23 @@ class BasicInfoComponent extends Component{
                                             </div>
                                             <div className="select-kategori">
                                                 <Select
+                                                    showSearch
                                                     labelInValue
                                                     defaultValue={{ key: String(initialData.kategori_input) }}
+                                                    optionFilterProp="children"
                                                     style={{ width: '100%' }}
                                                     className="select-kategori"
-                                                    onChange={handleKategori}
+                                                    onChange={(input, option)=>handleKategori(input,option)}
                                                 >
                                                     <Option value="">Pilih Kategori</Option>
-                                                    <Option value="1">Olahraga</Option>
-                                                    <Option value="2">Musik</Option>
-                                                    <Option value="3">Budaya</Option>
-                                                    <Option value="4">Game</Option>
-                                                    <Option value="5">Seni</Option>
-                                                    <Option value="6">Teknologi</Option>
-                                                    <Option value="7">Pendidikan</Option>
-                                                    <Option value="8">Agama</Option>
+                                                    {
+                                                        initialData.kategori.map( data =>     
+                                                            <Option
+                                                            key={data.nama_kategori.toString()}
+                                                            value={data.id_kategori}
+                                                            >{data.nama_kategori}</Option>
+                                                        )
+                                                    }
                                                 </Select>
                                             </div>
                                         </div>

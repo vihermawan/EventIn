@@ -27,7 +27,8 @@ class EditProfilePage extends Component {
           },
         croppedImageUrl : '',
         file_type : '',
-        loading : false
+        loading : false,
+        show : false,
     }
 
     componentDidMount(){
@@ -243,16 +244,26 @@ class EditProfilePage extends Component {
         params.set('jabatan',this.state.jabatan)
         params.set('nip',this.state.nip)
         params.set('instansi',this.state.instansi)
-        if(this.state === null){
-            this.openNotification('Data Wajib di Isi', 'Silahkan isi data dengan benar')
+        if(validation.required(this.state.nama_penandatangan) !== null){
+            const message = validation.required(this.state.nama_penandatangan);
+            this.openNotification(message, 'Nama Penanda tangan Harus Diisi')
         }else if(validation.emailRequired(this.state.email) !== null){
             const message = validation.emailRequired(this.state.email);
             this.openNotification(message, 'Harap memasukkan email dengan benar')
+        }else if(validation.required(this.state.instansi) !== null){
+            const message = validation.required(this.state.instansi);
+            this.openNotification(message, 'Instansi Harus Diisi')
+        }else if(validation.required(this.state.jabatan) !== null){
+            const message = validation.required(this.state.jabatan);
+            this.openNotification(message, 'Jabatan Harus Diisi')
+        }else if(validation.numberRequired(this.state.nip) !== null){
+            const message = validation.numberRequired(this.state.nip);
+            this.openNotification(message, 'Nomor Induk Pegawai Harus Diisi')
         }else if(this.state.button_edit !== 'Edit Foto Profil'){
             if(this.state.file_type !== 'image/jpeg'){
                 this.openNotification('Format Gambar Salah', 'Silahkan Upload Kembali dengan format JPG')
             }else{
-                this.setState({loading: true})
+                this.setState({show: true})
                 API.postEdit(`/penandatangan/profile/edit/${id_penandatangan}`, params)
                 .then(res => {
                     if(res.status === 200){
@@ -261,12 +272,13 @@ class EditProfilePage extends Component {
                         message.success('Data Berhasil di Ubah');
                     }else{
                         this.openNotification('Data Salah', 'Silahkan isi data dengan benar')
+                        this.setState({show: false})
                     }
                    
                 });
             }
         }else{
-        this.setState({loading: true})
+        this.setState({show: true})
         API.postEdit(`/penandatangan/profile/edit/${id_penandatangan}`, params)
             .then(res => {
                 if(res.status === 200){
@@ -275,6 +287,7 @@ class EditProfilePage extends Component {
                     message.success('Data Berhasil di Ubah');
                 }else{
                     this.openNotification('Data Salah', 'Silahkan isi data dengan benar')
+                    this.setState({show: false})
                 }
                
             });

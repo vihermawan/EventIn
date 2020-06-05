@@ -141,9 +141,9 @@ class ListParticipantPage extends Component {
     };
 
     //function untuk modal
-    showAcceptConfirm = (id) => {
+    showAcceptConfirm = (id,nama) => {
         confirm({
-            title: ' Apakah yakin untuk approve peserta ?',
+            title: `Apakah yakin untuk menerima peserta ${nama}?`,
             okText: 'Yes',
             okType: 'danger',
             cancelText: 'No',
@@ -156,9 +156,9 @@ class ListParticipantPage extends Component {
     }
     
     //function untuk modal
-    showRejectConfirm = (id) => {
+    showRejectConfirm = (id,nama) => {
         confirm({
-            title: ' Apakah yakin untuk menolak peserta ?',
+            title: `Apakah yakin untuk menolak peserta ${nama}?`,
             okText: 'Yes',
             okType: 'danger',
             cancelText: 'No',
@@ -248,7 +248,7 @@ class ListParticipantPage extends Component {
                                     icon={faCheckCircle}
                                     borderRadius="5px"
                                     background="#00C908"
-                                    onClick={ () => this.showAcceptConfirm(data.nomor)}
+                                    onClick={ () => this.showAcceptConfirm(data.nomor,data.nama_peserta)}
                                 />
                             </Tooltip>,
                         </Col>
@@ -259,7 +259,7 @@ class ListParticipantPage extends Component {
                                     icon={faWindowClose}
                                     borderRadius="5px"
                                     background="#FF0303"
-                                    onClick={ () => this.showRejectConfirm(data.nomor)}
+                                    onClick={ () => this.showRejectConfirm(data.nomor,data.nama_peserta)}
                                 />
                             </Tooltip>
                         </Col>
@@ -274,7 +274,7 @@ class ListParticipantPage extends Component {
                                     icon={faWindowClose}
                                     borderRadius="5px"
                                     background="#FF0303"
-                                    onClick={ () => this.showRejectConfirm(data.nomor)}
+                                    onClick={ () => this.showRejectConfirm(data.nomor,data.nama_peserta)}
                                 />
                             </Tooltip>
                         </Col>

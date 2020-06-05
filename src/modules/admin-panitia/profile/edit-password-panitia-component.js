@@ -1,12 +1,11 @@
 import React, { Component } from 'react';
-import { Layout, Breadcrumb, Row, Col, Form,  Button  } from 'antd';
+import { Layout, Breadcrumb, Row, Col, Form,  Button,Modal  } from 'antd';
 import { Link } from 'react-router-dom';
 import '../../../assets/css/dashboard-all/dashboard.css'
 import '../../../assets/css/dashboard-all/table-style.css'
 import '../../../assets/css/admin-superadmin/detail-event.css'
 // component
-import LoadingContainer from '../../../common/component/loading/loading-container'
-import InputForm from '../../../common/component/input/input-form';
+import LoadingNotifContainer from '../../../common/component/loading/loading-notif';
 import { faUserLock, faLock } from '@fortawesome/free-solid-svg-icons';
 import 'moment-timezone';
 import 'moment/locale/id';
@@ -18,7 +17,7 @@ const { Content } = Layout;
 
 class EditProfileComponent extends Component {
     render() { 
-      const {initialData,handleChange,handleSubmit,handleOk,handleCancel} = this.props  
+      const {initialData,handleChange,handleSubmit} = this.props  
       return ( 
             <Content
                 style={{
@@ -29,7 +28,7 @@ class EditProfileComponent extends Component {
                 }}
             >
                 <Breadcrumb separator=">">
-                    <Breadcrumb.Item><Link to='/dashboard/profile/'>Dashboard Profile Panitia</Link></Breadcrumb.Item>
+                    <Breadcrumb.Item><Link to='/dashboard/profile/'>Dashboard Profil Panitia</Link></Breadcrumb.Item>
                     <Breadcrumb.Item>Dashboard Edit Password</Breadcrumb.Item>
                 </Breadcrumb>
 
@@ -43,8 +42,7 @@ class EditProfileComponent extends Component {
                             </Row>
                      
                             <Form onSubmit={handleSubmit}>
-                                <div style={{minHeight:'100vh'}}>
-                                <LoadingContainer loading={initialData.loading}>
+                                <div style={{maxHeight:'100vh'}}>
                                     <div className="container-form">
                                         <Row>
                                             <Col lg={24} md={24} sm={24}>
@@ -89,9 +87,18 @@ class EditProfileComponent extends Component {
                                             Done
                                         </Button>
                                     </div>
-                                    </LoadingContainer>
                                     </div>
                                 </Form>
+                                <Modal
+                                    title="Proses Perubahan Password"
+                                    visible={initialData.show}
+                                    className = "modal-notif"
+                                    >
+                                    <p className="text-notif">Proses perubahan password sedang dilakukan, silahkan tunggu</p>
+                                    <div >
+                                        <LoadingNotifContainer loading={initialData.loading_notif} style={{ minHeight:'20px', marginTop:'50px',}}/>
+                                    </div>
+                                </Modal>
                            
                         </div>
                     </Col>

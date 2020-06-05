@@ -18,6 +18,7 @@ class EditCertificatePage extends Component {
         id_sertifikat : '',
         id_penandatangan :'',
         loading: false,
+        show : false,
         type_file : '',
         activeEvent : [],
         penandatangan : [],
@@ -147,10 +148,25 @@ class EditCertificatePage extends Component {
         }else if(validation.required(this.state.sertifikat) !== null ){
             const message = validation.required(this.state.sertifikat);
             this.openNotification(message, 'Sertifikat Harus Diupload')
-        }else if(this.state.type_file !== 'application/vnd.openxmlformats-officedocument.wordprocessingml.document'){
-            this.openNotification('Format Sertifikat Salah', 'Silahkan Upload Kembali dengan format Docx')
-        }else{
-            this.setState({loading: true})
+        }else if(this.state.button_edit !== 'Edit Foto Profil'){
+            if(this.state.file_type !== 'application/vnd.openxmlformats-officedocument.wordprocessingml.document'){
+                this.openNotification('Format Sertifikat Salah', 'Silahkan Upload Kembali dengan format Docx')
+            }else{
+                this.setState({ show: false})
+                API.postEdit(`/panitia/edit-sertifikat-event/${this.state.id_sertifikat}`, params)
+                .then(res => {
+                    if(res.status === 200){
+                        message.success('Data Sertifikat Berhasil diUbah');
+                        this.props.navigate(CONSTANS.WAITING_SERTIF_PANITIA_MENU_KEY)
+                    }else{
+                        this.openNotification('Data Salah', 'Silahkan isi data dengan benar')
+                    }
+                    this.setState({loading: false, show : false})
+                });
+            }
+        }
+        else{
+            this.setState({show : true})
             API.postEdit(`/panitia/edit-sertifikat-event/${this.state.id_sertifikat}`, params)
             .then(res => {
                 if(res.status === 200){
@@ -159,7 +175,7 @@ class EditCertificatePage extends Component {
                 }else{
                     this.openNotification('Data Salah', 'Silahkan isi data dengan benar')
                 }
-                this.setState({loading: false})
+                this.setState({ show : false})
             });
         }
        

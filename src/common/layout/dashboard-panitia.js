@@ -421,7 +421,7 @@ class dashboard extends Component {
                     render={ (props) => <CountRegistEventPage {...props}/> }
                 />
                 <Route
-                    path='/dashboard/list-participant'
+                    path='/dashboard/list-count-regist/list-participant'
                     exact
                     render={ (props) => <ListParticipantPage {...props}/> }
                 />

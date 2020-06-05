@@ -29,6 +29,7 @@ class EditProfilePage extends Component {
             aspect: 1 / 1,
           },
         croppedImageUrl : '',
+        show : false,
     }
 
     componentDidMount(){
@@ -240,18 +241,28 @@ class EditProfilePage extends Component {
         params.set('email',this.state.email)
         params.set('organisasi',this.state.organisasi)
         params.set('instagram',this.state.instagram)
-        params.set('telepon',this.state.no_telepon)
-        if(this.state === null){
-            this.openNotification('Data Wajib di Isi', 'Silahkan isi data dengan benar')
+        params.set('telepon',this.state.telepon)
+        if(validation.required(this.state.nama_panitia) !== null){
+            const message = validation.required(this.state.nama_panitia);
+            this.openNotification(message, 'Nama Panitia Harus Diisi')
         }else if(validation.emailRequired(this.state.email) !== null){
             const message = validation.emailRequired(this.state.email);
             this.openNotification(message, 'Harap memasukkan email dengan benar')
+        }else if(validation.required(this.state.organisasi) !== null){
+            const message = validation.required(this.state.organisasi);
+            this.openNotification(message, 'Organisasi Harus Diisi')
+        }else if(validation.required(this.state.instagram) !== null){
+            const message = validation.required(this.state.instagram);
+            this.openNotification(message, 'Instagram Harus Diisi')
+        }else if(validation.numberRequired(this.state.telepon) !== null){
+            const message = validation.numberRequired(this.state.telepon);
+            this.openNotification(message, 'Nomor Telepon Event Harus Diisi')
         }
         else if(this.state.button_edit !== 'Edit Foto Profil'){
             if(this.state.file_type !== 'image/jpeg'){
                 this.openNotification('Format Gambar Salah', 'Silahkan Upload Kembali dengan format JPG')
             }else{
-                this.setState({loading: true})
+                this.setState({show: true})
                 API.postEdit(`/panitia/editprofile/${id_panitia}`, params)
                 .then(res => {
                     if(res.status === 200){
@@ -260,12 +271,13 @@ class EditProfilePage extends Component {
                         message.success('Data Berhasil di Ubah');
                     }else{
                         this.openNotification('Data Salah', 'Silahkan isi data dengan benar')
+                        this.setState({show: false})
                     }
-                    this.setState({loading: false})
+                    
                 });
             }
         }else{
-            this.setState({loading: true})
+            this.setState({show: true})
             API.postEdit(`/panitia/editprofile/${id_panitia}`, params)
             .then(res => {
                 if(res.status === 200){
@@ -274,8 +286,9 @@ class EditProfilePage extends Component {
                     message.success('Data Berhasil di Ubah');
                 }else{
                     this.openNotification('Data Salah', 'Silahkan isi data dengan benar')
+                    this.setState({show: false})
                 }
-                this.setState({loading: false})
+                
             });
         }
         
