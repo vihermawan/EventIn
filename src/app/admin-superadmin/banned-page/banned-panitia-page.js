@@ -13,7 +13,7 @@ const { confirm } = Modal;
 
 class BannedPanitiaPage extends Component {
     state = {
-        bannedPanita : [],
+        bannedPanitia : [],
         loading : false,
     }
 
@@ -32,7 +32,7 @@ class BannedPanitiaPage extends Component {
       API.get(`/admin/trash/panitia`)
       .then(res => {
         this.setState({
-          bannedPanita:res.data.data.user,
+          bannedPanitia:res.data.data.user,
           loading: false,
         })
       });
@@ -183,7 +183,7 @@ class BannedPanitiaPage extends Component {
             },
         ];
 
-        const data =  this.state.bannedPanita.map( ({id_users, panitia,email}, index) => ({
+        const data =  this.state.bannedPanitia.map( ({id_users, panitia,email}, index) => ({
           no : index+1,
           id_panitia : panitia.id_panitia,
           id_users : id_users,

@@ -56,7 +56,7 @@ class DetailEventComponent extends Component {
               >
                   <Breadcrumb separator=">">
                         <Breadcrumb.Item><Link to='/admin/list-panitia'>Daftar Panitia</Link></Breadcrumb.Item>
-                        <Breadcrumb.Item><Link to='/admin/detail-panitia'>Detail Panitia</Link></Breadcrumb.Item>
+                        <Breadcrumb.Item><Link to='/admin/list-panitia/detail-panitia'>Detail Panitia</Link></Breadcrumb.Item>
                         <Breadcrumb.Item>Detail Event</Breadcrumb.Item>
                   </Breadcrumb>
   

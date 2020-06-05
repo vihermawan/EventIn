@@ -277,7 +277,7 @@ class Admin extends Component {
                   />
                   <div className= "avatar">
                     <Avatar size={40} icon="user" className="avatars" />
-                    <span className="semi-bold">ADMIN EVENTIN</span>
+                    <span className="semi-bold">ADMINISTRATOR</span>
                       <Dropdown overlay={menu} trigger={['click']}>
                         <a className="ant-dropdown-link" href="#">
                           <Icon type="down" style={{marginLeft:"20px", color:"black", fontSize:"13px"}} />

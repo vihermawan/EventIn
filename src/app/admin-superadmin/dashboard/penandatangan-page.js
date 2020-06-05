@@ -192,6 +192,7 @@ class PenandatanganAdminPage extends Component {
             {
                 title: 'Action',
                 key: 'action',
+                width:220,
                 render: (data) => (
                     [ 
                     <Tooltip title="Edit">,

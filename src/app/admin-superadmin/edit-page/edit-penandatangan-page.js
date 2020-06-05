@@ -10,19 +10,11 @@ import EditProfileSignerComponent from '../../../modules/admin-superadmin/user/p
 class EditProfileAdminSignerPage extends Component {
     state = {
         id_penandantangan : '',
-        nama_penandatangan : '',
-        email : '',
-        instansi : '',
-        nip : '',
         method : 'PUT',
         jabatan : '',
         file_p12 : null,
-        picture : '',
-        name_photo : '',
-        profile_picture: null,
         loading: false,
         type_file : '',
-        button_edit : 'Edit Foto Profil',
         button_p12 : 'Edit File P_12',
     }
 
@@ -85,14 +77,7 @@ class EditProfileAdminSignerPage extends Component {
         .then(res => {
           this.setState({
             id_penandatangan : res.data.data.penandatangan.penandatangan.id_penandatangan,
-            nama_penandatangan :res.data.data.penandatangan.penandatangan.nama_penandatangan ,
-            email : res.data.data.penandatangan.email,
-            instansi :res.data.data.penandatangan.penandatangan.instansi ,
-            nip :res.data.data.penandatangan.penandatangan.nip,
             file_p12 : res.data.data.penandatangan.penandatangan.file_p12,
-            picture : res.data.data.penandatangan.penandatangan.image_URL,
-            jabatan : res.data.data.penandatangan.penandatangan.jabatan,
-            profile_picture :res.data.data.penandatangan.penandatangan.profile_picture,
             loading: false,
           })
         });
@@ -110,14 +95,8 @@ class EditProfileAdminSignerPage extends Component {
         e.preventDefault();
         const id_penandatangan = this.state.id_penandatangan
         const params = new FormData()
-        params.append('profile_picture',this.state.profile_picture)
         params.append("_method", 'PUT')
         params.append('file_p12',this.state.file_p12)
-        params.set('nama_penandatangan',this.state.nama_penandatangan)
-        params.set('email',this.state.email)
-        params.set('jabatan',this.state.jabatan)
-        params.set('nip',this.state.nip)
-        params.set('instansi',this.state.instansi)
         if(this.state.type_file !== 'application/x-pkcs12'){
             this.openNotification('Format P12 Salah', 'Silahkan Upload Kembali dengan format yang benar')
         }else{
@@ -131,8 +110,7 @@ class EditProfileAdminSignerPage extends Component {
                     this.openNotification('Data Salah', 'Silahkan isi data dengan benar')
                 }
             });
-        }
-        
+        }  
     }
 
     handleButtonEdit = () => {
