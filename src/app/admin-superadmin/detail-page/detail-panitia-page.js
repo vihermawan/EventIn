@@ -184,6 +184,7 @@ class DetailPanitiaPage extends Component {
                 title : 'Status Event',
                 dataIndex : 'status',
                 key : 'status',
+                width: '12%',
                 ...this.getColumnSearchProps('status'),
                 render: status => (
                     <span>
@@ -204,9 +205,10 @@ class DetailPanitiaPage extends Component {
                 ),
             },
             {
-                title: 'Tanggal Pengajuan',
+                title: 'Tanggal Pembuatan',
                 dataIndex: 'start_event',
                 key: 'start_event',
+                width:'15%',
                 ...this.getColumnSearchProps('start_event'),
             },
             {

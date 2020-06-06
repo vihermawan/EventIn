@@ -176,7 +176,7 @@ class WaitingPage extends Component {
         .then(res => {
             if(res.status === 200){
               if(res.data.status === 'Success'){
-                message.success('Berhasil mengirim sertifikat');
+                message.success('Berhasil menolak sertifikat');
                 this.componentDidMount();   
                 this.setState({loading: false}) 
               }else{

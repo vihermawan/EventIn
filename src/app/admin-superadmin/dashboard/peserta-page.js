@@ -109,7 +109,7 @@ class PesertaAdminPage extends Component {
     }
 
     //delete peserta
-    bannedPeserta = (id_peserta) => {   
+    bannedPeserta = (id_peserta,nama_peserta) => {   
         this.setState({loading:true})
         API.delete(`/admin/ban/peserta/${id_peserta}`)
         .then(res => {
