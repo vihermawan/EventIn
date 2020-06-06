@@ -186,6 +186,7 @@ class DetailPesertaPage extends Component {
                 title : 'Status Peserta',
                 dataIndex : 'status',
                 key : 'status',
+                width: '12%',
                 ...this.getColumnSearchProps('status'),
                 render: status => (
                     <span>
@@ -195,6 +196,8 @@ class DetailPesertaPage extends Component {
                                     color = '#f50';
                                 }else if (tag === 'Registered'){
                                     color = '#87d068';
+                                }else if (tag === 'Done'){
+                                  color = '#1eb346'
                                 }
                                 return (
                                     <Tag color={color} key={tag}>
@@ -209,6 +212,7 @@ class DetailPesertaPage extends Component {
                 title: 'Tanggal Pendaftaran',
                 dataIndex: 'start_event',
                 key: 'start_event',
+                width: '15%',
                 ...this.getColumnSearchProps('start_event'),
             },
             {
