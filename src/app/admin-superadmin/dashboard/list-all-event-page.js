@@ -25,7 +25,7 @@ class ListAllEventPage extends Component {
     }
 
     componentDidMount(){
-        this.getApprovalEvent();
+        this.getEvent();
     }
 
     getColumnSearchProps = dataIndex => ({
@@ -94,7 +94,7 @@ class ListAllEventPage extends Component {
         this.setState({ searchText: '' });
     };
 
-    getApprovalEvent = () => {
+    getEvent = () => {
          this.setState({loading: true})
          API.get(`/admin/showevent`)
          .then(res => {

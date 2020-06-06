@@ -161,8 +161,7 @@ class WaitingPage extends Component {
             if(res.status === 200){
               if(res.data.status === 'Success'){
                 message.success('Berhasil mengirim sertifikat');
-                this.componentDidMount();   
-                this.setState({loading: false}) 
+                this.componentDidMount();    
               }else{
                 message.error(res.data.status);
                 this.setState({loading: false});
@@ -176,9 +175,15 @@ class WaitingPage extends Component {
         API.delete(`/admin/reject-sertifikat/${id_penandatangan_sertifikat}`)
         .then(res => {
             if(res.status === 200){
-                message.success('Berhasil menolak sertifikat');
-                this.componentDidMount(); 
+              if(res.data.status === 'Success'){
+                message.success('Berhasil mengirim sertifikat');
+                this.componentDidMount();   
+                this.setState({loading: false}) 
+              }else{
+                message.error(res.data.status);
+                this.setState({loading: false})
             }
+          }
         });
     }
 
@@ -340,7 +345,6 @@ class WaitingPage extends Component {
             sertifikat : sertifikat.sertifikat,
             start_event : moment(sertifikat.event.detail_event.start_event).format("DD MMMM YYYY"),
             end_event : moment(sertifikat.event.detail_event.end_event).format("DD MMMM YYYY"),
-            end_registration : moment(sertifikat.event.detail_event.end_registration).format("DD MMMM YYYY"),
             nama_panitia : sertifikat.event.panitia.nama_panitia,
             dateNow : moment().format('YYYY-MM-DD'),
             start : Date.parse(sertifikat.event.detail_event.start_event),

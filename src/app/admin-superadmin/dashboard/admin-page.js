@@ -11,7 +11,6 @@ am4core.useTheme(am4themes_animated);
 
 class AdminPage extends Component {
     state = {  
-        januari : [],
         total_peserta: '',
         total_panitia: '',
         total_penandatangan: '',
@@ -23,9 +22,6 @@ class AdminPage extends Component {
     componentDidMount () {
         this.getEventbyMonth();
         this.getUserbyRole();
-        this.getBiodataPenandatangan();
-        this.getApprovalEvent();
-        this.getWaitingSertifikat();
         this.getAllSertifikat();
         this.getAllEvent();
         this.getAllUser();
@@ -36,11 +32,9 @@ class AdminPage extends Component {
         API.get(`/admin/count-event`)
         .then(res => {
             this.setState({loading:false})
-            this.reportChart(res.data)
+            this.barChart(res.data)
         });
-        
     }
-
     getUserbyRole = () => {
         this.setState({loading: true})
         API.get(`/admin/count-user`)
@@ -48,33 +42,7 @@ class AdminPage extends Component {
             this.setState({loading:false})
             this.pieChart(res.data)
         });
-        
     }
-
-    getBiodataPenandatangan = () => {
-        this.setState({loading: true})
-        API.get(`/admin/showbiodatapenandatangan`)
-        .then(res => {
-            this.setState({total_biodata : res.data.size,loading : false})
-        });
-    }
-
-    getApprovalEvent = () => {
-        this.setState({loading: true})
-        API.get(`/admin/approve/event`)
-        .then(res => {
-            this.setState({total_approval : res.data.size,loading : false})
-        });
-    }
-
-    getWaitingSertifikat = () => {
-        this.setState({loading: true})
-        API.get(`/admin/sertifikat-waiting`)
-        .then(res => {
-            this.setState({total_waitingSertifikat : res.data.size,loading : false})
-        });
-    }
-
     getAllSertifikat = () => {
         this.setState({loading: true})
         API.get(`/admin/count-all-sertifikat`)
@@ -100,7 +68,6 @@ class AdminPage extends Component {
     }
 
     pieChart = (data_users) => {
-    
         let chart = am4core.create("chartpiediv", am4charts.PieChart);
         let data_user = [];
         for(let i=0; i<data_users.size; i++){
@@ -124,7 +91,7 @@ class AdminPage extends Component {
         pieSeries.dataFields.category = "user";
     }
     
-    reportChart = (data_event_ac) => {
+    barChart = (data_event_ac) => {
         let chart = am4core.create("chartdiv", am4charts.XYChart);
         chart.scrollbarX = new am4core.Scrollbar();
         chart.legend = new am4charts.Legend();

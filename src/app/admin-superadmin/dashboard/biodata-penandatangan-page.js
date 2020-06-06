@@ -142,7 +142,6 @@ class BiodataPenandatanganAdminPage extends Component {
         .then(res => {
             if(res.status === 200){
                 message.success('Berhasil menambahkan penandatangan');
-                // this.componentDidMount(); 
                 this.props.navigate(CONSTANS.BIODATA_PENANDATANGAN_ADMIN_KEY)
             }  
             this.setState({loading: false}) 

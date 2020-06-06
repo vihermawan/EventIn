@@ -130,12 +130,11 @@ class KategoriMasterPage extends Component {
         e.preventDefault();
         const params = new FormData()
         params.set('nama_kategori', this.state.nama_kategori)
-
         if(validation.required(this.state.nama_kategori) !== null ){
             const message = validation.required(this.state.nama_kategori);
             this.openNotification(message, 'Nama Kategori harus ditulis')
         }else{
-            this.setState({loading: true,show: false,})
+            this.setState({loading: true,})
             API.post(`/admin/addkategori`, params)
             .then(res => {
             if(res.status === 201){
@@ -145,43 +144,35 @@ class KategoriMasterPage extends Component {
                 });
                 this.setState({loading: false})
                 this.componentDidMount();
-            }else if(res.status === 500){
-                this.openNotification('Data Duplikat', 'Kategori sudah ada')
-                this.setState({loading: false,show: false,})
             }else{
-                this.openNotification('Data Salah', 'Silahkan isi data dengan benar')
-                this.setState({loading: false})
+                this.openNotification('Data Duplikat', 'Kategori sudah ada')
+                this.setState({loading: false,})
             }
         });
-        }
-       
+        }     
     };
 
     handleEdit = () => {
             const params = new FormData()
             params.append('_method','PUT')
             params.set('nama_kategori', this.state.edit_kategori)
-
             if(validation.required(this.state.edit_kategori) !== null ){
                 const message = validation.required(this.state.edit_kategori);
                 this.openNotification(message, 'Nama Kategori harus ditulis')
             }else{
-                this.setState({loading: true,show: false,})
+                this.setState({loading: true,})
                 API.postEdit(`/admin/editkategori/${this.state.id_kategori}`, params)
             .then(res => {
                 if(res.status === 200){
                     message.success('Kategori Berhasil Diubah');
+                    this.setState({loading: false})
                     this.setState({
                         show: false,
                     });
-                    this.setState({loading: false})
                     this.componentDidMount();
-                }else if(res.status === 500){
+                }else{
                     this.openNotification('Data Duplikat', 'Kategori sudah ada')
-                    this.setState({loading: false,show: false,})
-                } else{
-                    this.openNotification('Data Salah', 'Silahkan isi data dengan benar')
-                    this.setState({loading: false})
+                    this.setState({loading: false,})
                 }
             });
         }
