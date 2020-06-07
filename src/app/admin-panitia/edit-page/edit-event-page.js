@@ -129,6 +129,10 @@ class EditEventPage extends Component {
         })
     }
 
+    disabledDate(current) {
+        return current && current < moment().startOf('day');
+    }
+
     handleKategori = (value) => {
         this.setState({ kategori_input: value })
     }
@@ -209,8 +213,10 @@ class EditEventPage extends Component {
         }
         else{
             this.getBase64(event.target.files[0], imageUrl => {
-                this.setState({ picture: imageUrl,croppedImageUrl :imageUrl,picture_event:imageUrl,visible:true,type_file :event.target.files[0].type })
+                this.setState({ picture: imageUrl,croppedImageUrl :imageUrl,picture_event:imageUrl,visible:true })
             })
+
+            this.setState({type_file :event.target.files[0].type})
         }
         
     }
@@ -441,7 +447,7 @@ class EditEventPage extends Component {
             this.openNotification('Jam Belum Disisi', 'Jam harus disi dengan benar') 
         }
         else if(this.state.button_edit !== 'Edit Foto Profil'){
-            if(this.state.file_type !== 'image/jpeg'){
+            if(this.state.type_file !== 'image/jpeg'){
                 this.openNotification('Format Gambar Salah', 'Silahkan Upload Kembali dengan format JPG')
             }else{
                 this.setState({show: true})
@@ -496,6 +502,7 @@ class EditEventPage extends Component {
                 onCropChange={this.onCropChange}
                 showModal={this.showModal}
                 handleOk={this.handleOk}
+                disabledDate = {this.disabledDate}
                 handleCancel={this.handleCancel}
                 handleSubmit = {this.handleSubmit}
                 handleKabupaten ={this.handleKabupaten}
