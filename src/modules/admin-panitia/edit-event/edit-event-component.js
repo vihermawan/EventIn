@@ -13,7 +13,7 @@ import LoadingNotifContainer from '../../../common/component/loading/loading-not
 import InputForm from '../../../common/component/input/input-form';
 import moment from 'moment';
 import ButtonDashboard from '../../../common/component/button/button-dashboard';
-import { faBackward, faUserEdit, faStickyNote, faIdCard, faUserFriends, faAddressBook, faEnvelope, faInfoCircle, faWallet, faMapMarker, faEnvelopeOpenText } from '@fortawesome/free-solid-svg-icons';
+import { faBackward, faUserEdit, faStickyNote, faIdCard, faUserFriends, faAddressBook,  faWallet, faMapMarker, faEnvelopeOpenText } from '@fortawesome/free-solid-svg-icons';
 import { faInstagram } from '@fortawesome/free-brands-svg-icons';
 // constant content
 const { Content } = Layout;
@@ -27,7 +27,7 @@ class EditEventComponent extends Component {
              handleBank,onChangeTimeStart,
              onChangeTimeEnd,onChangeDateStart,onChangeDateEnd,
              onChangeDateRegisStart,onChangeDateRegistEnd,onImageLoaded,onCropComplete,onCropChange,handleOk,handleCancel,
-             handleTempat,uploadGambar,handleButtonEdit,handleButtonGambar,handleSubmit,uploadButton,handleKabupaten,handleProvinsi} 
+             handleTempat,uploadGambar,handleButtonEdit,handleButtonGambar,handleSubmit,uploadButton,handleKabupaten,handleProvinsi,disabledDate} 
      = this.props  
      const format = 'HH:mm';
      const dateFormat = 'YYYY-MM-DD';
@@ -342,7 +342,7 @@ class EditEventComponent extends Component {
                                                             <Option value="">Pilih Tempat</Option>
                                                             <Option value="Terbuka">Terbuka</Option>
                                                             <Option value="Indoor">Tertutup</Option>
-                                                        </Select>,
+                                                        </Select>
                                                     </div>
                                                 </div>
                                             </Col>
@@ -379,6 +379,7 @@ class EditEventComponent extends Component {
                                                                         placeholder="Pilih tanggal" 
                                                                         onChange={onChangeDateStart} 
                                                                         value={moment(String(initialData.start_event), dateFormat)}
+                                                                        disabledDate={disabledDate}
                                                                         style={{width:"100%"}}/>
                                                                 </Col>
                                                             </Row>
@@ -422,6 +423,7 @@ class EditEventComponent extends Component {
                                                                         placeholder="Pilih tanggal"
                                                                         value={moment(String(initialData.end_event), dateFormat)}
                                                                         onChange={onChangeDateEnd}
+                                                                        disabledDate={disabledDate}
                                                                         style={{width:"100%"}}
                                                                     />
                                                                 </Col>
@@ -467,6 +469,7 @@ class EditEventComponent extends Component {
                                                                     <DatePicker 
                                                                         placeholder="Pilih tanggal" 
                                                                         onChange={onChangeDateRegisStart} 
+                                                                        disabledDate={disabledDate}
                                                                         style={{width:"100%"}}
                                                                         value={moment(String(initialData.open_registration), dateFormat)}
                                                                     />
@@ -487,6 +490,7 @@ class EditEventComponent extends Component {
                                                                 <Col lg={24} md={24} sm={24}>
                                                                     <DatePicker 
                                                                         placeholder="Pilih tanggal" 
+                                                                        disabledDate={disabledDate}
                                                                         onChange={onChangeDateRegistEnd}
                                                                         style={{width:"100%"}}
                                                                         value={moment(String(initialData.end_registration), dateFormat)}

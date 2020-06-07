@@ -54,7 +54,7 @@ class EditProfilePage extends Component {
                 nama_panitia : res.data.data.user.panitia.nama_panitia,
                 email : res.data.data.user.email,
                 organisasi : res.data.data.user.panitia.organisasi,
-                telepon  : res.data.data.user.panitia.telepon,
+                telepon  : Number(res.data.data.user.panitia.telepon),
                 instagram : res.data.data.user.panitia.instagram,
                 foto_panitia : res.data.data.user.panitia.foto_panitia,
                 croppedImageUrl : res.data.data.user.panitia.image_URL,
@@ -265,6 +265,7 @@ class EditProfilePage extends Component {
                 this.setState({show: true})
                 API.postEdit(`/panitia/editprofile/${id_panitia}`, params)
                 .then(res => {
+                    console.log(res)
                     if(res.status === 200){
                         this.props.navigate(CONSTANS.PROFILE_ADMIN_PANITIA_MENU_KEY)
                         window.location.reload();

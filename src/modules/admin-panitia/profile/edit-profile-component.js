@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Layout, Breadcrumb, Row, Col, Form, Modal, Input,Upload, Button  } from 'antd';
+import { Layout, Breadcrumb, Row, Col, Form, Modal, Input,Upload, Button,Avatar  } from 'antd';
 import { Link } from 'react-router-dom';
 import '../../../assets/css/dashboard-all/dashboard.css'
 import '../../../assets/css/dashboard-all/table-style.css'
@@ -191,7 +191,7 @@ class EditProfileComponent extends Component {
                                                         className="avatar-uploader"
                                                         disabled = {true}
                                                     >
-                                                        {initialData.croppedImageUrl ? <img src={initialData.croppedImageUrl} alt="avatar" style={{ width: '50%' }} /> : uploadButton}
+                                                        {initialData.croppedImageUrl ?  <Avatar shape="square" size={300} src={initialData.croppedImageUrl} classname="profile-picture" icon="user" style={{ width: '50%' }}/> : uploadButton}
                                                     </Upload>  
                                                  </div>  
                                             </Col>
