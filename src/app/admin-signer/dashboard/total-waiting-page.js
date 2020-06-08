@@ -16,6 +16,7 @@ import { setIdEvent } from '../../../modules/admin-panitia/active-event/store/ac
 class TotalWaitingCertificatePage extends Component {
     state = {  
         certificate: [],
+        count : '',
         loading: false,
     }
 
@@ -31,6 +32,7 @@ class TotalWaitingCertificatePage extends Component {
               certificate:res.data.data.sertifikat,
               loading: false,
             })
+          this.onCheckList(res.data)
         });
     }
 
@@ -107,6 +109,14 @@ class TotalWaitingCertificatePage extends Component {
       this.props.navigate(CONSTANS.LIST_WAITING_SERTIFIKAT_ADMIN_MENU_KEY)
     }
 
+    onCheckList = (total_data) => {
+      for(let i=0; i<total_data.size; i++){
+        this.setState({
+          count :total_data.data.sertifikat[i].sertifikat.penandatanganan_sertifkat.length,
+        })
+      }
+    }
+
     render() { 
 
     const columns = [
@@ -159,7 +169,8 @@ class TotalWaitingCertificatePage extends Component {
             ),
         },
     ];
-    
+
+   
     const data =  this.state.certificate.map( ({id_event,organisasi, nama_event,sertifikat,panitia}, index) => ({
         no : index+1,
         id_event : id_event,
@@ -167,7 +178,7 @@ class TotalWaitingCertificatePage extends Component {
         nama_panitia : panitia.nama_panitia,
         organisasi : organisasi,
         nama_event : nama_event,
-        total : sertifikat.penandatanganan_sertifkat[0].total
+        total : sertifikat.penandatanganan_sertifkat.length,
     }))
 
     
