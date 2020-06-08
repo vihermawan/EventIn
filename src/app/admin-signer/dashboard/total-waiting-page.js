@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { Divider, Tooltip, Button, Input, Icon } from 'antd';
-import { faInfoCircle, faEdit, faListAlt} from '@fortawesome/free-solid-svg-icons'
+import {  Tooltip, Button, Input, Icon } from 'antd';
+import {  faListAlt} from '@fortawesome/free-solid-svg-icons'
 import  * as Highlighter from 'react-highlight-words'
 import CONSTANS from '../../../common/utils/Constants'
 import { API } from '../../../common/api'
@@ -16,7 +16,6 @@ import { setIdEvent } from '../../../modules/admin-panitia/active-event/store/ac
 class TotalWaitingCertificatePage extends Component {
     state = {  
         certificate: [],
-        count : '',
         loading: false,
     }
 
@@ -28,11 +27,11 @@ class TotalWaitingCertificatePage extends Component {
         this.setState({loading: true})
         API.get(`/penandatangan/count-sertifikat-waiting`)
         .then(res => {
+          console.log(res)
           this.setState({
               certificate:res.data.data.sertifikat,
               loading: false,
             })
-          this.onCheckList(res.data)
         });
     }
 
@@ -109,14 +108,6 @@ class TotalWaitingCertificatePage extends Component {
       this.props.navigate(CONSTANS.LIST_WAITING_SERTIFIKAT_ADMIN_MENU_KEY)
     }
 
-    onCheckList = (total_data) => {
-      for(let i=0; i<total_data.size; i++){
-        this.setState({
-          count :total_data.data.sertifikat[i].sertifikat.penandatanganan_sertifkat.length,
-        })
-      }
-    }
-
     render() { 
 
     const columns = [
@@ -178,9 +169,8 @@ class TotalWaitingCertificatePage extends Component {
         nama_panitia : panitia.nama_panitia,
         organisasi : organisasi,
         nama_event : nama_event,
-        total : sertifikat.penandatanganan_sertifkat.length,
+        total : sertifikat.penandatanganan_sertifkat[0].total,
     }))
-
     
         return ( 
             <TotalWaitingCertificateComponent
