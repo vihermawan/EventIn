@@ -17,14 +17,7 @@ class WaitingCertificateComponent extends Component {
                     <Col lg={24} md={24} sm={24}> 
                         <div className="container-absent">
                             <LoadingContainer loading={initialData.loading}>
-                                <Row gutter={24} type="flex" style={initialData.count === 0 ? {display:"block"}:{display:"none"}}>
-                                    <TableProfile 
-                                        columns={columns} 
-                                        // dataSource={data} 
-                                        className="table-active-event"
-                                    />
-                                </Row>
-                                <Row gutter={24} type="flex" style={initialData.count === 0 ? {display:"none"}:{display:"block"}}>
+                                <Row gutter={24} type="flex">
                                     <TableProfile 
                                         columns={columns} 
                                         dataSource={data} 
