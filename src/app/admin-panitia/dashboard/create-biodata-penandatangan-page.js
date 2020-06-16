@@ -288,8 +288,7 @@ class CreateBiodataPenandatanganPage extends Component {
             this.openNotification('Format Gambar Salah', 'Silahkan Upload Kembali dengan format JPG')
         }
         else{
-            this.setState({loading: true})
-            this.showModal2();
+            this.setState({show: true})
             API.post(`/panitia/create/biodata-penandatangan`, params)
             .then(res => {
                 if(res.status === 201){
@@ -300,7 +299,7 @@ class CreateBiodataPenandatanganPage extends Component {
                     this.setState({show :false})
                     this.openNotification('Data Salah', 'Silahkan isi data dengan benar')
                 }
-                this.setState({loading: false})
+                this.setState({loading: false,show :false})
             });
         }
     }
