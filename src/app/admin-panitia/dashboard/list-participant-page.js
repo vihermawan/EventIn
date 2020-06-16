@@ -44,7 +44,7 @@ class ListParticipantPage extends Component {
     
     //approve peserta
     ApprovePeserta = (id_pesertaevent) => {
-        this.setState({loading: true,visible:true})
+        this.setState({visible:true})
         API.put(`/panitia/approvepeserta/${id_pesertaevent}`)
         .then(res => {
             if(res.status === 200){
@@ -60,7 +60,7 @@ class ListParticipantPage extends Component {
 
     //reject peserta
     rejectPeserta = (id_pesertaevent) => {
-        this.setState({loading: true,visible:true})
+        this.setState({visible:true})
         API.put(`/panitia/rejectpeserta/${id_pesertaevent}`)
         .then(res => {
             if(res.status === 200){
