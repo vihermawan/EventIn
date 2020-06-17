@@ -151,7 +151,6 @@ class EditCertificatePage extends Component {
             const message = validation.required(this.state.sertifikat);
             this.openNotification(message, 'Sertifikat Harus Diupload')
         }else if(this.state.button_edit !== 'Edit Foto Profil'){
-            // if(this.state.type_file !== 'application/vnd.openxmlformats-officedocument.wordprocessingml.document'){
             if(this.state.type_file !== 'docx'){
                 this.openNotification('Format Sertifikat Salah', 'Silahkan Upload Kembali dengan format Docx')
             }else{

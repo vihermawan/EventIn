@@ -66,7 +66,7 @@ class CreateCertificatePage extends Component {
     }
 
     uploadFile = (event) => {
-        console.log(event.target.files[0].name.split('.').pop())
+        // if(event.target.files[0].type !== 'application/vnd.openxmlformats-officedocument.wordprocessingml.document'){
         if(event.target.files[0].name.split('.').pop() !== 'docx'){
             this.openNotification('Format Sertifikat Salah', 'Silahkan Upload Kembali dengan format Docx')
         }
@@ -76,7 +76,8 @@ class CreateCertificatePage extends Component {
             this.setState({ 
                 sertifikat:event.target.files[0],
                 size_sertifikat : event.target.files[0].size / 1024 / 1024,
-                type_file :event.target.files[0].name.split('.').pop(),
+                type_file   : event.target.files[0].name.split('.').pop()
+                // type_file :event.target.files[0].type,
             })
         }
     }    
