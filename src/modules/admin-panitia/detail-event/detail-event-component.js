@@ -15,13 +15,13 @@ const { Content } = Layout;
 class DetailEventComponent extends Component {
     render() { 
       const {initialData} = this.props
-      console.log( initialData.provinsi)
       const datebeginevent = moment(initialData.detailEvent.start_event).format("DD MMMM")
       const dateEndEvent = moment(initialData.detailEvent.end_event).format("DD MMMM YYYY")
       const regisbeginevent = moment(initialData.detailEvent.open_registration).format("DD MMMM")
       const regisendevent = moment(initialData.detailEvent.end_registration).format("DD MMMM YYYY")
       const timestart = initialData.detailEvent.time_start
       const timeend = initialData.detailEvent.time_end
+      const sisa    = initialData.detailEvent.limit_participant
       const benefitData = [
         {
             image: require(`../../../assets/images/Day.png`),
@@ -41,7 +41,7 @@ class DetailEventComponent extends Component {
         {
             image: require(`../../../assets/images/Quota.png`),
             title: 'Kuota',
-            description: initialData.detailEvent.limit_participant + ' orang'
+            description: sisa === '-' ?  'Tidak ada batasan' : initialData.detailEvent.limit_participant + ' orang'
         },
         
         ]
