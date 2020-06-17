@@ -54,7 +54,7 @@ class EditProfilePage extends Component {
                 nama_panitia : res.data.data.user.panitia.nama_panitia,
                 email : res.data.data.user.email,
                 organisasi : res.data.data.user.panitia.organisasi,
-                telepon  : Number(res.data.data.user.panitia.telepon),
+                telepon  : res.data.data.user.panitia.telepon,
                 instagram : res.data.data.user.panitia.instagram,
                 foto_panitia : res.data.data.user.panitia.foto_panitia,
                 croppedImageUrl : res.data.data.user.panitia.image_URL,
