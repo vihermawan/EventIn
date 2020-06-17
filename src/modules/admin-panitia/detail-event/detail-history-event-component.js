@@ -21,6 +21,7 @@ class DetailHistoryEventComponent extends Component {
       const regisendevent = moment(initialData.detailEvent.end_registration).format("DD MMMM YYYY")
       const timestart = initialData.detailEvent.time_start
       const timeend = initialData.detailEvent.time_end
+      const sisa    = initialData.detailEvent.limit_participant
       const benefitData = [
         {
             image: require(`../../../assets/images/Day.png`),
@@ -40,7 +41,7 @@ class DetailHistoryEventComponent extends Component {
         {
             image: require(`../../../assets/images/Quota.png`),
             title: 'Kuota',
-            description: initialData.detailEvent.limit_participant + ' orang'
+            description: sisa === '-' ?  'Tidak ada batasan' : initialData.detailEvent.limit_participant + ' orang'
         },
         
         ]

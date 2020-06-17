@@ -239,7 +239,7 @@ class ListParticipantPage extends Component {
             render: (data) => (
             [
             <Row>
-                <div style={this.state.sisa === 0 ? {display:"none"}:{display:"block"}}>
+                <div style={this.state.sisa < 1 ? {display:"none"}:{display:"block"}}>
                     <div style={{textAlign:"center"}}>
                         <Col lg={12} md={24} sm={24}>
                             <Tooltip title="Accept">
@@ -265,7 +265,7 @@ class ListParticipantPage extends Component {
                         </Col>
                     </div>
                 </div>
-                <div style={this.state.sisa === 0 ? {display:"block"}:{display:"none"}}>
+                <div style={this.state.sisa < 1 ? {display:"block"}:{display:"none"}}>
                     <div style={{textAlign:"center"}}>
                         <Col lg={12} md={24} sm={24}>
                             <Tooltip title="Reject">

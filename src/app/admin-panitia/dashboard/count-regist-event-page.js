@@ -148,6 +148,9 @@ class CountRegistEventPage extends Component {
                 title: 'Sisa',
                 dataIndex: 'sisa',
                 key: 'sisa',
+                render: (sisa) => (
+                  Number.isNaN(sisa) ? '-' : sisa
+                )
             },
             {
               title: 'Action',
