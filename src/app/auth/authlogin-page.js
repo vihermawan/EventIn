@@ -103,10 +103,8 @@ class AuthLogin extends Component {
                         this.successNotification('Sukses', 'Berhasil Masuk')
                     }
                 }else if(res.data.status === 'Banned'){
-                    alert('Login salah')
                     this.openNotification('Akun telah dibanned', 'Akun anda telah diblokir. Silahkan kirim email ke service.eventin@gmail.com jika menurut anda tidak selayaknya diblokir')
                 }else{
-                    alert('Login salah')
                     this.openNotification('Login Salah', 'Silahkan isi email dan password dengan benar')
                 }
                 this.setState({loading: false})
