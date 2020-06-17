@@ -108,7 +108,8 @@ class EditCertificatePage extends Component {
     };
    
     uploadFile = (event) => {
-        if(event.target.files[0].type !== 'application/vnd.openxmlformats-officedocument.wordprocessingml.document'){
+        // if(event.target.files[0].type !== 'application/vnd.openxmlformats-officedocument.wordprocessingml.document'){
+        if(event.target.files[0].name.split('.').pop() !== 'docx'){
             this.openNotification('Format Sertifikat Salah', 'Silahkan Upload Kembali dengan format Docx')
         }
         else if(event.target.files[0].size / 1024 / 1024 > 2){
@@ -118,7 +119,8 @@ class EditCertificatePage extends Component {
                 sertifikat:event.target.files[0],
                 nama_display : event.target.files[0].name,
                 size_sertifikat : event.target.files[0].size / 1024 / 1024,
-                type_file :event.target.files[0].type,
+                type_file : event.target.files[0].name.split('.').pop()
+                // type_file :event.target.files[0].type,
             })
         }
     } 
@@ -149,10 +151,11 @@ class EditCertificatePage extends Component {
             const message = validation.required(this.state.sertifikat);
             this.openNotification(message, 'Sertifikat Harus Diupload')
         }else if(this.state.button_edit !== 'Edit Foto Profil'){
-            if(this.state.file_type !== 'application/vnd.openxmlformats-officedocument.wordprocessingml.document'){
+            // if(this.state.type_file !== 'application/vnd.openxmlformats-officedocument.wordprocessingml.document'){
+            if(this.state.type_file !== 'docx'){
                 this.openNotification('Format Sertifikat Salah', 'Silahkan Upload Kembali dengan format Docx')
             }else{
-                this.setState({ show: false})
+                this.setState({ show: true})
                 API.postEdit(`/panitia/edit-sertifikat-event/${this.state.id_sertifikat}`, params)
                 .then(res => {
                     if(res.status === 200){

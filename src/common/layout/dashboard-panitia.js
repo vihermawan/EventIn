@@ -54,12 +54,9 @@ class dashboard extends Component {
   };
     
   getProfile=()=>{
+      // this.setState({loading: true})
       API.get(`/panitia/profile-edit`)
       .then(res => {
-        this.setState({
-          telepon : res.data.data.user.panitia.telepon,
-          instagram : res.data.data.user.panitia.instagram
-        })
         let username_panitia = localStorage.getItem("username");
         let profile_panitia = localStorage.getItem("profile_picture");
         if ((res.data.data.user.panitia.nama_panitia !== username_panitia) || (res.data.data.user.panitia.image_URL !== profile_panitia)){
@@ -79,11 +76,13 @@ class dashboard extends Component {
     pathName === '' ? this.setState({current: '/dashboard'}) : this.setState({current: pathName});
     let username_panitia = localStorage.getItem("username");
     let profile_panitia = localStorage.getItem("profile_picture");
-    this.setState({username : username_panitia, profile_picture : profile_panitia })
+    let telepon = localStorage.getItem("telepon");
+    let instagram = localStorage.getItem("instagram");
+    this.setState({username : username_panitia, profile_picture : profile_panitia,telepon, instagram })
     let token = localStorage.getItem("token");
     if (token !== null){
 			this.setTimeOut();
-		}
+    }
   }
 
   setTimeOut = () => {
@@ -116,6 +115,7 @@ class dashboard extends Component {
   }
 
   render() {
+    console.log(this.state.telepon, this.state.instagram)
     const logo = require(`../../assets/images/logo.png`);
     const logoadmin = require(`../../assets/images/En.png`);
     let hidden = this.state.collapsed ? 'hidden-objek' : 'block-objek'
