@@ -68,10 +68,13 @@ class AuthLogin extends Component {
             .then(res => {
                 if(res.status === 200){
                     if(res.data.id_role === 2){
+                        console.log(res)
                         localStorage.setItem('token', res.data.token)
                         localStorage.setItem('username', res.data.nama)
                         localStorage.setItem('id_role', res.data.id_role)
                         localStorage.setItem('profile_picture', res.data.profile_picture)
+                        localStorage.setItem('instagram', res.data.instagram)
+                        localStorage.setItem('telepon', res.data.telepon)
                         this.props.navigate(CONSTANS.PANITIA_MENU_KEY)
                         this.successNotification('Sukses', 'Berhasil Masuk')
                       

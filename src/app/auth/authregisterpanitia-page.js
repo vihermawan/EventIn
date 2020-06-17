@@ -76,15 +76,15 @@ class AuthRegisterPanitia extends Component {
         if(validation.required(this.state.nama_panitia) !== null){
             const message = validation.required(this.state.nama_panitia)  
             this.openNotification(message, 'Nama belum dimasukkan')
-        }else if(validation.minPassword(this.state.password)){
-            const message = validation.minPassword(this.state.password);
-            this.openNotification(message, 'Password minimal 8 karakter')
-        }else if(validation.required(this.state.organisasi) !== null){
-            const message = validation.required(this.state.organisasi);
-            this.openNotification(message, 'Organisasi belum diisi')
         }else if(validation.emailRequired(this.state.email) !== null){
             const message = validation.emailRequired(this.state.email);
             this.openNotification(message, 'Harap memasukkan email dengan benar')
+        }else if(validation.required(this.state.organisasi) !== null){
+            const message = validation.required(this.state.organisasi);
+            this.openNotification(message, 'Organisasi belum diisi')
+        }else if(validation.minPassword(this.state.password)){
+            const message = validation.minPassword(this.state.password);
+            this.openNotification(message, 'Password minimal 8 karakter')
         }else{
             this.setState({loading: true,show : false})
             API.post(`/auth/register/panitia`, params)

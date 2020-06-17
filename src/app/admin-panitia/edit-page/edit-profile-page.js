@@ -262,6 +262,8 @@ class EditProfilePage extends Component {
             if(this.state.file_type !== 'image/jpeg'){
                 this.openNotification('Format Gambar Salah', 'Silahkan Upload Kembali dengan format JPG')
             }else{
+                localStorage.setItem('telepon', this.state.telepon)
+                localStorage.setItem('instagram',this.state.instagram)
                 this.setState({show: true})
                 API.postEdit(`/panitia/editprofile/${id_panitia}`, params)
                 .then(res => {
@@ -278,6 +280,8 @@ class EditProfilePage extends Component {
                 });
             }
         }else{
+            localStorage.setItem('telepon', this.state.telepon)
+            localStorage.setItem('instagram',this.state.instagram)
             this.setState({show: true})
             API.postEdit(`/panitia/editprofile/${id_panitia}`, params)
             .then(res => {
