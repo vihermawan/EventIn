@@ -115,7 +115,6 @@ class dashboard extends Component {
   }
 
   render() {
-    console.log(this.state.telepon, this.state.instagram)
     const logo = require(`../../assets/images/logo.png`);
     const logoadmin = require(`../../assets/images/En.png`);
     let hidden = this.state.collapsed ? 'hidden-objek' : 'block-objek'
