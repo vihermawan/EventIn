@@ -188,7 +188,7 @@ class EditProfileSignerComponent extends Component {
                                                         className="avatar-uploader"
                                                         disabled = {true}
                                                     >
-                                                        {initialData.croppedImageUrl ? <Avatar shape="square" size={300} src={initialData.croppedImageUrl} classname="profile-picture" icon="user" style={{ width: '50%' }}/> : uploadButton}
+                                                        {initialData.croppedImageUrl ? <Avatar shape="square" size={600} src={initialData.croppedImageUrl} classname="profile-picture" icon="user" style={{ width: '50%' }}/> : uploadButton}
                                                     </Upload>  
                                                  </div> 
                                             </Col>
